@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SSD | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/ssd/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2012-12-17T05:38:04+08:00</updated>
+  <updated>2012-12-17T05:46:21+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -81,30 +81,30 @@ sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBloc
 <p>3.用noatime方式挂载硬盘，就是少加载一个文件属性参数而已，对于日常使用没啥影响，在/Library/LaunchDaemons里面创建一个noatime.plist，内容如下：</p>
 
 <p><code>xml
-&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
-&amp;lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-"http://www.apple.com/DTDs/PropertyList-1.0.dtd"&amp;gt;
-&amp;lt;plist version="1.0"&amp;gt;
-&amp;lt;dict&amp;gt;
-&amp;lt;key&amp;gt;Label&amp;lt;/key&amp;gt;
-&amp;lt;string&amp;gt;noatime&amp;lt;/string&amp;gt;
-&amp;lt;key&amp;gt;ProgramArguments&amp;lt;/key&amp;gt;
-&amp;lt;array&amp;gt;
-&amp;lt;string&amp;gt;mount&amp;lt;/string&amp;gt;
-&amp;lt;string&amp;gt;-vuwo&amp;lt;/string&amp;gt;
-&amp;lt;string&amp;gt;noatime&amp;lt;/string&amp;gt;
-&amp;lt;string&amp;gt;/&amp;lt;/string&amp;gt;
-&amp;lt;/array&amp;gt;
-&amp;lt;key&amp;gt;RunAtLoad&amp;lt;/key&amp;gt;
-&amp;lt;true/&amp;gt;
-&amp;lt;/dict&amp;gt;
-&amp;lt;/plist&amp;gt;
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+&lt;key&gt;Label&lt;/key&gt;
+&lt;string&gt;noatime&lt;/string&gt;
+&lt;key&gt;ProgramArguments&lt;/key&gt;
+&lt;array&gt;
+&lt;string&gt;mount&lt;/string&gt;
+&lt;string&gt;-vuwo&lt;/string&gt;
+&lt;string&gt;noatime&lt;/string&gt;
+&lt;string&gt;/&lt;/string&gt;
+&lt;/array&gt;
+&lt;key&gt;RunAtLoad&lt;/key&gt;
+&lt;true/&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
 </code></p>
 
 <p>修改刚刚创建的文件权限</p>
 
 <p><code>bash
-sudo chown root:wheel /Library/LaunchDaemons/noatime.plist&lt;/pre&gt;
+sudo chown root:wheel /Library/LaunchDaemons/noatime.plist
 </code></p>
 
 <p>重启</p>
@@ -115,10 +115,10 @@ sudo chown root:wheel /Library/LaunchDaemons/noatime.plist&lt;/pre&gt;
 mount | grep " / "
 </code></p>
 
-<p>如果结果里有类似这样的内容（红字内容）就表示可以了</p>
+<p>如果结果里有类似这样的内容（最后的noatime）就表示可以了</p>
 
 <p><code>bash
-/dev/disk0s2 on / (hfs, local, journaled, &lt;span style="color: #ff0000;"&gt;noatime&lt;/span&gt;)
+/dev/disk0s2 on / (hfs, local, journaled, noatime)
 </code></p>
 ]]></content>
   </entry>
