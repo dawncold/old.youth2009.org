@@ -1,0 +1,705 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>dawncold's tech blog</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="&lt;p&gt;1.从http://code.google.com/p/git-osx-installer/downloads/list下载最新的git安装包&lt;/p&gt; 2.安装 3.配置git git config --global user.name 'dawncold' git &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/blog/page/25/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">dawncold's tech blog</a></h1>
+  
+    <h2>dawncold's tech blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.youth2009.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/23/git-study-log/">Git的学习笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-23T11:00:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;1.从http://code.google.com/p/git-osx-installer/downloads/list下载最新的git安装包&lt;/p&gt;
+</code></pre>
+
+<p>2.安装</p>
+
+
+<p>3.配置git</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">git config --global user.name 'dawncold'
+
+
+<p>git config --global user.email loooseleaves@gmail.com</pre></p>
+
+<br /><p>4.学习git 建立一个项目文件夹</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">mkdir studygit</pre>
+
+
+<br /><div id="cke_pastebin">进入这个文件夹</div>
+
+
+<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">cd studygit/</pre></div>
+
+
+<br /><div id="cke_pastebin">初始化git</div>
+
+
+<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">git init</pre></div>
+
+
+<br /><div id="cke_pastebin">返回这样一句:</div>
+
+
+<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">Initialized empty Git repository in /Users/dawncold/Documents/Project/studygit/.git/</pre></div>
+
+
+<br /><div id="cke_pastebin">然后创建几个文件来试试git的跟踪:</div>
+
+
+<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">vi test.c
+
+
+<p>vi README</pre></div></p>
+
+<br /><div id="cke_pastebin">加入git跟踪:</div>
+
+
+<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">git add *.c
+
+
+<p>git add README</pre></div></p>
+
+<br /><div id="cke_pastebin">提交一下</div>
+
+
+<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">git commit -m 'init project----studygit'</pre></div>
+
+
+<br /><div id="cke_pastebin">返回了:</div>
+
+
+<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">[master (root-commit) 2e2368b] init project----studygit
+
+
+<p>2 files changed, 6 insertions(+), 0 deletions(-)
+create mode 100644 README
+create mode 100644 test.c</pre></div></p>
+
+<br /><div id="cke_pastebin">查看一下git状态</div>
+
+
+<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">git status</pre></div>
+
+
+<br /><div id="cke_pastebin">返回:</div>
+
+
+<br /><div><pre class="prettyprint linenums bush:bash" lang="bash"># On branch master
+
+
+<p>nothing to commit (working directory clean)</pre></div></p>
+
+<br /><div id="cke_pastebin">表示现在跟踪的这些文件没有更改，如果更改了就会显示出来有差异。</div>
+
+
+<br /><div id="cke_pastebin">如果在这个目录下建立了新的文件，再次查看status会出现一个untracked files:，此时要想加入到git跟踪，用git add xxx即可。</div>
+
+
+<br /><div id="cke_pastebin"> </div>
+
+
+<br /><div id="cke_pastebin">git有个看起来麻烦的地方:如果add了a这个文件，然后再更改一下这个文件，比如加了一句话，此时查看status会发现untracked中又出现了刚才的那个a文件，如果此时commit的话我们刚刚改的a文件不会被提交上去，只会提交那个add后而且没有再更改的a文件。此时应该再add一次才可以!!!(用git commit -a即可略过add的步骤，只要跟踪过a这个文件，那就肯定会提交最新的)</div>
+
+
+<br /><div id="cke_pastebin"> </div>
+
+
+<br /><div id="cke_pastebin">git的忽略文件，在本项目的文件夹中建立一个叫.gitignore的文件，里面加入要忽略的文件名字，似乎能用正则表达式，比如:</div>
+
+
+<br /><div id="cke_pastebin">*.[oa] 是忽略o和a结尾的文件;*~ 是忽略带波浪线的文件，这类文件一般是文本编辑器创建的备份。要养成良好的习惯，项目一开始就建立这个文件。</div>
+
+
+<br /><div id="cke_pastebin"> </div>
+
+
+<br /><div id="cke_pastebin">git的删除文件，如果用git rm xxx则在版本仓库中删除，并且在目录下也删除了，如果用git rm &#8211;cache xxx则只是在版本仓库里删除跟踪。</div>
+
+
+<br /><div id="cke_pastebin"> </div>
+
+
+<br /><div id="cke_pastebin">git的重命名文件，一般在linux下都是使用mv命令，在git中也是如此，git mv xxx，git可以了解你做了重命名还是其他的。</div>
+
+
+<br /><div id="cke_pastebin"> </div>
+
+
+<br /><div id="cke_pastebin">git的撤销，刚刚提交的文件中少了一个，可以这样做:</div>
+
+
+<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">$ git commit -m 'initial commit'
+
+
+<p>$ git add forgotten_file
+$ git commit --amend</pre></div></p>
+
+<br /><div id="cke_pastebin">后续内容请查看progit这本书在github上的翻译，我就是对着翻译来写了这一小篇文正，还有不少遗漏的地方没有写出来。</div>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/22/validating-paypal/">正在验证paypal</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-22T18:30:00+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;能够使用paypal最好了，因为那样可以隐藏自己的信用卡信息，总之支持paypal支付的国外商家还是非常多的。要开通这个功能需要在paypal上添加一张信用卡，我已经添加过一张银联卡了，验证方式是paypal给我打了两笔小额资金，真是很小，不到1毛钱！而验证信用卡就不一样了，需要扣除不到2美元的现金，而paypal这次很实在，不到2美元，扣了1.9x！！！接着就是等对账单，paypal会显示一个4位数的编号，等你看到后填写到paypal那里就算是验证成功了！但这个过程还是有点艰辛。&lt;/p&gt;
+</code></pre>
+
+<p>昨天我进行了3次添加信用卡操作，全都是失败，还被银行的客服问候了一下，今天看到美元帐户里能够支付5美元了，再尝试一下，还是失败！Google原因，了解了还需要开通境外无卡支付业务才行，我从网银的设置中看到了这个业务，但后面的开通链接处是一个灰色的！只有柜面注册卡才能在线开通关闭！我这不是柜面注册么？！好象是自己在网银的后台添加进去的～于是电话让客服MM开通，顺利完成了paypal的添加卡业务。（我在网银中还自助开通了一个VISA验证服务，这个应该不影响吧）。再等几天验证完paypal就没事了。那时候再把境外无法支付关闭，要不然危险。</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/22/give-up-csapp/">含恨放弃了这本书</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-22T13:53:00+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;《深入理解计算机系统》这本书是我从《程序员》上看来的，记得有位高超的架构师吧，推荐了这本书，我就买了下来，现在放弃阅读这本书。看起来我还是能够放弃一些东西的，我并不是一个如同我描述得那样──“一个学不会放弃的人。”&lt;/p&gt;
+</code></pre>
+
+<p>我之所以放弃这本书是因为这本书前半部分讲得都是硬件相关的知识，就象是去年学习的《计算机组成原理》一样，还好比《数字逻辑电路》强了不少，因为这些知识都和计算机相关，数字逻辑简直就是在讲单纯的硬件。不过两者却都不是我所希望阅读的！以为这本书的后半部分能够提供一些编程优化相关的知识，因为看这本书的介绍是帮助程序员理解程序如何运行并且还讲解了一些实用的编程技巧，谁知根本不是这样。</p>
+
+
+<p>在大二的上学期我们也发了一本讲解汇编的教材，只是我们班的课程与其他计算机科班不太一样，就没有讲这门课，曾经的我想一度利用空闲时间来学习汇编，并且在大一的时候我从图书馆借来了一般汇编书，自学了一小部分，但现在看来，那一切都显得过于理想化了！刚才从床底下拿出来了汇编的书，看了两眼就放回去了。我之道如果我学会了汇编一定能看完这本《深入理解计算机系统》的，可惜我没学会：（</p>
+
+
+<p>还有不少书在手边，学会了任何一本都足以让我受益好几年，但我从未感受到这些益处，肯定是因为我没有学好，即便是这样，我竟然也能在班里排名比较靠前。似乎一切都反过来了！！！</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/21/trust-amount/">信用额度</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-21T20:58:00+08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;今天十分尴尬呀，刚刚领到了信用卡准备去透支一小把试试，虽说自己对这么容易申请到的卡信用额度的大小也未知，索性拿即将要买的酱油试试吧！&lt;/p&gt;
+</code></pre>
+
+<p>母亲买了几本书，30.3元，透支刷卡，成功！</p>
+
+
+<p>又买了几盒药，75元，透支刷卡，失败！</p>
+
+
+<p>此后我问了客服，我的卡现在信用额度只有50元～美元的话我听成5美元了，回家一查才发现是3美元，下午在paypal上想把这卡添加上去，结果几次尝试都失败，因为paypal要先冻结几美金来确认的，我以为即使是3美金的透支额度也是能过的吧，尝试了3次都不行，也懒得再去问如何了，只能先放着，慢慢消费累计额度吧！</p>
+
+
+<p>晚饭期间客服热心打来电话问我是不是在paypal进行了3次没成功的交易，确保我的资金安全，这点很不错，不过希望不要每天都和我汇报一下，那样就麻烦了。</p>
+
+
+<p>新的征程已经开始──积累信用额度！</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/20/my-credit-card-life/">我的信用卡生活</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-20T19:49:00+08:00" pubdate data-updated="true">Feb 20<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;活了这么多年，这还是我第一次办理信用卡，虽然在前几年因为购买hostmonster主机的时候打算办理信用卡购买，可惜在咨询办理的时候发现银行根本不接受我这个客户，那时候应该是初中吧，实在有些幼稚。最终是通过代购，花了600多买了一年的hostmonster主机，作了个网站，最终失败告终。&lt;/p&gt;
+</code></pre>
+
+<p>2月8日我从工行的网上银行中申请了一张信用卡，随后问了在银行工作的亲戚，他告诉我对于学生这个阶层无法办理信用卡，没有还款能力（即使你不乱花钱并且有不少钱，甚至有人能帮你还款），所以我就没有抱有希望，把那张表填写完就忘记了，昨天缴纳电话费的时候顺便看了一眼申请进度──“已经发卡到指定银行，请尽快领取！”</p>
+
+
+<p>8号提交，14号到的，我是19号看到的。工行的审批效率这么高啊！审批到卡到达只用了不到1星期？！今天我早上去领取了，很可惜，工作人员告诉我信用卡领取只能在星期一到星期五办理──今天星期日！唉，太可惜了，不过也不错，幸好今天不是星期六！！！</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/19/pause-website-development/">网站开发告一段落</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-19T13:26:00+08:00" pubdate data-updated="true">Feb 19<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;刚刚把一个比较大的功能完成了——日历。还有一个星期就要回去了，我这次回家拿回来的几本书还没有看完，PHP的那本书看得差不多了，还没有回头细看，可能还需要再带回去。《深入理解计算机系统》那本书没有看，打算剩下的这一个星期全看那本书，能看多少是多少，不能总和PHP为伍，毕竟回去了有不少人还是能帮我继续做网站的！&lt;/p&gt;
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/16/after-app-approved/">应用通过审核之后</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-16T21:35:00+08:00" pubdate data-updated="true">Feb 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;这是第二次进行人人网的应用审核了，第一次只是把网站于人人网连接起来就草草申请审核，很快被打了回来，前天刚刚实现了发表新鲜事到人人网的功能，这次就有理由来申请了。今天下午我打开人人网，看到站内信中有开放平台发来的信件，告诉我已经上线了，至此，我的一天网站又一大功能实现了。&lt;/p&gt;
+</code></pre>
+
+<p>其实我不是很想实现与这些网站的连接，只是因为开放API的方式已经渐渐成了国内网站的主流，相信这点在国外同类网站已经做得相当成熟了，在国内，就连Tencent都喊着要开放了。实现与这些网站得对接能够利用他们已经建立的用户资源，也就是分享他们的用户，这点对于一个新兴的、不完全靠创新的网站是很有必要的。</p>
+
+
+<p>本以为自己的点子是足够创新的，但在这个神奇的土地上，一个思想都快要变得神奇的人很难一下子突破这些禁锢达到真正创新的地步，不过我感觉现在我的这个网站还是足够创新的，至少还没大有这样做的。</p>
+
+
+<p>国内人多，想到的点子也就丰富，虽说其中创新的并不多，但至少能有一小部分吧，由于基数比较大，所以即使比率低一些也无妨，可我们身边这些SNS、论坛之类的东西并不多。关键还在对于一个点子的运营上吧！</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/14/eclipse-color/">新的eclipse配色</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-14T15:31:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;本打算将php、java、android开发集成到eclipse中，因为这本来就是可以的嘛，但不知道该如何安装插件，索性就把php和java开发分开了，下载了两套eclipse，这是我找的一个eclipse配色，for java的：&lt;/p&gt;
+</code></pre>
+
+<p><img alt="" src="http://pic.yupoo.com/loose_v/AQCjlpBz/medium.jpg"></p>
+
+
+<p>在此要感谢这位<a href="http://utensil.javaeye.com/blog/444590">作者</a>，他的博客中有更多的图可以看！</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/13/compromise-choose/">折衷的选择</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-13T21:47:00+08:00" pubdate data-updated="true">Feb 13<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;新的VPS上绝对能够承受我所有的站点，不过就是访问的时候速度不理想，在我不知到该怎么办的时候遇到了Typecho这个精简的博客程序，而且在他们的论坛上遇到了一个赞助新加坡主机的朋友，我顺利申请了他的新加坡主机，当时ping值相当高，大约到了400多，怎么比我的VPS还慢？过后再试试，只有100ms了，果断把youth2009.org搬过去吧。其实，我不买这个VPS也就可以了，只是现在能够学到一些linux下的小知识，花些钱也就能说得过去了（还是要把自己说服）。再者说了，自己的VPS毕竟能够掌握所有控制，也相对安全一些。&lt;/p&gt;
+</code></pre>
+
+<p>折衷的选择就是把原来国内的那个空间迁移到这里，看看ningxin.org还要不要动，这样就空出来了国内的垃圾空间，如果能够退款就更好了，不能的话，我也没办法了，我会一直相信一分钱一分货的！</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/09/thanks-for-myself-choose/">感谢自己的选择</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-09T23:11:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;有时候在作出一些决定的时候总是要思前想后，不得不承认这是一个不可避免的过程，有的人很快就作出决定，有的人就会很慢，我就是后者。然而我总是在考虑这个决定作出后给我带来的各种各样的后果，一下在还能想好几年！&lt;/p&gt;
+</code></pre>
+
+<p>刚刚有4个RSS可以订阅，我选择了2个。完全可以全部订阅啊，那样我就能了解各种资讯了，不用因为少订阅了的而看不到有可能影响我一生的话了……不排除这类可能，但应该感谢此时自己作出的这个决定。这里并没有对错之分，只是自己把未来规划了一下，瞬间，我的未来将发生一个变化，而如果我仍然在考虑甚久，就没有必要了，谁也说不准未来是什么样子。</p>
+
+
+<p><span style="color: #ff0000;">所以，感谢自己所作的一切决定。我们所后悔的只是在今天看到了某些已经变成历史的事件，而这些事件，恰恰是我们过去非常“纠结”的那些吧！</span></p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/26/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/24/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

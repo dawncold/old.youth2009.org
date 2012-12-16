@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 应用 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/应用/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[应用通过审核之后]]></title>
+    <link href="http://www.youth2009.org/blog/2011/02/16/after-app-approved/"/>
+    <updated>2011-02-16T21:35:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/02/16/after-app-approved</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;这是第二次进行人人网的应用审核了，第一次只是把网站于人人网连接起来就草草申请审核，很快被打了回来，前天刚刚实现了发表新鲜事到人人网的功能，这次就有理由来申请了。今天下午我打开人人网，看到站内信中有开放平台发来的信件，告诉我已经上线了，至此，我的一天网站又一大功能实现了。&lt;/p&gt;
+</code></pre>
+
+<p>其实我不是很想实现与这些网站的连接，只是因为开放API的方式已经渐渐成了国内网站的主流，相信这点在国外同类网站已经做得相当成熟了，在国内，就连Tencent都喊着要开放了。实现与这些网站得对接能够利用他们已经建立的用户资源，也就是分享他们的用户，这点对于一个新兴的、不完全靠创新的网站是很有必要的。</p>
+
+
+<p>本以为自己的点子是足够创新的，但在这个神奇的土地上，一个思想都快要变得神奇的人很难一下子突破这些禁锢达到真正创新的地步，不过我感觉现在我的这个网站还是足够创新的，至少还没大有这样做的。</p>
+
+
+<p>国内人多，想到的点子也就丰富，虽说其中创新的并不多，但至少能有一小部分吧，由于基数比较大，所以即使比率低一些也无妨，可我们身边这些SNS、论坛之类的东西并不多。关键还在对于一个点子的运营上吧！</p>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mac | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/mac/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[更新Mac下的ruby]]></title>
+    <link href="http://www.youth2009.org/blog/2012/02/05/update-ruby-on-mac/"/>
+    <updated>2012-02-05T00:00:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/02/05/update-ruby-on-mac</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！&lt;/p&gt;
+</code></pre>
+
+<p>修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/bin中的情况，如果不能自动创建链接过去的话，麻烦是一个方面，关键是后面做的一些工作基本都白费了，可能你运行的一个软件是在/usr/bin中存在的，那样就不会自动搜索到你用brew安装的那个了。详情找找brew的工作原理吧：)</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo chown -R `whoami` /usr/local</pre>
+
+
+<br /><p>首先我用了大家推荐的Homwbrew管理工具，这里安装完homebrew后需要在自己的bash配置文件中加入新的path：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">export PATH=/usr/local/bin:$PATH</pre>
+
+
+<br /><p>把这行加入到bash_profile中吧，这样就能让homebrew发挥作用了，你首先就能用上更新了的程序而不是从默认路径查找。（如果以前用了MacPorts的话你也会和我一样看到MacPorts的export命令，要去掉他们，或者你把Homebrew的export命令写在下面，这样能覆盖掉，既然我已经删除了MacPorts，所以干脆删除掉！）</p>
+
+
+<p>关闭terminal，重新加载刚才的bash_profile，这样就能用Homebrew了。</p>
+
+
+<p>首先安装git，自己和Homwbrew都用得到：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">brew install git</pre>
+
+
+<br /><p>接着更新一下Homebrew的源：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">brew update</pre>
+
+
+<br /><p>然后安装了ruby后就能用gem来更新系统了：</p>
+
+
+<p>安装ruby：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">brew install ruby</pre>
+
+
+<br /><p>更新系统：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">gem update --system</pre>
+
+
+<br /><p>后面的安装rails等操作就可以用gem来做了，看看自己的ruby版本，已经是1.9.3p0(2011-10-30)</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[删除MacPorts]]></title>
+    <link href="http://www.youth2009.org/blog/2012/02/04/uninstall-macports/"/>
+    <updated>2012-02-04T21:53:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/02/04/uninstall-macports</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;sudo port -f uninstall installed
+</code></pre>
+
+<p>sudo rm -rf \
+/opt/local \
+/Applications/DarwinPorts \
+/Applications/MacPorts \
+/Library/LaunchDaemons/org.macports.<em> \
+/Library/Receipts/DarwinPorts</em>.pkg \
+/Library/Receipts/MacPorts*.pkg \
+/Library/StartupItems/DarwinPortsStartup \
+/Library/Tcl/darwinports1.0 \
+/Library/Tcl/macports1.0 \
+~/.macports</pre></p>
+
+<br /><p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
+
+
+<p>我删除了MacPorts后就开始用Homebrew了。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mac系统关闭dashboard]]></title>
+    <link href="http://www.youth2009.org/blog/2012/01/26/turn-off-dashboard-on-mac/"/>
+    <updated>2012-01-26T00:49:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/01/26/turn-off-dashboard-on-mac</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;一开始感觉dashboard这个东西挺好的，加上了好几个小插件玩，但现在发现使用频率超低，所以干脆想办法关闭吧，听说还能节约部分内存和提升开机速度，对这些倒是不太关心，只能有种不用就关闭的态度驱使着我。&lt;/p&gt;
+</code></pre>
+
+<p>关闭命令：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean YES</pre>
+
+
+<br /><p> </p>
+
+
+<p>运行后最好再执行一下这个生效：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">killall Dock</pre>
+
+
+<br /><p>如果需要重新开启，请使用这条命令，包括了killall Dock：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean NO
+
+
+<p>killall Dock</pre></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[开启Dock的堆栈功能]]></title>
+    <link href="http://www.youth2009.org/blog/2012/01/13/open-the-stack-function-of-dock/"/>
+    <updated>2012-01-13T21:56:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/01/13/open-the-stack-function-of-dock</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;打开Terminal，输入：&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock</pre>
+
+
+<br /><p>然后回车（return），等Dock再次出现后，在已打开程序图标上滚动鼠标滚轮或者手势模拟滚轮，就能看到这个程序打开的子窗口或者子程序，很过瘾好用。</p>
+
+
+<p>我的MacOS：Lion</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[终于回到自由的时候]]></title>
+    <link href="http://www.youth2009.org/blog/2011/12/16/back-to-free-time/"/>
+    <updated>2011-12-16T21:27:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/12/16/back-to-free-time</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;自从前段时间学校封杀了研究生web端自由登陆drcom以来，我就只能找网络中心的老师开了本科生的web登陆，速度很慢，还有流量限制。&lt;/p&gt;
+</code></pre>
+
+<p>又加上Lion系统中的原drcom客户端不能用，我就攒了攒勇气下载了drcom4mac的源代码回来自己编译，本以为就是平台的微弱差异，没想到一大堆根本看不懂的错误出现，也没那么平静的心来阅读一个个C函数，就这样搁置了。</p>
+
+
+<p>昨晚Drcom的GoogleGroups中有人发来邮件，说是写了个java的drcom客户端欢迎测试，我今天早晨配置好了libpcap库和jpcap库，然后使用了这个客户端，打开GUI后输入账号密码，登陆没反应。于是告诉了作者，中午收到作者来信，说暂时还只能用命令行方式，这我当然能够接受，可惜在Mac的terminal中显示的中文提示都是乱码，于是svn到了原代码到eclipse中看看吧，按照提示组合了命令行，成功登陆了！</p>
+
+
+<p>从此又自由了。</p>
+
+
+<p>项目地址：<a href="http://code.google.com/p/jdrcom/">http://code.google.com/p/jdrcom/</a></p>
+
+]]></content>
+  </entry>
+  
+</feed>

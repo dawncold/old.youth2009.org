@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: comments | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/comments/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[不接受非中文评论]]></title>
+    <link href="http://www.youth2009.org/blog/2012/01/26/do-not-accept-any-comments-which-do-not-write-in-chinese/"/>
+    <updated>2012-01-26T13:32:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/01/26/do-not-accept-any-comments-which-do-not-write-in-chinese</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;由于某些原因（spam），这个博客系统（typecho）很容易被评论机器人俘获，几天不登陆发现已经有了上千条垃圾评论，删除都是一项繁重的工作，昨晚找了两个反垃圾评论插件都装上，现在是三个反垃圾评论插件同时工作！即便如此，还是有不少垃圾评论袭来，我只能q启用较严格的审核标准——禁止一切非中文评论，我本身就是用中文书写，所以假设有效用户就是会中文的，如果不是的话……&lt;/p&gt;
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

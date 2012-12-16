@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>UINavigationController和UITabBarController的搭配 - dawncold's tech blog</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="&lt;p&gt;经过近1天的实践才摸清了这两个控件的搭配使用方法，网上介绍的不算多，我就把自己的经验说说：&lt;/p&gt; 首先这两个的搭配是这样的，基础是UITabBarController，你完全可以在Xcode中选一个以Tabbar为基础的工程，用Tabbar来划分程序的大功能， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/blog/2011/07/28/use-uinavigationcontroller-in-uitabbarcontroller/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">dawncold's tech blog</a></h1>
+  
+    <h2>dawncold's tech blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.youth2009.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">UINavigationController和UITabBarController的搭配</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-28T06:01:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><pre><code>        &lt;p&gt;经过近1天的实践才摸清了这两个控件的搭配使用方法，网上介绍的不算多，我就把自己的经验说说：&lt;/p&gt;
+</code></pre>
+
+<p>首先这两个的搭配是这样的，基础是UITabBarController，你完全可以在Xcode中选一个以Tabbar为基础的工程，用Tabbar来划分程序的大功能，每个功能中再用Navigation来做导航。我想大家应该都会这样做，当然如果反过来也不是不行，就是感觉有点别扭。</p>
+
+
+<p>在AppDelegate的初始化过程中用几个UINavigationController包裹UIViewController或者其子类（比如UITableViewController）放入UITabBarController中，这样的设置应该都会。我一开始这样写后，到了每个功能中，需要用到Navigation了，又自己写了一个UINavigationController，但不管用。然后我猜想是不是要自己模拟类似的功能，就自己加上了UINavigationBar，样子是对了，可惜这个bar不带popViewController的功能，完全让navigation成了摆设。无意中看到apple官方的例子中在UIViewController中用到了self.navigationController，我这才意识到UIViewController自己就带着UINavigationController。代码又改回以前的，几个UInavigationController包裹UIViewController初始化，然后在每个功能中大胆用self的navigationController来导航，达到了效果。</p>
+
+
+<p>还有，如果要做TableView，最好在UIViewController的子类中加入一个UITableView而不是UITableViewController，前者是一个控件，而后者是一套处理（当然还包括控件）。我一开始想在某个功能中用表格，加了一个表格的controller，总是看到表格开头多了一大块灰色的区域，硬生生地把一个表格给隔开了，具体问题在网上没有搜索到相关结果。但后来用了UITableView就好了。</p>
+
+
+<p>啰嗦了这么多，其实写的是我的探索过程，并不是直接给出的结果。</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-28T06:01:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/uinavigationcontroller/'>UINavigationController</a>, <a class='category' href='/blog/categories/uitabbarcontroller/'>UITabBarController</a>, <a class='category' href='/blog/categories/uitableview/'>UITableView</a>, <a class='category' href='/blog/categories/uitableviewcontroller/'>UITableViewController</a>, <a class='category' href='/blog/categories/我想说的各种技术/'>我想说的各种技术</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/07/26/iphone-simulator-and-sqlite/" title="Previous Post: iphone模拟器和sqlite的问题">&laquo; iphone模拟器和sqlite的问题</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/07/29/some-config-about-uitableview-cell/" title="Next Post: 关于UITableView中的cell配置">关于UITableView中的cell配置 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2011/07/28/use-uinavigationcontroller-in-uitabbarcontroller/';
+        var disqus_url = 'http://www.youth2009.org/blog/2011/07/28/use-uinavigationcontroller-in-uitabbarcontroller/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

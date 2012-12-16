@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 敏捷开发 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/敏捷开发/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[247条垃圾评论]]></title>
+    <link href="http://www.youth2009.org/blog/2012/09/23/247-rubbish-comments/"/>
+    <updated>2012-09-23T21:24:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/09/23/247-rubbish-comments</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;疏于管理啊，让各路垃圾评论之小人得了空，钻到这里写了那么多，还好spam插件够给力，全部截获。以后不该再这样了，但也是没什么时间。&lt;/p&gt;
+</code></pre>
+
+<p>去了honovation之后发觉自己写过的代码基本就不叫代码啊，自觉的对python算是熟悉的，到了那里也感觉从没写过python了，怪我平日光想着感情来感情去了，就和我这技术blog似的，疏于管束，才弄得我今天这个结果。</p>
+
+
+<p>现在比较感兴趣的是敏捷实践，看书上网上的资料毕竟比较浮华，身处于敏捷团队，每天都在做得就是最好的实践，怪我一时还不太会总结，现在好像又要深陷到代码里了，我这个程序员何时能成长？！</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[坏味的简单分析]]></title>
+    <link href="http://www.youth2009.org/blog/2011/03/05/agile-develop-simple-bad-smell-analytics/"/>
+    <updated>2011-03-05T22:10:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/03/05/agile-develop-simple-bad-smell-analytics</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;软件工程的设计是一种抽象概念，设计的最终体现是源代码。&lt;/p&gt;
+</code></pre>
+
+<p>软件需求总在变化，本来一个简单的程序，经过几次需求变化就需要添加上很多额外的参数来控制流程，这时根本不可能期望修改接口，因为这时很多模块可能已经在使用你，如果你进行了更改，依赖你的所有代码都需要重新编译，这在一个庞大的项目中简直就是灾难！</p>
+
+
+<p>所以，出现坏味的根本原因就是一开始的轻视设计，又加上不断的需求变化，项目中不可避免的一些依赖，导致需要利用hacks这类方法来躲避灾难，而越是hacks，越是在让项目腐烂！！！</p>
+
+
+<p>那么敏捷开发者这帮神人是如何做的呢？他们遵循原则、模式等等。敏捷设计是一个过程，而不是事件。在不断变化中，他们能够利用变化，而其他人却被变化弄得不知所措。那么我们期待以后的敏捷原则介绍吧！我总感觉这和Unix里面的KISS有相同的意思。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[敏捷开发原则和坏设计表现]]></title>
+    <link href="http://www.youth2009.org/blog/2011/03/03/agile-software-development-priciples-and-bad-design/"/>
+    <updated>2011-03-03T12:27:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/03/03/agile-software-development-priciples-and-bad-design</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt; &lt;/p&gt;
+</code></pre>
+
+<div id="cke_pastebin">学到几点敏捷设计</div>
+
+
+<div id="cke_pastebin"> </div>
+
+
+<div id="cke_pastebin">糟糕设计的症状：</div>
+
+
+<div id="cke_pastebin"> </div>
+
+
+<div id="cke_pastebin">1.僵化：设计难以更改</div>
+
+
+<div id="cke_pastebin">2.脆弱：实际很容易破坏</div>
+
+
+<div id="cke_pastebin">3.顽固：设计难以复用</div>
+
+
+<div id="cke_pastebin">4.粘滞：很难做正确的事（It is hard to do the right thing）</div>
+
+
+<div id="cke_pastebin">5.不必要的复杂：过度设计</div>
+
+
+<div id="cke_pastebin">6.不必要的重复：滥用鼠标？（Mouse abuse）</div>
+
+
+<div id="cke_pastebin">7.晦涩：混乱表达</div>
+
+
+<div id="cke_pastebin"> </div>
+
+
+<div id="cke_pastebin">设计原则：</div>
+
+
+<div id="cke_pastebin"> </div>
+
+
+<div id="cke_pastebin">1.SRP</div>
+
+
+<div id="cke_pastebin">2.OCP</div>
+
+
+<div id="cke_pastebin">3.LSP</div>
+
+
+<div id="cke_pastebin">4.DIP</div>
+
+
+<div id="cke_pastebin">5.ISP</div>
+
+
+<div id="cke_pastebin"> </div>
+
+
+<div id="cke_pastebin">关于原则：</div>
+
+
+<div id="cke_pastebin"> </div>
+
+
+<div id="cke_pastebin">不要因为这是原则而不加限制地遵守，这不是香水，不要随便喷洒。过度遵守原则导致“不必要复杂”这样的设计出现！</div>
+
+]]></content>
+  </entry>
+  
+</feed>

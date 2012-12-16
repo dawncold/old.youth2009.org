@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mergesort | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/mergesort/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[合并排序（Python）]]></title>
+    <link href="http://www.youth2009.org/blog/2012/02/02/merge-sort-in-python/"/>
+    <updated>2012-02-02T15:11:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/02/02/merge-sort-in-python</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python
+</code></pre>
+
+<h1>coding: utf-8</h1>
+
+<p>def merge(arraylist, first, middle, last):</p>
+
+<pre><code>temp = []
+i = first
+j = middle + 1
+while i &amp;lt;= middle and j &amp;lt;= last:
+    if arraylist[i] &amp;lt;= arraylist[j]:
+        temp.append(arraylist[i])
+        i += 1
+    else:
+        temp.append(arraylist[j])
+        j += 1
+while i &amp;lt;= middle:
+    temp.append(arraylist[i])
+    i += 1
+while j &amp;lt;= last:
+    temp.append(arraylist[j])
+    j += 1
+for i in range(0, last - first + 1):
+    arraylist[first + i] = temp[i]
+</code></pre>
+
+<p>def merge_sort(arraylist, first, last):</p>
+
+<pre><code>if first &amp;lt; last:
+    middle = (first + last) / 2
+    merge_sort(arraylist, first, middle)  
+    merge_sort(arraylist, middle + 1, last)
+    merge(arraylist, first, middle, last)
+</code></pre>
+
+<p>if <strong>name</strong> == "<strong>main</strong>":</p>
+
+<pre><code>arr = [33, 31, 0, 42, 425, 21, 34, 19]
+print arr
+merge_sort(arr, 0, len(arr) - 1)
+print arr
+</code></pre>
+
+<p></pre></p>
+
+<br /><p>谢谢<a href="http://www.codecho.com/merge-sort-and-quick-sort-in-python/">这里</a>的帮助，我自己照着《算法导论》写了好久都出错，哎，自己在这类问题上有点笨。</p>
+
+]]></content>
+  </entry>
+  
+</feed>

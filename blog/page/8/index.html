@@ -1,0 +1,700 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>dawncold's tech blog</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="&lt;p&gt;打标签，挺有用的一个功能，一般是加版本号吧。v1.0，v2.0，vN.0&lt;/p&gt; git tag是看标签 git tag -a 是加带附注的标签，（还有轻量级标签不用加-a，直接给出标签名字完事），接下来一个参数是标签名字，再者需要-m引出附注内容，完整就像这样： &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/blog/page/8/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">dawncold's tech blog</a></h1>
+  
+    <h2>dawncold's tech blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.youth2009.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-tag/">Git使用重新学习（标签）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T17:29:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;打标签，挺有用的一个功能，一般是加版本号吧。v1.0，v2.0，vN.0&lt;/p&gt;
+</code></pre>
+
+<p>git tag是看标签</p>
+
+
+<p>git tag -a 是加带附注的标签，（还有轻量级标签不用加-a，直接给出标签名字完事），接下来一个参数是标签名字，再者需要-m引出附注内容，完整就像这样：git tag -a v1.0 -m &#8216;first version&#8217;</p>
+
+
+<p>加完后可以show一下：git show v1.0，所谓附注就是包含了很多提交者的信息，以后可以慢慢查证使用。</p>
+
+
+<p>如果你有GPG的话还可以签署标签，把前面的-a改成-s即可，-s是signed的意思，-a是annotated的意思。（刚刚尝试了一下-s，可惜Mac系统上没装gpg软件，签署失败，但大多linux系统都会有的吧，Mac系统的用户请从<a href="http://www.gpgtools.org/">这里</a>下载GPGTools）</p>
+
+
+<p>刚才用GPG签名了，现在验证一下：git tag -v xxx，-v就是verify的意思，比如我得到了如下的提示信息：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">object a20e6b9c2433e88a9da63abd8d74ddede9bccde6
+
+
+<p>type commit
+tag v_2012-01-26-s
+tagger dawncold &lt;loooseleaves@gmail.com&gt; 1327569076 +0800</p>
+
+<p>signed this tag
+gpg: 于 四  1/26 17:11:24 2012 CST 创建的签名，使用 RSA，钥匙号 1B1ECF39
+gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
+</pre></p>
+
+<br /><p>很可惜，默认tag是不被push到远程仓库中的，如果要分享你的tags，在push的时候要显示地写明：git push origin [tag-name]，推送所有tags可以直接用&#8211;tags来代替tag-name参数</p>
+
+
+<p>删除tag需要用-d完成：git tag -d [tag-name]</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-remote-repo/">Git使用重新学习（远程仓库）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T16:08:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;查看当前远程仓库：git remote  -v，加上-v属性能看得内容详细一些。&lt;/p&gt;
+</code></pre>
+
+<p>添加远程仓库：git remote add [shortname] [url]</p>
+
+
+<p>有了shortname，就相对于给仓库了一个别名，以后可以用别名操作，git fetch xx即可</p>
+
+
+<p>get fetch xx是获取远程仓库中有而本地没有的数据</p>
+
+
+<p>提送数据到远程仓库用：git push remote-name branch-name，推送的时候要注意必须没有他人在推送，且没有其他更新才行，如果他人推送了不少更新，你需要先得到更新，合并后再推送。（这里并不是说和svn一样了，只是你可以自己先在本地提交，但推送到远程服务器上时，需要按照先来后到的原则，保证每个人的提交是不冲突的，是最新的。这是我个人的理解）</p>
+
+
+<p>远程仓库重命名、删除：git remote rename short-name new-name，git remote rm xx</p>
+
+
+<p>另外git remote show repo-name能够得到不少信息，有哪些要合并啦，哪些已经删除啦，哪些新仓库出现啦等等，这个是需要连接服务器获取的。</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-mend-file-part/">Git使用重新学习（撤销操作）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T15:05:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;&lt;strong&gt;修改最后一次提交&lt;/strong&gt;：git commit --amend&lt;/p&gt;
+</code></pre>
+
+<p>如果只是提交信息写错了，运行后会让你重新写提交信息，但如果你忘记了加文件进入，可以这样做，先commit，再add忘记的文件，最后来一句git commit &#8211;amend，这看似两次提交，实际只是一次，后面的提交修正了前面的。</p>
+
+
+<p><strong>取消已暂存的文件</strong>：看status的时候有提示，git reset HEAD &lt;file&gt;，执行后可以把一个已修改的文件从暂存区拉回到“changed but not update”里，前面日志说过，在这里面的文件需要add后才能进入暂存区被提交。</p>
+
+
+<p><strong>取消修改</strong>：如果感觉刚才的修改没有必要，需要取消修改，那么用git checkout &#8211; &lt;file&gt;，在1.6.1以上的版本才会有这样的功能，我刚刚看了下git的版本（git &#8211;version）是1.7.5.4，看来暂时不用升级就能体验了。使用后就会发现文件的修改已经被撤销，此命令很危险，如果只是想回退版本可以用stashing和分支来处理，后面再说。</p>
+
+
+<p>最后说一句，任何被提交的数据都能被恢复，即便是在已经删除的分支中提交的等等，但没有提交的丢了就丢了！！！</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-filestatus-part/">Git使用重新学习（文件状态）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T14:47:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;就几个简单的git命令记录一下自己的学习过程，我发现如果自己不随时记录自己学到的东西就会遗忘。&lt;/p&gt;
+</code></pre>
+
+<p>首先给出git中文件的状态转换图：</p>
+
+
+<p><a title="18333fig0201-tn.png" href="http://www.youth2009.org/attachment/135274/"><img src="http://www.youth2009.org/usr/uploads/2012/01/945576081.png" alt="18333fig0201-tn.png"></a></p>
+
+
+<p>对于一个文件，如果没有被git跟踪，那必然是untracked状态，只有已经是tracked状态后才会有后面的三种状态（unmodified、modified、staged（暂存状态））。</p>
+
+
+<p>此时你如果add了一个文件进入git，那么git就会开始跟踪，那么此时这个文件是tracked状态，但没有修改，查看状态（git status）会现实new file：xxx，此时提交（commit）就会把文件快照放入历史记录中了。这里的add意思是放入暂存区，后面的add还有不同的意思。</p>
+
+
+<p>对于已经跟踪的文件，我们修改后再查看状态，就会发现刚刚的文件被放入了一个modified那行中，样子大概是这样的：modified：xxx，同时观察一下上面几行，有这样的提示“Changed but not updated:”，意思就是修改了，但没有放入暂存区，此时需要add的另一层意思——把已修改但没放入暂存区的文件放入暂存区。</p>
+
+
+<p>git commit -a 选项可以跳过暂存过程，直接把已经跟踪的文件放入历史记录中。</p>
+
+
+<p>总之就是及时看status，并且要看里面的提示，只有changes to be committed后面的文件才会在commit的时候加入到历史记录中。</p>
+
+
+<p>删除和移动文件：git rm，git mv。</p>
+
+
+<p>改名操作与linux下的mv命令用法一样。</p>
+
+
+<p>删除时如果仅仅希望在git中删除，实际仍然保存文件那么加上&#8211;cached选项即可。</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/26/do-not-accept-any-comments-which-do-not-write-in-chinese/">不接受非中文评论</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T13:32:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;由于某些原因（spam），这个博客系统（typecho）很容易被评论机器人俘获，几天不登陆发现已经有了上千条垃圾评论，删除都是一项繁重的工作，昨晚找了两个反垃圾评论插件都装上，现在是三个反垃圾评论插件同时工作！即便如此，还是有不少垃圾评论袭来，我只能q启用较严格的审核标准——禁止一切非中文评论，我本身就是用中文书写，所以假设有效用户就是会中文的，如果不是的话……&lt;/p&gt;
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/26/select-sort-in-python/">选择排序（Python）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T12:27:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python
+</code></pre>
+
+<h1>coding: utf-8</h1>
+
+<p>def select_sort(arraylist):</p>
+
+<pre><code>for i in range(0, len(arraylist)):
+    minElement = i
+    for j in range(i, len(arraylist)):
+        if arraylist[j] &amp;lt; arraylist[minElement]:
+            minElement = j
+    temp = arraylist[i]
+    arraylist[i] = arraylist[minElement]
+    arraylist[minElement] = temp
+</code></pre>
+
+<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
+
+<pre><code>arr = [2, 424, 4, 13, 5, 99, 100, 231, 0, 1]
+print arr
+select_sort(arr)
+print arr
+</code></pre>
+
+<p></pre></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/26/insert-sort-in-python/">插入排序（Python）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T11:07:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python
+</code></pre>
+
+<h1>coding: utf-8</h1>
+
+<p>def insert_sort(arraylist):</p>
+
+<pre><code>for j in range(1, len(arraylist)):
+    key = arraylist[j]
+    i = j - 1
+    while i &amp;gt;= 0 and arraylist[i] &amp;gt; key:
+        arraylist[i + 1] = arraylist[i]
+        i = i - 1
+    arraylist[i + 1] = key
+</code></pre>
+
+<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
+
+<pre><code>arr = [2,3,55,31,1,20,44,12,1,99]
+print arr
+insert_sort(arr)
+print arr
+</code></pre>
+
+<p></pre></p>
+
+<br /><p>只要改变while那句中的arraylist[i] &lt; key即可变成非升序排列</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/26/turn-off-dashboard-on-mac/">Mac系统关闭dashboard</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T00:49:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;一开始感觉dashboard这个东西挺好的，加上了好几个小插件玩，但现在发现使用频率超低，所以干脆想办法关闭吧，听说还能节约部分内存和提升开机速度，对这些倒是不太关心，只能有种不用就关闭的态度驱使着我。&lt;/p&gt;
+</code></pre>
+
+<p>关闭命令：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean YES</pre>
+
+
+<br /><p> </p>
+
+
+<p>运行后最好再执行一下这个生效：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">killall Dock</pre>
+
+
+<br /><p>如果需要重新开启，请使用这条命令，包括了killall Dock：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean NO
+
+
+<p>killall Dock</pre></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/13/open-the-stack-function-of-dock/">开启Dock的堆栈功能</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-13T21:56:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;打开Terminal，输入：&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock</pre>
+
+
+<br /><p>然后回车（return），等Dock再次出现后，在已打开程序图标上滚动鼠标滚轮或者手势模拟滚轮，就能看到这个程序打开的子窗口或者子程序，很过瘾好用。</p>
+
+
+<p>我的MacOS：Lion</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/07/the-first-paid-app/">购买的第一个付费app</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-07T01:12:00+08:00" pubdate data-updated="true">Jan 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;是切水果。&lt;/p&gt;
+</code></pre>
+
+<p>由于itunes不支持我的信用卡，所以只能充50，一个一个买，第一个买的就是切水果！</p>
+
+
+<p>感觉挺好玩的！</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/9/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/7/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

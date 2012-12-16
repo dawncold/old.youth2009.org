@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>安装mysql的Ruby驱动遇到的问题 - dawncold's tech blog</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="&lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql Fetching: mysql-2.8.1.gem (100 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">dawncold's tech blog</a></h1>
+  
+    <h2>dawncold's tech blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.youth2009.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">安装mysql的Ruby驱动遇到的问题</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-09T20:08:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql
+</code></pre>
+
+<p>Fetching: mysql-2.8.1.gem (100%)
+Building native extensions.  This could take a while&#8230;
+ERROR:  Error installing mysql:</p>
+
+<pre><code>ERROR: Failed to build gem native extension.
+
+    /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
+</code></pre>
+
+<p>checking for mysql_query() in -lmysqlclient&#8230; no
+checking for main() in -lm&#8230; yes
+checking for mysql_query() in -lmysqlclient&#8230; no
+checking for main() in -lz&#8230; yes
+checking for mysql_query() in -lmysqlclient&#8230; no
+checking for main() in -lsocket&#8230; no
+checking for mysql_query() in -lmysqlclient&#8230; no
+checking for main() in -lnsl&#8230; no
+checking for mysql_query() in -lmysqlclient&#8230; no
+checking for main() in -lmygcc&#8230; no
+checking for mysql_query() in -lmysqlclient&#8230; no
+<strong><em> extconf.rb failed </em></strong>
+Could not create Makefile due to some reason, probably lack of
+necessary libraries and/or headers.  Check the mkmf.log file for more
+details.  You may need configuration options.</p>
+
+<p>Provided configuration options:</p>
+
+<pre><code>--with-opt-dir
+--without-opt-dir
+--with-opt-include
+--without-opt-include=${opt-dir}/include
+--with-opt-lib
+--without-opt-lib=${opt-dir}/lib
+--with-make-prog
+--without-make-prog
+--srcdir=.
+--curdir
+--ruby=/usr/local/Cellar/ruby/1.9.3-p0/bin/ruby
+--with-mysql-config
+--without-mysql-config
+--with-mysql-dir
+--without-mysql-dir
+--with-mysql-include
+--without-mysql-include=${mysql-dir}/include
+--with-mysql-lib
+--without-mysql-lib=${mysql-dir}/lib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-mlib
+--without-mlib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-zlib
+--without-zlib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-socketlib
+--without-socketlib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-nsllib
+--without-nsllib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-mygcclib
+--without-mygcclib
+--with-mysqlclientlib
+--without-mysqlclientlib
+</code></pre>
+
+<p>Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 for inspection.
+Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out</pre></p>
+
+<br /><p>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">gem install mysql -- --with-mysql-dir=/usr/local/mysql</pre>
+
+
+<br /><p>一开始的那两个“&#8211;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
+
+
+<p>我已经解决问题了，成功安装mysql的ruby驱动，如果仍然遇到问题，可以试试参考<a href="http://blog.bmn.name/2008/02/rails-gem-install-mysql-throws-error-extconfrb-failed/">这里</a>（同样感谢这里）。</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-09T20:08:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/我想说的各种技术/'>我想说的各种技术</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/02/07/some-issue-when-saving-rules-in-iptables/" title="Previous Post: 保存iptables规则遇到的问题">&laquo; 保存iptables规则遇到的问题</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/02/09/arguments-issue-in-auto-complete-plugin/" title="Next Post: emacs中auto-complete插件问题">emacs中auto-complete插件问题 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/';
+        var disqus_url = 'http://www.youth2009.org/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

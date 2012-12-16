@@ -1,0 +1,395 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>配置一台suse服务器 - dawncold's tech blog</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="&lt;p&gt;不知道最终能否配置好，先记录下来吧！ 安装了openssl库，但安装nginx的时候还是使用了--without-http-cache，要不总是提示找不到openssl。默认把nginx安装到了/usr/local/nginx这个地方。 下面是php，我总是配置不好…… &lt &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/blog/2011/06/16/suse-nginx-php-mysql/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">dawncold's tech blog</a></h1>
+  
+    <h2>dawncold's tech blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.youth2009.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">配置一台suse服务器</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-16T11:58:00+08:00" pubdate data-updated="true">Jun 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><pre><code>        &lt;p&gt;不知道最终能否配置好，先记录下来吧！ 安装了openssl库，但安装nginx的时候还是使用了--without-http-cache，要不总是提示找不到openssl。默认把nginx安装到了/usr/local/nginx这个地方。 下面是php，我总是配置不好…… &lt;span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;"&gt; &lt;/span&gt;&lt;/p&gt;
+</code></pre>
+
+<p> </p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">tar xvf php-5.2.17.tar.bz2 
+
+
+<p>gzip  -cd php-5.2.17-fpm-0.5.14.diff.gz | patch -d php-5.2.17 -p1
+cd php-5.2.17
+./configure --prefix=/usr/local/php \
+--with-config-file-path=/usr/local/php/etc \
+--with-mysql=/usr/local/mysql/ \
+--with-mysqli=/usr/local/mysql/bin/mysql_config \
+--with-iconv-dir=/usr/local/ \
+--with-jpeg-dir \
+--with-png-dir \
+--with-zlib \
+--with-libxml-dir=/usr/  \
+--enable-xml \
+--disable-rpath \
+--enable-discard-path  \
+--enable-bcmath  \
+--enable-shmop \
+--enable-sysvsem \
+--enable-inline-optimization \
+--with-curl \
+--with-curlwrappers  \
+--enable-mbregex \
+--enable-fastcgi \
+--enable-fpm \
+--enable-force-cgi-redirect \
+--enable-mbstring  \
+--with-mcrypt \
+--enable-gd-native-ttf \
+--with-openssl \
+--with-mhash \
+--enable-pcntl  \
+--enable-sockets  \
+--with-xmlrpc \
+--enable-zip \
+--enable-soap \
+--enable-safe-mode \
+--with-gd=/usr/local/gd/</p>
+
+<p>./configure &amp;&amp; make &amp;&amp; make install</pre></p>
+
+<br /><p> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">jpeg8c lib!!!</span> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">libpng lib!!!</span> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">GD_2.XX（直接写&#8211;with-gd容易找不到，就制定好位置（此位置要在安装gd的时候用prefix制定））</span> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;"> </span></p>
+
+
+<p> </p>
+
+
+<p> </p>
+
+
+<p> </p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">ln -s /usr/local/lib/libmcrypt.la /usr/lib/libmcrypt.la
+
+
+<p>ln -s /usr/local/lib/libmcrypt.so /usr/lib/libmcrypt.so
+ln -s /usr/local/lib/libmcrypt.so.4 /usr/lib/libmcrypt.so.4
+ln -s /usr/local/lib/libmcrypt.so.4.4.8 /usr/lib/libmcrypt.so.4.4.8
+ln -s  /usr/local/lib/libmhash.a /usr/lib/libmhash.a<br/>
+ln -s  /usr/local/lib/libmhash.la /usr/lib/libmhash.la<br/>
+ln -s  /usr/local/lib/libmhash.so /usr/lib/libmhash.so
+ln -s  /usr/local/lib/libmhash.so.2 /usr/lib/libmhash.so.2
+ln -s  /usr/local/lib/libmhash.so.2.0.1 /usr/lib/libmhash.so.2.0.1</pre></p>
+
+<br /><p><span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;"> </span></p>
+
+
+<p><span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;">删剪了不少内容，终于编译成功了……php啊……(</span></span><span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">make ZEND_EXTRA_LIBS=&#8217;-liconv&#8217;</span><span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">)</span> 缺少相关库的情况请使用/sbin/ldconfig -v 更新一下，先把/usr/local/lib加入/etc/ld.so.conf中再更新！ <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;">make install</span></span> <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;"><span>cp php.ini-dist  /usr/local/php/etc/php.ini </span></span></span> <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;"><span><span> </span></span></span></span></p>
+
+
+<br /><div style="padding: 0px; margin: 0px;">7、创建php-fpm配置文件，php-fpm是开源社区为php开发的一个补丁，可以平滑变更php.ini，而无需重启php-cgi<br style="padding: 0px; margin: 0px;">  php-fpm.conf文件的详细解释<a style="color: #015f91; text-decoration: none; padding: 0px; margin: 0px;" href="http://php-fpm.org/wiki/Configuration_File">http://php-fpm.org/wiki/Configuration_File</a><br style="padding: 0px; margin: 0px;">  vim /usr/local/php/etc/php-fpm.conf ，使用 :set nu显示行号。<br style="padding: 0px; margin: 0px;">  需要注意的几行，给大家说说<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  (原)41                         &lt;value name=&#8221;listen_address&#8221;&gt;127.0.0.1:9000&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  (改)41                         &lt;value name=&#8221;listen_address&#8221;&gt;/tmp/php-cgi.sock&lt;/value&gt; #个人习惯，比较喜欢使用sock。<br style="padding: 0px; margin: 0px;">  (原)63                 &lt;!&#8211;    &lt;value name=&#8221;user&#8221;&gt;nobody&lt;/value&gt;     &#8211;&gt;#进程的所有者<br style="padding: 0px; margin: 0px;">  (原)66                 &lt;!&#8211;    &lt;value name=&#8221;group&#8221;&gt;nobody&lt;/value&gt;     &#8211;&gt;#进程的所有组，默认都为nobody<br style="padding: 0px; margin: 0px;">  (改)       &lt;value name=&#8221;user&#8221;&gt;nobody&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  (改)       &lt;value name=&#8221;group&#8221;&gt;nobody&lt;/value&gt;  <br style="padding: 0px; margin: 0px;">  59                 &lt;!&#8211;    &lt;value name=&#8221;display_errors&#8221;&gt;0&lt;/value&gt;   &#8211;&gt; #是否显示错误，1为关闭显示错误，0为打开错误显示，调试期间可以打开<br style="padding: 0px; margin: 0px;">  79                             &lt;value name=&#8221;max_children&#8221;&gt;5&lt;/value&gt; #为客户端服务的最大进程数<br style="padding: 0px; margin: 0px;">  86                             &lt;value name=&#8221;StartServers&#8221;&gt;20&lt;/value&gt; #启动时创建的进程数<br style="padding: 0px; margin: 0px;">         &lt;value name=&#8221;MinSpareServers&#8221;&gt;5&lt;/value&gt; #最小空闲进程数<br style="padding: 0px; margin: 0px;">  94                             &lt;value name=&#8221;MaxSpareServers&#8221;&gt;35&lt;/value&gt;#最大空闲进程数<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  (原)107                        &lt;value name=&#8221;request_slowlog_timeout&#8221;&gt;0s&lt;/value&gt; #默认关闭慢查询，建议还是打开，对性能分析有好处<br style="padding: 0px; margin: 0px;">  (改)107                        &lt;value name=&#8221;request_slowlog_timeout&#8221;&gt;5s&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  (原)113                        &lt;value name=&#8221;rlimit_files&#8221;&gt;1024&lt;/value&gt; #设定打开文件的限制<br style="padding: 0px; margin: 0px;">  (改)113                        &lt;value name=&#8221;rlimit_files&#8221;&gt;51200&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  132                         &lt;value name=&#8221;max_requests&#8221;&gt;5000&lt;/value&gt; #设置大可以接受的请求数<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  137                        &lt;value name=&#8221;allowed_clients&#8221;&gt;127.0.0.1&lt;/value&gt; #允许连接的客户端</div>
+
+
+<br />
+
+
+<p> <br /><div style="padding: 0px; margin: 0px;">  启动php-cgi<br style="padding: 0px; margin: 0px;">  Usage: /usr/local/php/sbin/php-fpm {start|stop|quit|restart|reload|logrotate}</div></p>
+
+<br /><div style="padding: 0px; margin: 0px;">
+
+
+<pre class="prettyprint linenums bush:bash" lang="bash">/usr/local/php/sbin/php-fpm start</pre>
+
+
+<br /><br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;"> 8、安装nginx-1.0<br style="padding: 0px; margin: 0px;">  安装pcre-7.9.tar.gz，perl扩展正则表达式的支持，主要用于支持url rewrite<br style="padding: 0px; margin: 0px;">  <br /><pre class="prettyprint linenums bush:bash" lang="bash">tar -zxvf pcre-7.9.tar.gz
+
+
+<p>cd pcre-7.9
+./configure
+make &amp;&amp; make install
+cd ..</pre>
+</div></p>
+
+<br /><div style="padding: 0px; margin: 0px;">
+
+
+<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  安装ngnx-1.0</div>
+
+
+<br /><div style="padding: 0px; margin: 0px;">
+
+
+<pre class="prettyprint linenums bush:bash" lang="bash">tar -zxvf nginx-1.0.0.tar.gz
+cd nginx-1.0.0
+./configure --prefix=/usr/local/nginx \
+--user=nobody \
+--group=nobody \
+--with-http_stub_status_module \
+--with-http_ssl_module</pre>
+
+
+<br /><br style="padding: 0px; margin: 0px;">  #config完成后，查看结果，使用了哪些库，如果有些你希望使用的库没有使用，需要安装或者添加配置参数<br style="padding: 0px; margin: 0px;">   Configuration summary<br style="padding: 0px; margin: 0px;">   + using system PCRE library<br style="padding: 0px; margin: 0px;">   + using system OpenSSL library<br style="padding: 0px; margin: 0px;">   + md5: using OpenSSL library<br style="padding: 0px; margin: 0px;">   + sha1 library is not used<br style="padding: 0px; margin: 0px;">   + using system zlib library<br style="padding: 0px; margin: 0px;">   <br style="padding: 0px; margin: 0px;">  make &amp;&amp; make install<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  修改配置文件<br style="padding: 0px; margin: 0px;">  <br /><pre class="prettyprint linenums bush:bash" lang="bash">vim /usr/local/nginx/conf/nginx.conf
+
+
+<p>user  nobody; #取消注释
+events {</p>
+
+<pre><code>use epoll;
+worker_connections  51200;
+</code></pre>
+
+<p>}
+server {</p>
+
+<pre><code>listen       80;
+server_name  122.225.32.135;
+location ~ \.php$ {
+    if ( $fastcgi_script_name ~ \..*\/.*php ) {
+        return 403;
+    }
+    root           html;
+    fastcgi_pass   unix:/tmp/php-cgi.sock;
+    fastcgi_index  index.php;
+    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+    include        fastcgi.conf;
+</code></pre>
+
+<p>}</pre></p>
+
+<br /><br style="padding: 0px; margin: 0px;">  <br /><pre class="prettyprint linenums bush:bash" lang="bash">/usr/local/nginx/sbin/nginx  -t -c /usr/local/nginx/conf/nginx.conf  #测试配置文件是否正确
+
+
+<p>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf 或者/usr/local/nginx/sbin/nginx  </pre></p>
+
+<br /><br style="padding: 0px; margin: 0px;">  </div>
+
+
+<br /><p>  <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;">##############PHP结束#################</span></span> mysql的配置,根本没配置</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">./configure --prefix=/usr/local/mysql \
+
+
+<p>--sysconfdir=/etc \
+--localstatedir=/var/lib/mysql</p>
+
+<p>make</p>
+
+<p>make install</pre></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-16T11:58:00+08:00" pubdate data-updated="true">Jun 16<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/lnmp/'>lnmp</a>, <a class='category' href='/blog/categories/suse/'>suse</a>, <a class='category' href='/blog/categories/我想说的各种技术/'>我想说的各种技术</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/06/12/briefly-talk-about-the-attitude-of-participants-in-baidu-astar/" title="Previous Post: 浅谈百度之星参与者的态度">&laquo; 浅谈百度之星参与者的态度</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/06/18/m555b-in-windows7-and-mac-os-x/" title="Next Post: M555b鼠标在Windows7下的使用">M555b鼠标在Windows7下的使用 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2011/06/16/suse-nginx-php-mysql/';
+        var disqus_url = 'http://www.youth2009.org/blog/2011/06/16/suse-nginx-php-mysql/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: insersort | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/insersort/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[插入排序（Python）]]></title>
+    <link href="http://www.youth2009.org/blog/2012/01/26/insert-sort-in-python/"/>
+    <updated>2012-01-26T11:07:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/01/26/insert-sort-in-python</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python
+</code></pre>
+
+<h1>coding: utf-8</h1>
+
+<p>def insert_sort(arraylist):</p>
+
+<pre><code>for j in range(1, len(arraylist)):
+    key = arraylist[j]
+    i = j - 1
+    while i &amp;gt;= 0 and arraylist[i] &amp;gt; key:
+        arraylist[i + 1] = arraylist[i]
+        i = i - 1
+    arraylist[i + 1] = key
+</code></pre>
+
+<p>if <strong>name</strong> == "<strong>main</strong>":</p>
+
+<pre><code>arr = [2,3,55,31,1,20,44,12,1,99]
+print arr
+insert_sort(arr)
+print arr
+</code></pre>
+
+<p></pre></p>
+
+<br /><p>只要改变while那句中的arraylist[i] &lt; key即可变成非升序排列</p>
+
+]]></content>
+  </entry>
+  
+</feed>

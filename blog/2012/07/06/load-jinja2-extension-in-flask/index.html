@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Flask中Jinja2加载扩展 - dawncold's tech blog</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="&lt;p&gt;在Flask中接触到了jinja2，由于某个简单的需要——在模板系统中计算某些订单项的总价格，必须打开Jinja2的“do”扩展，用一种hack的方法来计算，十分不喜欢这样，但能用。&lt;/p&gt; 在Flask的API中没有公开这样的方法，不过在邮件列表的索引里找到了： &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/blog/2012/07/06/load-jinja2-extension-in-flask/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">dawncold's tech blog</a></h1>
+  
+    <h2>dawncold's tech blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.youth2009.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Flask中Jinja2加载扩展</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-06T20:34:00+08:00" pubdate data-updated="true">Jul 6<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><pre><code>        &lt;p&gt;在Flask中接触到了jinja2，由于某个简单的需要——在模板系统中计算某些订单项的总价格，必须打开Jinja2的“do”扩展，用一种hack的方法来计算，十分不喜欢这样，但能用。&lt;/p&gt;
+</code></pre>
+
+<p>在Flask的API中没有公开这样的方法，不过在邮件列表的索引里找到了：</p>
+
+
+<br /><pre class="prettyprint linenums bush:python" lang="python">app.jinja_env.add_extension("jinja2.ext.do")</pre>
+
+
+<br /><p>还想多说一下Jinja2的set方法，超级不爽的一个方法，原本以为set出来的变量就可以和python中的变量一样使用呢，结果在这里的set出来的变量也就是一个助记作用，根本不能保存新的值，也就是说这里的变量相当于我们通常意义上的常量！！！</p>
+
+
+<br /><pre class="prettyprint linenums bush:html" lang="html">......
+
+
+<p>{% set total_price = 0 %}
+{% for item in order.items %}
+{% total_price = item.meal.price * item.quantity %}
+&lt;p class = "order_list_item"&gt;{{ item.meal.name }}&lt;/p&gt;
+{% endfor %}
+&lt;/td&gt;
+&lt;td&gt;{{ total_price }}&lt;/td&gt;
+......</pre></p>
+
+<br /><p>原本希望在for外面设置一个变量，然后在for中计算好total_price使用，结果根本不行，这样写的结果就是“找不到total_price变量”，如果去掉for中对total_price的引用就可以正常看到total_price，是0。总之，这里set出来的变量就是一个常量了！！！后来打开了do扩展，把total_price设置成一个list，然后在for中把没一项的价格都append进去，最终输出的地方用了jinja2的filter计算总和。大约会写成这样：</p>
+
+
+<br /><pre class="prettyprint linenums bush:html" lang="html">......
+
+
+<p>{% set prices = [] %}
+{% for item in order.items %}
+{% do prices.append(item.meal.price * item.quantity) %}
+&lt;p class = "order_list_item"&gt;{{ item.meal.name }}&lt;/p&gt;
+{% endfor %}
+&lt;/td&gt;
+&lt;td&gt;{{ prices|sum }}&lt;/td&gt;
+......</pre></p>
+
+<br /><p>相信jinja2改进set之后会是一个很不错的模板系统：）</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-06T20:34:00+08:00" pubdate data-updated="true">Jul 6<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/extension/'>extension</a>, <a class='category' href='/blog/categories/flask/'>flask</a>, <a class='category' href='/blog/categories/jinja2/'>jinja2</a>, <a class='category' href='/blog/categories/我想说的各种技术/'>我想说的各种技术</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/07/05/onetomany-in-sqlalchemy/" title="Previous Post: SQLalchemy中的oneToMany">&laquo; SQLalchemy中的oneToMany</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/07/14/bad-encoding-in-sqlalchemy/" title="Next Post: SQLAlchemy中的乱码">SQLAlchemy中的乱码 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2012/07/06/load-jinja2-extension-in-flask/';
+        var disqus_url = 'http://www.youth2009.org/blog/2012/07/06/load-jinja2-extension-in-flask/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

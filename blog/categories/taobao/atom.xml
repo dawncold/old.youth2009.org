@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: taobao | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/taobao/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[开学Ruby]]></title>
+    <link href="http://www.youth2009.org/blog/2012/02/06/firstly-study-ruby/"/>
+    <updated>2012-02-06T00:40:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/02/06/firstly-study-ruby</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;先从官方文档那里找各种资料学习，已经在amazon上买书了，买了本rails应用的书，还买了两本考系统架构师的书，再就是想买一本讲ruby语言的书，很可惜amazon上没货，要是从非amazon商家买的话需要支付高昂的快递费，于是从淘宝上找了家靠谱的商家，还有满49包邮（幸亏这本书是51，包邮了）&lt;/p&gt;
+</code></pre>
+
+<p>对了，今天在amazon上买书是因为收到了amazon前段时间送的满100送20优惠券，对于我这种很喜欢在amazon上买技术书籍的书虫来说这类活动太好了，以后多多参加！</p>
+
+
+<p>说废话太多了，今天断断续续看了这里的教程，基本想要按照讲得做，看完一半了，明天把剩下弄完！</p>
+
+
+<p>教程地址：<a href="http://pine.fm/LearnToProgram/">http://pine.fm/LearnToProgram/</a>  </p>
+
+
+<p>ruby的中文参考文档页：<a href="http://www.ruby-lang.org/zh_cn/documentation/">http://www.ruby-lang.org/zh_cn/documentation/</a></p>
+
+]]></content>
+  </entry>
+  
+</feed>

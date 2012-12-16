@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: android | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[开发android得注意eclipse]]></title>
+    <link href="http://www.youth2009.org/blog/2011/12/12/be-careful-of-eclipse-when-developing-android/"/>
+    <updated>2011-12-12T19:14:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/12/12/be-careful-of-eclipse-when-developing-android</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;简单说，eclipse3.6这个版本中有些jar有问题，在代码提示的时候会卡死，我还以为是机器运算不过来了，但在JavaEE中很正常，所以一搜索得到的答案，需要替换一个系统jar包。&lt;/p&gt;
+</code></pre>
+
+<p>需要被替换的jar是：org.eclipse.jdt.core_3.6.1.v_A68_R36x.jar，在eclipse的plugins目录中。</p>
+
+
+<p>从这位朋友的网盘中也许能找到，在Eclipse目录中：<a href="http://breakan.ys168.com/">http://breakan.ys168.com/</a></p>
+
+
+<p>为了备份，我传到了自己服务器上，下载地址：<a title="eclipse-android-plugin.rar" href="http://www.youth2009.org/usr/uploads/2011/12/2062328791.rar">eclipse-android-plugin.rar</a></p>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 时间管理 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/时间管理/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[这段时间的规划]]></title>
+    <link href="http://www.youth2009.org/blog/2011/03/23/time-plan/"/>
+    <updated>2011-03-23T22:24:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/03/23/time-plan</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;很简单，放弃很多不用的东西，专心研究操作系统以及相关的数据结构实现，手头上有《现代操作系统》、《系统程序员成长计划》、《一个操作系统的实现》、《Unix编程艺术》、汇编学习书籍、敏捷开发方法。放弃PHP这方面，不过有些冲突的是最近要做一个基于PHP+MySQL的网站出来，而且还得进行后期的维护，前端特效也得忙活，还好有几个人能分担一下工作。&lt;/p&gt;
+</code></pre>
+
+<p>只是这看起来有限的时间内，我该如何安排阅读、实践呢？！这是我很头疼的问题。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[从OS的角度学习时间管理]]></title>
+    <link href="http://www.youth2009.org/blog/2011/03/22/study-time-mangement-from-os/"/>
+    <updated>2011-03-22T22:51:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/03/22/study-time-mangement-from-os</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;OS的重要性不想再赘述，不过对于一个物理硬件，好的OS能够更大程度发挥其性能，这其中绝对不能缺乏好的设计模式以及优秀的各种调度算法。这里的一切几乎都是编程的理想学习材料，不过对于这样庞大的材料需要好好解读，否则可能根本领悟不到其中的真谛。&lt;/p&gt;
+</code></pre>
+
+<p>时间管理是我个人一直推崇的一种必备技能，自己也看过几本这方面的书，不过都不得要领，感觉书中讲得很多都无法在现在社会环境中普遍适应，所以读着读着就感觉那是作者在说教了。</p>
+
+
+<p>那么在优秀的OS架构中我们除了能够学到高超的编程技巧外，还可以对里面的一些概念进行抽象，使其能够应用到更多的方面中来，比如我感觉有些东西就能够应用到时间管理上！</p>
+
+
+<p>这里先说一点，以后如果有新的体会再分享。</p>
+
+
+<p>目前在单核心的CPU中，OS还是只让CPU在某个时刻只允许处理1条指令，那么我们人也应该如此。你每天要做很多事情，但你只有一个大脑，虽然这个大脑的工作效率非常高，复杂度也远远高于OS的任何调度算法之和，但一次只处理一件事的思想还是应该采纳的。传说有人做过实验，当然是传说，不知道出处。如果同时做多件事情，所需要的时间会比一件件做多出30%，这已经不是一个小数目了。这条经验告诉我们，日常工作中应该集中力量完成当前的这件事情，然后才是下一件，否则你看上去像是在并发执行多项任务，最后实际算下来多花了很多时间，这样就很难保证质量了。而且人类和机器不太一样，人类容易遗忘，机器和我们一样需要记住某些已经计算过的数据，不过机器有PCB，我们有什么呢？读书的话应该是读书笔记吧，其他方面就是备忘录了，总之要保持单一工作就好了！</p>
+
+]]></content>
+  </entry>
+  
+</feed>

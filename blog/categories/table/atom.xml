@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: table | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/table/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[抓取一些网页上的表格]]></title>
+    <link href="http://www.youth2009.org/blog/2012/04/20/grub-table-from-html-using-pything/"/>
+    <updated>2012-04-20T09:34:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/04/20/grub-table-from-html-using-pything</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;这些表格是所有参加比赛的学生成绩单，当然只有省份、学校、准考证、姓名、组别、奖项、是否进入决赛这几个列，我用python写的脚本来抓取，存入了本地的一个excel中，所以除了python环境之外还需要xlwt这个包包：）&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:python" lang="python">#/usr/bin/env python
+
+
+<h1>coding: utf-8</h1>
+
+<p>import urllib2
+import re
+import xlwt</p>
+
+<p>link_list = []
+xls = xlwt.Workbook()
+table = xls.add_sheet("main")</p>
+
+<p>for i in xrange(288, 318):</p>
+
+<pre><code>link_list.append("http://www.lanqiao.org/Article/ShowArticle.asp?ArticleID=%d"%i)
+</code></pre>
+
+<p>chinese = []
+content = ''
+while len(link_list) &gt; 0:</p>
+
+<pre><code>for link in link_list:
+    print link
+    try:
+        content = urllib2.urlopen(url = link, timeout = 3).read()
+        link_list = link_list[1:]
+    except:
+        print "timeout!"
+        if link not in link_list[1:]:
+            link_list.append(link)
+    some = re.findall(u'&amp;lt;TR.*?&amp;lt;\/TR&amp;gt;', content.decode('gbk', 'ignore'), re.S)
+    for s in some:
+        chinese_value = re.findall(u'(?&amp;lt;=\u5b8b\u4f53&amp;gt;).*(?=&amp;lt;\/FONT&amp;gt;)', s)
+        chinese.append(','.join(chinese_value))
+</code></pre>
+
+<p>for line in xrange(0, len(chinese)):</p>
+
+<pre><code>tmp = chinese[line].split(',')
+for i in xrange(0, len(tmp)):
+    table.write(line, i, tmp[i])
+    print "%d, %d, %s" % (line, i, tmp[i])
+</code></pre>
+
+<p>xls.save('x.xls')
+print len(link_list)</pre></p>
+
+<br /><p>链接抓取超时的时候会自动重新抓取，最终就有了一个叫x.xls的表格。其中有个省的数据有问题，可以在筛选中看到奖项这里面有个垃圾数据项，自己改改吧。</p>
+
+
+<p>里面的正则表达式耗费了我好久时间！！！不过我还是很欣慰能找到这行：</p>
+
+
+<br /><pre class="prettyprint linenums bush:python" lang="python">(?&lt;=\u5b8b\u4f53&gt;).*(?=&lt;\/FONT&gt;)</pre>
+
+
+<br /><p>前面两个unicode是“宋体”，这个得看具体的html代码了，所以这个脚本没什么通用性……</p>
+
+]]></content>
+  </entry>
+  
+</feed>

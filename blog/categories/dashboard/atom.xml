@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: dashboard | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/dashboard/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Mac系统关闭dashboard]]></title>
+    <link href="http://www.youth2009.org/blog/2012/01/26/turn-off-dashboard-on-mac/"/>
+    <updated>2012-01-26T00:49:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/01/26/turn-off-dashboard-on-mac</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;一开始感觉dashboard这个东西挺好的，加上了好几个小插件玩，但现在发现使用频率超低，所以干脆想办法关闭吧，听说还能节约部分内存和提升开机速度，对这些倒是不太关心，只能有种不用就关闭的态度驱使着我。&lt;/p&gt;
+</code></pre>
+
+<p>关闭命令：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean YES</pre>
+
+
+<br /><p> </p>
+
+
+<p>运行后最好再执行一下这个生效：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">killall Dock</pre>
+
+
+<br /><p>如果需要重新开启，请使用这条命令，包括了killall Dock：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean NO
+
+
+<p>killall Dock</pre></p>
+]]></content>
+  </entry>
+  
+</feed>

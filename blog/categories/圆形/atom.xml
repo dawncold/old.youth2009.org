@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 圆形 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/圆形/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[惨痛的Box2d经验]]></title>
+    <link href="http://www.youth2009.org/blog/2011/07/23/sadly-box2d-expreiences/"/>
+    <updated>2011-07-23T11:30:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/07/23/sadly-box2d-expreiences</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;说来也可笑，Box2d中有各种各样的Shape，有多边形，矩形，圆形。我就是在用圆形的时候遇到的这样的问题：需要设置圆形的半径，我就用了这样的表达式：26 / PTM_RADIO，后面的是一个宏定义，表示拿多少像素和box2d中的米作为兑换。我这样设置后总看着圆形很不正常，半径不对，而且落到底边也不弹起来，为此还查找了API、Google等地方，看着别人的代码都没问题，就是自己的不正常。&lt;/p&gt;
+</code></pre>
+
+<p>最终还是解决了这样的问题，真羞愧，原来半径需要一个float的值，但我的表达式算出来的应该是int，不过我也曾经写过 float radius = 26 / PTM_RADIO这样的，再把radius给半径，依然无果，感觉即便是类型不对也应该自动转换过去吧，没想到这里还就是不行了。</p>
+
+
+<p>可恶的！</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">26.0 / PTM_RADIO</pre>
+
+]]></content>
+  </entry>
+  
+</feed>

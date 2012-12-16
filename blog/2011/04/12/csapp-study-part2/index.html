@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>CSAPP学习笔记第二辑 - dawncold's tech blog</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="&lt;p&gt;虽然可以使用优化编译器，但对于严谨的程序员来说，能够阅读和理解汇编代码仍然是一项很重要的技能。&lt;/p&gt; gcc -O2 -o p p1.c p2.c  -O2是告诉编译器使用第二级优化。第二级优化是性能优化和使用方便之间的一种很好的妥协。 程序计数器（%eip） &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/blog/2011/04/12/csapp-study-part2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">dawncold's tech blog</a></h1>
+  
+    <h2>dawncold's tech blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.youth2009.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">CSAPP学习笔记第二辑</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-12T22:00:00+08:00" pubdate data-updated="true">Apr 12<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><pre><code>        &lt;p&gt;虽然可以使用优化编译器，但对于严谨的程序员来说，能够阅读和理解汇编代码仍然是一项很重要的技能。&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">gcc -O2 -o p p1.c p2.c</pre>
+
+
+<br /><p> -O2是告诉编译器使用第二级优化。第二级优化是性能优化和使用方便之间的一种很好的妥协。 程序计数器（%eip）表示将要执行的下一条指令在存储器中的地址。 C中的聚集数据类型，例如数组和结构，在汇编代码中是用连续的字节表示的。即使是对标量数据类型，汇编代码也不区分有符号或者无符号整数，不区分各种类型的指针，甚至于不区分指针和整数。</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">gcc -O2 -S code.c</pre>
+
+
+<br /><p> 加上-S就能看到C编译器产生的汇编代码。</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">pushl %ebp</pre>
+
+
+<br /><p> 表示把寄存器ebp中的内容压入程序栈中。</p>
+
+
+<p>机器实际执行的程序只是对一系列指令进行编码的字节序列，机器动产生这些指令的源代码几乎一无所知。</p>
+
+
+<p>要查看目标代码文件的内容，反汇编器（disassembler）的价值无法估量。</p>
+
+
+<p>在unix系统中，用objdump可以启动反汇编器。</p>
+
+
+<p>IA32指令长度从1～15个字节不等。</p>
+
+
+<p>指令格式是按照这样一种方式设计的，从某个给定位置开始，可以将字节唯一地译码成机器指令。例如pushl %ebp 是以字节值55开头的。</p>
+
+
+<p>编译器有时会在代码中插入一条nop指令，是为了填充存储该过程的空间。</p>
+
+
+<p>Intel术语“字”表示16位数据类型。 在过程（Procedures）处理中，对前三个寄存器（%eax,%ecx,%edx）的保存和恢复惯例将不同于接下来的三个（%ebx,%edi,%esi）。最后两个寄存器（%ebp,%esp）保存着只想程序栈中重要位置的指针，只有根据栈管理的标准惯例才能修改这两个寄存器中的值。</p>
+
+
+<p>指令的操作数分为三类：</p>
+
+
+<p>一、立即数（$123,$-134），由一个$符号加上数字，数字可以是十六进制。</p>
+
+
+<p>二、寄存器（%eax,%ebx）。</p>
+
+
+<p>三、存储器，根据计算出来的存储器地址访问某个存储器位置。</p>
+
+
+<p>一般寻址格式：Imm(E(b),E(i),s)其中Imm是立即数偏移，E(b)表示一个基址寄存器，E(i)表示变址寄存器或者叫索引寄存器，s是伸缩因子，只能取值1、2、4、8. 计算方法：Imm+E(b)+E(i)xS</p>
+
+
+<p>IA32对于mov指令的要求是不允许两个操作数都是存储器位置。</p>
+
+
+<p>movsbl、movzbl的区别：    </p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">%dh = 8D     
+
+
+<p>%eax = 98765432   <br/>
+movb %dh,%al    //%eax = 9876548D   <br/>
+movsbl %dh,%eax    //%eax = FFFFFF8D   <br/>
+movzbl %dh,%eax    //%eax = 0000008D movzbl用0填充eax的高24位；
+movsbl用dh中的最高位填充eax的高24位。</pre></p>
+
+<br /><p>至于为何是填充eax的高24位，原因是movsbl、movzbl的源操作数是字节长度（就是这里的dh），而这条指令会执行扩展32位，就是把目的操作数的高24位进行相应的扩展操作。</p>
+
+
+<p>根据惯例，所有返回整数或指针值的函数都是通过将结果放在寄存器%eax中来打到目的的。</p>
+
+
+<p>LEA指令是将有效地址计算出来放到目的操作数中而不是取出结果放入，虽然它看起来和mov的感觉差不多：） 在for循环中初始化一个变量比如int i = 0..汇编中一般是这样做的：xorl %edx,%edx因为变量与自身做异或总是得到0的。</p>
+
+
+<p>乘除法相比较而言是比较高级的操作，一般乘法是把一个数放入%eax，再与另一个数相乘，如：imull 12(%ebp),此处假设另外一个乘数在%ebp偏移12的地方，结果分别放在%eax和%edx中，分别保存了结果的低32位和高32位，最好根据实际情况（机器大端、小端）压栈。</p>
+
+
+<p>除法类似，只是结果中的商保存在%eax中，余数放在%edx中。</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-12T22:00:00+08:00" pubdate data-updated="true">Apr 12<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/os/'>OS</a>, <a class='category' href='/blog/categories/我想说的各种技术/'>我想说的各种技术</a>, <a class='category' href='/blog/categories/汇编/'>汇编</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/04/10/csapp-study-part1/" title="Previous Post: CSAPP学习笔记第一辑">&laquo; CSAPP学习笔记第一辑</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/04/13/computer-science-and-economics/" title="Next Post: 计算机系和经济系">计算机系和经济系 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2011/04/12/csapp-study-part2/';
+        var disqus_url = 'http://www.youth2009.org/blog/2011/04/12/csapp-study-part2/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

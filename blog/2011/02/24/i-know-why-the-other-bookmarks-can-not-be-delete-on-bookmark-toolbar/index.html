@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>终于知道为何chrome浏览器中的“其他书签”为何无法去掉了 - dawncold's tech blog</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="&lt;p&gt;&lt;img src="http://pic.yupoo.com/loose_v/ASbtBMXR/TI9ji.png" alt=""&gt;早就看着这个文件夹不顺眼，但就是无法删除，打开chrome的书签管理器发现它和“书签栏”是同级的， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/blog/2011/02/24/i-know-why-the-other-bookmarks-can-not-be-delete-on-bookmark-toolbar/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">dawncold's tech blog</a></h1>
+  
+    <h2>dawncold's tech blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.youth2009.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">终于知道为何chrome浏览器中的“其他书签”为何无法去掉了</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-24T22:51:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><pre><code>        &lt;p&gt;&lt;img src="http://pic.yupoo.com/loose_v/ASbtBMXR/TI9ji.png" alt=""&gt;早就看着这个文件夹不顺眼，但就是无法删除，打开chrome的书签管理器发现它和“书签栏”是同级的，刚刚去研究了一番chrome的扩展程序，本以为通过chrome本身能够操控自己，但经过实践后发现这根本行不通。 建立一个chrome的扩展程序是这样的： 1.建立一个目录，随便在什么地方。 2.进入这个目录，建立一个叫manifest.json的文件，从文件名就能看出这是个json，用vi、vim、emacs等写入如下内容：  &lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:jscript" lang="jscript">{
+
+
+<p>  "name": "hide-other-bookmark-button",
+  "version": "1.0",
+  "description": "I want to hide the 'other bookmark' button in Chrome's bookmark toolbar!",
+  "browser_action": {</p>
+
+<pre><code>"default_icon": "icon.ico"
+</code></pre>
+
+<p>  },
+  &#8220;permissions&#8221;: [</p>
+
+<pre><code> "bookmarks"
+</code></pre>
+
+<p>   ],
+  &#8220;background_page&#8221;:&#8221;index.html&#8221;
+}</pre></p>
+
+<br /><p>然后找个ico文件，命名成上面提到的icon.ico，只要和json文件中对应即可，png也行。现在这个扩展的配置文件就基本完成了，因为这是要操控bookmarks的扩展程序，所以在permissions那里药写上bookmarks以表示这个扩展要使用chrome的bookmarks的API来做一些东西。具体的API可以参考Google的文档。 3.建立上面提到的一个index.html文件，这是此扩展程序的主页面，就是一个标准的html页面。我曾经一度以为chrome的这些API到底是该怎么调用啊？用html能行么？于是我找到了一个不错的应用程序，看了它的代码，简单说，chrome的那些API就是一个JS库，和jQuery一样用，只不过chrome内置了这个库，你直接用就可以了，不用再明显声明（除了json里面的那句），我们的index中只有很简单的一句代码：（为了让人们看清楚，我完整给出index的内容）</p>
+
+
+<p>4.那么多出来的那句代码是做什么的呢？其实我是用了上面那句，才能确定“其他书签”这个的id是2而不是别的。 <img src="http://pic.yupoo.com/loose_v/ASbtC0ec/lNALS.png" alt=""> 从chrome自带的JavaScript控制台程序能够看到bookTree是一个Object，还能继续看它的属性，这是一个array，下面的1号object也是个array，我们能够看到他的id是2，而title就是我们渴望的“其他书签”。下面那句就是删除id为2的那个object，很可惜，返回了error，对于这个我也没办法了： <img src="http://pic.yupoo.com/loose_v/ASbvzoiM/kjvjq.png" alt=""> 到了这里，这篇文章也就基本结束了，虽然我们没有成功，但这个过程是值得的，能够在chrome这样的大型软件中体验扩展程序也是很不错的<br />！</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-24T22:51:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/bookmark-chrome/'>bookmark chrome</a>, <a class='category' href='/blog/categories/我想说的各种技术/'>我想说的各种技术</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/02/24/git-for-project/" title="Previous Post: 为项目搭建git版本控制">&laquo; 为项目搭建git版本控制</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/02/25/my-goal/" title="Next Post: 我的目标">我的目标 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2011/02/24/i-know-why-the-other-bookmarks-can-not-be-delete-on-bookmark-toolbar/';
+        var disqus_url = 'http://www.youth2009.org/blog/2011/02/24/i-know-why-the-other-bookmarks-can-not-be-delete-on-bookmark-toolbar/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

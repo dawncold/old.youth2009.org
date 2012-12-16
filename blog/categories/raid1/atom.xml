@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: raid1 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/raid1/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[LVM+RAID实践]]></title>
+    <link href="http://www.youth2009.org/blog/2012/10/08/lvm-and-raid1/"/>
+    <updated>2012-10-08T14:09:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/10/08/lvm-and-raid1</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。&lt;/p&gt;
+</code></pre>
+
+<p> </p>
+
+
+<p>0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">fdisk /dev/sda
+
+
+<p>fdisk /dev/sdb</pre></p>
+
+<br /><p>1.创建PV</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo pvcreate /dev/sd{a1,b1}</pre>
+
+
+<br /><p>2.创建VG</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo vgcreate -s 16M vg0 /dev/sd{a1,b1}</pre>
+
+
+<br /><p>3.创建LV</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo lvcreate -n lv0 vg0 -m 1 -lxxxx --corelog</pre>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: sudo | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/sudo/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[sudo 出现unable to resolve host 解决方法]]></title>
+    <link href="http://www.youth2009.org/blog/2012/06/08/solved-sudo-unable-to-resolve-host/"/>
+    <updated>2012-06-08T16:23:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/06/08/solved-sudo-unable-to-resolve-host</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo ：unable to resolve host HOSTNAME</pre>
+
+
+<br /><p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">127.0.0.1               localhost.localdomain localhost HOSTNAME</pre>
+
+
+<br /><p>希望vpsee的admin能在iso中修复这个问题</p>
+
+]]></content>
+  </entry>
+  
+</feed>

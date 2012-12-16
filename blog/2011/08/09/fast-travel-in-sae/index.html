@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>SAE快速之旅 - dawncold's tech blog</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="&lt;p&gt;GoogleAppEngine基本在国内没什么前途了，主要原因大家很清楚，但也算是给我们开了一个好头，至少我们已经能够体验到云的魅力所在了，通过现有为数不多的国内云计算服务。sina的测试了许久，相信比较成熟，但我依然钟情于Python，PHP也只是开发过几个小网站，经验有限。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/blog/2011/08/09/fast-travel-in-sae/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">dawncold's tech blog</a></h1>
+  
+    <h2>dawncold's tech blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.youth2009.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">SAE快速之旅</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-09T17:01:00+08:00" pubdate data-updated="true">Aug 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><pre><code>        &lt;p&gt;GoogleAppEngine基本在国内没什么前途了，主要原因大家很清楚，但也算是给我们开了一个好头，至少我们已经能够体验到云的魅力所在了，通过现有为数不多的国内云计算服务。sina的测试了许久，相信比较成熟，但我依然钟情于Python，PHP也只是开发过几个小网站，经验有限。写点SAE入门教程吧！&lt;/p&gt;
+</code></pre>
+
+<p>0。注册SAE账号：</p>
+
+
+<p>登陆http://sae.sina.com.cn注册，或者点我的邀请链接，赚点邀请费用而已：<a href="http://sae.sina.com.cn/activity/invite/23335/weibo">http://sae.sina.com.cn/activity/invite/23335/weibo</a></p>
+
+
+<p>1。创建一个应用：（点击最上面的应用Application即可出现如下页面）</p>
+
+
+<p><a title="Screen Shot 2011-08-09 at 下午4.25.38.png" href="http://www.youth2009.org/attachment/135230/"><img src="http://www.youth2009.org/usr/uploads/2011/08/1024291968.png" alt="Screen Shot 2011-08-09 at 下午4.25.38.png"></a></p>
+
+
+<p>点击创建新应用（0/10),看来一个账号只能创建10个。</p>
+
+
+<p><a title="Screen Shot 2011-08-09 at 下午4.26.20.png" href="http://www.youth2009.org/attachment/135231/"><img src="http://www.youth2009.org/usr/uploads/2011/08/3964469045.png" alt="Screen Shot 2011-08-09 at 下午4.26.20.png"></a></p>
+
+
+<p>填入相应的信息后点击“创建应用”</p>
+
+
+<p><a title="Screen Shot 2011-08-09 at 下午4.26.29.png" href="http://www.youth2009.org/attachment/135232/"><img src="http://www.youth2009.org/usr/uploads/2011/08/383403573.png" alt="Screen Shot 2011-08-09 at 下午4.26.29.png"></a></p>
+
+
+<p>此时有个安全认证，填写刚刚的登陆密码即可。</p>
+
+
+<p><a title="Screen Shot 2011-08-09 at 下午4.26.40.png" href="http://www.youth2009.org/attachment/135233/"><img src="http://www.youth2009.org/usr/uploads/2011/08/1845837408.png" alt="Screen Shot 2011-08-09 at 下午4.26.40.png"></a></p>
+
+
+<p>看，新的应用已经创建好了，点击应用名称即可查看详情：</p>
+
+
+<p><a title="Screen Shot 2011-08-09 at 下午4.27.15.png" href="http://www.youth2009.org/attachment/135234/"><img src="http://www.youth2009.org/usr/uploads/2011/08/1927393632.png" alt="Screen Shot 2011-08-09 at 下午4.27.15.png"></a></p>
+
+
+<p>点击左侧的“代码管理”即可看到我们的SVN部署地址。通过查看sina的文档得知，SVN的部署账号和密码分别是SAE安全邮箱和SAE安全密码。这些信息点击页面右上角的“XX的账号”即可查看。</p>
+
+
+<p>2。准备一个非常简单的PHP文件，内容如下，保存成index.php即可：</p>
+
+
+<br /><pre class="prettyprint linenums bush:php" lang="php">&lt;?php echo 'Hello,PHP'; ?&gt;</pre>
+
+
+<br /><p>3。SVN部署文件：</p>
+
+
+<p>我们要不要用一种高级的方式来访问svn呢——Terminal（命令行）：</p>
+
+
+<p>首先我们找一个干净的目录来存放我们建立的project：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">cd ~/Documents
+
+
+<p>mkdir Projects
+cd Projects
+svn checkout https://svn.sinaapp.com/demoproject/
+验证“https://svn.sinaapp.com:443”的服务器证书时出错:
+ - 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
+证书信息:
+ - 主机名称: *.sinaapp.com
+ - 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
+ - 发行者: Equifax Secure Certificate Authority, Equifax, US
+ - 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
+(R)拒绝，(t)暂时接受，或(p)永远接受？t
+认证领域: &lt;https://svn.sinaapp.com:443&gt; SAE User Auth for SVN
+“dawncold”的密码:
+认证领域: &lt;https://svn.sinaapp.com:443&gt; SAE User Auth for SVN
+用户名: loooseleaves@gmail.com
+“loooseleaves@gmail.com”的密码:
+取出版本 0。</pre></p>
+
+<br /><p>总之按照用户名写安全邮箱，密码写安全密码的方式写即可。这样就得到了第一个版本——0号版本。</p>
+
+
+<p>我们进入这个目录看看有什么：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">cd demoproject
+
+
+<p>ls
+ls -al</p>
+
+<p>drwxr-xr-x   4 dawncold  staff  136  8  9 16:46 .
+drwxr-xr-x@ 21 dawncold  staff  714  8  9 16:40 ..
+drwxr-xr-x   8 dawncold  staff  272  8  9 16:40 .svn
+</pre></p>
+
+<br /><p>用ls查看是什么都没有的，那么我们用ls -al查看，看到了隐藏的svn目录，这里存着svn的相关配置信息。我们用vi来写刚刚的那个index.php吧：</p>
+
+
+<p>一般是vi index.php，然后输入刚刚的代码，再按Esc，输入“冒号”，再输入“wq！”（注意有个感叹号），回车。</p>
+
+
+<p>下面把文件添加到svn：（有一个错误的演示）</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">svn add index.php</pre>
+
+
+<br /><p>再提交（commit）到服务器：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">svn commit -m 'add index.php for show a demo'</pre>
+
+
+<br /><p>但我遇到了错误，返回的信息告诉我不能提交文件进入版本库，查看sian的文档才知道这个版本库只能存放版本目录，i就是我需要再建立一个目录，而且名字是数字，表示这是几号版本，文件可以放入那些目录中。那就新建一个1号版本吧：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro demoproject$ mkdir 1
+
+
+<p>dawncold@tianzhenmatoMacBook-Pro demoproject$ mv index.php 1/
+dawncold@tianzhenmatoMacBook-Pro demoproject$ svn add 1/
+A         1
+A         1/index.php
+dawncold@tianzhenmatoMacBook-Pro demoproject$ svn commit -m 'add ver_1 and index file index.php'
+svn: 提交失败(细节如下):
+svn: 丢失了预定增加的“/Users/dawncold/Documents/Project/demoproject/index.php”
+dawncold@tianzhenmatoMacBook-Pro demoproject$ ls
+1
+dawncold@tianzhenmatoMacBook-Pro demoproject$ svn add *
+svn:  警告: “1”已纳入版本控制
+dawncold@tianzhenmatoMacBook-Pro demoproject$ cd 1/
+dawncold@tianzhenmatoMacBook-Pro 1$ ls
+index.php
+dawncold@tianzhenmatoMacBook-Pro 1$ svn add *
+svn:  警告: “index.php”已纳入版本控制
+dawncold@tianzhenmatoMacBook-Pro 1$ svn commit
+svn: 提交失败(细节如下):
+svn: 无法使用外部编辑器获得日志信息；考虑设置环境变量 $SVN_EDITOR，或者使用 --message (-m) 或 --file (-F) 选项
+svn: 没有设置 SVN_EDITOR，VISUAL 或 EDITOR 环境变量，运行时的配置参数中也没有 “editor-cmd” 选项
+dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
+验证“https://svn.sinaapp.com:443”的服务器证书时出错:
+ - 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
+证书信息:
+ - 主机名称: *.sinaapp.com
+ - 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
+ - 发行者: Equifax Secure Certificate Authority, Equifax, US
+ - 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
+(R)拒绝，(t)暂时接受，或(p)永远接受？t
+增加           1
+增加           1/index.php
+传输文件数据.
+提交后的版本为 1。</pre></p>
+
+<br /><p>4。查看效果：</p>
+
+
+<p>部署完成后就能查看效果了，由于我们只有一个版本，这就是默认版本了，查看地址为：<a href="http://demoproject.sinaapp.com/">http://demoproject.sinaapp.com/</a></p>
+
+
+<p> </p>
+
+
+<p>总结一下，这是SAE的快速之旅，代码的部署方式使用的SVN命令行，你也许不喜欢这样，喜欢GUI的SVN部署方式，这当然也没有问题，sina的文档还是比较全面的。刚刚也看到了helloworld这样的例子，看来我白写了呢。希望等SAE出现Python的版本后我再去体验！</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-09T17:01:00+08:00" pubdate data-updated="true">Aug 9<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/cloud/'>cloud</a>, <a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/sae/'>sae</a>, <a class='category' href='/blog/categories/svn/'>svn</a>, <a class='category' href='/blog/categories/我想说的各种技术/'>我想说的各种技术</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/08/08/mysqldb-have_wcscoll-redefined/" title="Previous Post: 安装MySQLdb出现HAVE_WCSCOLL重定义问题的解决方法">&laquo; 安装MySQLdb出现HAVE_WCSCOLL重定义问题的解决方法</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/08/11/bad-result-of-google-map/" title="Next Post: Google地图越来越不靠谱了">Google地图越来越不靠谱了 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2011/08/09/fast-travel-in-sae/';
+        var disqus_url = 'http://www.youth2009.org/blog/2011/08/09/fast-travel-in-sae/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: sqlalchemy | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/sqlalchemy/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SQLAlchemy中的乱码]]></title>
+    <link href="http://www.youth2009.org/blog/2012/07/14/bad-encoding-in-sqlalchemy/"/>
+    <updated>2012-07-14T09:47:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/07/14/bad-encoding-in-sqlalchemy</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;一开始没怎么关心这个问题，连接数据库的时候我直接这样用的：&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:python" lang="python">mysql://root:@localhost/haolesong</pre>
+
+
+<br /><p>在插入数据的时候看到数据库中的内容是乱码，但网页中显示的时候正常，于是我就没怎么关心，不过前天在修改一个值的时候，就是用一段中文替换原先的值，提交数据后网页打不开了，提示unicode编码的xxx问题，相信用Python写网站的人应该会遇得到。</p>
+
+
+<p>后来在<a href="http://meizhini.iteye.com/blog/294691" target="_blank">这里</a>发现了解决方法，还有一段长长的分析。我很喜欢这样的文章，对于想直接知道问题答案的人来说一目了然，想知道原理的人也可以直接看下去。</p>
+
+
+<p>最终就是这样即可：</p>
+
+
+<br /><pre class="prettyprint linenums bush:python" lang="python">mysql://root:@localhost/haolesong?charset=utf8</pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SQLalchemy中的oneToMany]]></title>
+    <link href="http://www.youth2009.org/blog/2012/07/05/onetomany-in-sqlalchemy/"/>
+    <updated>2012-07-05T22:54:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/07/05/onetomany-in-sqlalchemy</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;今天在这里遇到些问题，花了一段时间，后来看官方文档解决了，很管用！&lt;/p&gt;
+</code></pre>
+
+<p>各个orm中的关系设置大同小异，一对多的关系中需要在“多”方的列中加入一个外键，指向“一”方，然后在“一”方加入一个存储“多”方的变量（这个orm中需要使用relationship方法声明）。</p>
+
+
+<p>至此一个单项的OneToMany就弄好了，如果需要加入“反向”，形成双向的关系，那就在刚才的“一”方中存储“多”方的变量中指明backref参数，值就是在“多”方的属性中存储“一”方的这个属性名。我在这里弄错了，受了EJB的影响，以为双方都需要设置，结果弄的重复了，还好看了官方文档。</p>
+
+
+<p>其他关系请参考<a href="http://docs.sqlalchemy.org/en/rel_0_7/orm/relationships.html#sqlalchemy.orm.relationship">官方文档</a></p>
+
+]]></content>
+  </entry>
+  
+</feed>

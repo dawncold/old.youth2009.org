@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: SSD | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/ssd/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[M4的一点优化]]></title>
+    <link href="http://www.youth2009.org/blog/2012/10/01/optimzation-for-m4/"/>
+    <updated>2012-10-01T17:05:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/10/01/optimzation-for-m4</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;1.关闭紧急运动传感器&lt;/p&gt;
+</code></pre>
+
+<p>mac系统没有把这些传感器的设置、界面什么的体现到UI里，让我一度以为mbp没有这种设备，实际这也算是mac系统的设计理念吧，把普通用户无须知晓的东西屏蔽掉，让用户看起来、用起来异常简单，不像thinkpad那样，直接把硬盘活动保护啥的做成一个功能给用户展示。。。你看，你看，我们（thinkpad）有保护您硬盘的设备。。。</p>
+
+
+<p>这些不让用户看到的功能大多需要相关工具或者命令行来设置：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo pmset -a sms 0</pre>
+
+
+<br /><p>对于替换了原来硬盘的这种方案就可以关闭紧急运动传感器了，如果加了SSD在光驱位，那就甭管了，继续保护硬盘吧！</p>
+
+
+<p>2.开启Trim</p>
+
+
+<p>同样要使用命令行开启，有个app叫Trim Enabler，但不推荐用。也有呼声说M4带有GC功能，是不是不需要开Trim了，综合不少资料考虑，还是推荐开起来。</p>
+
+
+<p>备份</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original</pre>
+
+
+<br /><p>10.8.1 or 10.7.5 or newer</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x4D)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</pre>
+
+
+<br /><p>10.8.0 or 10.7.4 or below</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x51)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</pre>
+
+
+<br /><p>清除系统内核扩展缓存</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo touch /System/Library/Extensions/</pre>
+
+
+<br /><p>重启</p>
+
+
+<p>如果想禁止Trim</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">FOR ML 10.8.1 AND LION 10.7.5 OR NEWER
+
+
+<p>sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x4D)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</p>
+
+<p>FOR ML 10.8.0 AND LION 10.7.4 BELOW</p>
+
+<p>sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x51)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</p>
+
+<p>sudo touch /System/Library/Extensions/</pre></p>
+
+<br /><p>如果出错就恢复刚刚的备份</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</pre>
+
+
+<br /><p>3.用noatime方式挂载硬盘，就是少加载一个文件属性参数而已，对于日常使用没啥影响，在/Library/LaunchDaemons里面创建一个noatime.plist，内容如下：</p>
+
+
+<br /><pre class="prettyprint linenums bush:xml" lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+
+<p>&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+&lt;key&gt;Label&lt;/key&gt;
+&lt;string&gt;noatime&lt;/string&gt;
+&lt;key&gt;ProgramArguments&lt;/key&gt;
+&lt;array&gt;
+&lt;string&gt;mount&lt;/string&gt;
+&lt;string&gt;-vuwo&lt;/string&gt;
+&lt;string&gt;noatime&lt;/string&gt;
+&lt;string&gt;/&lt;/string&gt;
+&lt;/array&gt;
+&lt;key&gt;RunAtLoad&lt;/key&gt;
+&lt;true/&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;</pre></p>
+
+<br /><p> 修改刚刚创建的文件权限</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo chown root:wheel /Library/LaunchDaemons/noatime.plist</pre>
+
+
+<br /><p>重启</p>
+
+
+<p>检测结果</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">mount | grep " / "</pre>
+
+
+<br /><p>如果结果里有类似这样的内容（红字内容）就表示可以了</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">/dev/disk0s2 on / (hfs, local, journaled, <span style="color: #ff0000;">noatime</span>)</pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[买了个叫M4的硬盘]]></title>
+    <link href="http://www.youth2009.org/blog/2012/10/01/bought-a-ssd-called-m4/"/>
+    <updated>2012-10-01T14:05:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/10/01/bought-a-ssd-called-m4</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;256Gb，1200块。&lt;/p&gt;
+</code></pre>
+
+<p>速度还不错，读取260Mb/s，写入206Mb/s。</p>
+
+
+<p>至此，MC374能升级的部分都升级到位了。</p>
+
+]]></content>
+  </entry>
+  
+</feed>

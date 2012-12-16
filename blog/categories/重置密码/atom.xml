@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 重置密码 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/重置密码/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[重置MySQL密码]]></title>
+    <link href="http://www.youth2009.org/blog/2011/12/07/reset-the-password-of-mysql/"/>
+    <updated>2011-12-07T17:46:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/12/07/reset-the-password-of-mysql</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;前几天在Mac系统下装了MySQL，装完后是默认没有给root用户带密码的，于是出于安全考虑我就加上了密码，加密码的方式如下：&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">mysqladmin -u root password "mysqlpassword"</pre>
+
+
+<br /><p>很明显引号内的是root用户的新密码。</p>
+
+
+<p>但在使用的时候我一时想不起来密码了，于是搜索到了官方的Reset the password of MySQL，但看着好麻烦，没有尝试，在<a href="http://huoding.com/2011/06/12/85" target="_blank">这里</a>找到了方法，贴出来主要代码：</p>
+
+
+<p>先停止mysql的服务，用下面这句启动mysql：</p>
+
+
+<br /><pre class="prettyprint linenums bush:sql" lang="sql">mysqld_safe --skip-grant-tables --skip-networking &amp;
+
+
+<p></pre></p>
+
+<br /><p>用SQL语句修改root的密码：</p>
+
+
+<br /><pre class="prettyprint linenums bush:sql" lang="sql">UPDATE mysql.user SET Password=PASSWORD('...') WHERE User='...' AND Host= '...';
+
+
+<p>FLUSH PRIVILEGES;</pre></p>
+
+<br /><p>单引号内的东西自己补充吧，第一个是新密码，第二个写root，第三个用localhost就可以了。</p>
+
+]]></content>
+  </entry>
+  
+</feed>

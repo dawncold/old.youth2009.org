@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 自己的关于哲学的一点思考 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/自己的关于哲学的一点思考/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2012-12-17T05:03:49+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[247条垃圾评论]]></title>
+    <link href="http://www.youth2009.org/blog/2012/09/23/247-rubbish-comments/"/>
+    <updated>2012-09-23T21:24:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/09/23/247-rubbish-comments</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;疏于管理啊，让各路垃圾评论之小人得了空，钻到这里写了那么多，还好spam插件够给力，全部截获。以后不该再这样了，但也是没什么时间。&lt;/p&gt;
+</code></pre>
+
+<p>去了honovation之后发觉自己写过的代码基本就不叫代码啊，自觉的对python算是熟悉的，到了那里也感觉从没写过python了，怪我平日光想着感情来感情去了，就和我这技术blog似的，疏于管束，才弄得我今天这个结果。</p>
+
+
+<p>现在比较感兴趣的是敏捷实践，看书上网上的资料毕竟比较浮华，身处于敏捷团队，每天都在做得就是最好的实践，怪我一时还不太会总结，现在好像又要深陷到代码里了，我这个程序员何时能成长？！</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[2012Astar资格赛]]></title>
+    <link href="http://www.youth2009.org/blog/2012/05/30/2012-astar-qualification-match/"/>
+    <updated>2012-05-30T12:09:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/05/30/2012-astar-qualification-match</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;其实挺那啥的，那啥呢？说不出来感受，些须高兴又些须失望。&lt;/p&gt;
+</code></pre>
+
+<p>资格赛10个题，仔细一看才知道是POJ的原题，随便找了10个，有简单到算a+b结果的，也有复杂点用动态规划、解方程组的等等。总之和大多数人一样，比较失望。</p>
+
+
+<p>虽然ac了10个，现在排名88，不过都直到答案网上有的是，自己找来不就可以了么，这样的资格赛有啥意思，难道这不就是随便让人们来参加的么？</p>
+
+
+<p>现在一想这和GoogleCodeJam的资格赛相比，真是差别很大，相当的大呀~</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[悲惨的CodeJam2012]]></title>
+    <link href="http://www.youth2009.org/blog/2012/05/06/miserable-code-jam-2012/"/>
+    <updated>2012-05-06T21:49:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/05/06/miserable-code-jam-2012</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;资格赛晋级之后还稍稍得到了点自信，起码原来只能远观CodeJam的我现在也能继续走进看看了，不过家下来的Round1三场比赛直接被虐杀了，每一场都是最后，每个题都做不出来，说出来也是很惭愧的，但得承认自己这点能力，有人不到5分钟就能做对一个大题，而我5分钟可能都没读完题，更别说写代码了。&lt;/p&gt;
+</code></pre>
+
+<p>但最重要的是理解题目，能够理解了也就完成了90%，剩下的工作就是coding的过程，参加比赛的人基本都是有备而来，各种模版、脚本都准备好了，写起来非常快。对于非英语系国家的选手来说，读题似乎是很大的障碍，起码会比别人慢好多倍，这点只能多多看英文的资料来弥补了！</p>
+
+
+<p>今天的Round1第三场出现了两个动态规划的题，感觉知道了怎么做可就是不会写，我也就是停留在知道有动态规划这种变态方法的层面上，真让我写出来可不行，抱着《算法导论》看了半天也是毫无头绪……</p>
+
+
+<p>毕竟不是Acmer，咱也就只能止步于此啦！希望进入下一轮的国人们继续加油！</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[奇怪的Ruby语法]]></title>
+    <link href="http://www.youth2009.org/blog/2012/02/06/wired-grammar-in-ruby/"/>
+    <updated>2012-02-06T22:19:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/02/06/wired-grammar-in-ruby</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;今天断断续续把昨天提到的那个Ruby编程入门看完了，原本打算按照教程中的例子做一遍，不过看得时候感觉这样做的话有些浪费时间，对于有一定编程经验的人来说按照例子做一遍没多大意义，很多内容看看就过了。&lt;/p&gt;
+</code></pre>
+
+<p>但很可惜，在Ruby这里，看看还不一定就能理解，要不然今天也不会单独写一篇日志了，真得有不少特性和其他编程语言不一样，概念上倒是还能理解，语法符号上就要重新接受了，想等过两天买的Ruby编程书来到后细细重头看。</p>
+
+
+<p>还有20天了，真不知道当初设想的几个小理念能够实现多少，但也别失望，我还成功转型了呢，这个寒假收获将会颇丰！</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[sorry to me]]></title>
+    <link href="http://www.youth2009.org/blog/2012/02/04/sorry-to-me-help-my-ruby/"/>
+    <updated>2012-02-04T22:04:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/02/04/sorry-to-me-help-my-ruby</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;我记得自己好像说过要在python上坚持一段时间，现在发现有些不可能了，我要转向ruby了，因为自学了好久的python，只是觉得很酷，有时候也解决了不少问题，的确是一种高效的开发语言，但开发了一段时间的web app后并不像我当初预想的那样，python的相关框架在做开放的时候挺复杂的，即便是web.py这样号称simple的框架也让人用起来不舒服，可能用习惯了的话没什么，但我毕竟是一个新手，就算是php也只是才写了几K行的垃圾代码。&lt;/p&gt;
+</code></pre>
+
+<p>就为了ruby的宗旨吧——code for fun，虽然现在没有感觉到fun到底来自何处，我也不管了，因为最近实在没什么让我happy的事情，了解我的人可能都知道这段时间我怎么了。</p>
+
+
+<p>ruby，救救我吧！</p>
+
+]]></content>
+  </entry>
+  
+</feed>
