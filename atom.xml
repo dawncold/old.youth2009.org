@@ -4,7 +4,7 @@
   <title><![CDATA[dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2012-12-17T05:03:49+08:00</updated>
+  <updated>2012-12-17T05:38:04+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,11 +18,9 @@
     <link href="http://www.youth2009.org/blog/2012/11/25/thinking-convert-to-octopress-blog-system/"/>
     <updated>2012-11-25T21:51:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/11/25/thinking-convert-to-octopress-blog-system</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;最近的work@honovation博客一直是用octopress写的，就是直接写markdown内容即可，github负责转换并提供托管服务，而且可以自己绑定域名，比如现在的http://workathonovation.youth2009.org就是这么弄得，非常简洁的方式，而且有种回归本真的感觉。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>最近的work@honovation博客一直是用octopress写的，就是直接写markdown内容即可，github负责转换并提供托管服务，而且可以自己绑定域名，比如现在的http://workathonovation.youth2009.org就是这么弄得，非常简洁的方式，而且有种回归本真的感觉。</p>
 
 <p>迟迟没有动作是因为我付了30刀个这个VPS，也就是到2月才过期，如果全部转到了octopress那么空着这个VPS干嘛？翻墙玩？呵呵，那真是无聊死了吧。。。说实在的，vps除了放个blog和自己做出来的小站外，好像就没什么用处了，但现在自己连小站都没有了，悉数关闭。。。</p>
-
 ]]></content>
   </entry>
   
@@ -31,11 +29,9 @@
     <link href="http://www.youth2009.org/blog/2012/10/20/6-minutes-offset-in-pytz/"/>
     <updated>2012-10-20T16:13:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/10/20/6-minutes-offset-in-pytz</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;项目中有使用pytz这个第三方库来处理datetiem相关的东西。不过最近测试的时候发现，创建了一个时间点后，最终得到的时间点和预想的时间点有6分钟的误差，从网上搜到的资料是这样解决的：详情看http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>项目中有使用pytz这个第三方库来处理datetiem相关的东西。不过最近测试的时候发现，创建了一个时间点后，最终得到的时间点和预想的时间点有6分钟的误差，从网上搜到的资料是这样解决的：详情看http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1</p>
 
 <p>创建datetime的时候，特别是带timezone，需要localize一下，否则在使用pytz的时候就会出现这6分钟的差异。代码中首先创建了datetime，然后localize后再replace了timezone为pytz的，最终还astimezone为pytz.utc。我们是使用utc的，你的代码也许不需要：）</p>
-
 ]]></content>
   </entry>
   
@@ -44,23 +40,20 @@
     <link href="http://www.youth2009.org/blog/2012/10/09/nat-practical/"/>
     <updated>2012-10-09T14:09:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/10/09/nat-practical</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3.20这台container来处理，相应的response也会返回过去。这样就做到了服务隔离。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3.20这台container来处理，相应的response也会返回过去。这样就做到了服务隔离。</p>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to 10.0.3.20
-
-
-<p>sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT --to 200.200.200.25
-</pre></p>
-
-<br /><p>这样就把进入的请求都发到了10.0.3.20这台container上去处理。</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to 10.0.3.20
+</span><span class='line'>sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT --to 200.200.200.25
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p><img src="http://pic.yupoo.com/dawncold0/CkkIbzDr/medish.jpg" alt="" width="640" height="186"></p>
+<p>这样就把进入的请求都发到了10.0.3.20这台container上去处理。</p>
 
+<p><img src="http://pic.yupoo.com/dawncold0/CkkIbzDr/medish.jpg" alt="nat" /></p>
 
 <p>只默认开了一个nginx，就这样的效果。</p>
-
 ]]></content>
   </entry>
   
@@ -69,40 +62,41 @@
     <link href="http://www.youth2009.org/blog/2012/10/08/lxc-practical/"/>
     <updated>2012-10-08T20:46:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/10/08/lxc-practical</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;这里的LXC是基于Ubuntu12.04的，在其他系统下可能不太一样。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>这里的LXC是基于Ubuntu12.04的，在其他系统下可能不太一样。</p>
 
 <p>0.安装lxc</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo apt-get install lxc</pre>
-
-
-<br /><p>1.修改lxc的mirror，不修改的话下载一个ubuntu景象会非常慢！！！</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install lxc
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo emacs /etc/default/lxc
+<p>1.修改lxc的mirror，不修改的话下载一个ubuntu景象会非常慢！！！</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo emacs /etc/default/lxc
+</span><span class='line'>第三行的mirror注释去掉，并修改为cn.archive.ubuntu.com，这样就非常快了
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>第三行的mirror注释去掉，并修改为cn.archive.ubuntu.com，这样就非常快了</pre></p>
+<p>2.创建lxc容器，t表示模板中的名字，n表示这个容器的名字（可自定义）</p>
 
-<br /><p>2.创建lxc容器，t表示模板中的名字，n表示这个容器的名字（可自定义）</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo lxc-create -t ubuntu -n ubuntu_container</pre>
-
-
-<br /><p>3.启动容器</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-create -t ubuntu -n ubuntu_container
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo lxc-start -n ubuntu_container</pre>
+<p>3.启动容器</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-start -n ubuntu_container
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><p>启动后就会出现登录ubuntu的界面，刚刚创建好容器后会给出一个提示，帐号密码都是ubuntu，登录进去就可以使用了。</p>
-
+<p>启动后就会出现登录ubuntu的界面，刚刚创建好容器后会给出一个提示，帐号密码都是ubuntu，登录进去就可以使用了。</p>
 
 <p>猜想lxc的用法可能是对于部署的某个进程使用lxc隔离，这并不能做vps用，lxc只是轻量虚拟化，针对进程来的，所以还是单机在使用，如果做vps就得用vmware、xen、openvz这样的东西了。</p>
-
 ]]></content>
   </entry>
   
@@ -111,36 +105,36 @@
     <link href="http://www.youth2009.org/blog/2012/10/08/lvm-and-raid1/"/>
     <updated>2012-10-08T14:09:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/10/08/lvm-and-raid1</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。&lt;/p&gt;
-</code></pre>
-
-<p> </p>
-
+    <content type="html"><![CDATA[<p>两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。</p>
 
 <p>0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响：</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">fdisk /dev/sda
-
-
-<p>fdisk /dev/sdb</pre></p>
-
-<br /><p>1.创建PV</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>fdisk /dev/sda
+</span><span class='line'>fdisk /dev/sdb
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo pvcreate /dev/sd{a1,b1}</pre>
+<p>1.创建PV</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pvcreate /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><p>2.创建VG</p>
+<p>2.创建VG</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vgcreate -s 16M vg0 /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo vgcreate -s 16M vg0 /dev/sd{a1,b1}</pre>
+<p>3.创建LV</p>
 
-
-<br /><p>3.创建LV</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo lvcreate -n lv0 vg0 -m 1 -lxxxx --corelog</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m 1 -lxxxx --corelog
+</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
@@ -150,14 +144,11 @@
     <link href="http://www.youth2009.org/blog/2012/10/04/print-words-count/"/>
     <updated>2012-10-04T18:32:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/10/04/print-words-count</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;记得上次参加美味书签电面的时候被问到如何统计一个语料库中的词频，当时有点傻，刚刚在复习Python的dict也遇到了这样的问题，一下子认识到，原来可以做得这么简单。虽然不知道有没有更爽的办法，但我觉得我这种方法也算是能用了，能够保证一定效率的情况下，可理解性也很强。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>记得上次参加美味书签电面的时候被问到如何统计一个语料库中的词频，当时有点傻，刚刚在复习Python的dict也遇到了这样的问题，一下子认识到，原来可以做得这么简单。虽然不知道有没有更爽的办法，但我觉得我这种方法也算是能用了，能够保证一定效率的情况下，可理解性也很强。</p>
 
 <p>读取一行行的word，存入dict，word作为key，value就是出现次数了，这样都是linear的事件复杂度，如果在字典就把value加1，要是不在就把value设为1即可。dict的查找复杂度很低，是hash查找。</p>
 
-
 <p>唉，会不会就是这样我才被拒掉了呢？！</p>
-
 ]]></content>
   </entry>
   
@@ -166,14 +157,14 @@
     <link href="http://www.youth2009.org/blog/2012/10/04/dict-formatting-in-python/"/>
     <updated>2012-10-04T17:54:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/10/04/dict-formatting-in-python</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;最近在工作中遇到过写SQL的问题，参数是直接传递进去的，比如这样：&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>最近在工作中遇到过写SQL的问题，参数是直接传递进去的，比如这样：</p>
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">db().execute('SELECT * FROM xxx WHERE id = %(id)s', id=get_id())</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">db</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;SELECT * FROM xxx WHERE id = </span><span class="si">%(id)s</span><span class="s">&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">get_id</span><span class="p">())</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><p>今天细看Google提供的Python课程发现一个叫DictFormatting的部分，里面就有类似这样的语法，现在才明白。以前用过Python的格式化输出，其实这个dict的格式化和字符串的类似，就是在字符串格式化的基础之上加入了dict的key，%s是表示这里有字符串，而%(xxx)s是表示字符串，而且是以xxx为key的字符串，这个value就是从字典中给出。一半会在这样一个字符串后加“% dictname”表示值从dictname这个字典中给出，这不就是和字符串格式化一样么。</p>
-
+<p>今天细看Google提供的Python课程发现一个叫DictFormatting的部分，里面就有类似这样的语法，现在才明白。以前用过Python的格式化输出，其实这个dict的格式化和字符串的类似，就是在字符串格式化的基础之上加入了dict的key，%s是表示这里有字符串，而%(xxx)s是表示字符串，而且是以xxx为key的字符串，这个value就是从字典中给出。一半会在这样一个字符串后加“% dictname”表示值从dictname这个字典中给出，这不就是和字符串格式化一样么。</p>
 ]]></content>
   </entry>
   
@@ -182,21 +173,22 @@
     <link href="http://www.youth2009.org/blog/2012/10/04/sort-method-in-python/"/>
     <updated>2012-10-04T14:58:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/10/04/sort-method-in-python</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;打算从今天开始自习再学学Python的基础，选了Google提供的Python课程，学到list部分，有个练习题目要求针对一组tuples排序，根据tuples的最后一个元素排序，有个hint，可以用key=function这种方法，于是搜索了一番，在Python的wiki中找到这个key方法的描述：&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>打算从今天开始自习再学学Python的基础，选了Google提供的Python课程，学到list部分，有个练习题目要求针对一组tuples排序，根据tuples的最后一个元素排序，有个hint，可以用key=function这种方法，于是搜索了一番，在Python的wiki中找到这个key方法的描述：</p>
 
 <p>从Python2.4以后list.sort()和sorted()方法都提供了一个key可选参数，传入一个function用来决定排序需要的key。这个key就是所排序元素的权值，最终就是根据权值来排序了。你也可以自己写一个方法，就是那种用def来定义的方法，不过要求接受一个参数，返回一个值，接受的参数就是这个集合（list、dict、tuple）中的某个元素。我是这样写的，it works：</p>
 
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">sort_last</span><span class="p">(</span><span class="n">tuples</span><span class="p">):</span>
+</span><span class='line'>  <span class="c"># +++your code here+++</span>
+</span><span class='line'>  <span class="n">tuples</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">tuples</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">def sort_last(tuples):
 
-
-<p>  # +++your code here+++
-  tuples.sort(key = lambda t: t[-1])
-  return tuples</pre></p>
-
-<br /><p>根据tuple中最后一个排序。</p>
-
+<p>根据tuple中最后一个排序。</p>
 ]]></content>
   </entry>
   
@@ -205,117 +197,139 @@
     <link href="http://www.youth2009.org/blog/2012/10/01/optimzation-for-m4/"/>
     <updated>2012-10-01T17:05:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/10/01/optimzation-for-m4</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;1.关闭紧急运动传感器&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>1.关闭紧急运动传感器</p>
 
 <p>mac系统没有把这些传感器的设置、界面什么的体现到UI里，让我一度以为mbp没有这种设备，实际这也算是mac系统的设计理念吧，把普通用户无须知晓的东西屏蔽掉，让用户看起来、用起来异常简单，不像thinkpad那样，直接把硬盘活动保护啥的做成一个功能给用户展示。。。你看，你看，我们（thinkpad）有保护您硬盘的设备。。。</p>
 
-
 <p>这些不让用户看到的功能大多需要相关工具或者命令行来设置：</p>
 
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pmset -a sms 0&lt;/pre&gt;
+</span></code></pre></td></tr></table></div></figure>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo pmset -a sms 0</pre>
 
-
-<br /><p>对于替换了原来硬盘的这种方案就可以关闭紧急运动传感器了，如果加了SSD在光驱位，那就甭管了，继续保护硬盘吧！</p>
-
+<p>对于替换了原来硬盘的这种方案就可以关闭紧急运动传感器了，如果加了SSD在光驱位，那就甭管了，继续保护硬盘吧！</p>
 
 <p>2.开启Trim</p>
 
-
 <p>同样要使用命令行开启，有个app叫Trim Enabler，但不推荐用。也有呼声说M4带有GC功能，是不是不需要开Trim了，综合不少资料考虑，还是推荐开起来。</p>
 
-
-<p>备份</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original</pre>
-
-
-<br /><p>10.8.1 or 10.7.5 or newer</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x4D)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>备份
+</span><span class='line'>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original&lt;/pre&gt;
+</span><span class='line'>&lt;br /&gt;10.8.1 or 10.7.5 or newer
+</span><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x4D)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><p>10.8.0 or 10.7.4 or below</p>
+<p>10.8.0 or 10.7.4 or below</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x51)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x51)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</pre>
+<p>清除系统内核扩展缓存</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo touch /System/Library/Extensions/
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><p>清除系统内核扩展缓存</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo touch /System/Library/Extensions/</pre>
-
-
-<br /><p>重启</p>
-
+<p>重启</p>
 
 <p>如果想禁止Trim</p>
 
+<p>FOR ML 10.8.1 AND LION 10.7.5 OR NEWER</p>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">FOR ML 10.8.1 AND LION 10.7.5 OR NEWER
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x4D)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</span></code></pre></td></tr></table></div></figure>
 
-
-<p>sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x4D)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</p>
 
 <p>FOR ML 10.8.0 AND LION 10.7.4 BELOW</p>
 
-<p>sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x51)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</p>
-
-<p>sudo touch /System/Library/Extensions/</pre></p>
-
-<br /><p>如果出错就恢复刚刚的备份</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</pre>
-
-
-<br /><p>3.用noatime方式挂载硬盘，就是少加载一个文件属性参数而已，对于日常使用没啥影响，在/Library/LaunchDaemons里面创建一个noatime.plist，内容如下：</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x51)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</span><span class='line'>
+</span><span class='line'>sudo touch /System/Library/Extensions/
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><pre class="prettyprint linenums bush:xml" lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+<p>如果出错就恢复刚刚的备份</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-"http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
-&lt;plist version="1.0"&gt;
-&lt;dict&gt;
-&lt;key&gt;Label&lt;/key&gt;
-&lt;string&gt;noatime&lt;/string&gt;
-&lt;key&gt;ProgramArguments&lt;/key&gt;
-&lt;array&gt;
-&lt;string&gt;mount&lt;/string&gt;
-&lt;string&gt;-vuwo&lt;/string&gt;
-&lt;string&gt;noatime&lt;/string&gt;
-&lt;string&gt;/&lt;/string&gt;
-&lt;/array&gt;
-&lt;key&gt;RunAtLoad&lt;/key&gt;
-&lt;true/&gt;
-&lt;/dict&gt;
-&lt;/plist&gt;</pre></p>
+<p>3.用noatime方式挂载硬盘，就是少加载一个文件属性参数而已，对于日常使用没啥影响，在/Library/LaunchDaemons里面创建一个noatime.plist，内容如下：</p>
 
-<br /><p> 修改刚刚创建的文件权限</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="ni">&amp;lt;</span>?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot;
+</span><span class='line'>&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>plist version=&quot;1.0&quot;<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>Label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>noatime<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>ProgramArguments<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>array<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>mount<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>-vuwo<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>noatime<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>/<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/array<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>RunAtLoad<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>true/<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/plist<span class="ni">&amp;gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo chown root:wheel /Library/LaunchDaemons/noatime.plist</pre>
+<p>修改刚刚创建的文件权限</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chown root:wheel /Library/LaunchDaemons/noatime.plist&lt;/pre&gt;
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><p>重启</p>
-
+<p>重启</p>
 
 <p>检测结果</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">mount | grep " / "</pre>
-
-
-<br /><p>如果结果里有类似这样的内容（红字内容）就表示可以了</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mount | grep <span class="s2">&quot; / &quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">/dev/disk0s2 on / (hfs, local, journaled, <span style="color: #ff0000;">noatime</span>)</pre>
+<p>如果结果里有类似这样的内容（红字内容）就表示可以了</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/dev/disk0s2 on / <span class="o">(</span>hfs, <span class="nb">local</span>, journaled, &lt;span <span class="nv">style</span><span class="o">=</span><span class="s2">&quot;color: #ff0000;&quot;</span>&gt;noatime&lt;/span&gt;<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>

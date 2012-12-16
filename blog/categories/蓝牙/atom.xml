@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 蓝牙 | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/蓝牙/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2012-12-17T05:03:49+08:00</updated>
+  <updated>2012-12-17T05:38:04+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -37,14 +37,11 @@
     <link href="http://www.youth2009.org/blog/2010/07/15/the-project-is-too-slow/"/>
     <updated>2010-07-15T20:05:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2010/07/15/the-project-is-too-slow</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;看来昨日的盼望始终都要成为盼望了，项目不是一天能够确立的，今日几乎在方向上没有进展，不过我似乎已经被确立攻坚蓝牙。iphone上的蓝牙简直就是一个摆设啊，除了能够被叫做蓝牙外，几乎没有任何值得称赞的地方。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>看来昨日的盼望始终都要成为盼望了，项目不是一天能够确立的，今日几乎在方向上没有进展，不过我似乎已经被确立攻坚蓝牙。iphone上的蓝牙简直就是一个摆设啊，除了能够被叫做蓝牙外，几乎没有任何值得称赞的地方。</p>
 
 <p>经过查询官方文档和国内案例，其实我要研究就是GameKit框架，下面有十个类吧，工作量还是不小的。游戏逻辑、贴图、工程文档等就交给别人了。</p>
 
-
 <p>英文的开发书籍看了不少，发现语言障碍真的很严重，自以为我认识不少单词，特别是计算机方面的，结果通过看书，感觉顶多能够有40%的看懂，其他的都要借助金山词霸了。由于这种障碍，我感觉越来越疲劳，最后直接拿来了一本中文版的看起来，感觉还不错！虽然那是没有翻译完的一本书，但入门足够了。现在我还记得中文版书中的一句话——“了解C语言，会C++、Java的人只要2小时即可掌握ObjectiveC。”，那时看得我叫一个爽啊，我可是花了好久都没有弄好ObjC的语法呢，这里竟然说2hrs搞定。国人的书不能信呀！</p>
-
 ]]></content>
   </entry>
   

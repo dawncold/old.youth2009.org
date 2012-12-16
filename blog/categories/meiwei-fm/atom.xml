@@ -4,7 +4,7 @@
   <title><![CDATA[Category: meiwei.fm | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/meiwei-fm/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2012-12-17T05:03:49+08:00</updated>
+  <updated>2012-12-17T05:38:04+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,14 +18,11 @@
     <link href="http://www.youth2009.org/blog/2012/10/04/print-words-count/"/>
     <updated>2012-10-04T18:32:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/10/04/print-words-count</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;记得上次参加美味书签电面的时候被问到如何统计一个语料库中的词频，当时有点傻，刚刚在复习Python的dict也遇到了这样的问题，一下子认识到，原来可以做得这么简单。虽然不知道有没有更爽的办法，但我觉得我这种方法也算是能用了，能够保证一定效率的情况下，可理解性也很强。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>记得上次参加美味书签电面的时候被问到如何统计一个语料库中的词频，当时有点傻，刚刚在复习Python的dict也遇到了这样的问题，一下子认识到，原来可以做得这么简单。虽然不知道有没有更爽的办法，但我觉得我这种方法也算是能用了，能够保证一定效率的情况下，可理解性也很强。</p>
 
 <p>读取一行行的word，存入dict，word作为key，value就是出现次数了，这样都是linear的事件复杂度，如果在字典就把value加1，要是不在就把value设为1即可。dict的查找复杂度很低，是hash查找。</p>
 
-
 <p>唉，会不会就是这样我才被拒掉了呢？！</p>
-
 ]]></content>
   </entry>
   

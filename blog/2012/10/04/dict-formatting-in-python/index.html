@@ -9,7 +9,8 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;最近在工作中遇到过写SQL的问题，参数是直接传递进去的，比如这样：&lt;/p&gt; db().execute('SELECT * FROM xxx WHERE id = %(id)s', id=get_id()) &hellip;">
+  <meta name="description" content="最近在工作中遇到过写SQL的问题，参数是直接传递进去的，比如这样： 1
+db().execute(&#39;SELECT * FROM xxx WHERE id = %(id)s&#39;, id=get_id()) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,14 +91,14 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;最近在工作中遇到过写SQL的问题，参数是直接传递进去的，比如这样：&lt;/p&gt;
-</code></pre>
+<div class="entry-content"><p>最近在工作中遇到过写SQL的问题，参数是直接传递进去的，比如这样：</p>
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">db().execute('SELECT * FROM xxx WHERE id = %(id)s', id=get_id())</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">db</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;SELECT * FROM xxx WHERE id = </span><span class="si">%(id)s</span><span class="s">&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">get_id</span><span class="p">())</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><p>今天细看Google提供的Python课程发现一个叫DictFormatting的部分，里面就有类似这样的语法，现在才明白。以前用过Python的格式化输出，其实这个dict的格式化和字符串的类似，就是在字符串格式化的基础之上加入了dict的key，%s是表示这里有字符串，而%(xxx)s是表示字符串，而且是以xxx为key的字符串，这个value就是从字典中给出。一半会在这样一个字符串后加“% dictname”表示值从dictname这个字典中给出，这不就是和字符串格式化一样么。</p>
-
+<p>今天细看Google提供的Python课程发现一个叫DictFormatting的部分，里面就有类似这样的语法，现在才明白。以前用过Python的格式化输出，其实这个dict的格式化和字符串的类似，就是在字符串格式化的基础之上加入了dict的key，%s是表示这里有字符串，而%(xxx)s是表示字符串，而且是以xxx为key的字符串，这个value就是从字典中给出。一半会在这样一个字符串后加“% dictname”表示值从dictname这个字典中给出，这不就是和字符串格式化一样么。</p>
 </div>
 
 

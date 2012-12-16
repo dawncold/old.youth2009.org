@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/blog/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2012-12-17T05:03:49+08:00</updated>
+  <updated>2012-12-17T05:38:04+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,11 +18,9 @@
     <link href="http://www.youth2009.org/blog/2012/11/25/thinking-convert-to-octopress-blog-system/"/>
     <updated>2012-11-25T21:51:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/11/25/thinking-convert-to-octopress-blog-system</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;最近的work@honovation博客一直是用octopress写的，就是直接写markdown内容即可，github负责转换并提供托管服务，而且可以自己绑定域名，比如现在的http://workathonovation.youth2009.org就是这么弄得，非常简洁的方式，而且有种回归本真的感觉。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>最近的work@honovation博客一直是用octopress写的，就是直接写markdown内容即可，github负责转换并提供托管服务，而且可以自己绑定域名，比如现在的http://workathonovation.youth2009.org就是这么弄得，非常简洁的方式，而且有种回归本真的感觉。</p>
 
 <p>迟迟没有动作是因为我付了30刀个这个VPS，也就是到2月才过期，如果全部转到了octopress那么空着这个VPS干嘛？翻墙玩？呵呵，那真是无聊死了吧。。。说实在的，vps除了放个blog和自己做出来的小站外，好像就没什么用处了，但现在自己连小站都没有了，悉数关闭。。。</p>
-
 ]]></content>
   </entry>
   

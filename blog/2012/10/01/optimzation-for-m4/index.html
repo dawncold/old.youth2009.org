@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;1.关闭紧急运动传感器&lt;/p&gt; mac系统没有把这些传感器的设置、界面什么的体现到UI里，让我一度以为mbp没有这种设备，实际这也算是mac系统的设计理念吧，把普通用户无须知晓的东西屏蔽掉，让用户看起来、用起来异常简单，不像thinkpad那样， &hellip;">
+  <meta name="description" content="1.关闭紧急运动传感器 mac系统没有把这些传感器的设置、界面什么的体现到UI里，让我一度以为mbp没有这种设备，实际这也算是mac系统的设计理念吧，把普通用户无须知晓的东西屏蔽掉，让用户看起来、用起来异常简单，不像thinkpad那样，直接把硬盘活动保护啥的做成一个功能给用户展示。。。你看，你看 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,117 +90,139 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;1.关闭紧急运动传感器&lt;/p&gt;
-</code></pre>
+<div class="entry-content"><p>1.关闭紧急运动传感器</p>
 
 <p>mac系统没有把这些传感器的设置、界面什么的体现到UI里，让我一度以为mbp没有这种设备，实际这也算是mac系统的设计理念吧，把普通用户无须知晓的东西屏蔽掉，让用户看起来、用起来异常简单，不像thinkpad那样，直接把硬盘活动保护啥的做成一个功能给用户展示。。。你看，你看，我们（thinkpad）有保护您硬盘的设备。。。</p>
 
-
 <p>这些不让用户看到的功能大多需要相关工具或者命令行来设置：</p>
 
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pmset -a sms 0&lt;/pre&gt;
+</span></code></pre></td></tr></table></div></figure>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo pmset -a sms 0</pre>
 
-
-<br /><p>对于替换了原来硬盘的这种方案就可以关闭紧急运动传感器了，如果加了SSD在光驱位，那就甭管了，继续保护硬盘吧！</p>
-
+<p>对于替换了原来硬盘的这种方案就可以关闭紧急运动传感器了，如果加了SSD在光驱位，那就甭管了，继续保护硬盘吧！</p>
 
 <p>2.开启Trim</p>
 
-
 <p>同样要使用命令行开启，有个app叫Trim Enabler，但不推荐用。也有呼声说M4带有GC功能，是不是不需要开Trim了，综合不少资料考虑，还是推荐开起来。</p>
 
-
-<p>备份</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original</pre>
-
-
-<br /><p>10.8.1 or 10.7.5 or newer</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x4D)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>备份
+</span><span class='line'>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original&lt;/pre&gt;
+</span><span class='line'>&lt;br /&gt;10.8.1 or 10.7.5 or newer
+</span><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x4D)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><p>10.8.0 or 10.7.4 or below</p>
+<p>10.8.0 or 10.7.4 or below</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x51)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x51)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</pre>
+<p>清除系统内核扩展缓存</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo touch /System/Library/Extensions/
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><p>清除系统内核扩展缓存</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo touch /System/Library/Extensions/</pre>
-
-
-<br /><p>重启</p>
-
+<p>重启</p>
 
 <p>如果想禁止Trim</p>
 
+<p>FOR ML 10.8.1 AND LION 10.7.5 OR NEWER</p>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">FOR ML 10.8.1 AND LION 10.7.5 OR NEWER
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x4D)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</span></code></pre></td></tr></table></div></figure>
 
-
-<p>sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x4D)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</p>
 
 <p>FOR ML 10.8.0 AND LION 10.7.4 BELOW</p>
 
-<p>sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x51)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</p>
-
-<p>sudo touch /System/Library/Extensions/</pre></p>
-
-<br /><p>如果出错就恢复刚刚的备份</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</pre>
-
-
-<br /><p>3.用noatime方式挂载硬盘，就是少加载一个文件属性参数而已，对于日常使用没啥影响，在/Library/LaunchDaemons里面创建一个noatime.plist，内容如下：</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x51)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</span><span class='line'>
+</span><span class='line'>sudo touch /System/Library/Extensions/
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><pre class="prettyprint linenums bush:xml" lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+<p>如果出错就恢复刚刚的备份</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-"http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
-&lt;plist version="1.0"&gt;
-&lt;dict&gt;
-&lt;key&gt;Label&lt;/key&gt;
-&lt;string&gt;noatime&lt;/string&gt;
-&lt;key&gt;ProgramArguments&lt;/key&gt;
-&lt;array&gt;
-&lt;string&gt;mount&lt;/string&gt;
-&lt;string&gt;-vuwo&lt;/string&gt;
-&lt;string&gt;noatime&lt;/string&gt;
-&lt;string&gt;/&lt;/string&gt;
-&lt;/array&gt;
-&lt;key&gt;RunAtLoad&lt;/key&gt;
-&lt;true/&gt;
-&lt;/dict&gt;
-&lt;/plist&gt;</pre></p>
+<p>3.用noatime方式挂载硬盘，就是少加载一个文件属性参数而已，对于日常使用没啥影响，在/Library/LaunchDaemons里面创建一个noatime.plist，内容如下：</p>
 
-<br /><p> 修改刚刚创建的文件权限</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="ni">&amp;lt;</span>?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot;
+</span><span class='line'>&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>plist version=&quot;1.0&quot;<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>Label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>noatime<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>ProgramArguments<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>array<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>mount<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>-vuwo<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>noatime<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>/<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/array<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>RunAtLoad<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>true/<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/plist<span class="ni">&amp;gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo chown root:wheel /Library/LaunchDaemons/noatime.plist</pre>
+<p>修改刚刚创建的文件权限</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chown root:wheel /Library/LaunchDaemons/noatime.plist&lt;/pre&gt;
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><p>重启</p>
-
+<p>重启</p>
 
 <p>检测结果</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">mount | grep " / "</pre>
-
-
-<br /><p>如果结果里有类似这样的内容（红字内容）就表示可以了</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mount | grep <span class="s2">&quot; / &quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">/dev/disk0s2 on / (hfs, local, journaled, <span style="color: #ff0000;">noatime</span>)</pre>
+<p>如果结果里有类似这样的内容（红字内容）就表示可以了</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/dev/disk0s2 on / <span class="o">(</span>hfs, <span class="nb">local</span>, journaled, &lt;span <span class="nv">style</span><span class="o">=</span><span class="s2">&quot;color: #ff0000;&quot;</span>&gt;noatime&lt;/span&gt;<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 

@@ -9,7 +9,11 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。&lt;/p&gt;   0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响： fdisk /dev/sda fdisk /dev/sdb 1.创建PV sudo pvcreate &hellip;">
+  <meta name="description" content="两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。 0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响： 1
+2
+fdisk /dev/sda
+fdisk /dev/sdb 1.创建PV 1
+sudo pvcreate /dev/sd{a1,b1} &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,36 +94,36 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。&lt;/p&gt;
-</code></pre>
-
-<p> </p>
-
+<div class="entry-content"><p>两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。</p>
 
 <p>0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响：</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">fdisk /dev/sda
-
-
-<p>fdisk /dev/sdb</pre></p>
-
-<br /><p>1.创建PV</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>fdisk /dev/sda
+</span><span class='line'>fdisk /dev/sdb
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo pvcreate /dev/sd{a1,b1}</pre>
+<p>1.创建PV</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pvcreate /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><p>2.创建VG</p>
+<p>2.创建VG</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vgcreate -s 16M vg0 /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo vgcreate -s 16M vg0 /dev/sd{a1,b1}</pre>
+<p>3.创建LV</p>
 
-
-<br /><p>3.创建LV</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo lvcreate -n lv0 vg0 -m 1 -lxxxx --corelog</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m 1 -lxxxx --corelog
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
