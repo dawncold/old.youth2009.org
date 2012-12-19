@@ -114,49 +114,37 @@ app.jinja_env. &hellip;">
 
 <p>还想多说一下Jinja2的set方法，超级不爽的一个方法，原本以为set出来的变量就可以和python中的变量一样使用呢，结果在这里的set出来的变量也就是一个助记作用，根本不能保存新的值，也就是说这里的变量相当于我们通常意义上的常量！！！</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>......
-</span><span class='line'>{% set total_price = 0 %}
-</span><span class='line'>{% for item in order.items %}
-</span><span class='line'>{% total_price = item.meal.price * item.quantity %}
-</span><span class='line'><span class="nt">&lt;p</span> <span class="na">class =</span><span class="err"> </span><span class="s">&quot;order_list_item&quot;</span><span class="nt">&gt;</span>{{ item.meal.name }}<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>{% endfor %}
-</span><span class='line'><span class="nt">&lt;/td&gt;</span>
-</span><span class='line'><span class="nt">&lt;td&gt;</span>{{ total_price }}<span class="nt">&lt;/td&gt;</span>
-</span><span class='line'>......
-</span></code></pre></td></tr></table></div></figure>
+<p>`
+&#8230;&#8230;
+{% set total_price = 0 %}
+{% for item in order.items %}
+{% total_price = item.meal.price * item.quantity %}</p>
 
+<p class = "order_list_item">{{ item.meal.name }}</p>
+
+
+<p>{% endfor %}
+</td>
+<td>{{ total_price }}</td>
+&#8230;&#8230;
+`</p>
 
 <p>原本希望在for外面设置一个变量，然后在for中计算好total_price使用，结果根本不行，这样写的结果就是“找不到total_price变量”，如果去掉for中对total_price的引用就可以正常看到total_price，是0。总之，这里set出来的变量就是一个常量了！！！后来打开了do扩展，把total_price设置成一个list，然后在for中把没一项的价格都append进去，最终输出的地方用了jinja2的filter计算总和。大约会写成这样：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>......
-</span><span class='line'>{% set prices = [] %}
-</span><span class='line'>{% for item in order.items %}
-</span><span class='line'>{% do prices.append(item.meal.price * item.quantity) %}
-</span><span class='line'><span class="nt">&lt;p</span> <span class="na">class =</span><span class="err"> </span><span class="s">&quot;order_list_item&quot;</span><span class="nt">&gt;</span>{{ item.meal.name }}<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>{% endfor %}
-</span><span class='line'><span class="nt">&lt;/td&gt;</span>
-</span><span class='line'><span class="nt">&lt;td&gt;</span>{{ prices|sum }}<span class="nt">&lt;/td&gt;</span>
-</span><span class='line'>......
-</span></code></pre></td></tr></table></div></figure>
+<p>`
+&#8230;&#8230;
+{% set prices = [] %}
+{% for item in order.items %}
+{% do prices.append(item.meal.price * item.quantity) %}</p>
 
+<p class = "order_list_item">{{ item.meal.name }}</p>
+
+
+<p>{% endfor %}
+</td>
+<td>{{ prices|sum }}</td>
+&#8230;&#8230;
+`</p>
 
 <p>相信jinja2改进set之后会是一个很不错的模板系统：）</p>
 </div>

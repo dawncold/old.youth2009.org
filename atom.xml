@@ -4,7 +4,7 @@
   <title><![CDATA[dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2012-12-19T23:07:01+08:00</updated>
+  <updated>2012-12-19T23:17:28+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -416,20 +416,18 @@
     <link href="http://www.youth2009.org/blog/2012/07/17/flask-debug-in-production-environment-with-uwsgi/"/>
     <updated>2012-07-17T09:36:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/07/17/flask-debug-in-production-environment-with-uwsgi</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;生产环境是：nginx+uwsgi+flask+sqlalchemy等等等&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>生产环境是：nginx+uwsgi+flask+sqlalchemy等等等</p>
 
 <p>自带的调试功能比较好用，也能很方便的查看各种变量的值，不过在生产环境中调试并不是那么容易。需要在uwsgi开启的时候传入“&#8211;catch exceptions”：</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost --catch-exceptions</pre>
-
-
-<br /><p>在flask的app中要设置config中的PROPAGATE_EXCEPTIONS = True才可以在遇到错误的时候直接输出到页面上。</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost --catch-exceptions
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>昨晚部署到服务器中，发现好多地方是500号错误，根本不知道在哪里出的错误，今天打开了这些才发现是jinja2模板中的do方法不识别，原来我把这个加载do操作放在了比较靠后的地方，在生产环境下不会去调用app了，所以原本写在if __name__ == &#8220;__main__&#8221;里面的东西就不会再调用了：）</p>
+<p>在flask的app中要设置config中的PROPAGATE_EXCEPTIONS = True才可以在遇到错误的时候直接输出到页面上。</p>
 
+<p>昨晚部署到服务器中，发现好多地方是500号错误，根本不知道在哪里出的错误，今天打开了这些才发现是jinja2模板中的do方法不识别，原来我把这个加载do操作放在了比较靠后的地方，在生产环境下不会去调用app了，所以原本写在<code>if __name__ == "__main__"</code>里面的东西就不会再调用了：）</p>
 ]]></content>
   </entry>
   
@@ -474,49 +472,37 @@
 
 <p>还想多说一下Jinja2的set方法，超级不爽的一个方法，原本以为set出来的变量就可以和python中的变量一样使用呢，结果在这里的set出来的变量也就是一个助记作用，根本不能保存新的值，也就是说这里的变量相当于我们通常意义上的常量！！！</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>......
-</span><span class='line'>{% set total_price = 0 %}
-</span><span class='line'>{% for item in order.items %}
-</span><span class='line'>{% total_price = item.meal.price * item.quantity %}
-</span><span class='line'><span class="nt">&lt;p</span> <span class="na">class =</span><span class="err"> </span><span class="s">&quot;order_list_item&quot;</span><span class="nt">&gt;</span>{{ item.meal.name }}<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>{% endfor %}
-</span><span class='line'><span class="nt">&lt;/td&gt;</span>
-</span><span class='line'><span class="nt">&lt;td&gt;</span>{{ total_price }}<span class="nt">&lt;/td&gt;</span>
-</span><span class='line'>......
-</span></code></pre></td></tr></table></div></figure>
+<p>`
+&#8230;&#8230;
+{% set total_price = 0 %}
+{% for item in order.items %}
+{% total_price = item.meal.price * item.quantity %}</p>
 
+<p class = "order_list_item">{{ item.meal.name }}</p>
+
+
+<p>{% endfor %}
+</td>
+<td>{{ total_price }}</td>
+&#8230;&#8230;
+`</p>
 
 <p>原本希望在for外面设置一个变量，然后在for中计算好total_price使用，结果根本不行，这样写的结果就是“找不到total_price变量”，如果去掉for中对total_price的引用就可以正常看到total_price，是0。总之，这里set出来的变量就是一个常量了！！！后来打开了do扩展，把total_price设置成一个list，然后在for中把没一项的价格都append进去，最终输出的地方用了jinja2的filter计算总和。大约会写成这样：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>......
-</span><span class='line'>{% set prices = [] %}
-</span><span class='line'>{% for item in order.items %}
-</span><span class='line'>{% do prices.append(item.meal.price * item.quantity) %}
-</span><span class='line'><span class="nt">&lt;p</span> <span class="na">class =</span><span class="err"> </span><span class="s">&quot;order_list_item&quot;</span><span class="nt">&gt;</span>{{ item.meal.name }}<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>{% endfor %}
-</span><span class='line'><span class="nt">&lt;/td&gt;</span>
-</span><span class='line'><span class="nt">&lt;td&gt;</span>{{ prices|sum }}<span class="nt">&lt;/td&gt;</span>
-</span><span class='line'>......
-</span></code></pre></td></tr></table></div></figure>
+<p>`
+&#8230;&#8230;
+{% set prices = [] %}
+{% for item in order.items %}
+{% do prices.append(item.meal.price * item.quantity) %}</p>
 
+<p class = "order_list_item">{{ item.meal.name }}</p>
+
+
+<p>{% endfor %}
+</td>
+<td>{{ prices|sum }}</td>
+&#8230;&#8230;
+`</p>
 
 <p>相信jinja2改进set之后会是一个很不错的模板系统：）</p>
 ]]></content>
