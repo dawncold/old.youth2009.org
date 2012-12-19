@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;昨日写完hello,world之后，发现里面的中文显示出来都是乱码，于是找了几处资料，先是怀疑emacs作怪，M-x describe-coding-system查看后挺正常，于是开始怀疑apache和php的输出编码，再次查询后也发现是正常的：httpd. &hellip;">
+  <meta name="description" content="&lt;p&gt;用了一下date函数，发现系统现在是凌晨两点……：（赶快搜索了一下php的系统时区调整办法，现在正常了：&lt;/p&gt; date.timezone = Asia/Shanghai 修改php.ini中的这个值，原来xampp给定的好像是欧洲柏林时区，显然我不在那个地方， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/18/php-timezone/">Php的系统时区</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-18T09:40:00+08:00" pubdate data-updated="true">Jan 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;用了一下date函数，发现系统现在是凌晨两点……：（赶快搜索了一下php的系统时区调整办法，现在正常了：&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">date.timezone = Asia/Shanghai</pre>
+
+
+<br /><p>修改php.ini中的这个值，原来xampp给定的好像是欧洲柏林时区，显然我不在那个地方，还是更改为亚洲上海了，一切正常了。  </p>
+
+
+<p>参考的这里：<a href="http://www.xxlinux.com/linux/article/development/web/20070604/8671.html">http://www.xxlinux.com/linux/article/development/web/20070604/8671.html</a></p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -520,52 +566,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/12/22/also-midwinter/">又是冬至</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-12-22T21:47:00+08:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;这是我在大学中度过的第二个冬至，还能记得第一个冬至，和宿舍那帮人一起在饭店吃水饺的感觉，我们都要了白菜肉的饺子，可最终谁都没吃到肉，而且我还感觉，那时候吃得饺子根本就没有熟，老板就给端上来了。&lt;/p&gt;
-</code></pre>
-
-<p>过了一年，我已经从那个讨厌吃饺子的人变成现在这个喜欢吃饺子的人了。记得前面曾说过这种变化，应该是离家远了导致的。前一阵子回家的时候，我提前和母亲说过了，要吃馄饨，那是因为我那几天吃过这边的馄饨，想念家中的味道。现在我却很想尝尝家中水饺是什么滋味，以前能够吃到，却不知道味道。</p>
-
-
-<p>看来记忆都是建立在失去的基础上，唯有失去过，才能重新记住，可能这也算是人性一个缺点吧！</p>
-
-
-<p>对了，冬至的夜晚，我吃得竟然是拉面和煎包，总想尝试一下日本饭菜的风格，不管是从日语老师口中得知还是看《天使之恋》知道，总想亲自试试，没想到是在冬至，本该吃饺子的，不过，那感觉没什么特殊。晚上回来和蜗居的人们，又一起煮了速冻水饺，终究也算是吃到了。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/28/">&larr; Older</a>
@@ -583,6 +583,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
       </li>
     
@@ -596,10 +600,6 @@
     
       <li class="post">
         <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
       </li>
     
   </ul>

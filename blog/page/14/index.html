@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;要整理一些词汇，并且还要给每个词汇编码，我把所有的词汇分割称了独立的汉字，再把这些汉字压缩，去掉重复的汉字，最后把这些汉字导入数据库，得到了每个汉字的id，把这些id组合起来作为词的编码，这样还算是好用吧。&lt;/p&gt; 用python写了7个脚本来做这些工作， &hellip;">
+  <meta name="description" content="&lt;p&gt;真不太想写，因为写这篇日志应该比写一个程序都要复杂。&lt;/p&gt; 我介绍的是box2d引擎在iphone上的使用方法，网上也有不少介绍的，我再简单啰嗦一番： 首先我们需要一个物理世界：b2world *world;在世界中创造各种各样的body，当然这些body都是刚体 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/20/simple-intro-to-box2d/">Box2d的简单使用</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-20T13:49:00+08:00" pubdate data-updated="true">Jul 20<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;真不太想写，因为写这篇日志应该比写一个程序都要复杂。&lt;/p&gt;
+</code></pre>
+
+<p>我介绍的是box2d引擎在iphone上的使用方法，网上也有不少介绍的，我再简单啰嗦一番：</p>
+
+
+<p>首先我们需要一个物理世界：b2world *world;在世界中创造各种各样的body，当然这些body都是刚体，如同经济学中的刚性需求那样，这里值得是形状不会被压扁的坚固物体。这些body默认在实例化后是静态的，除非你明显得把他们的type参数改成b2_dynamicBody，他们就能参与物理运动了。你可以给他们加入密度、弹性、摩擦等参数。这些都是每个body的属性，而这些body是需要刚刚的world创建的，而创建的函数需要一个配置单，就是一个结构体而已。</p>
+
+
+<p>body出现之后你还不能看到，因为还需要另外的两个重要性质：fixture和shape，这里的shape有两种，一个是多边形，一个是圆形；创建shape后定义一些参数，然后把这个对象传递给fixture的对象，fixture被我叫做材质，刚才介绍的密度、弹性、摩擦等属性就是在这里定义的。当然，fixture有个shape属性，把刚刚实例化的shape对象给他即可。最后用body对象的CreateFixture函数生成fixture。这样应该就能看到你创建的物理实体了。</p>
+
+
+<p>下面介绍一些刚刚遗漏的概念，在这个物理世界中，我们需要定义一个重要的量——重力，我们所有创建的物理实体都将按照这个重力的方向移动，而这里的重力实际上指的是一个向量，比如说是（0，-10），这样就会向着y轴-10的方向移动，而负坐标是y轴向下的，刚刚实验过，如果用（0，-100）的话，物体下移的速度会比（0，-10）的快很多，这也很明显。</p>
+
+
+<p>另一个有意义的概念就是休眠了，其实这是创建“世界”的又一个参数，意思是如果有物体到达了无法移动的地方，比如边界，或者说出去了边界，引擎应该就不再计算它的一些数据了，这理所应当，怎么还需要解释呢？我们当然希望引擎能够把主要的计算力量给予需要的物理实体。</p>
+
+
+<p>上面提到了一个区域的概念，是的，我们应该划定一个区域，在这个区域中的物体参与物理运算，外面的就不再参与了，但这里定义一个区域也是用了向量的方法，而且这个区域也算作一个body，有些难以理解。目前掌握得不好，就不再详述了。</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -676,49 +731,6 @@ location ~.*.(php|php5)?$ {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/09/best-content-in-include_path/">最好在include_path中加上根</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-09T16:54:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;刚刚用了下typecho博客插件——友情链接来添加一个友情链接，但发现很多php文件找不到了，很奇怪，以前是可以的，看到warning中的信息，有个include_path的相关东西，看看里面提到的路径是不是有需要的文件，结果没有，而在其中路径的下一级目录下有，这就怪了。&lt;/p&gt;
-</code></pre>
-
-<p>Google说最好把include_path写成&#8221;./&#8221;。是不是这样就是自动便利所有的内容了？我猜是的！当前的include_path中又pear的路径，我就先不删除了，linux系统下用冒号分隔各个路径，在前面加上一个点即可。</p>
-
-
-<p>重启php，再次访问，恢复正常！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/15/">&larr; Older</a>
@@ -736,6 +748,10 @@ location ~.*.(php|php5)?$ {
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
       </li>
     
@@ -749,10 +765,6 @@ location ~.*.(php|php5)?$ {
     
       <li class="post">
         <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
       </li>
     
   </ul>

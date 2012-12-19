@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;原来不太敢想象的VPS，现在也买了好几个月了。一开始用起来还很新鲜，配置了好几天，一旦配置完毕基本就不会再去动了，因为服务器最好还是不要乱去碰，除非访问量特别大才有必要每天看看日志什么的。也正是因为这个原因，我曾一度想退出VPS，但舍不得博客中的文字以及开发了好几个PHP程序（ &hellip;">
+  <meta name="description" content="&lt;p&gt;如果你用了Subtitle的Style，那么设置textAlignment为center就没用了，当然设置textAlignment目前只能针对textLabel来设置，听说在3.0以后的版本对于cell的textAlignment的设置方法废弃了。&lt;/p&gt; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/31/alignment-of-uitableviewcell/">UITableViewCell的对齐方式</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-31T10:05:00+08:00" pubdate data-updated="true">Jul 31<span>st</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;如果你用了Subtitle的Style，那么设置textAlignment为center就没用了，当然设置textAlignment目前只能针对textLabel来设置，听说在3.0以后的版本对于cell的textAlignment的设置方法废弃了。&lt;/p&gt;
+</code></pre>
+
+<p>刚刚我把cell的style改成了default，然后再设置这些alignment，就能用了，真奇怪用subtitle的方式即使重建了cell，都不能设置alignment到center。但原因是这样的，我引用下官方reference：</p>
+
+
+<br /><blockquote>UITableViewCellStyleSubtitle<br /><p>A style for a cell with a left-aligned label across the top and a left-aligned label below it in smaller gray text. The iPod application uses cells in this style.</p>
+
+
+<p></blockquote></p>
+
+<br /><p>很明确了吧，subtitle就是left-aligned的label，再改也没用。当然还有个value1和value2的style，似乎是专门left-aligned和right-aligned的，不过在他们各自的反方向还有另外的label，最好看官方的说明和多多实践。</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -524,61 +572,6 @@ Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/20/simple-intro-to-box2d/">Box2d的简单使用</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-20T13:49:00+08:00" pubdate data-updated="true">Jul 20<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;真不太想写，因为写这篇日志应该比写一个程序都要复杂。&lt;/p&gt;
-</code></pre>
-
-<p>我介绍的是box2d引擎在iphone上的使用方法，网上也有不少介绍的，我再简单啰嗦一番：</p>
-
-
-<p>首先我们需要一个物理世界：b2world *world;在世界中创造各种各样的body，当然这些body都是刚体，如同经济学中的刚性需求那样，这里值得是形状不会被压扁的坚固物体。这些body默认在实例化后是静态的，除非你明显得把他们的type参数改成b2_dynamicBody，他们就能参与物理运动了。你可以给他们加入密度、弹性、摩擦等参数。这些都是每个body的属性，而这些body是需要刚刚的world创建的，而创建的函数需要一个配置单，就是一个结构体而已。</p>
-
-
-<p>body出现之后你还不能看到，因为还需要另外的两个重要性质：fixture和shape，这里的shape有两种，一个是多边形，一个是圆形；创建shape后定义一些参数，然后把这个对象传递给fixture的对象，fixture被我叫做材质，刚才介绍的密度、弹性、摩擦等属性就是在这里定义的。当然，fixture有个shape属性，把刚刚实例化的shape对象给他即可。最后用body对象的CreateFixture函数生成fixture。这样应该就能看到你创建的物理实体了。</p>
-
-
-<p>下面介绍一些刚刚遗漏的概念，在这个物理世界中，我们需要定义一个重要的量——重力，我们所有创建的物理实体都将按照这个重力的方向移动，而这里的重力实际上指的是一个向量，比如说是（0，-10），这样就会向着y轴-10的方向移动，而负坐标是y轴向下的，刚刚实验过，如果用（0，-100）的话，物体下移的速度会比（0，-10）的快很多，这也很明显。</p>
-
-
-<p>另一个有意义的概念就是休眠了，其实这是创建“世界”的又一个参数，意思是如果有物体到达了无法移动的地方，比如边界，或者说出去了边界，引擎应该就不再计算它的一些数据了，这理所应当，怎么还需要解释呢？我们当然希望引擎能够把主要的计算力量给予需要的物理实体。</p>
-
-
-<p>上面提到了一个区域的概念，是的，我们应该划定一个区域，在这个区域中的物体参与物理运算，外面的就不再参与了，但这里定义一个区域也是用了向量的方法，而且这个区域也算作一个body，有些难以理解。目前掌握得不好，就不再详述了。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/14/">&larr; Older</a>
@@ -596,6 +589,10 @@ Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
       </li>
     
@@ -609,10 +606,6 @@ Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre></p>
     
       <li class="post">
         <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
       </li>
     
   </ul>

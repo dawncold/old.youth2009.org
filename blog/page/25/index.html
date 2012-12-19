@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;1.从http://code.google.com/p/git-osx-installer/downloads/list下载最新的git安装包&lt;/p&gt; 2.安装 3.配置git git config --global user.name 'dawncold' git &hellip;">
+  <meta name="description" content="&lt;p&gt;其实根本没必要写成文章的，eclipse的插件安装不外乎：打开Install Software的界面，输入某个插件的地址，然后一路next&lt;/p&gt; EGit的官方下载页面是：http://www.eclipse.org/egit/download/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,58 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/23/install-egit-plugin-in-eclipse/">eclipse安装EGit插件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-23T19:06:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;其实根本没必要写成文章的，eclipse的插件安装不外乎：打开Install Software的界面，输入某个插件的地址，然后一路next&lt;/p&gt;
+</code></pre>
+
+<p>EGit的官方下载页面是：http://www.eclipse.org/egit/download/</p>
+
+
+<p>官方推荐的用于eclipse安装地址是：http://download.eclipse.org/egit/updates</p>
+
+
+<p>所以我们就在eclipse的Help-》Install New Software的那个地址中输入：http://download.eclipse.org/egit/updates</p>
+
+
+<p>随后能够得到2个安装条目，我倒是没怎么了解详情，全部安装了，next后就是下载相关的文件自动安装。</p>
+
+
+<p>安装完毕后重启eclipse，在已经建立的项目上右键单击，选择Team，Share Project，再选GIT方式share。下一步就是建立针对某个项目的git仓库，直接点击Create xxx 按钮即可，这样就在本地完成了git管理相关项目的步骤。人比较懒，不想放出图来：）</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -584,49 +636,6 @@ $ git commit --amend</pre></div></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/02/09/thanks-for-myself-choose/">感谢自己的选择</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-09T23:11:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;有时候在作出一些决定的时候总是要思前想后，不得不承认这是一个不可避免的过程，有的人很快就作出决定，有的人就会很慢，我就是后者。然而我总是在考虑这个决定作出后给我带来的各种各样的后果，一下在还能想好几年！&lt;/p&gt;
-</code></pre>
-
-<p>刚刚有4个RSS可以订阅，我选择了2个。完全可以全部订阅啊，那样我就能了解各种资讯了，不用因为少订阅了的而看不到有可能影响我一生的话了……不排除这类可能，但应该感谢此时自己作出的这个决定。这里并没有对错之分，只是自己把未来规划了一下，瞬间，我的未来将发生一个变化，而如果我仍然在考虑甚久，就没有必要了，谁也说不准未来是什么样子。</p>
-
-
-<p><span style="color: #ff0000;">所以，感谢自己所作的一切决定。我们所后悔的只是在今天看到了某些已经变成历史的事件，而这些事件，恰恰是我们过去非常“纠结”的那些吧！</span></p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/26/">&larr; Older</a>
@@ -644,6 +653,10 @@ $ git commit --amend</pre></div></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
       </li>
     
@@ -657,10 +670,6 @@ $ git commit --amend</pre></div></p>
     
       <li class="post">
         <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
       </li>
     
   </ul>

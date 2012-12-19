@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;用iCal的时候突然想起来这个早就可以与GoogleCalendar同步了，于是我就设置一下看看效果，但怎么设置都提示有问题。月光博客上有个解决方法，说是服务器地址写的是https://www.google.com/calendar/dav/EMAILADDRESS/ &hellip;">
+  <meta name="description" content="&lt;p&gt;首轮的两场比赛就快结束了，昨晚我也准时出现在19：00的那场之中，经历了10分钟的宕机，不过我想这10分钟根本不会造成什么影响吧，该做出来的不差这10分钟，做不出来的再给1小时还是做不出来。&lt;/p&gt; 当然我属于做不出来的那一部分。其实还算好一些的， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/12/briefly-talk-about-the-attitude-of-participants-in-baidu-astar/">浅谈百度之星参与者的态度</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-12T20:26:00+08:00" pubdate data-updated="true">Jun 12<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;首轮的两场比赛就快结束了，昨晚我也准时出现在19：00的那场之中，经历了10分钟的宕机，不过我想这10分钟根本不会造成什么影响吧，该做出来的不差这10分钟，做不出来的再给1小时还是做不出来。&lt;/p&gt;
+</code></pre>
+
+<p>当然我属于做不出来的那一部分。其实还算好一些的，至少我昨晚提交了第一题的解决方案，就是不清楚能否满足要求。后面两个题目只能说是看懂了，并且有一点思路做。但今天的这三个题显然比昨晚的难一些，至少我是这样感觉的。</p>
+
+
+<p>新浪微博上不少人在谈百度之星大赛，有人说明年要努力拿下，这当然很好，但更多的是在找组织方的漏洞──系统设计得不好啦、临时更改题目不通知啦、顶不住访问压力啦等等吧，他们说的似乎都没错，但我更希望看到他们先从自己身上找不足。可能大多数参与者都是和我一样的非ACM选手，我们有自己正常的生活，看到百度之星这个机会，参与进来挑战、检验一下自己所学，看看哪些地方是今后应该着重对待的，如果都没有漏洞了，那我们岂不就是到了去百度的时候了么？我们看到的应该是自己还差得远，所以继续努力才是真得！</p>
+
+
+<p>努力二字，打出来、说出来、写出来都很容易，唯独做起来难上加难，因为它太抽象，太不具体，简单得看只有两个字，做起来就可能被展开成千言万语描述的计划书。参与者们，共勉！</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -529,95 +575,6 @@ tea_p.tell()</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/06/04/reverse-proxy-for-gae/">架设GAE的反向代理</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-04T23:55:00+08:00" pubdate data-updated="true">Jun 4<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;域名用的是app.wodeyitian.com 昨天用的方法不太稳定，现在找来一个不错的方法：&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">upstream ghs {
-
-
-<p>ip_hash;
-server ghs.google.com;
-server 72.14.203.121;
-server 72.14.207.121;
-server 74.125.43.121;
-server 74.125.47.121;
-server 74.125.53.121;
-server 74.125.77.121;
-server 74.125.93.121;
-server 74.125.95.121;
-server 74.125.113.121;
-server 216.239.32.21;
-server 216.239.34.21;
-server 216.239.36.21;
-server 216.239.38.21;
-}</p>
-
-<p>server {</p>
-
-<pre><code>            listen       80;
-            server_name app.wodeyitian.com;
-            access_log  /home/wwwlogs/app.wodeyitian.com.log;
-            location / {
-                    proxy_redirect off;
-                    proxy_set_header Host $host;
-                    proxy_pass http://ghs;
-                    proxy_set_header  x-real-IP  $remote_addr;
-                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            }
-    }&lt;/pre&gt;
-</code></pre>
-
-<br /><div>下面说说DNS这边怎么操作，因为网上说的太简单，我弄了好久都没弄好，终于在一篇文章那里找到了方法：</div>
-
-
-<br /><div>首先上面的nginx配置完毕后，在dns面板中把app.wodeyitian.com的A记录只想VPS的IP，然后要保证wodeyitian.com这个域注册了Google的app服务，这样就能在appspot那里把wodeyitian.com旗下的子域名加到你的appspot上了，后台把app.wodeyitian.com添加到了dawncold1.appapot.com这个应用上，然后就不用管Google提供的更改cname到ghs.google.com的建议了，国内基本没戏了。</div>
-
-
-<br /><div>Google说的cname方法就是我们现在正在使用的反向代理吧，于是我们只需要有app.wodeyitian.com到主机的A记录即可，后面的操作都是nginx的反向代理在工作。</div>
-
-
-<br /><div>我一开始建立了app.wodeyitian.com这个站之后，我以为就是当成ghs的工作了，用了另外一个域名做了cname到这里，结果不响应，可能还有其他问题吧：（</div>
-
-
-<br /><div>感谢这里：<a href="http://www.nealmi.com/index.php/2011/03/nginx-reverse-proxy-usage/">http://www.nealmi.com/index.php/2011/03/nginx-reverse-proxy-usage/</a>
-
-
-<p></div></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/18/">&larr; Older</a>
@@ -635,6 +592,10 @@ server 216.239.38.21;
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
       </li>
     
@@ -648,10 +609,6 @@ server 216.239.38.21;
     
       <li class="post">
         <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
       </li>
     
   </ul>

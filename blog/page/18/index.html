@@ -9,7 +9,10 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;用了不少时间PHP，也有些喜欢这种开发语言，但我仍然对Python有强烈的热情，但支持Python的主机服务还不算多，很想体验GAE，但由于在国内嘛，只能这样忍受了。&lt;/p&gt; 原本想在Emacs中配置Python的环境，但……有些过于复杂了。安装了很久的emacs， &hellip;">
+  <meta name="description" content="&lt;p&gt;域名用的是app.wodeyitian.com 昨天用的方法不太稳定，现在找来一个不错的方法：&lt;/p&gt; upstream ghs { ip_hash;
+server ghs.google.com;
+server 72.14.203.121;
+server 72.14 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +79,95 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/04/reverse-proxy-for-gae/">架设GAE的反向代理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-04T23:55:00+08:00" pubdate data-updated="true">Jun 4<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;域名用的是app.wodeyitian.com 昨天用的方法不太稳定，现在找来一个不错的方法：&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">upstream ghs {
+
+
+<p>ip_hash;
+server ghs.google.com;
+server 72.14.203.121;
+server 72.14.207.121;
+server 74.125.43.121;
+server 74.125.47.121;
+server 74.125.53.121;
+server 74.125.77.121;
+server 74.125.93.121;
+server 74.125.95.121;
+server 74.125.113.121;
+server 216.239.32.21;
+server 216.239.34.21;
+server 216.239.36.21;
+server 216.239.38.21;
+}</p>
+
+<p>server {</p>
+
+<pre><code>            listen       80;
+            server_name app.wodeyitian.com;
+            access_log  /home/wwwlogs/app.wodeyitian.com.log;
+            location / {
+                    proxy_redirect off;
+                    proxy_set_header Host $host;
+                    proxy_pass http://ghs;
+                    proxy_set_header  x-real-IP  $remote_addr;
+                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            }
+    }&lt;/pre&gt;
+</code></pre>
+
+<br /><div>下面说说DNS这边怎么操作，因为网上说的太简单，我弄了好久都没弄好，终于在一篇文章那里找到了方法：</div>
+
+
+<br /><div>首先上面的nginx配置完毕后，在dns面板中把app.wodeyitian.com的A记录只想VPS的IP，然后要保证wodeyitian.com这个域注册了Google的app服务，这样就能在appspot那里把wodeyitian.com旗下的子域名加到你的appspot上了，后台把app.wodeyitian.com添加到了dawncold1.appapot.com这个应用上，然后就不用管Google提供的更改cname到ghs.google.com的建议了，国内基本没戏了。</div>
+
+
+<br /><div>Google说的cname方法就是我们现在正在使用的反向代理吧，于是我们只需要有app.wodeyitian.com到主机的A记录即可，后面的操作都是nginx的反向代理在工作。</div>
+
+
+<br /><div>我一开始建立了app.wodeyitian.com这个站之后，我以为就是当成ghs的工作了，用了另外一个域名做了cname到这里，结果不响应，可能还有其他问题吧：（</div>
+
+
+<br /><div>感谢这里：<a href="http://www.nealmi.com/index.php/2011/03/nginx-reverse-proxy-usage/">http://www.nealmi.com/index.php/2011/03/nginx-reverse-proxy-usage/</a>
+
+
+<p></div></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -471,49 +563,6 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/05/17/thanks-to-keynote-in-mac/">感谢一下Mac上的软件Keynote</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-17T17:07:00+08:00" pubdate data-updated="true">May 17<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;今天下午去图书馆借书，被同学叫道了报告厅，说是mac做的一个ppt无法在学校的投影仪上播放，&lt;a title="mac" href="http://www.youth2009.org/tag/mac/"&gt;mac&lt;/a&gt;电脑的接口不能接到投影仪上，于是打算转成office支持的格式试试，我又担心失去很多绚丽的特效，不过听说只是一些图片而已，所以就放心了。&lt;/p&gt;
-</code></pre>
-
-<p>到了报告厅，已经在讲了，迂回到第一排，看到了11.6寸的air。</p>
-
-
-<p>keynote有功能是export，一看格式还真不少──视频、ppt、图片、html、pdf、ipod果断选择了ppt的格式，几乎能用了。我也没怎么用过keynote，只是用了一段时间的pages，看来<a title="mac" href="http://www.youth2009.org/tag/mac/">mac</a>下的<a title="软件" href="http://www.youth2009.org/tag/%E8%BD%AF%E4%BB%B6/">软件</a>做得还都很人性化。感谢一下这些为用户着想的工程师们！！！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/19/">&larr; Older</a>
@@ -531,6 +580,10 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
       </li>
     
@@ -544,10 +597,6 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
     
       <li class="post">
         <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
       </li>
     
   </ul>

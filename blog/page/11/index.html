@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;去学校给报名表盖章也不怎么看表的内容，直接就盖上了，看来学校也不打算鼓励软考了，哪天考出系统架构师来也没人知道了：（不过这天应该不会很快到来，刚刚粗略看过系统架构师的题目，只看了最后论文题，没工作经验真难通过，而且还有大型系统的某种设计经验，哎我还是多看InfoQ的图文资料吧 &hellip;">
+  <meta name="description" content="&lt;p&gt;为了这个数学建模啊，奋斗了3天，第一天是1点睡的，第二天4点睡的，第三天也是4点睡的，每天都是早上8点左右起来。稍微有点短，快要接近高中的生活，长时间没熬夜，突然一熬还真受不了，第二天我的两个同学可能要比我辛苦一些，我是感觉很累就去睡了，还是她们叫我起来。&lt;/p&gt; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,49 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/12/3days-15hrs/">三天睡了十几个小时</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-12T18:17:00+08:00" pubdate data-updated="true">Sep 12<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;为了这个数学建模啊，奋斗了3天，第一天是1点睡的，第二天4点睡的，第三天也是4点睡的，每天都是早上8点左右起来。稍微有点短，快要接近高中的生活，长时间没熬夜，突然一熬还真受不了，第二天我的两个同学可能要比我辛苦一些，我是感觉很累就去睡了，还是她们叫我起来。&lt;/p&gt;
+</code></pre>
+
+<p>哎，计算机系的同学搞数学建模真得很痛苦，痛苦的主要来源是很多东西根本不了解，而且短时间根本学不会，是一种无奈，看着时间一点点过去自己却什么都做不了，就这样不断打击自己的信心，人们就这样被击垮了：（</p>
+
+
+<p>加了两个建模的讨论群，里面大多数（超过99%）人在要答案，很少有人是讨论的，而且即便是这样，我记得参赛时有个比赛注意事项——比赛期间不得与他人探讨，包括指导老师——这简直是不可能，我看到后都感觉新鲜，暂且不说和他人讨论，不能和指导老师讨论，都让我感觉不可思议，我反复读了几遍《承诺书》，确定了有这样一句——“<span class="Apple-style-span" style="color: #333333; font-family: 宋体; font-size: 16px; line-height: 24px;">我们完全明白，在竞赛开始后参赛队员不能以任何方式（包括电话、电子邮件、网上咨询等）与队外的任何人（包括指导教师）研究、讨论与赛题有关的问题。</span>”有指导老师的一般都是指导老师在奋斗呢，怎么不能够讨论呢？！反正承诺书就这么写的，而且还是第一条。还好我们没有指导老师，只能全靠自己来做，可能做得不如别人的好，但至少不会感觉胆怯，我们也不会太敬佩夺得一二等奖的队伍，因为我们都明白这其中有多少代表了你们自己的能力，如果是你们自己完成的，那我们会佩服，可惜这样的队伍很少见，我只好当作没有了：（</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -762,86 +805,6 @@ dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/08/08/mysqldb-have_wcscoll-redefined/">安装MySQLdb出现HAVE_WCSCOLL重定义问题的解决方法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-08T14:35:00+08:00" pubdate data-updated="true">Aug 8<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;问题就是这样了：&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">[root@wodeyitian MySQL-python-1.2.3]# python setup.py install
-
-
-<p>running install
-running bdist_egg
-running egg_info
-writing MySQL_python.egg-info/PKG-INFO
-writing top-level names to MySQL_python.egg-info/top_level.txt
-writing dependency_links to MySQL_python.egg-info/dependency_links.txt
-reading manifest file 'MySQL_python.egg-info/SOURCES.txt'
-reading manifest template 'MANIFEST.in'
-warning: no files found matching 'MANIFEST'
-warning: no files found matching 'ChangeLog'
-warning: no files found matching 'GPL'
-writing manifest file 'MySQL_python.egg-info/SOURCES.txt'
-installing library code to build/bdist.linux-x86_64/egg
-running install_lib
-running build_py
-copying MySQLdb/release.py -&gt; build/lib.linux-x86_64-2.7/MySQLdb
-running build_ext
-building '<em>mysql' extension
-gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info=(1,2,3,'final',0) -D<strong>version</strong>=1.2.3 -I/usr/include/mysql -I/usr/local/include/python2.7 -c </em>mysql.c -o build/temp.linux-x86_64-2.7/<em>mysql.o -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv
-在包含自 </em>mysql.c：36 的文件中:
-/usr/include/mysql/my_config.h:1062:1: 警告：“HAVE_WCSCOLL”重定义
-在包含自 /usr/local/include/python2.7/Python.h：8 的文件中，</p>
-
-<pre><code>             从 pymemcompat.h：10，
-             从 _mysql.c：29:
-</code></pre>
-
-<p>/usr/local/include/python2.7/pyconfig.h:887:1: 警告：这是先前定义的位置
-gcc -pthread -shared build/temp.linux-x86_64-2.7/<em>mysql.o -L/usr/lib64/mysql -L/usr/lib64 -lmysqlclient_r -lz -lpthread -lcrypt -lnsl -lm -lpthread -lssl -lcrypto -o build/lib.linux-x86_64-2.7/</em>mysql.so
-/usr/bin/ld: cannot find -lmysqlclient_r
-collect2: ld 返回 1
-error: command &#8216;gcc&#8217; failed with exit status 1
-</pre></p>
-
-<br /><p>也不算什么解决方法吧，就是缺失一些组件，安装了mysql-devel就好了：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">yum install mysql-devel.x86_64</pre>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/12/">&larr; Older</a>
@@ -859,6 +822,10 @@ error: command &#8216;gcc&#8217; failed with exit status 1
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
       </li>
     
@@ -872,10 +839,6 @@ error: command &#8216;gcc&#8217; failed with exit status 1
     
       <li class="post">
         <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/lvm-and-raid1/">LVM+RAID实践</a>
       </li>
     
   </ul>
