@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mergesort | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/mergesort/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2012-12-19T22:59:22+08:00</updated>
+  <updated>2012-12-19T23:07:01+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,8 +18,9 @@
     <link href="http://www.youth2009.org/blog/2012/02/02/merge-sort-in-python/"/>
     <updated>2012-02-02T15:11:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/02/02/merge-sort-in-python</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python
-</code></pre>
+    <content type="html"><![CDATA[<p>```python</p>
+
+<h1>! /usr/bin/env python</h1>
 
 <h1>coding: utf-8</h1>
 
@@ -62,10 +63,9 @@ merge_sort(arr, 0, len(arr) - 1)
 print arr
 </code></pre>
 
-<p></pre></p>
+<p>```</p>
 
-<br /><p>谢谢<a href="http://www.codecho.com/merge-sort-and-quick-sort-in-python/">这里</a>的帮助，我自己照着《算法导论》写了好久都出错，哎，自己在这类问题上有点笨。</p>
-
+<p>谢谢<a href="http://www.codecho.com/merge-sort-and-quick-sort-in-python">这里</a>的帮助，我自己照着《算法导论》写了好久都出错，哎，自己在这类问题上有点笨。</p></p>
 ]]></content>
   </entry>
   
