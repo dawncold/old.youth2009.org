@@ -1160,7 +1160,7 @@
     </url>
     <url>
         <loc>http://www.youth2009.org/blog/2012/07/06/load-jinja2-extension-in-flask/</loc>
-        <lastmod>2012-12-19T23:17:20+08:00</lastmod>
+        <lastmod>2012-12-19T23:28:04+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.youth2009.org/blog/2012/07/14/bad-encoding-in-sqlalchemy/</loc>
@@ -1233,11 +1233,15 @@
         <lastmod>2012-12-19T22:57:53+08:00</lastmod>
     </url>
     <url>
+        <loc>http://www.youth2009.org/about/</loc>
+        <lastmod>2012-12-28T09:30:32+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://www.youth2009.org/blog/archives/</loc>
-        <lastmod>2012-12-19T23:17:20+08:00</lastmod>
+        <lastmod>2012-12-19T23:28:04+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.youth2009.org/</loc>
-        <lastmod>2012-12-19T23:17:20+08:00</lastmod>
+        <lastmod>2012-12-19T23:28:04+08:00</lastmod>
     </url>
 </urlset>
