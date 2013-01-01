@@ -4,7 +4,7 @@
   <title><![CDATA[dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2012-12-28T09:34:00+08:00</updated>
+  <updated>2013-01-01T08:36:58+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby学习记录]]></title>
+    <link href="http://www.youth2009.org/blog/2013/01/01/some-ruby-study-log/"/>
+    <updated>2013-01-01T08:22:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/01/01/some-ruby-study-log</id>
+    <content type="html"><![CDATA[<p>在wanglei的鼓动下，我开始了探寻Ruby这款被他成为做产品的语言，同时，Ruby对我来说也是上天的安排——我的生日石就是Ruby～虽然如此，其实我早就开始了Ruby的探索，曾经买过《松本行弘的程序世界》、《Ruby变成语言》这两本很好的书，无奈当时怎么看也看不进去，就暂且放弃了，相反，更喜欢了Python。</p>
+
+<p>最近的工作语言一直是Python，感觉很好，不过Ruby对我来说更显得优美一点，主要是喜欢他们的文档，非常全面，但不喜欢TA的快速变更，特别是ROR，当时买的书和网上的版本很难契合，我又不那么喜欢用低版本的ROR，学起来就痛苦一点，最终还是放弃了。</p>
+
+<p>前几天看到Learn Python the Hard Way发布了3.0版，同时网站也更名为Learn Code the Hard Way，十分符合技术人士的胃口，当然用来入门还是可以的，深入的话还是得靠自己阅读更高级的书和工作实践。这个网站现在也有Ruby、C、Regex、SQL等等教程，于是在没有书的情况下，我就从这里学习Ruby了。</p>
+
+<p>现在已经学了基本的puts和gets，能写超小的CLI了，不过还得学点loop什么的才可以，而且各种object的method也得熟悉，否则很痛苦：（</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[给开源项目做贡献了]]></title>
@@ -548,50 +563,6 @@ if len(f.filename) == 0:
 ......</pre></p>
 
 <br /><p>如果有不同的见解请告诉我哦！</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[VPS中部署了Flask框架]]></title>
-    <link href="http://www.youth2009.org/blog/2012/07/02/deploy-flask-on-my-vps/"/>
-    <updated>2012-07-02T20:46:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/07/02/deploy-flask-on-my-vps</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;一开始我也是用web.py的，不料接受不了它的session处理，然后离开，Django这种庞大的东西我是没精力去研究了，当然开始也伴随激情看过文档，没坚持下去，后来和强锅一起找了不少框架做东西，我实践性比较强，就找到了Flask，感觉还挺好用的，做了一个todo，有兴趣可以看：http://todo.wodeyitian.com。&lt;/p&gt;
-</code></pre>
-
-<p>原先部署在dotcloud上，刚刚在自己的VPS上完成了nginx+uwsgi+flask的集成，当然还是没有废弃掉php，为了好几个博客嘛～</p>
-
-
-<p>总的来说就是用virtualenv来创建各个app的目录，在里面安装需要的环境（flask、mysql-python、beautifulsoup4等等吧），nginx的配置大概如下：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">server {
-
-
-<pre><code>  listen       80;
-  server_name  todo.wodeyitian.com;
-  location / {
-            include uwsgi_params;
-            uwsgi_pass 127.0.0.1:9090;
-            uwsgi_param UWSGI_PYHOME /home/wwwroot/python_app_todo;
-            uwsgi_param UWSGI_CHDIR /home/wwwroot/python_app_todo/app_dir;
-            uwsgi_param UWSGI_SCRIPT todoApp:app;
-  }
-</code></pre>
-
-<p>}</pre></p>
-
-<br /><p>UWSGI_PYHOME是app的主目录，下面的CHDIR是app中py文件所在的目录，这个可以自己设置，下面的SCRIPT是入口脚本模块名和变量名，模块就是文件名喽，变量一般在flask都是用app作为整个网站的入口变量，写过python基本都能明白这个。</p>
-
-
-<p>安装好uwsgi后可以配置开启：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost</pre>
-
-
-<br /><p style="text-align: left;">使用9090端口监听，-M开启主控线程，-p 4是开启4个线程，-t 30是超过30秒不响应丢弃，limit-as 128是限制128Mb的内存占用，-R 10000是超过10000的请求就自动<span style="font-family: Verdana, sans-serif, 宋体;"><span style="line-height: 24px;">respawn（似乎是自动复制？重启？之类的），-d是日志，&#8211;vhost这个可以让多个app共用一个uwsgi，很好用的！</span></span></p>
 
 ]]></content>
   </entry>

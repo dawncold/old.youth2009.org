@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;今天打算好好整理一下XP系统，本想在几个虚拟机软件中选一个出来的，大家都说ParllelsDesktop不错，但我一直在用VirtualBox，主要原因是VB这个免费，其实买PD的中文版也就是199元，很容易买，如果真的性能优秀我就决定入一个（哈哈，又在炫耀了！）&lt;/p& &hellip;">
+  <meta name="description" content="&lt;p&gt;一开始我也是用web.py的，不料接受不了它的session处理，然后离开，Django这种庞大的东西我是没精力去研究了，当然开始也伴随激情看过文档，没坚持下去，后来和强锅一起找了不少框架做东西，我实践性比较强，就找到了Flask，感觉还挺好用的，做了一个todo，有兴趣可以看 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,77 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/02/deploy-flask-on-my-vps/">VPS中部署了Flask框架</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-02T20:46:00+08:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;一开始我也是用web.py的，不料接受不了它的session处理，然后离开，Django这种庞大的东西我是没精力去研究了，当然开始也伴随激情看过文档，没坚持下去，后来和强锅一起找了不少框架做东西，我实践性比较强，就找到了Flask，感觉还挺好用的，做了一个todo，有兴趣可以看：http://todo.wodeyitian.com。&lt;/p&gt;
+</code></pre>
+
+<p>原先部署在dotcloud上，刚刚在自己的VPS上完成了nginx+uwsgi+flask的集成，当然还是没有废弃掉php，为了好几个博客嘛～</p>
+
+
+<p>总的来说就是用virtualenv来创建各个app的目录，在里面安装需要的环境（flask、mysql-python、beautifulsoup4等等吧），nginx的配置大概如下：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">server {
+
+
+<pre><code>  listen       80;
+  server_name  todo.wodeyitian.com;
+  location / {
+            include uwsgi_params;
+            uwsgi_pass 127.0.0.1:9090;
+            uwsgi_param UWSGI_PYHOME /home/wwwroot/python_app_todo;
+            uwsgi_param UWSGI_CHDIR /home/wwwroot/python_app_todo/app_dir;
+            uwsgi_param UWSGI_SCRIPT todoApp:app;
+  }
+</code></pre>
+
+<p>}</pre></p>
+
+<br /><p>UWSGI_PYHOME是app的主目录，下面的CHDIR是app中py文件所在的目录，这个可以自己设置，下面的SCRIPT是入口脚本模块名和变量名，模块就是文件名喽，变量一般在flask都是用app作为整个网站的入口变量，写过python基本都能明白这个。</p>
+
+
+<p>安装好uwsgi后可以配置开启：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost</pre>
+
+
+<br /><p style="text-align: left;">使用9090端口监听，-M开启主控线程，-p 4是开启4个线程，-t 30是超过30秒不响应丢弃，limit-as 128是限制128Mb的内存占用，-R 10000是超过10000的请求就自动<span style="font-family: Verdana, sans-serif, 宋体;"><span style="line-height: 24px;">respawn（似乎是自动复制？重启？之类的），-d是日志，&#8211;vhost这个可以让多个app共用一个uwsgi，很好用的！</span></span></p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -580,52 +651,6 @@ locale: Cannot set LC_ALL to default locale: No such file or directory</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/08/very-long-offline-of-my-vps-in-yardvps/">超长宕机</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-08T13:51:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;这次宕机持续了1天零13小时，具体什么原因不清楚，yardvps那边说ip自动归零，这是什么原因？！反正我是不清楚怎么回事了，而且买了vpsee的vps，正考虑着是依然延续lnmp的架构还是自己整一套lnmp+python的架构，这样方便以后自己用python做webapp，嗯，先睡觉，起来再搞新的vps吧！！！&lt;/p&gt;
-</code></pre>
-
-<p>UPDATE:我没有睡觉……</p>
-
-
-<p>yardvps给我的回复是这样的——“It&#8217;s nulled by PPS (Packet Per Second) Once it exceeds the thresholds and simulates a DDOS attack our system automatically nulls your IP within seconds.”</p>
-
-
-<p>看来是我被攻击了？！好奇怪！！！反正我用着vpsee的vps很爽，不出问题就不再用yardvps了！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -643,6 +668,10 @@ locale: Cannot set LC_ALL to default locale: No such file or directory</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
       </li>
     
@@ -656,10 +685,6 @@ locale: Cannot set LC_ALL to default locale: No such file or directory</pre></p>
     
       <li class="post">
         <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
       </li>
     
   </ul>
@@ -676,7 +701,7 @@ locale: Cannot set LC_ALL to default locale: No such file or directory</pre></p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - dawncold -
+  Copyright &copy; 2013 - dawncold -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

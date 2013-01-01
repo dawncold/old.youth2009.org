@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;刚刚用了下typecho博客插件——友情链接来添加一个友情链接，但发现很多php文件找不到了，很奇怪，以前是可以的，看到warning中的信息，有个include_path的相关东西，看看里面提到的路径是不是有需要的文件，结果没有，而在其中路径的下一级目录下有，这就怪了。&lt &hellip;">
+  <meta name="description" content="&lt;p&gt;用git管理项目的优势大家可能都看了许久了，我也是因为如此才用了git而不是svn、cvs这些。其实我是挺喜欢喜新厌旧的，因为新东西的出现并流行一定是比原来的有所突破，并且大多数人喜欢这种变革，所以为何不喜欢呢？&lt;/p&gt; 用git管理项目不可避免要遇到导出功能， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/10/git-export-function/">Git的导出功能</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-10T08:13:00+08:00" pubdate data-updated="true">Jul 10<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;用git管理项目的优势大家可能都看了许久了，我也是因为如此才用了git而不是svn、cvs这些。其实我是挺喜欢喜新厌旧的，因为新东西的出现并流行一定是比原来的有所突破，并且大多数人喜欢这种变革，所以为何不喜欢呢？&lt;/p&gt;
+</code></pre>
+
+<p>用git管理项目不可避免要遇到导出功能，在svn和cvs上应该叫export功能，git上的这个功能似乎没找到，要这样做：先打包，再解压到一个地方去。还能接受吧。</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">git-archive --prefix=map/ master | tar -x -C ../map_e/</pre>
+
+
+<br /><p>稍微解释一下，prefix指明了用哪个仓库，后面的master应该就是branch的名称了，然后把这些传递给了tar，因为不指明&#8211;format的时候默认用了tar方式打包，所以这里传递给tar解压到上层目录的map_e中，当然实际工作可以解压到生产服务器上去。</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -628,51 +674,6 @@ Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC)
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/03/comma-in-print-func-in-python/">Python中print中的逗号</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-03T20:11:00+08:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;以往可能会写这样的代码：&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:python" lang="python">print x 
-
-
-<p>print y</pre></p>
-
-<br /><p> 当然，x、y在前面都是定义过的变量，此时，如果在x后面加一个逗号，再看输出结果，print就不会再换行了，只会在输出完x后加一个空格接着就输出y了，这点不错！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/16/">&larr; Older</a>
@@ -690,6 +691,10 @@ Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC)
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
       </li>
     
@@ -703,10 +708,6 @@ Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC)
     
       <li class="post">
         <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
       </li>
     
   </ul>
@@ -723,7 +724,7 @@ Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC)
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - dawncold -
+  Copyright &copy; 2013 - dawncold -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

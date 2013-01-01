@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;用了一下date函数，发现系统现在是凌晨两点……：（赶快搜索了一下php的系统时区调整办法，现在正常了：&lt;/p&gt; date.timezone = Asia/Shanghai 修改php.ini中的这个值，原来xampp给定的好像是欧洲柏林时区，显然我不在那个地方， &hellip;">
+  <meta name="description" content="&lt;pre class="prettyprint linenums bush:php" lang="php"&gt;echo&amp;lt;&amp;lt;&amp;lt;hereENDxxx hereEND; 如果不把hereEND顶格写就会出错，也就是说这个结束标志所在的行中， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/18/note-of-input-method-heredoc-in-php/">Php中heredoc的输入方法注意</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-18T10:22:00+08:00" pubdate data-updated="true">Jan 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:php" lang="php"&gt;echo&amp;lt;&amp;lt;&amp;lt;hereENDxxx
+</code></pre>
+
+<p>hereEND;</pre></p>
+
+<br /><p><span style="color: #ffffff;"><span class="Apple-style-span" style="font-size: 12px; white-space: pre;"><br /></span></span></p>
+
+
+<p>如果不把hereEND顶格写就会出错，也就是说这个结束标志所在的行中，它前面不能有任何字符！！！</p>
+
+
+<p>参考这里：<a href="http://www.haixiait.com/article.asp?id=160">http://www.haixiait.com/article.asp?id=160</a></p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -530,43 +578,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/12/25/some-beautiful-around-us/">有很多美好的东西在身边</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-12-25T00:13:00+08:00" pubdate data-updated="true">Dec 25<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;今晚去看了2010级组织的元旦晚会，场面很热闹，看完后我挺后悔去年没有去看09级组织的那场，不过事后我才了解，我们09级根本没有组织这个，所以…… 大学里这种晚会应该到处都有，各个学院经常把报告厅预订空（我们晚会都是在报告厅举行的），今晚虽然是我们的下一级举办的，但每个节目都很精彩。从表演的角度来讲，和CCTV的节目都有得一拼。可能是我特别青睐于身边的人表演身边的故事，这样显得真实。 每个演员都在舞台上努力地表演，不知台下已经自己练习了多久，只为上台那几分钟。他们都是很有激情的，但我担心的是他们的这份激情能否保持下去。大学对于他们来说只是刚刚开始了一点，里面那些深不见底的东西也正向他们走来，可能在他们经历到了这些和自己价值观非常相抵触的东西就会变得迷茫，然后改变自己的价值观，继而成为其他物质的俘虏。 身边的人总是在抱怨这个社会怎么的不好，对这个社会或者政府失去了信心。我也这么想过，可能每个人都会不同程度地接触过这些，那恰是因为我们有内在的民族情结，并不是我们不爱国，就像是恨铁不成钢的感觉一样。随后我把这些看似黑暗的东西当成是社会主义初期必经的道路，“一将功成万骨枯”就是这样，虽然是有些凄惨，但终究是为了更好的未来。 现在我想应该过度到主动去发现美。 忘记了是哪个瞬间让我产生的这种感觉，今晚看完了晚会更是让我加强了这种信念。虽然外界有那么多的丑恶，我们总是抱怨根本不会解决任何问题，反而可能让自己过早“消失”。自己思想中不是已经有了美好的愿景吗，那就应该自己去发现美，把原来总是注视丑恶的眼睛换成能够发现美的眼睛，这样，生活会更加丰富多彩！ 今晚我已经收获了很多美好的东西，就在身边……&lt;/p&gt;
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/28/">&larr; Older</a>
@@ -584,6 +595,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
       </li>
     
@@ -597,10 +612,6 @@
     
       <li class="post">
         <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
       </li>
     
   </ul>
@@ -617,7 +628,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - dawncold -
+  Copyright &copy; 2013 - dawncold -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

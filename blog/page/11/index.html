@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;为了这个数学建模啊，奋斗了3天，第一天是1点睡的，第二天4点睡的，第三天也是4点睡的，每天都是早上8点左右起来。稍微有点短，快要接近高中的生活，长时间没熬夜，突然一熬还真受不了，第二天我的两个同学可能要比我辛苦一些，我是感觉很累就去睡了，还是她们叫我起来。&lt;/p&gt; &hellip;">
+  <meta name="description" content=" &lt;p&gt;最近搞定了数学建模，接下来就是要准备软件设计师的考试，也许不会再有相关技术博客出现了，请大家不要走远呀！我还会回来！&lt;/p&gt; ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,43 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/14/i-am-always-working/">一直在努力</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-14T21:06:00+08:00" pubdate data-updated="true">Sep 14<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;最近搞定了数学建模，接下来就是要准备软件设计师的考试，也许不会再有相关技术博客出现了，请大家不要走远呀！我还会回来！&lt;/p&gt;
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -607,205 +644,6 @@ else:
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/08/09/fast-travel-in-sae/">SAE快速之旅</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-09T17:01:00+08:00" pubdate data-updated="true">Aug 9<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;GoogleAppEngine基本在国内没什么前途了，主要原因大家很清楚，但也算是给我们开了一个好头，至少我们已经能够体验到云的魅力所在了，通过现有为数不多的国内云计算服务。sina的测试了许久，相信比较成熟，但我依然钟情于Python，PHP也只是开发过几个小网站，经验有限。写点SAE入门教程吧！&lt;/p&gt;
-</code></pre>
-
-<p>0。注册SAE账号：</p>
-
-
-<p>登陆http://sae.sina.com.cn注册，或者点我的邀请链接，赚点邀请费用而已：<a href="http://sae.sina.com.cn/activity/invite/23335/weibo">http://sae.sina.com.cn/activity/invite/23335/weibo</a></p>
-
-
-<p>1。创建一个应用：（点击最上面的应用Application即可出现如下页面）</p>
-
-
-<p><a title="Screen Shot 2011-08-09 at 下午4.25.38.png" href="http://www.youth2009.org/attachment/135230/"><img src="http://www.youth2009.org/usr/uploads/2011/08/1024291968.png" alt="Screen Shot 2011-08-09 at 下午4.25.38.png"></a></p>
-
-
-<p>点击创建新应用（0/10),看来一个账号只能创建10个。</p>
-
-
-<p><a title="Screen Shot 2011-08-09 at 下午4.26.20.png" href="http://www.youth2009.org/attachment/135231/"><img src="http://www.youth2009.org/usr/uploads/2011/08/3964469045.png" alt="Screen Shot 2011-08-09 at 下午4.26.20.png"></a></p>
-
-
-<p>填入相应的信息后点击“创建应用”</p>
-
-
-<p><a title="Screen Shot 2011-08-09 at 下午4.26.29.png" href="http://www.youth2009.org/attachment/135232/"><img src="http://www.youth2009.org/usr/uploads/2011/08/383403573.png" alt="Screen Shot 2011-08-09 at 下午4.26.29.png"></a></p>
-
-
-<p>此时有个安全认证，填写刚刚的登陆密码即可。</p>
-
-
-<p><a title="Screen Shot 2011-08-09 at 下午4.26.40.png" href="http://www.youth2009.org/attachment/135233/"><img src="http://www.youth2009.org/usr/uploads/2011/08/1845837408.png" alt="Screen Shot 2011-08-09 at 下午4.26.40.png"></a></p>
-
-
-<p>看，新的应用已经创建好了，点击应用名称即可查看详情：</p>
-
-
-<p><a title="Screen Shot 2011-08-09 at 下午4.27.15.png" href="http://www.youth2009.org/attachment/135234/"><img src="http://www.youth2009.org/usr/uploads/2011/08/1927393632.png" alt="Screen Shot 2011-08-09 at 下午4.27.15.png"></a></p>
-
-
-<p>点击左侧的“代码管理”即可看到我们的SVN部署地址。通过查看sina的文档得知，SVN的部署账号和密码分别是SAE安全邮箱和SAE安全密码。这些信息点击页面右上角的“XX的账号”即可查看。</p>
-
-
-<p>2。准备一个非常简单的PHP文件，内容如下，保存成index.php即可：</p>
-
-
-<br /><pre class="prettyprint linenums bush:php" lang="php">&lt;?php echo 'Hello,PHP'; ?&gt;</pre>
-
-
-<br /><p>3。SVN部署文件：</p>
-
-
-<p>我们要不要用一种高级的方式来访问svn呢——Terminal（命令行）：</p>
-
-
-<p>首先我们找一个干净的目录来存放我们建立的project：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">cd ~/Documents
-
-
-<p>mkdir Projects
-cd Projects
-svn checkout https://svn.sinaapp.com/demoproject/
-验证“https://svn.sinaapp.com:443”的服务器证书时出错:
- - 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
-证书信息:
- - 主机名称: *.sinaapp.com
- - 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
- - 发行者: Equifax Secure Certificate Authority, Equifax, US
- - 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
-(R)拒绝，(t)暂时接受，或(p)永远接受？t
-认证领域: &lt;https://svn.sinaapp.com:443&gt; SAE User Auth for SVN
-“dawncold”的密码:
-认证领域: &lt;https://svn.sinaapp.com:443&gt; SAE User Auth for SVN
-用户名: loooseleaves@gmail.com
-“loooseleaves@gmail.com”的密码:
-取出版本 0。</pre></p>
-
-<br /><p>总之按照用户名写安全邮箱，密码写安全密码的方式写即可。这样就得到了第一个版本——0号版本。</p>
-
-
-<p>我们进入这个目录看看有什么：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">cd demoproject
-
-
-<p>ls
-ls -al</p>
-
-<p>drwxr-xr-x   4 dawncold  staff  136  8  9 16:46 .
-drwxr-xr-x@ 21 dawncold  staff  714  8  9 16:40 ..
-drwxr-xr-x   8 dawncold  staff  272  8  9 16:40 .svn
-</pre></p>
-
-<br /><p>用ls查看是什么都没有的，那么我们用ls -al查看，看到了隐藏的svn目录，这里存着svn的相关配置信息。我们用vi来写刚刚的那个index.php吧：</p>
-
-
-<p>一般是vi index.php，然后输入刚刚的代码，再按Esc，输入“冒号”，再输入“wq！”（注意有个感叹号），回车。</p>
-
-
-<p>下面把文件添加到svn：（有一个错误的演示）</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">svn add index.php</pre>
-
-
-<br /><p>再提交（commit）到服务器：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">svn commit -m 'add index.php for show a demo'</pre>
-
-
-<br /><p>但我遇到了错误，返回的信息告诉我不能提交文件进入版本库，查看sian的文档才知道这个版本库只能存放版本目录，i就是我需要再建立一个目录，而且名字是数字，表示这是几号版本，文件可以放入那些目录中。那就新建一个1号版本吧：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro demoproject$ mkdir 1
-
-
-<p>dawncold@tianzhenmatoMacBook-Pro demoproject$ mv index.php 1/
-dawncold@tianzhenmatoMacBook-Pro demoproject$ svn add 1/
-A         1
-A         1/index.php
-dawncold@tianzhenmatoMacBook-Pro demoproject$ svn commit -m 'add ver_1 and index file index.php'
-svn: 提交失败(细节如下):
-svn: 丢失了预定增加的“/Users/dawncold/Documents/Project/demoproject/index.php”
-dawncold@tianzhenmatoMacBook-Pro demoproject$ ls
-1
-dawncold@tianzhenmatoMacBook-Pro demoproject$ svn add *
-svn:  警告: “1”已纳入版本控制
-dawncold@tianzhenmatoMacBook-Pro demoproject$ cd 1/
-dawncold@tianzhenmatoMacBook-Pro 1$ ls
-index.php
-dawncold@tianzhenmatoMacBook-Pro 1$ svn add *
-svn:  警告: “index.php”已纳入版本控制
-dawncold@tianzhenmatoMacBook-Pro 1$ svn commit
-svn: 提交失败(细节如下):
-svn: 无法使用外部编辑器获得日志信息；考虑设置环境变量 $SVN_EDITOR，或者使用 --message (-m) 或 --file (-F) 选项
-svn: 没有设置 SVN_EDITOR，VISUAL 或 EDITOR 环境变量，运行时的配置参数中也没有 “editor-cmd” 选项
-dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
-验证“https://svn.sinaapp.com:443”的服务器证书时出错:
- - 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
-证书信息:
- - 主机名称: *.sinaapp.com
- - 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
- - 发行者: Equifax Secure Certificate Authority, Equifax, US
- - 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
-(R)拒绝，(t)暂时接受，或(p)永远接受？t
-增加           1
-增加           1/index.php
-传输文件数据.
-提交后的版本为 1。</pre></p>
-
-<br /><p>4。查看效果：</p>
-
-
-<p>部署完成后就能查看效果了，由于我们只有一个版本，这就是默认版本了，查看地址为：<a href="http://demoproject.sinaapp.com/">http://demoproject.sinaapp.com/</a></p>
-
-
-<p> </p>
-
-
-<p>总结一下，这是SAE的快速之旅，代码的部署方式使用的SVN命令行，你也许不喜欢这样，喜欢GUI的SVN部署方式，这当然也没有问题，sina的文档还是比较全面的。刚刚也看到了helloworld这样的例子，看来我白写了呢。希望等SAE出现Python的版本后我再去体验！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/12/">&larr; Older</a>
@@ -823,6 +661,10 @@ dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
       </li>
     
@@ -836,10 +678,6 @@ dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
     
       <li class="post">
         <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
       </li>
     
   </ul>
@@ -856,7 +694,7 @@ dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - dawncold -
+  Copyright &copy; 2013 - dawncold -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

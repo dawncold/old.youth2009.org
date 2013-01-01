@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;在git中分支是一个变态技能！&lt;/p&gt; 创建分支：git branch [branch-name]即可。 git中有个叫master的分支，这是默认的，刚刚创建了一个testing分支，所以这两个指向是一样的，因为刚刚就在master分支下。 &hellip;">
+  <meta name="description" content="&lt;p&gt;分支的使用比较繁杂，前面光说了一些皮毛，现在记录一下分支的管理部分。&lt;/p&gt; 查看分支的详细信息：git branch -v，列出分支最后提交的内容，带星号表示当前分支。 查看哪些分支已经被并入当前分支：git branch &#8211;merged， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-branch-manage/">Git使用重新学习（分支管理）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T20:10:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;分支的使用比较繁杂，前面光说了一些皮毛，现在记录一下分支的管理部分。&lt;/p&gt;
+</code></pre>
+
+<p>查看分支的详细信息：git branch -v，列出分支最后提交的内容，带星号表示当前分支。</p>
+
+
+<p>查看哪些分支已经被并入当前分支：git branch &#8211;merged，也就是说除了那个带星号的分支都是可以删除（-d）的，因为都合并进来了嘛！查看没合并进来的就是&#8211;no-merged开关。删除那些没有合并进来的分支会提示错误，但强制删除就可以了，强制删除用-D开关。</p>
+
+
+<p><strong>不得不说的远程分支</strong></p>
+
+
+<p>在github创建了一个项目，在项目管理中开启了github Pages服务，这是个给项目做介绍页面的服务，开启后出现了一个远程分支gh-pages，但本地根本访问不到。首先我们应该明确，这个分支暂时不在我们本地，除非你是在这个服务开启后clone了项目，这样肯定有，否则和我一样的话（从本地push过去的），需要先fetch过来这些远程分支：git fetch origin gh-pages:gh-pages。后面两个由冒号分隔的意思是获取origin中的gh-pages分支，放到本地，在本地也叫gh-pages（冒号右侧），当然你可以根据需要更改冒号右侧的本地分支名字。现在查看一下本地分支就能发现出现两个分支了，切换过去后就能看到github给我们生成的index.html文件，你可以编辑了：）</p>
+
+
+<p>推送本地分支到远程分支的时候可以像上面这样写:git push origin xxx1:xxx2，意思就是推送本地叫xxx1的分支到origin中，推过去叫xxx2，但此处一般简写，光写本地分支名，这样远程分支中的名字也是和本地一样的。</p>
+
+
+<p>删除远程分支的命令挺好玩的：git push origin  :xxx，在xxx左边冒号左侧有一个空格，意思是把本地的空分支推到远程的xxx分支上，就是删除xxx分支的意思。</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -601,52 +656,6 @@ print arr
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/13/open-the-stack-function-of-dock/">开启Dock的堆栈功能</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-13T21:56:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;打开Terminal，输入：&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock</pre>
-
-
-<br /><p>然后回车（return），等Dock再次出现后，在已打开程序图标上滚动鼠标滚轮或者手势模拟滚轮，就能看到这个程序打开的子窗口或者子程序，很过瘾好用。</p>
-
-
-<p>我的MacOS：Lion</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -664,6 +673,10 @@ print arr
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
       </li>
     
@@ -677,10 +690,6 @@ print arr
     
       <li class="post">
         <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
       </li>
     
   </ul>
@@ -697,7 +706,7 @@ print arr
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - dawncold -
+  Copyright &copy; 2013 - dawncold -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

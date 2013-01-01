@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;其实根本没必要写成文章的，eclipse的插件安装不外乎：打开Install Software的界面，输入某个插件的地址，然后一路next&lt;/p&gt; EGit的官方下载页面是：http://www.eclipse.org/egit/download/ &hellip;">
+  <meta name="description" content="&lt;p&gt;这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,97 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/24/git-for-project/">为项目搭建git版本控制</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-24T17:37:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １.安装git就不再多说了，我似乎把redhat中的一个仓库加入了rpm，直接yum install -y git安装了，不如下载源代码安装的git版本高，我这里似乎只有１.５的版本。 ２.我使用了gitosis来管理所有的项目，所以：  &lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">yum install python-setuptools
+
+
+<p>git clone git://eagain.net/gitosis.git
+cd gitosis
+python setup.py install </pre></p>
+
+<br /><p>３.安装好了就可以初始化gitosis，还得先建立一个git的用户来做一些工作：  </p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">useradd -m -s /bin/bash -d /home/git git
+
+
+<p>passwd git #给git用户加上密码
+su - git
+cd ~
+gitosis-init &lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径</pre></p>
+
+<br /><p>４.修改一些权限，据说很重要，为了安全：  </p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">chmod 755 /home/git
+
+
+<p>chmod 700 /home/git/.ssh
+chmod 644 /home/git/.ssh/authorized_keys
+chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update </pre></p>
+
+<br /><p>５.在本地用git做最后的工作，修改gitosis的配置文件并上传：  </p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">git clone ssh://git@DOMAIN:8888/gitosis-admin.git
+
+
+<p>cd gitosis-admin
+vi gitosis.conf</p>
+
+<h1>增加新的项目名字和相关配置</h1>
+
+<p>[group AWAD]#ＡＷＡＤ组
+writable = wodeyitian_web　　　#仓库中的名字
+members = dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员名字就是rsa共钥中最后的成员名字</pre></p>
+
+<br /><p>好像和那个pub文件的名字要一样，那样的pub文件放在和这个conf文件在一起的keydir文件夹下. 6.完成这里后提交一下再push到远程服务器上即可完成：  </p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">git commit -a -m '建立了新的项目'
+
+
+<p>git push</pre></p>
+
+<br /><p>7.已经全部完成，在本地已经可以用了，不过还想说一下，如果做开源项目，还是放到github上比较好玩！</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -597,46 +688,6 @@ $ git commit --amend</pre></div></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/02/13/compromise-choose/">折衷的选择</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-13T21:47:00+08:00" pubdate data-updated="true">Feb 13<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;新的VPS上绝对能够承受我所有的站点，不过就是访问的时候速度不理想，在我不知到该怎么办的时候遇到了Typecho这个精简的博客程序，而且在他们的论坛上遇到了一个赞助新加坡主机的朋友，我顺利申请了他的新加坡主机，当时ping值相当高，大约到了400多，怎么比我的VPS还慢？过后再试试，只有100ms了，果断把youth2009.org搬过去吧。其实，我不买这个VPS也就可以了，只是现在能够学到一些linux下的小知识，花些钱也就能说得过去了（还是要把自己说服）。再者说了，自己的VPS毕竟能够掌握所有控制，也相对安全一些。&lt;/p&gt;
-</code></pre>
-
-<p>折衷的选择就是把原来国内的那个空间迁移到这里，看看ningxin.org还要不要动，这样就空出来了国内的垃圾空间，如果能够退款就更好了，不能的话，我也没办法了，我会一直相信一分钱一分货的！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/26/">&larr; Older</a>
@@ -654,6 +705,10 @@ $ git commit --amend</pre></div></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
       </li>
     
@@ -667,10 +722,6 @@ $ git commit --amend</pre></div></p>
     
       <li class="post">
         <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
       </li>
     
   </ul>
@@ -687,7 +738,7 @@ $ git commit --amend</pre></div></p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - dawncold -
+  Copyright &copy; 2013 - dawncold -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

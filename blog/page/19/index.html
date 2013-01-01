@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;今天下午去图书馆借书，被同学叫道了报告厅，说是mac做的一个ppt无法在学校的投影仪上播放，&lt;a title="mac" href="http://www.youth2009.org/tag/mac/"&gt;mac&lt;/a&gt;电脑的接口不能接到投影仪上， &hellip;">
+  <meta name="description" content=" &lt;p&gt;用一个页面接收Get过来的参数时要注意这点：如果接受了0这个参数，一定要确保是在$_GET前面加了强制转换为int的标志，否则如果是0，PHP可能会当成是假，没有任何值被保存到变量中：）&lt;/p&gt; ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,43 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/05/18/notice-get-methdo-in-php/">PHP中的Get注意一则</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-18T22:48:00+08:00" pubdate data-updated="true">May 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;用一个页面接收Get过来的参数时要注意这点：如果接受了0这个参数，一定要确保是在$_GET前面加了强制转换为int的标志，否则如果是0，PHP可能会当成是假，没有任何值被保存到变量中：）&lt;/p&gt;
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -512,52 +549,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/05/01/two-photos-about-exquisite-lift/">展示两张精致的生活</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-01T21:40:00+08:00" pubdate data-updated="true">May 1<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;&lt;a href="http://www.flickr.com/photos/dawncold/5675051417/" title="Flickr 上 DawnCold 的 肥皂盒"&gt;&lt;img alt="肥皂盒" height="332" src="http://farm6.static.flickr.com/5022/5675051417_2021f0e943.jpg" width="500"&gt;&lt;/a&gt;&lt;/p&gt;
-</code></pre>
-
-<p>肥皂盒中各种颜色的肥皂，五颜六色挺好看的！</p>
-
-
-<p><a href="http://www.flickr.com/photos/dawncold/5675671394/" title="Flickr 上 DawnCold 的 小地毯"><img alt="小地毯" height="332" src="http://farm6.static.flickr.com/5063/5675671394_0d34efdc8c.jpg" width="500"></a></p>
-
-
-<p>地毯，我曾经坐在上面冥想过……</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/20/">&larr; Older</a>
@@ -575,6 +566,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
       </li>
     
@@ -588,10 +583,6 @@
     
       <li class="post">
         <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/08/lxc-practical/">LXC实践</a>
       </li>
     
   </ul>
@@ -608,7 +599,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - dawncold -
+  Copyright &copy; 2013 - dawncold -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
