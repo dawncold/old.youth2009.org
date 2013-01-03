@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql Fetching: mysql-2.8.1.gem (100 &hellip;">
+  <meta name="description" content="&lt;p&gt;一般都是直接打开emacs使用，偶尔在terminal中用emacs发现出现错误：Wrong number of arguments: called-interactively-p, 1&lt;/p&gt; 看了看是auto-complete的某些错误， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,49 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/09/arguments-issue-in-auto-complete-plugin/">Emacs中auto-complete插件问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-09T22:21:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;一般都是直接打开emacs使用，偶尔在terminal中用emacs发现出现错误：Wrong number of arguments: called-interactively-p, 1&lt;/p&gt;
+</code></pre>
+
+<p>看了看是auto-complete的某些错误，通过Google得到了相关问题的解决，删除auto-complete的elc文件，似乎这些文件是可以加速插件的运行编译出来的，现在删除后在terminal中使用就没问题了！</p>
+
+
+<p>感谢<a href="http://www.lichaozheng.info/2011/10/19/%E8%A7%A3%E5%86%B3emacs-%E5%87%BA%E7%8E%B0wrong-number-of-arguments-called-interactively-p-1/">这里</a>的帮助</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -733,46 +776,6 @@ print "inv = %d" % inv
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-branch-rebase/">Git使用重新学习（分支rebase）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T20:41:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;rebase被人翻译成衍合，是和merge功能差不多的一种操作，但提醒一点，进行rebase的内容一定不可以是提交到公共服务器上的内容，简单讲就是rebase操作你在本地自己玩就好了。&lt;/p&gt;
-</code></pre>
-
-<p>详细点的说明去这里看吧：<a href="http://progit.org/book/zh/ch3-6.html">http://progit.org/book/zh/ch3-6.html</a></p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -790,6 +793,10 @@ print "inv = %d" % inv
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
       </li>
     
@@ -803,10 +810,6 @@ print "inv = %d" % inv
     
       <li class="post">
         <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
       </li>
     
   </ul>

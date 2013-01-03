@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;打开Terminal，输入：&lt;/p&gt; defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock 然后回车（return），等Dock再次出现后， &hellip;">
+  <meta name="description" content="&lt;p&gt;一开始感觉dashboard这个东西挺好的，加上了好几个小插件玩，但现在发现使用频率超低，所以干脆想办法关闭吧，听说还能节约部分内存和提升开机速度，对这些倒是不太关心，只能有种不用就关闭的态度驱使着我。&lt;/p&gt; 关闭命令： defaults write com. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,66 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/26/turn-off-dashboard-on-mac/">Mac系统关闭dashboard</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T00:49:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;一开始感觉dashboard这个东西挺好的，加上了好几个小插件玩，但现在发现使用频率超低，所以干脆想办法关闭吧，听说还能节约部分内存和提升开机速度，对这些倒是不太关心，只能有种不用就关闭的态度驱使着我。&lt;/p&gt;
+</code></pre>
+
+<p>关闭命令：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean YES</pre>
+
+
+<br /><p> </p>
+
+
+<p>运行后最好再执行一下这个生效：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">killall Dock</pre>
+
+
+<br /><p>如果需要重新开启，请使用这条命令，包括了killall Dock：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean NO
+
+
+<p>killall Dock</pre></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -580,43 +640,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/01/struts-xml-assistant/">Struts2的eclipse提示</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-01T14:32:00+08:00" pubdate data-updated="true">Dec 1<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;写struts2的配置文件时如果有提示那最好了，添加方法比较简单，从框架的jar包中找到sruts-2.1.7.dtd文件，在preference搜索xml找到xml catalog，然后add一个，文件就是刚刚找到的dtd文件，Key type选URI，我用过publicID但没有提示效果，相应的，key中写：http://struts.apache.org/dtds/struts-2.0.dtd即可。&lt;/p&gt;
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -634,6 +657,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
       </li>
     
@@ -647,10 +674,6 @@
     
       <li class="post">
         <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/09/nat-practical/">NAT实践</a>
       </li>
     
   </ul>
