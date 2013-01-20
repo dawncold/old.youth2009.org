@@ -4,7 +4,7 @@
   <title><![CDATA[dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-01-03T20:41:39+08:00</updated>
+  <updated>2013-01-20T22:00:29+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[merge partition got Couldn’t modify partition map because file system verification failed error]]></title>
+    <link href="http://www.youth2009.org/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/"/>
+    <updated>2013-01-20T19:36:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error</id>
+    <content type="html"><![CDATA[<p>前几天需要把本机的VMware虚拟机文件拷到工作机器上用，但文件比较大，有30G，U盘不行，无线共享太慢，网线直连无奈工作机器百兆网卡不给力还是慢，分割了我的TimeMachine备份盘，但用完后再合并划分出去的分区就出问题了，提示：</p>
+
+<pre><code>Couldn’t modify partition map because file system verification failed error
+</code></pre>
+
+<p>此时可以Verify一下这个硬盘，如果有错误就repair，相信这里没问题的都应该可以再合并了吧，我这里还是出问题了，在提示repair complete之后出现了一个错误，好像是boot什么的错误，建议我reformat，再弄backup file，backup file too many？？记不清楚了，再合并一次分区，不行的话果断erase掉，再backup，反正现在backup都用不上，趁着清理一下也好。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[gets method in ruby]]></title>
@@ -529,25 +543,6 @@
 `</p>
 
 <p>相信jinja2改进set之后会是一个很不错的模板系统：）</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[SQLalchemy中的oneToMany]]></title>
-    <link href="http://www.youth2009.org/blog/2012/07/05/onetomany-in-sqlalchemy/"/>
-    <updated>2012-07-05T22:54:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/07/05/onetomany-in-sqlalchemy</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;今天在这里遇到些问题，花了一段时间，后来看官方文档解决了，很管用！&lt;/p&gt;
-</code></pre>
-
-<p>各个orm中的关系设置大同小异，一对多的关系中需要在“多”方的列中加入一个外键，指向“一”方，然后在“一”方加入一个存储“多”方的变量（这个orm中需要使用relationship方法声明）。</p>
-
-
-<p>至此一个单项的OneToMany就弄好了，如果需要加入“反向”，形成双向的关系，那就在刚才的“一”方中存储“多”方的变量中指明backref参数，值就是在“多”方的属性中存储“一”方的这个属性名。我在这里弄错了，受了EJB的影响，以为双方都需要设置，结果弄的重复了，还好看了官方文档。</p>
-
-
-<p>其他关系请参考<a href="http://docs.sqlalchemy.org/en/rel_0_7/orm/relationships.html#sqlalchemy.orm.relationship">官方文档</a></p>
-
 ]]></content>
   </entry>
   

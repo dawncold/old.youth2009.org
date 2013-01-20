@@ -1241,15 +1241,21 @@
         <lastmod>2013-01-03T20:41:21+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://www.youth2009.org/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/
+        </loc>
+        <lastmod>2013-01-20T22:00:16+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://www.youth2009.org/about/</loc>
         <lastmod>2012-12-28T09:30:32+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.youth2009.org/blog/archives/</loc>
-        <lastmod>2013-01-03T20:41:21+08:00</lastmod>
+        <lastmod>2013-01-20T22:00:16+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.youth2009.org/</loc>
-        <lastmod>2013-01-03T20:41:21+08:00</lastmod>
+        <lastmod>2013-01-20T22:00:16+08:00</lastmod>
     </url>
 </urlset>

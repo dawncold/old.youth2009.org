@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content=" &lt;p&gt;今天同学聚会，我早早用Google地图查询好了路线，又和组织者核实了一番，今天坐公交车去了，结果到了目的地，下车后什么都没找到。问了路边的出租车司机，我要去的地方正好在现在地方相反的方向。恨着Google，打车过去了。&lt;/p&gt; ">
+  <meta name="description" content="&lt;p&gt;其实原本打算写上四年的青春，但青春的表现形式多种多样，谁说青春中就不能掺杂技术、娱乐、愤懑呢？谁的青春里全都是感情、刺激？其实活过大半的人反映，青春大都被平淡填充，我们看到的那些紧张、刺激，也许都是浓缩的青春。那么我呢，我喜欢记录一个完整的青春过程，所以我记录平淡、技术、无奈、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/12/separate-youth-and-tech/">把技术和青春分开</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-12T22:34:00+08:00" pubdate data-updated="true">Aug 12<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;其实原本打算写上四年的青春，但青春的表现形式多种多样，谁说青春中就不能掺杂技术、娱乐、愤懑呢？谁的青春里全都是感情、刺激？其实活过大半的人反映，青春大都被平淡填充，我们看到的那些紧张、刺激，也许都是浓缩的青春。那么我呢，我喜欢记录一个完整的青春过程，所以我记录平淡、技术、无奈、感情、刺激等等。&lt;/p&gt;
+</code></pre>
+
+<p>不过现在看起来如果把这些方面写到一起，很是冗杂，于是我把它们分开：</p>
+
+
+<p>http://www.youth2009.org暂时保留了技术方面的记录；</p>
+
+
+<p>http://y.youth2009.org则完全是另一面。</p>
+
+
+<p>迁移工作将在未来几天内完工。（本来打算迁移技术内容，发觉太多，还是反迁移吧）</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -681,254 +730,6 @@ PNGLoader.h                 SWImageView.m               VertexHelper_Prefix.pch 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/08/04/shard-debug-app-in-device-without-idp-xcode4/">分享在设备上不用iDP调试app的方法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-04T22:51:00+08:00" pubdate data-updated="true">Aug 4<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;原来在开发一个3.1.3上的游戏时用过这样的方法，没想到现在仍然能够使用，这直接刺激我要不要购买iDP，那可是99美元啊。当然购买iDP也不是光为了能够调试，还有机会去app store，这点可能还值那99美元。&lt;/p&gt;
-</code></pre>
-
-<p>这是1ST告诉我的办法，第一次就是他告诉的，没想到这次还是他告诉的。</p>
-
-
-<p>下面是所有的代码操作，请对照操作步骤来进行，代码操作这是作为参考：</p>
-
-
-<p>操作步骤：</p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">iPhone</span>必须是越狱后的，并且安装了<span class="s1" style="font: normal normal normal 15px/normal Times;">afc2add</span>。</p>
-
-
-<p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">将<span class="s1" style="font: normal normal normal 15px/normal Times;">iPhone</span>接入<span class="s1" style="font: normal normal normal 15px/normal Times;">Mac</span>，并打开<span class="s1" style="font: normal normal normal 15px/normal Times;">xCode</span>，会自动弹出<span class="s1" style="font: normal normal normal 15px/normal Times;">Organizer</span>（或在<span class="s1" style="font: normal normal normal 15px/normal Times;">xCode</span>的菜单<span class="s1" style="font: normal normal normal 15px/normal Times;">Window</span>中打开），在其中点击<span class="s1" style="font: normal normal normal 15px/normal Times;">“</span>用这台设备进行开发<span class="s1" style="font: normal normal normal 15px/normal Times;">”</span></p>
-
-
-<p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">xCode<span class="s2" style="font: normal normal normal 15px/normal STSong;">配置步骤：</span></p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">零、开始前的注意事项</p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">1</span>、<span class="s1" style="font: normal normal normal 15px/normal Times;"> </span>权限问题：</p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">   </span>要想修改并保存文件，须先修改该文件及其上层目录的权限（在右键菜单的显示简介中），添加当前用户并赋读和写权限，才能修改文件。</p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">2</span>、注意备份</p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">   </span>修改之前一定注意备份原有文件</p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;"><span class="s2" style="font: normal normal normal 15px/normal STSong;">一、修改文件</span>SDKSettings.plist</p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;"> </span>文件位置：</p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">   /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk</p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">  </span>修改方法：</p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">    <span class="s2" style="font: normal normal normal 15px/normal STSong;">找到</span>&lt;key&gt;CODE_SIGNING_REQUIRED&lt;/key&gt;&lt;string&gt;YES&lt;/string&gt;</p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">    </span>将值从YES改为<span class="s1" style="font: normal normal normal 15px/normal Times;">NO</span></p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">    <span class="s2" style="font: normal normal normal 15px/normal STSong;">找到</span>&lt;key&gt;ENTITLEMENTS_REQUIRED&lt;/key&gt;&lt;string&gt;YES&lt;/string&gt;</p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">    </span>将值从YES改为<span class="s1" style="font: normal normal normal 15px/normal Times;">NO</span></p>
-
-
-<p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;"><span class="s2" style="font: normal normal normal 15px/normal STSong;">二、修改文件</span>info.plist</p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;"> </span>文件位置：</p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">  /Developer/Platforms/iPhoneOS.platform/</p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">  </span>修改方法：</p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">  <span class="s2" style="font: normal normal normal 15px/normal STSong;">找到所有的</span>&lt;key&gt;CODE_SIGN_CONTEXT_CLASS&lt;/key&gt;&lt;string&gt;XCiPhoneOSCodeSignContext&lt;/string&gt;</p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">  <span class="s2" style="font: normal normal normal 15px/normal STSong;">将值从</span>XCiPhoneOSCodeSignContext<span class="s2" style="font: normal normal normal 15px/normal STSong;">改为</span> XCCodeSignContext</p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">（共<span class="s1" style="font: normal normal normal 15px/normal Times;">2</span>处）</p>
-
-
-<p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">三、打开终端，输入以下命令：</p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">cd /Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Plug-ins/iPhoneOS\ Build\ System\ Support.xcplugin/Contents/MacOS/</p>
-
-
-<p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">dd if=iPhoneOS\ Build\ System\ Support of=working bs=500 count=255</p>
-
-
-<p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">printf &#8220;\xc3\x26\x00\x00&#8221; &gt;&gt; working</p>
-
-
-<p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">dd if=iPhoneOS\ Build\ System\ Support of=working bs=1 skip=127504 seek=127504</p>
-
-
-<p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">/bin/mv -n iPhoneOS\ Build\ System\ Support iPhoneOS\ Build\ System\ Support.original</p>
-
-
-<p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">/bin/mv working iPhoneOS\ Build\ System\ Support</p>
-
-
-<p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">chmod a+x iPhoneOS\ Build\ System\ Support</p>
-
-
-<p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;"><span class="s2" style="font: normal normal normal 15px/normal STSong;">四、修改工程属性（</span>Project Settings<span class="s2" style="font: normal normal normal 15px/normal STSong;">）</span></p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">先打开工程属性，<span class="s1" style="font: normal normal normal 15px/normal Times;">xCode3</span>可在菜单<span class="s1" style="font: normal normal normal 15px/normal Times;">File-&gt;Project Settings</span>中打开，或右键点工程文件列表中的工程项，从中找到工程属性；<span class="s1" style="font: normal normal normal 15px/normal Times;">xCode4</span>直接单击工程文件列表中的工程项即可</p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;"><span class="s2" style="font: normal normal normal 15px/normal STSong;">在工程属性中，找到</span>Build Settings<span class="s2" style="font: normal normal normal 15px/normal STSong;">，修改其中的</span>Code Signing Identity<span class="s2" style="font: normal normal normal 15px/normal STSong;">，将所有属性值都从</span>iPhone Developer<span class="s2" style="font: normal normal normal 15px/normal STSong;">改为</span>Don&#8217;t Code Sign</p>
-
-
-<p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;"><span class="s2" style="font: normal normal normal 15px/normal STSong;">（若在</span>xCode4<span class="s2" style="font: normal normal normal 15px/normal STSong;">中找不到</span>Code Signing Identity<span class="s2" style="font: normal normal normal 15px/normal STSong;">，在属性列表的左上方有个</span>“Basic”<span class="s2" style="font: normal normal normal 15px/normal STSong;">和</span>“All”<span class="s2" style="font: normal normal normal 15px/normal STSong;">的选项，选择</span>All<span class="s2" style="font: normal normal normal 15px/normal STSong;">就能找到了。</span></p>
-
-
-<p class="p4" style="font: normal normal normal 15px/normal STSong; min-height: 15px; margin: 0px;"> </p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">最后、选择Device的SDK，Run。会将编译好的app传输到设备上，不过xCode会提示Error Starting Executable &#8220;project name&#8221;, Error launching remote program…这时，只需手动在设备上打开这个程序就可以了，调试信息可在Organizer里实时监控</p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"> </p>
-
-
-<p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">再次最后，操作完quit一下Xcode，再打开往设备上安装app。</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro tests$ cd /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/
-
-
-<p>dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ ls
-Developer           Entitlements.plist  ResourceRules.plist SDKSettings.plist   System              usr
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ cp SDKSettings.plist SDKSettings.plist.backup
-cp: SDKSettings.plist.backup: Permission denied
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ sudo cp SDKSettings.plist SDKSettings.plist.backup
-Password:
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ ls
-Developer                ResourceRules.plist      SDKSettings.plist.backup usr
-Entitlements.plist       SDKSettings.plist        System
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ sudo emacs SDKSettings.plist
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ cd /Developer/Platforms/iPhoneOS.platform/
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS.platform$ ls
-Developer     DeviceSupport Info.plist    iPhoneOS.icns version.plist
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS.platform$ sudo cp Info.plist Info.plist.backup
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS.platform$ ls
-Developer         DeviceSupport     Info.plist        Info.plist.backup iPhoneOS.icns     version.plist
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS.platform$ sudo emacs Info.plist
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS.platform$ cd /Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Plug-ins/iPhoneOS\ Build\ System\ Support.xcplugin/Contents/MacOS/
-dawncold@tianzhenmatoMacBook-Pro MacOS$ ls
-iPhoneOS Build System Support
-dawncold@tianzhenmatoMacBook-Pro MacOS$ ls -al
-total 232
-drwxrwxr-x  3 root  admin     102  7 22 06:27 .
-drwxrwxr-x  7 root  admin     238  7 22 06:27 ..
--rwxrwxr-x  1 root  admin  115904  3 31 09:22 iPhoneOS Build System Support
-dawncold@tianzhenmatoMacBook-Pro MacOS$ dd if=iPhoneOS\ Build\ System\ Support of=working bs=500 count=255
-231+1 records in
-231+1 records out
-115904 bytes transferred in 0.023461 secs (4940262 bytes/sec)
-dawncold@tianzhenmatoMacBook-Pro MacOS$ printf "\xc3\x26\x00\x00" &gt;&gt; working
-dawncold@tianzhenmatoMacBook-Pro MacOS$ dd if=iPhoneOS\ Build\ System\ Support of=working bs=1 skip=127504 seek=125504
-0+0 records in
-0+0 records out
-0 bytes transferred in 0.000013 secs (0 bytes/sec)
-dawncold@tianzhenmatoMacBook-Pro MacOS$ mv
-mv   mvn<br/>
-dawncold@tianzhenmatoMacBook-Pro MacOS$ mv
-mv   mvn<br/>
-dawncold@tianzhenmatoMacBook-Pro MacOS$ mv -n iPhoneOS\ Build\ System\ Support iPhoneOS\ Build\ System\ Support.backup
-dawncold@tianzhenmatoMacBook-Pro MacOS$ ls
-iPhoneOS Build System Support.backup working
-dawncold@tianzhenmatoMacBook-Pro MacOS$ mv working iPhoneOS\ Build\ System\ Support
-dawncold@tianzhenmatoMacBook-Pro MacOS$ ls
-iPhoneOS Build System Support        iPhoneOS Build System Support.backup
-dawncold@tianzhenmatoMacBook-Pro MacOS$ chmod a+x iPhoneOS\ Build\ System\ Support
-dawncold@tianzhenmatoMacBook-Pro MacOS$ ls
-iPhoneOS Build System Support        iPhoneOS Build System Support.backup
-</pre></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/13/">&larr; Older</a>
@@ -946,6 +747,10 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
       </li>
     
@@ -959,10 +764,6 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
     
       <li class="post">
         <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
       </li>
     
   </ul>

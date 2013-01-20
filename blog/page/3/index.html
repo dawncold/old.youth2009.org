@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;本来打算针对上传的图片进行验证，不过发现在form中加入enctype属性之后原本针对FileField的验证就不管用了，field.data始终是None，但是去掉enctype属性就ok，不过去掉之后不能上传文件了，所以最终只好去掉验证，在request中进行验证。&lt &hellip;">
+  <meta name="description" content="&lt;p&gt;今天在这里遇到些问题，花了一段时间，后来看官方文档解决了，很管用！&lt;/p&gt; 各个orm中的关系设置大同小异，一对多的关系中需要在“多”方的列中加入一个外键，指向“一”方，然后在“一”方加入一个存储“多”方的变量（这个orm中需要使用relationship方法声明 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/05/onetomany-in-sqlalchemy/">SQLalchemy中的oneToMany</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-05T22:54:00+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;今天在这里遇到些问题，花了一段时间，后来看官方文档解决了，很管用！&lt;/p&gt;
+</code></pre>
+
+<p>各个orm中的关系设置大同小异，一对多的关系中需要在“多”方的列中加入一个外键，指向“一”方，然后在“一”方加入一个存储“多”方的变量（这个orm中需要使用relationship方法声明）。</p>
+
+
+<p>至此一个单项的OneToMany就弄好了，如果需要加入“反向”，形成双向的关系，那就在刚才的“一”方中存储“多”方的变量中指明backref参数，值就是在“多”方的属性中存储“一”方的这个属性名。我在这里弄错了，受了EJB的影响，以为双方都需要设置，结果弄的重复了，还好看了官方文档。</p>
+
+
+<p>其他关系请参考<a href="http://docs.sqlalchemy.org/en/rel_0_7/orm/relationships.html#sqlalchemy.orm.relationship">官方文档</a></p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -551,71 +597,6 @@ You may need to link the Java bindings into the Java Extensions folder:
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/08/solved-set-lc_ctype-to-default-locale-no-such-file-or-directory/">解决Cannot Set LC_CTYPE to Default Locale: No Such File or Directory问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-08T16:20:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;刚拿到vps，打算更新一些软件，发现有些warning挺讨厌的，于是就想根除他们！！他们一般是这样的：&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">locale: Cannot set LC_CTYPE to default locale: No such file or directory
-
-
-<p>locale: Cannot set LC_MESSAGES to default locale: No such file or directory
-locale: Cannot set LC_ALL to default locale: No such file or directory</pre></p>
-
-<br /><p>我看到我的LANG被设定为zh_CN.utf8，虽然我们是国人，但这个语言习惯不能代表我们的爱国情怀吧，我就改为en_US.utf8了：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo touch /etc/default/locale
-
-
-<p>vi /etc/default/locale</pre></p>
-
-<br /><p>加入：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">LANG="en_US.UTF-8"
-
-
-<p>LANGUAGE="en_US:en"</pre></p>
-
-<br /><p>再执行一下locale就发现问题不见了。</p>
-
-
-<p>希望vpsee的admin能在iso中修正这个事儿～</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -633,6 +614,10 @@ locale: Cannot set LC_ALL to default locale: No such file or directory</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
       </li>
     
@@ -646,10 +631,6 @@ locale: Cannot set LC_ALL to default locale: No such file or directory</pre></p>
     
       <li class="post">
         <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;写struts2的配置文件时如果有提示那最好了，添加方法比较简单，从框架的jar包中找到sruts-2.1.7.dtd文件，在preference搜索xml找到xml catalog，然后add一个，文件就是刚刚找到的dtd文件，Key type选URI， &hellip;">
+  <meta name="description" content="&lt;p&gt;前几天在Mac系统下装了MySQL，装完后是默认没有给root用户带密码的，于是出于安全考虑我就加上了密码，加密码的方式如下：&lt;/p&gt; mysqladmin -u root password "mysqlpassword" 很明显引号内的是root用户的新密码。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,71 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/12/07/reset-the-password-of-mysql/">重置MySQL密码</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-07T17:46:00+08:00" pubdate data-updated="true">Dec 7<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;前几天在Mac系统下装了MySQL，装完后是默认没有给root用户带密码的，于是出于安全考虑我就加上了密码，加密码的方式如下：&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">mysqladmin -u root password "mysqlpassword"</pre>
+
+
+<br /><p>很明显引号内的是root用户的新密码。</p>
+
+
+<p>但在使用的时候我一时想不起来密码了，于是搜索到了官方的Reset the password of MySQL，但看着好麻烦，没有尝试，在<a href="http://huoding.com/2011/06/12/85" target="_blank">这里</a>找到了方法，贴出来主要代码：</p>
+
+
+<p>先停止mysql的服务，用下面这句启动mysql：</p>
+
+
+<br /><pre class="prettyprint linenums bush:sql" lang="sql">mysqld_safe --skip-grant-tables --skip-networking &amp;
+
+
+<p></pre></p>
+
+<br /><p>用SQL语句修改root的密码：</p>
+
+
+<br /><pre class="prettyprint linenums bush:sql" lang="sql">UPDATE mysql.user SET Password=PASSWORD('...') WHERE User='...' AND Host= '...';
+
+
+<p>FLUSH PRIVILEGES;</pre></p>
+
+<br /><p>单引号内的东西自己补充吧，第一个是新密码，第二个写root，第三个用localhost就可以了。</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -470,58 +535,6 @@ app = web.application(urls, globals())</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/10/04/bad-exp-on-centos6/">Centos6不好</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-10-04T16:59:00+08:00" pubdate data-updated="true">Oct 4<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;原来的vps是用的centos5.5，一直挺稳定，前段时间为了弄一个小项目停掉了lnmp，装了apache，后来发现lnmp本身带了apache，我绕了圈子。&lt;/p&gt;
-</code></pre>
-
-<p>项目完毕后我重装了centos6，现在想用vpn了，不过发现按照centos5.5的方法安装一些列东西后客户端无法连接—就是一连接上接着被服务器断开。pptpd的日志经常显示：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">Oct  4 12:54:28 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control connection started
-
-
-<p>Oct  4 12:54:28 wodeyitian pptpd[1615]: CTRL: Starting call (launching pppd, opening GRE)
-Oct  4 12:54:28 wodeyitian pppd[1616]: Plugin /usr/lib/pptpd/pptpd-logwtmp.so loaded.
-Oct  4 12:54:35 wodeyitian pptpd[1615]: GRE: read(fd=7,buffer=80515c0,len=8260) from network failed: status = -1 error = Message too long
-Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: GRE read or PTY write failed (gre,pty)=(7,6)
-Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control connection finished</pre></p>
-
-<br /><p>不知道有没有人用centos6成功安装了pptpd的帮帮我呢：）</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -539,6 +552,10 @@ Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control conne
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
       </li>
     
@@ -552,10 +569,6 @@ Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control conne
     
       <li class="post">
         <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
       </li>
     
   </ul>

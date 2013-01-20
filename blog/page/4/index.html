@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;今天刚刚换了vps，ssh的安全早就该配置好，没想到竟然是现在了……&lt;/p&gt; 首先这些基本需要做：http://www.deepvps.com/improve-ssh-security.html 再就是禁止root后需要创建一个马甲账号：   0. &hellip;">
+  <meta name="description" content="&lt;p&gt;刚拿到vps，打算更新一些软件，发现有些warning挺讨厌的，于是就想根除他们！！他们一般是这样的：&lt;/p&gt; locale: Cannot set LC_CTYPE to default locale: No such file or directory &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,71 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/08/solved-set-lc_ctype-to-default-locale-no-such-file-or-directory/">解决Cannot Set LC_CTYPE to Default Locale: No Such File or Directory问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-08T16:20:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;刚拿到vps，打算更新一些软件，发现有些warning挺讨厌的，于是就想根除他们！！他们一般是这样的：&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">locale: Cannot set LC_CTYPE to default locale: No such file or directory
+
+
+<p>locale: Cannot set LC_MESSAGES to default locale: No such file or directory
+locale: Cannot set LC_ALL to default locale: No such file or directory</pre></p>
+
+<br /><p>我看到我的LANG被设定为zh_CN.utf8，虽然我们是国人，但这个语言习惯不能代表我们的爱国情怀吧，我就改为en_US.utf8了：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo touch /etc/default/locale
+
+
+<p>vi /etc/default/locale</pre></p>
+
+<br /><p>加入：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">LANG="en_US.UTF-8"
+
+
+<p>LANGUAGE="en_US:en"</pre></p>
+
+<br /><p>再执行一下locale就发现问题不见了。</p>
+
+
+<p>希望vpsee的admin能在iso中修正这个事儿～</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -654,49 +719,6 @@ System Call Overhead                          15000.0     525047.2    350.0</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/23/optimize-my-vps/">优化了一下VPS</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-23T15:30:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;一开始玩VPS的时候跟着网上的各种优化教程做了很多工作，中途重装了一次系统后什么优化工作都没做，基本就和裸奔一样啦，还有次好奇怪的突发事件，让我以为是hacker进来了，但后来又不了了之了。&lt;/p&gt;
-</code></pre>
-
-<p>今天把ssh的端口改掉了，加入iptables各种规则，希望这样能让vps的uptime提升一下，现在不清楚是不是做了这些工作就有好处，但总归是没有坏处的。</p>
-
-
-<p>在dnspod上开启了一个宕机监控，同时把监控宝上的ping测试改掉了，因为现在不允许ping了～就这样监控一段时间试试效果吧，如果真有用的话我就一定要每次重装os后都做！！！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -714,6 +736,10 @@ System Call Overhead                          15000.0     525047.2    350.0</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
       </li>
     
@@ -727,10 +753,6 @@ System Call Overhead                          15000.0     525047.2    350.0</p>
     
       <li class="post">
         <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
       </li>
     
   </ul>

