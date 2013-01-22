@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;原来的vps是用的centos5.5，一直挺稳定，前段时间为了弄一个小项目停掉了lnmp，装了apache，后来发现lnmp本身带了apache，我绕了圈子。&lt;/p&gt; 项目完毕后我重装了centos6，现在想用vpn了，不过发现按照centos5. &hellip;">
+  <meta name="description" content="&lt;p&gt;&lt;a title="t_hero.png" href="http://www.youth2009.org/attachment/135250/"&gt;&lt;img src="http://www.youth2009.org/usr/uploads/2011/10/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,43 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/06/steve-jobs/">希望你依然能够领导我们的创新</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-06T17:19:00+08:00" pubdate data-updated="true">Oct 6<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;&lt;a title="t_hero.png" href="http://www.youth2009.org/attachment/135250/"&gt;&lt;img src="http://www.youth2009.org/usr/uploads/2011/10/332484186.png" alt="t_hero.png"&gt;&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -553,100 +590,6 @@ Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control conne
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/08/13/batch-handly-files-use-python/">Python批量处理文件</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-13T15:30:00+08:00" pubdate data-updated="true">Aug 13<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;从某网站上下载了几个压缩包，里面全是目录，每个目录下都有一个doc文件，但可恶的是这些doc文件被换了扩展名，原本是xxx.doc现在变成xxx.doc.resx，我得用python批量处理一下：&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
-
-
-<h1>-<em>- coding:utf-8 -</em>-</h1>
-
-<h1>遍历所有目录，把resx文件扩展名删掉</h1>
-
-<p>import os</p>
-
-<p>current_path = os.getcwd()
-allsubdir = os.listdir(current_path)</p>
-
-<p>for subdir in allsubdir:</p>
-
-<pre><code>subdir_path = './' + subdir
-if os.path.isdir(subdir_path):
-    files = os.listdir(subdir_path)
-    for _file in files:
-        basename = os.path.basename(_file)
-        allname = os.path.splitext(basename)
-        if '.resx' in allname:
-            print 'resx file %s' % basename
-            without_resx = allname[0]
-            os.rename(subdir_path+'/'+_file,without_resx)
-        else:
-            print 'not resx file'
-            continue&lt;/pre&gt;
-</code></pre>
-
-<br /><p>还用了一个删除空目录的脚本：</p>
-
-
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
-
-
-<h1>-<em>- coding:utf-8 -</em>-</h1>
-
-<h1>删除空目录</h1>
-
-<p>import os</p>
-
-<p>alldir = os.listdir(os.getcwd())
-for _dir in alldir:</p>
-
-<pre><code>if os.path.isdir('./'+_dir):
-    print 'dir: %s' % _dir
-    if os.listdir('./'+_dir):
-        print 'have something %s' % os.listdir('./'+_dir)
-    else:
-        os.rmdir('./'+_dir)
-else:
-    print 'file or others'&lt;/pre&gt;
-</code></pre>
-
-<br /><p>用python，很快乐！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/12/">&larr; Older</a>
@@ -664,6 +607,10 @@ else:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
       </li>
     
@@ -677,10 +624,6 @@ else:
     
       <li class="post">
         <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
       </li>
     
   </ul>

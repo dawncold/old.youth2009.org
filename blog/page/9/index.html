@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python coding: utf-8 def insert_sort(arraylist): for j in range(1 &hellip;">
+  <meta name="description" content="&lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python coding: utf-8 def select_sort(arraylist): for i in range(0 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/26/select-sort-in-python/">选择排序（Python）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T12:27:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python
+</code></pre>
+
+<h1>coding: utf-8</h1>
+
+<p>def select_sort(arraylist):</p>
+
+<pre><code>for i in range(0, len(arraylist)):
+    minElement = i
+    for j in range(i, len(arraylist)):
+        if arraylist[j] &amp;lt; arraylist[minElement]:
+            minElement = j
+    temp = arraylist[i]
+    arraylist[i] = arraylist[minElement]
+    arraylist[minElement] = temp
+</code></pre>
+
+<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
+
+<pre><code>arr = [2, 424, 4, 13, 5, 99, 100, 231, 0, 1]
+print arr
+select_sort(arr)
+print arr
+</code></pre>
+
+<p></pre></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -586,58 +647,6 @@ print arr
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/10/spring-framework/">Spring</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-10T16:48:00+08:00" pubdate data-updated="true">Dec 10<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;这不是代表春天或者温泉的意思，实际上是我正在学习期末考试课程S2SH中的一个框架——Spring。&lt;/p&gt;
-</code></pre>
-
-<p>就一变态框架啊，Ioc、AOP这些都是令业界震撼的思想级产物。特别是AOP，就是和OOP同层次的东西，怪不得学习起来很慢很艰难，不过我清楚，期末考试肯定考得超简单，现在我基本是学到哪里忘到哪里。</p>
-
-
-<p>顺便说下，用Spring做一个简单的AOP测试实例的话，光用自带的jar包根本不行，还需要自己添加下面这几个：</p>
-
-
-<p>1.aopalliance-1.0.jar（在struts2的lib目录中找到的）</p>
-
-
-<p>2.aspcetjweaver-1.5.3.jar（aspcetj的官网怎么上都上不去：<a href="http://www.aspectj.org" target="_blank">http://www.aspectj.org</a>，于是在这里下载的：<a href="http://www.jar114.com/j/982">http://www.jar114.com/j/982</a>）</p>
-
-
-<p>3.cglib-nodep-2.2.2.jar（本来用cglib-2.2.2.jar的，但提示缺少asm就下载了这个集成asm的nodep版本，我以为asm就是Spring中的那个asm包呢。官方网站：<a href="http://cglib.sourceforge.net" target="_blank">http://cglib.sourceforge.net</a>）</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -655,6 +664,10 @@ print arr
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
       </li>
     
@@ -668,10 +681,6 @@ print arr
     
       <li class="post">
         <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
       </li>
     
   </ul>

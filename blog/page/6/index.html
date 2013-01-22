@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;这些表格是所有参加比赛的学生成绩单，当然只有省份、学校、准考证、姓名、组别、奖项、是否进入决赛这几个列，我用python写的脚本来抓取，存入了本地的一个excel中，所以除了python环境之外还需要xlwt这个包包：）&lt;/p&gt; #/usr/bin/env &hellip;">
+  <meta name="description" content="&lt;p&gt;在&lt;a href="http://www.deepvps.com/dropbox-backup.html" target="_blank"&gt;这里&lt;/a&gt;看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。&lt;/p&gt; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,134 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/27/auto-backup-data-in-vps-using-python-script-to-control/">dropbox自动备份VPS</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-27T17:51:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;在&lt;a href="http://www.deepvps.com/dropbox-backup.html" target="_blank"&gt;这里&lt;/a&gt;看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。&lt;/p&gt;
+</code></pre>
+
+<p>安装linux下的dropbox（我的是32为系统，如果是64位在下面地址末尾加上“_64”即可）：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">wget -O dropbox.tar.gz http://www.dropbox.com/download?plat=lnx.x86</pre>
+
+
+<br /><p>解压后在.dropbox-dist目录中有dropboxd可执行文件，让其在后台执行（就是在执行文件后面加“&amp;”符号）</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">~/.dropbox-dist/dropboxd &amp;</pre>
+
+
+<br /><p>此后会出现一个地址，你得复制出来然后在浏览器中打开，之后就是注册或者登陆dropbox，这样就激活了在这台机器上的dropbox，就可以同步文件了。</p>
+
+
+<p>把需要同步备份的文件软连接到Dropbox这个目录中：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">cd ~/Dropbox
+
+
+<p>ln -s /home/wwwroot/
+。。。</pre></p>
+
+<br /><p>此时dropbox已经在帮你同步了，你可以通过web端观察。</p>
+
+
+<p>我看到的文章中带着一个自动运行的脚本，用sh写的，我发现在主机上运行没反应，不会sh，会点python，于是我改写了一下，也是可用的：</p>
+
+
+<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+
+
+<h1>coding: utf-8</h1>
+
+<p>import sys
+import os</p>
+
+<p>def start():</p>
+
+<pre><code>print "Starting Dropbox..."
+os.system("~/.dropbox-dist/dropboxd &amp;amp;")
+</code></pre>
+
+<p>def stop():</p>
+
+<pre><code>print "Stoping Dropbox..."
+os.system("pkill dropbox")
+</code></pre>
+
+<p>def restart():</p>
+
+<pre><code>stop()
+start()
+</code></pre>
+
+<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
+
+<pre><code>action = sys.argv[1]
+print "now action: %s" % action
+if action == 'start':
+    start()
+elif action == "stop":
+    stop()
+elif action == "restart":
+    restart()
+else:
+    print "Bad arguments!"&lt;/pre&gt;
+</code></pre>
+
+<br /><p>相应的crontab配置文件中这样写就好了：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">#auto dropbox
+
+
+<p>0 4 * * * python /root/dropbox.py restart
+0 5 * * * python /root/dropbox.py stop</pre></p>
+
+<br /><p>如果没装crontab（极少情况），这样(也许你用apt-get来做这件事，我的是centos系统，用yum了)：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">yum -y install crontab</pre>
+
+
+<br /><p>python让我很快乐：）</p>
+
+
+<p>一开始在python用的是exec来执行命令发现不可用，于是用了os.system，查看pydoc才发现exec是执行python code用的……惭愧！</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -811,49 +939,6 @@ self.password = xxx
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/12/pain-rails/">痛苦的rails</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-12T22:03:00+08:00" pubdate data-updated="true">Feb 12<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;由于rails给我带来的痛苦，让我对ruby这门写着code for fun的语言产生了怀疑，真得有fun么？一开始就没有感觉，现在来看更是如此。&lt;/p&gt;
-</code></pre>
-
-<p>rails是一个正在成长的框架，每一个小版本号的变动都可能会引入和废弃不少特性，而我又傻傻地在使用最新的rails（3.2.1），书上讲的都是rails2.2.2的内容，乍一看变动不应该太大啊，实际上并不是如此！！！</p>
-
-
-<p>对于一个新手来说，学习一个正在成长的框架是痛苦的：（</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -871,6 +956,10 @@ self.password = xxx
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
       </li>
     
@@ -884,10 +973,6 @@ self.password = xxx
     
       <li class="post">
         <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
       </li>
     
   </ul>

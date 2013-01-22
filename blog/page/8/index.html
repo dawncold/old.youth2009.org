@@ -9,44 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-#! /usr/bin/env python
-# coding: utf-8 def merge( &hellip;">
+  <meta name="description" content="&lt;p&gt;其实和昨天的归并排序基本内容一样，就多加了几行输出来帮助理解，找逆序对就是多了一个统计变量而已。&lt;/p&gt; #! /usr/bin/env python coding: utf-8 def merge(arraylist, first, middle, last): &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -114,6 +77,95 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/03/get-inorder-pair-in-python/">找逆序对（Python）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-03T11:56:00+08:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;其实和昨天的归并排序基本内容一样，就多加了几行输出来帮助理解，找逆序对就是多了一个统计变量而已。&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+
+
+<h1>coding: utf-8</h1>
+
+<p>def merge(arraylist, first, middle, last):</p>
+
+<pre><code>temp = []
+i = first
+j = middle + 1
+while i &amp;lt;= middle and j &amp;lt;= last:
+    if arraylist[i] &amp;lt;= arraylist[j]:
+        temp.append(arraylist[i])
+        i += 1
+    else:
+        global inv
+        inv += middle - i + 1
+        temp.append(arraylist[j])
+        j += 1
+while i &amp;lt;= middle:
+    temp.append(arraylist[i])
+    i += 1
+while j &amp;lt;= last:
+    temp.append(arraylist[j])
+    j += 1
+print temp
+for i in range(0, last - first + 1):
+    arraylist[first + i] = temp[i]
+</code></pre>
+
+<p>def merge_sort(arraylist, first, last):</p>
+
+<pre><code>if first &amp;lt; last:
+    middle = (first + last) / 2
+    print "first = %d, middle = %d, last = %d" % (first, middle, last)
+    merge_sort(arraylist, first, middle)  
+    merge_sort(arraylist, middle + 1, last)
+    merge(arraylist, first, middle, last)
+</code></pre>
+
+<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
+
+<pre><code>inv = 0
+arr = [2,3,8,6,1]
+print "orign: ", arr
+merge_sort(arr, 0, len(arr) - 1)
+print "final: ", arr
+print "inv = %d" % inv
+</code></pre>
+
+<p></pre></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -660,67 +712,6 @@ gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/26/select-sort-in-python/">选择排序（Python）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T12:27:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python
-</code></pre>
-
-<h1>coding: utf-8</h1>
-
-<p>def select_sort(arraylist):</p>
-
-<pre><code>for i in range(0, len(arraylist)):
-    minElement = i
-    for j in range(i, len(arraylist)):
-        if arraylist[j] &amp;lt; arraylist[minElement]:
-            minElement = j
-    temp = arraylist[i]
-    arraylist[i] = arraylist[minElement]
-    arraylist[minElement] = temp
-</code></pre>
-
-<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
-
-<pre><code>arr = [2, 424, 4, 13, 5, 99, 100, 231, 0, 1]
-print arr
-select_sort(arr)
-print arr
-</code></pre>
-
-<p></pre></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -738,6 +729,10 @@ print arr
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
       </li>
     
@@ -751,10 +746,6 @@ print arr
     
       <li class="post">
         <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
       </li>
     
   </ul>

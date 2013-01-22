@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;刚拿到vps，打算更新一些软件，发现有些warning挺讨厌的，于是就想根除他们！！他们一般是这样的：&lt;/p&gt; locale: Cannot set LC_CTYPE to default locale: No such file or directory &hellip;">
+  <meta name="description" content="&lt;p&gt;执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）&lt;/p&gt; sudo ：unable to resolve host HOSTNAME 这样修复：(编辑/etc/hosts，修改127.0.0.1那行， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/08/solved-sudo-unable-to-resolve-host/">Sudo 出现unable to Resolve Host 解决方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-08T16:23:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo ：unable to resolve host HOSTNAME</pre>
+
+
+<br /><p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">127.0.0.1               localhost.localdomain localhost HOSTNAME</pre>
+
+
+<br /><p>希望vpsee的admin能在iso中修复这个问题</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -665,60 +714,6 @@ System Call Overhead                          15000.0     525047.2    350.0</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/23/two-mysql-lib-issue-after-yum-update/">Ldconfig: /usr/lib/libmysqlclient.so.16 Is Not a Symbolic Link的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-23T19:50:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;刚刚用yum升级了系统，发现日志中有很多这样的提示：&lt;/p&gt;
-</code></pre>
-
-<p><span style="color: #111111; font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; text-align: left;">ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link</span></p>
-
-
-<p><span style="color: #111111; font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; text-align: left;">ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a symbolic link</span></p>
-
-
-<p>于是Google了一下，找到一个解决方法，在<a href="http://tiger.im/286.html" target="_blank">这里</a>.</p>
-
-
-<p>就是重建了两条连接过去即可：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">ln -sf /usr/local/mysql/lib/mysql/libmysqlclient.so.16 /usr/lib/mysqlclient.so.16
-
-
-<p>ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient_r.so.16</pre></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -736,6 +731,10 @@ System Call Overhead                          15000.0     525047.2    350.0</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
       </li>
     
@@ -749,10 +748,6 @@ System Call Overhead                          15000.0     525047.2    350.0</p>
     
       <li class="post">
         <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">我在考虑迁移到octopress上</a>
       </li>
     
   </ul>
