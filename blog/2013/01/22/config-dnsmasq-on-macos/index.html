@@ -109,27 +109,27 @@
 
 <p>1.使用brew安装dnsmasq</p>
 
-<pre><code>`brew install dnsmasq`
+<pre><code>brew install dnsmasq
 </code></pre>
 
 <p>2.修改一下dnsmasq的配置文件名字</p>
 
-<pre><code>`cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf`
+<pre><code>cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf
 </code></pre>
 
 <p>3.加入MacOS的启动项中</p>
 
-<pre><code>`sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons`
+<pre><code>sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons
 </code></pre>
 
 <p>4.启动dnsmasq，如果没有出现什么错误就开始配置dnsmasq</p>
 
-<pre><code>`sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist`
+<pre><code>sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 </code></pre>
 
 <p>5.配置dnsmasq，把no-resolve的注释去掉，加入<code>server=xxx.xxx.xxx.xxx#nnnn</code></p>
 
-<pre><code>`mate /usr/local/etc/dnsmasq.conf`
+<pre><code>mate /usr/local/etc/dnsmasq.conf
 
 server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比如v2ex那个用3389
 </code></pre>
