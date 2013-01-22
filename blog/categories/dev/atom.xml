@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dev | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-01-22T23:36:51+08:00</updated>
+  <updated>2013-01-22T23:43:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -55,6 +55,8 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
 
 sudo launchctl start homebrew.mxcl.dnsmasq
 </code></pre>
+
+<p>7.把网络的dns设置成127.0.0.1，这样你才能用自己的dns服务</p>
 
 <p>至此，我们的git大神就回归了。</p>
 ]]></content>
