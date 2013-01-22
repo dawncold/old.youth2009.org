@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dev | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-01-22T23:43:00+08:00</updated>
+  <updated>2013-01-22T23:56:27+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -37,7 +37,7 @@
 <pre><code>sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons
 </code></pre>
 
-<p>4.启动dnsmasq，如果没有出现什么错误就开始配置dnsmasq</p>
+<p>4.加载并启动dnsmasq，如果没有出现什么错误就开始配置dnsmasq</p>
 
 <pre><code>sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 </code></pre>
@@ -52,9 +52,9 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
 <p>6.重启dnsmasq</p>
 
 <pre><code>sudo launchctl stop homebrew.mxcl.dnsmasq
-
-sudo launchctl start homebrew.mxcl.dnsmasq
 </code></pre>
+
+<p>其实无需再执行<code>sudo launchctl start homebrew.mxcl.dnsmasq</code>这句了，因为你load了plist进去就已经启动了，如果此时stop的话会再自动start，所以没必要再start。要想关闭请使用unload（就修改上面的4即可）</p>
 
 <p>7.把网络的dns设置成127.0.0.1，这样你才能用自己的dns服务</p>
 
