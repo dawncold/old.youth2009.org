@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;这不是代表春天或者温泉的意思，实际上是我正在学习期末考试课程S2SH中的一个框架——Spring。&lt;/p&gt; 就一变态框架啊，Ioc、AOP这些都是令业界震撼的思想级产物。特别是AOP，就是和OOP同层次的东西，怪不得学习起来很慢很艰难，不过我清楚， &hellip;">
+  <meta name="description" content="&lt;p&gt;刚刚在学习web.py这个框架，找了一个不错的例子准备自己运行起来看看，结果一调试出现了MySQLdb没找到的情况，于是从官方（&lt;a href="http://sourceforge.net/projects/mysql-python/"&gt;http:// &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,76 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/12/11/mysql-python-mac/">mac下的MySQL-python问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-11T14:19:00+08:00" pubdate data-updated="true">Dec 11<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;刚刚在学习web.py这个框架，找了一个不错的例子准备自己运行起来看看，结果一调试出现了MySQLdb没找到的情况，于是从官方（&lt;a href="http://sourceforge.net/projects/mysql-python/"&gt;http://sourceforge.net/projects/mysql-python/&lt;/a&gt;）下载源码准备编译安装，最好不要用easy_install安装了，因为还得修改几个地方才能正常编译安装。&lt;/p&gt;
+</code></pre>
+
+<p>由于是mac系统，MySQL是使用的官方提供的dmg安装包装的，但不知为何MySQLdb的安装脚本找不到位置，于是修改MySQLdb的setup_posix.py，26行有个mysql_config.path = &#8230;，修改成你本机中mysql_config所在的地址，比如我的是/usr/local/mysql/bin/mysql_config，保存后分别执行：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo python setup.py build
+
+
+<p>sudo python setup.py install</pre></p>
+
+<br /><p>安装后最好用python的shell加载一下MySQLdb看看能否正常使用，通常是不行的，因为我就遇到这么个情况，提示缺少image，具体是这样提示的：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash"> File "/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/MySQLdb/__init__.py", line 19, in &lt;module&gt;
+
+
+<pre><code>import _mysql
+</code></pre>
+
+<p>ImportError: dlopen(/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/<em>mysql.so, 2): Library not loaded: libmysqlclient.18.dylib
+  Referenced from: /Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/</em>mysql.so
+  Reason: image not found</pre></p>
+
+<br /><p>于是用Google搜索问题，从<a href="http://alexbraunstein.com/2011/08/12/library-loaded-libmysqlclient-18-dylib/" target="_blank">这里</a>找到了解决方案：</p>
+
+
+<p>在~/.bash_profile中加入这样的一句：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH</pre>
+
+
+<br /><p>然后quit掉terminal再进入一次让这个环境变量更新一下，再次使用MySQLdb就没问题了。</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -507,49 +577,6 @@ app = web.application(urls, globals())</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/10/22/i-am-writting-an-os-recently/">最近在写OS</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-10-22T08:10:00+08:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;其实没有像标题中说的那么宏伟，只是需要写一个软件工程用的文档，就是一系列的需求分析、设计、开发、测试、维护文档，主题自定，我觉着看了很多国内的软件作品，动不动就是XXX系统，好象任何东西加上“系统”两个字之后都会变得无比金光闪闪，那我也来一个吧——“操作系统”。&lt;/p&gt;
-</code></pre>
-
-<p>虽然不需要实际编码，但还是需要参考很多资料，不可能一句代码都不出现，主要参考的是《Orange&#8217;s一个操作系统的实现》（《自己动手写操作系统》的第二版），里面最大的难点就是过多的汇编语言，其实C的程序我还是没大有问题的，只要不让我设计什么深奥算法就好：）</p>
-
-
-<p>学期末交上这个文档，已经分给了几个人去做，但他们可能感觉时间还早吧，到现在也没有动手，我不能等他们，我需要写好设计部分，现在就得深入阅读资料了。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -567,6 +594,10 @@ app = web.application(urls, globals())</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/27/give-up-ruby/">give up ruby</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
       </li>
     
@@ -580,10 +611,6 @@ app = web.application(urls, globals())</p>
     
       <li class="post">
         <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
       </li>
     
   </ul>

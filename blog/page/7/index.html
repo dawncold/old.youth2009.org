@@ -9,7 +9,10 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;由于rails给我带来的痛苦，让我对ruby这门写着code for fun的语言产生了怀疑，真得有fun么？一开始就没有感觉，现在来看更是如此。&lt;/p&gt; rails是一个正在成长的框架，每一个小版本号的变动都可能会引入和废弃不少特性， &hellip;">
+  <meta name="description" content="&lt;p&gt;有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误：&lt;/p&gt; def password=(pwd) @password = pwd
+return if @password.blank?
+create_new_salt
+self.password = &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +80,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/14/write-attribute-in-ruby/">Ruby中的write_attribute</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-14T16:06:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误：&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:ruby" lang="ruby">  def password=(pwd)
+
+
+<pre><code>@password = pwd
+return if @password.blank?
+create_new_salt
+self.password = xxx
+</code></pre>
+
+<p>  end</pre></p>
+
+<br /><p>最后那行使用了self.password= xxx，你有没有注意到我们这个方法就是password=，你在自己调用自己，如果有条件停止的话，那这叫递归，如果没有的话，这就是死循环喽，ruby可能会抛出一个stack too deep的错误（rails至少会这样说），此时需要一个magic！</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">write_attribute(:password, User.encrypted_password(self.password, self.salt))</pre>
+
+
+<br /><p>使用write_attribute(xxx,jjj)即可，意思就是把jjj赋值给xxx了，因为此时正好在定义xxx，所以不能用xxx = 这样的方法赋值。</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -610,61 +670,6 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/04/uninstall-macports/">删除MacPorts</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-04T21:53:00+08:00" pubdate data-updated="true">Feb 4<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;sudo port -f uninstall installed
-</code></pre>
-
-<p>sudo rm -rf \
-/opt/local \
-/Applications/DarwinPorts \
-/Applications/MacPorts \
-/Library/LaunchDaemons/org.macports.<em> \
-/Library/Receipts/DarwinPorts</em>.pkg \
-/Library/Receipts/MacPorts*.pkg \
-/Library/StartupItems/DarwinPortsStartup \
-/Library/Tcl/darwinports1.0 \
-/Library/Tcl/macports1.0 \
-~/.macports</pre></p>
-
-<br /><p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
-
-
-<p>我删除了MacPorts后就开始用Homebrew了。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -682,6 +687,10 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/27/give-up-ruby/">give up ruby</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
       </li>
     
@@ -695,10 +704,6 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
     
       <li class="post">
         <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
       </li>
     
   </ul>

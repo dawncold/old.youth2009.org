@@ -9,7 +9,10 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;在&lt;a href="http://www.deepvps.com/dropbox-backup.html" target="_blank"&gt;这里&lt;/a&gt;看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。&lt;/p&gt; &hellip;">
+  <meta name="description" content="&lt;p&gt;备份数据库的重要性不想多说了。&lt;/p&gt; #! /usr/bin/env python coding: utf-8 import os
+import sys
+from datetime import *
+import time mysql's path &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +80,89 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/27/backup-mysql-databases-using-python/">用python备份mysql</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-27T20:44:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;备份数据库的重要性不想多说了。&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+
+
+<h1>coding: utf-8</h1>
+
+<p>import os
+import sys
+from datetime import *
+import time</p>
+
+<h1>mysql's path</h1>
+
+<p>mysql_path = '/usr/local/mysql/bin/'</p>
+
+<h1>edit this if your mysql username and password is not like this:</h1>
+
+<p>mysql_username = 'root'
+mysql_password = 'xxxxxx'</p>
+
+<h1>backup path</h1>
+
+<p>backup_path = 'mysqlbackup/'</p>
+
+<p>def validate_backup_path():</p>
+
+<pre><code>if os.path.exists(backup_path) == False:
+    print "I create a directory here: %s " % backup_path
+    os.mkdir(backup_path)
+</code></pre>
+
+<p>def backup_all_databases():</p>
+
+<pre><code>filename = "all_%s.sql" % (datetime.utcfromtimestamp(time.time()))
+os.system("%smysqldump -u%s -p%s --all-databases &amp;gt; '%s%s'" % (mysql_path, mysql_username, mysql_password, backup_path, filename))
+</code></pre>
+
+<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
+
+<pre><code>validate_backup_path()
+backup_all_databases()
+print "finish!!!"&lt;/pre&gt;
+</code></pre>
+
+<br /><p>这个是修改了一次的备份脚本，本来是分数据库备份的，无奈制定了分数据库备份需要输入密码，这就不容易加入cron来自动完成了，不过听说在my.cnf中加入mysqldump的设置可以避免输入账号密码，这也算是一个办法吧，不过还是本着简化的思想，只导出所有数据库出来就好，配合着上一篇的dropbox自动备份，这样VPS的灾备就稍稍好些了：）</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -882,63 +968,6 @@ Binary data inserted for <code>string</code> type on column <code>randstring</co
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/14/write-attribute-in-ruby/">Ruby中的write_attribute</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-14T16:06:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误：&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:ruby" lang="ruby">  def password=(pwd)
-
-
-<pre><code>@password = pwd
-return if @password.blank?
-create_new_salt
-self.password = xxx
-</code></pre>
-
-<p>  end</pre></p>
-
-<br /><p>最后那行使用了self.password= xxx，你有没有注意到我们这个方法就是password=，你在自己调用自己，如果有条件停止的话，那这叫递归，如果没有的话，这就是死循环喽，ruby可能会抛出一个stack too deep的错误（rails至少会这样说），此时需要一个magic！</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">write_attribute(:password, User.encrypted_password(self.password, self.salt))</pre>
-
-
-<br /><p>使用write_attribute(xxx,jjj)即可，意思就是把jjj赋值给xxx了，因为此时正好在定义xxx，所以不能用xxx = 这样的方法赋值。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -956,6 +985,10 @@ self.password = xxx
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/27/give-up-ruby/">give up ruby</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
       </li>
     
@@ -969,10 +1002,6 @@ self.password = xxx
     
       <li class="post">
         <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a>
       </li>
     
   </ul>
