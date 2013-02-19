@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;js中有个获取当前年的函数，叫getYear()，但我测试的时候没有单独让它显示出来看看，只是当成一个最大值限制使用，测试了一个值发现正确，就不再管它了，后来测试的时候总是不对，再一看，那个值竟然是111，怪不得我输入一个年份都显示对了呢，现在都是2xxx年， &hellip;">
+  <meta name="description" content="&lt;p&gt;测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：&lt;/p&gt; var da = '2000-01-01 00:00:00'; var da_array = da.split &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/05/30/js-data-object-in-four-browers/">四种浏览器下的JS日期对象</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-30T22:20:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:jscript" lang="jscript">var da = '2000-01-01 00:00:00';
+
+
+<p>var da_array = da.split(' ');
+var da_1 = da_array[0].split('-');
+var da_2 = da_array[1].split(':');
+alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -486,43 +531,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/05/12/debug-is-a-work-that-wastes-time/">Debug是个浪费时间的活儿</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-12T23:06:00+08:00" pubdate data-updated="true">May 12<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;今晚为了实现一个有些漂亮的界面交互，我展开了和SESSION的战斗，明明同样使用的其他方法都能正常工作，偏偏这个就是不能了，这让我很奇怪，调试了很久都没有解决。网上搜索了很多内容也都看不到希望，其中一个朋友提到，这种问题很难解决，可能是对SESSION的机制不太了解吧，我也懒了，不去深入分析，好在丢失了这个好看的界面也不影响使用，我就等等吧，希望明天能够自动解决：）&lt;/p&gt;
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/20/">&larr; Older</a>
@@ -540,6 +548,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/27/give-up-ruby/">give up ruby</a>
       </li>
     
@@ -553,10 +565,6 @@
     
       <li class="post">
         <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
       </li>
     
   </ul>

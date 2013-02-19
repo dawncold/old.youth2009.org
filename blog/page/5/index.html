@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;mac下的输入法一直让我耿耿于怀，官方的输入法就不多说了，基本不会去用，虽然UI做得不错，没用几分钟就再也不使用了。&lt;/p&gt; 然后使用了搜狗输入法，词汇量真的很大，这个和Windows平台的积累密不可分，但是我使用的时候搜狗输入法for mac的刚刚开始测试， &hellip;">
+  <meta name="description" content="&lt;p&gt;本来就想测试一下性能的，不过中途遇到点问题。&lt;/p&gt; UnixBench用了perl，但不知道为何我的VPS对perl似乎不太友好，提示有几个关键的moudle找不到，于是无法测试了，根据提示我需要安装Time::HiRes这个module。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,98 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/30/test-the-performace-of-vps-using-unixbench/">用UnixBench测试VPS性能</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-30T12:02:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;本来就想测试一下性能的，不过中途遇到点问题。&lt;/p&gt;
+</code></pre>
+
+<p>UnixBench用了perl，但不知道为何我的VPS对perl似乎不太友好，提示有几个关键的moudle找不到，于是无法测试了，根据提示我需要安装Time::HiRes这个module。</p>
+
+
+<p>听说perl5之后有了一个module管理器，叫CPAN（C盘？），就和yum这样的工具一样可以随意安装module，确实方便，可以和python的pip啊easy_install这样的工具媲美。</p>
+
+
+<p>但我在使用CPAN的时候发现连这个module都没有…………于是去CPAN.org这里搜索下载这个基础module，但在makefile的时候（用perl做makefile），发现又缺少一个module，看来这个更加底层。从网上找到方法说用yum进行安装，于是用yum -y install perl-CPAN，这样就能用了：）</p>
+
+
+<p>在安装Time::HiRes的时候发现找不到install工具………………天啊，又去了CPAN.org下载了这个module的源码，自己编译安装上了，这样就没问题了：）</p>
+
+
+<p>VPS的得分稍后更新：）</p>
+
+
+<p>UPDATE:</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">Benchmark Run: 三  5月 30 2012 11:38:34 - 12:06:53
+
+
+<p>1 CPU in system; running 1 parallel copy of tests</p>
+
+<p>Dhrystone 2 using register variables       12579232.4 lps   (10.0 s, 7 samples)
+Double-Precision Whetstone                     2268.2 MWIPS (10.3 s, 7 samples)
+Execl Throughput                               1140.1 lps   (29.6 s, 2 samples)
+File Copy 1024 bufsize 2000 maxblocks        270525.4 KBps  (30.0 s, 2 samples)
+File Copy 256 bufsize 500 maxblocks           77911.8 KBps  (30.1 s, 2 samples)
+File Copy 4096 bufsize 8000 maxblocks        709368.9 KBps  (30.0 s, 2 samples)
+Pipe Throughput                              394585.6 lps   (10.0 s, 7 samples)
+Pipe-based Context Switching                  40293.3 lps   (10.0 s, 7 samples)
+Process Creation                               1908.7 lps   (30.0 s, 2 samples)
+Shell Scripts (1 concurrent)                   1539.5 lpm   (60.0 s, 2 samples)
+Shell Scripts (8 concurrent)                    204.1 lpm   (60.1 s, 2 samples)
+System Call Overhead                         525047.2 lps   (10.0 s, 7 samples)</p>
+
+<p>System Benchmarks Index Values               BASELINE       RESULT    INDEX
+Dhrystone 2 using register variables         116700.0   12579232.4   1077.9
+Double-Precision Whetstone                       55.0       2268.2    412.4
+Execl Throughput                                 43.0       1140.1    265.1
+File Copy 1024 bufsize 2000 maxblocks          3960.0     270525.4    683.1
+File Copy 256 bufsize 500 maxblocks            1655.0      77911.8    470.8
+File Copy 4096 bufsize 8000 maxblocks          5800.0     709368.9   1223.0
+Pipe Throughput                               12440.0     394585.6    317.2
+Pipe-based Context Switching                   4000.0      40293.3    100.7
+Process Creation                                126.0       1908.7    151.5
+Shell Scripts (1 concurrent)                     42.4       1539.5    363.1
+Shell Scripts (8 concurrent)                      6.0        204.1    340.2
+System Call Overhead                          15000.0     525047.2    350.0</p>
+
+<pre><code>                                                               ========
+</code></pre>
+
+<p>System Benchmarks Index Score                                         382.2</pre></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -674,49 +766,6 @@ merge_sort(lst, 0, len(lst) - 1)&lt;/pre&gt;
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/02/mysql-issue/">网站都挂掉了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-02T18:17:00+08:00" pubdate data-updated="true">May 2<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;突然发现mysql无法用localhost连接进去，而用127.0.0.1可以。&lt;/p&gt;
-</code></pre>
-
-<p>linux下是这样的，如果用localhost连接是走的socket路线，用127.0.0.1走的是tcp路线。</p>
-
-
-<p>修改了php.ini中的mysql.default_socket，值为mysql.sock的文件路径，重启php就好了，不过phpmyadmin的问题依然没有解决，我只是把连接主机换成了127.0.0.1暂时用着。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -734,6 +783,10 @@ merge_sort(lst, 0, len(lst) - 1)&lt;/pre&gt;
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/27/give-up-ruby/">give up ruby</a>
       </li>
     
@@ -747,10 +800,6 @@ merge_sort(lst, 0, len(lst) - 1)&lt;/pre&gt;
     
       <li class="post">
         <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
       </li>
     
   </ul>

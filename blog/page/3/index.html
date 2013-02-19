@@ -9,7 +9,8 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;一开始没怎么关心这个问题，连接数据库的时候我直接这样用的：&lt;/p&gt; mysql://root:@localhost/haolesong 在插入数据的时候看到数据库中的内容是乱码，但网页中显示的时候正常，于是我就没怎么关心，不过前天在修改一个值的时候， &hellip;">
+  <meta name="description" content="生产环境是：nginx+uwsgi+flask+sqlalchemy等等等 自带的调试功能比较好用，也能很方便的查看各种变量的值，不过在生产环境中调试并不是那么容易。需要在uwsgi开启的时候传入“&#8211;catch exceptions”： 1
+uwsgi -s :9090 -M -p 4 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +78,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/17/flask-debug-in-production-environment-with-uwsgi/">生产环境下的flask调试</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-17T09:36:00+08:00" pubdate data-updated="true">Jul 17<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>生产环境是：nginx+uwsgi+flask+sqlalchemy等等等</p>
+
+<p>自带的调试功能比较好用，也能很方便的查看各种变量的值，不过在生产环境中调试并不是那么容易。需要在uwsgi开启的时候传入“&#8211;catch exceptions”：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost --catch-exceptions
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在flask的app中要设置config中的PROPAGATE_EXCEPTIONS = True才可以在遇到错误的时候直接输出到页面上。</p>
+
+<p>昨晚部署到服务器中，发现好多地方是500号错误，根本不知道在哪里出的错误，今天打开了这些才发现是jinja2模板中的do方法不识别，原来我把这个加载do操作放在了比较靠后的地方，在生产环境下不会去调用app了，所以原本写在<code>if __name__ == "__main__"</code>里面的东西就不会再调用了：）</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -587,49 +635,6 @@ set paste</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/13/migrate-to-new-vps/">迁移到了新VPS上</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-13T16:22:00+08:00" pubdate data-updated="true">Jun 13<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;前面几篇log中有提及，实在无法忍受yardvps的服务了，一开始真的不错，但现在越来越不行了，可能这就是标志着一个vps提供商由正规经营到超卖的转变。上次停机超过了24个小时，发了ticket过去问，结果是说我被ddos了，就自动把我从网络中断开了，真有意思的说法，反正已经无法考证其真实性了，我只好选择离开。&lt;/p&gt;
-</code></pre>
-
-<p>新的VPS比以前贵，大约是每月10刀（原来的512Mb的YardVPS是7.59刀），但新的vps性能很好，网络也很好很快，希望能一直用下去，贵点就贵点呗，比起神器Linode便宜了不少。</p>
-
-
-<p>这个技术blog是最后迁移过来的了，原先有几个php写得东西光是把数据库保存下来了，就不再挂出来让大家访问了吧，我猜也没几个用得，留着数据库做个纪念<img title="微笑" src="http://www.youth2009.org/usr/plugins/TinyMCE/tiny_mce/plugins/emotions/img/smiley-smile.gif" alt="微笑" border="0"></p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -647,6 +652,10 @@ set paste</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/27/give-up-ruby/">give up ruby</a>
       </li>
     
@@ -660,10 +669,6 @@ set paste</pre></p>
     
       <li class="post">
         <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
       </li>
     
   </ul>

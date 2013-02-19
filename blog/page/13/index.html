@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content=" &lt;p&gt;&lt;img src="http://pic.yupoo.com/dawncold0/BgPcwrcI/medish.jpg" alt="iphone4" width="640" height="425"&gt;&lt;/p&gt; ">
+  <meta name="description" content="&lt;p&gt;前天在GoogleReader中看到了一个广播剧——《致我们终将逝去的青春》，我曾经看过同名的小说，现在也记不清楚那是不是小说了，对于书写青春故事的文学作品，都像是我们每个看客心中的自己，大部分人都没有把它当成小说来看。&lt;/p&gt; 其中看到有一段关于“青春”的描写： &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/06/how-to-record-youth/">青春要怎么记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-06T15:11:00+08:00" pubdate data-updated="true">Aug 6<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;前天在GoogleReader中看到了一个广播剧——《致我们终将逝去的青春》，我曾经看过同名的小说，现在也记不清楚那是不是小说了，对于书写青春故事的文学作品，都像是我们每个看客心中的自己，大部分人都没有把它当成小说来看。&lt;/p&gt;
+</code></pre>
+
+<p>其中看到有一段关于“青春”的描写：</p>
+
+
+<br /><blockquote><p>青春就是用来追忆的，当你怀揣着它时，它一文不值，只有将它耗尽后，再回过头看，一切才有了意义。爱过我们的人和伤害过我们的人，都是我们青春存在的意义。即便爱情有时候喜欢愚弄我们，即便爱情有时候不那么眷顾我们，经历了青春之后，才发现痛彻心扉的伤害也可化作最珍贵的礼物，来激励我们去发现更多爱情的美好……</p></blockquote>
+
+
+<br /><p>我曾想用这个博客，从上大学的第一天开始记录这一点点流动的青春痕迹，但现在看来已不是那样纯净，其中演变成了我经常写的“技术”、“精致的生活”等等，看起来想写成另一部《让青春继续》难度非常大。之所以难度大，就是因为，青春，它的精彩在于回忆，在于笔者回忆自己的过去而流露于纸上。看客们看到后再与自己的经历加以整合，发现这篇文学作品竟然与自己的经历无比契合，这就诞生了一代人很喜欢的作品。</p>
+
+
+<p>或许没人来看你的青春，因为每人都有各自的成长历程，但于我自己，这份青春才是最宝贵的，因为它已不再。</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -713,61 +762,6 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/26/iphone-simulator-and-sqlite/">Iphone模拟器和sqlite的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-26T09:19:00+08:00" pubdate data-updated="true">Jul 26<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。&lt;/p&gt;
-</code></pre>
-
-<p>今天update进去信息，总是没发现数据库更新，怀疑是忘记commit，查看一下FMDB的使用方法，确实有commit一说，而我在看国内某博客写的使用教程时发现他就是随意的update和insert，殊不知这些都需要commit呀！在update和insert代码前后需要加入</p>
-
-
-<br /><pre class="prettyprint linenums bush:cpp" lang="cpp">[db beginTransaction];
-
-
-<p>和
-[db commit];</pre></p>
-
-<br /><p> 我用的Objective-C。</p>
-
-
-<p>然而即便是这样，更新了数据库后再查询，确实数据被更改了，但我重新在模拟器中运行程序时候又恢复成了以前的值。偶然在模拟器中打开了程序而不是用xcode运行程序，数据竟然被永久更新了。</p>
-
-
-<p>所以，以后测试update的时候，前后对比应该只在模拟器中看，如果再用xcode启动，会把原来的数据传入模拟器，这样你就看不到效果了。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/14/">&larr; Older</a>
@@ -785,6 +779,10 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/27/give-up-ruby/">give up ruby</a>
       </li>
     
@@ -798,10 +796,6 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
     
       <li class="post">
         <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/01/some-ruby-study-log/">Ruby学习记录</a>
       </li>
     
   </ul>
