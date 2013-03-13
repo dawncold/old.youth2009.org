@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: inorder pair | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/inorder-pair/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[找逆序对（Python）]]></title>
+    <link href="http://www.youth2009.org/blog/2012/02/03/get-inorder-pair-in-python/"/>
+    <updated>2012-02-03T11:56:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/02/03/get-inorder-pair-in-python</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;其实和昨天的归并排序基本内容一样，就多加了几行输出来帮助理解，找逆序对就是多了一个统计变量而已。&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+
+
+<h1>coding: utf-8</h1>
+
+<p>def merge(arraylist, first, middle, last):</p>
+
+<pre><code>temp = []
+i = first
+j = middle + 1
+while i &amp;lt;= middle and j &amp;lt;= last:
+    if arraylist[i] &amp;lt;= arraylist[j]:
+        temp.append(arraylist[i])
+        i += 1
+    else:
+        global inv
+        inv += middle - i + 1
+        temp.append(arraylist[j])
+        j += 1
+while i &amp;lt;= middle:
+    temp.append(arraylist[i])
+    i += 1
+while j &amp;lt;= last:
+    temp.append(arraylist[j])
+    j += 1
+print temp
+for i in range(0, last - first + 1):
+    arraylist[first + i] = temp[i]
+</code></pre>
+
+<p>def merge_sort(arraylist, first, last):</p>
+
+<pre><code>if first &amp;lt; last:
+    middle = (first + last) / 2
+    print "first = %d, middle = %d, last = %d" % (first, middle, last)
+    merge_sort(arraylist, first, middle)  
+    merge_sort(arraylist, middle + 1, last)
+    merge(arraylist, first, middle, last)
+</code></pre>
+
+<p>if <strong>name</strong> == "<strong>main</strong>":</p>
+
+<pre><code>inv = 0
+arr = [2,3,8,6,1]
+print "orign: ", arr
+merge_sort(arr, 0, len(arr) - 1)
+print "final: ", arr
+print "inv = %d" % inv
+</code></pre>
+
+<p></pre></p>
+]]></content>
+  </entry>
+  
+</feed>

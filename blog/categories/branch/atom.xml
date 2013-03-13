@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: branch | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/branch/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Git使用重新学习（分支rebase）]]></title>
+    <link href="http://www.youth2009.org/blog/2012/01/26/git-study-branch-rebase/"/>
+    <updated>2012-01-26T20:41:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/01/26/git-study-branch-rebase</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;rebase被人翻译成衍合，是和merge功能差不多的一种操作，但提醒一点，进行rebase的内容一定不可以是提交到公共服务器上的内容，简单讲就是rebase操作你在本地自己玩就好了。&lt;/p&gt;
+</code></pre>
+
+<p>详细点的说明去这里看吧：<a href="http://progit.org/book/zh/ch3-6.html">http://progit.org/book/zh/ch3-6.html</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git使用重新学习（分支管理）]]></title>
+    <link href="http://www.youth2009.org/blog/2012/01/26/git-study-branch-manage/"/>
+    <updated>2012-01-26T20:10:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/01/26/git-study-branch-manage</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;分支的使用比较繁杂，前面光说了一些皮毛，现在记录一下分支的管理部分。&lt;/p&gt;
+</code></pre>
+
+<p>查看分支的详细信息：git branch -v，列出分支最后提交的内容，带星号表示当前分支。</p>
+
+
+<p>查看哪些分支已经被并入当前分支：git branch --merged，也就是说除了那个带星号的分支都是可以删除（-d）的，因为都合并进来了嘛！查看没合并进来的就是--no-merged开关。删除那些没有合并进来的分支会提示错误，但强制删除就可以了，强制删除用-D开关。</p>
+
+
+<p><strong>不得不说的远程分支</strong></p>
+
+
+<p>在github创建了一个项目，在项目管理中开启了github Pages服务，这是个给项目做介绍页面的服务，开启后出现了一个远程分支gh-pages，但本地根本访问不到。首先我们应该明确，这个分支暂时不在我们本地，除非你是在这个服务开启后clone了项目，这样肯定有，否则和我一样的话（从本地push过去的），需要先fetch过来这些远程分支：git fetch origin gh-pages:gh-pages。后面两个由冒号分隔的意思是获取origin中的gh-pages分支，放到本地，在本地也叫gh-pages（冒号右侧），当然你可以根据需要更改冒号右侧的本地分支名字。现在查看一下本地分支就能发现出现两个分支了，切换过去后就能看到github给我们生成的index.html文件，你可以编辑了：）</p>
+
+
+<p>推送本地分支到远程分支的时候可以像上面这样写:git push origin xxx1:xxx2，意思就是推送本地叫xxx1的分支到origin中，推过去叫xxx2，但此处一般简写，光写本地分支名，这样远程分支中的名字也是和本地一样的。</p>
+
+
+<p>删除远程分支的命令挺好玩的：git push origin  :xxx，在xxx左边冒号左侧有一个空格，意思是把本地的空分支推到远程的xxx分支上，就是删除xxx分支的意思。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git使用重新学习（分支）]]></title>
+    <link href="http://www.youth2009.org/blog/2012/01/26/git-study-branch/"/>
+    <updated>2012-01-26T19:36:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/01/26/git-study-branch</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;在git中分支是一个变态技能！&lt;/p&gt;
+</code></pre>
+
+<p>创建分支：git branch [branch-name]即可。</p>
+
+
+<p><a title="18333fig0305-tn.png" href="http://www.youth2009.org/attachment/135279/"><img src="http://www.youth2009.org/usr/uploads/2012/01/528893353.png" alt="18333fig0305-tn.png"></a></p>
+
+
+<p>git中有个叫master的分支，这是默认的，刚刚创建了一个testing分支，所以这两个指向是一样的，因为刚刚就在master分支下。但是git为何知道我在master呢？因为还有个叫HEAD的默认指针指向了当前正在使用的分支，所以当你切换分支的时候HEAD就会指向新的地方。</p>
+
+
+<p>切换分支：git checkout [branch-name]（git checkout -b [branch-name]可以实现新建并切换到此分支）切换分支时最好保持暂存区清洁，否则有可能产生冲突阻止你切换。</p>
+
+
+<p>当我们切换到了testing分支后，再做一些提交，我们的testing分支会继续往下走，但master分支还停留在刚才离开的地方，如果我们需要回去，只需要再切换回master分支即可屏蔽刚才所作的提交，保持文件的原始性。</p>
+
+
+<p>合并分支：git merge [branch-name]，把分支合并到你现在所在的那个分支中，可别合并反喽，当然我感觉反了也没关系，就是个名字的问题吧？</p>
+
+
+<p>分支删除用-d开关，git branch -d [branch-name]即可。</p>
+
+
+<p>合并分支的时候遇到冲突是不可避免的，有些冲突能够自动解决，但还有不少是需要我们手动解决的，此时git会在status中告诉我们，我们打开后就能看到由“=====”分割开的两部分，就是让我们选择，等手动修改好后需要再add进暂存区，此时就能提交了。 </p>
+
+]]></content>
+  </entry>
+  
+</feed>

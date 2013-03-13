@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Firefox | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/firefox/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[可恶的Firefox不支持outerHTML]]></title>
+    <link href="http://www.youth2009.org/blog/2011/06/09/bad-firefox-it-doesnt-support-outerhtml/"/>
+    <updated>2011-06-09T05:57:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/06/09/bad-firefox-it-doesnt-support-outerhtml</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;我本以为outerHTML是W3C的标准，结果搜索了一下才知道这是IE的方法，不过Chrome和Safari都支持了，FF竟然不支持，于是找到了扩展Firefox的outerHTML的方法：&lt;a href="http://www.cnblogs.com/doll-net/archive/2007/06/17/786835.html"&gt;点击这里&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

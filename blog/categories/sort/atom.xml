@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: sort | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/sort/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[python中的sort方法]]></title>
+    <link href="http://www.youth2009.org/blog/2012/10/04/sort-method-in-python/"/>
+    <updated>2012-10-04T14:58:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/10/04/sort-method-in-python</id>
+    <content type="html"><![CDATA[<p>打算从今天开始自习再学学Python的基础，选了Google提供的Python课程，学到list部分，有个练习题目要求针对一组tuples排序，根据tuples的最后一个元素排序，有个hint，可以用key=function这种方法，于是搜索了一番，在Python的wiki中找到这个key方法的描述：</p>
+
+<p>从Python2.4以后list.sort()和sorted()方法都提供了一个key可选参数，传入一个function用来决定排序需要的key。这个key就是所排序元素的权值，最终就是根据权值来排序了。你也可以自己写一个方法，就是那种用def来定义的方法，不过要求接受一个参数，返回一个值，接受的参数就是这个集合（list、dict、tuple）中的某个元素。我是这样写的，it works：</p>
+
+<p><code>python
+def sort_last(tuples):
+  # +++your code here+++
+  tuples.sort(key = lambda t: t[-1])
+  return tuples
+</code></p>
+
+<p>根据tuple中最后一个排序。</p>
+]]></content>
+  </entry>
+  
+</feed>

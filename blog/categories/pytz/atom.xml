@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: pytz | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/pytz/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[pytz的6分钟时差]]></title>
+    <link href="http://www.youth2009.org/blog/2012/10/20/6-minutes-offset-in-pytz/"/>
+    <updated>2012-10-20T16:13:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/10/20/6-minutes-offset-in-pytz</id>
+    <content type="html"><![CDATA[<p>项目中有使用pytz这个第三方库来处理datetiem相关的东西。不过最近测试的时候发现，创建了一个时间点后，最终得到的时间点和预想的时间点有6分钟的误差，从网上搜到的资料是这样解决的：详情看http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1</p>
+
+<p>创建datetime的时候，特别是带timezone，需要localize一下，否则在使用pytz的时候就会出现这6分钟的差异。代码中首先创建了datetime，然后localize后再replace了timezone为pytz的，最终还astimezone为pytz.utc。我们是使用utc的，你的代码也许不需要：）</p>
+]]></content>
+  </entry>
+  
+</feed>

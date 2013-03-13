@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: textmate | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/textmate/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[买了textmate]]></title>
+    <link href="http://www.youth2009.org/blog/2012/02/23/have-bought-textmate/"/>
+    <updated>2012-02-23T19:29:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/02/23/have-bought-textmate</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;截至目前，这是我买得最贵的一款软件了——39欧元（327RMB）&lt;/p&gt;
+</code></pre>
+
+<p>一直在豆瓣Textmate小组中等人家团购，自己也从没在官网试过购买，一看是用的paypal做中转，感觉不靠谱，以前也没试过paypal的支付，没想到这次成功了，先用了张信用卡支付，发现不行，结果换普通银行卡，直接跳转到了银联，然后我又用的信用卡透支……</p>
+
+
+<p>稍微配置了一下textmate，按照<a href="http://www.lixiaolai.com/archives/10895.html">这里</a>的方法，其中1.5版本的中文字体那里，建议不要尝试了，不完美，还是等2.0正式发布了吧，听说2.0对于中文字体支持得很好，但我懒得下载测试版来用：）</p>
+
+
+<p>加入GetBundles：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">mkdir -p ~/Library/Application\ Support/TextMate/Bundles
+
+
+<p>cd !$
+svn co http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/
+osascript -e 'tell app "TextMate" to reload bundles'</pre></p>
+
+<br /><p>第一次见cd还能这样用，这样简直太方便了！还有最后那句script，多么优美的句子：）</p>
+
+
+<p>以后就要多用textmate了，先放弃emacs。</p>
+
+]]></content>
+  </entry>
+  
+</feed>

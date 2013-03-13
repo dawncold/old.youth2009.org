@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: sqlite | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/sqlite/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[sqlite3连接查询和多次select的对比]]></title>
+    <link href="http://www.youth2009.org/blog/2012/05/14/left-outer-join-and-multiply-select-in-sqlite3/"/>
+    <updated>2012-05-14T23:23:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/05/14/left-outer-join-and-multiply-select-in-sqlite3</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。&lt;/p&gt;
+</code></pre>
+
+<p>左外连接查询比两次select快10～20%左右。</p>
+
+
+<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+
+
+<h1>coding: utf-8</h1>
+
+<p>import sqlite3
+import os
+import time
+import random</p>
+
+<p>def connect():</p>
+
+<pre><code>return sqlite3.connect('./test.db')
+</code></pre>
+
+<p>def insertProgress(conn, user_id):</p>
+
+<pre><code>cur = conn.execute('INSERT INTO todo(title, date) VALUES(?,?)', ['just test!!!', time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())])
+conn.execute('INSERT INTO todo_meta(todo_id, user_id) VALUES(?,?)', [cur.lastrowid, user_id])
+</code></pre>
+
+<p>def insertManyData(conn):</p>
+
+<pre><code>#reset database
+os.system('sqlite3 test.db &amp;lt; schema.sql')
+
+conn.cursor()
+counts = [0,0,0,0,0,0]
+for i in xrange(100000):
+    userid = random.choice([0, 1, 2, 3, 4, 5])
+    counts[userid] += 1
+    insertProgress(conn, userid)
+conn.commit()
+conn.close()
+print counts
+</code></pre>
+
+<p>def selectUsingLeftOuterJoin(conn, user_id):</p>
+
+<pre><code>conn.cursor()
+cur = conn.execute('SELECT t.title, t.date \
+        FROM todo t LEFT OUTER JOIN todo_meta tm \
+        ON tm.todo_id = t.id\WHERE tm.user_id = ?', [user_id])
+</code></pre>
+
+<p>def selectTwoTimes(conn, user_id):</p>
+
+<pre><code>conn.cursor()
+cur = conn.execute('SELECT todo_id FROM todo_meta WHERE user_id = ?', [user_id])
+for tid in [row[0] for row in cur.fetchall()]:
+    cur = conn.execute('SELECT title, date FROM todo WHERE id = ?', [tid])
+</code></pre>
+
+<p>if <strong>name</strong> == "<strong>main</strong>":</p>
+
+<pre><code>uids = [0, 1, 2, 3, 4, 5]
+insert_time_start = time.time()
+insertManyData(connect())
+print "Insert Time: %f" % (time.time() - insert_time_start)
+select_ULOJ_start = time.time()
+for uid in uids:
+    selectUsingLeftOuterJoin(connect(), uid)
+print "Select Using Left Outer Join time: %f" % (time.time() - select_ULOJ_start)
+select_two_times = time.time()
+for uid in uids:
+        selectTwoTimes(connect(), uid)
+print "Select Two Times time: %f" % (time.time() - select_two_times)&lt;/pre&gt;
+</code></pre>
+
+<br /><p>schema：</p>
+
+
+<br /><pre class="prettyprint linenums bush:sql" lang="sql">drop table if exists todo;
+
+
+<p>drop table if exists user;
+drop table if exists todo_meta;
+create table todo (</p>
+
+<pre><code>id integer primary key autoincrement,
+title string not null,
+date datetime not null
+</code></pre>
+
+<p>);
+create table user (</p>
+
+<pre><code>id integer primary key autoincrement,
+email string not null,
+password string not null,
+nickname string not null,
+salt string not null
+</code></pre>
+
+<p>);
+create table todo_meta (</p>
+
+<pre><code>todo_id integer,
+user_id integer,
+foreign key(todo_id) references todo(id),
+foreign key(user_id) references user(id)
+</code></pre>
+
+<p>);</pre></p>
+
+<br /><p>启动脚本就会创建数据库并开始测试。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[sqlite3的rowcount]]></title>
+    <link href="http://www.youth2009.org/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3/"/>
+    <updated>2012-05-14T17:00:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;最近写了一个todo的webapp，在用户登陆的时候是select数据库中的内容进行对比判断，当然如果select的内容是0那就表示用户登陆失败了，可能账号或者密码写错了，数据库用的sqlite3，在python的api中发现有cursor.rowcount可用，于是就这么判断一下是不是有数据被select出来了，没想到这样判断是错误的。&lt;/p&gt;
+</code></pre>
+
+<p>select的rowcount永远为-1，哎，这里着实坑了我一番啊～</p>
+
+
+<p>只好cursor.fetchone()先，然后判断得到的内容是不是None。</p>
+
+
+<p>从<a href="http://stackoverflow.com/questions/839069/cursor-rowcount-always-1-in-sqlite3-in-python3k" target="_blank">这里</a>得到的答案。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iphone模拟器和sqlite的问题]]></title>
+    <link href="http://www.youth2009.org/blog/2011/07/26/iphone-simulator-and-sqlite/"/>
+    <updated>2011-07-26T09:19:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/07/26/iphone-simulator-and-sqlite</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。&lt;/p&gt;
+</code></pre>
+
+<p>今天update进去信息，总是没发现数据库更新，怀疑是忘记commit，查看一下FMDB的使用方法，确实有commit一说，而我在看国内某博客写的使用教程时发现他就是随意的update和insert，殊不知这些都需要commit呀！在update和insert代码前后需要加入</p>
+
+
+<br /><pre class="prettyprint linenums bush:cpp" lang="cpp">[db beginTransaction];
+
+
+<p>和
+[db commit];</pre></p>
+
+<br /><p> 我用的Objective-C。</p>
+
+
+<p>然而即便是这样，更新了数据库后再查询，确实数据被更改了，但我重新在模拟器中运行程序时候又恢复成了以前的值。偶然在模拟器中打开了程序而不是用xcode运行程序，数据竟然被永久更新了。</p>
+
+
+<p>所以，以后测试update的时候，前后对比应该只在模拟器中看，如果再用xcode启动，会把原来的数据传入模拟器，这样你就看不到效果了。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[用python处理词汇]]></title>
+    <link href="http://www.youth2009.org/blog/2011/07/19/process-cis-and-zis-with-python/"/>
+    <updated>2011-07-19T14:06:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/07/19/process-cis-and-zis-with-python</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;要整理一些词汇，并且还要给每个词汇编码，我把所有的词汇分割称了独立的汉字，再把这些汉字压缩，去掉重复的汉字，最后把这些汉字导入数据库，得到了每个汉字的id，把这些id组合起来作为词的编码，这样还算是好用吧。&lt;/p&gt;
+</code></pre>
+
+<p>用python写了7个脚本来做这些工作，最后得到了近7万条记录，包括单独的字和一些词。因为要用来做iphone应用，所以数据库用的是sqlite，大约4MB的数据，看来这些数据已经很够用了吧。</p>
+
+
+<p>代码实在不太美观，所幸就不粘贴了吧。</p>
+
+
+<p>哦，对了，在收集资料过程中，找到了一个用mdb包装的成语数据库，可惜mac下没有很好的浏览工具，就找找看有没有转换工具，在GoogleCode上找到了一个mdb转sqlite的工具，用java写的，下载下来后用了一下，出了一个warning，不过没有影响使用。很不错，感谢一下：<a href="http://code.google.com/p/mdb-sqlite/">http://code.google.com/p/mdb-sqlite/</a></p>
+
+]]></content>
+  </entry>
+  
+</feed>

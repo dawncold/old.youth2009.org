@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 配色 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/pei-se/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[新的eclipse配色]]></title>
+    <link href="http://www.youth2009.org/blog/2011/02/14/eclipse-color/"/>
+    <updated>2011-02-14T15:31:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/02/14/eclipse-color</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;本打算将php、java、android开发集成到eclipse中，因为这本来就是可以的嘛，但不知道该如何安装插件，索性就把php和java开发分开了，下载了两套eclipse，这是我找的一个eclipse配色，for java的：&lt;/p&gt;
+</code></pre>
+
+<p><img alt="" src="http://pic.yupoo.com/loose_v/AQCjlpBz/medium.jpg"></p>
+
+
+<p>在此要感谢这位<a href="http://utensil.javaeye.com/blog/444590">作者</a>，他的博客中有更多的图可以看！</p>
+
+]]></content>
+  </entry>
+  
+</feed>

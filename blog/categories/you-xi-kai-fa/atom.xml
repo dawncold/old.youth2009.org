@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 游戏开发 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/you-xi-kai-fa/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[讨论开发方向]]></title>
+    <link href="http://www.youth2009.org/blog/2010/07/14/talk-about-direction-of-development/"/>
+    <updated>2010-07-14T17:08:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2010/07/14/talk-about-direction-of-development</id>
+    <content type="html"><![CDATA[<p>项目组今日开始了第一次讨论——希望能够定下来开发目标。经过不大激烈的讨论，无果。但我们得到了两个方向，确切地讲是两个题目：Fishing OR FinalBattle。一个是我提出来的Fishing，另一个是Ls打算移植1ST的游戏。这两个都是游戏，所以最终很可能会去做游戏应用。</p>
+
+<p>当然了，作为我自己提出来的Fishing应用当然我会坚持自己的想法，不过最终能否定下来我就说了不算了。假使真做FinalBattle的话，我也会尽我所能。只是感觉一个棋牌类游戏（FinalBattle）上手太难，而Fishing很容易上手，你只需要知道如何fishing即可，我想能够使用iphone的人怎么的也应该接触过fishing吧，即使没有亲自尝试过现实版的，也见过或者很容易想象出来。</p>
+
+<p>这种简单的知识迁移就可以抓住不少用户。但棋牌类的应用最大的弊端就是需要一个规则，国人或许容易阅读，那么国外呢？那么非英语国家的人呢？（如日本）我想还是不要让用户的时间浪费在理解规则上！</p>
+
+<p>明天的会议应该就能够定出开发项目了。这里还真热呀！</p>
+]]></content>
+  </entry>
+  
+</feed>

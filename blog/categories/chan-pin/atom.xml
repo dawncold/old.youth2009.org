@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 产品 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/chan-pin/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[马上就要软考了]]></title>
+    <link href="http://www.youth2009.org/blog/2011/10/28/software-exam-is-comming-soon/"/>
+    <updated>2011-10-28T22:31:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/10/28/software-exam-is-comming-soon</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;我充满了信心，但自己感觉准备周期有些长，每天都用准备软考的理由在上课的时候看软考的资料，导致很多门课现在还是比较陌生的，不过大学中这样并不是大问题，即便是都不怎么学，到了年底要是肯努力几天的话，成绩还是会很给面子的。但我并不喜欢这样突击，我更喜欢轻松自在一点。&lt;/p&gt;
+</code></pre>
+
+<p>软考结束后本以为能够把丢下的知识拾起来，但国庆和光瑞都找我做些东西，我也想继续搞一些开发，一是能增加些经验，二是能够做一些真正的商业产品，产品和参赛作品毕竟有不少差别，参赛作品做了几个了，就那样放着，产品的话，目前还没有能拿得出手的：（</p>
+
+]]></content>
+  </entry>
+  
+</feed>

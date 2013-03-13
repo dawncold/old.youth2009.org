@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: raid1 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/raid1/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[LVM+RAID实践]]></title>
+    <link href="http://www.youth2009.org/blog/2012/10/08/lvm-and-raid1/"/>
+    <updated>2012-10-08T14:09:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/10/08/lvm-and-raid1</id>
+    <content type="html"><![CDATA[<p>两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。</p>
+
+<p>0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响：</p>
+
+<p><code>bash
+fdisk /dev/sda
+fdisk /dev/sdb
+</code></p>
+
+<p>1.创建PV</p>
+
+<p><code>bash
+sudo pvcreate /dev/sd{a1,b1}
+</code></p>
+
+<p>2.创建VG</p>
+
+<p><code>bash
+sudo vgcreate -s 16M vg0 /dev/sd{a1,b1}
+</code></p>
+
+<p>3.创建LV
+<code>bash
+sudo lvcreate -n lv0 vg0 -m 1 -lxxxx --corelog
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

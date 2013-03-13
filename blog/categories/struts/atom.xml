@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: struts | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/struts/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[struts2的eclipse提示]]></title>
+    <link href="http://www.youth2009.org/blog/2011/12/01/struts-xml-assistant/"/>
+    <updated>2011-12-01T14:32:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/12/01/struts-xml-assistant</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;写struts2的配置文件时如果有提示那最好了，添加方法比较简单，从框架的jar包中找到sruts-2.1.7.dtd文件，在preference搜索xml找到xml catalog，然后add一个，文件就是刚刚找到的dtd文件，Key type选URI，我用过publicID但没有提示效果，相应的，key中写：http://struts.apache.org/dtds/struts-2.0.dtd即可。&lt;/p&gt;
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

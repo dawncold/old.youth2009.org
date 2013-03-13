@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: lion | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/lion/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Lion吃了我的文件]]></title>
+    <link href="http://www.youth2009.org/blog/2011/07/22/lion-eat-my-file-on-desktop/"/>
+    <updated>2011-07-22T07:28:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/07/22/lion-eat-my-file-on-desktop</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;很奇怪的现象：我在桌面上放了一个文件，是用Bean生成的文本文件，接着从这个Desktop往下一个Desktop切换，但不完全切换，只需要看下一个Desktop内容的一点，然后再回到当前这个Desktop，就会发现桌面上的那个文件没了，但点击文件的位置仍然能够打开！！这应该是一个相当大的bug吧？难道还能是一个专门给用户着想的地方？！&lt;/p&gt;
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Lion吃了我的Java]]></title>
+    <link href="http://www.youth2009.org/blog/2011/07/22/lion-eat-my-java/"/>
+    <updated>2011-07-22T07:12:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/07/22/lion-eat-my-java</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;刚刚看到cnbeta上一篇关于flash在lion中cpu占用率很高的问题，我感觉这都不算什么问题了，以前就发现占用率相当高，看flash视频的时候电脑会非常热。&lt;/p&gt;
+</code></pre>
+
+<p>但这次说的不是这个问题，而是adobe提到的lion没有预置java，这点有些奇怪，难道lion安装上就把java删除了？我开了Terminal，输入:</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">java -version</pre>
+
+
+<br /><p>你猜显示什么？</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">No Java runtime present, requesting install.</pre>
+
+
+<br /><p>接着安装更新的那种小窗口就跳出来了，问我是否安装java，那就装上吧，我有时可能用eclipse。</p>
+
+
+<p>装好后就能用了，不知道还有什么东西被偷偷“吃掉”了。</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">java version "1.6.0_26"
+
+
+<p>Java(TM) SE Runtime Environment (build 1.6.0_26-b03-383-11A511)
+Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Lion吃了我的Xcode]]></title>
+    <link href="http://www.youth2009.org/blog/2011/07/22/lion-eat-my-xcode-4-0/"/>
+    <updated>2011-07-22T06:48:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/07/22/lion-eat-my-xcode-4-0</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;昨天Lion在AppStore发布了，我也就是看了几眼。后来在论坛上有人说通过香港的免费升级服务有一小部分大陆的机器也得到了免费升级的机会，我也算是个港行的mbp，去试试看，结果我的机器似乎不在那个享受范围内。&lt;/p&gt;
+</code></pre>
+
+<p>不过在微博上有人转发了一个Lion的种子，我就下载去了，一会儿竟然下载完了。然后晚上就装上了，apple在反盗版方面一点儿也不重视，下载是收费的，但你只要是得到了文件就随便使用。我这次也邪恶了一把。</p>
+
+
+<p>安装Lion好久了，先进行一个标明20min的预安装过程，再重启进行真正安装，那个过程标明33min但实际并不是这样，大约有3700s吧安装过程中鼠标移到最顶上，那个菜单条就出现了，可以看安装的log，比干等强一些。</p>
+
+
+<p>安装完Lion后我打开xcode，发现我的xcode4.0只能在10.6系统中运行，App Store中我还看到一个Xcode4.1而且是免费的，哎，这就很奇怪了，当初4.0是收费4.99美元下载的，现在又出来一个10.7系统下的免费4.1版本。既然免费就下载吧，但发现太慢。于是去了develop.apple.com上找develop tools在那里有xcode4.1的下载链接，本想用迅雷试试速度呢，不过igetter依然跳出来了，我也就没再换，速度还不错大约1MB/s左右，下载自动关机，就睡觉去了。</p>
+
+
+<p>早上安装了那个xcode4.1，安装完毕后发现再打开xcode还是提示只能在10.6系统下使用。难道安装没用？！又去develop目录下找找application，只有一个xcode的app图标，很奇怪不知道为何。</p>
+
+
+<p>打开看了一眼我的Application目录，发现里面有一个InstallXcode，打开试试，没想到这才是升级，打开后升级了现有的Xcode，终于能用了。我想可能刚刚安装的时候发现我已经安装了以前的版本，所以就出来一个升级过程吧。</p>
+
+]]></content>
+  </entry>
+  
+</feed>

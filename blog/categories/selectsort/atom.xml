@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: selectsort | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/selectsort/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[选择排序（Python）]]></title>
+    <link href="http://www.youth2009.org/blog/2012/01/26/select-sort-in-python/"/>
+    <updated>2012-01-26T12:27:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/01/26/select-sort-in-python</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python
+</code></pre>
+
+<h1>coding: utf-8</h1>
+
+<p>def select_sort(arraylist):</p>
+
+<pre><code>for i in range(0, len(arraylist)):
+    minElement = i
+    for j in range(i, len(arraylist)):
+        if arraylist[j] &amp;lt; arraylist[minElement]:
+            minElement = j
+    temp = arraylist[i]
+    arraylist[i] = arraylist[minElement]
+    arraylist[minElement] = temp
+</code></pre>
+
+<p>if <strong>name</strong> == "<strong>main</strong>":</p>
+
+<pre><code>arr = [2, 424, 4, 13, 5, 99, 100, 231, 0, 1]
+print arr
+select_sort(arr)
+print arr
+</code></pre>
+
+<p></pre></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>9个数运算结果为110 - dawncold's tech blog</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="&lt;p&gt;昨天参加了一个小型编程比赛，有个题目是这样的，有1～9这九个数字，按照顺序排列着，你可以在他们之间加入加号、减号或者什么都不加，组成的算式经过运算后结果为110的输出出来。&lt;/p&gt; 看着好简单的题目，当时比赛时候就是一下子没做出来，现在做好了，贴出来， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/blog/2012/04/08/9-numbers-calculate-110">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">dawncold's tech blog</a></h1>
+  
+    <h2>dawncold's tech blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.youth2009.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  	<li><a href="/">Blog</a></li>
+  	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">9个数运算结果为110</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-08T14:20:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><pre><code>        &lt;p&gt;昨天参加了一个小型编程比赛，有个题目是这样的，有1～9这九个数字，按照顺序排列着，你可以在他们之间加入加号、减号或者什么都不加，组成的算式经过运算后结果为110的输出出来。&lt;/p&gt;
+</code></pre>
+
+<p>看着好简单的题目，当时比赛时候就是一下子没做出来，现在做好了，贴出来，如果有需要可以拿去用哈，代码风格不算好，因为是比赛嘛，又不是商业项目，先快速得到结果再说！</p>
+
+
+<br /><pre class="prettyprint linenums bush:java" lang="java">import java.util.ArrayList;
+
+
+<p>public class unittest
+{</p>
+
+<pre><code>public static void main(String[] argStrings)
+{
+    long start = System.currentTimeMillis();
+    ArrayList&amp;lt;String&amp;gt; allopts = new ArrayList&amp;lt;String&amp;gt;();
+    int a,b,c,d,e,f,g,h;
+    for(a = 0;a &amp;lt; 3;a++)
+        for(b = 0;b &amp;lt; 3;b++)
+            for(c = 0;c &amp;lt; 3;c++)
+                for(d = 0;d &amp;lt; 3;d++)
+                    for(e = 0;e &amp;lt; 3;e++)
+                        for(f = 0;f &amp;lt; 3;f++)
+                            for(g = 0;g &amp;lt; 3;g++)
+                                for(h = 0;h &amp;lt; 3;h++) {
+                                    allopts.add(""+a+b+c+d+e+f+g+h);
+                                }
+
+    for (String string : allopts)
+    {
+        String base = "1x2x3x4x5x6x7x8x9";
+        for (int i = 0; i &amp;lt; string.length(); i++)
+        {
+            String tmp = getOpt(Integer.parseInt(""+string.charAt(i)));
+            base = base.replaceFirst("x", tmp);
+        }
+        int x = getResult(base, string.replaceAll("2", "").replaceAll("0", "+").replaceAll("1", "-"));//2-&amp;gt;null
+        if (x == 110)
+        {
+            System.out.println(base);
+        }
+    }
+    System.out.println("All Run Time: " + (System.currentTimeMillis() - start) + "ms");
+}
+
+public static String getOpt(int opt) {
+    String retString = "";
+    switch (opt)
+    {
+        case 0:
+            retString = "+";
+            break;
+        case 1:
+            retString = "-";
+            break;
+        case 2:
+            retString = "";
+            break;
+        default:
+            break;
+    }
+
+    return retString;
+}
+
+public static int getResult(String calculatString, String optString)
+{
+    ArrayList&amp;lt;Integer&amp;gt; allNum = new ArrayList&amp;lt;Integer&amp;gt;();
+    ArrayList&amp;lt;String&amp;gt; allOpt = new ArrayList&amp;lt;String&amp;gt;();
+    for (String string : calculatString.split("[+-]"))
+    {
+        allNum.add(Integer.parseInt(string));
+    }
+    for (int i = 0; i &amp;lt; optString.length(); i++)
+    {
+        allOpt.add(optString.charAt(i) + "");
+    }
+    int result = allNum.get(0);
+    for (int i = 1; i &amp;lt; allNum.size(); i++)
+    {
+        char x = (i - 1) == allOpt.size()?'+':allOpt.get(i - 1).charAt(0);
+        int nextNum = i == allNum.size()?0:allNum.get(i);
+        result = getValue(result, nextNum, x);
+    }
+
+    return result;
+
+}
+
+public static int getValue(Integer num1, Integer num2, char opt)
+{
+    int ret = 0;
+    switch (opt)
+    {
+        case '+':
+            ret = num1 + num2;
+            break;
+        case '-':
+            ret = num1 - num2;
+            break;
+        default:
+            break;
+    }
+
+    return ret;
+}
+</code></pre>
+
+<p>}</pre></p>
+
+<br /><p>结果是这样的：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">1+2+34+5+67-8+9
+
+
+<p>1+234-56-78+9
+1-2+3+45-6+78-9
+12+3+45+67-8-9
+12+34+56+7-8+9
+12-3+4-5+6+7+89
+123+4+5+67-89
+123+4-5-6-7-8+9
+123-4+5-6-7+8-9
+123-4-5+6+7-8-9
+All Run Time: 496ms
+</pre></p>
+
+<br /><p>最后我算了算运行时间，应该这就是很慢的了，幸好只有加减和空，要不然会更麻烦的……</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-08T14:20:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/acm/'>acm</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/04/04/crack-drcom-account-in-python/" title="Previous Post: python猜研究生账号">&laquo; python猜研究生账号</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/04/16/google-code-jam-2012/" title="Next Post: Code Jam 2012">Code Jam 2012 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    Included file 'custom/asides/category_list.html' not found in _includes directory<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/27/give-up-ruby/">give up ruby</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2012/04/08/9-numbers-calculate-110/';
+        var disqus_url = 'http://www.youth2009.org/blog/2012/04/08/9-numbers-calculate-110/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

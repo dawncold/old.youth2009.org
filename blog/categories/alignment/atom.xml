@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: alignment | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/alignment/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[UITableViewCell的对齐方式]]></title>
+    <link href="http://www.youth2009.org/blog/2011/07/31/alignment-of-uitableviewcell/"/>
+    <updated>2011-07-31T10:05:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/07/31/alignment-of-uitableviewcell</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;如果你用了Subtitle的Style，那么设置textAlignment为center就没用了，当然设置textAlignment目前只能针对textLabel来设置，听说在3.0以后的版本对于cell的textAlignment的设置方法废弃了。&lt;/p&gt;
+</code></pre>
+
+<p>刚刚我把cell的style改成了default，然后再设置这些alignment，就能用了，真奇怪用subtitle的方式即使重建了cell，都不能设置alignment到center。但原因是这样的，我引用下官方reference：</p>
+
+
+<br /><blockquote>UITableViewCellStyleSubtitle<br /><p>A style for a cell with a left-aligned label across the top and a left-aligned label below it in smaller gray text. The iPod application uses cells in this style.</p>
+
+
+<p></blockquote></p>
+
+<br /><p>很明确了吧，subtitle就是left-aligned的label，再改也没用。当然还有个value1和value2的style，似乎是专门left-aligned和right-aligned的，不过在他们各自的反方向还有另外的label，最好看官方的说明和多多实践。</p>
+
+]]></content>
+  </entry>
+  
+</feed>

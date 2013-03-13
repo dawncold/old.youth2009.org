@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: django | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/django/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[看完了《learn python in hard way》]]></title>
+    <link href="http://www.youth2009.org/blog/2011/08/06/have-read-learn-python-in-hard-way/"/>
+    <updated>2011-08-06T17:30:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/08/06/have-read-learn-python-in-hard-way</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;这本书不算长，从考试期间就开始看了，一共有50多页，每一页都是一个使用python的例子，就是这样不断用例子来讲述python的基础用法，当然还不算全面，刚刚入门也勉强可以吧。最后有个old programmer's advice写得不错，大概的意思是帮助你建立一种自信。&lt;/p&gt;
+</code></pre>
+
+<p>最后几页里提到了djangobook，我学习python的主要目的之一就是用来开发web，而django是主流的web framework。新的阅读时代又要到来了！</p>
+
+]]></content>
+  </entry>
+  
+</feed>

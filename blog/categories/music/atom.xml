@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: music | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/music/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[从别人那儿看到的歌曲]]></title>
+    <link href="http://www.youth2009.org/blog/2011/08/03/a-japan-song/"/>
+    <updated>2011-08-03T22:36:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/08/03/a-japan-song</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;我现在越来越喜欢日本的歌曲了。喜欢一开始的旋律，男歌手唱的Rup不是很喜欢。&lt;/p&gt;
+</code></pre>
+
+<p><object width="320" height="240" data="http://www.tudou.com/v/1wRe4WIIamM/v.swf" type="application/x-shockwave-flash"><param name="src" value="http://www.tudou.com/v/1wRe4WIIamM/v.swf"></object></p>
+
+]]></content>
+  </entry>
+  
+</feed>

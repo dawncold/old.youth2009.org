@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: study | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/study/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-14T01:02:20+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[give up ruby]]></title>
+    <link href="http://www.youth2009.org/blog/2013/01/27/give-up-ruby/"/>
+    <updated>2013-01-27T18:39:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/01/27/give-up-ruby</id>
+    <content type="html"><![CDATA[<p>感觉中间隔了好久，最终还是把study ruby给放弃了，顺便找了个充足的理由——在没学好当下这门语言之前，不要再尝试其他的。</p>
+
+<p>虽然一个coder要保持技术的敏感性与前瞻性，但频繁换编程语言实在不是一件好事，我现在仍然对于自己涉猎太多编程语言而感到烦躁，主要就是会的太多而不精，一旦用上了还真拿不出手，那种感觉很不爽！所以，暂且不要跟着《Pragmatic Programmer》中说得那样来了。</p>
+
+<p>暂且这样吧。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[gets method in ruby]]></title>
+    <link href="http://www.youth2009.org/blog/2013/01/03/gets-method-in-ruby/"/>
+    <updated>2013-01-03T20:40:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/01/03/gets-method-in-ruby</id>
+    <content type="html"><![CDATA[<p><strong>Important</strong>: Also notice that we're using STDIN.gets instead of plain 'ol gets. That is because if there is stuff in ARGV, the default gets method tries to treat the first one as a file and read from that. To read from the user's input (i.e., stdin) in such a situation, you have to use it STDIN.gets explicitly.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby学习记录]]></title>
+    <link href="http://www.youth2009.org/blog/2013/01/01/some-ruby-study-log/"/>
+    <updated>2013-01-01T08:22:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/01/01/some-ruby-study-log</id>
+    <content type="html"><![CDATA[<p>在wanglei的鼓动下，我开始了探寻Ruby这款被他成为做产品的语言，同时，Ruby对我来说也是上天的安排——我的生日石就是Ruby～虽然如此，其实我早就开始了Ruby的探索，曾经买过《松本行弘的程序世界》、《Ruby变成语言》这两本很好的书，无奈当时怎么看也看不进去，就暂且放弃了，相反，更喜欢了Python。</p>
+
+<p>最近的工作语言一直是Python，感觉很好，不过Ruby对我来说更显得优美一点，主要是喜欢他们的文档，非常全面，但不喜欢TA的快速变更，特别是ROR，当时买的书和网上的版本很难契合，我又不那么喜欢用低版本的ROR，学起来就痛苦一点，最终还是放弃了。</p>
+
+<p>前几天看到Learn Python the Hard Way发布了3.0版，同时网站也更名为Learn Code the Hard Way，十分符合技术人士的胃口，当然用来入门还是可以的，深入的话还是得靠自己阅读更高级的书和工作实践。这个网站现在也有Ruby、C、Regex、SQL等等教程，于是在没有书的情况下，我就从这里学习Ruby了。</p>
+
+<p>现在已经学了基本的puts和gets，能写超小的CLI了，不过还得学点loop什么的才可以，而且各种object的method也得熟悉，否则很痛苦：（</p>
+]]></content>
+  </entry>
+  
+</feed>
