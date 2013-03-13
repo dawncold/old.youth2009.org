@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 汇编 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/hui-bian/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-13T22:38:45+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[CSAPP学习笔记第二辑]]></title>
+    <link href="http://www.youth2009.org/blog/2011/04/12/csapp-study-part2/"/>
+    <updated>2011-04-12T22:00:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/04/12/csapp-study-part2</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;虽然可以使用优化编译器，但对于严谨的程序员来说，能够阅读和理解汇编代码仍然是一项很重要的技能。&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">gcc -O2 -o p p1.c p2.c</pre>
+
+
+<br /><p> -O2是告诉编译器使用第二级优化。第二级优化是性能优化和使用方便之间的一种很好的妥协。 程序计数器（%eip）表示将要执行的下一条指令在存储器中的地址。 C中的聚集数据类型，例如数组和结构，在汇编代码中是用连续的字节表示的。即使是对标量数据类型，汇编代码也不区分有符号或者无符号整数，不区分各种类型的指针，甚至于不区分指针和整数。</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">gcc -O2 -S code.c</pre>
+
+
+<br /><p> 加上-S就能看到C编译器产生的汇编代码。</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">pushl %ebp</pre>
+
+
+<br /><p> 表示把寄存器ebp中的内容压入程序栈中。</p>
+
+
+<p>机器实际执行的程序只是对一系列指令进行编码的字节序列，机器动产生这些指令的源代码几乎一无所知。</p>
+
+
+<p>要查看目标代码文件的内容，反汇编器（disassembler）的价值无法估量。</p>
+
+
+<p>在unix系统中，用objdump可以启动反汇编器。</p>
+
+
+<p>IA32指令长度从1～15个字节不等。</p>
+
+
+<p>指令格式是按照这样一种方式设计的，从某个给定位置开始，可以将字节唯一地译码成机器指令。例如pushl %ebp 是以字节值55开头的。</p>
+
+
+<p>编译器有时会在代码中插入一条nop指令，是为了填充存储该过程的空间。</p>
+
+
+<p>Intel术语“字”表示16位数据类型。 在过程（Procedures）处理中，对前三个寄存器（%eax,%ecx,%edx）的保存和恢复惯例将不同于接下来的三个（%ebx,%edi,%esi）。最后两个寄存器（%ebp,%esp）保存着只想程序栈中重要位置的指针，只有根据栈管理的标准惯例才能修改这两个寄存器中的值。</p>
+
+
+<p>指令的操作数分为三类：</p>
+
+
+<p>一、立即数（$123,$-134），由一个$符号加上数字，数字可以是十六进制。</p>
+
+
+<p>二、寄存器（%eax,%ebx）。</p>
+
+
+<p>三、存储器，根据计算出来的存储器地址访问某个存储器位置。</p>
+
+
+<p>一般寻址格式：Imm(E(b),E(i),s)其中Imm是立即数偏移，E(b)表示一个基址寄存器，E(i)表示变址寄存器或者叫索引寄存器，s是伸缩因子，只能取值1、2、4、8. 计算方法：Imm+E(b)+E(i)xS</p>
+
+
+<p>IA32对于mov指令的要求是不允许两个操作数都是存储器位置。</p>
+
+
+<p>movsbl、movzbl的区别：    </p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">%dh = 8D     
+
+
+<p>%eax = 98765432   <br/>
+movb %dh,%al    //%eax = 9876548D   <br/>
+movsbl %dh,%eax    //%eax = FFFFFF8D   <br/>
+movzbl %dh,%eax    //%eax = 0000008D movzbl用0填充eax的高24位；
+movsbl用dh中的最高位填充eax的高24位。</pre></p>
+
+<br /><p>至于为何是填充eax的高24位，原因是movsbl、movzbl的源操作数是字节长度（就是这里的dh），而这条指令会执行扩展32位，就是把目的操作数的高24位进行相应的扩展操作。</p>
+
+
+<p>根据惯例，所有返回整数或指针值的函数都是通过将结果放在寄存器%eax中来打到目的的。</p>
+
+
+<p>LEA指令是将有效地址计算出来放到目的操作数中而不是取出结果放入，虽然它看起来和mov的感觉差不多：） 在for循环中初始化一个变量比如int i = 0..汇编中一般是这样做的：xorl %edx,%edx因为变量与自身做异或总是得到0的。</p>
+
+
+<p>乘除法相比较而言是比较高级的操作，一般乘法是把一个数放入%eax，再与另一个数相乘，如：imull 12(%ebp),此处假设另外一个乘数在%ebp偏移12的地方，结果分别放在%eax和%edx中，分别保存了结果的低32位和高32位，最好根据实际情况（机器大端、小端）压栈。</p>
+
+
+<p>除法类似，只是结果中的商保存在%eax中，余数放在%edx中。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CSAPP学习笔记第一辑]]></title>
+    <link href="http://www.youth2009.org/blog/2011/04/10/csapp-study-part1/"/>
+    <updated>2011-04-10T21:19:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/04/10/csapp-study-part1</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;"&gt;2011年4月10日星期日，晚上有雨。&lt;/p&gt;
+</code></pre>
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">第一章</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤：<br style="padding: 0px; margin: 0px;">源文件----&gt;经过预处理器（cpp）成为*.i文件----&gt;经过编译器（cc1）成为*.s文件----&gt;经过<a style="color: #63b4cd; text-decoration: none; padding: 0px; margin: 0px;" title="汇编" href="http://www.youth2009.org/tag/asm/">汇编</a>器（as）成为*.o文件，所有函数调用都成为*.o这样可重定向的目标程序----&gt;最后由连接器（ld）链接成成为可执行文件。cc1这名字真好听：）</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">系统设计者的主要目标就是让信息在各种设备之间“拷贝速度”尽量快。显示一行“hello，world”的过程主要是从磁盘----&gt;主存----&gt;显示设备传递。</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">文件是对I/O设备的抽象表示，虚拟内存主要是对贮存和磁盘I/O设备的抽象表示，进程则是对处理器、主存和I/O设备的抽象表示。</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">一个进程下的多个线程共享这个进程的代码和全局数据，多线程之间比多进程之间更容易共享数据，因此线程一般比进程高效。</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">虚拟地址空间由多个区（area）构成：程序代码和数据、堆、共享库、栈、内核虚拟存储器（占有1/4/）。</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">第二章</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">计算机使用二进制对所有数据进行编码。（这就是为什么学计算机的同学们能够用两只手数到1024而非计算机专业的同学们只能数到10：）</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">这里有三种最重要的数字编码：无符号（unsigned）、二进制补码（two’s-complement）、浮点数（floating-point）。</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">大多数计算机采用8位的块（或者叫字节）作为最小的可寻址存储器单位。存储器就象是一个很大的数组，每一个元素就是一个字节。</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">十六进制的转化：把每个十六进制数分别转化为二进制即可。例如：0x173A4C<br style="padding: 0px; margin: 0px;">1：0001<br style="padding: 0px; margin: 0px;">7：0111<br style="padding: 0px; margin: 0px;">3：0011<br style="padding: 0px; margin: 0px;">A：1010<br style="padding: 0px; margin: 0px;">4：0100<br style="padding: 0px; margin: 0px;">C：1100<br style="padding: 0px; margin: 0px;">开头的0x是十六进制的标示，无需翻译。<br style="padding: 0px; margin: 0px;">二进制转化到十六进制是要从右侧开始，每4位二进制数换成一个十六进制，因为取的是4位二进制数，所以不可能超过15，就能够换算成十六进制的0～F。</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">用一个数除以2或者16取出余数就能得到相应的二进制或者十六进制编码，不过要倒序书写余数！！！</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">对于一个字长为n位的机器而言，虚拟地址范围是0～（2的n次方）减1，一共是2的n次方字节。所以32位计算机的内存最大是2的32次方，即4GB。</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">C语言中的指针使用机器的全字长，即可能是32位长度，占用4个字节（32位计算机）。</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">可移植性的一个方面就是使程序对不同数据类型的确切大小不敏感。</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">不同的计算机对于字节的存放顺序不同，分为大端法（big endian）、小端法（little endian），不同的处理器可能选择不同，还有一些处理器用哪种取决于CPU加电启动时确定的字节顺序，随机的：）比如0x01234567这个数字，大端法机器会这样存放：01、23、45、67。而小端法机器会这样存放：67、45、23、01（每一组数据还是正常的读法，只是要从右边开始读不同的组：）</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">~a不是a在|运算下的逆元（相信学完离散数学就知道什么意思了：）</p>
+
+
+<p><span class="Apple-style-span" style="color: #666666; font-family: 'Lucida Grande', Verdana, Lucida, Arial, Helvetica, ����, sans-serif; font-size: 12px; line-height: 17px;">是不是很……？！</span></p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">交换两个数的值（技巧性炫耀，没有性能上提升）:</p>
+
+
+<br /><pre class="prettyprint linenums bush:cpp" lang="cpp">void swap(int *x , int *y)
+
+
+<p>{</p>
+
+<pre><code>*x = *x ^ *y;
+*y = *x ^ *y;
+*x = *x ^ *y;
+</code></pre>
+
+<p>}</pre></p>
+
+<br /><p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">移位运算要注意结核性，x&lt;&lt;j&lt;&lt;k的结核性是（x&lt;&lt;j）&lt;&lt;k，而且还要注意优先级，1&lt;&lt;5-1应该是这样计算的：1&lt;&lt;(5-1)！！！所以只要不确定就加上括号，这样肯定安全，而且可读性也是比较好的。</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">右移运算分两种：算术右移和逻辑右移。算术右移在左边补充n个最高有效位的拷贝，逻辑右移是在左边补充n个0.对于无符号数的右移必须是逻辑的（补0），而几乎所有的编译器/机器组合都对有符号数据使用算术右移（拷贝最高有效位）</p>
+
+
+<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">（此处略去xxx行，实在不想学习各种数字的定义和表示方法，承认不愿意钻研数学。不过虽然数学很难懂，但数学是死的，今天学一点明天就会少一点：）</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[含恨放弃了这本书]]></title>
+    <link href="http://www.youth2009.org/blog/2011/02/22/give-up-csapp/"/>
+    <updated>2011-02-22T13:53:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/02/22/give-up-csapp</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;《深入理解计算机系统》这本书是我从《程序员》上看来的，记得有位高超的架构师吧，推荐了这本书，我就买了下来，现在放弃阅读这本书。看起来我还是能够放弃一些东西的，我并不是一个如同我描述得那样──“一个学不会放弃的人。”&lt;/p&gt;
+</code></pre>
+
+<p>我之所以放弃这本书是因为这本书前半部分讲得都是硬件相关的知识，就象是去年学习的《计算机组成原理》一样，还好比《数字逻辑电路》强了不少，因为这些知识都和计算机相关，数字逻辑简直就是在讲单纯的硬件。不过两者却都不是我所希望阅读的！以为这本书的后半部分能够提供一些编程优化相关的知识，因为看这本书的介绍是帮助程序员理解程序如何运行并且还讲解了一些实用的编程技巧，谁知根本不是这样。</p>
+
+
+<p>在大二的上学期我们也发了一本讲解汇编的教材，只是我们班的课程与其他计算机科班不太一样，就没有讲这门课，曾经的我想一度利用空闲时间来学习汇编，并且在大一的时候我从图书馆借来了一般汇编书，自学了一小部分，但现在看来，那一切都显得过于理想化了！刚才从床底下拿出来了汇编的书，看了两眼就放回去了。我之道如果我学会了汇编一定能看完这本《深入理解计算机系统》的，可惜我没学会：（</p>
+
+
+<p>还有不少书在手边，学会了任何一本都足以让我受益好几年，但我从未感受到这些益处，肯定是因为我没有学好，即便是这样，我竟然也能在班里排名比较靠前。似乎一切都反过来了！！！</p>
+
+]]></content>
+  </entry>
+  
+</feed>

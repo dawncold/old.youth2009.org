@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 在大学中的青春记录，说是青虫，实则是青春的可爱说法 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/zai-da-xue-zhong-de-qing-chun-ji-lu-,shuo-shi-qing-chong-,shi-ze-shi-qing-chun-de-ke-ai-shuo-fa/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-13T22:38:45+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[软考结束了]]></title>
+    <link href="http://www.youth2009.org/blog/2011/11/13/software-exam-is-finished/"/>
+    <updated>2011-11-13T07:58:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/11/13/software-exam-is-finished</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;经过昨天一天的努力，软考终于结束了，不知为何昨晚没有写这些，可能是因为晚上给同学过生日玩得很好，也很累，回来没有静下来写这些。&lt;/p&gt;
+</code></pre>
+
+<p>一共复习了2个月，算是挺长的了，很多同学都复习几天就去参加了，不知道他做得怎么样。我感觉这次考试是我做得最难的一套题了，当然有不少成分是紧张，本来不算太难的题目只要有了紧张就会变得不知从哪里下手。开始做的时候有种在蒙答案的感觉，由于后来做完不能提前上交，我只能又做了一遍，修改了几个题目的答案（虽然知道越改越错的原则），再次做的时候感觉没有那么多题目拿不准，就是只有几个。</p>
+
+
+<p>下午的考试和上午一样，本来不担心下午考试的，不过一发下试卷来我看看题目，有些害怕——最担心的题目出现了，01背包，我忽略了那个题目直接做了后面的，不过后面那个题目我也有些摸不着头脑——没做过State模式的程序题，但后来又做了一遍后，最后那个题目的意思大致清楚了，按照我的想法写上了答案。回到前面看那个01背包，似乎没有我想得那么难，比较快得做出了答案，还是有些担心的，因为这么重要的一个题怎么会如此简短的答案呢，再仔细看过，没什么大问题，就先这样写上吧。</p>
+
+
+<p>总的来说时间是很充足的，如果第一遍不大会，那再做一遍或许就会有思路了，希望大家都能考过，明年就能参加高级的试试了！</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[一直在努力]]></title>
+    <link href="http://www.youth2009.org/blog/2011/09/14/i-am-always-working/"/>
+    <updated>2011-09-14T21:06:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/09/14/i-am-always-working</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;最近搞定了数学建模，接下来就是要准备软件设计师的考试，也许不会再有相关技术博客出现了，请大家不要走远呀！我还会回来！&lt;/p&gt;
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[把技术和青春分开]]></title>
+    <link href="http://www.youth2009.org/blog/2011/08/12/separate-youth-and-tech/"/>
+    <updated>2011-08-12T22:34:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/08/12/separate-youth-and-tech</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;其实原本打算写上四年的青春，但青春的表现形式多种多样，谁说青春中就不能掺杂技术、娱乐、愤懑呢？谁的青春里全都是感情、刺激？其实活过大半的人反映，青春大都被平淡填充，我们看到的那些紧张、刺激，也许都是浓缩的青春。那么我呢，我喜欢记录一个完整的青春过程，所以我记录平淡、技术、无奈、感情、刺激等等。&lt;/p&gt;
+</code></pre>
+
+<p>不过现在看起来如果把这些方面写到一起，很是冗杂，于是我把它们分开：</p>
+
+
+<p>http://www.youth2009.org暂时保留了技术方面的记录；</p>
+
+
+<p>http://y.youth2009.org则完全是另一面。</p>
+
+
+<p>迁移工作将在未来几天内完工。（本来打算迁移技术内容，发觉太多，还是反迁移吧）</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[青春要怎么记]]></title>
+    <link href="http://www.youth2009.org/blog/2011/08/06/how-to-record-youth/"/>
+    <updated>2011-08-06T15:11:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/08/06/how-to-record-youth</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;前天在GoogleReader中看到了一个广播剧——《致我们终将逝去的青春》，我曾经看过同名的小说，现在也记不清楚那是不是小说了，对于书写青春故事的文学作品，都像是我们每个看客心中的自己，大部分人都没有把它当成小说来看。&lt;/p&gt;
+</code></pre>
+
+<p>其中看到有一段关于“青春”的描写：</p>
+
+
+<br /><blockquote><p>青春就是用来追忆的，当你怀揣着它时，它一文不值，只有将它耗尽后，再回过头看，一切才有了意义。爱过我们的人和伤害过我们的人，都是我们青春存在的意义。即便爱情有时候喜欢愚弄我们，即便爱情有时候不那么眷顾我们，经历了青春之后，才发现痛彻心扉的伤害也可化作最珍贵的礼物，来激励我们去发现更多爱情的美好……</p></blockquote>
+
+
+<br /><p>我曾想用这个博客，从上大学的第一天开始记录这一点点流动的青春痕迹，但现在看来已不是那样纯净，其中演变成了我经常写的“技术”、“精致的生活”等等，看起来想写成另一部《让青春继续》难度非常大。之所以难度大，就是因为，青春，它的精彩在于回忆，在于笔者回忆自己的过去而流露于纸上。看客们看到后再与自己的经历加以整合，发现这篇文学作品竟然与自己的经历无比契合，这就诞生了一代人很喜欢的作品。</p>
+
+
+<p>或许没人来看你的青春，因为每人都有各自的成长历程，但于我自己，这份青春才是最宝贵的，因为它已不再。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[美中不足]]></title>
+    <link href="http://www.youth2009.org/blog/2011/07/08/little-fault-in-most-perfect/"/>
+    <updated>2011-07-08T21:28:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/07/08/little-fault-in-most-perfect</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;今天下午考完了OS，有个地方没有复习到，蒙上了，还有个计算题最后检查的时候，自己感觉不对，正在强力修改，不料到点了，就留下了这点美中不足吧。当然其他的题目不能这么简单地认为是美了，只是比这两个稍微有点把握而已，基本能够得到相应的分数吧。&lt;/p&gt;
+</code></pre>
+
+<p>周末两天可以安心复习下面要考的内容了，下星期才是恶战——日语、离散数学！这两门要是都安全通过，再剩下的VB.net和Java Web我就得冲击满分试试啦！哈哈哈……独自狂妄中。</p>
+
+]]></content>
+  </entry>
+  
+</feed>

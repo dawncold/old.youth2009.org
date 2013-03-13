@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 输入法 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/shu-ru-fa/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-13T22:38:45+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[新的输入法测试]]></title>
+    <link href="http://www.youth2009.org/blog/2012/05/23/new-input-method-on-mac-rimeime/"/>
+    <updated>2012-05-23T20:29:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/05/23/new-input-method-on-mac-rimeime</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;mac下的输入法一直让我耿耿于怀，官方的输入法就不多说了，基本不会去用，虽然UI做得不错，没用几分钟就再也不使用了。&lt;/p&gt;
+</code></pre>
+
+<p>然后使用了搜狗输入法，词汇量真的很大，这个和Windows平台的积累密不可分，但是我使用的时候搜狗输入法for mac的刚刚开始测试，bug比较多，渐渐被QQ输入法赶上了。</p>
+
+
+<p>QQ输入法用了很久，不过偶尔出现打字时候卡死的情况，其他没啥问题，我就以为是我自己的问题吧，刚刚在微博上搜索了一下，不少用户都遇到这样的问题，搜狗那边也是如此，这就很奇怪了。。。</p>
+
+
+<p>有位朋友推荐了rimeime输入法，正在使用中，看这个反应速度很满意，听说是用配置文件可以做出很玄的样子，暂时不去研究这些，能保证不卡就是很好的进步，如果可以的话，果断放弃掉其他输入法！！！</p>
+
+
+<p>希望rimeime能够把中英文切换状态在growl中体现出来，起码也该给一个提醒：）</p>
+
+]]></content>
+  </entry>
+  
+</feed>

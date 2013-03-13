@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 高中聚会 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/gao-zhong-ju-hui/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-13T22:38:45+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Google地图越来越不靠谱了]]></title>
+    <link href="http://www.youth2009.org/blog/2011/08/11/bad-result-of-google-map/"/>
+    <updated>2011-08-11T17:20:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/08/11/bad-result-of-google-map</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;今天同学聚会，我早早用Google地图查询好了路线，又和组织者核实了一番，今天坐公交车去了，结果到了目的地，下车后什么都没找到。问了路边的出租车司机，我要去的地方正好在现在地方相反的方向。恨着Google，打车过去了。&lt;/p&gt;
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

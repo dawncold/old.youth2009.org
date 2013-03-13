@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 博客 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/bo-ke/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-13T22:38:45+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[博客迁移]]></title>
+    <link href="http://www.youth2009.org/blog/2011/04/22/blog-migrate/"/>
+    <updated>2011-04-22T08:29:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/04/22/blog-migrate</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;最近dnspod总是给我发短信、邮件报告我的主机宕机了，又恢复了，又宕机了……于是我打算迁移回自己的VPS上，毕竟自己是有条件搭建博客的，为何还要总占用着别人的资源呢？只是自己的VPS访问速度不如这个快而已。&lt;/p&gt;
+</code></pre>
+
+<p>在此感谢一下提供给我主机空间的那位，希望他工作顺利！</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[我这次没跻身白名单]]></title>
+    <link href="http://www.youth2009.org/blog/2011/01/04/i-am-not-in-whitelist-this-turn/"/>
+    <updated>2011-01-04T13:49:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/01/04/i-am-not-in-whitelist-this-turn</id>
+    <content type="html"><![CDATA[<p>如果你是我的读者，当然是这里的读者（youth2009.org)就会发现现在已经无法访问了，经过我和服务商的交涉，发现我这次没有跻身白名单，所以国家就把我封掉了。在国内就得这样天天活在被封掉还是随机被封掉的日子里，再也不是以前那个轻松愉快的时代了，一方面能够证明我国的信息产业正一天天发展壮大，正式因为这样，国家才把重点放到这方面了。当然咱还是希望能够通过其他更有效的方式来取代这种白名单制度，把每个人都看成坏人的这种方式，实在是有点对人格不尊重了：（</p>
+
+<p>今天我一气之下打算换到国外的服务器上，不过已经有了一次hostmonster的经历，不想再浪费一些资源，当时自己不知道做什么，花了600多买了一年的主机，守着诺大的空间和限制资源，无事可做，当时要是有个博客也好啊！所以我希望能够充分利用服务器的资源，自己是很难用光的，和几个人一起合租一份空间，自己不用去管服务器的配置，只要能够正常使用WP和FTP等就够了，其实大多数人都是这样的，管理者只是少数。</p>
+
+<p>对于国外的空间，现在看来仍然十分昂贵，当然我已经不再看那种低质量的了，如果彻底走向国外，我只会选择MediaTemple（Hosting）和Linode（VPS）。其实我更加倾向于使用VPS，倒不是我熟悉这个，恰恰相反，VPS是自己配置服务器，我跟本没接触过，只是想利用这个机会练习一下这方面。其实，回家用那台旧的台式机当服务器也挺好的，配置和Linode512差不多（至少是内存差不多）。</p>
+
+<p>各种事情总是不断的发生，今天英语考试十分不顺利，是我考得最糟糕的一次英语，我都想会不会因此挂掉呢？希望不会吧。但这应该不会以人的意志为转移……（明天考马克思的内容）</p>
+
+<p>自从在这儿架设了博客，就喜欢上了Python，自学过两三次，都没大有成果，不过Python能够用在网站的开发上让我感到很神奇，原本打算寒假用PHP完成那个项目的，而且都买好了一本书，现在看来这个想法正不断受到冲击，说不定我会把那本Python书也一并带回去，因为用Google的服务能够省下很多硬件配置，或者亚马逊的云服务，又或者新浪的云。唉，怎么又回到国内了？！</p>
+
+<p><del>现在原网站依然无法访问，在这里痛苦的挣扎吧！</del></p>
+
+<p><span style="color: #ff0000;">文章已经全部导入，青春又要流淌下去啦！</span></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[国内不能待了]]></title>
+    <link href="http://www.youth2009.org/blog/2010/12/01/website-can-not-found-in-my-country/"/>
+    <updated>2010-12-01T13:30:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2010/12/01/website-can-not-found-in-my-country</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;也许是我购买的这个主机比较差吧，时不时出现下线的情况，悔恨当初没有去买个好的主机呀，不过好的主机毕竟是很贵的，比如易联的入门主机要600一年，机房在上海外高架桥，是个电信机房，似乎在全国口碑还不错，本来打算买的，就是价格很难接受，现在他们竟然送Win7旗舰版的序列号，随便买个主机就可以，我稍微有点后悔的，已经买了Win7专业版！&lt;/p&gt;
+</code></pre>
+
+<p>对于现在市面上普遍见到的好几片云彩，我倒是很喜欢，想把博客迁移过去，那样起码能够保证三个九的网站在线时间（99.9%），好像新浪的云彩是保证三个九的，记不清楚了。不过现在似乎只有新浪的云彩是用php+mysql架构；Google的现在应该是Python、Java；Amazon那个我还没怎么研究，微软的似乎能够运行php程序，但数据库肯定是mssql了。难道要让我放弃使用已久的WordPress么？</p>
+
+
+<p>自从微软把Spaces送给了Wordpress后，我就打算直接迁移过去的，但有时候要修改点WP的文件，比如昨天我就把默认的两个链接改掉了……总之还是有自己的控制权比较好！</p>
+
+]]></content>
+  </entry>
+  
+</feed>

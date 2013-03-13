@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 表单验证 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/biao-dan-yan-zheng/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-13T22:38:45+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[懒得写博客了]]></title>
+    <link href="http://www.youth2009.org/blog/2011/05/14/i-am-tired-to-create-blog/"/>
+    <updated>2011-05-14T18:13:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/05/14/i-am-tired-to-create-blog</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;最近一直还在忙活学校的那个项目，还有自己要做的同学录，看着日子越来越紧张，我也变得越来越紧张：）&lt;/p&gt;
+</code></pre>
+
+<p>学校的项目还有不多的工作了，我赶紧忙活一下，最后的几个功能也差不多没问题了，琐碎的工作交给另一个人了，这几天我没管，希望他做了些什么吧。同学录的工作写了不少代码，没去统计，外部引用的js库太多了，一统计都是别人的工作：（</p>
+
+
+<p>今天下午用了下jquery的表单验证插件，调试了好久的remote方法，现在分享点经验：</p>
+
+
+<p>1.远程的查询方法我接受了post的提交方法，不过我感觉get也是没问题的，只是没去测试，修改这个是在remote中传入type:'post'即可。</p>
+
+
+<p>2.remote要提交上去的data用这样的方法：function(){return xxx;}</p>
+
+
+<p>3.remote对应的messages直接写remote即可，注意这里处理的是得到false结果显示的提示信息，所以查询数据库并返回值的那个页面要注意别写反了结果，当然要只能返回true或者false。我用php写的结果就是直接echo一个字符串，只有这样简单写才能让这个傻傻的remote认出来。一开始我还包装了一个json返回，现在想想根本就是奢望，根本不可能知道你的json是个什么东西！因为根本就没有告诉它去检查哪个元素的值：）</p>
+
+
+<p>如果按照这个速度做下去，可能到6月6日能够交上去作品：）希望其他人做得不太好吧，那样我就有机会去深圳旅游（答辩）啦：）</p>
+
+
+<p>最后在这里说一下QQMap的API，除了单一只能玩js的以外没什么太大的失误，用起来比较顺手，只是和Google的想比，还差很远，如果不是为了参赛，我可能会去用Google的，但那个相对用起来会很麻烦的：─（</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[动态验证表单也不难]]></title>
+    <link href="http://www.youth2009.org/blog/2011/02/05/dynamic-form-authentication/"/>
+    <updated>2011-02-05T23:06:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/02/05/dynamic-form-authentication</id>
+    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;一般来说现在的注册、登录的表单验证都是在浏览器这一级先做一个合法性验证，这样能够缓解服务器的压力，否则这些合法性验证都要移到服务器上，无论从性能和表现力都不及在浏览器用一些很炫的效果来验证。我使用了jQuery这个javascript库完成了表单的动态验证，核心不算难。一开始我都是参考豆瓣的注册页面，他们现在用的也是jQuery来做这块，代码看起来超长，还分了好几个js文件来组织，不是他们的前端工程师谁也看不懂（我真怀疑他们的前端工程师是不是能看懂）。 我做得很简单，不过看起来也能用： 一般有个空的div显示提醒文字，假设input的id是xxx，我们这样，  &lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:jscript" lang="jscript">$("input#xxx).focus(function(){$("suggestion").html(插入提示文字);});</pre>
+
+
+<br /><p>就能够在焦点进入input的时候提示一些文字了，然后在  </p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">focusout(function(){xxxxxx});</pre>
+
+
+<br /><p>中先remove插入的文字，再添加新的文字。 一般在focusout中进行一次查询，然后进行更改文字，是能够注册还是已经被占用，在查询的时候我使用的是$.getJSON函数，用GET方式提交查询看起来比较帅，当然最好做简单的提交，因为用了getJSON的方式，返回值一定是要json，我的服务器端脚本使用的是php，看到jQuery官方例子中提及了json_encode函数，接收array，正好能够返回我的查询结果，SQL查询返回结果用fetch_assoc放进一个array了。getJSON第三个参数是个callback函数，是结果成功返回时调用的函数，更改相应提示文字就在这里面进行，这个callback有个参数data，应该就是包含json的数据吧，用点运算符取到响应结果进行操作。 罗嗦了这么多，实际的代码太少，有需要的可以参考http://old.youth2009.org/dev/register.php页包含的js文件。</p>
+
+]]></content>
+  </entry>
+  
+</feed>

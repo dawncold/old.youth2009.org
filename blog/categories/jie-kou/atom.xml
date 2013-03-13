@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 接口 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/jie-kou/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-03-13T22:38:45+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[一个函数的接口演化]]></title>
+    <link href="http://www.youth2009.org/blog/2011/03/19/function-interface-evolvement/"/>
+    <updated>2011-03-19T07:50:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/03/19/function-interface-evolvement</id>
+    <content type="html"><![CDATA[<p>那天下午打算做个推荐饭菜的应用出来，上机课期间把雏形做好了，现在除了不能自由添加数据以外别的我还都满意，当然不谈UI设计。参观地址：<a href="http://food.wodeyitian.com">http://food.wodeyitian.com</a></p>
+
+<p>介绍一下其中有一个地方的函数接口，就是用来显示“已经有的主食和菜”的两列列表，数据库中分成两个表，一个是主食，一个是菜，相关字段都是一样的──id,name,price加入price是为了提前设计下一个版本，似乎稍微有点过度设计？一开始这样设计没什么问题，相应的PHP函数是available($foodtype,&amp;$array_xx)；这样传递的数组进入后把数据push到数组中，再利用数组显示到网页上，这个函数本来并不负责echo，foodtype分别是数据库中的表名，这样传递进mainfood或者dish就能分别抓取相应表的数据。</p>
+
+<p>接着发现主食中有些可以作为单独一顿饭的东西，比如西红柿鸡蛋面这个，光吃这一种就可以了，再推荐饭菜不合理，于是考虑了主食分级，加入面条类、包子类等，这样数据库中就增加了两个字段──parent、occupy。parent是保存它上级的id，occupy是标记是否可独占，如果独占就不会再推荐菜了。相应的函数就演化成了两个，因为目前不想让dish中的数据分级，所以原来的处理dish表中的数据还是可以的，mainfood中的数据需要一个单独的处理函数，索性叫echo_mf吧，参数还是传递进去一个数组，这个函数有两个主要功能──一个是把这个分级结构显示到页面上，另一个是把所有的子项目和没有子项目的父项目添加到数组中，前台shuffle这个数组来随机显示一个。</p>
+
+<p>我想下一步很可能是这两个函数的整合，即dish也分级后，这两个函数就都可以整合成第二个的样子，因为他们的工作就是一样的了。</p>
+
+<p>现在的mainfood输出还有些问题，原本想的是这样──有米饭、包子等类别，其中包子类中还有各种各样的包子，而米饭就是这一种，所以按照概率来算，父类（米饭、包子）被选择的概率应该是一样的，而只有选到了包子才会去各种包子中选择一个，就是所有选择各种包子的概率之和应该与米饭同样大，现在却不是这样，我把最末端的数据和没有子项目的数据一并放在一起，这样显得冷落了米饭等没有子项目的父类……到底要不要改回来呢？再看看吧。</p>
+]]></content>
+  </entry>
+  
+</feed>
