@@ -9,10 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="这里的LXC是基于Ubuntu12.04的，在其他系统下可能不太一样。 0.安装lxc 1
-sudo apt-get install lxc 1.修改lxc的mirror，不修改的话下载一个ubuntu景象会非常慢！！！ 1
-2
-sudo emacs /etc/default/lxc &hellip;">
+  <meta name="description" content="昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +77,55 @@ sudo emacs /etc/default/lxc &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/09/nat-practical/">NAT实践</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-09T14:09:00+08:00" pubdate data-updated="true">Oct 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3.20这台container来处理，相应的response也会返回过去。这样就做到了服务隔离。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to 10.0.3.20
+</span><span class='line'>sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT --to 200.200.200.25
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就把进入的请求都发到了10.0.3.20这台container上去处理。</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/CkkIbzDr/medish.jpg" alt="nat" /></p>
+
+<p>只默认开了一个nginx，就这样的效果。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -646,52 +692,6 @@ sudo emacs /etc/default/lxc &hellip;">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/09/return-to-develop/">终于又回到了开发一线</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-09T10:45:00+08:00" pubdate data-updated="true">Aug 9<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;前两天把系统从Lion升级到了MountainLion，这一升级不要紧，很多开发环境都需要重装，比如Java又得重新下载，Python的类库又消失了，XCode过期了。。。&lt;/p&gt;
-</code></pre>
-
-<p>听说了一个好消息，从XCode4.4.1开始，以后的XCode都会采用增量更新，但这次除外，1.56Gb的XCode，在这种破网速中用了两天才搞定。</p>
-
-
-<p>Python的一个类库MySQL-python需要gcc-4.2才能编译，于是还需要下载CommandLineTool，又是155Mb。。。（但装好XCode后可以从XCode.app中找到llvm-gcc-4.2，我是用这个编译的，也能用）。</p>
-
-
-<p>还有几个小的python类库，装好后就能继续用了。这次系统升级后MySQL竟然没有问题，值得表扬一下！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -709,6 +709,10 @@ sudo emacs /etc/default/lxc &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
       </li>
     
@@ -722,10 +726,6 @@ sudo emacs /etc/default/lxc &hellip;">
     
       <li class="post">
         <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;前天cocos2d更新到了1.0版本，这个版本对于开源软件来说是一个里程碑，因为这应该是第一个能够称得上稳定的版本，当然也是新阶段的开始。&lt;/p&gt; 安装还是很简单的，我已经安装上了xcode4.0和sdk4.3。 要注意一点的就是安装的时候需要root权限， &hellip;">
+  <meta name="description" content="&lt;p&gt;并不想批评微软的产品，因为如果你用得习惯了，什么工具都不再是困难的。以前从没用过SQLSERVER，只是一直在用MySQL，用phpmyadmin管理起来也很方便。&lt;/p&gt; 昨晚下载了SQL SERVER 2008 R2 Express，才64MB， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,86 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/16/sql-server-is-so-bad/">SQL SERVER真差劲！</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-16T06:13:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;并不想批评微软的产品，因为如果你用得习惯了，什么工具都不再是困难的。以前从没用过SQLSERVER，只是一直在用MySQL，用phpmyadmin管理起来也很方便。&lt;/p&gt;
+</code></pre>
+
+<p>昨晚下载了SQL SERVER 2008 R2 Express，才64MB，又下载了对应的Management Studio，竟然需要270MB！后者安装很不容易，我的硬盘又很小，安装过程中由于失误的操作，复制了一个SQL实例出来，原本就一个叫SQLEXPRESS，现在多了一个MSSQLEXPRESS，本来就很小的空间又一次被减小了，而且还没装上Management！最后磁盘空间实在不够了，我关闭了win7的系统分页文件，一下子出来2.6GB，幸亏内存够大。</p>
+
+
+<p>安装完毕后，两个实例都在运行，首先关闭一个。然后配置另一个的TCP/IP协议，这样才能正常连接。这里需要说明一下，在【SQL网络配额协议】中的【实例名下】的【TCP/IP】地址，最后一个是IPALL，写上TCP端口：1433，保存。重启实例的服务就能用management连接上了。</p>
+
+
+<p>在vb中的一个测试代码：（数据库Test，dbo.Member表中有一行数据，tianzhen\tz_pwd）</p>
+
+
+<p>最可恶的是我在设计表的时候用了nchar类型，长度用了10，如果字段内容不足10就会加空格补全。所以在vb中对于要和数据库中对比的时候必须把从数据库中得到的数据trim一下。</p>
+
+
+<br /><pre class="prettyprint linenums bush:vb" lang="vb">Imports System.Configuration
+
+
+<p>Imports System.Data.SqlClient</p>
+
+<p>Public Class Form1</p>
+
+<pre><code>Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Dim connStr As String = "Data Source = localhost; Initial Catalog = Test; user id = sa; password = tianzhen;"
+    Dim conn As SqlConnection = New SqlConnection(connStr)
+    Dim cmd As SqlCommand = New SqlCommand()
+    cmd.Connection = conn
+    cmd.CommandText = "SELECT password FROM dbo.Member WHERE username = 'tianzhen'"
+    Dim reader As SqlDataReader
+    conn.Open()
+    reader = cmd.ExecuteReader()
+    Dim login As Boolean = False
+    If reader.Read() Then
+        If TextBox1.Text = Trim(reader("password")) Then
+            MsgBox("login successfully!")
+        Else
+            MsgBox("login fail!!!")
+        End If
+    End If
+    conn.Close()
+End Sub
+</code></pre>
+
+<p>End Class
+</pre></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -666,49 +746,6 @@ print "current_pos:%d" % current_file.tell()
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/09/python-%25r-and-%25s/">Python中的%r和%s</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-09T13:30:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;我并不想完整地比较这两个替换符号的用处，只是发现了一点，可能以后也会这样用。&lt;/p&gt;
-</code></pre>
-
-<p>%r是原始的输入，如果输入了中文，在输出的时候会出现一些类似unicode的代码；其他的会输出带单引号的内容。</p>
-
-
-<p>%s就是字符串了，输出就是字符串，如果原始输入是中文，那这里也会输出中文。其他的会输出不带单引号的字符串内容。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/16/">&larr; Older</a>
@@ -726,6 +763,10 @@ print "current_pos:%d" % current_file.tell()
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
       </li>
     
@@ -739,10 +780,6 @@ print "current_pos:%d" % current_file.tell()
     
       <li class="post">
         <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
       </li>
     
   </ul>

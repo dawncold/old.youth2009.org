@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;要不是弄github的pages我也不会接触到gem。&lt;/p&gt; lion的gem是1.3.6这个超低版本，现在最新是1.8.12，我下载了update_rubygem1.8.12.gem，用gem安装上了： sudo gem install &hellip;">
+  <meta name="description" content="&lt;p&gt;简单说，eclipse3.6这个版本中有些jar有问题，在代码提示的时候会卡死，我还以为是机器运算不过来了，但在JavaEE中很正常，所以一搜索得到的答案，需要替换一个系统jar包。&lt;/p&gt; 需要被替换的jar是：org.eclipse.jdt.core_3.6.1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/12/12/be-careful-of-eclipse-when-developing-android/">开发android得注意eclipse</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-12T19:14:00+08:00" pubdate data-updated="true">Dec 12<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;简单说，eclipse3.6这个版本中有些jar有问题，在代码提示的时候会卡死，我还以为是机器运算不过来了，但在JavaEE中很正常，所以一搜索得到的答案，需要替换一个系统jar包。&lt;/p&gt;
+</code></pre>
+
+<p>需要被替换的jar是：org.eclipse.jdt.core_3.6.1.v_A68_R36x.jar，在eclipse的plugins目录中。</p>
+
+
+<p>从这位朋友的网盘中也许能找到，在Eclipse目录中：<a href="http://breakan.ys168.com/">http://breakan.ys168.com/</a></p>
+
+
+<p>为了备份，我传到了自己服务器上，下载地址：<a title="eclipse-android-plugin.rar" href="http://www.youth2009.org/usr/uploads/2011/12/2062328791.rar">eclipse-android-plugin.rar</a></p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -555,43 +601,6 @@ app = web.application(urls, globals())</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/10/30/yardvps-add-network-throughout/">传说YardVPS增加了网络带宽</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-10-30T07:28:00+08:00" pubdate data-updated="true">Oct 30<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;前几天收到邮件，说是昨晚要升级网络带宽，时间大约30分钟，我也没管这事儿，造成起来看到有服务器宕机的邮件通知，看来昨晚确实网络断掉了。也没感觉速度有什么本质提升呀，我现在就希望在学校中ping值能进200ms就好了，现在是210～20x之间。仍然幻想Linode的东京机房，但那天看到YardVPS已经能保证4个9的上线时间，也就是一年中的下线时间不会超过1小时（大约52分钟）。&lt;/p&gt;
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -609,6 +618,10 @@ app = web.application(urls, globals())</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
       </li>
     
@@ -622,10 +635,6 @@ app = web.application(urls, globals())</p>
     
       <li class="post">
         <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
       </li>
     
   </ul>

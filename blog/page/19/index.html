@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：&lt;/p&gt; var da = '2000-01-01 00:00:00'; var da_array = da.split &hellip;">
+  <meta name="description" content="&lt;p&gt;在服务器上找了好久也没看到pear包的存在，于是下载重装。&lt;/p&gt; wget http://pear.php.net/go-pear.phar php ./go-pear.phar ./pear install XXXX(XXXX就是要新加入的扩展库名称) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/01/install-pear/">安装PEAR</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-01T13:26:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;在服务器上找了好久也没看到pear包的存在，于是下载重装。&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">wget http://pear.php.net/go-pear.phar 
+
+
+<p>php ./go-pear.phar</p>
+
+<p>./pear install XXXX(XXXX就是要新加入的扩展库名称)</pre></p>
+
+<br /><p>根据提示修改一些参数即可，其中比较重要的是最后的include_path这个参数，要确保这里面包含了pear的目录，否则用pear安装上的扩展就不好运行了，比如我的PhpDocumentor就是如此，好在最后加入到了path中，phpdocumentor就能用了。</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -473,64 +520,6 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/05/14/i-am-tired-to-create-blog/">懒得写博客了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-14T18:13:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;最近一直还在忙活学校的那个项目，还有自己要做的同学录，看着日子越来越紧张，我也变得越来越紧张：）&lt;/p&gt;
-</code></pre>
-
-<p>学校的项目还有不多的工作了，我赶紧忙活一下，最后的几个功能也差不多没问题了，琐碎的工作交给另一个人了，这几天我没管，希望他做了些什么吧。同学录的工作写了不少代码，没去统计，外部引用的js库太多了，一统计都是别人的工作：（</p>
-
-
-<p>今天下午用了下jquery的表单验证插件，调试了好久的remote方法，现在分享点经验：</p>
-
-
-<p>1.远程的查询方法我接受了post的提交方法，不过我感觉get也是没问题的，只是没去测试，修改这个是在remote中传入type:&#8217;post&#8217;即可。</p>
-
-
-<p>2.remote要提交上去的data用这样的方法：function(){return xxx;}</p>
-
-
-<p>3.remote对应的messages直接写remote即可，注意这里处理的是得到false结果显示的提示信息，所以查询数据库并返回值的那个页面要注意别写反了结果，当然要只能返回true或者false。我用php写的结果就是直接echo一个字符串，只有这样简单写才能让这个傻傻的remote认出来。一开始我还包装了一个json返回，现在想想根本就是奢望，根本不可能知道你的json是个什么东西！因为根本就没有告诉它去检查哪个元素的值：）</p>
-
-
-<p>如果按照这个速度做下去，可能到6月6日能够交上去作品：）希望其他人做得不太好吧，那样我就有机会去深圳旅游（答辩）啦：）</p>
-
-
-<p>最后在这里说一下QQMap的API，除了单一只能玩js的以外没什么太大的失误，用起来比较顺手，只是和Google的想比，还差很远，如果不是为了参赛，我可能会去用Google的，但那个相对用起来会很麻烦的：─（</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/20/">&larr; Older</a>
@@ -548,6 +537,10 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
       </li>
     
@@ -561,10 +554,6 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
     
       <li class="post">
         <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
       </li>
     
   </ul>

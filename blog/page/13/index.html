@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;前天在GoogleReader中看到了一个广播剧——《致我们终将逝去的青春》，我曾经看过同名的小说，现在也记不清楚那是不是小说了，对于书写青春故事的文学作品，都像是我们每个看客心中的自己，大部分人都没有把它当成小说来看。&lt;/p&gt; 其中看到有一段关于“青春”的描写： &hellip;">
+  <meta name="description" content="&lt;p&gt;这本书不算长，从考试期间就开始看了，一共有50多页，每一页都是一个使用python的例子，就是这样不断用例子来讲述python的基础用法，当然还不算全面，刚刚入门也勉强可以吧。最后有个old programmer's advice写得不错，大概的意思是帮助你建立一种自信。&lt &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/06/have-read-learn-python-in-hard-way/">看完了《learn Python in Hard Way》</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-06T17:30:00+08:00" pubdate data-updated="true">Aug 6<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;这本书不算长，从考试期间就开始看了，一共有50多页，每一页都是一个使用python的例子，就是这样不断用例子来讲述python的基础用法，当然还不算全面，刚刚入门也勉强可以吧。最后有个old programmer's advice写得不错，大概的意思是帮助你建立一种自信。&lt;/p&gt;
+</code></pre>
+
+<p>最后几页里提到了djangobook，我学习python的主要目的之一就是用来开发web，而django是主流的web framework。新的阅读时代又要到来了！</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -713,55 +753,6 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/28/use-uinavigationcontroller-in-uitabbarcontroller/">UINavigationController和UITabBarController的搭配</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-28T06:01:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;经过近1天的实践才摸清了这两个控件的搭配使用方法，网上介绍的不算多，我就把自己的经验说说：&lt;/p&gt;
-</code></pre>
-
-<p>首先这两个的搭配是这样的，基础是UITabBarController，你完全可以在Xcode中选一个以Tabbar为基础的工程，用Tabbar来划分程序的大功能，每个功能中再用Navigation来做导航。我想大家应该都会这样做，当然如果反过来也不是不行，就是感觉有点别扭。</p>
-
-
-<p>在AppDelegate的初始化过程中用几个UINavigationController包裹UIViewController或者其子类（比如UITableViewController）放入UITabBarController中，这样的设置应该都会。我一开始这样写后，到了每个功能中，需要用到Navigation了，又自己写了一个UINavigationController，但不管用。然后我猜想是不是要自己模拟类似的功能，就自己加上了UINavigationBar，样子是对了，可惜这个bar不带popViewController的功能，完全让navigation成了摆设。无意中看到apple官方的例子中在UIViewController中用到了self.navigationController，我这才意识到UIViewController自己就带着UINavigationController。代码又改回以前的，几个UInavigationController包裹UIViewController初始化，然后在每个功能中大胆用self的navigationController来导航，达到了效果。</p>
-
-
-<p>还有，如果要做TableView，最好在UIViewController的子类中加入一个UITableView而不是UITableViewController，前者是一个控件，而后者是一套处理（当然还包括控件）。我一开始想在某个功能中用表格，加了一个表格的controller，总是看到表格开头多了一大块灰色的区域，硬生生地把一个表格给隔开了，具体问题在网上没有搜索到相关结果。但后来用了UITableView就好了。</p>
-
-
-<p>啰嗦了这么多，其实写的是我的探索过程，并不是直接给出的结果。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/14/">&larr; Older</a>
@@ -779,6 +770,10 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
       </li>
     
@@ -792,10 +787,6 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
     
       <li class="post">
         <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
       </li>
     
   </ul>

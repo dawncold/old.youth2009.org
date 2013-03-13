@@ -9,7 +9,13 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="不知怎么，突然发现在iPad上注册kindle设备后，在国内的amazon上无法看到这个设备，云端购买的书籍也都没了，深夜给amazon发了邮件，没想到十几分钟就回复了！！！ 得知，如果在amazon美国用了和国内相同的账号，那注册设备的时候可能会被使用美国的数据，那里当然木有我买的书了。。。 &hellip;">
+  <meta name="description" content="今天在代码中遇到一个next方法（python代码），以前从没用过这个，于是简单了解了一下。 next就是iterator了，可以通过iterator来找东西，找到就停下了，如果给了默认值，没找到的话就用默认值。 generator这个东西是很有意思的，比如： 1
+2
+3
+4
+5
+6
+def &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +83,162 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/13/generator-in-python/">Generator-in-python</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-13T21:52:00+08:00" pubdate data-updated="true">Mar 13<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天在代码中遇到一个next方法（python代码），以前从没用过这个，于是简单了解了一下。</p>
+
+<p>next就是iterator了，可以通过iterator来找东西，找到就停下了，如果给了默认值，没找到的话就用默认值。</p>
+
+<p>generator这个东西是很有意思的，比如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">other_firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">num</span><span class="p">,</span> <span class="n">nums</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">nums</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以产生一个list，里面是按顺序的数字，有n个，结果类似于range(n)的返回值。</p>
+
+<p>还有一个版本的firstn：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">yield</span> <span class="n">num</span>
+</span><span class='line'>    <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这个看起来就很帅了，代码也简洁了很多，yield是十分神奇的表达式，产生了一个num，这里不太好想，不能按照正常的function来思考这个执行顺序了。</p>
+
+<p>总之，如果产生100个数字，你可以一下子弄出100个来，或者你知道规则的话，你就弄出第一个来，然后用的时候按照规则，从第一个一直走下去，也产生了100个。最大的不同就是性能，后者必然速度更快了，前提是数量要足够多！写了一个简单的性能对比，主要是时间上的，内存上的不容易监控。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># /usr/bin/python</span>
+</span><span class='line'><span class="c">#! -*- coding: utf-8 -*-</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">time</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">yield</span> <span class="n">num</span>
+</span><span class='line'>    <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">other_firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">num</span><span class="p">,</span> <span class="n">nums</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">nums</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="n">func_wrap</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwards</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">s</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span><span class='line'>  <span class="n">r</span> <span class="o">=</span> <span class="n">func_wrap</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwards</span><span class="p">))</span>
+</span><span class='line'>  <span class="n">e</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span><span class='line'>  <span class="k">print</span> <span class="s">&#39;return: </span><span class="si">%s</span><span class="s">   use </span><span class="si">%f</span><span class="s"> ms[s: </span><span class="si">%s</span><span class="s">, e: </span><span class="si">%s</span><span class="s">]&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="p">(</span><span class="n">e</span> <span class="o">-</span> <span class="n">s</span><span class="p">),</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span><span class='line'>  <span class="n">timer</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">firstn</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">timer</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">other_firstn</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">main</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>输出结果是：大约会慢1倍</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold <span class="o">[</span>21:49:11<span class="o">]</span> ~<span class="o">=</span>&gt;<span class="nv">$ </span>python 1.py
+</span><span class='line'><span class="k">return</span>: 499999500000   use 0.137414 ms<span class="o">[</span>s: 1363182552.38, e: 1363182552.52<span class="o">]</span>
+</span><span class='line'><span class="k">return</span>: 499999500000   use 0.290716 ms<span class="o">[</span>s: 1363182552.52, e: 1363182552.81<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -469,55 +631,6 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/10/09/nat-practical/">NAT实践</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-09T14:09:00+08:00" pubdate data-updated="true">Oct 9<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3.20这台container来处理，相应的response也会返回过去。这样就做到了服务隔离。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to 10.0.3.20
-</span><span class='line'>sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT --to 200.200.200.25
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样就把进入的请求都发到了10.0.3.20这台container上去处理。</p>
-
-<p><img src="http://pic.yupoo.com/dawncold0/CkkIbzDr/medish.jpg" alt="nat" /></p>
-
-<p>只默认开了一个nginx，就这样的效果。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -533,6 +646,10 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
       </li>
     
@@ -546,10 +663,6 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
     
       <li class="post">
         <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
       </li>
     
   </ul>

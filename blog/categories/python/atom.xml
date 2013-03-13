@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-03-10T15:52:26+08:00</updated>
+  <updated>2013-03-13T22:04:50+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,94 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[generator-in-python]]></title>
+    <link href="http://www.youth2009.org/blog/2013/03/13/generator-in-python/"/>
+    <updated>2013-03-13T21:52:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/03/13/generator-in-python</id>
+    <content type="html"><![CDATA[<p>今天在代码中遇到一个next方法（python代码），以前从没用过这个，于是简单了解了一下。</p>
+
+<p>next就是iterator了，可以通过iterator来找东西，找到就停下了，如果给了默认值，没找到的话就用默认值。</p>
+
+<p>generator这个东西是很有意思的，比如：</p>
+
+<p>```python
+def other_firstn(n):
+  num, nums = 0, []
+  while num &lt; n:</p>
+
+<pre><code>nums.append(num)
+num += 1
+</code></pre>
+
+<p>  return nums
+```
+可以产生一个list，里面是按顺序的数字，有n个，结果类似于range(n)的返回值。</p>
+
+<p>还有一个版本的firstn：</p>
+
+<p>```python
+def firstn(n):
+  num = 0
+  while num &lt; n:</p>
+
+<pre><code>yield num
+num += 1
+</code></pre>
+
+<p>```
+这个看起来就很帅了，代码也简洁了很多，yield是十分神奇的表达式，产生了一个num，这里不太好想，不能按照正常的function来思考这个执行顺序了。</p>
+
+<p>总之，如果产生100个数字，你可以一下子弄出100个来，或者你知道规则的话，你就弄出第一个来，然后用的时候按照规则，从第一个一直走下去，也产生了100个。最大的不同就是性能，后者必然速度更快了，前提是数量要足够多！写了一个简单的性能对比，主要是时间上的，内存上的不容易监控。</p>
+
+<p>```</p>
+
+<h1>/usr/bin/python</h1>
+
+<h1>! -<em>- coding: utf-8 -</em>-</h1>
+
+<p>import time</p>
+
+<p>def firstn(n):
+  num = 0
+  while num &lt; n:</p>
+
+<pre><code>yield num
+num += 1
+</code></pre>
+
+<p>def other_firstn(n):
+  num, nums = 0, []
+  while num &lt; n:</p>
+
+<pre><code>nums.append(num)
+num += 1
+</code></pre>
+
+<p>  return nums</p>
+
+<p>def timer(func_wrap, func, <em>args, **kwards):
+  s = time.time()
+  r = func_wrap(func(</em>args, **kwards))
+  e = time.time()
+  print 'return: %s   use %f ms[s: %s, e: %s]' % (r, (e - s), s, e)</p>
+
+<p>def main():
+  timer(sum, firstn, 1000000)
+  timer(sum, other_firstn, 1000000)</p>
+
+<p>if <strong>name</strong> == "<strong>main</strong>":
+  main()
+<code>
+输出结果是：大约会慢1倍
+</code>bash
+dawncold [21:49:11] ~=>$ python 1.py
+return: 499999500000   use 0.137414 ms[s: 1363182552.38, e: 1363182552.52]
+return: 499999500000   use 0.290716 ms[s: 1363182552.52, e: 1363182552.81]
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[统计词频方法]]></title>
@@ -76,31 +164,6 @@ def sort_last(tuples):
 
 
 <p>还有几个小的python类库，装好后就能继续用了。这次系统升级后MySQL竟然没有问题，值得表扬一下！</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[SQLAlchemy中的乱码]]></title>
-    <link href="http://www.youth2009.org/blog/2012/07/14/bad-encoding-in-sqlalchemy/"/>
-    <updated>2012-07-14T09:47:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/07/14/bad-encoding-in-sqlalchemy</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;一开始没怎么关心这个问题，连接数据库的时候我直接这样用的：&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:python" lang="python">mysql://root:@localhost/haolesong</pre>
-
-
-<br /><p>在插入数据的时候看到数据库中的内容是乱码，但网页中显示的时候正常，于是我就没怎么关心，不过前天在修改一个值的时候，就是用一段中文替换原先的值，提交数据后网页打不开了，提示unicode编码的xxx问题，相信用Python写网站的人应该会遇得到。</p>
-
-
-<p>后来在<a href="http://meizhini.iteye.com/blog/294691" target="_blank">这里</a>发现了解决方法，还有一段长长的分析。我很喜欢这样的文章，对于想直接知道问题答案的人来说一目了然，想知道原理的人也可以直接看下去。</p>
-
-
-<p>最终就是这样即可：</p>
-
-
-<br /><pre class="prettyprint linenums bush:python" lang="python">mysql://root:@localhost/haolesong?charset=utf8</pre>
 
 ]]></content>
   </entry>

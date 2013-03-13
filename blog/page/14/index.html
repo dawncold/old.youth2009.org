@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。&lt;/p&gt; &hellip;">
+  <meta name="description" content="&lt;p&gt;经过近1天的实践才摸清了这两个控件的搭配使用方法，网上介绍的不算多，我就把自己的经验说说：&lt;/p&gt; 首先这两个的搭配是这样的，基础是UITabBarController，你完全可以在Xcode中选一个以Tabbar为基础的工程，用Tabbar来划分程序的大功能， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/28/use-uinavigationcontroller-in-uitabbarcontroller/">UINavigationController和UITabBarController的搭配</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-28T06:01:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;经过近1天的实践才摸清了这两个控件的搭配使用方法，网上介绍的不算多，我就把自己的经验说说：&lt;/p&gt;
+</code></pre>
+
+<p>首先这两个的搭配是这样的，基础是UITabBarController，你完全可以在Xcode中选一个以Tabbar为基础的工程，用Tabbar来划分程序的大功能，每个功能中再用Navigation来做导航。我想大家应该都会这样做，当然如果反过来也不是不行，就是感觉有点别扭。</p>
+
+
+<p>在AppDelegate的初始化过程中用几个UINavigationController包裹UIViewController或者其子类（比如UITableViewController）放入UITabBarController中，这样的设置应该都会。我一开始这样写后，到了每个功能中，需要用到Navigation了，又自己写了一个UINavigationController，但不管用。然后我猜想是不是要自己模拟类似的功能，就自己加上了UINavigationBar，样子是对了，可惜这个bar不带popViewController的功能，完全让navigation成了摆设。无意中看到apple官方的例子中在UIViewController中用到了self.navigationController，我这才意识到UIViewController自己就带着UINavigationController。代码又改回以前的，几个UInavigationController包裹UIViewController初始化，然后在每个功能中大胆用self的navigationController来导航，达到了效果。</p>
+
+
+<p>还有，如果要做TableView，最好在UIViewController的子类中加入一个UITableView而不是UITableViewController，前者是一个控件，而后者是一套处理（当然还包括控件）。我一开始想在某个功能中用表格，加了一个表格的controller，总是看到表格开头多了一大块灰色的区域，硬生生地把一个表格给隔开了，具体问题在网上没有搜索到相关结果。但后来用了UITableView就好了。</p>
+
+
+<p>啰嗦了这么多，其实写的是我的探索过程，并不是直接给出的结果。</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -534,86 +583,6 @@ Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/16/sql-server-is-so-bad/">SQL SERVER真差劲！</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-16T06:13:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;并不想批评微软的产品，因为如果你用得习惯了，什么工具都不再是困难的。以前从没用过SQLSERVER，只是一直在用MySQL，用phpmyadmin管理起来也很方便。&lt;/p&gt;
-</code></pre>
-
-<p>昨晚下载了SQL SERVER 2008 R2 Express，才64MB，又下载了对应的Management Studio，竟然需要270MB！后者安装很不容易，我的硬盘又很小，安装过程中由于失误的操作，复制了一个SQL实例出来，原本就一个叫SQLEXPRESS，现在多了一个MSSQLEXPRESS，本来就很小的空间又一次被减小了，而且还没装上Management！最后磁盘空间实在不够了，我关闭了win7的系统分页文件，一下子出来2.6GB，幸亏内存够大。</p>
-
-
-<p>安装完毕后，两个实例都在运行，首先关闭一个。然后配置另一个的TCP/IP协议，这样才能正常连接。这里需要说明一下，在【SQL网络配额协议】中的【实例名下】的【TCP/IP】地址，最后一个是IPALL，写上TCP端口：1433，保存。重启实例的服务就能用management连接上了。</p>
-
-
-<p>在vb中的一个测试代码：（数据库Test，dbo.Member表中有一行数据，tianzhen\tz_pwd）</p>
-
-
-<p>最可恶的是我在设计表的时候用了nchar类型，长度用了10，如果字段内容不足10就会加空格补全。所以在vb中对于要和数据库中对比的时候必须把从数据库中得到的数据trim一下。</p>
-
-
-<br /><pre class="prettyprint linenums bush:vb" lang="vb">Imports System.Configuration
-
-
-<p>Imports System.Data.SqlClient</p>
-
-<p>Public Class Form1</p>
-
-<pre><code>Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-    Dim connStr As String = "Data Source = localhost; Initial Catalog = Test; user id = sa; password = tianzhen;"
-    Dim conn As SqlConnection = New SqlConnection(connStr)
-    Dim cmd As SqlCommand = New SqlCommand()
-    cmd.Connection = conn
-    cmd.CommandText = "SELECT password FROM dbo.Member WHERE username = 'tianzhen'"
-    Dim reader As SqlDataReader
-    conn.Open()
-    reader = cmd.ExecuteReader()
-    Dim login As Boolean = False
-    If reader.Read() Then
-        If TextBox1.Text = Trim(reader("password")) Then
-            MsgBox("login successfully!")
-        Else
-            MsgBox("login fail!!!")
-        End If
-    End If
-    conn.Close()
-End Sub
-</code></pre>
-
-<p>End Class
-</pre></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/15/">&larr; Older</a>
@@ -631,6 +600,10 @@ End Sub
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
       </li>
     
@@ -644,10 +617,6 @@ End Sub
     
       <li class="post">
         <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
       </li>
     
   </ul>

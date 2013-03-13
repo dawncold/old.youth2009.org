@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;今天似乎写了很多文章，间隔也不长，似乎是想要把前几天缺失的都补回来。&lt;/p&gt; 似乎是从中午开始的吧，看《Python简明教程》，到晚上吃饭的时候，正好看完了，不知道是我看得快呢还是这本书本身就不厚。这就算是我正式学习python的开始了吧。 &hellip;">
+  <meta name="description" content="&lt;p&gt;我本以为outerHTML是W3C的标准，结果搜索了一下才知道这是IE的方法，不过Chrome和Safari都支持了，FF竟然不支持，于是找到了扩展Firefox的outerHTML的方法：&lt;a href="http://www.cnblogs.com/doll-net/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,43 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/09/bad-firefox-it-doesnt-support-outerhtml/">可恶的Firefox不支持outerHTML</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-09T05:57:00+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;我本以为outerHTML是W3C的标准，结果搜索了一下才知道这是IE的方法，不过Chrome和Safari都支持了，FF竟然不支持，于是找到了扩展Firefox的outerHTML的方法：&lt;a href="http://www.cnblogs.com/doll-net/archive/2007/06/17/786835.html"&gt;点击这里&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -591,53 +628,6 @@ server 216.239.38.21;
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/06/01/install-pear/">安装PEAR</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-01T13:26:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;在服务器上找了好久也没看到pear包的存在，于是下载重装。&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">wget http://pear.php.net/go-pear.phar 
-
-
-<p>php ./go-pear.phar</p>
-
-<p>./pear install XXXX(XXXX就是要新加入的扩展库名称)</pre></p>
-
-<br /><p>根据提示修改一些参数即可，其中比较重要的是最后的include_path这个参数，要确保这里面包含了pear的目录，否则用pear安装上的扩展就不好运行了，比如我的PhpDocumentor就是如此，好在最后加入到了path中，phpdocumentor就能用了。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/19/">&larr; Older</a>
@@ -655,6 +645,10 @@ server 216.239.38.21;
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
       </li>
     
@@ -668,10 +662,6 @@ server 216.239.38.21;
     
       <li class="post">
         <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/03/gets-method-in-ruby/">gets method in ruby</a>
       </li>
     
   </ul>
