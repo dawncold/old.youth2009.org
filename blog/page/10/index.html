@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;简单说，eclipse3.6这个版本中有些jar有问题，在代码提示的时候会卡死，我还以为是机器运算不过来了，但在JavaEE中很正常，所以一搜索得到的答案，需要替换一个系统jar包。&lt;/p&gt; 需要被替换的jar是：org.eclipse.jdt.core_3.6.1 &hellip;">
+  <meta name="description" content="&lt;p&gt;打开Terminal，输入：&lt;/p&gt; defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock 然后回车（return），等Dock再次出现后， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,220 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/13/open-the-stack-function-of-dock/">开启Dock的堆栈功能</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-13T21:56:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;打开Terminal，输入：&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock</pre>
+
+
+<br /><p>然后回车（return），等Dock再次出现后，在已打开程序图标上滚动鼠标滚轮或者手势模拟滚轮，就能看到这个程序打开的子窗口或者子程序，很过瘾好用。</p>
+
+
+<p>我的MacOS：Lion</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/07/the-first-paid-app/">购买的第一个付费app</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-07T01:12:00+08:00" pubdate data-updated="true">Jan 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;是切水果。&lt;/p&gt;
+</code></pre>
+
+<p>由于itunes不支持我的信用卡，所以只能充50，一个一个买，第一个买的就是切水果！</p>
+
+
+<p>感觉挺好玩的！</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/12/16/back-to-free-time/">终于回到自由的时候</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-16T21:27:00+08:00" pubdate data-updated="true">Dec 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;自从前段时间学校封杀了研究生web端自由登陆drcom以来，我就只能找网络中心的老师开了本科生的web登陆，速度很慢，还有流量限制。&lt;/p&gt;
+</code></pre>
+
+<p>又加上Lion系统中的原drcom客户端不能用，我就攒了攒勇气下载了drcom4mac的源代码回来自己编译，本以为就是平台的微弱差异，没想到一大堆根本看不懂的错误出现，也没那么平静的心来阅读一个个C函数，就这样搁置了。</p>
+
+
+<p>昨晚Drcom的GoogleGroups中有人发来邮件，说是写了个java的drcom客户端欢迎测试，我今天早晨配置好了libpcap库和jpcap库，然后使用了这个客户端，打开GUI后输入账号密码，登陆没反应。于是告诉了作者，中午收到作者来信，说暂时还只能用命令行方式，这我当然能够接受，可惜在Mac的terminal中显示的中文提示都是乱码，于是svn到了原代码到eclipse中看看吧，按照提示组合了命令行，成功登陆了！</p>
+
+
+<p>从此又自由了。</p>
+
+
+<p>项目地址：<a href="http://code.google.com/p/jdrcom/">http://code.google.com/p/jdrcom/</a></p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/12/13/mssql-can-not-add-data-link/">MSSQL无法添加数据连接</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-13T19:10:00+08:00" pubdate data-updated="true">Dec 13<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;“无法添加数据连接。未能加载文件或程序集“Microsoft SqlServer.Management.Sdk.sfc,Version=10.0.0.0,Culture=nutral,publicKey=89845dcd8080cc91"或它的某一个依赖项。系统找不到指定的文件。”&lt;/p&gt;
+</code></pre>
+
+<p>今下午卸载了SQL2008，然后装了2005，在VS2010中使用SqlDataSource的时候发现无法创建数据库连接，错误就是这样说的，我现在猜想可能是卸载SQL2008的时候多卸载了一些东西。</p>
+
+
+<p>于是下载了下面这两个东西装上后就没问题了：</p>
+
+
+<p>感谢<a href="http://blog.sina.com.cn/s/blog_62fd44430100zccr.html">这位</a>（我直接复制了他的内容）</p>
+
+
+<p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">（1）<strong style="font-weight: bold;">Microsoft SQL Server 系统 CLR 类型</strong></p>
+
+
+<p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">SQL Server 系统 CLR 类型包中包含用于在 SQL Server 2008 中实现新的 geometry、geography 和 hierarchyid 类型的组件。此组件可与服务器分开安装，以允许客户端应用程序在服务器之外使用这些类型。</p>
+
+
+<p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;">注意：</strong>此组件还要求有 <strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123373"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">Windows Installer 4.5</span></a></strong>。</p>
+
+
+<p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">用户：<strong style="font-weight: bold;">客户、合作伙伴、开发人员</strong></p>
+
+
+<p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123721&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X86 包</span></a></strong> (SQLSysClrTypes.msi) - 1588 KB<br /><strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123722&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X64 包</span></a></strong> (SQLSysClrTypes.msi) - 1981 KB<br /><strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123724&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">IA64 包</span></a></strong> (SQLSysClrTypes.msi) - 3289 KB</p>
+
+
+<p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">（2）<strong style="font-weight: bold;">Microsoft SQL Server 2008 管理对象</strong></p>
+
+
+<p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">SQL Server 管理对象 (SMO) 是一个 .NET Framework 对象模型，软件开发人员使用该模型可以创建用于管理 SQL Server 对象和服务的客户端应用程序。此对象模型将与 SQL Server 2000、SQL Server 2005 和 SQL Server 2008 协同工作。</p>
+
+
+<p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;">注意：</strong>Microsoft SQL Server 2008 管理对象集合需要安装 <strong style="font-weight: bold;">Microsoft Core XML Services (MSXML) 6.0</strong> 和 Microsoft SQL Server Native Client，本页中也提供了这两个程序。</p>
+
+
+<p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">用户：<strong style="font-weight: bold;">客户、合作伙伴、开发人员</strong></p>
+
+
+<p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123708&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X86 包</span></a></strong> (SharedManagementObjects.msi) - 3225 KB<br /><strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123709&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X64 包</span></a></strong> (SharedManagementObjects.msi) - 3895 KB<br /><strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123710&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">IA64 包</span></a></strong> (SharedManagementObjects.msi) - 5640 KB</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -404,204 +618,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/11/20/also-helloworld-with-webpy/">又是helloworld</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-11-20T23:58:00+08:00" pubdate data-updated="true">Nov 20<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;学计算机编程语言的人都有helloworld情节，不管学成什么样，他们写helloworld的能力都很强。&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:python" lang="python">import web
-
-
-<p>urls = ("/hello", "hello")
-app = web.application(urls, globals())</p>
-
-<p>class hello:</p>
-
-<pre><code>def GET(self):
-    return "hello, world"
-</code></pre>
-
-<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
-
-<pre><code>app.run()&lt;/pre&gt;
-</code></pre>
-
-<br /><p>今晚已经开始了Web.py的学习阶段。</p>
-
-
-<p>看官方介绍的在Mac系统下安装webpy有点特别，于是我直接使用了easy_install的安装方法，不知道自己以前安装过easy_install这个软件管理工具，直接使用就好了，不过最好加上sudo，否则会提示无法创建什么目录，权限不够吧。</p>
-
-
-<p>安装完web.py后就能使用框架来写东西了，上面的helloworld就算是。</p>
-
-
-<p>通过这个简单的helloworld能够学到一点框架的知识——在urls中一个url字符串对应一个处理的类对象，如果需要为这个app配置多个url和对应的处理类，就需要使用add_mapping方法，这些内容请参考<a href="http://webpy.org/docs/0.3/api#web.application">官方的api</a>，很是简单，具体不在此赘述。</p>
-
-
-<p>第一天就学到这里，以后就要变学习变开发了。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/11/19/also-back-to-drcom-for-mac/">又回到了drcom上</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-11-19T14:33:00+08:00" pubdate data-updated="true">Nov 19<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;如果在mac系统下没有可用的drcom客户端真是很难受的一件事情，虽然现在有了web登陆的账号，但还是有限制的——流量总数、速度，特别是速度限制，真是拿生锈的刀杀人的感觉。&lt;/p&gt;
-</code></pre>
-
-<p>曾经两次打开了xcode来调试drcom4mac的源代码，但每次都感觉怎么这么复杂，我怎么能看得懂？里面的drcom库是用C写的，我个人一直对于C语言有好感，但就是不想接触。现在高级语言有的是，虽说从学术划分上来讲C也算是高级语言，但从语言上比较，C算是很底层的了。就这样拖延着，我想还是动力不够，如果有什么强大动力支持着我来做这个，可能会更好。</p>
-
-
-<p>再来一次吧，现在同时也在学着python，前段时间面试豆瓣的时候被问到是不是C的代码写得少，我只能正确回答是的，最终也没面试上，许是和这个有关，既然如此也算是给自己找了个理由——为了未来，还有广大生活在drcom阴影下的使用mac系统的人们。</p>
-
-
-<p>我来了！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/11/13/software-exam-is-finished/">软考结束了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-11-13T07:58:00+08:00" pubdate data-updated="true">Nov 13<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;经过昨天一天的努力，软考终于结束了，不知为何昨晚没有写这些，可能是因为晚上给同学过生日玩得很好，也很累，回来没有静下来写这些。&lt;/p&gt;
-</code></pre>
-
-<p>一共复习了2个月，算是挺长的了，很多同学都复习几天就去参加了，不知道他做得怎么样。我感觉这次考试是我做得最难的一套题了，当然有不少成分是紧张，本来不算太难的题目只要有了紧张就会变得不知从哪里下手。开始做的时候有种在蒙答案的感觉，由于后来做完不能提前上交，我只能又做了一遍，修改了几个题目的答案（虽然知道越改越错的原则），再次做的时候感觉没有那么多题目拿不准，就是只有几个。</p>
-
-
-<p>下午的考试和上午一样，本来不担心下午考试的，不过一发下试卷来我看看题目，有些害怕——最担心的题目出现了，01背包，我忽略了那个题目直接做了后面的，不过后面那个题目我也有些摸不着头脑——没做过State模式的程序题，但后来又做了一遍后，最后那个题目的意思大致清楚了，按照我的想法写上了答案。回到前面看那个01背包，似乎没有我想得那么难，比较快得做出了答案，还是有些担心的，因为这么重要的一个题怎么会如此简短的答案呢，再仔细看过，没什么大问题，就先这样写上吧。</p>
-
-
-<p>总的来说时间是很充足的，如果第一遍不大会，那再做一遍或许就会有思路了，希望大家都能考过，明年就能参加高级的试试了！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/11/06/print-exam-id-tomorrow/">明天打印准考证</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-11-06T11:07:00+08:00" pubdate data-updated="true">Nov 6<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;前天下午和Yz谈论了一下软考内容，他很不屑于这次考试了，发现了不少问题，而我同样也遇到了类似的问题——出题不规范、答案不清楚等等，让这次考试变得不正式。但我们都已经报名，如果不好好对待就会感觉有些亏了。&lt;/p&gt;
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -619,23 +635,23 @@ app = web.application(urls, globals())</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/build-up-env-for-sorted/">build-up-env-for-sorted</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/about-sorted/">about-Sorted</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/27/give-up-ruby/">give up ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
       </li>
     
   </ul>

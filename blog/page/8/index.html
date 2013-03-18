@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！&lt;/p&gt; 修改一下/usr/local的权限：(如果不修改的话， &hellip;">
+  <meta name="description" content="&lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql Fetching: mysql-2.8.1.gem (100 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,278 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/">安装mysql的Ruby驱动遇到的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-09T20:08:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql
+</code></pre>
+
+<p>Fetching: mysql-2.8.1.gem (100%)
+Building native extensions.  This could take a while&#8230;
+ERROR:  Error installing mysql:</p>
+
+<pre><code>ERROR: Failed to build gem native extension.
+
+    /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
+</code></pre>
+
+<p>checking for mysql_query() in -lmysqlclient&#8230; no
+checking for main() in -lm&#8230; yes
+checking for mysql_query() in -lmysqlclient&#8230; no
+checking for main() in -lz&#8230; yes
+checking for mysql_query() in -lmysqlclient&#8230; no
+checking for main() in -lsocket&#8230; no
+checking for mysql_query() in -lmysqlclient&#8230; no
+checking for main() in -lnsl&#8230; no
+checking for mysql_query() in -lmysqlclient&#8230; no
+checking for main() in -lmygcc&#8230; no
+checking for mysql_query() in -lmysqlclient&#8230; no
+<strong><em> extconf.rb failed </em></strong>
+Could not create Makefile due to some reason, probably lack of
+necessary libraries and/or headers.  Check the mkmf.log file for more
+details.  You may need configuration options.</p>
+
+<p>Provided configuration options:</p>
+
+<pre><code>--with-opt-dir
+--without-opt-dir
+--with-opt-include
+--without-opt-include=${opt-dir}/include
+--with-opt-lib
+--without-opt-lib=${opt-dir}/lib
+--with-make-prog
+--without-make-prog
+--srcdir=.
+--curdir
+--ruby=/usr/local/Cellar/ruby/1.9.3-p0/bin/ruby
+--with-mysql-config
+--without-mysql-config
+--with-mysql-dir
+--without-mysql-dir
+--with-mysql-include
+--without-mysql-include=${mysql-dir}/include
+--with-mysql-lib
+--without-mysql-lib=${mysql-dir}/lib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-mlib
+--without-mlib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-zlib
+--without-zlib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-socketlib
+--without-socketlib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-nsllib
+--without-nsllib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-mygcclib
+--without-mygcclib
+--with-mysqlclientlib
+--without-mysqlclientlib
+</code></pre>
+
+<p>Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 for inspection.
+Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out</pre></p>
+
+<br /><p>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">gem install mysql -- --with-mysql-dir=/usr/local/mysql</pre>
+
+
+<br /><p>一开始的那两个“&#8211;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
+
+
+<p>我已经解决问题了，成功安装mysql的ruby驱动，如果仍然遇到问题，可以试试参考<a href="http://blog.bmn.name/2008/02/rails-gem-install-mysql-throws-error-extconfrb-failed/">这里</a>（同样感谢这里）。</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/07/some-issue-when-saving-rules-in-iptables/">保存iptables规则遇到的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-07T18:03:00+08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。&lt;/p&gt;
+</code></pre>
+
+<p>在保存iptables规则的时候遇到这样的问题：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">iptables: Saving firewall rules to /etc/sysconfig/iptables: /etc/init.d/iptables: line 268: restorecon: command not found</pre>
+
+
+<br /><p>当然你可能会看到中文的提示（我的就是），意思是一样的。从<a href="http://www.live-in.org/archives/1112.html">这里</a>得到了解决方案：</p>
+
+
+<p>安装一个包包：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">yum install policycoreutils</pre>
+
+
+<br /><p>行了，剩下就没遇到问题了：）</p>
+
+
+<p>稍稍广告一下吧：欢迎使用Yardvps的VPS哦，我就在使用，现在很稳定，现在有了中文界面，支持支付宝，挺好吧？可以点击<a href="http://www.yardvps.com/billing/aff.php?aff=399">这里</a>购买，这样我也许能得到一点推广费用：）</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/06/wired-grammar-in-ruby/">奇怪的Ruby语法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-06T22:19:00+08:00" pubdate data-updated="true">Feb 6<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;今天断断续续把昨天提到的那个Ruby编程入门看完了，原本打算按照教程中的例子做一遍，不过看得时候感觉这样做的话有些浪费时间，对于有一定编程经验的人来说按照例子做一遍没多大意义，很多内容看看就过了。&lt;/p&gt;
+</code></pre>
+
+<p>但很可惜，在Ruby这里，看看还不一定就能理解，要不然今天也不会单独写一篇日志了，真得有不少特性和其他编程语言不一样，概念上倒是还能理解，语法符号上就要重新接受了，想等过两天买的Ruby编程书来到后细细重头看。</p>
+
+
+<p>还有20天了，真不知道当初设想的几个小理念能够实现多少，但也别失望，我还成功转型了呢，这个寒假收获将会颇丰！</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/06/firstly-study-ruby/">开学Ruby</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-06T00:40:00+08:00" pubdate data-updated="true">Feb 6<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;先从官方文档那里找各种资料学习，已经在amazon上买书了，买了本rails应用的书，还买了两本考系统架构师的书，再就是想买一本讲ruby语言的书，很可惜amazon上没货，要是从非amazon商家买的话需要支付高昂的快递费，于是从淘宝上找了家靠谱的商家，还有满49包邮（幸亏这本书是51，包邮了）&lt;/p&gt;
+</code></pre>
+
+<p>对了，今天在amazon上买书是因为收到了amazon前段时间送的满100送20优惠券，对于我这种很喜欢在amazon上买技术书籍的书虫来说这类活动太好了，以后多多参加！</p>
+
+
+<p>说废话太多了，今天断断续续看了这里的教程，基本想要按照讲得做，看完一半了，明天把剩下弄完！</p>
+
+
+<p>教程地址：<a href="http://pine.fm/LearnToProgram/">http://pine.fm/LearnToProgram/</a>  </p>
+
+
+<p>ruby的中文参考文档页：<a href="http://www.ruby-lang.org/zh_cn/documentation/">http://www.ruby-lang.org/zh_cn/documentation/</a></p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -502,247 +774,6 @@ print "inv = %d" % inv
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-branch-manage/">Git使用重新学习（分支管理）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T20:10:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;分支的使用比较繁杂，前面光说了一些皮毛，现在记录一下分支的管理部分。&lt;/p&gt;
-</code></pre>
-
-<p>查看分支的详细信息：git branch -v，列出分支最后提交的内容，带星号表示当前分支。</p>
-
-
-<p>查看哪些分支已经被并入当前分支：git branch &#8211;merged，也就是说除了那个带星号的分支都是可以删除（-d）的，因为都合并进来了嘛！查看没合并进来的就是&#8211;no-merged开关。删除那些没有合并进来的分支会提示错误，但强制删除就可以了，强制删除用-D开关。</p>
-
-
-<p><strong>不得不说的远程分支</strong></p>
-
-
-<p>在github创建了一个项目，在项目管理中开启了github Pages服务，这是个给项目做介绍页面的服务，开启后出现了一个远程分支gh-pages，但本地根本访问不到。首先我们应该明确，这个分支暂时不在我们本地，除非你是在这个服务开启后clone了项目，这样肯定有，否则和我一样的话（从本地push过去的），需要先fetch过来这些远程分支：git fetch origin gh-pages:gh-pages。后面两个由冒号分隔的意思是获取origin中的gh-pages分支，放到本地，在本地也叫gh-pages（冒号右侧），当然你可以根据需要更改冒号右侧的本地分支名字。现在查看一下本地分支就能发现出现两个分支了，切换过去后就能看到github给我们生成的index.html文件，你可以编辑了：）</p>
-
-
-<p>推送本地分支到远程分支的时候可以像上面这样写:git push origin xxx1:xxx2，意思就是推送本地叫xxx1的分支到origin中，推过去叫xxx2，但此处一般简写，光写本地分支名，这样远程分支中的名字也是和本地一样的。</p>
-
-
-<p>删除远程分支的命令挺好玩的：git push origin  :xxx，在xxx左边冒号左侧有一个空格，意思是把本地的空分支推到远程的xxx分支上，就是删除xxx分支的意思。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-branch/">Git使用重新学习（分支）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T19:36:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;在git中分支是一个变态技能！&lt;/p&gt;
-</code></pre>
-
-<p>创建分支：git branch [branch-name]即可。</p>
-
-
-<p><a title="18333fig0305-tn.png" href="http://www.youth2009.org/attachment/135279/"><img src="http://www.youth2009.org/usr/uploads/2012/01/528893353.png" alt="18333fig0305-tn.png"></a></p>
-
-
-<p>git中有个叫master的分支，这是默认的，刚刚创建了一个testing分支，所以这两个指向是一样的，因为刚刚就在master分支下。但是git为何知道我在master呢？因为还有个叫HEAD的默认指针指向了当前正在使用的分支，所以当你切换分支的时候HEAD就会指向新的地方。</p>
-
-
-<p>切换分支：git checkout [branch-name]（git checkout -b [branch-name]可以实现新建并切换到此分支）切换分支时最好保持暂存区清洁，否则有可能产生冲突阻止你切换。</p>
-
-
-<p>当我们切换到了testing分支后，再做一些提交，我们的testing分支会继续往下走，但master分支还停留在刚才离开的地方，如果我们需要回去，只需要再切换回master分支即可屏蔽刚才所作的提交，保持文件的原始性。</p>
-
-
-<p>合并分支：git merge [branch-name]，把分支合并到你现在所在的那个分支中，可别合并反喽，当然我感觉反了也没关系，就是个名字的问题吧？</p>
-
-
-<p>分支删除用-d开关，git branch -d [branch-name]即可。</p>
-
-
-<p>合并分支的时候遇到冲突是不可避免的，有些冲突能够自动解决，但还有不少是需要我们手动解决的，此时git会在status中告诉我们，我们打开后就能看到由“=====”分割开的两部分，就是让我们选择，等手动修改好后需要再add进暂存区，此时就能提交了。 </p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-tag/">Git使用重新学习（标签）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T17:29:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;打标签，挺有用的一个功能，一般是加版本号吧。v1.0，v2.0，vN.0&lt;/p&gt;
-</code></pre>
-
-<p>git tag是看标签</p>
-
-
-<p>git tag -a 是加带附注的标签，（还有轻量级标签不用加-a，直接给出标签名字完事），接下来一个参数是标签名字，再者需要-m引出附注内容，完整就像这样：git tag -a v1.0 -m &#8216;first version&#8217;</p>
-
-
-<p>加完后可以show一下：git show v1.0，所谓附注就是包含了很多提交者的信息，以后可以慢慢查证使用。</p>
-
-
-<p>如果你有GPG的话还可以签署标签，把前面的-a改成-s即可，-s是signed的意思，-a是annotated的意思。（刚刚尝试了一下-s，可惜Mac系统上没装gpg软件，签署失败，但大多linux系统都会有的吧，Mac系统的用户请从<a href="http://www.gpgtools.org/">这里</a>下载GPGTools）</p>
-
-
-<p>刚才用GPG签名了，现在验证一下：git tag -v xxx，-v就是verify的意思，比如我得到了如下的提示信息：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">object a20e6b9c2433e88a9da63abd8d74ddede9bccde6
-
-
-<p>type commit
-tag v_2012-01-26-s
-tagger dawncold &lt;loooseleaves@gmail.com&gt; 1327569076 +0800</p>
-
-<p>signed this tag
-gpg: 于 四  1/26 17:11:24 2012 CST 创建的签名，使用 RSA，钥匙号 1B1ECF39
-gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
-</pre></p>
-
-<br /><p>很可惜，默认tag是不被push到远程仓库中的，如果要分享你的tags，在push的时候要显示地写明：git push origin [tag-name]，推送所有tags可以直接用&#8211;tags来代替tag-name参数</p>
-
-
-<p>删除tag需要用-d完成：git tag -d [tag-name]</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-remote-repo/">Git使用重新学习（远程仓库）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T16:08:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;查看当前远程仓库：git remote  -v，加上-v属性能看得内容详细一些。&lt;/p&gt;
-</code></pre>
-
-<p>添加远程仓库：git remote add [shortname] [url]</p>
-
-
-<p>有了shortname，就相对于给仓库了一个别名，以后可以用别名操作，git fetch xx即可</p>
-
-
-<p>get fetch xx是获取远程仓库中有而本地没有的数据</p>
-
-
-<p>提送数据到远程仓库用：git push remote-name branch-name，推送的时候要注意必须没有他人在推送，且没有其他更新才行，如果他人推送了不少更新，你需要先得到更新，合并后再推送。（这里并不是说和svn一样了，只是你可以自己先在本地提交，但推送到远程服务器上时，需要按照先来后到的原则，保证每个人的提交是不冲突的，是最新的。这是我个人的理解）</p>
-
-
-<p>远程仓库重命名、删除：git remote rename short-name new-name，git remote rm xx</p>
-
-
-<p>另外git remote show repo-name能够得到不少信息，有哪些要合并啦，哪些已经删除啦，哪些新仓库出现啦等等，这个是需要连接服务器获取的。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -760,23 +791,23 @@ gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/build-up-env-for-sorted/">build-up-env-for-sorted</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/about-sorted/">about-Sorted</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/27/give-up-ruby/">give up ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
       </li>
     
   </ul>

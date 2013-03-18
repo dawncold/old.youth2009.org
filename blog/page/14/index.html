@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;经过近1天的实践才摸清了这两个控件的搭配使用方法，网上介绍的不算多，我就把自己的经验说说：&lt;/p&gt; 首先这两个的搭配是这样的，基础是UITabBarController，你完全可以在Xcode中选一个以Tabbar为基础的工程，用Tabbar来划分程序的大功能， &hellip;">
+  <meta name="description" content=" &lt;p&gt;我现在越来越喜欢日本的歌曲了。喜欢一开始的旋律，男歌手唱的Rup不是很喜欢。&lt;/p&gt; ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,189 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/03/a-japan-song/">从别人那儿看到的歌曲</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-03T22:36:00+08:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;我现在越来越喜欢日本的歌曲了。喜欢一开始的旋律，男歌手唱的Rup不是很喜欢。&lt;/p&gt;
+</code></pre>
+
+<p><object width="320" height="240" data="http://www.tudou.com/v/1wRe4WIIamM/v.swf" type="application/x-shockwave-flash"><param name="src" value="http://www.tudou.com/v/1wRe4WIIamM/v.swf"></object></p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/31/alignment-of-uitableviewcell/">UITableViewCell的对齐方式</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-31T10:05:00+08:00" pubdate data-updated="true">Jul 31<span>st</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;如果你用了Subtitle的Style，那么设置textAlignment为center就没用了，当然设置textAlignment目前只能针对textLabel来设置，听说在3.0以后的版本对于cell的textAlignment的设置方法废弃了。&lt;/p&gt;
+</code></pre>
+
+<p>刚刚我把cell的style改成了default，然后再设置这些alignment，就能用了，真奇怪用subtitle的方式即使重建了cell，都不能设置alignment到center。但原因是这样的，我引用下官方reference：</p>
+
+
+<br /><blockquote>UITableViewCellStyleSubtitle<br /><p>A style for a cell with a left-aligned label across the top and a left-aligned label below it in smaller gray text. The iPod application uses cells in this style.</p>
+
+
+<p></blockquote></p>
+
+<br /><p>很明确了吧，subtitle就是left-aligned的label，再改也没用。当然还有个value1和value2的style，似乎是专门left-aligned和right-aligned的，不过在他们各自的反方向还有另外的label，最好看官方的说明和多多实践。</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/29/continue-buy-vps/">还是继续买VPS了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-29T22:06:00+08:00" pubdate data-updated="true">Jul 29<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;原来不太敢想象的VPS，现在也买了好几个月了。一开始用起来还很新鲜，配置了好几天，一旦配置完毕基本就不会再去动了，因为服务器最好还是不要乱去碰，除非访问量特别大才有必要每天看看日志什么的。也正是因为这个原因，我曾一度想退出VPS，但舍不得博客中的文字以及开发了好几个PHP程序（虽然不太好），再想想，还想学学Python，还是有这么一个lab环境的好呀。&lt;/p&gt;
+</code></pre>
+
+<p>在博客首页下面加了Google的横幅广告，因为我刚刚看到我已经赚到了1.49美元了，不知道何时才能达到100美元支付给我呢，一点点攒起来吧。</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/29/some-config-about-uitableview-cell/">关于UITableView中的cell配置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-29T13:28:00+08:00" pubdate data-updated="true">Jul 29<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;都是关于cell的，不知道值得写出来么：&lt;/p&gt;
+</code></pre>
+
+<p>1。在定义cell样式的时候，如果你用</p>
+
+
+<br /><pre class="prettyprint linenums bush:cpp" lang="cpp">UITableViewCellStyleSubtitle</pre>
+
+
+<br /><p>来初始化cell，那么设置cell的detailTextLabel的text属性就能看到详细的内容，在textLable的下一行显示着。</p>
+
+
+<p>2。设定cell：</p>
+
+
+<br /><pre class="prettyprint linenums bush:cpp" lang="cpp">[cell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];</pre>
+
+
+<br /><p>这样在每个cell右侧会有小箭头提示，很漂亮。</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -379,211 +562,6 @@ Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/22/lion-eat-my-xcode-4-0/">Lion吃了我的Xcode</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-22T06:48:00+08:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;昨天Lion在AppStore发布了，我也就是看了几眼。后来在论坛上有人说通过香港的免费升级服务有一小部分大陆的机器也得到了免费升级的机会，我也算是个港行的mbp，去试试看，结果我的机器似乎不在那个享受范围内。&lt;/p&gt;
-</code></pre>
-
-<p>不过在微博上有人转发了一个Lion的种子，我就下载去了，一会儿竟然下载完了。然后晚上就装上了，apple在反盗版方面一点儿也不重视，下载是收费的，但你只要是得到了文件就随便使用。我这次也邪恶了一把。</p>
-
-
-<p>安装Lion好久了，先进行一个标明20min的预安装过程，再重启进行真正安装，那个过程标明33min但实际并不是这样，大约有3700s吧安装过程中鼠标移到最顶上，那个菜单条就出现了，可以看安装的log，比干等强一些。</p>
-
-
-<p>安装完Lion后我打开xcode，发现我的xcode4.0只能在10.6系统中运行，App Store中我还看到一个Xcode4.1而且是免费的，哎，这就很奇怪了，当初4.0是收费4.99美元下载的，现在又出来一个10.7系统下的免费4.1版本。既然免费就下载吧，但发现太慢。于是去了develop.apple.com上找develop tools在那里有xcode4.1的下载链接，本想用迅雷试试速度呢，不过igetter依然跳出来了，我也就没再换，速度还不错大约1MB/s左右，下载自动关机，就睡觉去了。</p>
-
-
-<p>早上安装了那个xcode4.1，安装完毕后发现再打开xcode还是提示只能在10.6系统下使用。难道安装没用？！又去develop目录下找找application，只有一个xcode的app图标，很奇怪不知道为何。</p>
-
-
-<p>打开看了一眼我的Application目录，发现里面有一个InstallXcode，打开试试，没想到这才是升级，打开后升级了现有的Xcode，终于能用了。我想可能刚刚安装的时候发现我已经安装了以前的版本，所以就出来一个升级过程吧。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/20/simple-intro-to-box2d/">Box2d的简单使用</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-20T13:49:00+08:00" pubdate data-updated="true">Jul 20<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;真不太想写，因为写这篇日志应该比写一个程序都要复杂。&lt;/p&gt;
-</code></pre>
-
-<p>我介绍的是box2d引擎在iphone上的使用方法，网上也有不少介绍的，我再简单啰嗦一番：</p>
-
-
-<p>首先我们需要一个物理世界：b2world *world;在世界中创造各种各样的body，当然这些body都是刚体，如同经济学中的刚性需求那样，这里值得是形状不会被压扁的坚固物体。这些body默认在实例化后是静态的，除非你明显得把他们的type参数改成b2_dynamicBody，他们就能参与物理运动了。你可以给他们加入密度、弹性、摩擦等参数。这些都是每个body的属性，而这些body是需要刚刚的world创建的，而创建的函数需要一个配置单，就是一个结构体而已。</p>
-
-
-<p>body出现之后你还不能看到，因为还需要另外的两个重要性质：fixture和shape，这里的shape有两种，一个是多边形，一个是圆形；创建shape后定义一些参数，然后把这个对象传递给fixture的对象，fixture被我叫做材质，刚才介绍的密度、弹性、摩擦等属性就是在这里定义的。当然，fixture有个shape属性，把刚刚实例化的shape对象给他即可。最后用body对象的CreateFixture函数生成fixture。这样应该就能看到你创建的物理实体了。</p>
-
-
-<p>下面介绍一些刚刚遗漏的概念，在这个物理世界中，我们需要定义一个重要的量——重力，我们所有创建的物理实体都将按照这个重力的方向移动，而这里的重力实际上指的是一个向量，比如说是（0，-10），这样就会向着y轴-10的方向移动，而负坐标是y轴向下的，刚刚实验过，如果用（0，-100）的话，物体下移的速度会比（0，-10）的快很多，这也很明显。</p>
-
-
-<p>另一个有意义的概念就是休眠了，其实这是创建“世界”的又一个参数，意思是如果有物体到达了无法移动的地方，比如边界，或者说出去了边界，引擎应该就不再计算它的一些数据了，这理所应当，怎么还需要解释呢？我们当然希望引擎能够把主要的计算力量给予需要的物理实体。</p>
-
-
-<p>上面提到了一个区域的概念，是的，我们应该划定一个区域，在这个区域中的物体参与物理运算，外面的就不再参与了，但这里定义一个区域也是用了向量的方法，而且这个区域也算作一个body，有些难以理解。目前掌握得不好，就不再详述了。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/19/process-cis-and-zis-with-python/">用python处理词汇</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-19T14:06:00+08:00" pubdate data-updated="true">Jul 19<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;要整理一些词汇，并且还要给每个词汇编码，我把所有的词汇分割称了独立的汉字，再把这些汉字压缩，去掉重复的汉字，最后把这些汉字导入数据库，得到了每个汉字的id，把这些id组合起来作为词的编码，这样还算是好用吧。&lt;/p&gt;
-</code></pre>
-
-<p>用python写了7个脚本来做这些工作，最后得到了近7万条记录，包括单独的字和一些词。因为要用来做iphone应用，所以数据库用的是sqlite，大约4MB的数据，看来这些数据已经很够用了吧。</p>
-
-
-<p>代码实在不太美观，所幸就不粘贴了吧。</p>
-
-
-<p>哦，对了，在收集资料过程中，找到了一个用mdb包装的成语数据库，可惜mac下没有很好的浏览工具，就找找看有没有转换工具，在GoogleCode上找到了一个mdb转sqlite的工具，用java写的，下载下来后用了一下，出了一个warning，不过没有影响使用。很不错，感谢一下：<a href="http://code.google.com/p/mdb-sqlite/">http://code.google.com/p/mdb-sqlite/</a></p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/16/who-will-see-my-micro-blog/">微博是写给谁看的</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-16T21:09:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;目前主要玩新浪微博，关注24人，粉丝175人，微博2007条。写了这么多微博，也算是一个中度的微博使用者了吧。现在微博这个工具确实很有趣，有的人拿来当成发布信息的高速途径；有的人专门做微博广告（我深深讨厌这些人，大约删除了400～500的广告粉丝了）；还有些人有意无意地写写、看看，仅仅当作消磨时间的工具。&lt;/p&gt;
-</code></pre>
-
-<p>我深深感觉到，微博其实是写给“自己”看的。这里的“自己”应该不单指你这个读者，而含有一点深层的内涵。</p>
-
-
-<p>一方面是因为它限制了字数，目前每条限制在140个字以内（似乎网易微博限制在163个字以内），这些都是跟着Twitter学来的，不过英文的140个字符能发一条短信，中文的话只有70个字呢，怎么国内不学学这个呢？发一条微博很快，能够记录自己短暂的灵感、对某个事物、现象的感受，而且很接近第一感受，我们不可能把自己对某个现象的第一感受写成一片论文那么长，大多数的第一感受也就是几个字，或者几个感叹词吧，这样的话，微博很合适。</p>
-
-
-<p>另一方面，以我为例，我不喜欢在微博上关注很多人，目前的原则是最多关注42个人，超过42个人就删除已关注的人再关注新的，但就目前看来，达到42这个数字还有很长的路要走。（为何是42呢？那就搜搜42这个神奇的数字吧，有一个很梦幻的理由）我只喜欢维护一个小型的成熟的社交网络，而不是全面撒网。所以绝大多数微博是写给自己看的，很少得到好友们的评论，也许只有几个固定好友会看我写的，并且给我说两句，而我同样也会多多关注他们，这是一个相互的过程，你很容易就会去关心那些曾经关心过你的人。渐渐地，马太效应促使下，这个关系会日益紧密；同样，其他人的关系会渐渐瓦解。</p>
-
-
-<p>相反的方面，既然我说这是写给自己看的微博，那我反而不愿意看自己写出来的东西，这该怎么解释？不知道这是不是只针对我而言，我确实不大看自己写过的东西，偶尔看看写了多少条，决不会从头看自己写出来了什么。也许写微博是一个自己对事物评价的过程，有时候也是对自身的解读、发泄等等，自己在这个过程中已经得到了发展，渐渐会形成一种属于自己的成长过程，微博在此时便成为了一种表现这个过程的形式而已。我们自己并不太关心过程，甚至也不关心结果，可能是因为看不到结果是什么吧。</p>
-
-
-<p>写了这么多关于微博给自己看的理由，不能否认，别人在了解你的过程中也可能看你写过的微博，所以必然会有给他人看的成分，要不然就应该叫微日记了。（微日记这个点子不错吧？！）</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/15/">&larr; Older</a>
@@ -601,23 +579,23 @@ Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/build-up-env-for-sorted/">build-up-env-for-sorted</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/about-sorted/">about-Sorted</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/27/give-up-ruby/">give up ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
       </li>
     
   </ul>

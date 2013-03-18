@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;我并不想完整地比较这两个替换符号的用处，只是发现了一点，可能以后也会这样用。&lt;/p&gt; %r是原始的输入，如果输入了中文，在输出的时候会出现一些类似unicode的代码；其他的会输出带单引号的内容。 %s就是字符串了，输出就是字符串，如果原始输入是中文， &hellip;">
+  <meta name="description" content="&lt;p&gt;用git管理项目的优势大家可能都看了许久了，我也是因为如此才用了git而不是svn、cvs这些。其实我是挺喜欢喜新厌旧的，因为新东西的出现并流行一定是比原来的有所突破，并且大多数人喜欢这种变革，所以为何不喜欢呢？&lt;/p&gt; 用git管理项目不可避免要遇到导出功能， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,219 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/10/git-export-function/">Git的导出功能</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-10T08:13:00+08:00" pubdate data-updated="true">Jul 10<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;用git管理项目的优势大家可能都看了许久了，我也是因为如此才用了git而不是svn、cvs这些。其实我是挺喜欢喜新厌旧的，因为新东西的出现并流行一定是比原来的有所突破，并且大多数人喜欢这种变革，所以为何不喜欢呢？&lt;/p&gt;
+</code></pre>
+
+<p>用git管理项目不可避免要遇到导出功能，在svn和cvs上应该叫export功能，git上的这个功能似乎没找到，要这样做：先打包，再解压到一个地方去。还能接受吧。</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">git-archive --prefix=map/ master | tar -x -C ../map_e/</pre>
+
+
+<br /><p>稍微解释一下，prefix指明了用哪个仓库，后面的master应该就是branch的名称了，然后把这些传递给了tar，因为不指明&#8211;format的时候默认用了tar方式打包，所以这里传递给tar解压到上层目录的map_e中，当然实际工作可以解压到生产服务器上去。</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/09/best-content-in-include_path/">最好在include_path中加上根</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-09T16:54:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;刚刚用了下typecho博客插件——友情链接来添加一个友情链接，但发现很多php文件找不到了，很奇怪，以前是可以的，看到warning中的信息，有个include_path的相关东西，看看里面提到的路径是不是有需要的文件，结果没有，而在其中路径的下一级目录下有，这就怪了。&lt;/p&gt;
+</code></pre>
+
+<p>Google说最好把include_path写成&#8221;./&#8221;。是不是这样就是自动便利所有的内容了？我猜是的！当前的include_path中又pear的路径，我就先不删除了，linux系统下用冒号分隔各个路径，在前面加上一个点即可。</p>
+
+
+<p>重启php，再次访问，恢复正常！</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/09/seek-and-tell-in-python/">简要写写python的file中的tell和seek</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-09T15:12:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;对于一个&lt;a title="file" href="http://www.youth2009.org/tag/file/"&gt;file&lt;/a&gt;，调用&lt;a title="tell" href="http://www.youth2009.org/tag/tell/"&gt;tell&lt;/a&gt;能够知道现在的文件位置。&lt;a title="seek" href="http://www.youth2009.org/tag/seek/"&gt;seek&lt;/a&gt;是改变文件位置。  比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完&lt;a title="tell" href="http://www.youth2009.org/tag/tell/"&gt;tell&lt;/a&gt;我又使用了&lt;a title="seek" href="http://www.youth2009.org/tag/seek/"&gt;seek&lt;/a&gt;(0),这样文件位置就回到开头了，下次再调用readline就会输出原来第一行的内容了，这应该是很容易理解的。不明白可以亲自试试。&lt;/p&gt;
+</code></pre>
+
+<p></p>
+
+
+<pre class="prettyprint linenums bush:python" lang="python">from sys import argv
+
+script, input_file = argv
+
+def print_all(f):
+    print f.read()
+
+def rewind(f):
+    f.seek(0)
+
+def print_a_line(line_count, f):
+    print line_count, f.readline()
+
+current_file = open(input_file)
+
+print "First let's print the while file:\n"
+print_all(current_file)
+
+print "Now let's rewind, kind of like a tape."
+rewind(current_file)
+
+print "Let's print three lines:"
+
+current_line = 1
+print_a_line(current_line, current_file)
+print "current_pos:%d" % current_file.tell()
+rewind(current_file)
+
+current_line += 1
+print_a_line(current_line, current_file)
+print "current_pos:%d" % current_file.tell()
+
+current_line += 1
+print_a_line(current_line, current_file)
+print "current_pos:%d" % current_file.tell()
+</pre>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/09/python-one-star-and-two-star/">Python中的*和**</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-09T14:44:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;在&lt;a title="python" href="http://www.youth2009.org/tag/python/"&gt;python&lt;/a&gt;的函数参数中，可以在变量名称前面加一个或者两个星号代表不一样的变量类型：&lt;/p&gt;
+</code></pre>
+
+<p>在stack overflow上看到有人问这两个的区别了，就转载过来答案吧：</p>
+
+
+<blockquote>If the form *identifier is present, it is initialized to a tuple receiving any excess positional parameters, defaulting to the empty tuple. If the form **identifier is present, it is initialized to a new dictionary receiving any excess keyword arguments, defaulting to a new empty dictionary.</blockquote>
+
+
+<p><span style="font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;"><span style="border-collapse: collapse;">加一个星号代表这个参数是一个tuple类型；加两个则是一个dictionary类型，很好用。</span></span></p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -462,174 +675,6 @@ Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC)
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/03/comma-in-print-func-in-python/">Python中print中的逗号</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-03T20:11:00+08:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;以往可能会写这样的代码：&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:python" lang="python">print x 
-
-
-<p>print y</pre></p>
-
-<br /><p> 当然，x、y在前面都是定义过的变量，此时，如果在x后面加一个逗号，再看输出结果，print就不会再换行了，只会在输出完x后加一个空格接着就输出y了，这点不错！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/03/i-will-take-part-in-mathematical-modeling/">我要参加数学建模了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-03T12:47:00+08:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;这已经是很久之前的事情了，目前早就结束了报名。刚刚看到要买的书中有这样一本书－－《数学建模》，这才想起来还有这样一件重要的事情。&lt;/p&gt;
-</code></pre>
-
-<p>由于是第一次参加这样的专业性比赛，无经验、无指导让我无所畏惧，也无所担心。因为本来就不喜欢别人帮忙得来的成绩，所以我们没有选择指导老师，其实指导老师被抢走也是一个原因，又加上报名手册上鼓励学生不找指导老师，于是我们就大胆地抛弃了指导老师。</p>
-
-
-<p>无经验，确实没参与过这类比赛，只是听过有这样的比赛，姑且用来试试数学的思维吧，虽然考试成绩还能凑合，但实际应用一定会让我们捉襟见肘。</p>
-
-
-<p>也不是完全没有好处－－有两个美女和我一起参加，这算是动力了吧！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/02/mail-problem/">发邮件的时候遇到的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-02T08:01:00+08:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;不知道是不是邮件客户端的问题，我从已发邮件中找了一封，然后回复这封邮件，接着我就收到了我刚刚回复的内容，并且作为了一封新邮件收到的，但对方收不到什么，而我只有在收件箱中选择邮件回复的时候对方才能正常收到邮件。怎么给我发出去的邮件继续追加内容的时候就是给自己发内容呢？！&lt;/p&gt;
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/01/135183/">为了生活</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-01T12:42:00+08:00" pubdate data-updated="true">Jul 1<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;昨晚看到小学的QQ群中几个同学的聊天，有的已经脱离了教育制度，当然更多的还是在这里挣扎着，为了更好的生活。他们自己认为是更好的生活。&lt;/p&gt;
-</code></pre>
-
-<p>有的同学一年已经能拿几万的收入，前提是放弃了学业。在我们看来似乎有点不求上进的味道，不过想想我们是为了什么而做的这些就很容易理解了－－为了生活下去吧。只要能够活下去就可以了，如果还能夹带一点快乐那就很幸福了；当然还可能有些痛苦，但都是无关紧要的部分。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/17/">&larr; Older</a>
@@ -647,23 +692,23 @@ Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC)
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/build-up-env-for-sorted/">build-up-env-for-sorted</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/about-sorted/">about-Sorted</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/27/give-up-ruby/">give up ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
       </li>
     
   </ul>

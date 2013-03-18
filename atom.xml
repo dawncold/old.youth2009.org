@@ -4,7 +4,7 @@
   <title><![CDATA[dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-03-14T01:11:33+08:00</updated>
+  <updated>2013-03-18T19:45:34+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,164 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[big-break-in-tweak-app-build]]></title>
+    <link href="http://www.youth2009.org/blog/2013/03/17/big-break-in-tweak-app-build/"/>
+    <updated>2013-03-17T09:15:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/03/17/big-break-in-tweak-app-build</id>
+    <content type="html"><![CDATA[<p>昨晚弄到1点多也没搞定iOSOpenDev，总是编译出问题，在irc上问了一下也没人回答我，看来还是有很多人在泡irc的！</p>
+
+<p>睡前又看了一下各种文章，等起床打算还是回归theos搞搞试试。</p>
+
+<p>没想到早晨用theos搞了一下竟然ok了！或许是用对了theos的版本？不清楚了。</p>
+
+<p>theos我删掉了原来的，用github上的版本</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://github.com/DHowett/theos.git <span class="nv">$THEOS</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ldid我自己编译的，因为dropbox上的总是很难下载</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://git.saurik.com/ldid.git
+</span><span class='line'><span class="nb">cd </span>ldid
+</span><span class='line'>git submodule update --init
+</span><span class='line'>./make.sh
+</span><span class='line'>cp -f ./ldid <span class="nv">$THEOS</span>/bin/ldid
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>有篇教程说在iOS上也安装perl和theos，我实在不清楚有什么用，不过我也安装了，蛋疼，具体方法看
+<a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started" target="_blank">这里</a></p>
+
+<p>headers用这里的：<a href="https://github.com/rpetrich/iphoneheaders" target="_blank">https://github.com/rpetrich/iphoneheaders</a>
+需要注意一点的是IOSurface这个framework，你需要增加一个新的头文件，在Mac系统中，可能还得注释掉两行，这取决于你是不是10.7版本的Mac系统。命令是：<code>cp /System/Library/Frameworks/IOSurface.framework/Headers/IOSurfaceAPI.h .</code>，在251和255行（我编译错误时候提示的就这两行），注释掉</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="cm">/* This call lets you get an xpc_object_t that holds a reference to the IOSurface.</span>
+</span><span class='line'><span class="cm">   Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&#39;s global use</span>
+</span><span class='line'><span class="cm">   count by one until the object is destroyed. */</span>
+</span><span class='line'><span class="c1">//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)</span>
+</span><span class='line'>  <span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/* This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. */</span>
+</span><span class='line'><span class="c1">//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)</span>
+</span><span class='line'>  <span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后做你的tweak就可以了，我按照经典的heloworld例子搞了个hook，springboard中applicationDidFinishLaunching弹出alert，成功了。</p>
+
+<p>OS:10.8.3，SDKVERSION：6.1</p>
+
+<p>另外昨天说的设置theos的环境变量，我今天又重新加到了bash_profile中，发现make package install都能自动部署了。。。看来真是昨天theos版本的问题？！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[open-development-env-for-xcode]]></title>
+    <link href="http://www.youth2009.org/blog/2013/03/16/open-development-env-for-xcode/"/>
+    <updated>2013-03-16T20:40:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/03/16/open-development-env-for-xcode</id>
+    <content type="html"><![CDATA[<p>发现一个问题，使用theos这个makefile工具做app有很大困难，就是headers不好管理，真希望能集成到xcode中开发tweak，结果发现了一个神器&#8212;-iOSOpenDev。</p>
+
+<p>安装好之后就能发现xcode中已经有很多可用的template了，对于tweak来说，有logos和CaptaionHook。logos就是theos，captainhook是另一个hook框架。</p>
+
+<p>不过很可惜，可能是sdk6.1的问题，结合上springboard和uialertview后就从来没build success，总说armv7中的springboard link error或者uialertview linker error，是在不知道怎么办了，仔细又看了别人的做法，发现他们还在用sdk5.1，估计就是这点差异吧？</p>
+
+<p>彻夜下载sdk5.1.。。。。。。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[build-up-env-for-sorted]]></title>
+    <link href="http://www.youth2009.org/blog/2013/03/16/build-up-env-for-sorted/"/>
+    <updated>2013-03-16T17:40:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/03/16/build-up-env-for-sorted</id>
+    <content type="html"><![CDATA[<p>找到了一篇教程，开始构建jailbreaken app的环境。</p>
+
+<p>基本需要的工具</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">THEOS</span><span class="o">=</span>/opt/theos
+</span><span class='line'>svn co http://svn.howett.net/svn/theos/trunk <span class="nv">$THEOS</span>
+</span><span class='line'>curl -s https://dl.dropboxusercontent.com/u/3157793/ldid &gt; <span class="nv">$THEOS</span>/bin/ldid; chmod +x <span class="nv">$THEOS</span>/bin/ldid
+</span><span class='line'>brew install dpkg<span class="o">(</span>如果出错安不上dpkg，那就先update一下brew，我就遇到这么个问题<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>用theos模板创建项目，<code>$THEOS/bin/nic.pl</code>，这会在当前目录中创建你的项目，选择模板类型，然后起名字之类的，填好就ok。</p>
+
+<p>在创见出来的项目中有Makefile，里面有一个地方需要注意，就是<code>xxxx_FILES=</code>这里，后面的m和mm文件是你当前所有的，如果你自己加了新的，你需要手动添加进去。</p>
+
+<p>再加两个环境变量</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">SDKVERSION</span><span class="o">=</span>6.1
+</span><span class='line'><span class="nb">export </span><span class="nv">THEOS_DEVICE_IP</span><span class="o">=</span>10.0.0.101
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>目标sdk版本，我用6.1了，后一个是手机的ip，自己弄到一个wifi中吧，后面部署需要。</p>
+
+<p>make&amp;make package，在make的时候不加sudo我会无法make成功。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo make
+</span><span class='line'>sudo make package
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>本目录下的deb就可以放到设备上安装了，安装命令是<code>dpkg -i xxx.deb</code></p>
+
+<p>不过你可以用部署的方式，<code>make package install</code>，他会依赖你刚刚设置的IP部署，但我这里似乎有问题，估计是环境变量的问题，光提示我找不到THEOS_DEVICE_IP</p>
+
+<p>我就scp到了设备上，手动执行了dpkg的命令，然后respring竟然没效果，只好reboot了一下，看到了刚刚的app已经被安装上了！！！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[about-Sorted]]></title>
+    <link href="http://www.youth2009.org/blog/2013/03/16/about-sorted/"/>
+    <updated>2013-03-16T12:54:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/03/16/about-sorted</id>
+    <content type="html"><![CDATA[<p>早就考虑做这么一个app，不过拖延到现在了，再次佩服一下我的拖延症。</p>
+
+<p>Sorted是这样一个app，安装上之后就会跟踪你使用手机上app的习惯，根据使用频率给桌面的app排序，估计等你用一段时间之后，第一页的apps就是最常用的了。</p>
+
+<p>当然，这需要你的iPhone jailbreaken。</p>
+
+<p>刚刚用iFile找到了存放app list的地方，在/User/Library/SpringBoard/IconState.plist，plist就像是python中的dict，里面两个key分别是：buttonBar、iconLists。</p>
+
+<p>buttonBar中有个list，是底部Dock上的app标识，例如有：com.apple.mobilephone、com.apple.MobileSMS等。</p>
+
+<p>iconLists中又是一个list，内容也是list，每个list表示桌面某一页上的apps。</p>
+
+<p>不过有个问题是：如果我手动修改了这里的值，比如我交换某页两个app的位置，回到桌面并不会立刻看到效果，如果要看效果，需要respring&#8230;就是重启SpringBoard，这是我不能接受的。需要再看SpringBoard的私有api有没有提供这方面的支持了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[generator-in-python]]></title>
@@ -444,193 +602,6 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
 
 
 <p>根据tuple中最后一个排序。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[M4的一点优化]]></title>
-    <link href="http://www.youth2009.org/blog/2012/10/01/optimzation-for-m4/"/>
-    <updated>2012-10-01T17:05:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/10/01/optimzation-for-m4</id>
-    <content type="html"><![CDATA[<p>1.关闭紧急运动传感器</p>
-
-<p>mac系统没有把这些传感器的设置、界面什么的体现到UI里，让我一度以为mbp没有这种设备，实际这也算是mac系统的设计理念吧，把普通用户无须知晓的东西屏蔽掉，让用户看起来、用起来异常简单，不像thinkpad那样，直接把硬盘活动保护啥的做成一个功能给用户展示。。。你看，你看，我们（thinkpad）有保护您硬盘的设备。。。</p>
-
-<p>这些不让用户看到的功能大多需要相关工具或者命令行来设置：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pmset -a sms 0&lt;/pre&gt;
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>对于替换了原来硬盘的这种方案就可以关闭紧急运动传感器了，如果加了SSD在光驱位，那就甭管了，继续保护硬盘吧！</p>
-
-<p>2.开启Trim</p>
-
-<p>同样要使用命令行开启，有个app叫Trim Enabler，但不推荐用。也有呼声说M4带有GC功能，是不是不需要开Trim了，综合不少资料考虑，还是推荐开起来。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>备份
-</span><span class='line'>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original&lt;/pre&gt;
-</span><span class='line'>&lt;br /&gt;10.8.1 or 10.7.5 or newer
-</span><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x4D)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>10.8.0 or 10.7.4 or below</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x51)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>清除系统内核扩展缓存</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo touch /System/Library/Extensions/
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>重启</p>
-
-<p>如果想禁止Trim</p>
-
-<p>FOR ML 10.8.1 AND LION 10.7.5 OR NEWER</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x4D)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>FOR ML 10.8.0 AND LION 10.7.4 BELOW</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x51)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-</span><span class='line'>
-</span><span class='line'>sudo touch /System/Library/Extensions/
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果出错就恢复刚刚的备份</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3.用noatime方式挂载硬盘，就是少加载一个文件属性参数而已，对于日常使用没啥影响，在/Library/LaunchDaemons里面创建一个noatime.plist，内容如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-</span><span class='line'><span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot;</span>
-</span><span class='line'><span class="cp">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
-</span><span class='line'><span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;dict&gt;</span>
-</span><span class='line'><span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'><span class="nt">&lt;string&gt;</span>noatime<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'><span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'><span class="nt">&lt;array&gt;</span>
-</span><span class='line'><span class="nt">&lt;string&gt;</span>mount<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'><span class="nt">&lt;string&gt;</span>-vuwo<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'><span class="nt">&lt;string&gt;</span>noatime<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'><span class="nt">&lt;string&gt;</span>/<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'><span class="nt">&lt;/array&gt;</span>
-</span><span class='line'><span class="nt">&lt;key&gt;</span>RunAtLoad<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'><span class="nt">&lt;true/&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dict&gt;</span>
-</span><span class='line'><span class="nt">&lt;/plist&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>修改刚刚创建的文件权限</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chown root:wheel /Library/LaunchDaemons/noatime.plist
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>重启</p>
-
-<p>检测结果</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mount | grep <span class="s2">&quot; / &quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果结果里有类似这样的内容（最后的noatime）就表示可以了</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/dev/disk0s2 on / <span class="o">(</span>hfs, <span class="nb">local</span>, journaled, noatime<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[买了个叫M4的硬盘]]></title>
-    <link href="http://www.youth2009.org/blog/2012/10/01/bought-a-ssd-called-m4/"/>
-    <updated>2012-10-01T14:05:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/10/01/bought-a-ssd-called-m4</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;256Gb，1200块。&lt;/p&gt;
-</code></pre>
-
-<p>速度还不错，读取260Mb/s，写入206Mb/s。</p>
-
-
-<p>至此，MC374能升级的部分都升级到位了。</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[247条垃圾评论]]></title>
-    <link href="http://www.youth2009.org/blog/2012/09/23/247-rubbish-comments/"/>
-    <updated>2012-09-23T21:24:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/09/23/247-rubbish-comments</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;疏于管理啊，让各路垃圾评论之小人得了空，钻到这里写了那么多，还好spam插件够给力，全部截获。以后不该再这样了，但也是没什么时间。&lt;/p&gt;
-</code></pre>
-
-<p>去了honovation之后发觉自己写过的代码基本就不叫代码啊，自觉的对python算是熟悉的，到了那里也感觉从没写过python了，怪我平日光想着感情来感情去了，就和我这技术blog似的，疏于管束，才弄得我今天这个结果。</p>
-
-
-<p>现在比较感兴趣的是敏捷实践，看书上网上的资料毕竟比较浮华，身处于敏捷团队，每天都在做得就是最好的实践，怪我一时还不太会总结，现在好像又要深陷到代码里了，我这个程序员何时能成长？！</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[jquery1.6+中的prop方法]]></title>
-    <link href="http://www.youth2009.org/blog/2012/08/18/prop-method-in-jquery1-6-or-later/"/>
-    <updated>2012-08-18T19:27:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/08/18/prop-method-in-jquery1-6-or-later</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;最近有个网站需要一个简单的功能——全选一些checkbox，但用attr的方法总是出问题，主要问题如下：第一次全选没问题，如果此时取消选择一些checkbox，再用全选就不管用了，主要原因就是第一次全选的时候自动加入了checked属性，以后再强制attr("checked",true)就会没反应。在&lt;a href="http://blog.csdn.net/yaerfeng/article/details/7792832"&gt;这里&lt;/a&gt;看到一篇文章，里面提到了prop方法，是1.6以后才加入的，就是部分替换了attr的功能，用了prop就可以及时对操作做出反应（这里我不太理解），总之本来用attr的操作现在需要用prop才有效果，当然了，如果你用纯js肯定是没问题喽。&lt;/p&gt;
-</code></pre>
-
-<p>换用prop之后，问题解决！</p>
-
 ]]></content>
   </entry>
   

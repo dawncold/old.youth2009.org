@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;其实挺那啥的，那啥呢？说不出来感受，些须高兴又些须失望。&lt;/p&gt; 资格赛10个题，仔细一看才知道是POJ的原题，随便找了10个，有简单到算a+b结果的，也有复杂点用动态规划、解方程组的等等。总之和大多数人一样，比较失望。 虽然ac了10个，现在排名88， &hellip;">
+  <meta name="description" content="&lt;p&gt;这次宕机持续了1天零13小时，具体什么原因不清楚，yardvps那边说ip自动归零，这是什么原因？！反正我是不清楚怎么回事了，而且买了vpsee的vps，正考虑着是依然延续lnmp的架构还是自己整一套lnmp+python的架构，这样方便以后自己用python做webapp，嗯 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,254 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/08/very-long-offline-of-my-vps-in-yardvps/">超长宕机</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-08T13:51:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;这次宕机持续了1天零13小时，具体什么原因不清楚，yardvps那边说ip自动归零，这是什么原因？！反正我是不清楚怎么回事了，而且买了vpsee的vps，正考虑着是依然延续lnmp的架构还是自己整一套lnmp+python的架构，这样方便以后自己用python做webapp，嗯，先睡觉，起来再搞新的vps吧！！！&lt;/p&gt;
+</code></pre>
+
+<p>UPDATE:我没有睡觉……</p>
+
+
+<p>yardvps给我的回复是这样的——“It&#8217;s nulled by PPS (Packet Per Second) Once it exceeds the thresholds and simulates a DDOS attack our system automatically nulls your IP within seconds.”</p>
+
+
+<p>看来是我被攻击了？！好奇怪！！！反正我用着vpsee的vps很爽，不出问题就不再用yardvps了！</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/05/solved-mysql-refuse-localhost-connection/">mysql只允许127.0.0.1连接的解决方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-05T10:30:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;我上次记录过一次这样的情况，突然间所有的php应用无法连接数据库了，但可惜我忘记是为何导致了这样的结果，总是有很多奇怪的地方在这个vps上发生，比如有次突然在某个app中出现了嵌入的广告，这个app可是我写的呀，怎么会有广告？！还有就是那次mysql突然无法连接了，最后用127.0.0.1代替了localhost。&lt;/p&gt;
+</code></pre>
+
+<p>昨晚国庆安装了织梦的后台，但提示无法使用数据库，由于昨天太晚了没有深入研究，早晨起来看了一下，有人说去查看data/common.inc.php文件中的信息，我去看了一下，突然想起来localhost不能用了，于是改为127.0.0.1就可以了，但这也只是缓兵之计，于是想办法解决！</p>
+
+
+<p>解决方法也不尽相同，就是在php.ini中的三处添加“/tmp/mysql.sock”，那三处就是：mysql.default_socket、mysqli.default_socket、pdo_mysql.default_socket，看名字就是php连接mysql的三种方法的默认socket路径，原来我就修改了两处，漏掉了mysqli这种，结果现在不少程序都是用这种方式连接，比如phpmyadmin和织梦，所以呢，修改了这三处就ok了（当然你得确定你用socket这种方式连接）</p>
+
+
+<p>至此我的phpmyadmin也可以用socket登录了，织梦也能访问数据库了，再也不用127.0.0.1啦~</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/02/method-timer-in-swing-is-better-in-gui/">swing中的Timer还是用在GUI中的好</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-02T09:23:00+08:00" pubdate data-updated="true">Jun 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;刚刚翻了翻《Java核心技术》这本书，里面提到了swing中的Timer的用法，我就实践一下，结果发现根本没有反映，于是网上搜索答案，在stackoverflow中找到。&lt;/p&gt;
+</code></pre>
+
+<p>我写的测试是每秒输出现在的时间而已。</p>
+
+
+<br /><pre class="prettyprint linenums bush:java" lang="java">import java.awt.Toolkit;
+
+
+<p>import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;</p>
+
+<p>public class TimePrint implements ActionListener
+{</p>
+
+<pre><code>@Override
+public void actionPerformed(ActionEvent e)
+{
+    // TODO Auto-generated method stub
+    System.out.println("date is: " + (new Date()));
+    Toolkit.getDefaultToolkit().beep();
+}
+</code></pre>
+
+<p>}
+</pre></p>
+
+<br /><p>在调用的时候如果忘记写Thread.sleep(xxx)这行就不会看到效果，具体原因不太清楚，可能这个swing中的Timer只是用来在GUI中做些什么工作的，而我用终端输出内容就不太合适了，于是就牵扯出来很多线程的问题。</p>
+
+
+<p>这是main方法中的内容：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">import java.awt.event.ActionListener;
+
+
+<p>import javax.swing.Timer;</p>
+
+<p>public class TimerPrintTest
+{</p>
+
+<pre><code>public static void main(String[] argStrings) throws InterruptedException
+{
+    System.out.println("Running...");
+    ActionListener listener = new TimePrint();
+    Timer timer = new Timer(1000, listener);
+    timer.start();
+    Thread.sleep(4000);
+}
+</code></pre>
+
+<p>}
+</pre></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/30/simple-c-language-program/">一个简单的C程序</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-30T19:39:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:c" lang="c">#include &lt;stdio.h&gt;
+
+
+<h1>include &lt;string.h&gt;</h1>
+
+<h1>include &lt;stdlib.h&gt;</h1>
+
+<p>void strcp(char<em>, char</em>);
+int main()
+{</p>
+
+<pre><code>char* s = "test string...";
+char* t = malloc(strlen(s));
+strcp(t, s);
+printf("%s\n", t);
+free(t);
+
+return 0;
+</code></pre>
+
+<p>}</p>
+
+<p>void strcp(char <em>s,char </em>t)<br/>
+{<br/>
+while(<em>s++ = </em>t++);<br/>
+}</pre></p>
+
+<br /><p>最漂亮的就是那句strcp的函数了，非常简洁好用：）</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -423,356 +671,6 @@ end repeat
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/14/left-outer-join-and-multiply-select-in-sqlite3/">Sqlite3连接查询和多次select的对比</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-14T23:23:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。&lt;/p&gt;
-</code></pre>
-
-<p>左外连接查询比两次select快10～20%左右。</p>
-
-
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-
-
-<h1>coding: utf-8</h1>
-
-<p>import sqlite3
-import os
-import time
-import random</p>
-
-<p>def connect():</p>
-
-<pre><code>return sqlite3.connect('./test.db')
-</code></pre>
-
-<p>def insertProgress(conn, user_id):</p>
-
-<pre><code>cur = conn.execute('INSERT INTO todo(title, date) VALUES(?,?)', ['just test!!!', time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())])
-conn.execute('INSERT INTO todo_meta(todo_id, user_id) VALUES(?,?)', [cur.lastrowid, user_id])
-</code></pre>
-
-<p>def insertManyData(conn):</p>
-
-<pre><code>#reset database
-os.system('sqlite3 test.db &amp;lt; schema.sql')
-
-conn.cursor()
-counts = [0,0,0,0,0,0]
-for i in xrange(100000):
-    userid = random.choice([0, 1, 2, 3, 4, 5])
-    counts[userid] += 1
-    insertProgress(conn, userid)
-conn.commit()
-conn.close()
-print counts
-</code></pre>
-
-<p>def selectUsingLeftOuterJoin(conn, user_id):</p>
-
-<pre><code>conn.cursor()
-cur = conn.execute('SELECT t.title, t.date \
-        FROM todo t LEFT OUTER JOIN todo_meta tm \
-        ON tm.todo_id = t.id\WHERE tm.user_id = ?', [user_id])
-</code></pre>
-
-<p>def selectTwoTimes(conn, user_id):</p>
-
-<pre><code>conn.cursor()
-cur = conn.execute('SELECT todo_id FROM todo_meta WHERE user_id = ?', [user_id])
-for tid in [row[0] for row in cur.fetchall()]:
-    cur = conn.execute('SELECT title, date FROM todo WHERE id = ?', [tid])
-</code></pre>
-
-<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
-
-<pre><code>uids = [0, 1, 2, 3, 4, 5]
-insert_time_start = time.time()
-insertManyData(connect())
-print "Insert Time: %f" % (time.time() - insert_time_start)
-select_ULOJ_start = time.time()
-for uid in uids:
-    selectUsingLeftOuterJoin(connect(), uid)
-print "Select Using Left Outer Join time: %f" % (time.time() - select_ULOJ_start)
-select_two_times = time.time()
-for uid in uids:
-        selectTwoTimes(connect(), uid)
-print "Select Two Times time: %f" % (time.time() - select_two_times)&lt;/pre&gt;
-</code></pre>
-
-<br /><p>schema：</p>
-
-
-<br /><pre class="prettyprint linenums bush:sql" lang="sql">drop table if exists todo;
-
-
-<p>drop table if exists user;
-drop table if exists todo_meta;
-create table todo (</p>
-
-<pre><code>id integer primary key autoincrement,
-title string not null,
-date datetime not null
-</code></pre>
-
-<p>);
-create table user (</p>
-
-<pre><code>id integer primary key autoincrement,
-email string not null,
-password string not null,
-nickname string not null,
-salt string not null
-</code></pre>
-
-<p>);
-create table todo_meta (</p>
-
-<pre><code>todo_id integer,
-user_id integer,
-foreign key(todo_id) references todo(id),
-foreign key(user_id) references user(id)
-</code></pre>
-
-<p>);</pre></p>
-
-<br /><p>启动脚本就会创建数据库并开始测试。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3/">Sqlite3的rowcount</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-14T17:00:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;最近写了一个todo的webapp，在用户登陆的时候是select数据库中的内容进行对比判断，当然如果select的内容是0那就表示用户登陆失败了，可能账号或者密码写错了，数据库用的sqlite3，在python的api中发现有cursor.rowcount可用，于是就这么判断一下是不是有数据被select出来了，没想到这样判断是错误的。&lt;/p&gt;
-</code></pre>
-
-<p>select的rowcount永远为-1，哎，这里着实坑了我一番啊～</p>
-
-
-<p>只好cursor.fetchone()先，然后判断得到的内容是不是None。</p>
-
-
-<p>从<a href="http://stackoverflow.com/questions/839069/cursor-rowcount-always-1-in-sqlite3-in-python3k" target="_blank">这里</a>得到的答案。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/07/solve-inversion-by-using-merge/">逆序对的求解</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-07T17:08:00+08:00" pubdate data-updated="true">May 7<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;今天看到算法导论上关于求解一个序列的逆序对的问题，以前自己在这个地方写着解答方法，不过今天怎么看都不懂了，从网上找了找，大都说得很模糊，不过自己突然有种领悟了的感觉，找了个简单的例子，实验了一下，自己的结论是正确的：）&lt;/p&gt;
-</code></pre>
-
-<p>例子是（2，3，8，6，1）这个序列，找出所有的5个逆序对。最好的方法是nlogn复杂度的利用归并排序的副产品——merge部分统计，统计比较左右列表时，左侧大于右侧时“左侧”列表中剩余数目。</p>
-
-
-<p>归并的划分应该是这样的，（2，3，8）为左侧，（6，1）为右侧，继续划分为（2，3）和8，右边是6和1。下面就开始合并了，（2，3）和8这边还是（2，3，8），右侧出现一个逆序对，在合并6，1的时候因为作为“左侧”的6要大于1，所以这里有1个逆序对，这里的1就是此时“左侧”序列中的元素个数。</p>
-
-
-<p>在往下走，要合并（2，3，8）和（1，6），马上就出现了2&gt;1这样的情况，此时会出现（2，1）、（3，1）、（8，1）这几个逆序对，后面还会出现（8，6）这个逆序对，一共就这么5个。</p>
-
-
-<p>因为原始序列是（2，3，8，6，1），我们需要用到这个原始序列的顺序来判断顺序排在前面的值却大于后面的，这样的机会在每次merge的时候是非常合适的。</p>
-
-
-<p>这是修改后输出逆序对的归并排序算法，有点可惜哈，这么长的排序算法只让副产品在台前显露了一把！</p>
-
-
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-
-
-<h1>coding: utf-8</h1>
-
-<p>def merge(arraylist, first, middle, last):</p>
-
-<pre><code>temp = []
-i = first
-j = middle + 1
-while i &amp;lt;= middle and j &amp;lt;= last:
-    if arraylist[i] &amp;lt;= arraylist[j]:
-        temp.append(arraylist[i])
-        i += 1
-    else:
-        for x in arraylist[i:middle + 1]:
-            print "(%d,%d)" % (x, arraylist[j])
-        temp.append(arraylist[j])
-        j += 1
-while i &amp;lt;= middle:
-    temp.append(arraylist[i])
-    i += 1
-while j &amp;lt;= last:
-    temp.append(arraylist[j])
-    j += 1
-for i in range(0, last - first + 1):
-    arraylist[first + i] = temp[i]
-</code></pre>
-
-<p>def merge_sort(arraylist, first, last):</p>
-
-<pre><code>if first &amp;lt; last:
-    middle = (first + last) / 2
-    merge_sort(arraylist, first, middle)
-    merge_sort(arraylist, middle + 1, last)
-    merge(arraylist, first, middle, last)
-</code></pre>
-
-<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
-
-<pre><code>lst = [2,3,8,6,1]
-merge_sort(lst, 0, len(lst) - 1)&lt;/pre&gt;
-</code></pre>
-
-<br /><p>运行结果：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">(6,1)
-
-
-<p>(2,1)
-(3,1)
-(8,1)
-(8,6)</pre></p>
-
-<br /><p>（我的代码缩进似乎出了点问题，本身这段归并排序也是从网上找来的，所以混合了不少tab和whitespace，弄了好久都是error indent，最后我无奈用whitespace来做缩进，好歹调试通过了！）</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/06/miserable-code-jam-2012/">悲惨的CodeJam2012</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-06T21:49:00+08:00" pubdate data-updated="true">May 6<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;资格赛晋级之后还稍稍得到了点自信，起码原来只能远观CodeJam的我现在也能继续走进看看了，不过家下来的Round1三场比赛直接被虐杀了，每一场都是最后，每个题都做不出来，说出来也是很惭愧的，但得承认自己这点能力，有人不到5分钟就能做对一个大题，而我5分钟可能都没读完题，更别说写代码了。&lt;/p&gt;
-</code></pre>
-
-<p>但最重要的是理解题目，能够理解了也就完成了90%，剩下的工作就是coding的过程，参加比赛的人基本都是有备而来，各种模版、脚本都准备好了，写起来非常快。对于非英语系国家的选手来说，读题似乎是很大的障碍，起码会比别人慢好多倍，这点只能多多看英文的资料来弥补了！</p>
-
-
-<p>今天的Round1第三场出现了两个动态规划的题，感觉知道了怎么做可就是不会写，我也就是停留在知道有动态规划这种变态方法的层面上，真让我写出来可不行，抱着《算法导论》看了半天也是毫无头绪……</p>
-
-
-<p>毕竟不是Acmer，咱也就只能止步于此啦！希望进入下一轮的国人们继续加油！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -790,23 +688,23 @@ merge_sort(lst, 0, len(lst) - 1)&lt;/pre&gt;
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/build-up-env-for-sorted/">build-up-env-for-sorted</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/about-sorted/">about-Sorted</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/27/give-up-ruby/">give up ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
       </li>
     
   </ul>

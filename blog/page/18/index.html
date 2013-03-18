@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;我本以为outerHTML是W3C的标准，结果搜索了一下才知道这是IE的方法，不过Chrome和Safari都支持了，FF竟然不支持，于是找到了扩展Firefox的outerHTML的方法：&lt;a href="http://www.cnblogs.com/doll-net/ &hellip;">
+  <meta name="description" content="&lt;p&gt;不知道最终能否配置好，先记录下来吧！ 安装了openssl库，但安装nginx的时候还是使用了--without-http-cache，要不总是提示找不到openssl。默认把nginx安装到了/usr/local/nginx这个地方。 下面是php，我总是配置不好…… &lt &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,340 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/16/suse-nginx-php-mysql/">配置一台suse服务器</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-16T11:58:00+08:00" pubdate data-updated="true">Jun 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;不知道最终能否配置好，先记录下来吧！ 安装了openssl库，但安装nginx的时候还是使用了--without-http-cache，要不总是提示找不到openssl。默认把nginx安装到了/usr/local/nginx这个地方。 下面是php，我总是配置不好…… &lt;span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;"&gt; &lt;/span&gt;&lt;/p&gt;
+</code></pre>
+
+<p> </p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">tar xvf php-5.2.17.tar.bz2 
+
+
+<p>gzip  -cd php-5.2.17-fpm-0.5.14.diff.gz | patch -d php-5.2.17 -p1
+cd php-5.2.17
+./configure --prefix=/usr/local/php \
+--with-config-file-path=/usr/local/php/etc \
+--with-mysql=/usr/local/mysql/ \
+--with-mysqli=/usr/local/mysql/bin/mysql_config \
+--with-iconv-dir=/usr/local/ \
+--with-jpeg-dir \
+--with-png-dir \
+--with-zlib \
+--with-libxml-dir=/usr/  \
+--enable-xml \
+--disable-rpath \
+--enable-discard-path  \
+--enable-bcmath  \
+--enable-shmop \
+--enable-sysvsem \
+--enable-inline-optimization \
+--with-curl \
+--with-curlwrappers  \
+--enable-mbregex \
+--enable-fastcgi \
+--enable-fpm \
+--enable-force-cgi-redirect \
+--enable-mbstring  \
+--with-mcrypt \
+--enable-gd-native-ttf \
+--with-openssl \
+--with-mhash \
+--enable-pcntl  \
+--enable-sockets  \
+--with-xmlrpc \
+--enable-zip \
+--enable-soap \
+--enable-safe-mode \
+--with-gd=/usr/local/gd/</p>
+
+<p>./configure &amp;&amp; make &amp;&amp; make install</pre></p>
+
+<br /><p> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">jpeg8c lib!!!</span> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">libpng lib!!!</span> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">GD_2.XX（直接写&#8211;with-gd容易找不到，就制定好位置（此位置要在安装gd的时候用prefix制定））</span> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;"> </span></p>
+
+
+<p> </p>
+
+
+<p> </p>
+
+
+<p> </p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">ln -s /usr/local/lib/libmcrypt.la /usr/lib/libmcrypt.la
+
+
+<p>ln -s /usr/local/lib/libmcrypt.so /usr/lib/libmcrypt.so
+ln -s /usr/local/lib/libmcrypt.so.4 /usr/lib/libmcrypt.so.4
+ln -s /usr/local/lib/libmcrypt.so.4.4.8 /usr/lib/libmcrypt.so.4.4.8
+ln -s  /usr/local/lib/libmhash.a /usr/lib/libmhash.a<br/>
+ln -s  /usr/local/lib/libmhash.la /usr/lib/libmhash.la<br/>
+ln -s  /usr/local/lib/libmhash.so /usr/lib/libmhash.so
+ln -s  /usr/local/lib/libmhash.so.2 /usr/lib/libmhash.so.2
+ln -s  /usr/local/lib/libmhash.so.2.0.1 /usr/lib/libmhash.so.2.0.1</pre></p>
+
+<br /><p><span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;"> </span></p>
+
+
+<p><span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;">删剪了不少内容，终于编译成功了……php啊……(</span></span><span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">make ZEND_EXTRA_LIBS=&#8217;-liconv&#8217;</span><span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">)</span> 缺少相关库的情况请使用/sbin/ldconfig -v 更新一下，先把/usr/local/lib加入/etc/ld.so.conf中再更新！ <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;">make install</span></span> <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;"><span>cp php.ini-dist  /usr/local/php/etc/php.ini </span></span></span> <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;"><span><span> </span></span></span></span></p>
+
+
+<br /><div style="padding: 0px; margin: 0px;">7、创建php-fpm配置文件，php-fpm是开源社区为php开发的一个补丁，可以平滑变更php.ini，而无需重启php-cgi<br style="padding: 0px; margin: 0px;">  php-fpm.conf文件的详细解释<a style="color: #015f91; text-decoration: none; padding: 0px; margin: 0px;" href="http://php-fpm.org/wiki/Configuration_File">http://php-fpm.org/wiki/Configuration_File</a><br style="padding: 0px; margin: 0px;">  vim /usr/local/php/etc/php-fpm.conf ，使用 :set nu显示行号。<br style="padding: 0px; margin: 0px;">  需要注意的几行，给大家说说<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  (原)41                         &lt;value name=&#8221;listen_address&#8221;&gt;127.0.0.1:9000&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  (改)41                         &lt;value name=&#8221;listen_address&#8221;&gt;/tmp/php-cgi.sock&lt;/value&gt; #个人习惯，比较喜欢使用sock。<br style="padding: 0px; margin: 0px;">  (原)63                 &lt;!&#8211;    &lt;value name=&#8221;user&#8221;&gt;nobody&lt;/value&gt;     &#8211;&gt;#进程的所有者<br style="padding: 0px; margin: 0px;">  (原)66                 &lt;!&#8211;    &lt;value name=&#8221;group&#8221;&gt;nobody&lt;/value&gt;     &#8211;&gt;#进程的所有组，默认都为nobody<br style="padding: 0px; margin: 0px;">  (改)       &lt;value name=&#8221;user&#8221;&gt;nobody&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  (改)       &lt;value name=&#8221;group&#8221;&gt;nobody&lt;/value&gt;  <br style="padding: 0px; margin: 0px;">  59                 &lt;!&#8211;    &lt;value name=&#8221;display_errors&#8221;&gt;0&lt;/value&gt;   &#8211;&gt; #是否显示错误，1为关闭显示错误，0为打开错误显示，调试期间可以打开<br style="padding: 0px; margin: 0px;">  79                             &lt;value name=&#8221;max_children&#8221;&gt;5&lt;/value&gt; #为客户端服务的最大进程数<br style="padding: 0px; margin: 0px;">  86                             &lt;value name=&#8221;StartServers&#8221;&gt;20&lt;/value&gt; #启动时创建的进程数<br style="padding: 0px; margin: 0px;">         &lt;value name=&#8221;MinSpareServers&#8221;&gt;5&lt;/value&gt; #最小空闲进程数<br style="padding: 0px; margin: 0px;">  94                             &lt;value name=&#8221;MaxSpareServers&#8221;&gt;35&lt;/value&gt;#最大空闲进程数<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  (原)107                        &lt;value name=&#8221;request_slowlog_timeout&#8221;&gt;0s&lt;/value&gt; #默认关闭慢查询，建议还是打开，对性能分析有好处<br style="padding: 0px; margin: 0px;">  (改)107                        &lt;value name=&#8221;request_slowlog_timeout&#8221;&gt;5s&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  (原)113                        &lt;value name=&#8221;rlimit_files&#8221;&gt;1024&lt;/value&gt; #设定打开文件的限制<br style="padding: 0px; margin: 0px;">  (改)113                        &lt;value name=&#8221;rlimit_files&#8221;&gt;51200&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  132                         &lt;value name=&#8221;max_requests&#8221;&gt;5000&lt;/value&gt; #设置大可以接受的请求数<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  137                        &lt;value name=&#8221;allowed_clients&#8221;&gt;127.0.0.1&lt;/value&gt; #允许连接的客户端</div>
+
+
+<br />
+
+
+<p> <br /><div style="padding: 0px; margin: 0px;">  启动php-cgi<br style="padding: 0px; margin: 0px;">  Usage: /usr/local/php/sbin/php-fpm {start|stop|quit|restart|reload|logrotate}</div></p>
+
+<br /><div style="padding: 0px; margin: 0px;">
+
+
+<pre class="prettyprint linenums bush:bash" lang="bash">/usr/local/php/sbin/php-fpm start</pre>
+
+
+<br /><br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;"> 8、安装nginx-1.0<br style="padding: 0px; margin: 0px;">  安装pcre-7.9.tar.gz，perl扩展正则表达式的支持，主要用于支持url rewrite<br style="padding: 0px; margin: 0px;">  <br /><pre class="prettyprint linenums bush:bash" lang="bash">tar -zxvf pcre-7.9.tar.gz
+
+
+<p>cd pcre-7.9
+./configure
+make &amp;&amp; make install
+cd ..</pre>
+</div></p>
+
+<br /><div style="padding: 0px; margin: 0px;">
+
+
+<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  安装ngnx-1.0</div>
+
+
+<br /><div style="padding: 0px; margin: 0px;">
+
+
+<pre class="prettyprint linenums bush:bash" lang="bash">tar -zxvf nginx-1.0.0.tar.gz
+cd nginx-1.0.0
+./configure --prefix=/usr/local/nginx \
+--user=nobody \
+--group=nobody \
+--with-http_stub_status_module \
+--with-http_ssl_module</pre>
+
+
+<br /><br style="padding: 0px; margin: 0px;">  #config完成后，查看结果，使用了哪些库，如果有些你希望使用的库没有使用，需要安装或者添加配置参数<br style="padding: 0px; margin: 0px;">   Configuration summary<br style="padding: 0px; margin: 0px;">   + using system PCRE library<br style="padding: 0px; margin: 0px;">   + using system OpenSSL library<br style="padding: 0px; margin: 0px;">   + md5: using OpenSSL library<br style="padding: 0px; margin: 0px;">   + sha1 library is not used<br style="padding: 0px; margin: 0px;">   + using system zlib library<br style="padding: 0px; margin: 0px;">   <br style="padding: 0px; margin: 0px;">  make &amp;&amp; make install<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  修改配置文件<br style="padding: 0px; margin: 0px;">  <br /><pre class="prettyprint linenums bush:bash" lang="bash">vim /usr/local/nginx/conf/nginx.conf
+
+
+<p>user  nobody; #取消注释
+events {</p>
+
+<pre><code>use epoll;
+worker_connections  51200;
+</code></pre>
+
+<p>}
+server {</p>
+
+<pre><code>listen       80;
+server_name  122.225.32.135;
+location ~ \.php$ {
+    if ( $fastcgi_script_name ~ \..*\/.*php ) {
+        return 403;
+    }
+    root           html;
+    fastcgi_pass   unix:/tmp/php-cgi.sock;
+    fastcgi_index  index.php;
+    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+    include        fastcgi.conf;
+</code></pre>
+
+<p>}</pre></p>
+
+<br /><br style="padding: 0px; margin: 0px;">  <br /><pre class="prettyprint linenums bush:bash" lang="bash">/usr/local/nginx/sbin/nginx  -t -c /usr/local/nginx/conf/nginx.conf  #测试配置文件是否正确
+
+
+<p>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf 或者/usr/local/nginx/sbin/nginx  </pre></p>
+
+<br /><br style="padding: 0px; margin: 0px;">  </div>
+
+
+<br /><p>  <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;">##############PHP结束#################</span></span> mysql的配置,根本没配置</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">./configure --prefix=/usr/local/mysql \
+
+
+<p>--sysconfdir=/etc \
+--localstatedir=/var/lib/mysql</p>
+
+<p>make</p>
+
+<p>make install</pre></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/12/briefly-talk-about-the-attitude-of-participants-in-baidu-astar/">浅谈百度之星参与者的态度</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-12T20:26:00+08:00" pubdate data-updated="true">Jun 12<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;首轮的两场比赛就快结束了，昨晚我也准时出现在19：00的那场之中，经历了10分钟的宕机，不过我想这10分钟根本不会造成什么影响吧，该做出来的不差这10分钟，做不出来的再给1小时还是做不出来。&lt;/p&gt;
+</code></pre>
+
+<p>当然我属于做不出来的那一部分。其实还算好一些的，至少我昨晚提交了第一题的解决方案，就是不清楚能否满足要求。后面两个题目只能说是看懂了，并且有一点思路做。但今天的这三个题显然比昨晚的难一些，至少我是这样感觉的。</p>
+
+
+<p>新浪微博上不少人在谈百度之星大赛，有人说明年要努力拿下，这当然很好，但更多的是在找组织方的漏洞──系统设计得不好啦、临时更改题目不通知啦、顶不住访问压力啦等等吧，他们说的似乎都没错，但我更希望看到他们先从自己身上找不足。可能大多数参与者都是和我一样的非ACM选手，我们有自己正常的生活，看到百度之星这个机会，参与进来挑战、检验一下自己所学，看看哪些地方是今后应该着重对待的，如果都没有漏洞了，那我们岂不就是到了去百度的时候了么？我们看到的应该是自己还差得远，所以继续努力才是真得！</p>
+
+
+<p>努力二字，打出来、说出来、写出来都很容易，唯独做起来难上加难，因为它太抽象，太不具体，简单得看只有两个字，做起来就可能被展开成千言万语描述的计划书。参与者们，共勉！</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/11/ical-and-googlecalendar-sync-settings/">iCal4.0.4与GoogleCalendar同步设置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-11T13:54:00+08:00" pubdate data-updated="true">Jun 11<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;用iCal的时候突然想起来这个早就可以与GoogleCalendar同步了，于是我就设置一下看看效果，但怎么设置都提示有问题。月光博客上有个解决方法，说是服务器地址写的是https://www.google.com/calendar/dav/EMAILADDRESS/user这样就可以，但我这样写了，没反应；从AccountType里选择Google也没反应，最后无意中尝试出了如何写能够同步。&lt;/p&gt;
+</code></pre>
+
+<p>1.AccountType中选CalDav。</p>
+
+
+<p>2.username和password就写Google的，username应该是写邮箱的全部地址，server address写calendar.google.com就OK了，设置好后去看了详细的服务器地址信息，就是上面的那串很长的地址。以前的iCal也许是可以先建立一个账号再填写这些详细信息，但现在不能了。或许是想让用户写更少的信息就能得到服务吧，初衷是好的，但也应该设定一些应急措施…</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/09/indexof-in-ie/">IE中的indexOf功能</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-09T14:53:00+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;js中在数组中查找我一般都用indexOf来完成，没想到到了IE下就不能用了，搜索后才知道IE下根本不支持这个，于是从网上找了资料，扩展了IE下的这个功能。&lt;/p&gt;
+</code></pre>
+
+<p>感谢这里：<a href="http://nootn.com/blog/Develop/35/">http://nootn.com/blog/Develop/35/</a></p>
+
+
+<p>还好js支持原型功能，否则一旦不兼容了就会很麻烦。现在想来，是不是这个功能就是为了让标准不同意做出来的呢？！</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -408,227 +742,6 @@ tea_p.tell()</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/06/05/copy-object-in-python/">Python中的复制对象</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-05T16:06:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;在python简明教程中找到这样一句话，关于复制复杂python对象的，如果单纯变量名相互赋值可能只是把引用拷贝过去，一旦原对象更改了，目标对象就会出现问题。文章中对于序列、字典这样的拷贝做出了解释，要用分片来复制，但其他对象该怎么做，暂时还不太清除，可能后面会说吧：）&lt;/p&gt;
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/06/04/reverse-proxy-for-gae/">架设GAE的反向代理</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-04T23:55:00+08:00" pubdate data-updated="true">Jun 4<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;域名用的是app.wodeyitian.com 昨天用的方法不太稳定，现在找来一个不错的方法：&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">upstream ghs {
-
-
-<p>ip_hash;
-server ghs.google.com;
-server 72.14.203.121;
-server 72.14.207.121;
-server 74.125.43.121;
-server 74.125.47.121;
-server 74.125.53.121;
-server 74.125.77.121;
-server 74.125.93.121;
-server 74.125.95.121;
-server 74.125.113.121;
-server 216.239.32.21;
-server 216.239.34.21;
-server 216.239.36.21;
-server 216.239.38.21;
-}</p>
-
-<p>server {</p>
-
-<pre><code>            listen       80;
-            server_name app.wodeyitian.com;
-            access_log  /home/wwwlogs/app.wodeyitian.com.log;
-            location / {
-                    proxy_redirect off;
-                    proxy_set_header Host $host;
-                    proxy_pass http://ghs;
-                    proxy_set_header  x-real-IP  $remote_addr;
-                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            }
-    }&lt;/pre&gt;
-</code></pre>
-
-<br /><div>下面说说DNS这边怎么操作，因为网上说的太简单，我弄了好久都没弄好，终于在一篇文章那里找到了方法：</div>
-
-
-<br /><div>首先上面的nginx配置完毕后，在dns面板中把app.wodeyitian.com的A记录只想VPS的IP，然后要保证wodeyitian.com这个域注册了Google的app服务，这样就能在appspot那里把wodeyitian.com旗下的子域名加到你的appspot上了，后台把app.wodeyitian.com添加到了dawncold1.appapot.com这个应用上，然后就不用管Google提供的更改cname到ghs.google.com的建议了，国内基本没戏了。</div>
-
-
-<br /><div>Google说的cname方法就是我们现在正在使用的反向代理吧，于是我们只需要有app.wodeyitian.com到主机的A记录即可，后面的操作都是nginx的反向代理在工作。</div>
-
-
-<br /><div>我一开始建立了app.wodeyitian.com这个站之后，我以为就是当成ghs的工作了，用了另外一个域名做了cname到这里，结果不响应，可能还有其他问题吧：（</div>
-
-
-<br /><div>感谢这里：<a href="http://www.nealmi.com/index.php/2011/03/nginx-reverse-proxy-usage/">http://www.nealmi.com/index.php/2011/03/nginx-reverse-proxy-usage/</a>
-
-
-<p></div></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/06/04/eclipse-gae-on-mac/">Mac系统下的Eclipse中GAE配置</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-04T18:43:00+08:00" pubdate data-updated="true">Jun 4<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;用了不少时间PHP，也有些喜欢这种开发语言，但我仍然对Python有强烈的热情，但支持Python的主机服务还不算多，很想体验GAE，但由于在国内嘛，只能这样忍受了。&lt;/p&gt;
-</code></pre>
-
-<p>原本想在Emacs中配置Python的环境，但……有些过于复杂了。安装了很久的emacs，到头来不知道该怎么用，打算卸载掉算了，自己不需要的东西，不管它多么优秀，对于我来说，目前都没有价值！所以我还是选择了Eclipse环境。</p>
-
-
-<p>在安装PyDev插件的时候遇到点问题：安装时候有3个项目可安装，我第一次是都安装的，但中途出现错误停止了，于是我第二次只安装了第一个，就是主要的PyDev程序，没有问题。</p>
-
-
-<p>在创建一个GAE项目后，需要填写GAE的location，在Mac系统下，装了Google提供的SDK For Mac就找不到GAE的相关文件了，因为都在那个app包中，只是在/usr/local/bin中有几个相关的py文件，在/usr/local/中有个链接，链接到app包中的一个地方，主要就是用这个链接，不过你会发现这样用之后还有点问题，插件需要找到lib目录下的django，如果你看看目录的话会发现根本没有django目录，只有另一个叫django_0_96这样的目录，于是建立一个软连接到django过去即可。</p>
-
-
-<p>以上方法来自国外一技术博客：</p>
-
-
-<p><a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/" target="_blank">http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/</a></p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/06/01/mapapp-approaches-end/">项目要收工了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-01T18:04:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;虽然最后的几个功能还没有完成，但总归目前已经能用了。如果说端午过后还有机会继续提交的话，可能最终就是完成这几个功能吧。不过最大的问题是现在已经到了考试前夕，如果不想承受考前突击带来的痛苦和自责，那必须得提前准备，何况今年还要考英语四级。按照Fnln的说法，按照正常退步速度就能通过，但我已经不清楚现在是不是正常退步速度了，应该还没有吧，仅仅是最近大家都在复习的时候我在做网站而已：）&lt;/p&gt;
-</code></pre>
-
-<p>刚刚用phpDocumentor把文档生成出来了，还遇到了可恶的乱码问题，最终用了强大的替换工具，硬生生把字符集换成了utf8，总算是解决了吧，虽然解决方法不太好，但这是个看结果的事情：）</p>
-
-
-<p>不知道Yfan那边的css工作怎么样了，要是进展顺利，明天全线停止，开始写写计划书什么的文字材料，在最后一个工作日交上去。当然这算是理想的情况。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/19/">&larr; Older</a>
@@ -646,23 +759,23 @@ server 216.239.38.21;
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/build-up-env-for-sorted/">build-up-env-for-sorted</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/16/about-sorted/">about-Sorted</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/20/set-different-password-for-amazon-account/">set different password for amazon account</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/27/give-up-ruby/">give up ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/">merge partition got Couldn’t modify partition map because file system verification failed error</a>
       </li>
     
   </ul>
