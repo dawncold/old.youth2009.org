@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;在python简明教程中找到这样一句话，关于复制复杂python对象的，如果单纯变量名相互赋值可能只是把引用拷贝过去，一旦原对象更改了，目标对象就会出现问题。文章中对于序列、字典这样的拷贝做出了解释，要用分片来复制，但其他对象该怎么做，暂时还不太清除，可能后面会说吧：）&lt &hellip;">
+  <meta name="description" content="&lt;p&gt;python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:&lt;/p&gt; #! /usr/bin/python -- coding:utf-8 -- Filename : inherit.py class Person &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,79 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/05/inherit-in-python/">Python的继承</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-05T18:41:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+
+
+<h1>-<em>- coding:utf-8 -</em>-</h1>
+
+<h1>Filename : inherit.py</h1>
+
+<p>class Person:</p>
+
+<pre><code>def __init__(self,name,age):
+    self.name = name
+    self.age = age
+    print "init for %s" % self.name
+
+def tell(self):
+    print "name:%s age:%d" % (self.name,self.age)
+</code></pre>
+
+<p>class Teacher(Person):</p>
+
+<pre><code>def __init__(self,name,age,salary):
+    Person.__init__(self,name,age)
+    self.salary = salary
+    print "init for teacher %s" % self.name
+
+def tell(self):
+    Person.tell(self)
+    print "salary:%d" % self.salary
+</code></pre>
+
+<p>p = Person(&#8216;tianzhen&#8217;,20)
+p.tell()</p>
+
+<p>tea_p = Teacher(&#8216;zhenzhen&#8217;,20,1010000000)
+tea_p.tell()</pre></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -519,49 +592,6 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/05/21/sometime-i-do-care/">我有时候太在乎</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-21T22:15:00+08:00" pubdate data-updated="true">May 21<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;我太在乎什么呢？本来想限定一下范围，但想想再写上去一个范围似乎总不如现在这样，在面儿上谈谈我所&lt;a title="在乎" href="http://www.youth2009.org/tag/%E5%9C%A8%E4%B9%8E/"&gt;在乎&lt;/a&gt;的一类。&lt;/p&gt;
-</code></pre>
-
-<p>不过我并不总在乎什么东西，所以加了一个限定──“有时候”，就是在面对某几类问题的时候很在乎。现在想来，如果我是在各个方面都在乎的人，或者在各个方面都不在乎的人，会比现在这样有时候<a title="在乎" href="http://www.youth2009.org/tag/%E5%9C%A8%E4%B9%8E/">在乎</a>好很多吧？至少在成功的概率上前两者确实差不多，都是小概率，而中间是极其丰富的大概率。生活中就是如此充斥着各种各样的钟形曲线。</p>
-
-
-<p>我太在乎似乎是因为我喜欢去想一些事情，思考的时间比实践多一些，这究竟是不是有好处我搞不懂，但我确实感觉这是让我容易产生<a title="在乎" href="http://www.youth2009.org/tag/%E5%9C%A8%E4%B9%8E/">在乎</a>心理的主要动力！曾经想做个现实中的人，但总也把握不到，到底怎么才算是<a title="现实" href="http://www.youth2009.org/tag/%E7%8E%B0%E5%AE%9E/">现实</a>呢？找一个出来我观察一下他的行为跟着学学也好：）</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/20/">&larr; Older</a>
@@ -579,6 +609,10 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
       </li>
     
@@ -592,10 +626,6 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
     
       <li class="post">
         <a href="/blog/2013/03/16/about-sorted/">about-Sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
       </li>
     
   </ul>

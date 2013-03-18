@@ -4,7 +4,7 @@
   <title><![CDATA[Category: app | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/app/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-03-18T19:45:34+08:00</updated>
+  <updated>2013-03-18T22:23:01+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[end-sorted]]></title>
+    <link href="http://www.youth2009.org/blog/2013/03/18/end-sorted/"/>
+    <updated>2013-03-18T22:10:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/03/18/end-sorted</id>
+    <content type="html"><![CDATA[<p>暂时终止sorted的开发，经历了两天痛苦的、没白没黑的、浑浑噩噩的探索后，还是没能搞定iPhone上一个icon的移动过程。实在不行我都打算直接去修改iconstate.plist文件了。。。但就是修改了不能马上响应，需要respring这点受不了！</p>
+
+<p>网上这方面的资料依然少的可怜，很多时间竟然是花在寻找headers文件了，最后才知道根本不需要。你只要有headers拿来看看就ok了，需要什么类的声明自己用@interface写在xm文件中就可以了。tweak的远离是做出dylib后加载，替代系统的api，headers文件对于你来说就是看，然后找需要哪些私有api即可。</p>
+
+<p>过两天兴致来了或许又再搞一下。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[big-break-in-tweak-app-build]]></title>
@@ -145,22 +158,6 @@ sudo make package
 <p>iconLists中又是一个list，内容也是list，每个list表示桌面某一页上的apps。</p>
 
 <p>不过有个问题是：如果我手动修改了这里的值，比如我交换某页两个app的位置，回到桌面并不会立刻看到效果，如果要看效果，需要respring...就是重启SpringBoard，这是我不能接受的。需要再看SpringBoard的私有api有没有提供这方面的支持了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[购买的第一个付费app]]></title>
-    <link href="http://www.youth2009.org/blog/2012/01/07/the-first-paid-app/"/>
-    <updated>2012-01-07T01:12:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/01/07/the-first-paid-app</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;是切水果。&lt;/p&gt;
-</code></pre>
-
-<p>由于itunes不支持我的信用卡，所以只能充50，一个一个买，第一个买的就是切水果！</p>
-
-
-<p>感觉挺好玩的！</p>
-
 ]]></content>
   </entry>
   

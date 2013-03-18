@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。&lt;/p&gt; 左外连接查询比两次select快10～20%左右。 #! /usr/bin/env python coding: utf-8 &hellip;">
+  <meta name="description" content="&lt;p&gt;有这么一个小游戏，按照顺序输入字母表的26个英文字母，看看你输入的总时间是多少。有个变态的人竟然在2s内就输入了26个字母，而且不允许有任何错误，真心佩服！！！&lt;/p&gt; 我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊…… tell &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,66 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/22/little-cheat-for-game/">小作弊玩游戏</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-22T23:31:00+08:00" pubdate data-updated="true">May 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;有这么一个小游戏，按照顺序输入字母表的26个英文字母，看看你输入的总时间是多少。有个变态的人竟然在2s内就输入了26个字母，而且不允许有任何错误，真心佩服！！！&lt;/p&gt;
+</code></pre>
+
+<p>我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊……</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">tell application "Google Chrome"
+
+
+<pre><code>activate
+repeat with i from 0 to 25
+    delay 0.04
+    tell application "System Events"
+        keystroke (ASCII character of (97 + i))
+    end tell
+end repeat
+</code></pre>
+
+<p>end tell</pre></p>
+
+<br /><p>不减速的话系统根本无法记录，所以还是减速了，这个速度正好拿到第一名的位置，OK，剩下的让人去羡慕吧！！！</p>
+
+
+<p>感谢Apple提供的AppleScript这样优秀的脚本工具～</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -820,49 +880,6 @@ print len(link_list)</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/04/16/google-code-jam-2012/">Code Jam 2012</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-16T13:20:00+08:00" pubdate data-updated="true">Apr 16<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;资格赛已经结束了，还好做出来几个题，现在来看这些题目都不算是特别有难度，最主要的还是在理解题目的要求，这当然对于我们非英语系国家的人来说是有些困难的，可能我们需要多读几遍题目才能开始编码，这确实有些不利，但最主要的还是理解错了题目，这样才可怕。&lt;/p&gt;
-</code></pre>
-
-<p>第二个题我就理解有些问题，考虑得太多了，看优秀选手的代码，才十几行结束，真是羡慕死我了！！！</p>
-
-
-<p>下一轮比赛可能就要在家做了吧？毕竟到了我跑回家的日子：）</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -880,6 +897,10 @@ print len(link_list)</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
       </li>
     
@@ -893,10 +914,6 @@ print len(link_list)</pre></p>
     
       <li class="post">
         <a href="/blog/2013/03/16/about-sorted/">about-Sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
       </li>
     
   </ul>

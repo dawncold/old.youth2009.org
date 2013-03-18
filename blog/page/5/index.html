@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;这次宕机持续了1天零13小时，具体什么原因不清楚，yardvps那边说ip自动归零，这是什么原因？！反正我是不清楚怎么回事了，而且买了vpsee的vps，正考虑着是依然延续lnmp的架构还是自己整一套lnmp+python的架构，这样方便以后自己用python做webapp，嗯 &hellip;">
+  <meta name="description" content="&lt;p&gt;今天刚刚换了vps，ssh的安全早就该配置好，没想到竟然是现在了……&lt;/p&gt; 首先这些基本需要做：http://www.deepvps.com/improve-ssh-security.html 再就是禁止root后需要创建一个马甲账号：   0. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,93 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/08/security-of-ssh/">Ssh的安全配置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-08T16:11:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;今天刚刚换了vps，ssh的安全早就该配置好，没想到竟然是现在了……&lt;/p&gt;
+</code></pre>
+
+<p>首先这些基本需要做：<a href="http://www.deepvps.com/improve-ssh-security.html">http://www.deepvps.com/improve-ssh-security.html</a></p>
+
+
+<p>再就是禁止root后需要创建一个马甲账号：</p>
+
+
+<p> </p>
+
+
+<p>0.增加ubuntu的admin组，我的vps默认没有，所以就创建了，sudoer文件中写明了admin组可以用sudo，所以我省略了这一步</p>
+
+
+<p> </p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">groupadd admin</pre>
+
+
+<br /><p>1.增加马甲账号(-m表示创建home目录，-s表示后面跟着的是terminal，-G表示加入后面的那个组，最后的USERNAME各位自己发挥)</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">useradd -m -s /bin/bash -G admin USERNAME</pre>
+
+
+<br /><p>2.修改刚刚马甲的密码：(输入两次新密码就ok了)</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">passwd USERNAME</pre>
+
+
+<br /><p>＃＃＃＃＃＃＃＃＃＃＃禁止root登陆＃＃＃＃＃＃＃＃＃＃＃</p>
+
+
+<p>下面禁止root登陆，直接修改/etc/ssh/sshd_config中的PermitRootLogin为no即可，然后重启ssh：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">service ssh restart
+
+
+<p></pre></p>
+
+<br /><p>不放心的可以断开ssh连接用root和刚刚的马甲账号登陆试试看，肯定root不能用了，而且用马甲登陆上去之后你可以“su -”一下，输入root的密码后就切换到了root的环境下了（不要忘记su后面的短横杠哦，那样才切换环境）。</p>
+
+
+<p> </p>
+
+
+<p> </p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -611,66 +698,6 @@ System Call Overhead                          15000.0     525047.2    350.0</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/22/little-cheat-for-game/">小作弊玩游戏</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-22T23:31:00+08:00" pubdate data-updated="true">May 22<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;有这么一个小游戏，按照顺序输入字母表的26个英文字母，看看你输入的总时间是多少。有个变态的人竟然在2s内就输入了26个字母，而且不允许有任何错误，真心佩服！！！&lt;/p&gt;
-</code></pre>
-
-<p>我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊……</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">tell application "Google Chrome"
-
-
-<pre><code>activate
-repeat with i from 0 to 25
-    delay 0.04
-    tell application "System Events"
-        keystroke (ASCII character of (97 + i))
-    end tell
-end repeat
-</code></pre>
-
-<p>end tell</pre></p>
-
-<br /><p>不减速的话系统根本无法记录，所以还是减速了，这个速度正好拿到第一名的位置，OK，剩下的让人去羡慕吧！！！</p>
-
-
-<p>感谢Apple提供的AppleScript这样优秀的脚本工具～</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -688,6 +715,10 @@ end repeat
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
       </li>
     
@@ -701,10 +732,6 @@ end repeat
     
       <li class="post">
         <a href="/blog/2013/03/16/about-sorted/">about-Sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
       </li>
     
   </ul>

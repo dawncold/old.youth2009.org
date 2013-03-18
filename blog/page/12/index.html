@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content=" &lt;p&gt;最近搞定了数学建模，接下来就是要准备软件设计师的考试，也许不会再有相关技术博客出现了，请大家不要走远呀！我还会回来！&lt;/p&gt; ">
+  <meta name="description" content="&lt;p&gt;从stackoverflow上看的一个解决方案，修改$cfg['Servers'][$i]['extension']的值为mysqli，原来是mysql。这样就能看到blob字段的内容了。不过即使是这样，blob内容也许只能是text的才能看到， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,43 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/19/show-content-of-blob-in-phpmyadmin/">Phpmyadmin显示blob内容</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-19T18:22:00+08:00" pubdate data-updated="true">Sep 19<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;从stackoverflow上看的一个解决方案，修改$cfg['Servers'][$i]['extension']的值为mysqli，原来是mysql。这样就能看到blob字段的内容了。不过即使是这样，blob内容也许只能是text的才能看到，要是把图片什么的存成了blob还是看不到。&lt;/p&gt;
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -608,43 +645,6 @@ else:
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/08/11/bad-result-of-google-map/">Google地图越来越不靠谱了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-11T17:20:00+08:00" pubdate data-updated="true">Aug 11<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;今天同学聚会，我早早用Google地图查询好了路线，又和组织者核实了一番，今天坐公交车去了，结果到了目的地，下车后什么都没找到。问了路边的出租车司机，我要去的地方正好在现在地方相反的方向。恨着Google，打车过去了。&lt;/p&gt;
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/13/">&larr; Older</a>
@@ -662,6 +662,10 @@ else:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
       </li>
     
@@ -675,10 +679,6 @@ else:
     
       <li class="post">
         <a href="/blog/2013/03/16/about-sorted/">about-Sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="昨晚弄到1点多也没搞定iOSOpenDev，总是编译出问题，在irc上问了一下也没人回答我，看来还是有很多人在泡irc的！ 睡前又看了一下各种文章，等起床打算还是回归theos搞搞试试。 没想到早晨用theos搞了一下竟然ok了！或许是用对了theos的版本？不清楚了。 theos我删掉了原来的， &hellip;">
+  <meta name="description" content="暂时终止sorted的开发，经历了两天痛苦的、没白没黑的、浑浑噩噩的探索后，还是没能搞定iPhone上一个icon的移动过程。实在不行我都打算直接去修改iconstate.plist文件了。。。但就是修改了不能马上响应，需要respring这点受不了！ 网上这方面的资料依然少的可怜， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/18/end-sorted/">End-sorted</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-18T22:10:00+08:00" pubdate data-updated="true">Mar 18<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>暂时终止sorted的开发，经历了两天痛苦的、没白没黑的、浑浑噩噩的探索后，还是没能搞定iPhone上一个icon的移动过程。实在不行我都打算直接去修改iconstate.plist文件了。。。但就是修改了不能马上响应，需要respring这点受不了！</p>
+
+<p>网上这方面的资料依然少的可怜，很多时间竟然是花在寻找headers文件了，最后才知道根本不需要。你只要有headers拿来看看就ok了，需要什么类的声明自己用@interface写在xm文件中就可以了。tweak的远离是做出dylib后加载，替代系统的api，headers文件对于你来说就是看，然后找需要哪些私有api即可。</p>
+
+<p>过两天兴致来了或许又再搞一下。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -698,42 +738,6 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/03/gets-method-in-ruby/">Gets Method in Ruby</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-03T20:40:00+08:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Important</strong>: Also notice that we&#8217;re using STDIN.gets instead of plain &#8216;ol gets. That is because if there is stuff in ARGV, the default gets method tries to treat the first one as a file and read from that. To read from the user&#8217;s input (i.e., stdin) in such a situation, you have to use it STDIN.gets explicitly.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -749,6 +753,10 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
       </li>
     
@@ -762,10 +770,6 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
     
       <li class="post">
         <a href="/blog/2013/03/16/about-sorted/">about-Sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
       </li>
     
   </ul>

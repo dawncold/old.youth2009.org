@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;最近活跃在制作网站的大潮中，不过我发现我并不适合制作网站，或者说我不适合做程序员这行！因为我感觉自己在编制程序的过程中考虑得太多，这点能够体现出我“完美主义者”的特质，不过这对于自己、项目来说就是不可想象的后果──复杂度不知不觉提高，制作周期不知不觉延长……&lt;/p&gt &hellip;">
+  <meta name="description" content="&lt;p&gt;唯一需要注意的就是一组checkbox的name属性需要定义成一个相同的数组名字，比如说都定义成input_cb[]，这样在php的POST数组就能通过使用$_POST['input_cb']来获取这个数组的信息了，当然要注意的是，如果这一组checkbox没有一个被勾选， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,43 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/04/20/php-retrieve-checkbox-content/">Php获取checkbox内容</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-20T15:19:00+08:00" pubdate data-updated="true">Apr 20<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;唯一需要注意的就是一组checkbox的name属性需要定义成一个相同的数组名字，比如说都定义成input_cb[]，这样在php的POST数组就能通过使用$_POST['input_cb']来获取这个数组的信息了，当然要注意的是，如果这一组checkbox没有一个被勾选，POST数组中是不会有这个叫input_cb数组的，届时就需要你自己来想办法怎么处理这种情况了：）&lt;/p&gt;
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -850,121 +887,6 @@ movsbl用dh中的最高位填充eax的高24位。</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/04/10/csapp-study-part1/">CSAPP学习笔记第一辑</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-10T21:19:00+08:00" pubdate data-updated="true">Apr 10<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;"&gt;2011年4月10日星期日，晚上有雨。&lt;/p&gt;
-</code></pre>
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">第一章</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤：<br style="padding: 0px; margin: 0px;">源文件&#8212;-&gt;经过预处理器（cpp）成为*.i文件&#8212;-&gt;经过编译器（cc1）成为*.s文件&#8212;-&gt;经过<a style="color: #63b4cd; text-decoration: none; padding: 0px; margin: 0px;" title="汇编" href="http://www.youth2009.org/tag/asm/">汇编</a>器（as）成为*.o文件，所有函数调用都成为*.o这样可重定向的目标程序&#8212;-&gt;最后由连接器（ld）链接成成为可执行文件。cc1这名字真好听：）</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">系统设计者的主要目标就是让信息在各种设备之间“拷贝速度”尽量快。显示一行“hello，world”的过程主要是从磁盘&#8212;-&gt;主存&#8212;-&gt;显示设备传递。</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">文件是对I/O设备的抽象表示，虚拟内存主要是对贮存和磁盘I/O设备的抽象表示，进程则是对处理器、主存和I/O设备的抽象表示。</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">一个进程下的多个线程共享这个进程的代码和全局数据，多线程之间比多进程之间更容易共享数据，因此线程一般比进程高效。</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">虚拟地址空间由多个区（area）构成：程序代码和数据、堆、共享库、栈、内核虚拟存储器（占有1/4/）。</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">第二章</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">计算机使用二进制对所有数据进行编码。（这就是为什么学计算机的同学们能够用两只手数到1024而非计算机专业的同学们只能数到10：）</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">这里有三种最重要的数字编码：无符号（unsigned）、二进制补码（two’s-complement）、浮点数（floating-point）。</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">大多数计算机采用8位的块（或者叫字节）作为最小的可寻址存储器单位。存储器就象是一个很大的数组，每一个元素就是一个字节。</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">十六进制的转化：把每个十六进制数分别转化为二进制即可。例如：0x173A4C<br style="padding: 0px; margin: 0px;">1：0001<br style="padding: 0px; margin: 0px;">7：0111<br style="padding: 0px; margin: 0px;">3：0011<br style="padding: 0px; margin: 0px;">A：1010<br style="padding: 0px; margin: 0px;">4：0100<br style="padding: 0px; margin: 0px;">C：1100<br style="padding: 0px; margin: 0px;">开头的0x是十六进制的标示，无需翻译。<br style="padding: 0px; margin: 0px;">二进制转化到十六进制是要从右侧开始，每4位二进制数换成一个十六进制，因为取的是4位二进制数，所以不可能超过15，就能够换算成十六进制的0～F。</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">用一个数除以2或者16取出余数就能得到相应的二进制或者十六进制编码，不过要倒序书写余数！！！</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">对于一个字长为n位的机器而言，虚拟地址范围是0～（2的n次方）减1，一共是2的n次方字节。所以32位计算机的内存最大是2的32次方，即4GB。</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">C语言中的指针使用机器的全字长，即可能是32位长度，占用4个字节（32位计算机）。</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">可移植性的一个方面就是使程序对不同数据类型的确切大小不敏感。</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">不同的计算机对于字节的存放顺序不同，分为大端法（big endian）、小端法（little endian），不同的处理器可能选择不同，还有一些处理器用哪种取决于CPU加电启动时确定的字节顺序，随机的：）比如0x01234567这个数字，大端法机器会这样存放：01、23、45、67。而小端法机器会这样存放：67、45、23、01（每一组数据还是正常的读法，只是要从右边开始读不同的组：）</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">~a不是a在|运算下的逆元（相信学完离散数学就知道什么意思了：）</p>
-
-
-<p><span class="Apple-style-span" style="color: #666666; font-family: 'Lucida Grande', Verdana, Lucida, Arial, Helvetica, ����, sans-serif; font-size: 12px; line-height: 17px;">是不是很……？！</span></p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">交换两个数的值（技巧性炫耀，没有性能上提升）:</p>
-
-
-<br /><pre class="prettyprint linenums bush:cpp" lang="cpp">void swap(int *x , int *y)
-
-
-<p>{</p>
-
-<pre><code>*x = *x ^ *y;
-*y = *x ^ *y;
-*x = *x ^ *y;
-</code></pre>
-
-<p>}</pre></p>
-
-<br /><p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">移位运算要注意结核性，x&lt;&lt;j&lt;&lt;k的结核性是（x&lt;&lt;j）&lt;&lt;k，而且还要注意优先级，1&lt;&lt;5-1应该是这样计算的：1&lt;&lt;(5-1)！！！所以只要不确定就加上括号，这样肯定安全，而且可读性也是比较好的。</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">右移运算分两种：算术右移和逻辑右移。算术右移在左边补充n个最高有效位的拷贝，逻辑右移是在左边补充n个0.对于无符号数的右移必须是逻辑的（补0），而几乎所有的编译器/机器组合都对有符号数据使用算术右移（拷贝最高有效位）</p>
-
-
-<p style="margin-top: 0.8em; margin-right: 0px; margin-bottom: 0.8em; margin-left: 0px; text-align: left; padding: 0px;">（此处略去xxx行，实在不想学习各种数字的定义和表示方法，承认不愿意钻研数学。不过虽然数学很难懂，但数学是死的，今天学一点明天就会少一点：）</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/23/">&larr; Older</a>
@@ -982,6 +904,10 @@ movsbl用dh中的最高位填充eax的高24位。</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
       </li>
     
@@ -995,10 +921,6 @@ movsbl用dh中的最高位填充eax的高24位。</pre></p>
     
       <li class="post">
         <a href="/blog/2013/03/16/about-sorted/">about-Sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/13/generator-in-python/">generator-in-python</a>
       </li>
     
   </ul>

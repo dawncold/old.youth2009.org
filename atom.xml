@@ -4,7 +4,7 @@
   <title><![CDATA[dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-03-18T19:45:34+08:00</updated>
+  <updated>2013-03-18T22:23:01+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[end-sorted]]></title>
+    <link href="http://www.youth2009.org/blog/2013/03/18/end-sorted/"/>
+    <updated>2013-03-18T22:10:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/03/18/end-sorted</id>
+    <content type="html"><![CDATA[<p>暂时终止sorted的开发，经历了两天痛苦的、没白没黑的、浑浑噩噩的探索后，还是没能搞定iPhone上一个icon的移动过程。实在不行我都打算直接去修改iconstate.plist文件了。。。但就是修改了不能马上响应，需要respring这点受不了！</p>
+
+<p>网上这方面的资料依然少的可怜，很多时间竟然是花在寻找headers文件了，最后才知道根本不需要。你只要有headers拿来看看就ok了，需要什么类的声明自己用@interface写在xm文件中就可以了。tweak的远离是做出dylib后加载，替代系统的api，headers文件对于你来说就是看，然后找需要哪些私有api即可。</p>
+
+<p>过两天兴致来了或许又再搞一下。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[big-break-in-tweak-app-build]]></title>
@@ -578,30 +591,6 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
 
 
 <p>今天细看Google提供的Python课程发现一个叫DictFormatting的部分，里面就有类似这样的语法，现在才明白。以前用过Python的格式化输出，其实这个dict的格式化和字符串的类似，就是在字符串格式化的基础之上加入了dict的key，%s是表示这里有字符串，而%(xxx)s是表示字符串，而且是以xxx为key的字符串，这个value就是从字典中给出。一半会在这样一个字符串后加“% dictname”表示值从dictname这个字典中给出，这不就是和字符串格式化一样么。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[python中的sort方法]]></title>
-    <link href="http://www.youth2009.org/blog/2012/10/04/sort-method-in-python/"/>
-    <updated>2012-10-04T14:58:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/10/04/sort-method-in-python</id>
-    <content type="html"><![CDATA[<p>打算从今天开始自习再学学Python的基础，选了Google提供的Python课程，学到list部分，有个练习题目要求针对一组tuples排序，根据tuples的最后一个元素排序，有个hint，可以用key=function这种方法，于是搜索了一番，在Python的wiki中找到这个key方法的描述：</p>
-
-<p>从Python2.4以后list.sort()和sorted()方法都提供了一个key可选参数，传入一个function用来决定排序需要的key。这个key就是所排序元素的权值，最终就是根据权值来排序了。你也可以自己写一个方法，就是那种用def来定义的方法，不过要求接受一个参数，返回一个值，接受的参数就是这个集合（list、dict、tuple）中的某个元素。我是这样写的，it works：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">sort_last</span><span class="p">(</span><span class="n">tuples</span><span class="p">):</span>
-</span><span class='line'>  <span class="c"># +++your code here+++</span>
-</span><span class='line'>  <span class="n">tuples</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">tuples</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>根据tuple中最后一个排序。</p>
 ]]></content>
   </entry>
   
