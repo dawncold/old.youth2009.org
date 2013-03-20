@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;一开始感觉dashboard这个东西挺好的，加上了好几个小插件玩，但现在发现使用频率超低，所以干脆想办法关闭吧，听说还能节约部分内存和提升开机速度，对这些倒是不太关心，只能有种不用就关闭的态度驱使着我。&lt;/p&gt; 关闭命令： defaults write com. &hellip;">
+  <meta name="description" content="&lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python coding: utf-8 def insert_sort(arraylist): for j in range(1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,69 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/26/insert-sort-in-python/">插入排序（Python）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T11:07:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python
+</code></pre>
+
+<h1>coding: utf-8</h1>
+
+<p>def insert_sort(arraylist):</p>
+
+<pre><code>for j in range(1, len(arraylist)):
+    key = arraylist[j]
+    i = j - 1
+    while i &amp;gt;= 0 and arraylist[i] &amp;gt; key:
+        arraylist[i + 1] = arraylist[i]
+        i = i - 1
+    arraylist[i + 1] = key
+</code></pre>
+
+<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
+
+<pre><code>arr = [2,3,55,31,1,20,44,12,1,99]
+print arr
+insert_sort(arr)
+print arr
+</code></pre>
+
+<p></pre></p>
+
+<br /><p>只要改变while那句中的arraylist[i] &lt; key即可变成非升序排列</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -576,71 +639,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/07/reset-the-password-of-mysql/">重置MySQL密码</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-07T17:46:00+08:00" pubdate data-updated="true">Dec 7<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;前几天在Mac系统下装了MySQL，装完后是默认没有给root用户带密码的，于是出于安全考虑我就加上了密码，加密码的方式如下：&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">mysqladmin -u root password "mysqlpassword"</pre>
-
-
-<br /><p>很明显引号内的是root用户的新密码。</p>
-
-
-<p>但在使用的时候我一时想不起来密码了，于是搜索到了官方的Reset the password of MySQL，但看着好麻烦，没有尝试，在<a href="http://huoding.com/2011/06/12/85" target="_blank">这里</a>找到了方法，贴出来主要代码：</p>
-
-
-<p>先停止mysql的服务，用下面这句启动mysql：</p>
-
-
-<br /><pre class="prettyprint linenums bush:sql" lang="sql">mysqld_safe --skip-grant-tables --skip-networking &amp;
-
-
-<p></pre></p>
-
-<br /><p>用SQL语句修改root的密码：</p>
-
-
-<br /><pre class="prettyprint linenums bush:sql" lang="sql">UPDATE mysql.user SET Password=PASSWORD('...') WHERE User='...' AND Host= '...';
-
-
-<p>FLUSH PRIVILEGES;</pre></p>
-
-<br /><p>单引号内的东西自己补充吧，第一个是新密码，第二个写root，第三个用localhost就可以了。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -658,6 +656,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
       </li>
     
@@ -671,10 +673,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/16/build-up-env-for-sorted/">build-up-env-for-sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/16/about-sorted/">about-Sorted</a>
       </li>
     
   </ul>
