@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;原来在开发一个3.1.3上的游戏时用过这样的方法，没想到现在仍然能够使用，这直接刺激我要不要购买iDP，那可是99美元啊。当然购买iDP也不是光为了能够调试，还有机会去app store，这点可能还值那99美元。&lt;/p&gt; 这是1ST告诉我的办法，第一次就是他告诉的， &hellip;">
+  <meta name="description" content="&lt;p&gt;最近在用Box2d开发小游戏，不可避免用到多边形物体，当然有的形状还好描述，但大多数是那种难以描述的物体，所以这个VertexHelper就是不可或缺的武器了，它能够让你把需要的物体边界描出来，自动生成Box2d需要的边界代码。&lt;/p&gt; 没想到作者把软件放到app &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,78 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/04/use-vertexhelper/">VertexHelper的使用</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-04T23:02:00+08:00" pubdate data-updated="true">Aug 4<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;最近在用Box2d开发小游戏，不可避免用到多边形物体，当然有的形状还好描述，但大多数是那种难以描述的物体，所以这个VertexHelper就是不可或缺的武器了，它能够让你把需要的物体边界描出来，自动生成Box2d需要的边界代码。&lt;/p&gt;
+</code></pre>
+
+<p>没想到作者把软件放到app store上卖，但还提供源代码，不知道他们之间是什么不一样……</p>
+
+
+<p>从GitHub那里得到源代码，打开xcode编译一下就能用了。</p>
+
+
+<p>有一点需要说明，得到的源代码中Project的Base SDK是10.5，在我编译的时候提示了一个警告，现在找不到了。只需要把Target中VertexHelper的BaseSDK改为10.7就可以了，当然如果你没有10.7就只能用10.6了。可能是因为我没有10.5SDK才出现的错误吧。</p>
+
+
+<p><a title="Screen Shot 2011-08-04 at 下午11.01.34.png" href="http://www.youth2009.org/attachment/135222/"><img src="http://www.youth2009.org/usr/uploads/2011/08/2070161037.png" alt="Screen Shot 2011-08-04 at 下午11.01.34.png"></a></p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro Project$ git clone https://github.com/jfahrenkrug/VertexHelper.git
+
+
+<p>Cloning into VertexHelper...
+remote: Counting objects: 150, done.
+remote: Compressing objects: 100% (88/88), done.
+remote: Total 150 (delta 85), reused 96 (delta 53)
+Receiving objects: 100% (150/150), 159.25 KiB | 27 KiB/s, done.
+Resolving deltas: 100% (85/85), done.
+dawncold@tianzhenmatoMacBook-Pro Project$ ls
+A Word is A Day                   NRSMS                             gitosis-admin                     test
+ConjunctionsGame                  SystemProgrammer                  hide-other-bookmark-button        齐鲁软件大赛作品源程序
+EasyEditor                        Timer4NX                          progit
+JavaStudy                         VertexHelper                      scifihifi-iphone
+MyAchievement                     fmdb                              studygit
+dawncold@tianzhenmatoMacBook-Pro Project$ cd VertexHelper/
+dawncold@tianzhenmatoMacBook-Pro VertexHelper$ ls
+English.lproj               PrioritySplitViewDelegate.h VertexDocument.h            VertexScanner.cpp           main.m
+ImageViewGridLayer.h        PrioritySplitViewDelegate.m VertexDocument.m            VertexScanner.h
+ImageViewGridLayer.m        README.md                   VertexHelper-Info.plist     VertexScannerMain.cpp
+PNGLoader.cpp               SWImageView.h               VertexHelper.xcodeproj      drop_sprite.png
+PNGLoader.h                 SWImageView.m               VertexHelper_Prefix.pch     icon.icns</pre></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -706,58 +778,6 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/23/write-to-xiaoxian/">写给小娴</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-23T08:16:00+08:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;小娴先生您好，不知道是不是每一位第一次读到您的作品的读者都会有一种想给您写信的冲动，但不知道该往哪个地方投递。&lt;/p&gt;
-</code></pre>
-
-<p>以前初中、高中的时候似乎听过您的名字，那时仅仅指导您就是一位作家而已，那时候听过很多作家的名字了，有时还会买《读者》、《译林》、《特别关注》、《爱你》等书来看，可能那时候思想上特别寂寞吧，周围的人也都在看这些书。</p>
-
-
-<p>前一段时间在微博上看到您在推荐自己的新书——《想念》，看封面挺喜欢的，简洁，还有我喜欢的颜色，或许是那两个字吧。随后就在当当网买下来了。其实我还是喜欢在卓越网购买，只是当时卓越上似乎缺货了，要等一星期左右，而且商品图片都没有，一下子感觉卓越做了一回不专业的商家，就跑去当当了。</p>
-
-
-<p>几天就收到了书，但一直没看，连封皮都没有撕开，想，没有撕开的话，说不定还能送人，而且那时候正忙活考试，暂时找不到看这类书的闲情逸致，直到放假回家的车上才看起来。</p>
-
-
-<p>现在看了近200页，有得仔细读过，有得泛泛略过。从书中，渐渐地体会到了您的生活方式，而且您似乎正在享受着幸福的生活，至少在文章中看不出您对于生活有什么失望。当然也有可能不便流露吧。</p>
-
-
-<p>希望有机会您能看到。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/15/">&larr; Older</a>
@@ -775,6 +795,10 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/04/02/hhkb/">hhkb</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
       </li>
     
@@ -788,10 +812,6 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
     
       <li class="post">
         <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/16/build-up-env-for-sorted/">build-up-env-for-sorted</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;前几天在Mac系统下装了MySQL，装完后是默认没有给root用户带密码的，于是出于安全考虑我就加上了密码，加密码的方式如下：&lt;/p&gt; mysqladmin -u root password "mysqlpassword" 很明显引号内的是root用户的新密码。 &hellip;">
+  <meta name="description" content="&lt;p&gt;这不是代表春天或者温泉的意思，实际上是我正在学习期末考试课程S2SH中的一个框架——Spring。&lt;/p&gt; 就一变态框架啊，Ioc、AOP这些都是令业界震撼的思想级产物。特别是AOP，就是和OOP同层次的东西，怪不得学习起来很慢很艰难，不过我清楚， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,58 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/12/10/spring-framework/">Spring</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-10T16:48:00+08:00" pubdate data-updated="true">Dec 10<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;这不是代表春天或者温泉的意思，实际上是我正在学习期末考试课程S2SH中的一个框架——Spring。&lt;/p&gt;
+</code></pre>
+
+<p>就一变态框架啊，Ioc、AOP这些都是令业界震撼的思想级产物。特别是AOP，就是和OOP同层次的东西，怪不得学习起来很慢很艰难，不过我清楚，期末考试肯定考得超简单，现在我基本是学到哪里忘到哪里。</p>
+
+
+<p>顺便说下，用Spring做一个简单的AOP测试实例的话，光用自带的jar包根本不行，还需要自己添加下面这几个：</p>
+
+
+<p>1.aopalliance-1.0.jar（在struts2的lib目录中找到的）</p>
+
+
+<p>2.aspcetjweaver-1.5.3.jar（aspcetj的官网怎么上都上不去：<a href="http://www.aspectj.org" target="_blank">http://www.aspectj.org</a>，于是在这里下载的：<a href="http://www.jar114.com/j/982">http://www.jar114.com/j/982</a>）</p>
+
+
+<p>3.cglib-nodep-2.2.2.jar（本来用cglib-2.2.2.jar的，但提示缺少asm就下载了这个集成asm的nodep版本，我以为asm就是Spring中的那个asm包呢。官方网站：<a href="http://cglib.sourceforge.net" target="_blank">http://cglib.sourceforge.net</a>）</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -499,43 +551,6 @@ app = web.application(urls, globals())</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/10/06/steve-jobs/">希望你依然能够领导我们的创新</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-10-06T17:19:00+08:00" pubdate data-updated="true">Oct 6<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;&lt;a title="t_hero.png" href="http://www.youth2009.org/attachment/135250/"&gt;&lt;img src="http://www.youth2009.org/usr/uploads/2011/10/332484186.png" alt="t_hero.png"&gt;&lt;/a&gt;&lt;/p&gt;
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/12/">&larr; Older</a>
@@ -553,6 +568,10 @@ app = web.application(urls, globals())</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/04/02/hhkb/">hhkb</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
       </li>
     
@@ -566,10 +585,6 @@ app = web.application(urls, globals())</p>
     
       <li class="post">
         <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/16/build-up-env-for-sorted/">build-up-env-for-sorted</a>
       </li>
     
   </ul>

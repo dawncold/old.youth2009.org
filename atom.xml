@@ -4,7 +4,7 @@
   <title><![CDATA[dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-03-20T21:37:04+08:00</updated>
+  <updated>2013-04-02T23:06:02+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[hhkb]]></title>
+    <link href="http://www.youth2009.org/blog/2013/04/02/hhkb/"/>
+    <updated>2013-04-02T23:01:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/04/02/hhkb</id>
+    <content type="html"><![CDATA[<p>终于，它来了。</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/CL0AxKWr/medish.jpg" alt="HHKB" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[be-blocked-by-GFW]]></title>
@@ -573,19 +584,6 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m 1 -lxxxx --corelog
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[统计词频方法]]></title>
-    <link href="http://www.youth2009.org/blog/2012/10/04/print-words-count/"/>
-    <updated>2012-10-04T18:32:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/10/04/print-words-count</id>
-    <content type="html"><![CDATA[<p>记得上次参加美味书签电面的时候被问到如何统计一个语料库中的词频，当时有点傻，刚刚在复习Python的dict也遇到了这样的问题，一下子认识到，原来可以做得这么简单。虽然不知道有没有更爽的办法，但我觉得我这种方法也算是能用了，能够保证一定效率的情况下，可理解性也很强。</p>
-
-<p>读取一行行的word，存入dict，word作为key，value就是出现次数了，这样都是linear的事件复杂度，如果在字典就把value加1，要是不在就把value设为1即可。dict的查找复杂度很低，是hash查找。</p>
-
-<p>唉，会不会就是这样我才被拒掉了呢？！</p>
 ]]></content>
   </entry>
   

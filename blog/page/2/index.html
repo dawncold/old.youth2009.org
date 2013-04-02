@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="前几天需要把本机的VMware虚拟机文件拷到工作机器上用，但文件比较大，有30G，U盘不行，无线共享太慢，网线直连无奈工作机器百兆网卡不给力还是慢，分割了我的TimeMachine备份盘，但用完后再合并划分出去的分区就出问题了，提示： Couldn’t modify partition map &hellip;">
+  <meta name="description" content="最近那个伟大的墙把我们敬爱的git大神封锁了，无奈很多代码都托管在上面，其中也不乏很多商业项目。自己的几个blog也都放在上面，倒不是因为在那里免费，而是这已然已经成为程序员们的一种生活style。 ubuntu下有个dnsmasq可以连接别的dns， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,82 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/22/config-dnsmasq-on-macos/">在MacOS上配置dnsmasq</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-22T22:26:00+08:00" pubdate data-updated="true">Jan 22<span>nd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近那个伟大的墙把我们敬爱的git大神封锁了，无奈很多代码都托管在上面，其中也不乏很多商业项目。自己的几个blog也都放在上面，倒不是因为在那里免费，而是这已然已经成为程序员们的一种生活style。</p>
+
+<p>ubuntu下有个dnsmasq可以连接别的dns，这样能够避免dns污染导致上不了github的问题。相关配置不算难，下面记录一下在MacOS下的dnsmasq配置方法。</p>
+
+<p>1.使用brew安装dnsmasq</p>
+
+<pre><code>brew install dnsmasq
+</code></pre>
+
+<p>2.修改一下dnsmasq的配置文件名字</p>
+
+<pre><code>cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf
+</code></pre>
+
+<p>3.加入MacOS的启动项中</p>
+
+<pre><code>sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons
+</code></pre>
+
+<p>4.加载并启动dnsmasq，如果没有出现什么错误就开始配置dnsmasq</p>
+
+<pre><code>sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+</code></pre>
+
+<p>5.配置dnsmasq，把no-resolve的注释去掉，加入<code>server=xxx.xxx.xxx.xxx#nnnn</code></p>
+
+<pre><code>mate /usr/local/etc/dnsmasq.conf
+
+server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比如v2ex那个用3389
+</code></pre>
+
+<p>6.重启dnsmasq</p>
+
+<pre><code>sudo launchctl stop homebrew.mxcl.dnsmasq
+</code></pre>
+
+<p>其实无需再执行<code>sudo launchctl start homebrew.mxcl.dnsmasq</code>这句了，因为你load了plist进去就已经启动了，如果此时stop的话会再自动start，所以没必要再start。要想关闭请使用unload（就修改上面的4即可）</p>
+
+<p>7.把网络的dns设置成127.0.0.1，这样你才能用自己的dns服务</p>
+
+<p>至此，我们的git大神就回归了。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -499,46 +575,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/10/04/print-words-count/">统计词频方法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-04T18:32:00+08:00" pubdate data-updated="true">Oct 4<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>记得上次参加美味书签电面的时候被问到如何统计一个语料库中的词频，当时有点傻，刚刚在复习Python的dict也遇到了这样的问题，一下子认识到，原来可以做得这么简单。虽然不知道有没有更爽的办法，但我觉得我这种方法也算是能用了，能够保证一定效率的情况下，可理解性也很强。</p>
-
-<p>读取一行行的word，存入dict，word作为key，value就是出现次数了，这样都是linear的事件复杂度，如果在字典就把value加1，要是不在就把value设为1即可。dict的查找复杂度很低，是hash查找。</p>
-
-<p>唉，会不会就是这样我才被拒掉了呢？！</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -556,6 +592,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/04/02/hhkb/">hhkb</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
       </li>
     
@@ -569,10 +609,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/16/build-up-env-for-sorted/">build-up-env-for-sorted</a>
       </li>
     
   </ul>

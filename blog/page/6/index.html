@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;一开始玩VPS的时候跟着网上的各种优化教程做了很多工作，中途重装了一次系统后什么优化工作都没做，基本就和裸奔一样啦，还有次好奇怪的突发事件，让我以为是hacker进来了，但后来又不了了之了。&lt;/p&gt; 今天把ssh的端口改掉了，加入iptables各种规则， &hellip;">
+  <meta name="description" content="&lt;p&gt;刚刚用yum升级了系统，发现日志中有很多这样的提示：&lt;/p&gt; ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link ldconfig: /usr/lib/libmysqlclient_r.so. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,60 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/23/two-mysql-lib-issue-after-yum-update/">Ldconfig: /usr/lib/libmysqlclient.so.16 Is Not a Symbolic Link的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-23T19:50:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;刚刚用yum升级了系统，发现日志中有很多这样的提示：&lt;/p&gt;
+</code></pre>
+
+<p><span style="color: #111111; font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; text-align: left;">ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link</span></p>
+
+
+<p><span style="color: #111111; font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; text-align: left;">ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a symbolic link</span></p>
+
+
+<p>于是Google了一下，找到一个解决方法，在<a href="http://tiger.im/286.html" target="_blank">这里</a>.</p>
+
+
+<p>就是重建了两条连接过去即可：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">ln -sf /usr/local/mysql/lib/mysql/libmysqlclient.so.16 /usr/lib/mysqlclient.so.16
+
+
+<p>ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient_r.so.16</pre></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -698,134 +752,6 @@ print "finish!!!"&lt;/pre&gt;
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/04/27/auto-backup-data-in-vps-using-python-script-to-control/">dropbox自动备份VPS</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-27T17:51:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;在&lt;a href="http://www.deepvps.com/dropbox-backup.html" target="_blank"&gt;这里&lt;/a&gt;看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。&lt;/p&gt;
-</code></pre>
-
-<p>安装linux下的dropbox（我的是32为系统，如果是64位在下面地址末尾加上“_64”即可）：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">wget -O dropbox.tar.gz http://www.dropbox.com/download?plat=lnx.x86</pre>
-
-
-<br /><p>解压后在.dropbox-dist目录中有dropboxd可执行文件，让其在后台执行（就是在执行文件后面加“&amp;”符号）</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">~/.dropbox-dist/dropboxd &amp;</pre>
-
-
-<br /><p>此后会出现一个地址，你得复制出来然后在浏览器中打开，之后就是注册或者登陆dropbox，这样就激活了在这台机器上的dropbox，就可以同步文件了。</p>
-
-
-<p>把需要同步备份的文件软连接到Dropbox这个目录中：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">cd ~/Dropbox
-
-
-<p>ln -s /home/wwwroot/
-。。。</pre></p>
-
-<br /><p>此时dropbox已经在帮你同步了，你可以通过web端观察。</p>
-
-
-<p>我看到的文章中带着一个自动运行的脚本，用sh写的，我发现在主机上运行没反应，不会sh，会点python，于是我改写了一下，也是可用的：</p>
-
-
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-
-
-<h1>coding: utf-8</h1>
-
-<p>import sys
-import os</p>
-
-<p>def start():</p>
-
-<pre><code>print "Starting Dropbox..."
-os.system("~/.dropbox-dist/dropboxd &amp;amp;")
-</code></pre>
-
-<p>def stop():</p>
-
-<pre><code>print "Stoping Dropbox..."
-os.system("pkill dropbox")
-</code></pre>
-
-<p>def restart():</p>
-
-<pre><code>stop()
-start()
-</code></pre>
-
-<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
-
-<pre><code>action = sys.argv[1]
-print "now action: %s" % action
-if action == 'start':
-    start()
-elif action == "stop":
-    stop()
-elif action == "restart":
-    restart()
-else:
-    print "Bad arguments!"&lt;/pre&gt;
-</code></pre>
-
-<br /><p>相应的crontab配置文件中这样写就好了：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">#auto dropbox
-
-
-<p>0 4 * * * python /root/dropbox.py restart
-0 5 * * * python /root/dropbox.py stop</pre></p>
-
-<br /><p>如果没装crontab（极少情况），这样(也许你用apt-get来做这件事，我的是centos系统，用yum了)：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">yum -y install crontab</pre>
-
-
-<br /><p>python让我很快乐：）</p>
-
-
-<p>一开始在python用的是exec来执行命令发现不可用，于是用了os.system，查看pydoc才发现exec是执行python code用的……惭愧！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -843,6 +769,10 @@ else:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/04/02/hhkb/">hhkb</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
       </li>
     
@@ -856,10 +786,6 @@ else:
     
       <li class="post">
         <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/16/build-up-env-for-sorted/">build-up-env-for-sorted</a>
       </li>
     
   </ul>
