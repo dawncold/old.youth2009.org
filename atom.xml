@@ -4,7 +4,7 @@
   <title><![CDATA[dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-05-11T13:37:09+08:00</updated>
+  <updated>2013-05-11T16:26:09+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -30,7 +30,7 @@
 
 <p><code>autossh -M 20000 -f -p REMOTEPORT -D LOCALPORT xxx@8.8.8.8 -N</code></p>
 
-<p>autossh就3个参数，-M、-f、-V，其中-V是显示版本，其余两个参数的意思看<a href="http://www.harding.motd.ca/autossh/README," title="autossh README">文档描述</a>吧。</p>
+<p>autossh就3个参数，-M、-f、-V，其中-V是显示版本，其余两个参数的意思看<a href="http://www.harding.motd.ca/autossh/README" title="autossh README">文档描述</a>吧。</p>
 
 <p>如果你没改远程主机ssh的默认端口，那就省略-p REMOTEPORT。</p>
 
