@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GFW | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/gfw/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-05-11T16:26:09+08:00</updated>
+  <updated>2013-05-11T16:31:16+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -44,7 +44,7 @@
 
 <h1>! /bin/bash</h1>
 
-<p>autossh -M 20000 -f -p 9999 -D 9998 google@8.8.8.8 -N``
+<p>autossh -M 20000 -f -p 9999 -D 9998 google@8.8.8.8 -N
 ```</p>
 
 <p>写一个plist放在~/Library/LaunchAgents/中，比如我叫autossh.plist，内容如下：</p>
