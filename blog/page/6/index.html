@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;刚刚用yum升级了系统，发现日志中有很多这样的提示：&lt;/p&gt; ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link ldconfig: /usr/lib/libmysqlclient_r.so. &hellip;">
+  <meta name="description" content="&lt;p&gt;mac下的输入法一直让我耿耿于怀，官方的输入法就不多说了，基本不会去用，虽然UI做得不错，没用几分钟就再也不使用了。&lt;/p&gt; 然后使用了搜狗输入法，词汇量真的很大，这个和Windows平台的积累密不可分，但是我使用的时候搜狗输入法for mac的刚刚开始测试， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/23/new-input-method-on-mac-rimeime/">新的输入法测试</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-23T20:29:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;mac下的输入法一直让我耿耿于怀，官方的输入法就不多说了，基本不会去用，虽然UI做得不错，没用几分钟就再也不使用了。&lt;/p&gt;
+</code></pre>
+
+<p>然后使用了搜狗输入法，词汇量真的很大，这个和Windows平台的积累密不可分，但是我使用的时候搜狗输入法for mac的刚刚开始测试，bug比较多，渐渐被QQ输入法赶上了。</p>
+
+
+<p>QQ输入法用了很久，不过偶尔出现打字时候卡死的情况，其他没啥问题，我就以为是我自己的问题吧，刚刚在微博上搜索了一下，不少用户都遇到这样的问题，搜狗那边也是如此，这就很奇怪了。。。</p>
+
+
+<p>有位朋友推荐了rimeime输入法，正在使用中，看这个反应速度很满意，听说是用配置文件可以做出很玄的样子，暂时不去研究这些，能保证不卡就是很好的进步，如果可以的话，果断放弃掉其他输入法！！！</p>
+
+
+<p>希望rimeime能够把中英文切换状态在growl中体现出来，起码也该给一个提醒：）</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -669,89 +718,6 @@ merge_sort(lst, 0, len(lst) - 1)&lt;/pre&gt;
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/04/27/backup-mysql-databases-using-python/">用python备份mysql</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-27T20:44:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;备份数据库的重要性不想多说了。&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-
-
-<h1>coding: utf-8</h1>
-
-<p>import os
-import sys
-from datetime import *
-import time</p>
-
-<h1>mysql's path</h1>
-
-<p>mysql_path = '/usr/local/mysql/bin/'</p>
-
-<h1>edit this if your mysql username and password is not like this:</h1>
-
-<p>mysql_username = 'root'
-mysql_password = 'xxxxxx'</p>
-
-<h1>backup path</h1>
-
-<p>backup_path = 'mysqlbackup/'</p>
-
-<p>def validate_backup_path():</p>
-
-<pre><code>if os.path.exists(backup_path) == False:
-    print "I create a directory here: %s " % backup_path
-    os.mkdir(backup_path)
-</code></pre>
-
-<p>def backup_all_databases():</p>
-
-<pre><code>filename = "all_%s.sql" % (datetime.utcfromtimestamp(time.time()))
-os.system("%smysqldump -u%s -p%s --all-databases &amp;gt; '%s%s'" % (mysql_path, mysql_username, mysql_password, backup_path, filename))
-</code></pre>
-
-<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
-
-<pre><code>validate_backup_path()
-backup_all_databases()
-print "finish!!!"&lt;/pre&gt;
-</code></pre>
-
-<br /><p>这个是修改了一次的备份脚本，本来是分数据库备份的，无奈制定了分数据库备份需要输入密码，这就不容易加入cron来自动完成了，不过听说在my.cnf中加入mysqldump的设置可以避免输入账号密码，这也算是一个办法吧，不过还是本着简化的思想，只导出所有数据库出来就好，配合着上一篇的dropbox自动备份，这样VPS的灾备就稍稍好些了：）</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -769,6 +735,10 @@ print "finish!!!"&lt;/pre&gt;
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/02/hhkb/">hhkb</a>
       </li>
     
@@ -782,10 +752,6 @@ print "finish!!!"&lt;/pre&gt;
     
       <li class="post">
         <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）&lt;/p&gt; sudo ：unable to resolve host HOSTNAME 这样修复：(编辑/etc/hosts，修改127.0.0.1那行， &hellip;">
+  <meta name="description" content="&lt;p&gt;今天基本完成了LoveSMS，想checkout一下jdrcom来看看，所以就安装上了svn for eclipse，然后在导入的时候提示缺少javahl库，去了官方查看了一下，说是对于Mac用户，只需要下载他们的bin文件就能解决，我一看才给到1.6.5的版本， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,69 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/11/lib-javahl-for-svn-on-mac/">Svn的javahl库</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-11T10:17:00+08:00" pubdate data-updated="true">Jun 11<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;今天基本完成了LoveSMS，想checkout一下jdrcom来看看，所以就安装上了svn for eclipse，然后在导入的时候提示缺少javahl库，去了官方查看了一下，说是对于Mac用户，只需要下载他们的bin文件就能解决，我一看才给到1.6.5的版本，而我自己用brew都装到了1.7.5，而且svn插件用的是1.8.x，需要1.7+的svn支持才行，所以就自己重新安装了svn：&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">brew install subversion --universal --java</pre>
+
+
+<br /><p>这句是关键哦，当然你得先uninstall已经安装的svn才行。加了java开关就可以告诉svn需要java IDE的库，编译的完成后会继续编译javahl～</p>
+
+
+<p>会有这样的提示哦：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">To use Java bindings with various Java IDEs, you might need a universal build:
+
+
+<p>  brew install subversion --universal --java
+==&gt; ./configure --disable-debug --prefix=/usr/local/Cellar/subversion/1.7.5 --with-ssl --with-zlib=/usr --with-sqlite=/usr/local --disable-neon-version-chec
+==&gt; make
+==&gt; make install
+==&gt; make javahl
+==&gt; make install-javahl
+==&gt; Caveats
+You may need to link the Java bindings into the Java Extensions folder:
+  sudo mkdir -p /Library/Java/Extensions
+  sudo ln -s /usr/local/lib/libsvnjavahl-1.dylib /Library/Java/Extensions/libsvnjavahl-1.dylib</pre></p>
+
+<br /><p>自己加入后面的链接就ok了！</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -666,55 +729,6 @@ System Call Overhead                          15000.0     525047.2    350.0</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/23/new-input-method-on-mac-rimeime/">新的输入法测试</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-23T20:29:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;mac下的输入法一直让我耿耿于怀，官方的输入法就不多说了，基本不会去用，虽然UI做得不错，没用几分钟就再也不使用了。&lt;/p&gt;
-</code></pre>
-
-<p>然后使用了搜狗输入法，词汇量真的很大，这个和Windows平台的积累密不可分，但是我使用的时候搜狗输入法for mac的刚刚开始测试，bug比较多，渐渐被QQ输入法赶上了。</p>
-
-
-<p>QQ输入法用了很久，不过偶尔出现打字时候卡死的情况，其他没啥问题，我就以为是我自己的问题吧，刚刚在微博上搜索了一下，不少用户都遇到这样的问题，搜狗那边也是如此，这就很奇怪了。。。</p>
-
-
-<p>有位朋友推荐了rimeime输入法，正在使用中，看这个反应速度很满意，听说是用配置文件可以做出很玄的样子，暂时不去研究这些，能保证不卡就是很好的进步，如果可以的话，果断放弃掉其他输入法！！！</p>
-
-
-<p>希望rimeime能够把中英文切换状态在growl中体现出来，起码也该给一个提醒：）</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -732,6 +746,10 @@ System Call Overhead                          15000.0     525047.2    350.0</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/02/hhkb/">hhkb</a>
       </li>
     
@@ -745,10 +763,6 @@ System Call Overhead                          15000.0     525047.2    350.0</p>
     
       <li class="post">
         <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
       </li>
     
   </ul>

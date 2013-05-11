@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;我是最不擅长写影评的。&lt;/p&gt; 四级之后实在不知道做点什么，于是就找电影看，在VeryCD上看到了这部老一点的片子，就看起来了。 里面主要是围绕着日本人的工作压力之大展开描写的，总是听日语老师说起这些，看来这又一次印证了。在如此之大的工作压力下， &hellip;">
+  <meta name="description" content="&lt;p&gt;刚刚看到github的help页面上有两条关于git的设置，是针对github用的：&lt;/p&gt; git config --global github.user USERNAME git config --global github.token TOKEN   &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/21/git-config-for-github-com/">针对github的两条设置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-21T16:32:00+08:00" pubdate data-updated="true">Jun 21<span>st</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;刚刚看到github的help页面上有两条关于git的设置，是针对github用的：&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">git config --global github.user USERNAME 
+
+
+<p>git config --global github.token TOKEN</pre></p>
+
+<br /><p> 其中的TOKEN要从github网站的帐户管理中得到，而且这个TOKEN和密码相关，如果你更改了密码，需要重新设置。但我还不清楚设置了这个对于github的提交有什么特殊的好处，等以后用用再说吧。</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -637,61 +682,6 @@ location ~ \.php$ {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/06/05/lambda-in-python/">用lambda创建函数</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-05T19:51:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;又是一个bt功能：创建一种函数规则&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:python" lang="python">#!/usr/bin/python
-
-
-<h1>Filename: lambda.py</h1>
-
-<p>def make_repeater(n):</p>
-
-<pre><code>return lambda s: s*n
-</code></pre>
-
-<p>twice = make_repeater(2)</p>
-
-<p>print twice(&#8216;word&#8217;)
-print twice(5)</pre></p>
-
-<br /><p>  twice就是创建出来的函数规则，参数2传进入构建了lambda表达式中的n，s值需要再指定，于是后面的word字符串和数字5就算是这个s了吧。了解到这种bt方法很有用，不过对于我这样的初学者来说，暂时还看不到前景：）</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/19/">&larr; Older</a>
@@ -709,6 +699,10 @@ print twice(5)</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/02/hhkb/">hhkb</a>
       </li>
     
@@ -722,10 +716,6 @@ print twice(5)</pre></p>
     
       <li class="post">
         <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
       </li>
     
   </ul>

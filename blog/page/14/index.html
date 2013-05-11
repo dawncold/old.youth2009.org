@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;最近在用Box2d开发小游戏，不可避免用到多边形物体，当然有的形状还好描述，但大多数是那种难以描述的物体，所以这个VertexHelper就是不可或缺的武器了，它能够让你把需要的物体边界描出来，自动生成Box2d需要的边界代码。&lt;/p&gt; 没想到作者把软件放到app &hellip;">
+  <meta name="description" content=" &lt;p&gt;&lt;img src="http://pic.yupoo.com/dawncold0/BgPcwrcI/medish.jpg" alt="iphone4" width="640" height="425"&gt;&lt;/p&gt; ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,43 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/05/iphone4-hk-4360/">港行4360</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-05T22:44:00+08:00" pubdate data-updated="true">Aug 5<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;&lt;img src="http://pic.yupoo.com/dawncold0/BgPcwrcI/medish.jpg" alt="iphone4" width="640" height="425"&gt;&lt;/p&gt;
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -732,52 +769,6 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/23/sadly-box2d-expreiences/">惨痛的Box2d经验</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-23T11:30:00+08:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;说来也可笑，Box2d中有各种各样的Shape，有多边形，矩形，圆形。我就是在用圆形的时候遇到的这样的问题：需要设置圆形的半径，我就用了这样的表达式：26 / PTM_RADIO，后面的是一个宏定义，表示拿多少像素和box2d中的米作为兑换。我这样设置后总看着圆形很不正常，半径不对，而且落到底边也不弹起来，为此还查找了API、Google等地方，看着别人的代码都没问题，就是自己的不正常。&lt;/p&gt;
-</code></pre>
-
-<p>最终还是解决了这样的问题，真羞愧，原来半径需要一个float的值，但我的表达式算出来的应该是int，不过我也曾经写过 float radius = 26 / PTM_RADIO这样的，再把radius给半径，依然无果，感觉即便是类型不对也应该自动转换过去吧，没想到这里还就是不行了。</p>
-
-
-<p>可恶的！</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">26.0 / PTM_RADIO</pre>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/15/">&larr; Older</a>
@@ -795,6 +786,10 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/02/hhkb/">hhkb</a>
       </li>
     
@@ -808,10 +803,6 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
     
       <li class="post">
         <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
       </li>
     
   </ul>

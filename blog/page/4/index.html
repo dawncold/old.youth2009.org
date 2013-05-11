@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="代码中我把jinja2的语法改成了这样的，{##}，因为这样就不会和blog生成html冲突了，大家改回来就可以。 在Flask中接触到了jinja2，由于某个简单的需要——在模板系统中计算某些订单项的总价格，必须打开Jinja2的“do”扩展，用一种hack的方法来计算，十分不喜欢这样，但能用 &hellip;">
+  <meta name="description" content="&lt;p&gt;一开始没怎么关心这个问题，连接数据库的时候我直接这样用的：&lt;/p&gt; mysql://root:@localhost/haolesong 在插入数据的时候看到数据库中的内容是乱码，但网页中显示的时候正常，于是我就没怎么关心，不过前天在修改一个值的时候， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,58 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/14/bad-encoding-in-sqlalchemy/">SQLAlchemy中的乱码</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-14T09:47:00+08:00" pubdate data-updated="true">Jul 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;一开始没怎么关心这个问题，连接数据库的时候我直接这样用的：&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:python" lang="python">mysql://root:@localhost/haolesong</pre>
+
+
+<br /><p>在插入数据的时候看到数据库中的内容是乱码，但网页中显示的时候正常，于是我就没怎么关心，不过前天在修改一个值的时候，就是用一段中文替换原先的值，提交数据后网页打不开了，提示unicode编码的xxx问题，相信用Python写网站的人应该会遇得到。</p>
+
+
+<p>后来在<a href="http://meizhini.iteye.com/blog/294691" target="_blank">这里</a>发现了解决方法，还有一段长长的分析。我很喜欢这样的文章，对于想直接知道问题答案的人来说一目了然，想知道原理的人也可以直接看下去。</p>
+
+
+<p>最终就是这样即可：</p>
+
+
+<br /><pre class="prettyprint linenums bush:python" lang="python">mysql://root:@localhost/haolesong?charset=utf8</pre>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -579,69 +631,6 @@ set paste</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/11/lib-javahl-for-svn-on-mac/">Svn的javahl库</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-11T10:17:00+08:00" pubdate data-updated="true">Jun 11<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;今天基本完成了LoveSMS，想checkout一下jdrcom来看看，所以就安装上了svn for eclipse，然后在导入的时候提示缺少javahl库，去了官方查看了一下，说是对于Mac用户，只需要下载他们的bin文件就能解决，我一看才给到1.6.5的版本，而我自己用brew都装到了1.7.5，而且svn插件用的是1.8.x，需要1.7+的svn支持才行，所以就自己重新安装了svn：&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">brew install subversion --universal --java</pre>
-
-
-<br /><p>这句是关键哦，当然你得先uninstall已经安装的svn才行。加了java开关就可以告诉svn需要java IDE的库，编译的完成后会继续编译javahl～</p>
-
-
-<p>会有这样的提示哦：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">To use Java bindings with various Java IDEs, you might need a universal build:
-
-
-<p>  brew install subversion --universal --java
-==&gt; ./configure --disable-debug --prefix=/usr/local/Cellar/subversion/1.7.5 --with-ssl --with-zlib=/usr --with-sqlite=/usr/local --disable-neon-version-chec
-==&gt; make
-==&gt; make install
-==&gt; make javahl
-==&gt; make install-javahl
-==&gt; Caveats
-You may need to link the Java bindings into the Java Extensions folder:
-  sudo mkdir -p /Library/Java/Extensions
-  sudo ln -s /usr/local/lib/libsvnjavahl-1.dylib /Library/Java/Extensions/libsvnjavahl-1.dylib</pre></p>
-
-<br /><p>自己加入后面的链接就ok了！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -659,6 +648,10 @@ You may need to link the Java bindings into the Java Extensions folder:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/02/hhkb/">hhkb</a>
       </li>
     
@@ -672,10 +665,6 @@ You may need to link the Java bindings into the Java Extensions folder:
     
       <li class="post">
         <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
       </li>
     
   </ul>

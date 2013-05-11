@@ -4,7 +4,7 @@
   <title><![CDATA[dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-04-02T23:06:02+08:00</updated>
+  <updated>2013-05-11T13:37:09+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ssh-proxy-with-autossh-in-mac]]></title>
+    <link href="http://www.youth2009.org/blog/2013/05/11/ssh-proxy-with-autossh/"/>
+    <updated>2013-05-11T13:10:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/05/11/ssh-proxy-with-autossh</id>
+    <content type="html"><![CDATA[<p>在Mac下原来一直用iSSH，好处是简单，功能够用，但有个缺点很致命，ssh有时候会断开，谁知道最终是什么原因导致的，但iSSH不会自动重连，只是提示你。在忍受了很久之后换成了autossh，它没有GUI，但可以在ssh断开后自动重连。</p>
+
+<p>1.使用brew安装autossh，或者用其他工具安装autossh，包括手。</p>
+
+<p><code>brew install autossh</code></p>
+
+<p>2.配置你的海外主机，保证你可以不用密码登陆。无非就是在authorized_keys中加入你的public key。自己用ssh登陆只要不用密码了就ok。</p>
+
+<p>3.用autossh连接。</p>
+
+<p><code>autossh -M 20000 -f -p REMOTEPORT -D LOCALPORT xxx@8.8.8.8 -N</code></p>
+
+<p>autossh就3个参数，-M、-f、-V，其中-V是显示版本，其余两个参数的意思看<a href="http://www.harding.motd.ca/autossh/README," title="autossh README">文档描述</a>吧。</p>
+
+<p>如果你没改远程主机ssh的默认端口，那就省略-p REMOTEPORT。</p>
+
+<p>指定一个LOCALPORT，一般用什么1080，我用9998。</p>
+
+<p>后面是ssh连接信息，最后-N表示port forward不用terminal交互。</p>
+
+<p>4.(可选操作)如果你比较懒，希望login系统的时候自动帮你连接上ssh，那就把刚刚的命令写到一个sh文件中，比如autossh.sh文件，我放在了tilde中，整个文件很简单，如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#! /bin/bash
+</span><span class='line'>autossh -M 20000 -f -p 9999 -D 9998 google@8.8.8.8 -N``</span></code></pre></td></tr></table></div></figure>
+
+
+<p>写一个plist放在~/Library/LaunchAgents/中，比如我叫autossh.plist，内容如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+</span><span class='line'>&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+</span><span class='line'>&lt;plist version="1.0"&gt;
+</span><span class='line'>&lt;dict&gt;
+</span><span class='line'>   &lt;key&gt;Label&lt;/key&gt;
+</span><span class='line'>   &lt;string&gt;autossh&lt;/string&gt;
+</span><span class='line'>   &lt;key&gt;Program&lt;/key&gt;
+</span><span class='line'>   &lt;string&gt;~/autossh.sh&lt;/string&gt;
+</span><span class='line'>   &lt;key&gt;RunAtLoad&lt;/key&gt;
+</span><span class='line'>   &lt;true/&gt;
+</span><span class='line'>&lt;/dict&gt;
+</span><span class='line'>&lt;/plist&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这会让launchd帮你自动运行autossh.sh，类似于开机启动，不过这是比较专业的做法呵呵呵。</p>
+
+<p>至此，开机自动连接ssh，自由surfing吧。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[hhkb]]></title>
@@ -545,45 +612,6 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
 <p>启动后就会出现登录ubuntu的界面，刚刚创建好容器后会给出一个提示，帐号密码都是ubuntu，登录进去就可以使用了。</p>
 
 <p>猜想lxc的用法可能是对于部署的某个进程使用lxc隔离，这并不能做vps用，lxc只是轻量虚拟化，针对进程来的，所以还是单机在使用，如果做vps就得用vmware、xen、openvz这样的东西了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[LVM+RAID实践]]></title>
-    <link href="http://www.youth2009.org/blog/2012/10/08/lvm-and-raid1/"/>
-    <updated>2012-10-08T14:09:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/10/08/lvm-and-raid1</id>
-    <content type="html"><![CDATA[<p>两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。</p>
-
-<p>0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>fdisk /dev/sda
-</span><span class='line'>fdisk /dev/sdb
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>1.创建PV</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pvcreate /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2.创建VG</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vgcreate -s 16M vg0 /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3.创建LV</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m 1 -lxxxx --corelog
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   

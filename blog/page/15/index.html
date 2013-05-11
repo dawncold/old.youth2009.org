@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;小娴先生您好，不知道是不是每一位第一次读到您的作品的读者都会有一种想给您写信的冲动，但不知道该往哪个地方投递。&lt;/p&gt; 以前初中、高中的时候似乎听过您的名字，那时仅仅指导您就是一位作家而已，那时候听过很多作家的名字了，有时还会买《读者》、《译林》、《特别关注》、《 &hellip;">
+  <meta name="description" content="&lt;p&gt;说来也可笑，Box2d中有各种各样的Shape，有多边形，矩形，圆形。我就是在用圆形的时候遇到的这样的问题：需要设置圆形的半径，我就用了这样的表达式：26 / PTM_RADIO，后面的是一个宏定义，表示拿多少像素和box2d中的米作为兑换。我这样设置后总看着圆形很不正常， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/23/sadly-box2d-expreiences/">惨痛的Box2d经验</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-23T11:30:00+08:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;说来也可笑，Box2d中有各种各样的Shape，有多边形，矩形，圆形。我就是在用圆形的时候遇到的这样的问题：需要设置圆形的半径，我就用了这样的表达式：26 / PTM_RADIO，后面的是一个宏定义，表示拿多少像素和box2d中的米作为兑换。我这样设置后总看着圆形很不正常，半径不对，而且落到底边也不弹起来，为此还查找了API、Google等地方，看着别人的代码都没问题，就是自己的不正常。&lt;/p&gt;
+</code></pre>
+
+<p>最终还是解决了这样的问题，真羞愧，原来半径需要一个float的值，但我的表达式算出来的应该是int，不过我也曾经写过 float radius = 26 / PTM_RADIO这样的，再把radius给半径，依然无果，感觉即便是类型不对也应该自动转换过去吧，没想到这里还就是不行了。</p>
+
+
+<p>可恶的！</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">26.0 / PTM_RADIO</pre>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -650,76 +696,6 @@ done!
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/14/vb-net-programming-problems/">VB.net考试上机题目汇总</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-14T18:17:00+08:00" pubdate data-updated="true">Jul 14<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;只是更新一下代码，因为在mac中的mono工作得不太好！！&lt;/p&gt;
-</code></pre>
-
-<p>1.求两个数的最大公约数和最小公倍数：</p>
-
-
-<br /><pre class="prettyprint linenums bush:vb" lang="vb">Module Module1
-
-
-<pre><code>Public Function Gcd(ByVal num1 As Integer, ByVal num2 As Integer) As Integer
-    If num2 = 0 Then
-        Return num1
-    Else
-        Return Gcd(num2, num1 Mod num2)
-    End If
-End Function
-
-Public Sub Main()
-    Console.WriteLine("Input first num: ")
-    Dim num1 As Integer = Convert.ToInt32(Console.ReadLine())
-    Console.WriteLine("Input second num: ")
-    Dim num2 As Integer = Convert.ToInt32(Console.ReadLine())
-    Console.WriteLine("Gcd is :{0}", Gcd(num1, num2))
-    Console.WriteLine("Lcd is :{0}", (num1 * num2) / Gcd(num1, num2)) '两个数的积除以最大公约数就是最小公倍数
-    Console.ReadLine()
-End Sub
-</code></pre>
-
-<p>End Module
-</pre></p>
-
-<br /><p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2011/07/14/vb-net-programming-problems/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/16/">&larr; Older</a>
@@ -737,6 +713,10 @@ End Sub
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/02/hhkb/">hhkb</a>
       </li>
     
@@ -750,10 +730,6 @@ End Sub
     
       <li class="post">
         <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
       </li>
     
   </ul>

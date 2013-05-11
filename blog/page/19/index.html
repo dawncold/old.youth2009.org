@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;如果你感觉列表这种数据结构就已经很bt了的话，再看看这个吧，我感觉这简直就在破坏程序员的正常思维！&lt;/p&gt; example_list = [2,3,4] other_list = [i*2 for i in example_list if i &gt; 2] &hellip;">
+  <meta name="description" content="&lt;p&gt;又是一个bt功能：创建一种函数规则&lt;/p&gt; #!/usr/bin/python Filename: lambda.py def make_repeater(n): return lambda s: s*n twice = make_repeater(2) print &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/05/lambda-in-python/">用lambda创建函数</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-05T19:51:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;又是一个bt功能：创建一种函数规则&lt;/p&gt;
+</code></pre>
+
+<br /><pre class="prettyprint linenums bush:python" lang="python">#!/usr/bin/python
+
+
+<h1>Filename: lambda.py</h1>
+
+<p>def make_repeater(n):</p>
+
+<pre><code>return lambda s: s*n
+</code></pre>
+
+<p>twice = make_repeater(2)</p>
+
+<p>print twice(&#8216;word&#8217;)
+print twice(5)</pre></p>
+
+<br /><p>  twice就是创建出来的函数规则，参数2传进入构建了lambda表达式中的n，s值需要再指定，于是后面的word字符串和数字5就算是这个s了吧。了解到这种bt方法很有用，不过对于我这样的初学者来说，暂时还看不到前景：）</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -580,46 +635,6 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/05/30/getyear-in-js/">js的Year</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-30T13:56:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;js中有个获取当前年的函数，叫getYear()，但我测试的时候没有单独让它显示出来看看，只是当成一个最大值限制使用，测试了一个值发现正确，就不再管它了，后来测试的时候总是不对，再一看，那个值竟然是111，怪不得我输入一个年份都显示对了呢，现在都是2xxx年，随便一个就比111大不少了……&lt;/p&gt;
-</code></pre>
-
-<p>目前那个函数已经被废弃了，取而代之的是getFullYear()，这次就正常了：）</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/20/">&larr; Older</a>
@@ -637,6 +652,10 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/02/hhkb/">hhkb</a>
       </li>
     
@@ -650,10 +669,6 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
     
       <li class="post">
         <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/16/open-development-env-for-xcode/">open-development-env-for-xcode</a>
       </li>
     
   </ul>
