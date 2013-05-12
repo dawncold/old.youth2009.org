@@ -4,7 +4,7 @@
   <title><![CDATA[dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-05-11T16:31:16+08:00</updated>
+  <updated>2013-05-12T12:45:30+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -38,15 +38,9 @@
 
 <p>后面是ssh连接信息，最后-N表示port forward不用terminal交互。</p>
 
-<p>4.(可选操作)如果你比较懒，希望login系统的时候自动帮你连接上ssh，那就把刚刚的命令写到一个sh文件中，比如autossh.sh文件，我放在了tilde中，整个文件很简单，如下：</p>
+<p>4.(可选操作)如果你比较懒，希望login系统的时候自动帮你连接上ssh，Mac下使用launchd来做，推荐使用Lingon这个app，是个launchd的GUI。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#! /bin/bash
-</span><span class='line'>autossh -M 20000 -f -p 9999 -D 9998 google@8.8.8.8 -N</span></code></pre></td></tr></table></div></figure>
-
-
-<p>写一个plist放在~/Library/LaunchAgents/中，比如我叫autossh.plist，内容如下：</p>
+<p>添加一个My Agents就可以了，何时运行那里我勾选了at startup or login，生成的plist会放在~/Library/LaunchAgents/中，生成的内容如下：</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -60,21 +54,41 @@
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-</span><span class='line'>&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+</span><span class='line'>&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
 </span><span class='line'>&lt;plist version="1.0"&gt;
 </span><span class='line'>&lt;dict&gt;
-</span><span class='line'>   &lt;key&gt;Label&lt;/key&gt;
-</span><span class='line'>   &lt;string&gt;autossh&lt;/string&gt;
-</span><span class='line'>   &lt;key&gt;Program&lt;/key&gt;
-</span><span class='line'>   &lt;string&gt;~/autossh.sh&lt;/string&gt;
-</span><span class='line'>   &lt;key&gt;RunAtLoad&lt;/key&gt;
-</span><span class='line'>   &lt;true/&gt;
+</span><span class='line'>  &lt;key&gt;Label&lt;/key&gt;
+</span><span class='line'>  &lt;string&gt;autossh&lt;/string&gt;
+</span><span class='line'>  &lt;key&gt;ProgramArguments&lt;/key&gt;
+</span><span class='line'>  &lt;array&gt;
+</span><span class='line'>      &lt;string&gt;/usr/local/bin/autossh&lt;/string&gt;
+</span><span class='line'>      &lt;string&gt;-M&lt;/string&gt;
+</span><span class='line'>      &lt;string&gt;20000&lt;/string&gt;
+</span><span class='line'>      &lt;string&gt;-f&lt;/string&gt;
+</span><span class='line'>      &lt;string&gt;-p&lt;/string&gt;
+</span><span class='line'>      &lt;string&gt;9999&lt;/string&gt;
+</span><span class='line'>      &lt;string&gt;-D&lt;/string&gt;
+</span><span class='line'>      &lt;string&gt;9998&lt;/string&gt;
+</span><span class='line'>      &lt;string&gt;google@8.8.8.8&lt;/string&gt;
+</span><span class='line'>      &lt;string&gt;-N&lt;/string&gt;
+</span><span class='line'>  &lt;/array&gt;
+</span><span class='line'>  &lt;key&gt;RunAtLoad&lt;/key&gt;
+</span><span class='line'>  &lt;true/&gt;
 </span><span class='line'>&lt;/dict&gt;
 </span><span class='line'>&lt;/plist&gt;</span></code></pre></td></tr></table></div></figure>
 
-
-<p>这会让launchd帮你自动运行autossh.sh，类似于开机启动，不过这是比较专业的做法呵呵呵。</p>
 
 <p>至此，开机自动连接ssh，自由surfing吧。</p>
 ]]></content>
