@@ -9,10 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;备份数据库的重要性不想多说了。&lt;/p&gt; #! /usr/bin/env python coding: utf-8 import os
-import sys
-from datetime import *
-import time mysql's path &hellip;">
+  <meta name="description" content="&lt;p&gt;突然发现mysql无法用localhost连接进去，而用127.0.0.1可以。&lt;/p&gt; linux下是这样的，如果用localhost连接是走的socket路线，用127.0.0.1走的是tcp路线。 修改了php.ini中的mysql. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +78,49 @@ import time mysql's path &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/02/mysql-issue/">网站都挂掉了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-02T18:17:00+08:00" pubdate data-updated="true">May 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;突然发现mysql无法用localhost连接进去，而用127.0.0.1可以。&lt;/p&gt;
+</code></pre>
+
+<p>linux下是这样的，如果用localhost连接是走的socket路线，用127.0.0.1走的是tcp路线。</p>
+
+
+<p>修改了php.ini中的mysql.default_socket，值为mysql.sock的文件路径，重启php就好了，不过phpmyadmin的问题依然没有解决，我只是把连接主机换成了127.0.0.1暂时用着。</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -926,49 +966,6 @@ Binary data inserted for <code>string</code> type on column <code>randstring</co
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/14/differentiate-form-for-and-form-tag/">分清form_for和form_tag</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-14T19:34:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][:username]，前面的:user是我给form_for的第一个参数，这个form的所有信息都得加[:user]这样的前缀才能得到了，让我十分痛苦（又加上是个2.14）&lt;/p&gt;
-</code></pre>
-
-<p>使用form_tag后对于它的action不太会控制，所幸不写参数了，正好action指向本地址，省事儿！</p>
-
-
-<p>感谢<a href="http://blog.csdn.net/babylon_0049/article/details/4730763">这里</a>写的内容</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -986,6 +983,10 @@ Binary data inserted for <code>string</code> type on column <code>randstring</co
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
       </li>
     
@@ -999,10 +1000,6 @@ Binary data inserted for <code>string</code> type on column <code>randstring</co
     
       <li class="post">
         <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="在Mac下原来一直用iSSH，好处是简单，功能够用，但有个缺点很致命，ssh有时候会断开，谁知道最终是什么原因导致的，但iSSH不会自动重连，只是提示你。在忍受了很久之后换成了autossh，它没有GUI，但可以在ssh断开后自动重连。 1.使用brew安装autossh， &hellip;">
+  <meta name="description" content="如果你的网站该去解决dog pile effect了，那应该有不小的PV了。今天看暴走漫画的架构设计，那是应对1000W PV的一个设计，当然架构这东西每家都不一样，可能这个就他们自己用着适合。里面提到了dog pile effect，这个的意思是：在多request去cache中拿数据的时候， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-18T22:48:00+08:00" pubdate data-updated="true">May 18<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>如果你的网站该去解决dog pile effect了，那应该有不小的PV了。今天看暴走漫画的架构设计，那是应对1000W PV的一个设计，当然架构这东西每家都不一样，可能这个就他们自己用着适合。里面提到了dog pile effect，这个的意思是：在多request去cache中拿数据的时候，如果发现自己拿的数据是过期了的，那么就要去db中拿新的来。这么看好像没问题，但有前提的——request很多，真的很多，而且确实用cache了（反正我不相信request很多的时候某些数据你不用cache，那得是个多么bt的db才能支撑啊？！）本来用cache的作用就是降低对某些slow query的执行次数，缓解db压力。但过期了，再去db中取这就和没有cache一样了，db会死的。</p>
+
+<p>解决方法有这样的：</p>
+
+<ul>
+<li>有专门的job（比如crontab）来更新cache，这样request总是去cache取，不用管过不过期。好处就是简单；坏处是可能做一些没必要的重复计算，没有request你也更新了cache，而且你得确保这个job的执行时间要小于job的间隔，否则会积压很多job。</li>
+<li>request取到数据发现过期，再请求一个update lock，成功拿到锁就可以更新cache，此时其他request也会请求这把锁，但就是请求不到，那就继续返回过期的数据。这是不容忍延迟的情况，如果对数据准确性要求高，那在updating的时候其他request会等，等数据更新了再返回。怎么用取决于environment。</li>
+</ul>
+
+
+<p>引用自：<a href = "http://hype-free.blogspot.jp/2008/05/avoiding-dogpile-effect.html">http://hype-free.blogspot.jp/2008/05/avoiding-dogpile-effect.html</a>，注意blogspot。。。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -725,46 +771,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/20/set-different-password-for-amazon-account/">Set Different Password for Amazon Account</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-20T00:16:00+08:00" pubdate data-updated="true">Feb 20<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>不知怎么，突然发现在iPad上注册kindle设备后，在国内的amazon上无法看到这个设备，云端购买的书籍也都没了，深夜给amazon发了邮件，没想到十几分钟就回复了！！！</p>
-
-<p>得知，如果在amazon美国用了和国内相同的账号，那注册设备的时候可能会被使用美国的数据，那里当然木有我买的书了。。。看来以后kindle要暂时和国际市场say byebye了。</p>
-
-<p>解决方法就是给国内外这两个账号设置不同的密码，试了一下，解决！</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -780,6 +786,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
       </li>
     
@@ -793,10 +803,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
       </li>
     
   </ul>

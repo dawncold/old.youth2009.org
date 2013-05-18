@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;刚刚在学习web.py这个框架，找了一个不错的例子准备自己运行起来看看，结果一调试出现了MySQLdb没找到的情况，于是从官方（&lt;a href="http://sourceforge.net/projects/mysql-python/"&gt;http:// &hellip;">
+  <meta name="description" content="&lt;p&gt;要不是弄github的pages我也不会接触到gem。&lt;/p&gt; lion的gem是1.3.6这个超低版本，现在最新是1.8.12，我下载了update_rubygem1.8.12.gem，用gem安装上了： sudo gem install &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/12/11/update-gem-on-mac/">更新mac下的gem</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-11T19:49:00+08:00" pubdate data-updated="true">Dec 11<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;要不是弄github的pages我也不会接触到gem。&lt;/p&gt;
+</code></pre>
+
+<p>lion的gem是1.3.6这个超低版本，现在最新是1.8.12，我下载了update_rubygem1.8.12.gem，用gem安装上了：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo gem install update_rubygem-1.8.12.gem</pre>
+
+
+<br /><p> </p>
+
+
+<p>然后不知道怎么用了，于是用gem开启来一个server玩：</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">gem server</pre>
+
+
+<br /><p>不小心看到已经安装了两个gem，执行命令分别是gem和update_rubygem，于是我执行了后面那个，就更新到了1.8.12</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -538,46 +593,6 @@ app = web.application(urls, globals())</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/10/28/software-exam-is-comming-soon/">马上就要软考了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-10-28T22:31:00+08:00" pubdate data-updated="true">Oct 28<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;我充满了信心，但自己感觉准备周期有些长，每天都用准备软考的理由在上课的时候看软考的资料，导致很多门课现在还是比较陌生的，不过大学中这样并不是大问题，即便是都不怎么学，到了年底要是肯努力几天的话，成绩还是会很给面子的。但我并不喜欢这样突击，我更喜欢轻松自在一点。&lt;/p&gt;
-</code></pre>
-
-<p>软考结束后本以为能够把丢下的知识拾起来，但国庆和光瑞都找我做些东西，我也想继续搞一些开发，一是能增加些经验，二是能够做一些真正的商业产品，产品和参赛作品毕竟有不少差别，参赛作品做了几个了，就那样放着，产品的话，目前还没有能拿得出手的：（</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/12/">&larr; Older</a>
@@ -595,6 +610,10 @@ app = web.application(urls, globals())</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
       </li>
     
@@ -608,10 +627,6 @@ app = web.application(urls, globals())</p>
     
       <li class="post">
         <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
       </li>
     
   </ul>

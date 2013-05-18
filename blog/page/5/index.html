@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;今天基本完成了LoveSMS，想checkout一下jdrcom来看看，所以就安装上了svn for eclipse，然后在导入的时候提示缺少javahl库，去了官方查看了一下，说是对于Mac用户，只需要下载他们的bin文件就能解决，我一看才给到1.6.5的版本， &hellip;">
+  <meta name="description" content="&lt;p&gt;前面几篇log中有提及，实在无法忍受yardvps的服务了，一开始真的不错，但现在越来越不行了，可能这就是标志着一个vps提供商由正规经营到超卖的转变。上次停机超过了24个小时，发了ticket过去问，结果是说我被ddos了，就自动把我从网络中断开了，真有意思的说法， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,49 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/13/migrate-to-new-vps/">迁移到了新VPS上</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-13T16:22:00+08:00" pubdate data-updated="true">Jun 13<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;前面几篇log中有提及，实在无法忍受yardvps的服务了，一开始真的不错，但现在越来越不行了，可能这就是标志着一个vps提供商由正规经营到超卖的转变。上次停机超过了24个小时，发了ticket过去问，结果是说我被ddos了，就自动把我从网络中断开了，真有意思的说法，反正已经无法考证其真实性了，我只好选择离开。&lt;/p&gt;
+</code></pre>
+
+<p>新的VPS比以前贵，大约是每月10刀（原来的512Mb的YardVPS是7.59刀），但新的vps性能很好，网络也很好很快，希望能一直用下去，贵点就贵点呗，比起神器Linode便宜了不少。</p>
+
+
+<p>这个技术blog是最后迁移过来的了，原先有几个php写得东西光是把数据库保存下来了，就不再挂出来让大家访问了吧，我猜也没几个用得，留着数据库做个纪念<img title="微笑" src="http://www.youth2009.org/usr/plugins/TinyMCE/tiny_mce/plugins/emotions/img/smiley-smile.gif" alt="微笑" border="0"></p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -637,98 +680,6 @@ while(<em>s++ = </em>t++);<br/>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/30/test-the-performace-of-vps-using-unixbench/">用UnixBench测试VPS性能</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-30T12:02:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;本来就想测试一下性能的，不过中途遇到点问题。&lt;/p&gt;
-</code></pre>
-
-<p>UnixBench用了perl，但不知道为何我的VPS对perl似乎不太友好，提示有几个关键的moudle找不到，于是无法测试了，根据提示我需要安装Time::HiRes这个module。</p>
-
-
-<p>听说perl5之后有了一个module管理器，叫CPAN（C盘？），就和yum这样的工具一样可以随意安装module，确实方便，可以和python的pip啊easy_install这样的工具媲美。</p>
-
-
-<p>但我在使用CPAN的时候发现连这个module都没有…………于是去CPAN.org这里搜索下载这个基础module，但在makefile的时候（用perl做makefile），发现又缺少一个module，看来这个更加底层。从网上找到方法说用yum进行安装，于是用yum -y install perl-CPAN，这样就能用了：）</p>
-
-
-<p>在安装Time::HiRes的时候发现找不到install工具………………天啊，又去了CPAN.org下载了这个module的源码，自己编译安装上了，这样就没问题了：）</p>
-
-
-<p>VPS的得分稍后更新：）</p>
-
-
-<p>UPDATE:</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">Benchmark Run: 三  5月 30 2012 11:38:34 - 12:06:53
-
-
-<p>1 CPU in system; running 1 parallel copy of tests</p>
-
-<p>Dhrystone 2 using register variables       12579232.4 lps   (10.0 s, 7 samples)
-Double-Precision Whetstone                     2268.2 MWIPS (10.3 s, 7 samples)
-Execl Throughput                               1140.1 lps   (29.6 s, 2 samples)
-File Copy 1024 bufsize 2000 maxblocks        270525.4 KBps  (30.0 s, 2 samples)
-File Copy 256 bufsize 500 maxblocks           77911.8 KBps  (30.1 s, 2 samples)
-File Copy 4096 bufsize 8000 maxblocks        709368.9 KBps  (30.0 s, 2 samples)
-Pipe Throughput                              394585.6 lps   (10.0 s, 7 samples)
-Pipe-based Context Switching                  40293.3 lps   (10.0 s, 7 samples)
-Process Creation                               1908.7 lps   (30.0 s, 2 samples)
-Shell Scripts (1 concurrent)                   1539.5 lpm   (60.0 s, 2 samples)
-Shell Scripts (8 concurrent)                    204.1 lpm   (60.1 s, 2 samples)
-System Call Overhead                         525047.2 lps   (10.0 s, 7 samples)</p>
-
-<p>System Benchmarks Index Values               BASELINE       RESULT    INDEX
-Dhrystone 2 using register variables         116700.0   12579232.4   1077.9
-Double-Precision Whetstone                       55.0       2268.2    412.4
-Execl Throughput                                 43.0       1140.1    265.1
-File Copy 1024 bufsize 2000 maxblocks          3960.0     270525.4    683.1
-File Copy 256 bufsize 500 maxblocks            1655.0      77911.8    470.8
-File Copy 4096 bufsize 8000 maxblocks          5800.0     709368.9   1223.0
-Pipe Throughput                               12440.0     394585.6    317.2
-Pipe-based Context Switching                   4000.0      40293.3    100.7
-Process Creation                                126.0       1908.7    151.5
-Shell Scripts (1 concurrent)                     42.4       1539.5    363.1
-Shell Scripts (8 concurrent)                      6.0        204.1    340.2
-System Call Overhead                          15000.0     525047.2    350.0</p>
-
-<pre><code>                                                               ========
-</code></pre>
-
-<p>System Benchmarks Index Score                                         382.2</pre></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -746,6 +697,10 @@ System Call Overhead                          15000.0     525047.2    350.0</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
       </li>
     
@@ -759,10 +714,6 @@ System Call Overhead                          15000.0     525047.2    350.0</p>
     
       <li class="post">
         <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
       </li>
     
   </ul>

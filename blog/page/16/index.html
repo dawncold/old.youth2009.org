@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;只是更新一下代码，因为在mac中的mono工作得不太好！！&lt;/p&gt; 1.求两个数的最大公约数和最小公倍数： Module Module1 Public Function Gcd(ByVal num1 As Integer, ByVal num2 As Integer &hellip;">
+  <meta name="description" content="&lt;p&gt;前天cocos2d更新到了1.0版本，这个版本对于开源软件来说是一个里程碑，因为这应该是第一个能够称得上稳定的版本，当然也是新阶段的开始。&lt;/p&gt; 安装还是很简单的，我已经安装上了xcode4.0和sdk4.3。 要注意一点的就是安装的时候需要root权限， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,142 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/15/install-cocos2d/">安装cocos2d 1.0</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-15T20:19:00+08:00" pubdate data-updated="true">Jul 15<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;前天cocos2d更新到了1.0版本，这个版本对于开源软件来说是一个里程碑，因为这应该是第一个能够称得上稳定的版本，当然也是新阶段的开始。&lt;/p&gt;
+</code></pre>
+
+<p>安装还是很简单的，我已经安装上了xcode4.0和sdk4.3。</p>
+
+
+<p>要注意一点的就是安装的时候需要root权限，用sudo即可。</p>
+
+
+<br /><pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro cocos2d-iphone-1.0.0$ sh ./install-templates.sh 
+
+
+<p>cocos2d-iphone template installer</p>
+
+<p>Error: This script must be run as root in order to copy templates to /Library/Application Support/Developer/Shared/Xcode</p>
+
+<p>Try running it with 'sudo', or with '-u' to install it only you:
+   sudo ./install-templates.sh
+or:
+   ./install-templates.sh -u
+dawncold@tianzhenmatoMacBook-Pro cocos2d-iphone-1.0.0$ sudo sh ./install-templates.sh
+Password:
+cocos2d-iphone template installer</p>
+
+<h2>Installing Xcode 4 cocos2d iOS template</h2>
+
+<p>...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/cocos2d/
+...copying cocos2d files
+...copying cocoslive files
+...copying TouchJSON files
+...copying CocosDenshion files
+...copying CocosDenshionExtras files
+...copying FontLabel files
+...copying template files
+done!</p>
+
+<h2>Installing Xcode 4 Chipmunk iOS template</h2>
+
+<p>...copying Chipmunk files
+done!</p>
+
+<h2>Installing Xcode 4 Box2d iOS template</h2>
+
+<p>...copying Box2d files
+done!</p>
+
+<h2>Installing Xcode 4 CCNode file templates...</h2>
+
+<p>...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/File Templates/cocos2d/
+done!
+...creating cocos2d template directory</p>
+
+<h2>Installing Xcode 3 cocos2d iOS template</h2>
+
+<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application/
+...copying template files
+...copying cocos2d files
+...copying cocos2d dependency files
+...copying CocosDenshion files
+...copying cocoslive files
+...copying cocoslive dependency files
+done!</p>
+
+<h2>Installing Xcode 3 cocos2d iOS + box2d template</h2>
+
+<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Box2d Application/
+...copying template files
+...copying cocos2d files
+...copying cocos2d dependency files
+...copying CocosDenshion files
+...copying cocoslive files
+...copying cocoslive dependency files
+...copying Box2D files
+done!</p>
+
+<h2>Installing Xcode 3 cocos2d iOS + chipmunk template</h2>
+
+<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Chipmunk Application/
+...copying template files
+...copying cocos2d files
+...copying cocos2d dependency files
+...copying CocosDenshion files
+...copying cocoslive files
+...copying cocoslive dependency files
+...copying Chipmunk files
+done!</p>
+
+<h2>Installing Xcode 3 cocos2d Mac template</h2>
+
+<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application - Mac/
+...copying template files
+...copying cocos2d files
+...copying CocosDenshion files
+done!
+...copying file templates
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/File Templates/cocos2d 1.0.0/</p>
+
+<h2>Installing Xcode 3 CCNode file templates...</h2>
+
+<p>done!
+</pre></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -574,52 +710,6 @@ print "current_pos:%d" % current_file.tell()
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/09/want-cry-after-seeing-prove-for-math/">看到数学有点流泪</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-09T12:52:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;其实是喜悦得流泪，每次理解了数学的证明，就有点惊喜！&lt;/p&gt;
-</code></pre>
-
-<p>刚刚看到一篇关于e的理解，很不错！</p>
-
-
-<p>原文链接：<a href="http://www.ruanyifeng.com/blog/2011/07/mathematical_constant_e.html">http://www.ruanyifeng.com/blog/2011/07/mathematical_constant_e.html</a></p>
-
-
-<p>e是单位时间内，持续翻倍增长的极限值。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/17/">&larr; Older</a>
@@ -637,6 +727,10 @@ print "current_pos:%d" % current_file.tell()
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
       </li>
     
@@ -650,10 +744,6 @@ print "current_pos:%d" % current_file.tell()
     
       <li class="post">
         <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
       </li>
     
   </ul>

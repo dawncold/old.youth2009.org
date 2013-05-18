@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;说来也可笑，Box2d中有各种各样的Shape，有多边形，矩形，圆形。我就是在用圆形的时候遇到的这样的问题：需要设置圆形的半径，我就用了这样的表达式：26 / PTM_RADIO，后面的是一个宏定义，表示拿多少像素和box2d中的米作为兑换。我这样设置后总看着圆形很不正常， &hellip;">
+  <meta name="description" content="&lt;p&gt;最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。&lt;/p&gt; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/26/iphone-simulator-and-sqlite/">Iphone模拟器和sqlite的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-26T09:19:00+08:00" pubdate data-updated="true">Jul 26<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。&lt;/p&gt;
+</code></pre>
+
+<p>今天update进去信息，总是没发现数据库更新，怀疑是忘记commit，查看一下FMDB的使用方法，确实有commit一说，而我在看国内某博客写的使用教程时发现他就是随意的update和insert，殊不知这些都需要commit呀！在update和insert代码前后需要加入</p>
+
+
+<br /><pre class="prettyprint linenums bush:cpp" lang="cpp">[db beginTransaction];
+
+
+<p>和
+[db commit];</pre></p>
+
+<br /><p> 我用的Objective-C。</p>
+
+
+<p>然而即便是这样，更新了数据库后再查询，确实数据被更改了，但我重新在模拟器中运行程序时候又恢复成了以前的值。偶然在模拟器中打开了程序而不是用xcode运行程序，数据竟然被永久更新了。</p>
+
+
+<p>所以，以后测试update的时候，前后对比应该只在模拟器中看，如果再用xcode启动，会把原来的数据传入模拟器，这样你就看不到效果了。</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -560,142 +615,6 @@ End Sub
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/15/install-cocos2d/">安装cocos2d 1.0</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-15T20:19:00+08:00" pubdate data-updated="true">Jul 15<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;前天cocos2d更新到了1.0版本，这个版本对于开源软件来说是一个里程碑，因为这应该是第一个能够称得上稳定的版本，当然也是新阶段的开始。&lt;/p&gt;
-</code></pre>
-
-<p>安装还是很简单的，我已经安装上了xcode4.0和sdk4.3。</p>
-
-
-<p>要注意一点的就是安装的时候需要root权限，用sudo即可。</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro cocos2d-iphone-1.0.0$ sh ./install-templates.sh 
-
-
-<p>cocos2d-iphone template installer</p>
-
-<p>Error: This script must be run as root in order to copy templates to /Library/Application Support/Developer/Shared/Xcode</p>
-
-<p>Try running it with 'sudo', or with '-u' to install it only you:
-   sudo ./install-templates.sh
-or:
-   ./install-templates.sh -u
-dawncold@tianzhenmatoMacBook-Pro cocos2d-iphone-1.0.0$ sudo sh ./install-templates.sh
-Password:
-cocos2d-iphone template installer</p>
-
-<h2>Installing Xcode 4 cocos2d iOS template</h2>
-
-<p>...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/cocos2d/
-...copying cocos2d files
-...copying cocoslive files
-...copying TouchJSON files
-...copying CocosDenshion files
-...copying CocosDenshionExtras files
-...copying FontLabel files
-...copying template files
-done!</p>
-
-<h2>Installing Xcode 4 Chipmunk iOS template</h2>
-
-<p>...copying Chipmunk files
-done!</p>
-
-<h2>Installing Xcode 4 Box2d iOS template</h2>
-
-<p>...copying Box2d files
-done!</p>
-
-<h2>Installing Xcode 4 CCNode file templates...</h2>
-
-<p>...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/File Templates/cocos2d/
-done!
-...creating cocos2d template directory</p>
-
-<h2>Installing Xcode 3 cocos2d iOS template</h2>
-
-<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application/
-...copying template files
-...copying cocos2d files
-...copying cocos2d dependency files
-...copying CocosDenshion files
-...copying cocoslive files
-...copying cocoslive dependency files
-done!</p>
-
-<h2>Installing Xcode 3 cocos2d iOS + box2d template</h2>
-
-<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Box2d Application/
-...copying template files
-...copying cocos2d files
-...copying cocos2d dependency files
-...copying CocosDenshion files
-...copying cocoslive files
-...copying cocoslive dependency files
-...copying Box2D files
-done!</p>
-
-<h2>Installing Xcode 3 cocos2d iOS + chipmunk template</h2>
-
-<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Chipmunk Application/
-...copying template files
-...copying cocos2d files
-...copying cocos2d dependency files
-...copying CocosDenshion files
-...copying cocoslive files
-...copying cocoslive dependency files
-...copying Chipmunk files
-done!</p>
-
-<h2>Installing Xcode 3 cocos2d Mac template</h2>
-
-<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application - Mac/
-...copying template files
-...copying cocos2d files
-...copying CocosDenshion files
-done!
-...copying file templates
-...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/File Templates/cocos2d 1.0.0/</p>
-
-<h2>Installing Xcode 3 CCNode file templates...</h2>
-
-<p>done!
-</pre></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/16/">&larr; Older</a>
@@ -713,6 +632,10 @@ done!
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
       </li>
     
@@ -726,10 +649,6 @@ done!
     
       <li class="post">
         <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
       </li>
     
   </ul>

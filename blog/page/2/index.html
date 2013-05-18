@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="感觉中间隔了好久，最终还是把study ruby给放弃了，顺便找了个充足的理由——在没学好当下这门语言之前，不要再尝试其他的。 虽然一个coder要保持技术的敏感性与前瞻性，但频繁换编程语言实在不是一件好事，我现在仍然对于自己涉猎太多编程语言而感到烦躁，主要就是会的太多而不精， &hellip;">
+  <meta name="description" content="不知怎么，突然发现在iPad上注册kindle设备后，在国内的amazon上无法看到这个设备，云端购买的书籍也都没了，深夜给amazon发了邮件，没想到十几分钟就回复了！！！ 得知，如果在amazon美国用了和国内相同的账号，那注册设备的时候可能会被使用美国的数据，那里当然木有我买的书了。。。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/20/set-different-password-for-amazon-account/">Set Different Password for Amazon Account</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-20T00:16:00+08:00" pubdate data-updated="true">Feb 20<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>不知怎么，突然发现在iPad上注册kindle设备后，在国内的amazon上无法看到这个设备，云端购买的书籍也都没了，深夜给amazon发了邮件，没想到十几分钟就回复了！！！</p>
+
+<p>得知，如果在amazon美国用了和国内相同的账号，那注册设备的时候可能会被使用美国的数据，那里当然木有我买的书了。。。看来以后kindle要暂时和国际市场say byebye了。</p>
+
+<p>解决方法就是给国内外这两个账号设置不同的密码，试了一下，解决！</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -479,76 +519,6 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/10/08/lxc-practical/">LXC实践</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-08T20:46:00+08:00" pubdate data-updated="true">Oct 8<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>这里的LXC是基于Ubuntu12.04的，在其他系统下可能不太一样。</p>
-
-<p>0.安装lxc</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install lxc
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>1.修改lxc的mirror，不修改的话下载一个ubuntu景象会非常慢！！！</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo emacs /etc/default/lxc
-</span><span class='line'>第三行的mirror注释去掉，并修改为cn.archive.ubuntu.com，这样就非常快了
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2.创建lxc容器，t表示模板中的名字，n表示这个容器的名字（可自定义）</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-create -t ubuntu -n ubuntu_container
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3.启动容器</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-start -n ubuntu_container
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>启动后就会出现登录ubuntu的界面，刚刚创建好容器后会给出一个提示，帐号密码都是ubuntu，登录进去就可以使用了。</p>
-
-<p>猜想lxc的用法可能是对于部署的某个进程使用lxc隔离，这并不能做vps用，lxc只是轻量虚拟化，针对进程来的，所以还是单机在使用，如果做vps就得用vmware、xen、openvz这样的东西了。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -566,6 +536,10 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
       </li>
     
@@ -579,10 +553,6 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
     
       <li class="post">
         <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
       </li>
     
   </ul>

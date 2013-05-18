@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;现在想来确实是很&lt;a title="单调" href="http://www.youth2009.org/tag/%E5%8D%95%E8%B0%83/"&gt;单调&lt;/a&gt;的&lt;a title="早餐" href="http://www. &hellip;">
+  <meta name="description" content="&lt;p&gt;今晚为了实现一个有些漂亮的界面交互，我展开了和SESSION的战斗，明明同样使用的其他方法都能正常工作，偏偏这个就是不能了，这让我很奇怪，调试了很久都没有解决。网上搜索了很多内容也都看不到希望，其中一个朋友提到，这种问题很难解决，可能是对SESSION的机制不太了解吧，我也懒了 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,43 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/05/12/debug-is-a-work-that-wastes-time/">Debug是个浪费时间的活儿</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-12T23:06:00+08:00" pubdate data-updated="true">May 12<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;今晚为了实现一个有些漂亮的界面交互，我展开了和SESSION的战斗，明明同样使用的其他方法都能正常工作，偏偏这个就是不能了，这让我很奇怪，调试了很久都没有解决。网上搜索了很多内容也都看不到希望，其中一个朋友提到，这种问题很难解决，可能是对SESSION的机制不太了解吧，我也懒了，不去深入分析，好在丢失了这个好看的界面也不影响使用，我就等等吧，希望明天能够自动解决：）&lt;/p&gt;
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -499,82 +536,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/04/23/algo-circle-count-quit/">约瑟夫问题算法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-23T09:54:00+08:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;昨晚还在忙碌网站，一个同学发来短信问了这样一个算法问题：一些人手拉手围成一个圈，从一个人开始报数，数到3的人退出，然后下一个人再开始报数，依然是数到3者退出，问最后剩下2个人是哪两个？ 这题目看起来不算难，但这要是不靠一个语言的特性来解决，还是有些麻烦的。我说的语言特性就是一个bt数组方法，比如说移除元素啊这样的方法，用纯粹的C语言来写最好了。不过我那位同学是在雪VB.net不知道那里有没有语言特性。我手头上正在写PHP网页，就干脆用PHP写一个出来试试吧：）  &lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:php" lang="php">$circle = array();
-
-
-<p>$out = 0;
-$count = 0;
-$n = 0;</p>
-
-<p>for($i = 0;$i &lt; $num;$i++) {</p>
-
-<pre><code>$circle[$i] = $i;
-</code></pre>
-
-<p>}
-while(1) {</p>
-
-<pre><code>$count %= $num;
-if($circle[$count] !== -1) {
-    if(($n % $diff) == ($diff - 1)) {
-        $circle[$count] = -1;
-        $out++;
-    if($out === $num - $sur)
-        break;
-    }
-    $n++;
-}
-$count++;
-</code></pre>
-
-<p>}</pre></p>
-
-<br /><p>这就是主要代码了，还算是简单吧？去Google了一下，看到有些人的解法都用了好麻烦的链表来抽象，用链表确实更符合客观事实，不过那样写起来，是不是给别人看的呢？！</p>
-
-
-<p>算法的负责度显然是线性的，感觉还可以吧。</p>
-
-
-<p>这里有篇论文，我暂时还看不大懂，对于这个问题写得很详细。（下载：<a href="http://www.youth2009.org/works/josephus.pdf">josephus.pdf</a>）</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/22/">&larr; Older</a>
@@ -592,6 +553,10 @@ $count++;
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
       </li>
     
@@ -605,10 +570,6 @@ $count++;
     
       <li class="post">
         <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
       </li>
     
   </ul>

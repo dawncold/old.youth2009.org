@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;从mysql中返回的内容如果是中文的，而页面用了utf-8的编码，那么会出现一些“问号”，就是乱码了！应该将mysql中表的编码改为utf8_unicode_ci，各字段改为utf8_unicode_ci&lt;/p&gt;   在PHP中执行SQL查询前执行 &hellip;">
+  <meta name="description" content="&lt;p&gt;一定要设定为NULL或者一个正确的int，一般是用作id的，看到有个自增选项我就选上了，没想到以后就无法插入数据了，Google到了解决方法，原来我的插入SQL是以前写的，那时候还没有设定id字段，现在要改改了，在那个字段的位置用NULL代替，反正是自动计算的嘛， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/27/mysql-auto-increasement-column/">Mysql中自增字段的注意</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-27T23:45:00+08:00" pubdate data-updated="true">Jan 27<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre><code>        &lt;p&gt;一定要设定为NULL或者一个正确的int，一般是用作id的，看到有个自增选项我就选上了，没想到以后就无法插入数据了，Google到了解决方法，原来我的插入SQL是以前写的，那时候还没有设定id字段，现在要改改了，在那个字段的位置用NULL代替，反正是自动计算的嘛，我就不再劳神帮它算了……&lt;/p&gt;
+</code></pre>
+
+<p>感谢<a href="http://www.realfex.com/archives/427" target="_blank">这里</a></p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -511,52 +551,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/02/i-will-become-fat/">将要变胖了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-02T18:43:00+08:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;虽然我现在也没到自己理想的体重（75Kg），不过已经比较接近了，估计再完成一个大规模编码项目就能差不多了吧。现在也搞不懂究竟是军训让我瘦了这么多还是代码，抑或是对她的思念？我宁愿相信最后者：）&lt;/p&gt;
-</code></pre>
-
-<p>这两天要准备期末考试的各种复习，首先要准备英语和马克思概论，前面的文章我已经提到过了，英语我是真的不知道如何复习，马克思概论就只能背诵了，这两天我可都一直在蜗居没有出去。昨天不舒服，拉肚子N次，QQ空间上的好友美其名曰“拍掉了2010年的污浊”，是好兆头，我姑且就这样信了吧。今天我已经自己在这里背诵了好久的马克思了，要是在这样下去，我可能就真得要见到他了，虽然有些问题想向他当面讨教，不过我还不会说德语呢，而且我也不想这么早去见他呀！</p>
-
-
-<p>明天一定得出去走走，顺便洗洗澡，洗洗衣服。我总感觉在考试之前洗洗澡会带来好运气，有的人可能认为在新年的第一天，或是旧年的最后一天？唉，都是传说，各自有各自的根据，不好争论。</p>
-
-
-<p>说实话，马克思概论确实难背，不过我一天背背玩玩也就过来了，现在看进度，已经完成了70%，打算留下点等考完英语再看，要不然我怕英语会好惨的：（</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/29/">&larr; Older</a>
@@ -574,6 +568,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
       </li>
     
@@ -587,10 +585,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/17/big-break-in-tweak-app-build/">big-break-in-tweak-app-build</a>
       </li>
     
   </ul>
