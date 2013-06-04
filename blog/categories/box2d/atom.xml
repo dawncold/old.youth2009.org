@@ -4,7 +4,7 @@
   <title><![CDATA[Category: box2d | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/box2d/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -36,7 +36,7 @@
 <br /><pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro Project$ git clone https://github.com/jfahrenkrug/VertexHelper.git
 
 
-<p>Cloning into VertexHelper...
+<p>Cloning into VertexHelper&hellip;
 remote: Counting objects: 150, done.
 remote: Compressing objects: 100% (88/88), done.
 remote: Total 150 (delta 85), reused 96 (delta 53)

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: textmate | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/textmate/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -34,8 +34,8 @@
 
 
 <p>cd !$
-svn co http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/
-osascript -e 'tell app "TextMate" to reload bundles'</pre></p>
+svn co <a href="http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/">http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/</a>
+osascript -e &lsquo;tell app &ldquo;TextMate&rdquo; to reload bundles&rsquo;</pre></p>
 
 <br /><p>第一次见cd还能这样用，这样简直太方便了！还有最后那句script，多么优美的句子：）</p>
 

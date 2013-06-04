@@ -4,7 +4,7 @@
   <title><![CDATA[Category: svn | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/svn/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -33,8 +33,8 @@
 <br /><pre class="prettyprint linenums bush:bash" lang="bash">To use Java bindings with various Java IDEs, you might need a universal build:
 
 
-<p>  brew install subversion --universal --java
-==&gt; ./configure --disable-debug --prefix=/usr/local/Cellar/subversion/1.7.5 --with-ssl --with-zlib=/usr --with-sqlite=/usr/local --disable-neon-version-chec
+<p>  brew install subversion &mdash;universal &mdash;java
+==&gt; ./configure &mdash;disable-debug &mdash;prefix=/usr/local/Cellar/subversion/1.7.5 &mdash;with-ssl &mdash;with-zlib=/usr &mdash;with-sqlite=/usr/local &mdash;disable-neon-version-chec
 ==&gt; make
 ==&gt; make install
 ==&gt; make javahl
@@ -116,19 +116,19 @@ You may need to link the Java bindings into the Java Extensions folder:
 
 <p>mkdir Projects
 cd Projects
-svn checkout https://svn.sinaapp.com/demoproject/
-验证“https://svn.sinaapp.com:443”的服务器证书时出错:
- - 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
+svn checkout <a href="https://svn.sinaapp.com/demoproject/">https://svn.sinaapp.com/demoproject/</a>
+验证“<a href="https://svn.sinaapp.com:443%E2%80%9D%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E6%97%B6%E5%87%BA%E9%94%99:">https://svn.sinaapp.com:443%E2%80%9D%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E6%97%B6%E5%87%BA%E9%94%99:</a>
+ &ndash; 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
 证书信息:
- - 主机名称: *.sinaapp.com
- - 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
- - 发行者: Equifax Secure Certificate Authority, Equifax, US
- - 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
-(R)拒绝，(t)暂时接受，或(p)永远接受？t
-认证领域: &lt;https://svn.sinaapp.com:443&gt; SAE User Auth for SVN
+ &ndash; 主机名称: *.sinaapp.com
+ &ndash; 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
+ &ndash; 发行者: Equifax Secure Certificate Authority, Equifax, US
+ &ndash; 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
+&reg;拒绝，(t)暂时接受，或(p)永远接受？t
+认证领域: &lt;<a href="https://svn.sinaapp.com:443&amp;gt;">https://svn.sinaapp.com:443&amp;gt;</a> SAE User Auth for SVN
 “dawncold”的密码:
-认证领域: &lt;https://svn.sinaapp.com:443&gt; SAE User Auth for SVN
-用户名: loooseleaves@gmail.com
+认证领域: &lt;<a href="https://svn.sinaapp.com:443&amp;gt;">https://svn.sinaapp.com:443&amp;gt;</a> SAE User Auth for SVN
+用户名: <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x6c;&#111;&#x6f;&#111;&#x73;&#x65;&#108;&#x65;&#97;&#118;&#x65;&#x73;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#x6c;&#111;&#111;&#x6f;&#x73;&#x65;&#108;&#x65;&#x61;&#x76;&#x65;&#115;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;</a>
 “loooseleaves@gmail.com”的密码:
 取出版本 0。</pre></p>
 
@@ -177,7 +177,7 @@ drwxr-xr-x   8 dawncold  staff  272  8  9 16:40 .svn
 dawncold@tianzhenmatoMacBook-Pro demoproject$ svn add 1/
 A         1
 A         1/index.php
-dawncold@tianzhenmatoMacBook-Pro demoproject$ svn commit -m 'add ver_1 and index file index.php'
+dawncold@tianzhenmatoMacBook-Pro demoproject$ svn commit -m &lsquo;add ver_1 and index file index.php&rsquo;
 svn: 提交失败(细节如下):
 svn: 丢失了预定增加的“/Users/dawncold/Documents/Project/demoproject/index.php”
 dawncold@tianzhenmatoMacBook-Pro demoproject$ ls
@@ -191,17 +191,17 @@ dawncold@tianzhenmatoMacBook-Pro 1$ svn add *
 svn:  警告: “index.php”已纳入版本控制
 dawncold@tianzhenmatoMacBook-Pro 1$ svn commit
 svn: 提交失败(细节如下):
-svn: 无法使用外部编辑器获得日志信息；考虑设置环境变量 $SVN_EDITOR，或者使用 --message (-m) 或 --file (-F) 选项
+svn: 无法使用外部编辑器获得日志信息；考虑设置环境变量 $SVN_EDITOR，或者使用 &mdash;message (-m) 或 &mdash;file (-F) 选项
 svn: 没有设置 SVN_EDITOR，VISUAL 或 EDITOR 环境变量，运行时的配置参数中也没有 “editor-cmd” 选项
-dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
-验证“https://svn.sinaapp.com:443”的服务器证书时出错:
- - 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
+dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m &lsquo;init&rsquo;
+验证“<a href="https://svn.sinaapp.com:443%E2%80%9D%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E6%97%B6%E5%87%BA%E9%94%99:">https://svn.sinaapp.com:443%E2%80%9D%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E6%97%B6%E5%87%BA%E9%94%99:</a>
+ &ndash; 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
 证书信息:
- - 主机名称: *.sinaapp.com
- - 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
- - 发行者: Equifax Secure Certificate Authority, Equifax, US
- - 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
-(R)拒绝，(t)暂时接受，或(p)永远接受？t
+ &ndash; 主机名称: *.sinaapp.com
+ &ndash; 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
+ &ndash; 发行者: Equifax Secure Certificate Authority, Equifax, US
+ &ndash; 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
+&reg;拒绝，(t)暂时接受，或(p)永远接受？t
 增加           1
 增加           1/index.php
 传输文件数据.

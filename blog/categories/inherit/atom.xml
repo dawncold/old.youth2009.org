@@ -4,7 +4,7 @@
   <title><![CDATA[Category: inherit | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/inherit/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -24,7 +24,7 @@
 <br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
 
 
-<h1>-<em>- coding:utf-8 -</em>-</h1>
+<h1>&ndash;<em>&ndash; coding:utf-8 &ndash;</em>&ndash;</h1>
 
 <h1>Filename : inherit.py</h1>
 
@@ -51,10 +51,10 @@ def tell(self):
     print "salary:%d" % self.salary
 </code></pre>
 
-<p>p = Person('tianzhen',20)
+<p>p = Person(&lsquo;tianzhen&rsquo;,20)
 p.tell()</p>
 
-<p>tea_p = Teacher('zhenzhen',20,1010000000)
+<p>tea_p = Teacher(&lsquo;zhenzhen&rsquo;,20,1010000000)
 tea_p.tell()</pre></p>
 ]]></content>
   </entry>

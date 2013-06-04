@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -33,8 +33,8 @@
 <br /><pre class="prettyprint linenums bush:bash" lang="bash">To use Java bindings with various Java IDEs, you might need a universal build:
 
 
-<p>  brew install subversion --universal --java
-==&gt; ./configure --disable-debug --prefix=/usr/local/Cellar/subversion/1.7.5 --with-ssl --with-zlib=/usr --with-sqlite=/usr/local --disable-neon-version-chec
+<p>  brew install subversion &mdash;universal &mdash;java
+==&gt; ./configure &mdash;disable-debug &mdash;prefix=/usr/local/Cellar/subversion/1.7.5 &mdash;with-ssl &mdash;with-zlib=/usr &mdash;with-sqlite=/usr/local &mdash;disable-neon-version-chec
 ==&gt; make
 ==&gt; make install
 ==&gt; make javahl

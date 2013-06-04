@@ -4,7 +4,7 @@
   <title><![CDATA[Category: backup | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/backup/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -31,18 +31,18 @@ import sys
 from datetime import *
 import time</p>
 
-<h1>mysql's path</h1>
+<h1>mysql&rsquo;s path</h1>
 
-<p>mysql_path = '/usr/local/mysql/bin/'</p>
+<p>mysql_path = &lsquo;/usr/local/mysql/bin/&rsquo;</p>
 
 <h1>edit this if your mysql username and password is not like this:</h1>
 
-<p>mysql_username = 'root'
-mysql_password = 'xxxxxx'</p>
+<p>mysql_username = &lsquo;root&rsquo;
+mysql_password = &lsquo;xxxxxx&rsquo;</p>
 
 <h1>backup path</h1>
 
-<p>backup_path = 'mysqlbackup/'</p>
+<p>backup_path = &lsquo;mysqlbackup/&rsquo;</p>
 
 <p>def validate_backup_path():</p>
 
@@ -57,7 +57,7 @@ mysql_password = 'xxxxxx'</p>
 os.system("%smysqldump -u%s -p%s --all-databases &amp;gt; '%s%s'" % (mysql_path, mysql_username, mysql_password, backup_path, filename))
 </code></pre>
 
-<p>if <strong>name</strong> == "<strong>main</strong>":</p>
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
 
 <pre><code>validate_backup_path()
 backup_all_databases()

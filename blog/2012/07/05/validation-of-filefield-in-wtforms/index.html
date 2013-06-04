@@ -113,11 +113,11 @@
 <br /><pre class="prettyprint linenums bush:python" lang="python">form = xxxForm(request.form)
 
 
-<p>f = request.files["image"]
+<p>f = request.files[&ldquo;image&rdquo;]
 if len(f.filename) == 0:
-  form.image.errors = ValidationError(u"need a pic file!!!")
-  return render_template("xxx", form = form)
-......</pre></p>
+  form.image.errors = ValidationError(u"need a pic file!!!&ldquo;)
+  return render_template("xxx&rdquo;, form = form)
+&hellip;&hellip;</pre></p>
 
 <br /><p>如果有不同的见解请告诉我哦！</p>
 
@@ -188,15 +188,15 @@ if len(f.filename) == 0:
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+        <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
+        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">Ssh-proxy-with-autossh-in-mac</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/04/02/hhkb/">hhkb</a>
+        <a href="/blog/2013/04/02/hhkb/">Hhkb</a>
       </li>
     
       <li class="post">
@@ -204,7 +204,7 @@ if len(f.filename) == 0:
       </li>
     
       <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
+        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

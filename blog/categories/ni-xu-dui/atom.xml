@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 逆序对 | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/ni-xu-dui/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -74,7 +74,7 @@ for i in range(0, last - first + 1):
     merge(arraylist, first, middle, last)
 </code></pre>
 
-<p>if <strong>name</strong> == "<strong>main</strong>":</p>
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
 
 <pre><code>lst = [2,3,8,6,1]
 merge_sort(lst, 0, len(lst) - 1)&lt;/pre&gt;

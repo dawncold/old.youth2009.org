@@ -4,7 +4,7 @@
   <title><![CDATA[Category: pickle | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/pickle/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -24,21 +24,21 @@
 <br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
 
 
-<h1>-<em>- coding:utf-8 -</em>-</h1>
+<h1>&ndash;<em>&ndash; coding:utf-8 &ndash;</em>&ndash;</h1>
 
 <h1>Filename : pickling.py</h1>
 
 <p>import cPickle as p</p>
 
-<p>shoplistfile = 'shoplist.dat'</p>
+<p>shoplistfile = &lsquo;shoplist.dat&rsquo;</p>
 
-<p>shoplist = ['apple mac book pro','iphone4']</p>
+<p>shoplist = [&lsquo;apple mac book pro&rsquo;,&lsquo;iphone4&rsquo;]</p>
 
-<p>f = file(shoplistfile,'w')
+<p>f = file(shoplistfile,&lsquo;w&rsquo;)
 p.dump(shoplist,f)
 f.close()</p>
 
-<p>print 'ok,we can read the data from '+shoplistfile+':'</p>
+<p>print &lsquo;ok,we can read the data from &rsquo;+shoplistfile+&lsquo;:&rsquo;</p>
 
 <p>f = file(shoplistfile)
 from_file = p.load(f)

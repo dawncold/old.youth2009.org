@@ -4,7 +4,7 @@
   <title><![CDATA[Category: github | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -52,7 +52,7 @@
 <br /><pre class="prettyprint linenums bush:bash" lang="bash">git config --global github.user USERNAME 
 
 
-<p>git config --global github.token TOKEN</pre></p>
+<p>git config &mdash;global github.token TOKEN</pre></p>
 
 <br /><p> 其中的TOKEN要从github网站的帐户管理中得到，而且这个TOKEN和密码相关，如果你更改了密码，需要重新设置。但我还不清楚设置了这个对于github的提交有什么特殊的好处，等以后用用再说吧。</p>
 

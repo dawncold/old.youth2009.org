@@ -4,7 +4,7 @@
   <title><![CDATA[Category: table | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/table/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -32,7 +32,7 @@ import xlwt</p>
 
 <p>link_list = []
 xls = xlwt.Workbook()
-table = xls.add_sheet("main")</p>
+table = xls.add_sheet(&ldquo;main&rdquo;)</p>
 
 <p>for i in xrange(288, 318):</p>
 
@@ -40,7 +40,7 @@ table = xls.add_sheet("main")</p>
 </code></pre>
 
 <p>chinese = []
-content = ''
+content = &lsquo;&rsquo;
 while len(link_list) &gt; 0:</p>
 
 <pre><code>for link in link_list:
@@ -66,7 +66,7 @@ for i in xrange(0, len(tmp)):
     print "%d, %d, %s" % (line, i, tmp[i])
 </code></pre>
 
-<p>xls.save('x.xls')
+<p>xls.save(&lsquo;x.xls&rsquo;)
 print len(link_list)</pre></p>
 
 <br /><p>链接抓取超时的时候会自动重新抓取，最终就有了一个叫x.xls的表格。其中有个省的数据有问题，可以在筛选中看到奖项这里面有个垃圾数据项，自己改改吧。</p>

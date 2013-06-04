@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GFW | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/gfw/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -43,8 +43,8 @@
 <p>添加一个My Agents就可以了，何时运行那里我勾选了at startup or login，生成的plist会放在~/Library/LaunchAgents/中，生成的内容如下：</p>
 
 <p>```
-&lt;?xml version="1.0" encoding="UTF-8"?>
-&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?>
+&lt;!DOCTYPE plist PUBLIC &ldquo;&ndash;//Apple//DTD PLIST 1.0//EN&rdquo; &ldquo;<a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd</a>&rdquo;>
 <plist version="1.0">
 <dict></p>
 

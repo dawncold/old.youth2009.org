@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 性能 | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/xing-neng/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -77,7 +77,7 @@ for tid in [row[0] for row in cur.fetchall()]:
     cur = conn.execute('SELECT title, date FROM todo WHERE id = ?', [tid])
 </code></pre>
 
-<p>if <strong>name</strong> == "<strong>main</strong>":</p>
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
 
 <pre><code>uids = [0, 1, 2, 3, 4, 5]
 insert_time_start = time.time()

@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：&lt;/p&gt; var da = '2000-01-01 00:00:00'; var da_array = da.split &hellip;">
+  <meta name="description" content="&lt;p&gt;测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：&lt;/p&gt; var da = '2000-01-01 00:00:00'; var da_array = da.split(& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -110,9 +110,9 @@
 <br /><pre class="prettyprint linenums bush:jscript" lang="jscript">var da = '2000-01-01 00:00:00';
 
 
-<p>var da_array = da.split(' ');
-var da_1 = da_array[0].split('-');
-var da_2 = da_array[1].split(':');
+<p>var da_array = da.split(&lsquo; &rsquo;);
+var da_1 = da_array[0].split(&lsquo;&ndash;&rsquo;);
+var da_2 = da_array[1].split(&lsquo;:&rsquo;);
 alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
 </div>
 
@@ -181,15 +181,15 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+        <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
+        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">Ssh-proxy-with-autossh-in-mac</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/04/02/hhkb/">hhkb</a>
+        <a href="/blog/2013/04/02/hhkb/">Hhkb</a>
       </li>
     
       <li class="post">
@@ -197,7 +197,7 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
+        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

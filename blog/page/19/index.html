@@ -171,7 +171,7 @@
 
 <p>twice = make_repeater(2)</p>
 
-<p>print twice(&#8216;word&#8217;)
+<p>print twice(&lsquo;word&rsquo;)
 print twice(5)</pre></p>
 
 <br /><p>  twice就是创建出来的函数规则，参数2传进入构建了lambda表达式中的n，s值需要再指定，于是后面的word字符串和数字5就算是这个s了吧。了解到这种bt方法很有用，不过对于我这样的初学者来说，暂时还看不到前景：）</p>
@@ -269,21 +269,21 @@ print twice(5)</pre></p>
 <br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
 
 
-<h1>-<em>- coding:utf-8 -</em>-</h1>
+<h1>&ndash;<em>&ndash; coding:utf-8 &ndash;</em>&ndash;</h1>
 
 <h1>Filename : pickling.py</h1>
 
 <p>import cPickle as p</p>
 
-<p>shoplistfile = 'shoplist.dat'</p>
+<p>shoplistfile = &lsquo;shoplist.dat&rsquo;</p>
 
-<p>shoplist = ['apple mac book pro','iphone4']</p>
+<p>shoplist = [&lsquo;apple mac book pro&rsquo;,&lsquo;iphone4&rsquo;]</p>
 
-<p>f = file(shoplistfile,'w')
+<p>f = file(shoplistfile,&lsquo;w&rsquo;)
 p.dump(shoplist,f)
 f.close()</p>
 
-<p>print 'ok,we can read the data from '+shoplistfile+':'</p>
+<p>print &lsquo;ok,we can read the data from &rsquo;+shoplistfile+&lsquo;:&rsquo;</p>
 
 <p>f = file(shoplistfile)
 from_file = p.load(f)
@@ -332,7 +332,7 @@ print from_file</pre></p>
 <br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
 
 
-<h1>-<em>- coding:utf-8 -</em>-</h1>
+<h1>&ndash;<em>&ndash; coding:utf-8 &ndash;</em>&ndash;</h1>
 
 <h1>Filename : inherit.py</h1>
 
@@ -359,10 +359,10 @@ def tell(self):
     print "salary:%d" % self.salary
 </code></pre>
 
-<p>p = Person(&#8216;tianzhen&#8217;,20)
+<p>p = Person(&lsquo;tianzhen&rsquo;,20)
 p.tell()</p>
 
-<p>tea_p = Teacher(&#8216;zhenzhen&#8217;,20,1010000000)
+<p>tea_p = Teacher(&lsquo;zhenzhen&rsquo;,20,1010000000)
 tea_p.tell()</pre></p>
 </div>
   
@@ -656,15 +656,15 @@ server 216.239.38.21;
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+        <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
+        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">Ssh-proxy-with-autossh-in-mac</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/04/02/hhkb/">hhkb</a>
+        <a href="/blog/2013/04/02/hhkb/">Hhkb</a>
       </li>
     
       <li class="post">
@@ -672,7 +672,7 @@ server 216.239.38.21;
       </li>
     
       <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
+        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: flask | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/flask/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -20,7 +20,7 @@
     <id>http://www.youth2009.org/blog/2012/07/17/flask-debug-in-production-environment-with-uwsgi</id>
     <content type="html"><![CDATA[<p>生产环境是：nginx+uwsgi+flask+sqlalchemy等等等</p>
 
-<p>自带的调试功能比较好用，也能很方便的查看各种变量的值，不过在生产环境中调试并不是那么容易。需要在uwsgi开启的时候传入“--catch exceptions”：</p>
+<p>自带的调试功能比较好用，也能很方便的查看各种变量的值，不过在生产环境中调试并不是那么容易。需要在uwsgi开启的时候传入“&mdash;catch exceptions”：</p>
 
 <p><code>bash
 uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost --catch-exceptions
@@ -50,7 +50,7 @@ app.jinja_env.add_extension("jinja2.ext.do")
 <p>还想多说一下Jinja2的set方法，超级不爽的一个方法，原本以为set出来的变量就可以和python中的变量一样使用呢，结果在这里的set出来的变量也就是一个助记作用，根本不能保存新的值，也就是说这里的变量相当于我们通常意义上的常量！！！</p>
 
 <p>```html
-......
+&hellip;&hellip;
 {# set total_price = 0 #}
 {# for item in order.items #}
 {# total_price = item.meal.price * item.quantity #}</p>
@@ -61,13 +61,13 @@ app.jinja_env.add_extension("jinja2.ext.do")
 <p>{# endfor #}
 </td>
 <td></td>
-......
+&hellip;&hellip;
 ```</p>
 
 <p>原本希望在for外面设置一个变量，然后在for中计算好total_price使用，结果根本不行，这样写的结果就是“找不到total_price变量”，如果去掉for中对total_price的引用就可以正常看到total_price，是0。总之，这里set出来的变量就是一个常量了！！！后来打开了do扩展，把total_price设置成一个list，然后在for中把没一项的价格都append进去，最终输出的地方用了jinja2的filter计算总和。大约会写成这样：</p>
 
 <p>```html
-......
+&hellip;&hellip;
 {# set prices = [] #}
 {# for item in order.items #}
 {# do prices.append(item.meal.price * item.quantity) #}</p>
@@ -78,7 +78,7 @@ app.jinja_env.add_extension("jinja2.ext.do")
 <p>{# endfor #}
 </td>
 <td></td>
-......
+&hellip;&hellip;
 ```</p>
 
 <p>相信jinja2改进set之后会是一个很不错的模板系统：）</p>
@@ -99,11 +99,11 @@ app.jinja_env.add_extension("jinja2.ext.do")
 <br /><pre class="prettyprint linenums bush:python" lang="python">form = xxxForm(request.form)
 
 
-<p>f = request.files["image"]
+<p>f = request.files[&ldquo;image&rdquo;]
 if len(f.filename) == 0:
-  form.image.errors = ValidationError(u"need a pic file!!!")
-  return render_template("xxx", form = form)
-......</pre></p>
+  form.image.errors = ValidationError(u"need a pic file!!!&ldquo;)
+  return render_template("xxx&rdquo;, form = form)
+&hellip;&hellip;</pre></p>
 
 <br /><p>如果有不同的见解请告诉我哦！</p>
 

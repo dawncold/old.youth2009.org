@@ -163,18 +163,18 @@ import sys
 from datetime import *
 import time</p>
 
-<h1>mysql's path</h1>
+<h1>mysql&rsquo;s path</h1>
 
-<p>mysql_path = '/usr/local/mysql/bin/'</p>
+<p>mysql_path = &lsquo;/usr/local/mysql/bin/&rsquo;</p>
 
 <h1>edit this if your mysql username and password is not like this:</h1>
 
-<p>mysql_username = 'root'
-mysql_password = 'xxxxxx'</p>
+<p>mysql_username = &lsquo;root&rsquo;
+mysql_password = &lsquo;xxxxxx&rsquo;</p>
 
 <h1>backup path</h1>
 
-<p>backup_path = 'mysqlbackup/'</p>
+<p>backup_path = &lsquo;mysqlbackup/&rsquo;</p>
 
 <p>def validate_backup_path():</p>
 
@@ -189,7 +189,7 @@ mysql_password = 'xxxxxx'</p>
 os.system("%smysqldump -u%s -p%s --all-databases &amp;gt; '%s%s'" % (mysql_path, mysql_username, mysql_password, backup_path, filename))
 </code></pre>
 
-<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
 
 <pre><code>validate_backup_path()
 backup_all_databases()
@@ -292,7 +292,7 @@ os.system("pkill dropbox")
 start()
 </code></pre>
 
-<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
 
 <pre><code>action = sys.argv[1]
 print "now action: %s" % action
@@ -375,7 +375,7 @@ import xlwt</p>
 
 <p>link_list = []
 xls = xlwt.Workbook()
-table = xls.add_sheet("main")</p>
+table = xls.add_sheet(&ldquo;main&rdquo;)</p>
 
 <p>for i in xrange(288, 318):</p>
 
@@ -383,7 +383,7 @@ table = xls.add_sheet("main")</p>
 </code></pre>
 
 <p>chinese = []
-content = &#8221;
+content = &lsquo;&rsquo;
 while len(link_list) &gt; 0:</p>
 
 <pre><code>for link in link_list:
@@ -409,7 +409,7 @@ for i in xrange(0, len(tmp)):
     print "%d, %d, %s" % (line, i, tmp[i])
 </code></pre>
 
-<p>xls.save(&#8216;x.xls&#8217;)
+<p>xls.save(&lsquo;x.xls&rsquo;)
 print len(link_list)</pre></p>
 
 <br /><p>链接抓取超时的时候会自动重新抓取，最终就有了一个叫x.xls的表格。其中有个省的数据有问题，可以在筛选中看到奖项这里面有个垃圾数据项，自己改改吧。</p>
@@ -680,8 +680,8 @@ import sys
 import types</p>
 
 <p>guess_list = []
-server_url = "http://222.174.155.19/"
-headers = { 'User-Agent'            :   'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6',</p>
+server_url = &ldquo;<a href="http://222.174.155.19/">http://222.174.155.19/</a>&rdquo;
+headers = { &lsquo;User-Agent&rsquo;            :   &lsquo;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6&rsquo;,</p>
 
 <pre><code>'X-Forwarded-For'   :   '1.1.1.1'}
 </code></pre>
@@ -771,7 +771,7 @@ else:
     guess_list = range(start, end + 1)
 </code></pre>
 
-<p>if <strong>name</strong> == &#8221;<strong>main</strong>&#8221;:</p>
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
 
 <pre><code>while True:
     for i in guess_list:
@@ -889,8 +889,8 @@ show_result()&lt;/pre&gt;
 
 
 <p>cd !$
-svn co http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/
-osascript -e 'tell app "TextMate" to reload bundles'</pre></p>
+svn co <a href="http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/">http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/</a>
+osascript -e &lsquo;tell app &ldquo;TextMate&rdquo; to reload bundles&rsquo;</pre></p>
 
 <br /><p>第一次见cd还能这样用，这样简直太方便了！还有最后那句script，多么优美的句子：）</p>
 
@@ -941,7 +941,7 @@ osascript -e 'tell app "TextMate" to reload bundles'</pre></p>
 <br /><pre class="prettyprint linenums bush:ruby" lang="ruby">config.active_record.default_timezone = :local  
 
 
-<p>config.time_zone = 'Beijing'  </pre></p>
+<p>config.time_zone = &lsquo;Beijing&rsquo;  </pre></p>
 
 <br /><p>为何我说差不多呢，原因如下：</p>
 
@@ -949,13 +949,13 @@ osascript -e 'tell app "TextMate" to reload bundles'</pre></p>
 <br /><pre class="prettyprint linenums bush:ruby" lang="ruby">irb(main):001:0&gt; Fpwd.store(1)
 
 
-<p>  Fpwd Load (0.2ms)  SELECT "fpwds".* FROM "fpwds" WHERE "fpwds"."user_id" = 1 LIMIT 1
-  SQL (2.7ms)  DELETE FROM "fpwds" WHERE "fpwds"."user_id" = 1
+<p>  Fpwd Load (0.2ms)  SELECT &ldquo;fpwds&rdquo;.* FROM &ldquo;fpwds&rdquo; WHERE &ldquo;fpwds&rdquo;.&ldquo;user_id&rdquo; = 1 LIMIT 1
+  SQL (2.7ms)  DELETE FROM &ldquo;fpwds&rdquo; WHERE &ldquo;fpwds&rdquo;.&ldquo;user_id&rdquo; = 1
    (0.1ms)  begin transaction
 Binary data inserted for <code>string</code> type on column <code>randstring</code>
-  SQL (429.6ms)  INSERT INTO &#8220;fpwds&#8221; (&#8220;created_at&#8221;, &#8220;randstring&#8221;, &#8220;updated_at&#8221;, &#8220;user_id&#8221;) VALUES (?, ?, ?, ?)  [[&#8220;created_at&#8221;, Wed, 15 Feb 2012 14:29:35 CST +08:00], [&#8220;randstring&#8221;, &#8220;87e685e0d2ab37143fae248083822ffea600f577&#8221;], [&#8220;updated_at&#8221;, Wed, 15 Feb 2012 14:29:35 CST +08:00], [&#8220;user_id&#8221;, 1]]
+  SQL (429.6ms)  INSERT INTO &ldquo;fpwds&rdquo; (&ldquo;created_at&rdquo;, &ldquo;randstring&rdquo;, &ldquo;updated_at&rdquo;, &ldquo;user_id&rdquo;) VALUES (?, ?, ?, ?)  [[&ldquo;created_at&rdquo;, Wed, 15 Feb 2012 14:29:35 CST +08:00], [&ldquo;randstring&rdquo;, &ldquo;87e685e0d2ab37143fae248083822ffea600f577&rdquo;], [&ldquo;updated_at&rdquo;, Wed, 15 Feb 2012 14:29:35 CST +08:00], [&ldquo;user_id&rdquo;, 1]]
    (1.4ms)  commit transaction
-=&gt; #&lt;Fpwd user_id: 1, randstring: &#8220;87e685e0d2ab37143fae248083822ffea600f577&#8221;, created_at: &#8220;2012-02-15 06:29:35&#8221;, updated_at: &#8220;2012-02-15 06:29:35&#8221;&gt;</pre></p>
+=&gt; #&lt;Fpwd user_id: 1, randstring: &ldquo;87e685e0d2ab37143fae248083822ffea600f577&rdquo;, created_at: &ldquo;2012-02-15 06:29:35&rdquo;, updated_at: &ldquo;2012-02-15 06:29:35&rdquo;&gt;</pre></p>
 
 <br /><p>最后的返回值那里还是晚了8小时，我用sqlite3查看的时候时间是正常的，所以这里怀疑是ruby的时间问题了，好在app中已经正常！</p>
 
@@ -983,15 +983,15 @@ Binary data inserted for <code>string</code> type on column <code>randstring</co
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+        <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
+        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">Ssh-proxy-with-autossh-in-mac</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/04/02/hhkb/">hhkb</a>
+        <a href="/blog/2013/04/02/hhkb/">Hhkb</a>
       </li>
     
       <li class="post">
@@ -999,7 +999,7 @@ Binary data inserted for <code>string</code> type on column <code>randstring</co
       </li>
     
       <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
+        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

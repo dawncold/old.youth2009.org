@@ -4,7 +4,7 @@
   <title><![CDATA[Category: app | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/app/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -56,12 +56,12 @@ cp -f ./ldid $THEOS/bin/ldid
 <p>有篇教程说在iOS上也安装perl和theos，我实在不清楚有什么用，不过我也安装了，蛋疼，具体方法看
 <a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started" target="_blank">这里</a></p>
 
-<p>headers用这里的：<a href="https://github.com/rpetrich/iphoneheaders" target="_blank">https://github.com/rpetrich/iphoneheaders</a>
+<p>headers用这里的：<a href="https://github.com/rpetrich/iphoneheaders" target="_blank"><a href="https://github.com/rpetrich/iphoneheaders">https://github.com/rpetrich/iphoneheaders</a></a>
 需要注意一点的是IOSurface这个framework，你需要增加一个新的头文件，在Mac系统中，可能还得注释掉两行，这取决于你是不是10.7版本的Mac系统。命令是：<code>cp /System/Library/Frameworks/IOSurface.framework/Headers/IOSurfaceAPI.h .</code>，在251和255行（我编译错误时候提示的就这两行），注释掉</p>
 
 <p>```objective-c
 /<em> This call lets you get an xpc_object_t that holds a reference to the IOSurface.
-   Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface's global use
+   Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&rsquo;s global use
    count by one until the object is destroyed. </em>/
 //xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)</p>
 
@@ -89,7 +89,7 @@ cp -f ./ldid $THEOS/bin/ldid
     <link href="http://www.youth2009.org/blog/2013/03/16/open-development-env-for-xcode/"/>
     <updated>2013-03-16T20:40:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2013/03/16/open-development-env-for-xcode</id>
-    <content type="html"><![CDATA[<p>发现一个问题，使用theos这个makefile工具做app有很大困难，就是headers不好管理，真希望能集成到xcode中开发tweak，结果发现了一个神器----iOSOpenDev。</p>
+    <content type="html"><![CDATA[<p>发现一个问题，使用theos这个makefile工具做app有很大困难，就是headers不好管理，真希望能集成到xcode中开发tweak，结果发现了一个神器&mdash;&mdash;iOSOpenDev。</p>
 
 <p>安装好之后就能发现xcode中已经有很多可用的template了，对于tweak来说，有logos和CaptaionHook。logos就是theos，captainhook是另一个hook框架。</p>
 
@@ -157,7 +157,7 @@ sudo make package
 
 <p>iconLists中又是一个list，内容也是list，每个list表示桌面某一页上的apps。</p>
 
-<p>不过有个问题是：如果我手动修改了这里的值，比如我交换某页两个app的位置，回到桌面并不会立刻看到效果，如果要看效果，需要respring...就是重启SpringBoard，这是我不能接受的。需要再看SpringBoard的私有api有没有提供这方面的支持了。</p>
+<p>不过有个问题是：如果我手动修改了这里的值，比如我交换某页两个app的位置，回到桌面并不会立刻看到效果，如果要看效果，需要respring&hellip;就是重启SpringBoard，这是我不能接受的。需要再看SpringBoard的私有api有没有提供这方面的支持了。</p>
 ]]></content>
   </entry>
   

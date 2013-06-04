@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -68,7 +68,7 @@ self.password = xxx
 </code></pre>
 
 <p>Fetching: mysql-2.8.1.gem (100%)
-Building native extensions.  This could take a while...
+Building native extensions.  This could take a while&hellip;
 ERROR:  Error installing mysql:</p>
 
 <pre><code>ERROR: Failed to build gem native extension.
@@ -76,17 +76,17 @@ ERROR:  Error installing mysql:</p>
     /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
 </code></pre>
 
-<p>checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lm... yes
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lz... yes
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lsocket... no
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lnsl... no
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lmygcc... no
-checking for mysql_query() in -lmysqlclient... no
+<p>checking for mysql_query() in -lmysqlclient&hellip; no
+checking for main() in -lm&hellip; yes
+checking for mysql_query() in -lmysqlclient&hellip; no
+checking for main() in -lz&hellip; yes
+checking for mysql_query() in -lmysqlclient&hellip; no
+checking for main() in -lsocket&hellip; no
+checking for mysql_query() in -lmysqlclient&hellip; no
+checking for main() in -lnsl&hellip; no
+checking for mysql_query() in -lmysqlclient&hellip; no
+checking for main() in -lmygcc&hellip; no
+checking for mysql_query() in -lmysqlclient&hellip; no
 <strong><em> extconf.rb failed </em></strong>
 Could not create Makefile due to some reason, probably lack of
 necessary libraries and/or headers.  Check the mkmf.log file for more

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/blog/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.youth2009.org/blog/2012/11/25/thinking-convert-to-octopress-blog-system/"/>
     <updated>2012-11-25T21:51:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/11/25/thinking-convert-to-octopress-blog-system</id>
-    <content type="html"><![CDATA[<p>最近的work@honovation博客一直是用octopress写的，就是直接写markdown内容即可，github负责转换并提供托管服务，而且可以自己绑定域名，比如现在的http://workathonovation.youth2009.org就是这么弄得，非常简洁的方式，而且有种回归本真的感觉。</p>
+    <content type="html"><![CDATA[<p>最近的work@honovation博客一直是用octopress写的，就是直接写markdown内容即可，github负责转换并提供托管服务，而且可以自己绑定域名，比如现在的<a href="http://workathonovation.youth2009.org%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%BC%84%E5%BE%97%EF%BC%8C%E9%9D%9E%E5%B8%B8%E7%AE%80%E6%B4%81%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E8%80%8C%E4%B8%94%E6%9C%89%E7%A7%8D%E5%9B%9E%E5%BD%92%E6%9C%AC%E7%9C%9F%E7%9A%84%E6%84%9F%E8%A7%89%E3%80%82">http://workathonovation.youth2009.org%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%BC%84%E5%BE%97%EF%BC%8C%E9%9D%9E%E5%B8%B8%E7%AE%80%E6%B4%81%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E8%80%8C%E4%B8%94%E6%9C%89%E7%A7%8D%E5%9B%9E%E5%BD%92%E6%9C%AC%E7%9C%9F%E7%9A%84%E6%84%9F%E8%A7%89%E3%80%82</a></p>
 
 <p>迟迟没有动作是因为我付了30刀个这个VPS，也就是到2月才过期，如果全部转到了octopress那么空着这个VPS干嘛？翻墙玩？呵呵，那真是无聊死了吧。。。说实在的，vps除了放个blog和自己做出来的小站外，好像就没什么用处了，但现在自己连小站都没有了，悉数关闭。。。</p>
 ]]></content>

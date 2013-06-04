@@ -372,22 +372,22 @@
 <br /><pre class="prettyprint linenums bush:jscript" lang="jscript">{
 
 
-<p>  "name": "hide-other-bookmark-button",
-  "version": "1.0",
-  "description": "I want to hide the 'other bookmark' button in Chrome's bookmark toolbar!",
-  "browser_action": {</p>
+<p>  &ldquo;name&rdquo;: &ldquo;hide-other-bookmark-button&rdquo;,
+  &ldquo;version&rdquo;: &ldquo;1.0&rdquo;,
+  &ldquo;description&rdquo;: &ldquo;I want to hide the &lsquo;other bookmark&rsquo; button in Chrome&rsquo;s bookmark toolbar!&rdquo;,
+  &ldquo;browser_action&rdquo;: {</p>
 
 <pre><code>"default_icon": "icon.ico"
 </code></pre>
 
 <p>  },
-  &#8220;permissions&#8221;: [</p>
+  &ldquo;permissions&rdquo;: [</p>
 
 <pre><code> "bookmarks"
 </code></pre>
 
 <p>   ],
-  &#8220;background_page&#8221;:&#8221;index.html&#8221;
+  &ldquo;background_page&rdquo;:&ldquo;index.html&rdquo;
 }</pre></p>
 
 <br /><p>然后找个ico文件，命名成上面提到的icon.ico，只要和json文件中对应即可，png也行。现在这个扩展的配置文件就基本完成了，因为这是要操控bookmarks的扩展程序，所以在permissions那里药写上bookmarks以表示这个扩展要使用chrome的bookmarks的API来做一些东西。具体的API可以参考Google的文档。 3.建立上面提到的一个index.html文件，这是此扩展程序的主页面，就是一个标准的html页面。我曾经一度以为chrome的这些API到底是该怎么调用啊？用html能行么？于是我找到了一个不错的应用程序，看了它的代码，简单说，chrome的那些API就是一个JS库，和jQuery一样用，只不过chrome内置了这个库，你直接用就可以了，不用再明显声明（除了json里面的那句），我们的index中只有很简单的一句代码：（为了让人们看清楚，我完整给出index的内容）</p>
@@ -447,7 +447,7 @@ python setup.py install </pre></p>
 
 
 <p>passwd git #给git用户加上密码
-su - git
+su &ndash; git
 cd ~
 gitosis-init &lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径</pre></p>
 
@@ -585,7 +585,7 @@ members = dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员�
 <br /><pre class="prettyprint linenums bush:bash" lang="bash">git config --global user.name 'dawncold'
 
 
-<p>git config --global user.email loooseleaves@gmail.com</pre></p>
+<p>git config &mdash;global user.email <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#58;&#x6c;&#111;&#111;&#x6f;&#115;&#x65;&#108;&#101;&#97;&#118;&#x65;&#x73;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#x6c;&#x6f;&#x6f;&#x6f;&#115;&#101;&#x6c;&#101;&#97;&#118;&#101;&#115;&#x40;&#x67;&#109;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;</a></pre></p>
 
 <br /><p>4.学习git 建立一个项目文件夹</p>
 
@@ -639,7 +639,7 @@ members = dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员�
 <br /><div><pre class="prettyprint linenums bush:bash" lang="bash">[master (root-commit) 2e2368b] init project----studygit
 
 
-<p>2 files changed, 6 insertions(+), 0 deletions(-)
+<p>2 files changed, 6 insertions(+), 0 deletions(&ndash;)
 create mode 100644 README
 create mode 100644 test.c</pre></div></p>
 
@@ -700,7 +700,7 @@ create mode 100644 test.c</pre></div></p>
 
 
 <p>$ git add forgotten_file
-$ git commit --amend</pre></div></p>
+$ git commit &mdash;amend</pre></div></p>
 
 <br /><div id="cke_pastebin">后续内容请查看progit这本书在github上的翻译，我就是对着翻译来写了这一小篇文正，还有不少遗漏的地方没有写出来。</div>
 
@@ -814,15 +814,15 @@ $ git commit --amend</pre></div></p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+        <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
+        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">Ssh-proxy-with-autossh-in-mac</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/04/02/hhkb/">hhkb</a>
+        <a href="/blog/2013/04/02/hhkb/">Hhkb</a>
       </li>
     
       <li class="post">
@@ -830,7 +830,7 @@ $ git commit --amend</pre></div></p>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
+        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

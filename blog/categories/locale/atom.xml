@@ -4,7 +4,7 @@
   <title><![CDATA[Category: locale | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/locale/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -41,7 +41,7 @@ locale: Cannot set LC_ALL to default locale: No such file or directory</pre></p>
 <br /><pre class="prettyprint linenums bush:bash" lang="bash">LANG="en_US.UTF-8"
 
 
-<p>LANGUAGE="en_US:en"</pre></p>
+<p>LANGUAGE=&ldquo;en_US:en&rdquo;</pre></p>
 
 <br /><p>再执行一下locale就发现问题不见了。</p>
 

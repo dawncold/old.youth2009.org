@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -57,7 +57,7 @@ num += 1
 
 <h1>/usr/bin/python</h1>
 
-<h1>! -<em>- coding: utf-8 -</em>-</h1>
+<h1>! &ndash;<em>&ndash; coding: utf-8 &ndash;</em>&ndash;</h1>
 
 <p>import time</p>
 
@@ -83,13 +83,13 @@ num += 1
   s = time.time()
   r = func_wrap(func(</em>args, **kwards))
   e = time.time()
-  print 'return: %s   use %f ms[s: %s, e: %s]' % (r, (e - s), s, e)</p>
+  print &lsquo;return: %s   use %f ms[s: %s, e: %s]&rsquo; % (r, (e &ndash; s), s, e)</p>
 
 <p>def main():
   timer(sum, firstn, 1000000)
   timer(sum, other_firstn, 1000000)</p>
 
-<p>if <strong>name</strong> == "<strong>main</strong>":
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:
   main()
 <code>
 输出结果是：大约会慢1倍

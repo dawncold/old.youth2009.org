@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MySQLdb | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/mysqldb/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -30,19 +30,19 @@ running egg_info
 writing MySQL_python.egg-info/PKG-INFO
 writing top-level names to MySQL_python.egg-info/top_level.txt
 writing dependency_links to MySQL_python.egg-info/dependency_links.txt
-reading manifest file 'MySQL_python.egg-info/SOURCES.txt'
-reading manifest template 'MANIFEST.in'
-warning: no files found matching 'MANIFEST'
-warning: no files found matching 'ChangeLog'
-warning: no files found matching 'GPL'
-writing manifest file 'MySQL_python.egg-info/SOURCES.txt'
+reading manifest file &lsquo;MySQL_python.egg-info/SOURCES.txt&rsquo;
+reading manifest template &lsquo;MANIFEST.in&rsquo;
+warning: no files found matching &lsquo;MANIFEST&rsquo;
+warning: no files found matching &lsquo;ChangeLog&rsquo;
+warning: no files found matching &lsquo;GPL&rsquo;
+writing manifest file &lsquo;MySQL_python.egg-info/SOURCES.txt&rsquo;
 installing library code to build/bdist.linux-x86_64/egg
 running install_lib
 running build_py
-copying MySQLdb/release.py -&gt; build/lib.linux-x86_64-2.7/MySQLdb
+copying MySQLdb/release.py &ndash;&gt; build/lib.linux-x86_64-2.7/MySQLdb
 running build_ext
-building '<em>mysql' extension
-gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info=(1,2,3,'final',0) -D<strong>version</strong>=1.2.3 -I/usr/include/mysql -I/usr/local/include/python2.7 -c </em>mysql.c -o build/temp.linux-x86_64-2.7/<em>mysql.o -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv
+building &lsquo;<em>mysql&rsquo; extension
+gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info=(1,2,3,&lsquo;final&rsquo;,0) -D<strong>version</strong>=1.2.3 -I/usr/include/mysql -I/usr/local/include/python2.7 -c </em>mysql.c -o build/temp.linux-x86_64-2.7/<em>mysql.o -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector &mdash;param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv
 在包含自 </em>mysql.c：36 的文件中:
 /usr/include/mysql/my_config.h:1062:1: 警告：“HAVE_WCSCOLL”重定义
 在包含自 /usr/local/include/python2.7/Python.h：8 的文件中，</p>
@@ -55,7 +55,7 @@ gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-
 gcc -pthread -shared build/temp.linux-x86_64-2.7/<em>mysql.o -L/usr/lib64/mysql -L/usr/lib64 -lmysqlclient_r -lz -lpthread -lcrypt -lnsl -lm -lpthread -lssl -lcrypto -o build/lib.linux-x86_64-2.7/</em>mysql.so
 /usr/bin/ld: cannot find -lmysqlclient_r
 collect2: ld 返回 1
-error: command 'gcc' failed with exit status 1
+error: command &lsquo;gcc&rsquo; failed with exit status 1
 </pre></p>
 
 <br /><p>也不算什么解决方法吧，就是缺失一些组件，安装了mysql-devel就好了：</p>

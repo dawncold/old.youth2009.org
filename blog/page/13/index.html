@@ -226,7 +226,7 @@
 <br /><pre class="prettyprint linenums bush:bash" lang="bash">/sbin/iptables -A INPUT -p tcp --dport 1723 -j ACCEPT
 
 
-<p>/sbin/iptables -A INPUT -p tcp --dport 47 -j ACCEPT
+<p>/sbin/iptables -A INPUT -p tcp &mdash;dport 47 -j ACCEPT
 /sbin/iptables -A INPUT -p gre -j ACCEPT
 /sbin/iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o eth0 -j MASQUERADE</pre></p>
 
@@ -296,7 +296,7 @@
 <br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
 
 
-<h1>-<em>- coding:utf-8 -</em>-</h1>
+<h1>&ndash;<em>&ndash; coding:utf-8 &ndash;</em>&ndash;</h1>
 
 <h1>遍历所有目录，把resx文件扩展名删掉</h1>
 
@@ -328,7 +328,7 @@ if os.path.isdir(subdir_path):
 <br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
 
 
-<h1>-<em>- coding:utf-8 -</em>-</h1>
+<h1>&ndash;<em>&ndash; coding:utf-8 &ndash;</em>&ndash;</h1>
 
 <h1>删除空目录</h1>
 
@@ -532,19 +532,19 @@ else:
 
 <p>mkdir Projects
 cd Projects
-svn checkout https://svn.sinaapp.com/demoproject/
-验证“https://svn.sinaapp.com:443”的服务器证书时出错:
- - 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
+svn checkout <a href="https://svn.sinaapp.com/demoproject/">https://svn.sinaapp.com/demoproject/</a>
+验证“<a href="https://svn.sinaapp.com:443%E2%80%9D%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E6%97%B6%E5%87%BA%E9%94%99:">https://svn.sinaapp.com:443%E2%80%9D%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E6%97%B6%E5%87%BA%E9%94%99:</a>
+ &ndash; 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
 证书信息:
- - 主机名称: *.sinaapp.com
- - 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
- - 发行者: Equifax Secure Certificate Authority, Equifax, US
- - 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
-(R)拒绝，(t)暂时接受，或(p)永远接受？t
-认证领域: &lt;https://svn.sinaapp.com:443&gt; SAE User Auth for SVN
+ &ndash; 主机名称: *.sinaapp.com
+ &ndash; 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
+ &ndash; 发行者: Equifax Secure Certificate Authority, Equifax, US
+ &ndash; 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
+&reg;拒绝，(t)暂时接受，或(p)永远接受？t
+认证领域: &lt;<a href="https://svn.sinaapp.com:443&amp;gt;">https://svn.sinaapp.com:443&amp;gt;</a> SAE User Auth for SVN
 “dawncold”的密码:
-认证领域: &lt;https://svn.sinaapp.com:443&gt; SAE User Auth for SVN
-用户名: loooseleaves@gmail.com
+认证领域: &lt;<a href="https://svn.sinaapp.com:443&amp;gt;">https://svn.sinaapp.com:443&amp;gt;</a> SAE User Auth for SVN
+用户名: <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#108;&#x6f;&#111;&#111;&#115;&#101;&#108;&#101;&#x61;&#118;&#101;&#115;&#64;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;">&#108;&#x6f;&#x6f;&#x6f;&#115;&#x65;&#108;&#101;&#97;&#x76;&#x65;&#x73;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;</a>
 “loooseleaves@gmail.com”的密码:
 取出版本 0。</pre></p>
 
@@ -593,7 +593,7 @@ drwxr-xr-x   8 dawncold  staff  272  8  9 16:40 .svn
 dawncold@tianzhenmatoMacBook-Pro demoproject$ svn add 1/
 A         1
 A         1/index.php
-dawncold@tianzhenmatoMacBook-Pro demoproject$ svn commit -m 'add ver_1 and index file index.php'
+dawncold@tianzhenmatoMacBook-Pro demoproject$ svn commit -m &lsquo;add ver_1 and index file index.php&rsquo;
 svn: 提交失败(细节如下):
 svn: 丢失了预定增加的“/Users/dawncold/Documents/Project/demoproject/index.php”
 dawncold@tianzhenmatoMacBook-Pro demoproject$ ls
@@ -607,17 +607,17 @@ dawncold@tianzhenmatoMacBook-Pro 1$ svn add *
 svn:  警告: “index.php”已纳入版本控制
 dawncold@tianzhenmatoMacBook-Pro 1$ svn commit
 svn: 提交失败(细节如下):
-svn: 无法使用外部编辑器获得日志信息；考虑设置环境变量 $SVN_EDITOR，或者使用 --message (-m) 或 --file (-F) 选项
+svn: 无法使用外部编辑器获得日志信息；考虑设置环境变量 $SVN_EDITOR，或者使用 &mdash;message (-m) 或 &mdash;file (-F) 选项
 svn: 没有设置 SVN_EDITOR，VISUAL 或 EDITOR 环境变量，运行时的配置参数中也没有 “editor-cmd” 选项
-dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
-验证“https://svn.sinaapp.com:443”的服务器证书时出错:
- - 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
+dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m &lsquo;init&rsquo;
+验证“<a href="https://svn.sinaapp.com:443%E2%80%9D%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E6%97%B6%E5%87%BA%E9%94%99:">https://svn.sinaapp.com:443%E2%80%9D%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6%E6%97%B6%E5%87%BA%E9%94%99:</a>
+ &ndash; 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
 证书信息:
- - 主机名称: *.sinaapp.com
- - 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
- - 发行者: Equifax Secure Certificate Authority, Equifax, US
- - 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
-(R)拒绝，(t)暂时接受，或(p)永远接受？t
+ &ndash; 主机名称: *.sinaapp.com
+ &ndash; 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
+ &ndash; 发行者: Equifax Secure Certificate Authority, Equifax, US
+ &ndash; 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
+&reg;拒绝，(t)暂时接受，或(p)永远接受？t
 增加           1
 增加           1/index.php
 传输文件数据.
@@ -681,19 +681,19 @@ running egg_info
 writing MySQL_python.egg-info/PKG-INFO
 writing top-level names to MySQL_python.egg-info/top_level.txt
 writing dependency_links to MySQL_python.egg-info/dependency_links.txt
-reading manifest file 'MySQL_python.egg-info/SOURCES.txt'
-reading manifest template 'MANIFEST.in'
-warning: no files found matching 'MANIFEST'
-warning: no files found matching 'ChangeLog'
-warning: no files found matching 'GPL'
-writing manifest file 'MySQL_python.egg-info/SOURCES.txt'
+reading manifest file &lsquo;MySQL_python.egg-info/SOURCES.txt&rsquo;
+reading manifest template &lsquo;MANIFEST.in&rsquo;
+warning: no files found matching &lsquo;MANIFEST&rsquo;
+warning: no files found matching &lsquo;ChangeLog&rsquo;
+warning: no files found matching &lsquo;GPL&rsquo;
+writing manifest file &lsquo;MySQL_python.egg-info/SOURCES.txt&rsquo;
 installing library code to build/bdist.linux-x86_64/egg
 running install_lib
 running build_py
-copying MySQLdb/release.py -&gt; build/lib.linux-x86_64-2.7/MySQLdb
+copying MySQLdb/release.py &ndash;&gt; build/lib.linux-x86_64-2.7/MySQLdb
 running build_ext
-building '<em>mysql' extension
-gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info=(1,2,3,'final',0) -D<strong>version</strong>=1.2.3 -I/usr/include/mysql -I/usr/local/include/python2.7 -c </em>mysql.c -o build/temp.linux-x86_64-2.7/<em>mysql.o -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv
+building &lsquo;<em>mysql&rsquo; extension
+gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info=(1,2,3,&lsquo;final&rsquo;,0) -D<strong>version</strong>=1.2.3 -I/usr/include/mysql -I/usr/local/include/python2.7 -c </em>mysql.c -o build/temp.linux-x86_64-2.7/<em>mysql.o -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector &mdash;param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv
 在包含自 </em>mysql.c：36 的文件中:
 /usr/include/mysql/my_config.h:1062:1: 警告：“HAVE_WCSCOLL”重定义
 在包含自 /usr/local/include/python2.7/Python.h：8 的文件中，</p>
@@ -706,7 +706,7 @@ gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-
 gcc -pthread -shared build/temp.linux-x86_64-2.7/<em>mysql.o -L/usr/lib64/mysql -L/usr/lib64 -lmysqlclient_r -lz -lpthread -lcrypt -lnsl -lm -lpthread -lssl -lcrypto -o build/lib.linux-x86_64-2.7/</em>mysql.so
 /usr/bin/ld: cannot find -lmysqlclient_r
 collect2: ld 返回 1
-error: command &#8216;gcc&#8217; failed with exit status 1
+error: command &lsquo;gcc&rsquo; failed with exit status 1
 </pre></p>
 
 <br /><p>也不算什么解决方法吧，就是缺失一些组件，安装了mysql-devel就好了：</p>
@@ -867,15 +867,15 @@ error: command &#8216;gcc&#8217; failed with exit status 1
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+        <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
+        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">Ssh-proxy-with-autossh-in-mac</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/04/02/hhkb/">hhkb</a>
+        <a href="/blog/2013/04/02/hhkb/">Hhkb</a>
       </li>
     
       <li class="post">
@@ -883,7 +883,7 @@ error: command &#8216;gcc&#8217; failed with exit status 1
       </li>
     
       <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
+        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

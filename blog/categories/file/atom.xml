@@ -4,7 +4,7 @@
   <title><![CDATA[Category: file | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/file/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -24,7 +24,7 @@
 <br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
 
 
-<h1>-<em>- coding:utf-8 -</em>-</h1>
+<h1>&ndash;<em>&ndash; coding:utf-8 &ndash;</em>&ndash;</h1>
 
 <h1>遍历所有目录，把resx文件扩展名删掉</h1>
 
@@ -56,7 +56,7 @@ if os.path.isdir(subdir_path):
 <br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
 
 
-<h1>-<em>- coding:utf-8 -</em>-</h1>
+<h1>&ndash;<em>&ndash; coding:utf-8 &ndash;</em>&ndash;</h1>
 
 <h1>删除空目录</h1>
 

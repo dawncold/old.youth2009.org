@@ -4,7 +4,7 @@
   <title><![CDATA[Category: study | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/study/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -31,7 +31,7 @@
     <link href="http://www.youth2009.org/blog/2013/01/03/gets-method-in-ruby/"/>
     <updated>2013-01-03T20:40:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2013/01/03/gets-method-in-ruby</id>
-    <content type="html"><![CDATA[<p><strong>Important</strong>: Also notice that we're using STDIN.gets instead of plain 'ol gets. That is because if there is stuff in ARGV, the default gets method tries to treat the first one as a file and read from that. To read from the user's input (i.e., stdin) in such a situation, you have to use it STDIN.gets explicitly.</p>
+    <content type="html"><![CDATA[<p><strong>Important</strong>: Also notice that we&rsquo;re using STDIN.gets instead of plain &lsquo;ol gets. That is because if there is stuff in ARGV, the default gets method tries to treat the first one as a file and read from that. To read from the user&rsquo;s input (i.e., stdin) in such a situation, you have to use it STDIN.gets explicitly.</p>
 ]]></content>
   </entry>
   

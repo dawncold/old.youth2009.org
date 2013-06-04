@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cocos2d | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/cocos2d/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -34,7 +34,7 @@
 
 <p>Error: This script must be run as root in order to copy templates to /Library/Application Support/Developer/Shared/Xcode</p>
 
-<p>Try running it with 'sudo', or with '-u' to install it only you:
+<p>Try running it with &lsquo;sudo&rsquo;, or with &lsquo;-u&rsquo; to install it only you:
    sudo ./install-templates.sh
 or:
    ./install-templates.sh -u
@@ -44,78 +44,78 @@ cocos2d-iphone template installer</p>
 
 <h2>Installing Xcode 4 cocos2d iOS template</h2>
 
-<p>...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/cocos2d/
-...copying cocos2d files
-...copying cocoslive files
-...copying TouchJSON files
-...copying CocosDenshion files
-...copying CocosDenshionExtras files
-...copying FontLabel files
-...copying template files
+<p>&hellip;creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/cocos2d/
+&hellip;copying cocos2d files
+&hellip;copying cocoslive files
+&hellip;copying TouchJSON files
+&hellip;copying CocosDenshion files
+&hellip;copying CocosDenshionExtras files
+&hellip;copying FontLabel files
+&hellip;copying template files
 done!</p>
 
 <h2>Installing Xcode 4 Chipmunk iOS template</h2>
 
-<p>...copying Chipmunk files
+<p>&hellip;copying Chipmunk files
 done!</p>
 
 <h2>Installing Xcode 4 Box2d iOS template</h2>
 
-<p>...copying Box2d files
+<p>&hellip;copying Box2d files
 done!</p>
 
-<h2>Installing Xcode 4 CCNode file templates...</h2>
+<h2>Installing Xcode 4 CCNode file templates&hellip;</h2>
 
-<p>...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/File Templates/cocos2d/
+<p>&hellip;creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/File Templates/cocos2d/
 done!
-...creating cocos2d template directory</p>
+&hellip;creating cocos2d template directory</p>
 
 <h2>Installing Xcode 3 cocos2d iOS template</h2>
 
-<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application/
-...copying template files
-...copying cocos2d files
-...copying cocos2d dependency files
-...copying CocosDenshion files
-...copying cocoslive files
-...copying cocoslive dependency files
+<p>&hellip;creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application/
+&hellip;copying template files
+&hellip;copying cocos2d files
+&hellip;copying cocos2d dependency files
+&hellip;copying CocosDenshion files
+&hellip;copying cocoslive files
+&hellip;copying cocoslive dependency files
 done!</p>
 
 <h2>Installing Xcode 3 cocos2d iOS + box2d template</h2>
 
-<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Box2d Application/
-...copying template files
-...copying cocos2d files
-...copying cocos2d dependency files
-...copying CocosDenshion files
-...copying cocoslive files
-...copying cocoslive dependency files
-...copying Box2D files
+<p>&hellip;creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Box2d Application/
+&hellip;copying template files
+&hellip;copying cocos2d files
+&hellip;copying cocos2d dependency files
+&hellip;copying CocosDenshion files
+&hellip;copying cocoslive files
+&hellip;copying cocoslive dependency files
+&hellip;copying Box2D files
 done!</p>
 
 <h2>Installing Xcode 3 cocos2d iOS + chipmunk template</h2>
 
-<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Chipmunk Application/
-...copying template files
-...copying cocos2d files
-...copying cocos2d dependency files
-...copying CocosDenshion files
-...copying cocoslive files
-...copying cocoslive dependency files
-...copying Chipmunk files
+<p>&hellip;creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Chipmunk Application/
+&hellip;copying template files
+&hellip;copying cocos2d files
+&hellip;copying cocos2d dependency files
+&hellip;copying CocosDenshion files
+&hellip;copying cocoslive files
+&hellip;copying cocoslive dependency files
+&hellip;copying Chipmunk files
 done!</p>
 
 <h2>Installing Xcode 3 cocos2d Mac template</h2>
 
-<p>...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application - Mac/
-...copying template files
-...copying cocos2d files
-...copying CocosDenshion files
+<p>&hellip;creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application &ndash; Mac/
+&hellip;copying template files
+&hellip;copying cocos2d files
+&hellip;copying CocosDenshion files
 done!
-...copying file templates
-...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/File Templates/cocos2d 1.0.0/</p>
+&hellip;copying file templates
+&hellip;creating destination directory: /Library/Application Support/Developer/Shared/Xcode/File Templates/cocos2d 1.0.0/</p>
 
-<h2>Installing Xcode 3 CCNode file templates...</h2>
+<h2>Installing Xcode 3 CCNode file templates&hellip;</h2>
 
 <p>done!
 </pre></p>

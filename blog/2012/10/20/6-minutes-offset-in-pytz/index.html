@@ -104,7 +104,7 @@
   </header>
 
 
-<div class="entry-content"><p>项目中有使用pytz这个第三方库来处理datetiem相关的东西。不过最近测试的时候发现，创建了一个时间点后，最终得到的时间点和预想的时间点有6分钟的误差，从网上搜到的资料是这样解决的：详情看http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1</p>
+<div class="entry-content"><p>项目中有使用pytz这个第三方库来处理datetiem相关的东西。不过最近测试的时候发现，创建了一个时间点后，最终得到的时间点和预想的时间点有6分钟的误差，从网上搜到的资料是这样解决的：详情看<a href="http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1">http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1</a></p>
 
 <p>创建datetime的时候，特别是带timezone，需要localize一下，否则在使用pytz的时候就会出现这6分钟的差异。代码中首先创建了datetime，然后localize后再replace了timezone为pytz的，最终还astimezone为pytz.utc。我们是使用utc的，你的代码也许不需要：）</p>
 </div>
@@ -174,15 +174,15 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/05/18/dog-pile-effect/">dog-pile-effect</a>
+        <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">ssh-proxy-with-autossh-in-mac</a>
+        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">Ssh-proxy-with-autossh-in-mac</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/04/02/hhkb/">hhkb</a>
+        <a href="/blog/2013/04/02/hhkb/">Hhkb</a>
       </li>
     
       <li class="post">
@@ -190,7 +190,7 @@
       </li>
     
       <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">end-sorted</a>
+        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

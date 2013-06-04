@@ -4,7 +4,7 @@
   <title><![CDATA[Category: drcom | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/drcom/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -32,8 +32,8 @@ import sys
 import types</p>
 
 <p>guess_list = []
-server_url = "http://222.174.155.19/"
-headers = { 'User-Agent'            :   'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6',</p>
+server_url = &ldquo;<a href="http://222.174.155.19/">http://222.174.155.19/</a>&rdquo;
+headers = { &lsquo;User-Agent&rsquo;            :   &lsquo;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6&rsquo;,</p>
 
 <pre><code>'X-Forwarded-For'   :   '1.1.1.1'}
 </code></pre>
@@ -123,7 +123,7 @@ else:
     guess_list = range(start, end + 1)
 </code></pre>
 
-<p>if <strong>name</strong> == "<strong>main</strong>":</p>
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
 
 <pre><code>while True:
     for i in guess_list:

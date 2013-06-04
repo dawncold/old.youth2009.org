@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Haskell | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/haskell/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T22:45:01+08:00</updated>
+  <updated>2013-06-04T23:05:46+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -89,8 +89,8 @@
 <br /><pre class="prettyprint linenums bush:bash" lang="bash">class (Eq a, Show a) =&gt; Num a where
 
 
-<p>  (+) :: a -&gt; a -&gt; a
-  ...</p>
+<p>  (+) :: a &ndash;&gt; a &ndash;&gt; a
+  &hellip;</p>
 
 <pre><code>-- Defined in GHC.Num
 </code></pre>
