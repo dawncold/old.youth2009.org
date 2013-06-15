@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: bookmark chrome | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/bookmark-chrome/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[终于知道为何chrome浏览器中的“其他书签”为何无法去掉了]]></title>
+    <link href="http://www.youth2009.org/blog/2011/02/24/i-know-why-the-other-bookmarks-can-not-be-delete-on-bookmark-toolbar/"/>
+    <updated>2011-02-24T22:51:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/02/24/i-know-why-the-other-bookmarks-can-not-be-delete-on-bookmark-toolbar</id>
+    <content type="html"><![CDATA[<p><img src="http://pic.yupoo.com/loose_v/ASbtBMXR/TI9ji.png" alt="">早就看着这个文件夹不顺眼，但就是无法删除，打开chrome的书签管理器发现它和“书签栏”是同级的，刚刚去研究了一番chrome的扩展程序，本以为通过chrome本身能够操控自己，但经过实践后发现这根本行不通。 建立一个chrome的扩展程序是这样的： 1.建立一个目录，随便在什么地方。 2.进入这个目录，建立一个叫manifest.json的文件，从文件名就能看出这是个json，用vi、vim、emacs等写入如下内容：  </p>
+
+<pre class="prettyprint linenums bush:jscript" lang="jscript">{
+ "name": "hide-other-bookmark-button",
+ "version": "1.0",
+ "description": "I want to hide the 'other bookmark' button in Chrome's bookmark toolbar!",
+ "browser_action": {
+   "default_icon": "icon.ico"
+ },
+ "permissions": [
+    "bookmarks"
+  ],
+ "background_page":"index.html"
+}</pre>
+
+
+<p>然后找个ico文件，命名成上面提到的icon.ico，只要和json文件中对应即可，png也行。现在这个扩展的配置文件就基本完成了，因为这是要操控bookmarks的扩展程序，所以在permissions那里药写上bookmarks以表示这个扩展要使用chrome的bookmarks的API来做一些东西。具体的API可以参考Google的文档。 3.建立上面提到的一个index.html文件，这是此扩展程序的主页面，就是一个标准的html页面。我曾经一度以为chrome的这些API到底是该怎么调用啊？用html能行么？于是我找到了一个不错的应用程序，看了它的代码，简单说，chrome的那些API就是一个JS库，和jQuery一样用，只不过chrome内置了这个库，你直接用就可以了，不用再明显声明（除了json里面的那句），我们的index中只有很简单的一句代码：（为了让人们看清楚，我完整给出index的内容）</p>
+
+<p>4.那么多出来的那句代码是做什么的呢？其实我是用了上面那句，才能确定“其他书签”这个的id是2而不是别的。 <img src="http://pic.yupoo.com/loose_v/ASbtC0ec/lNALS.png" alt=""> 从chrome自带的JavaScript控制台程序能够看到bookTree是一个Object，还能继续看它的属性，这是一个array，下面的1号object也是个array，我们能够看到他的id是2，而title就是我们渴望的“其他书签”。下面那句就是删除id为2的那个object，很可惜，返回了error，对于这个我也没办法了： <img src="http://pic.yupoo.com/loose_v/ASbvzoiM/kjvjq.png" alt=""> 到了这里，这篇文章也就基本结束了，虽然我们没有成功，但这个过程是值得的，能够在chrome这样的大型软件中体验扩展程序也是很不错的
+！</p>
+]]></content>
+  </entry>
+  
+</feed>

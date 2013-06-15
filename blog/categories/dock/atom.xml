@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: dock | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/dock/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[开启Dock的堆栈功能]]></title>
+    <link href="http://www.youth2009.org/blog/2012/01/13/open-the-stack-function-of-dock/"/>
+    <updated>2012-01-13T21:56:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/01/13/open-the-stack-function-of-dock</id>
+    <content type="html"><![CDATA[<p>打开Terminal，输入：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock</pre>
+
+
+<p>然后回车（return），等Dock再次出现后，在已打开程序图标上滚动鼠标滚轮或者手势模拟滚轮，就能看到这个程序打开的子窗口或者子程序，很过瘾好用。</p>
+
+<p>我的MacOS：Lion</p>
+]]></content>
+  </entry>
+  
+</feed>

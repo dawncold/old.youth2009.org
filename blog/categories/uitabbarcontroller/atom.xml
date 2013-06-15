@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: UITabBarController | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/uitabbarcontroller/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[UINavigationController和UITabBarController的搭配]]></title>
+    <link href="http://www.youth2009.org/blog/2011/07/28/use-uinavigationcontroller-in-uitabbarcontroller/"/>
+    <updated>2011-07-28T06:01:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/07/28/use-uinavigationcontroller-in-uitabbarcontroller</id>
+    <content type="html"><![CDATA[<p>经过近1天的实践才摸清了这两个控件的搭配使用方法，网上介绍的不算多，我就把自己的经验说说：</p>
+
+<p>首先这两个的搭配是这样的，基础是UITabBarController，你完全可以在Xcode中选一个以Tabbar为基础的工程，用Tabbar来划分程序的大功能，每个功能中再用Navigation来做导航。我想大家应该都会这样做，当然如果反过来也不是不行，就是感觉有点别扭。</p>
+
+<p>在AppDelegate的初始化过程中用几个UINavigationController包裹UIViewController或者其子类（比如UITableViewController）放入UITabBarController中，这样的设置应该都会。我一开始这样写后，到了每个功能中，需要用到Navigation了，又自己写了一个UINavigationController，但不管用。然后我猜想是不是要自己模拟类似的功能，就自己加上了UINavigationBar，样子是对了，可惜这个bar不带popViewController的功能，完全让navigation成了摆设。无意中看到apple官方的例子中在UIViewController中用到了self.navigationController，我这才意识到UIViewController自己就带着UINavigationController。代码又改回以前的，几个UInavigationController包裹UIViewController初始化，然后在每个功能中大胆用self的navigationController来导航，达到了效果。</p>
+
+<p>还有，如果要做TableView，最好在UIViewController的子类中加入一个UITableView而不是UITableViewController，前者是一个控件，而后者是一套处理（当然还包括控件）。我一开始想在某个功能中用表格，加了一个表格的controller，总是看到表格开头多了一大块灰色的区域，硬生生地把一个表格给隔开了，具体问题在网上没有搜索到相关结果。但后来用了UITableView就好了。</p>
+
+<p>啰嗦了这么多，其实写的是我的探索过程，并不是直接给出的结果。</p>
+]]></content>
+  </entry>
+  
+</feed>

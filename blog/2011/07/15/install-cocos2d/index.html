@@ -1,0 +1,276 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>安装cocos2d 1.0 | dawncold's tech blog</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="安装cocos2d 1.0 15Jul 前天cocos2d更新到了1.0版本，这个版本对于开源软件来说是一个里程碑，因为这应该是第一个能够称得上稳定的版本，当然也是新阶段的开始。 安装还是很简单的，我已经安装上了xcode4.0和sdk4.3。 要注意一点的就是安装的时候需要root权限， &hellip;">
+	
+
+	<link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+	
+</head>
+
+<body>
+	<header id="header" class="inner"><nav><ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul></nav>
+</header>
+	<div id="content" class="inner"><article class="post"><header>
+  
+  <h1 class="title">安装cocos2d 1.0</h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-07-15T20:19:00+08:00">
+			<span class="day">15</span><span class="month">Jul</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>前天cocos2d更新到了1.0版本，这个版本对于开源软件来说是一个里程碑，因为这应该是第一个能够称得上稳定的版本，当然也是新阶段的开始。</p>
+
+<p>安装还是很简单的，我已经安装上了xcode4.0和sdk4.3。</p>
+
+<p>要注意一点的就是安装的时候需要root权限，用sudo即可。</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro cocos2d-iphone-1.0.0$ sh ./install-templates.sh 
+cocos2d-iphone template installer
+
+Error: This script must be run as root in order to copy templates to /Library/Application Support/Developer/Shared/Xcode
+
+Try running it with 'sudo', or with '-u' to install it only you:
+  sudo ./install-templates.sh
+or:
+  ./install-templates.sh -u
+dawncold@tianzhenmatoMacBook-Pro cocos2d-iphone-1.0.0$ sudo sh ./install-templates.sh 
+Password:
+cocos2d-iphone template installer
+
+
+
+Installing Xcode 4 cocos2d iOS template
+----------------------------------------------------
+
+...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/cocos2d/
+...copying cocos2d files
+...copying cocoslive files
+...copying TouchJSON files
+...copying CocosDenshion files
+...copying CocosDenshionExtras files
+...copying FontLabel files
+...copying template files
+done!
+
+
+
+Installing Xcode 4 Chipmunk iOS template
+----------------------------------------------------
+
+...copying Chipmunk files
+done!
+
+
+
+Installing Xcode 4 Box2d iOS template
+----------------------------------------------------
+
+...copying Box2d files
+done!
+
+
+
+Installing Xcode 4 CCNode file templates...
+----------------------------------------------------
+
+...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/File Templates/cocos2d/
+done!
+...creating cocos2d template directory
+
+
+
+
+Installing Xcode 3 cocos2d iOS template
+----------------------------------------------------
+
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application/
+...copying template files
+...copying cocos2d files
+...copying cocos2d dependency files
+...copying CocosDenshion files
+...copying cocoslive files
+...copying cocoslive dependency files
+done!
+
+
+
+Installing Xcode 3 cocos2d iOS + box2d template
+----------------------------------------------------
+
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Box2d Application/
+...copying template files
+...copying cocos2d files
+...copying cocos2d dependency files
+...copying CocosDenshion files
+...copying cocoslive files
+...copying cocoslive dependency files
+...copying Box2D files
+done!
+
+
+
+Installing Xcode 3 cocos2d iOS + chipmunk template
+----------------------------------------------------
+
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Chipmunk Application/
+...copying template files
+...copying cocos2d files
+...copying cocos2d dependency files
+...copying CocosDenshion files
+...copying cocoslive files
+...copying cocoslive dependency files
+...copying Chipmunk files
+done!
+
+
+
+Installing Xcode 3 cocos2d Mac template
+----------------------------------------------------
+
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application - Mac/
+...copying template files
+...copying cocos2d files
+...copying CocosDenshion files
+done!
+...copying file templates
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/File Templates/cocos2d 1.0.0/
+
+
+
+Installing Xcode 3 CCNode file templates...
+----------------------------------------------------
+
+done!
+</pre>
+
+
+    
+      <div class="sharing">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4daee9911f9dfcb4"></script>
+</div>
+    
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/cocos2d/'>cocos2d</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+
+<section id="comment">
+	<div id="disqus_thread" aria-live="polite">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> 
+  </div>
+</section>
+</article></div>
+	<footer id="footer" class="inner"><div class="social alignright">
+	
+	
+	
+	
+	
+	<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>&copy; 2013 dawncold</p>
+<div class="clearfix"></div></footer>
+	<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+	(function($){
+		$('.entry-content').each(function(i){
+			var _i = i;
+			$(this).find('img').each(function(){
+				var alt = $(this).attr('alt');
+
+				if (alt == '' || typeof alt == 'undefined'){
+					$(this).wrap('<a href="'+$(this).attr('src')+'" class="fancybox" rel="gallery'+_i+'" />');
+				} else {
+					$(this).after('<span class="caption">'+alt+'</span>').wrap('<a href="'+$(this).attr('src')+'" class="fancybox" title="'+alt+'" rel="gallery'+_i+'" />');
+				}
+			});
+		});
+		$('.fancybox').fancybox();
+	})(jQuery);
+</script>
+<div id="phasebeam">
+	<canvas></canvas>
+	<canvas></canvas>
+	<canvas></canvas>
+</div>
+<script src="/javascripts/phasebeam.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2011/07/15/install-cocos2d/';
+        var disqus_url = 'http://www.youth2009.org/blog/2011/07/15/install-cocos2d/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+</html>

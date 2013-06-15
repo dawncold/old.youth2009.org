@@ -1,0 +1,156 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>给开源项目做贡献了 | dawncold's tech blog</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="给开源项目做贡献了 19Dec 惭愧，第一次给开源项目做贡献竟然是现在，其实早就想帮着做点啥了，无奈技术能力不足，终于发现一个机会，给progit的README文档添加MacOS用户的使用方式，可惜噩梦也是这样开始的。 一开始添加了usage for macos users， &hellip;">
+	
+
+	<link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+	
+</head>
+
+<body>
+	<header id="header" class="inner"><nav><ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul></nav>
+</header>
+	<div id="content" class="inner"><article class="post"><header>
+  
+  <h1 class="title">给开源项目做贡献了</h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2012-12-19T21:18:00+08:00">
+			<span class="day">19</span><span class="month">Dec</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>惭愧，第一次给开源项目做贡献竟然是现在，其实早就想帮着做点啥了，无奈技术能力不足，终于发现一个机会，给progit的README文档添加MacOS用户的使用方式，可惜噩梦也是这样开始的。</p>
+
+<p>一开始添加了usage for macos users，commit然后push，作者和我说少一个blank line，我加了再commit和push，另一个开发者和我说你不应该多次commit，需要说清楚commit的工作而不是一味用commit修改，我改好了发现remote的版本和本地不一样，因为我是在上一个版本的基础上amend后再提交的，无奈之下我merge了remote然后commit又push，这时候作者跳出来一对一教我怎么做了，有不少细节地方需要注意，比如完全的command line可以在markdown中用tab的indent，而list的indent和tab是完全不一样的。。。又给我罗列了markdown的语法。我让他写一个正确的给我看一下，他真的就给我写了一遍，但是他给希望让别人来做这部分工作而不是自己来做，并不是自己能力不足什么的，光是在我这里付出的时间就远超编辑好几个版本的README了。这点在国内开发者的身上很难发现吧？！</p>
+
+<p>最后当然是pull request被接受了：）这次经历很难得！</p>
+
+    
+      <div class="sharing">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4daee9911f9dfcb4"></script>
+</div>
+    
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/open-source/'>open-source</a></div>
+
+    
+  </footer>
+  
+</div>
+
+<section id="comment">
+	<div id="disqus_thread" aria-live="polite">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> 
+  </div>
+</section>
+</article></div>
+	<footer id="footer" class="inner"><div class="social alignright">
+	
+	
+	
+	
+	
+	<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>&copy; 2013 dawncold</p>
+<div class="clearfix"></div></footer>
+	<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+	(function($){
+		$('.entry-content').each(function(i){
+			var _i = i;
+			$(this).find('img').each(function(){
+				var alt = $(this).attr('alt');
+
+				if (alt == '' || typeof alt == 'undefined'){
+					$(this).wrap('<a href="'+$(this).attr('src')+'" class="fancybox" rel="gallery'+_i+'" />');
+				} else {
+					$(this).after('<span class="caption">'+alt+'</span>').wrap('<a href="'+$(this).attr('src')+'" class="fancybox" title="'+alt+'" rel="gallery'+_i+'" />');
+				}
+			});
+		});
+		$('.fancybox').fancybox();
+	})(jQuery);
+</script>
+<div id="phasebeam">
+	<canvas></canvas>
+	<canvas></canvas>
+	<canvas></canvas>
+</div>
+<script src="/javascripts/phasebeam.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2012/12/19/make-a-contribution-to-open-source-project/';
+        var disqus_url = 'http://www.youth2009.org/blog/2012/12/19/make-a-contribution-to-open-source-project/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 自增字段 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/zi-zeng-zi-duan/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[mysql中自增字段的注意]]></title>
+    <link href="http://www.youth2009.org/blog/2011/01/27/mysql-auto-increasement-column/"/>
+    <updated>2011-01-27T23:45:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/01/27/mysql-auto-increasement-column</id>
+    <content type="html"><![CDATA[<p>一定要设定为NULL或者一个正确的int，一般是用作id的，看到有个自增选项我就选上了，没想到以后就无法插入数据了，Google到了解决方法，原来我的插入SQL是以前写的，那时候还没有设定id字段，现在要改改了，在那个字段的位置用NULL代替，反正是自动计算的嘛，我就不再劳神帮它算了……</p>
+
+<p>感谢<a href="http://www.realfex.com/archives/427" target="_blank">这里</a></p>
+]]></content>
+  </entry>
+  
+</feed>

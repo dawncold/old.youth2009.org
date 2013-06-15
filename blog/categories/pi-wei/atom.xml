@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 坏味 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/pi-wei/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[坏味的简单分析]]></title>
+    <link href="http://www.youth2009.org/blog/2011/03/05/agile-develop-simple-bad-smell-analytics/"/>
+    <updated>2011-03-05T22:10:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/03/05/agile-develop-simple-bad-smell-analytics</id>
+    <content type="html"><![CDATA[<p>软件工程的设计是一种抽象概念，设计的最终体现是源代码。</p>
+
+<p>软件需求总在变化，本来一个简单的程序，经过几次需求变化就需要添加上很多额外的参数来控制流程，这时根本不可能期望修改接口，因为这时很多模块可能已经在使用你，如果你进行了更改，依赖你的所有代码都需要重新编译，这在一个庞大的项目中简直就是灾难！</p>
+
+<p>所以，出现坏味的根本原因就是一开始的轻视设计，又加上不断的需求变化，项目中不可避免的一些依赖，导致需要利用hacks这类方法来躲避灾难，而越是hacks，越是在让项目腐烂！！！</p>
+
+<p>那么敏捷开发者这帮神人是如何做的呢？他们遵循原则、模式等等。敏捷设计是一个过程，而不是事件。在不断变化中，他们能够利用变化，而其他人却被变化弄得不知所措。那么我们期待以后的敏捷原则介绍吧！我总感觉这和Unix里面的KISS有相同的意思。</p>
+]]></content>
+  </entry>
+  
+</feed>

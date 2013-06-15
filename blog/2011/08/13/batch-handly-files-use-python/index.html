@@ -1,0 +1,200 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>python批量处理文件 | dawncold's tech blog</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="Python批量处理文件 13Aug 从某网站上下载了几个压缩包，里面全是目录，每个目录下都有一个doc文件，但可恶的是这些doc文件被换了扩展名，原本是xxx.doc现在变成xxx.doc.resx，我得用python批量处理一下： #! /usr/bin/python
+# -*- &hellip;">
+	
+
+	<link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+	
+</head>
+
+<body>
+	<header id="header" class="inner"><nav><ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul></nav>
+</header>
+	<div id="content" class="inner"><article class="post"><header>
+  
+  <h1 class="title">Python批量处理文件</h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-08-13T15:30:00+08:00">
+			<span class="day">13</span><span class="month">Aug</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>从某网站上下载了几个压缩包，里面全是目录，每个目录下都有一个doc文件，但可恶的是这些doc文件被换了扩展名，原本是xxx.doc现在变成xxx.doc.resx，我得用python批量处理一下：</p>
+
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+# -*- coding:utf-8 -*-
+# 遍历所有目录，把resx文件扩展名删掉
+
+import os
+
+current_path = os.getcwd()
+allsubdir = os.listdir(current_path)
+
+for subdir in allsubdir:
+   subdir_path = './' + subdir
+   if os.path.isdir(subdir_path):
+       files = os.listdir(subdir_path)
+       for _file in files:
+           basename = os.path.basename(_file)
+           allname = os.path.splitext(basename)
+           if '.resx' in allname:
+               print 'resx file %s' % basename
+               without_resx = allname[0]
+               os.rename(subdir_path+'/'+_file,without_resx)
+           else:
+               print 'not resx file'
+               continue</pre>
+
+
+<p>还用了一个删除空目录的脚本：</p>
+
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+# -*- coding:utf-8 -*-
+#删除空目录
+
+import os
+
+alldir = os.listdir(os.getcwd())
+for _dir in alldir:
+   if os.path.isdir('./'+_dir):
+       print 'dir: %s' % _dir
+       if os.listdir('./'+_dir):
+           print 'have something %s' % os.listdir('./'+_dir)
+       else:
+           os.rmdir('./'+_dir)
+   else:
+       print 'file or others'</pre>
+
+
+<p>用python，很快乐！</p>
+
+    
+      <div class="sharing">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4daee9911f9dfcb4"></script>
+</div>
+    
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/file/'>file</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+
+<section id="comment">
+	<div id="disqus_thread" aria-live="polite">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> 
+  </div>
+</section>
+</article></div>
+	<footer id="footer" class="inner"><div class="social alignright">
+	
+	
+	
+	
+	
+	<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>&copy; 2013 dawncold</p>
+<div class="clearfix"></div></footer>
+	<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+	(function($){
+		$('.entry-content').each(function(i){
+			var _i = i;
+			$(this).find('img').each(function(){
+				var alt = $(this).attr('alt');
+
+				if (alt == '' || typeof alt == 'undefined'){
+					$(this).wrap('<a href="'+$(this).attr('src')+'" class="fancybox" rel="gallery'+_i+'" />');
+				} else {
+					$(this).after('<span class="caption">'+alt+'</span>').wrap('<a href="'+$(this).attr('src')+'" class="fancybox" title="'+alt+'" rel="gallery'+_i+'" />');
+				}
+			});
+		});
+		$('.fancybox').fancybox();
+	})(jQuery);
+</script>
+<div id="phasebeam">
+	<canvas></canvas>
+	<canvas></canvas>
+	<canvas></canvas>
+</div>
+<script src="/javascripts/phasebeam.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2011/08/13/batch-handly-files-use-python/';
+        var disqus_url = 'http://www.youth2009.org/blog/2011/08/13/batch-handly-files-use-python/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+</html>

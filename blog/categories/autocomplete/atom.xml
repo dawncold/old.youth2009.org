@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: autocomplete | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/autocomplete/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[emacs中auto-complete插件问题]]></title>
+    <link href="http://www.youth2009.org/blog/2012/02/09/arguments-issue-in-auto-complete-plugin/"/>
+    <updated>2012-02-09T22:21:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/02/09/arguments-issue-in-auto-complete-plugin</id>
+    <content type="html"><![CDATA[<p>一般都是直接打开emacs使用，偶尔在terminal中用emacs发现出现错误：Wrong number of arguments: called-interactively-p, 1</p>
+
+<p>看了看是auto-complete的某些错误，通过Google得到了相关问题的解决，删除auto-complete的elc文件，似乎这些文件是可以加速插件的运行编译出来的，现在删除后在terminal中使用就没问题了！</p>
+
+<p>感谢<a href="http://www.lichaozheng.info/2011/10/19/%E8%A7%A3%E5%86%B3emacs-%E5%87%BA%E7%8E%B0wrong-number-of-arguments-called-interactively-p-1/">这里</a>的帮助</p>
+]]></content>
+  </entry>
+  
+</feed>

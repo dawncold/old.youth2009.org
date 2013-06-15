@@ -1,0 +1,186 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>在MacOS上配置dnsmasq | dawncold's tech blog</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="在MacOS上配置dnsmasq 22Jan 最近那个伟大的墙把我们敬爱的git大神封锁了，无奈很多代码都托管在上面，其中也不乏很多商业项目。自己的几个blog也都放在上面，倒不是因为在那里免费，而是这已然已经成为程序员们的一种生活style。 ubuntu下有个dnsmasq可以连接别的dns &hellip;">
+	
+
+	<link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+	
+</head>
+
+<body>
+	<header id="header" class="inner"><nav><ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul></nav>
+</header>
+	<div id="content" class="inner"><article class="post"><header>
+  
+  <h1 class="title">在MacOS上配置dnsmasq</h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2013-01-22T22:26:00+08:00">
+			<span class="day">22</span><span class="month">Jan</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>最近那个伟大的墙把我们敬爱的git大神封锁了，无奈很多代码都托管在上面，其中也不乏很多商业项目。自己的几个blog也都放在上面，倒不是因为在那里免费，而是这已然已经成为程序员们的一种生活style。</p>
+
+<p>ubuntu下有个dnsmasq可以连接别的dns，这样能够避免dns污染导致上不了github的问题。相关配置不算难，下面记录一下在MacOS下的dnsmasq配置方法。</p>
+
+<p>1.使用brew安装dnsmasq</p>
+
+<p>brew install dnsmasq</p>
+
+<p>2.修改一下dnsmasq的配置文件名字</p>
+
+<p>cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf</p>
+
+<p>3.加入MacOS的启动项中</p>
+
+<p>sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons</p>
+
+<p>4.加载并启动dnsmasq，如果没有出现什么错误就开始配置dnsmasq</p>
+
+<p>sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist</p>
+
+<p>5.配置dnsmasq，把no-resolve的注释去掉，加入<code>server=xxx.xxx.xxx.xxx#nnnn</code></p>
+
+<p>mate /usr/local/etc/dnsmasq.conf</p>
+
+<p>server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比如v2ex那个用3389</p>
+
+<p>6.重启dnsmasq</p>
+
+<p>sudo launchctl stop homebrew.mxcl.dnsmasq</p>
+
+<p>其实无需再执行<code>sudo launchctl start homebrew.mxcl.dnsmasq</code>这句了，因为你load了plist进去就已经启动了，如果此时stop的话会再自动start，所以没必要再start。要想关闭请使用unload（就修改上面的4即可）</p>
+
+<p>7.把网络的dns设置成127.0.0.1，这样你才能用自己的dns服务</p>
+
+<p>至此，我们的git大神就回归了。</p>
+
+    
+      <div class="sharing">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4daee9911f9dfcb4"></script>
+</div>
+    
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/dev/'>dev</a></div>
+
+    
+  </footer>
+  
+</div>
+
+<section id="comment">
+	<div id="disqus_thread" aria-live="polite">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> 
+  </div>
+</section>
+</article></div>
+	<footer id="footer" class="inner"><div class="social alignright">
+	
+	
+	
+	
+	
+	<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>&copy; 2013 dawncold</p>
+<div class="clearfix"></div></footer>
+	<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+	(function($){
+		$('.entry-content').each(function(i){
+			var _i = i;
+			$(this).find('img').each(function(){
+				var alt = $(this).attr('alt');
+
+				if (alt == '' || typeof alt == 'undefined'){
+					$(this).wrap('<a href="'+$(this).attr('src')+'" class="fancybox" rel="gallery'+_i+'" />');
+				} else {
+					$(this).after('<span class="caption">'+alt+'</span>').wrap('<a href="'+$(this).attr('src')+'" class="fancybox" title="'+alt+'" rel="gallery'+_i+'" />');
+				}
+			});
+		});
+		$('.fancybox').fancybox();
+	})(jQuery);
+</script>
+<div id="phasebeam">
+	<canvas></canvas>
+	<canvas></canvas>
+	<canvas></canvas>
+</div>
+<script src="/javascripts/phasebeam.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2013/01/22/config-dnsmasq-on-macos/';
+        var disqus_url = 'http://www.youth2009.org/blog/2013/01/22/config-dnsmasq-on-macos/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+</html>

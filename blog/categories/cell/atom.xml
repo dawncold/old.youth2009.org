@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: cell | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/cell/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[关于UITableView中的cell配置]]></title>
+    <link href="http://www.youth2009.org/blog/2011/07/29/some-config-about-uitableview-cell/"/>
+    <updated>2011-07-29T13:28:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/07/29/some-config-about-uitableview-cell</id>
+    <content type="html"><![CDATA[<p>都是关于cell的，不知道值得写出来么：</p>
+
+<p>1。在定义cell样式的时候，如果你用</p>
+
+<pre class="prettyprint linenums bush:cpp" lang="cpp">UITableViewCellStyleSubtitle</pre>
+
+
+<p>来初始化cell，那么设置cell的detailTextLabel的text属性就能看到详细的内容，在textLable的下一行显示着。</p>
+
+<p>2。设定cell：</p>
+
+<pre class="prettyprint linenums bush:cpp" lang="cpp">[cell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];</pre>
+
+
+<p>这样在每个cell右侧会有小箭头提示，很漂亮。</p>
+]]></content>
+  </entry>
+  
+</feed>

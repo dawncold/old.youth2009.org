@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: uwsgi | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/uwsgi/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[生产环境下的flask调试]]></title>
+    <link href="http://www.youth2009.org/blog/2012/07/17/flask-debug-in-production-environment-with-uwsgi/"/>
+    <updated>2012-07-17T09:36:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/07/17/flask-debug-in-production-environment-with-uwsgi</id>
+    <content type="html"><![CDATA[<p>生产环境是：nginx+uwsgi+flask+sqlalchemy等等等</p>
+
+<p>自带的调试功能比较好用，也能很方便的查看各种变量的值，不过在生产环境中调试并不是那么容易。需要在uwsgi开启的时候传入“&mdash;catch exceptions”：</p>
+
+<p><code>bash
+uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost --catch-exceptions
+</code></p>
+
+<p>在flask的app中要设置config中的PROPAGATE_EXCEPTIONS = True才可以在遇到错误的时候直接输出到页面上。</p>
+
+<p>昨晚部署到服务器中，发现好多地方是500号错误，根本不知道在哪里出的错误，今天打开了这些才发现是jinja2模板中的do方法不识别，原来我把这个加载do操作放在了比较靠后的地方，在生产环境下不会去调用app了，所以原本写在<code>if __name__ == "__main__"</code>里面的东西就不会再调用了：）</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[VPS中部署了Flask框架]]></title>
+    <link href="http://www.youth2009.org/blog/2012/07/02/deploy-flask-on-my-vps/"/>
+    <updated>2012-07-02T20:46:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/07/02/deploy-flask-on-my-vps</id>
+    <content type="html"><![CDATA[<p>一开始我也是用web.py的，不料接受不了它的session处理，然后离开，Django这种庞大的东西我是没精力去研究了，当然开始也伴随激情看过文档，没坚持下去，后来和强锅一起找了不少框架做东西，我实践性比较强，就找到了Flask，感觉还挺好用的，做了一个todo，有兴趣可以看：<a href="http://todo.wodeyitian.com%E3%80%82">http://todo.wodeyitian.com%E3%80%82</a></p>
+
+<p>原先部署在dotcloud上，刚刚在自己的VPS上完成了nginx+uwsgi+flask的集成，当然还是没有废弃掉php，为了好几个博客嘛～</p>
+
+<p>总的来说就是用virtualenv来创建各个app的目录，在里面安装需要的环境（flask、mysql-python、beautifulsoup4等等吧），nginx的配置大概如下：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">server {
+     listen       80;
+     server_name  todo.wodeyitian.com;
+     location / {
+               include uwsgi_params;
+               uwsgi_pass 127.0.0.1:9090;
+               uwsgi_param UWSGI_PYHOME /home/wwwroot/python_app_todo;
+               uwsgi_param UWSGI_CHDIR /home/wwwroot/python_app_todo/app_dir;
+               uwsgi_param UWSGI_SCRIPT todoApp:app;
+     }
+}</pre>
+
+
+<p>UWSGI_PYHOME是app的主目录，下面的CHDIR是app中py文件所在的目录，这个可以自己设置，下面的SCRIPT是入口脚本模块名和变量名，模块就是文件名喽，变量一般在flask都是用app作为整个网站的入口变量，写过python基本都能明白这个。</p>
+
+<p>安装好uwsgi后可以配置开启：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost</pre>
+
+
+
+
+<p><p style="text-align: left;">使用9090端口监听，-M开启主控线程，-p 4是开启4个线程，-t 30是超过30秒不响应丢弃，limit-as 128是限制128Mb的内存占用，-R 10000是超过10000的请求就自动<span style="font-family: Verdana, sans-serif, 宋体;"><span style="line-height: 24px;">respawn（似乎是自动复制？重启？之类的），-d是日志，&mdash;vhost这个可以让多个app共用一个uwsgi，很好用的！</span></span></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[基本配置好了python+nginx]]></title>
+    <link href="http://www.youth2009.org/blog/2011/08/08/python-uwsgi-nginx/"/>
+    <updated>2011-08-08T11:12:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/08/08/python-uwsgi-nginx</id>
+    <content type="html"><![CDATA[<p>没想到配置过程有这么复杂，不过在按照Linode官方的指导做过之后发现一切又是那么简单，果然还是Linode的服务一流，同样的操作肯在所有发行版上都做一次教程，很少有VPS provider能够做到这些吧？看来贵还是有道理的。</p>
+
+<p>不多赘述了，centos5的教程可以看这里（其他版本的在这里找：<a href="http://library.linode.com/web-servers/nginx/python-uwsgi"><a href="http://library.linode.com/web-servers/nginx/python-uwsgi">http://library.linode.com/web-servers/nginx/python-uwsgi</a></a>）</p>
+
+<p><a href="http://library.linode.com/web-servers/nginx/python-uwsgi/centos-5"><a href="http://library.linode.com/web-servers/nginx/python-uwsgi/centos-5">http://library.linode.com/web-servers/nginx/python-uwsgi/centos-5</a></a></p>
+]]></content>
+  </entry>
+  
+</feed>

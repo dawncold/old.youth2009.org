@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vb | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/vb/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[VB.net考试上机题目汇总]]></title>
+    <link href="http://www.youth2009.org/blog/2011/07/14/vb-net-programming-problems/"/>
+    <updated>2011-07-14T18:17:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/07/14/vb-net-programming-problems</id>
+    <content type="html"><![CDATA[<p>只是更新一下代码，因为在mac中的mono工作得不太好！！</p>
+
+<p>1.求两个数的最大公约数和最小公倍数：</p>
+
+<pre class="prettyprint linenums bush:vb" lang="vb">Module Module1
+
+   Public Function Gcd(ByVal num1 As Integer, ByVal num2 As Integer) As Integer
+       If num2 = 0 Then
+           Return num1
+       Else
+           Return Gcd(num2, num1 Mod num2)
+       End If
+   End Function
+
+   Public Sub Main()
+       Console.WriteLine("Input first num: ")
+       Dim num1 As Integer = Convert.ToInt32(Console.ReadLine())
+       Console.WriteLine("Input second num: ")
+       Dim num2 As Integer = Convert.ToInt32(Console.ReadLine())
+       Console.WriteLine("Gcd is :{0}", Gcd(num1, num2))
+       Console.WriteLine("Lcd is :{0}", (num1 * num2) / Gcd(num1, num2)) '两个数的积除以最大公约数就是最小公倍数
+       Console.ReadLine()
+   End Sub
+
+End Module
+</pre>
+
+
+
+
+<!--more-->
+
+
+<p>2.输入10个数字于数组中，排序输出（用的快速排序）：</p>
+
+<pre class="prettyprint linenums bush:vb" lang="vb">Module Module1
+   Public Sub sort(ByRef array As Array, ByVal f As Integer, ByVal e As Integer)
+       If f &lt; e Then
+           Dim p As Integer = partition(array, f, e)
+           sort(array, f, p - 1)
+           sort(array, p + 1, e)
+       End If
+   End Sub
+   Public Function partition(ByRef array As Array, ByVal f As Integer, ByVal e As Integer) As Integer
+       Dim i As Integer = f
+       Dim j As Integer = e
+       While (i &lt; j)
+           'right part
+           While (i &lt; j And array(i) &lt;= array(j))
+               j -= 1
+           End While
+           If i &lt; j Then
+               swap(array(i), array(j))
+               i += 1
+           End If
+           'left part
+           While (i &lt; j And array(i) &lt;= array(j))
+               i += 1
+           End While
+           If i &lt; j Then
+               swap(array(i), array(j))
+               j -= 1
+           End If
+       End While
+
+       Return i
+   End Function
+   Public Sub swap(ByRef num1, ByRef num2)
+       Dim temp As Integer = num1
+       num1 = num2
+       num2 = temp
+   End Sub
+   Sub Main()
+       Dim data(9) As Integer
+       For i As Integer = 0 To data.Length - 1
+           Console.WriteLine("Input data(" &amp; i &amp; ") 's value: ")
+           data(i) = Convert.ToInt32(Console.ReadLine())
+       Next
+
+       sort(data, 0, data.Length - 1)
+
+       For i As Integer = 0 To data.Length - 1
+           Console.WriteLine(data(i))
+       Next
+       Console.ReadLine()
+   End Sub
+
+End Module</pre>
+
+
+<p>3.计算1～1000的和，用Do……Loop循环：</p>
+
+<pre class="prettyprint linenums bush:vb" lang="vb">Module Module1
+
+   Sub Main()
+       Dim sum As Integer = 0
+       Dim i As Integer = 1
+       Do Until i &gt; 1000
+           sum += i
+           i += 1
+       Loop
+
+       Console.WriteLine("sum is :" &amp; sum)
+       Console.ReadLine()
+   End Sub
+
+End Module
+</pre>
+
+
+<p>4.在TextBox1文本框中输出2+4+6+8+……1000的和：</p>
+
+<pre class="prettyprint linenums bush:vb" lang="vb">Public Class Form1
+   Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+       Dim sum As Integer = 0
+       For i As Integer = 2 To 1000 Step 2
+           sum += i
+       Next
+       TextBox1.Text = sum
+   End Sub
+End Class</pre>
+
+
+<p>5.创建一个登录界面，点登录时能检查用户名和密码，密码应该在6～10位，点重置能够清空所写内容：</p>
+
+<pre class="prettyprint linenums bush:vb" lang="vb">Public Class Form1
+
+   Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+       If TextBox1.Text = "" Or TextBox2.Text = "" Then
+           MsgBox("请输入用户名或密码！")
+       ElseIf TextBox2.TextLength &lt; 6 Or TextBox2.TextLength &gt; 10 Then
+           MsgBox("密码长度有误，应在6～10位之间！")
+       End If
+   End Sub
+
+   Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+       TextBox1.Text = ""
+       TextBox2.Text = ""
+   End Sub
+End Class
+</pre>
+
+
+<p>6.编写一个学生类，有一个输出方法：</p>
+
+<pre class="prettyprint linenums bush:vb" lang="vb">Public Class Student
+   Private Name As String
+   Private Age As Integer
+   Private Gender As String
+   Private ClassNum As String
+   Private Address As String
+
+   Sub New()
+       Me.New("", 0, "", "", "")
+   End Sub
+   Sub New(ByVal name As String, ByVal age As Integer, ByVal gender As String, ByVal classnum As String, ByVal address As String)
+       Me.Name = name
+       Me.Age = age
+       Me.Gender = gender
+       Me.ClassNum = classnum
+       Me.Address = address
+   End Sub
+   Public Sub ShowStudentInfo()
+       Console.WriteLine("Name:" &amp; Me.Name)
+       Console.WriteLine("Age:" &amp; Me.Age)
+       Console.WriteLine("Gender:" &amp; Me.Gender)
+       Console.WriteLine("ClassNum:" &amp; Me.ClassNum)
+       Console.WriteLine("Address:" &amp; Me.Address)
+   End Sub
+End Class
+</pre>
+
+
+<p>测试这个student类：</p>
+
+<pre class="prettyprint linenums bush:vb" lang="vb">Module Module1
+
+   Sub Main()
+       Dim stuObj As Student = New Student("tianzhen", 21, "male", "4", "ShanDong Zibo")
+       stuObj.ShowStudentInfo()
+   End Sub
+
+End Module</pre>
+
+
+<p>7.编写一个User类，包含用户名、密码、权限，并且要有有参和无参构造函数：</p>
+
+<pre class="prettyprint linenums bush:vb" lang="vb">Public Class User_class
+   Private username As String
+   Private password As String
+   Private role As Integer
+
+   Public Sub New()
+       Me.username = ""
+       Me.password = ""
+       Me.role = 0
+   End Sub
+
+   Public Sub New(ByVal u As String, ByVal p As String, ByVal r As Integer)
+       Me.username = u
+       Me.password = p
+       Me.role = r
+   End Sub
+
+   Public Sub ShowUser()
+       Console.WriteLine(Me.username)
+       Console.WriteLine(Me.password)
+       Console.WriteLine(Me.role)
+   End Sub
+End Class
+</pre>
+
+
+<p>测试这个类：</p>
+
+<pre class="prettyprint linenums bush:vb" lang="vb">Module Module1
+   Sub Main()
+       Dim user_tianzhen As User_class = New User_class("tianzhen", "tz_pwd", 9)
+       user_tianzhen.ShowUser()
+   End Sub
+End Module
+</pre>
+
+
+<p>8.数据库使用的是SQL SERVER2008 R2 EXPRESS版。</p>
+
+<p>使用DataGridView展示User（这里用Member表代替了）表的内容：</p>
+
+<pre class="prettyprint linenums bush:vb" lang="vb">Imports System.Data.SqlClient
+
+Public Class Form1
+
+   Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+       Dim connStr As String = "Data Source = localhost; Initial Catalog = Test; user id = sa; password = tianzhen"
+       Dim conn As SqlConnection = New SqlConnection(connStr)
+       Dim adapter As SqlDataAdapter = New SqlDataAdapter("SELECT * FROM dbo.Member", conn)
+       Dim ds As DataSet = New DataSet()
+       adapter.Fill(ds, "Member")
+       DataGridView1.DataSource = ds.Tables("Member")
+   End Sub
+End Class</pre>
+
+
+<p>9.数据库的查询、添加、删除操作示例：</p>
+
+<p>在TextBox1中输入密码，点Button1按钮即可显示是否和数据库中的密码匹配；点button2按钮可以添加一条admin为用户名和密码的帐号信息；点击button2可以删除用户名为admin的帐号记录。</p>
+
+<pre class="prettyprint linenums bush:vb" lang="vb">Imports System.Data.SqlClient
+
+Public Class Form1
+
+   Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+       Dim connStr As String = "Data Source = localhost; Initial Catalog = Test; user id = sa; password = tianzhen;"
+       Dim conn As SqlConnection = New SqlConnection(connStr)
+       Dim cmd As SqlCommand = New SqlCommand()
+       cmd.Connection = conn
+       cmd.CommandText = "SELECT password FROM dbo.Member WHERE username = 'tianzhen'"
+       Dim reader As SqlDataReader
+       conn.Open()
+       reader = cmd.ExecuteReader()
+       Dim login As Boolean = False
+       If reader.Read() Then
+           If TextBox1.Text = Trim(reader("password")) Then
+               MsgBox("login successfully!")
+           Else
+               MsgBox("login fail!!!")
+           End If
+       End If
+       conn.Close()
+   End Sub
+
+   Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+       Dim connStr As String = "Data Source = localhost; Initial Catalog = Test; user id = sa; password = tianzhen"
+       Dim connection As SqlConnection = New SqlConnection(connStr)
+       Dim command As SqlCommand = New SqlCommand()
+       command.Connection = connection
+       command.CommandText = "INSERT INTO dbo.Member VALUES(2,'admin','admin')"
+       connection.Open()
+       MsgBox(command.ExecuteNonQuery())
+       connection.Close()
+   End Sub
+
+   Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+       Dim connectionString As String = "Data Source = localhost; Initial Catalog = Test; user id = sa; password = tianzhen;"
+       Dim connection As SqlConnection = New SqlConnection(connectionString)
+       Dim command As SqlCommand = New SqlCommand("DELETE FROM dbo.Member WHERE username = 'admin'", connection)
+       connection.Open()
+       command.ExecuteNonQuery()
+       connection.Close()
+   End Sub
+End Class</pre>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 127.0.0.1 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/127-dot-0-0-dot-1/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[mysql只允许127.0.0.1连接的解决方法]]></title>
+    <link href="http://www.youth2009.org/blog/2012/06/05/solved-mysql-refuse-localhost-connection/"/>
+    <updated>2012-06-05T10:30:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/06/05/solved-mysql-refuse-localhost-connection</id>
+    <content type="html"><![CDATA[<p>我上次记录过一次这样的情况，突然间所有的php应用无法连接数据库了，但可惜我忘记是为何导致了这样的结果，总是有很多奇怪的地方在这个vps上发生，比如有次突然在某个app中出现了嵌入的广告，这个app可是我写的呀，怎么会有广告？！还有就是那次mysql突然无法连接了，最后用127.0.0.1代替了localhost。</p>
+
+<p>昨晚国庆安装了织梦的后台，但提示无法使用数据库，由于昨天太晚了没有深入研究，早晨起来看了一下，有人说去查看data/common.inc.php文件中的信息，我去看了一下，突然想起来localhost不能用了，于是改为127.0.0.1就可以了，但这也只是缓兵之计，于是想办法解决！</p>
+
+<p>解决方法也不尽相同，就是在php.ini中的三处添加“/tmp/mysql.sock”，那三处就是：mysql.default_socket、mysqli.default_socket、pdo_mysql.default_socket，看名字就是php连接mysql的三种方法的默认socket路径，原来我就修改了两处，漏掉了mysqli这种，结果现在不少程序都是用这种方式连接，比如phpmyadmin和织梦，所以呢，修改了这三处就ok了（当然你得确定你用socket这种方式连接）</p>
+
+<p>至此我的phpmyadmin也可以用socket登录了，织梦也能访问数据库了，再也不用127.0.0.1啦~</p>
+]]></content>
+  </entry>
+  
+</feed>

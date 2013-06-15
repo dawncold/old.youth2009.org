@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: php | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/php/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[mysql只允许127.0.0.1连接的解决方法]]></title>
+    <link href="http://www.youth2009.org/blog/2012/06/05/solved-mysql-refuse-localhost-connection/"/>
+    <updated>2012-06-05T10:30:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/06/05/solved-mysql-refuse-localhost-connection</id>
+    <content type="html"><![CDATA[<p>我上次记录过一次这样的情况，突然间所有的php应用无法连接数据库了，但可惜我忘记是为何导致了这样的结果，总是有很多奇怪的地方在这个vps上发生，比如有次突然在某个app中出现了嵌入的广告，这个app可是我写的呀，怎么会有广告？！还有就是那次mysql突然无法连接了，最后用127.0.0.1代替了localhost。</p>
+
+<p>昨晚国庆安装了织梦的后台，但提示无法使用数据库，由于昨天太晚了没有深入研究，早晨起来看了一下，有人说去查看data/common.inc.php文件中的信息，我去看了一下，突然想起来localhost不能用了，于是改为127.0.0.1就可以了，但这也只是缓兵之计，于是想办法解决！</p>
+
+<p>解决方法也不尽相同，就是在php.ini中的三处添加“/tmp/mysql.sock”，那三处就是：mysql.default_socket、mysqli.default_socket、pdo_mysql.default_socket，看名字就是php连接mysql的三种方法的默认socket路径，原来我就修改了两处，漏掉了mysqli这种，结果现在不少程序都是用这种方式连接，比如phpmyadmin和织梦，所以呢，修改了这三处就ok了（当然你得确定你用socket这种方式连接）</p>
+
+<p>至此我的phpmyadmin也可以用socket登录了，织梦也能访问数据库了，再也不用127.0.0.1啦~</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SAE快速之旅]]></title>
+    <link href="http://www.youth2009.org/blog/2011/08/09/fast-travel-in-sae/"/>
+    <updated>2011-08-09T17:01:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/08/09/fast-travel-in-sae</id>
+    <content type="html"><![CDATA[<p>GoogleAppEngine基本在国内没什么前途了，主要原因大家很清楚，但也算是给我们开了一个好头，至少我们已经能够体验到云的魅力所在了，通过现有为数不多的国内云计算服务。sina的测试了许久，相信比较成熟，但我依然钟情于Python，PHP也只是开发过几个小网站，经验有限。写点SAE入门教程吧！</p>
+
+<p>0。注册SAE账号：</p>
+
+<p>登陆<a href="http://sae.sina.com.cn%E6%B3%A8%E5%86%8C%EF%BC%8C%E6%88%96%E8%80%85%E7%82%B9%E6%88%91%E7%9A%84%E9%82%80%E8%AF%B7%E9%93%BE%E6%8E%A5%EF%BC%8C%E8%B5%9A%E7%82%B9%E9%82%80%E8%AF%B7%E8%B4%B9%E7%94%A8%E8%80%8C%E5%B7%B2%EF%BC%9A">http://sae.sina.com.cn%E6%B3%A8%E5%86%8C%EF%BC%8C%E6%88%96%E8%80%85%E7%82%B9%E6%88%91%E7%9A%84%E9%82%80%E8%AF%B7%E9%93%BE%E6%8E%A5%EF%BC%8C%E8%B5%9A%E7%82%B9%E9%82%80%E8%AF%B7%E8%B4%B9%E7%94%A8%E8%80%8C%E5%B7%B2%EF%BC%9A</a><a href="http://sae.sina.com.cn/activity/invite/23335/weibo"><a href="http://sae.sina.com.cn/activity/invite/23335/weibo">http://sae.sina.com.cn/activity/invite/23335/weibo</a></a></p>
+
+<p>1。创建一个应用：（点击最上面的应用Application即可出现如下页面）</p>
+
+<p><a title="Screen Shot 2011-08-09 at 下午4.25.38.png" href="http://www.youth2009.org/attachment/135230/"><img src="http://www.youth2009.org/usr/uploads/2011/08/1024291968.png" alt="Screen Shot 2011-08-09 at 下午4.25.38.png"></a></p>
+
+<p>点击创建新应用（0/10),看来一个账号只能创建10个。</p>
+
+<p><a title="Screen Shot 2011-08-09 at 下午4.26.20.png" href="http://www.youth2009.org/attachment/135231/"><img src="http://www.youth2009.org/usr/uploads/2011/08/3964469045.png" alt="Screen Shot 2011-08-09 at 下午4.26.20.png"></a></p>
+
+<p>填入相应的信息后点击“创建应用”</p>
+
+<p><a title="Screen Shot 2011-08-09 at 下午4.26.29.png" href="http://www.youth2009.org/attachment/135232/"><img src="http://www.youth2009.org/usr/uploads/2011/08/383403573.png" alt="Screen Shot 2011-08-09 at 下午4.26.29.png"></a></p>
+
+<p>此时有个安全认证，填写刚刚的登陆密码即可。</p>
+
+<p><a title="Screen Shot 2011-08-09 at 下午4.26.40.png" href="http://www.youth2009.org/attachment/135233/"><img src="http://www.youth2009.org/usr/uploads/2011/08/1845837408.png" alt="Screen Shot 2011-08-09 at 下午4.26.40.png"></a></p>
+
+<p>看，新的应用已经创建好了，点击应用名称即可查看详情：</p>
+
+<p><a title="Screen Shot 2011-08-09 at 下午4.27.15.png" href="http://www.youth2009.org/attachment/135234/"><img src="http://www.youth2009.org/usr/uploads/2011/08/1927393632.png" alt="Screen Shot 2011-08-09 at 下午4.27.15.png"></a></p>
+
+<p>点击左侧的“代码管理”即可看到我们的SVN部署地址。通过查看sina的文档得知，SVN的部署账号和密码分别是SAE安全邮箱和SAE安全密码。这些信息点击页面右上角的“XX的账号”即可查看。</p>
+
+<p>2。准备一个非常简单的PHP文件，内容如下，保存成index.php即可：</p>
+
+<pre class="prettyprint linenums bush:php" lang="php">&lt;?php echo 'Hello,PHP'; ?&gt;</pre>
+
+
+<p>3。SVN部署文件：</p>
+
+<p>我们要不要用一种高级的方式来访问svn呢——Terminal（命令行）：</p>
+
+<p>首先我们找一个干净的目录来存放我们建立的project：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">cd ~/Documents
+mkdir Projects
+cd Projects
+svn checkout https://svn.sinaapp.com/demoproject/
+验证“https://svn.sinaapp.com:443”的服务器证书时出错: 
+- 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
+证书信息: 
+- 主机名称: *.sinaapp.com
+- 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
+- 发行者: Equifax Secure Certificate Authority, Equifax, US
+- 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
+(R)拒绝，(t)暂时接受，或(p)永远接受？t
+认证领域: &lt;https://svn.sinaapp.com:443&gt; SAE User Auth for SVN
+“dawncold”的密码: 
+认证领域: &lt;https://svn.sinaapp.com:443&gt; SAE User Auth for SVN
+用户名: loooseleaves@gmail.com
+“loooseleaves@gmail.com”的密码: 
+取出版本 0。</pre>
+
+
+<p>总之按照用户名写安全邮箱，密码写安全密码的方式写即可。这样就得到了第一个版本——0号版本。</p>
+
+<p>我们进入这个目录看看有什么：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">cd demoproject
+ls
+ls -al
+
+drwxr-xr-x   4 dawncold  staff  136  8  9 16:46 .
+drwxr-xr-x@ 21 dawncold  staff  714  8  9 16:40 ..
+drwxr-xr-x   8 dawncold  staff  272  8  9 16:40 .svn
+</pre>
+
+
+<p>用ls查看是什么都没有的，那么我们用ls -al查看，看到了隐藏的svn目录，这里存着svn的相关配置信息。我们用vi来写刚刚的那个index.php吧：</p>
+
+<p>一般是vi index.php，然后输入刚刚的代码，再按Esc，输入“冒号”，再输入“wq！”（注意有个感叹号），回车。</p>
+
+<p>下面把文件添加到svn：（有一个错误的演示）</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">svn add index.php</pre>
+
+
+<p>再提交（commit）到服务器：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">svn commit -m 'add index.php for show a demo'</pre>
+
+
+<p>但我遇到了错误，返回的信息告诉我不能提交文件进入版本库，查看sian的文档才知道这个版本库只能存放版本目录，i就是我需要再建立一个目录，而且名字是数字，表示这是几号版本，文件可以放入那些目录中。那就新建一个1号版本吧：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro demoproject$ mkdir 1
+dawncold@tianzhenmatoMacBook-Pro demoproject$ mv index.php 1/
+dawncold@tianzhenmatoMacBook-Pro demoproject$ svn add 1/
+A         1
+A         1/index.php
+dawncold@tianzhenmatoMacBook-Pro demoproject$ svn commit -m 'add ver_1 and index file index.php'
+svn: 提交失败(细节如下): 
+svn: 丢失了预定增加的“/Users/dawncold/Documents/Project/demoproject/index.php”
+dawncold@tianzhenmatoMacBook-Pro demoproject$ ls
+1
+dawncold@tianzhenmatoMacBook-Pro demoproject$ svn add *
+svn:  警告: “1”已纳入版本控制
+dawncold@tianzhenmatoMacBook-Pro demoproject$ cd 1/
+dawncold@tianzhenmatoMacBook-Pro 1$ ls
+index.php
+dawncold@tianzhenmatoMacBook-Pro 1$ svn add *
+svn:  警告: “index.php”已纳入版本控制
+dawncold@tianzhenmatoMacBook-Pro 1$ svn commit
+svn: 提交失败(细节如下): 
+svn: 无法使用外部编辑器获得日志信息；考虑设置环境变量 $SVN_EDITOR，或者使用 --message (-m) 或 --file (-F) 选项
+svn: 没有设置 SVN_EDITOR，VISUAL 或 EDITOR 环境变量，运行时的配置参数中也没有 “editor-cmd” 选项
+dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
+验证“https://svn.sinaapp.com:443”的服务器证书时出错: 
+- 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
+证书信息: 
+- 主机名称: *.sinaapp.com
+- 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
+- 发行者: Equifax Secure Certificate Authority, Equifax, US
+- 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
+(R)拒绝，(t)暂时接受，或(p)永远接受？t
+增加           1
+增加           1/index.php
+传输文件数据.
+提交后的版本为 1。</pre>
+
+
+<p>4。查看效果：</p>
+
+<p>部署完成后就能查看效果了，由于我们只有一个版本，这就是默认版本了，查看地址为：<a href="http://demoproject.sinaapp.com/"><a href="http://demoproject.sinaapp.com/">http://demoproject.sinaapp.com/</a></a></p>
+
+<p> </p>
+
+<p>总结一下，这是SAE的快速之旅，代码的部署方式使用的SVN命令行，你也许不喜欢这样，喜欢GUI的SVN部署方式，这当然也没有问题，sina的文档还是比较全面的。刚刚也看到了helloworld这样的例子，看来我白写了呢。希望等SAE出现Python的版本后我再去体验！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[最好在include_path中加上根]]></title>
+    <link href="http://www.youth2009.org/blog/2011/07/09/best-content-in-include_path/"/>
+    <updated>2011-07-09T16:54:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/07/09/best-content-in-include_path</id>
+    <content type="html"><![CDATA[<p>刚刚用了下typecho博客插件——友情链接来添加一个友情链接，但发现很多php文件找不到了，很奇怪，以前是可以的，看到warning中的信息，有个include_path的相关东西，看看里面提到的路径是不是有需要的文件，结果没有，而在其中路径的下一级目录下有，这就怪了。</p>
+
+<p>Google说最好把include_path写成"./&ldquo;。是不是这样就是自动便利所有的内容了？我猜是的！当前的include_path中又pear的路径，我就先不删除了，linux系统下用冒号分隔各个路径，在前面加上一个点即可。</p>
+
+<p>重启php，再次访问，恢复正常！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[安装PEAR]]></title>
+    <link href="http://www.youth2009.org/blog/2011/06/01/install-pear/"/>
+    <updated>2011-06-01T13:26:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/06/01/install-pear</id>
+    <content type="html"><![CDATA[<p>在服务器上找了好久也没看到pear包的存在，于是下载重装。</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">wget http://pear.php.net/go-pear.phar 
+php ./go-pear.phar 
+
+./pear install XXXX(XXXX就是要新加入的扩展库名称)</pre>
+
+
+<p>根据提示修改一些参数即可，其中比较重要的是最后的include_path这个参数，要确保这里面包含了pear的目录，否则用pear安装上的扩展就不好运行了，比如我的PhpDocumentor就是如此，好在最后加入到了path中，phpdocumentor就能用了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PHP中的Get注意一则]]></title>
+    <link href="http://www.youth2009.org/blog/2011/05/18/notice-get-methdo-in-php/"/>
+    <updated>2011-05-18T22:48:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/05/18/notice-get-methdo-in-php</id>
+    <content type="html"><![CDATA[<p>用一个页面接收Get过来的参数时要注意这点：如果接受了0这个参数，一定要确保是在$_GET前面加了强制转换为int的标志，否则如果是0，PHP可能会当成是假，没有任何值被保存到变量中：）</p>
+]]></content>
+  </entry>
+  
+</feed>

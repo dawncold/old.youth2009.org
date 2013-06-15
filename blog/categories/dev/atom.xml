@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: dev | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/dev/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[dog-pile-effect]]></title>
+    <link href="http://www.youth2009.org/blog/2013/05/18/dog-pile-effect/"/>
+    <updated>2013-05-18T22:48:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/05/18/dog-pile-effect</id>
+    <content type="html"><![CDATA[<p>如果你的网站该去解决dog pile effect了，那应该有不小的PV了。今天看暴走漫画的架构设计，那是应对1000W PV的一个设计，当然架构这东西每家都不一样，可能这个就他们自己用着适合。里面提到了dog pile effect，这个的意思是：在多request去cache中拿数据的时候，如果发现自己拿的数据是过期了的，那么就要去db中拿新的来。这么看好像没问题，但有前提的——request很多，真的很多，而且确实用cache了（反正我不相信request很多的时候某些数据你不用cache，那得是个多么bt的db才能支撑啊？！）本来用cache的作用就是降低对某些slow query的执行次数，缓解db压力。但过期了，再去db中取这就和没有cache一样了，db会死的。</p>
+
+<p>解决方法有这样的：</p>
+
+<ul>
+<li>有专门的job（比如crontab）来更新cache，这样request总是去cache取，不用管过不过期。好处就是简单；坏处是可能做一些没必要的重复计算，没有request你也更新了cache，而且你得确保这个job的执行时间要小于job的间隔，否则会积压很多job。</li>
+<li>request取到数据发现过期，再请求一个update lock，成功拿到锁就可以更新cache，此时其他request也会请求这把锁，但就是请求不到，那就继续返回过期的数据。这是不容忍延迟的情况，如果对数据准确性要求高，那在updating的时候其他request会等，等数据更新了再返回。怎么用取决于environment。</li>
+</ul>
+
+
+<p>引用自：<a href = "http://hype-free.blogspot.jp/2008/05/avoiding-dogpile-effect.html"><a href="http://hype-free.blogspot.jp/2008/05/avoiding-dogpile-effect.html">http://hype-free.blogspot.jp/2008/05/avoiding-dogpile-effect.html</a></a>，注意blogspot。。。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在MacOS上配置dnsmasq]]></title>
+    <link href="http://www.youth2009.org/blog/2013/01/22/config-dnsmasq-on-macos/"/>
+    <updated>2013-01-22T22:26:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/01/22/config-dnsmasq-on-macos</id>
+    <content type="html"><![CDATA[<p>最近那个伟大的墙把我们敬爱的git大神封锁了，无奈很多代码都托管在上面，其中也不乏很多商业项目。自己的几个blog也都放在上面，倒不是因为在那里免费，而是这已然已经成为程序员们的一种生活style。</p>
+
+<p>ubuntu下有个dnsmasq可以连接别的dns，这样能够避免dns污染导致上不了github的问题。相关配置不算难，下面记录一下在MacOS下的dnsmasq配置方法。</p>
+
+<p>1.使用brew安装dnsmasq</p>
+
+<p>brew install dnsmasq</p>
+
+<p>2.修改一下dnsmasq的配置文件名字</p>
+
+<p>cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf</p>
+
+<p>3.加入MacOS的启动项中</p>
+
+<p>sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons</p>
+
+<p>4.加载并启动dnsmasq，如果没有出现什么错误就开始配置dnsmasq</p>
+
+<p>sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist</p>
+
+<p>5.配置dnsmasq，把no-resolve的注释去掉，加入<code>server=xxx.xxx.xxx.xxx#nnnn</code></p>
+
+<p>mate /usr/local/etc/dnsmasq.conf</p>
+
+<p>server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比如v2ex那个用3389</p>
+
+<p>6.重启dnsmasq</p>
+
+<p>sudo launchctl stop homebrew.mxcl.dnsmasq</p>
+
+<p>其实无需再执行<code>sudo launchctl start homebrew.mxcl.dnsmasq</code>这句了，因为你load了plist进去就已经启动了，如果此时stop的话会再自动start，所以没必要再start。要想关闭请使用unload（就修改上面的4即可）</p>
+
+<p>7.把网络的dns设置成127.0.0.1，这样你才能用自己的dns服务</p>
+
+<p>至此，我们的git大神就回归了。</p>
+]]></content>
+  </entry>
+  
+</feed>

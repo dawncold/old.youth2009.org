@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Mac系统中的使用技巧 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[M4的一点优化]]></title>
+    <link href="http://www.youth2009.org/blog/2012/10/01/optimzation-for-m4/"/>
+    <updated>2012-10-01T17:05:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/10/01/optimzation-for-m4</id>
+    <content type="html"><![CDATA[<p>1.关闭紧急运动传感器</p>
+
+<p>mac系统没有把这些传感器的设置、界面什么的体现到UI里，让我一度以为mbp没有这种设备，实际这也算是mac系统的设计理念吧，把普通用户无须知晓的东西屏蔽掉，让用户看起来、用起来异常简单，不像thinkpad那样，直接把硬盘活动保护啥的做成一个功能给用户展示。。。你看，你看，我们（thinkpad）有保护您硬盘的设备。。。</p>
+
+<p>这些不让用户看到的功能大多需要相关工具或者命令行来设置：
+<code>bash
+sudo pmset -a sms 0&lt;/pre&gt;
+</code></p>
+
+<p>对于替换了原来硬盘的这种方案就可以关闭紧急运动传感器了，如果加了SSD在光驱位，那就甭管了，继续保护硬盘吧！</p>
+
+<p>2.开启Trim</p>
+
+<p>同样要使用命令行开启，有个app叫Trim Enabler，但不推荐用。也有呼声说M4带有GC功能，是不是不需要开Trim了，综合不少资料考虑，还是推荐开起来。</p>
+
+<p>```bash
+备份
+sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original</pre></p>
+
+<p>10.8.1 or 10.7.5 or newer
+sudo perl -pi -e &rsquo;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x4D)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+```</p>
+
+<p>10.8.0 or 10.7.4 or below</p>
+
+<p><code>bash
+sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x51)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</code></p>
+
+<p>清除系统内核扩展缓存</p>
+
+<p><code>bash
+sudo touch /System/Library/Extensions/
+</code></p>
+
+<p>重启</p>
+
+<p>如果想禁止Trim</p>
+
+<p>FOR ML 10.8.1 AND LION 10.7.5 OR NEWER</p>
+
+<p><code>bash
+sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x4D)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</code></p>
+
+<p>FOR ML 10.8.0 AND LION 10.7.4 BELOW
+```bash
+sudo perl -pi -e &rsquo;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x51)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</p>
+
+<p>sudo touch /System/Library/Extensions/
+```</p>
+
+<p>如果出错就恢复刚刚的备份</p>
+
+<p><code>bash
+sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</code></p>
+
+<p>3.用noatime方式挂载硬盘，就是少加载一个文件属性参数而已，对于日常使用没啥影响，在/Library/LaunchDaemons里面创建一个noatime.plist，内容如下：</p>
+
+<p><code>xml
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+&lt;key&gt;Label&lt;/key&gt;
+&lt;string&gt;noatime&lt;/string&gt;
+&lt;key&gt;ProgramArguments&lt;/key&gt;
+&lt;array&gt;
+&lt;string&gt;mount&lt;/string&gt;
+&lt;string&gt;-vuwo&lt;/string&gt;
+&lt;string&gt;noatime&lt;/string&gt;
+&lt;string&gt;/&lt;/string&gt;
+&lt;/array&gt;
+&lt;key&gt;RunAtLoad&lt;/key&gt;
+&lt;true/&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></p>
+
+<p>修改刚刚创建的文件权限</p>
+
+<p><code>bash
+sudo chown root:wheel /Library/LaunchDaemons/noatime.plist
+</code></p>
+
+<p>重启</p>
+
+<p>检测结果</p>
+
+<p><code>bash
+mount | grep " / "
+</code></p>
+
+<p>如果结果里有类似这样的内容（最后的noatime）就表示可以了</p>
+
+<p><code>bash
+/dev/disk0s2 on / (hfs, local, journaled, noatime)
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[买了个叫M4的硬盘]]></title>
+    <link href="http://www.youth2009.org/blog/2012/10/01/bought-a-ssd-called-m4/"/>
+    <updated>2012-10-01T14:05:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/10/01/bought-a-ssd-called-m4</id>
+    <content type="html"><![CDATA[<p>256Gb，1200块。</p>
+
+<p>速度还不错，读取260Mb/s，写入206Mb/s。</p>
+
+<p>至此，MC374能升级的部分都升级到位了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[终于又回到了开发一线]]></title>
+    <link href="http://www.youth2009.org/blog/2012/08/09/return-to-develop/"/>
+    <updated>2012-08-09T10:45:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/08/09/return-to-develop</id>
+    <content type="html"><![CDATA[<p>前两天把系统从Lion升级到了MountainLion，这一升级不要紧，很多开发环境都需要重装，比如Java又得重新下载，Python的类库又消失了，XCode过期了。。。</p>
+
+<p>听说了一个好消息，从XCode4.4.1开始，以后的XCode都会采用增量更新，但这次除外，1.56Gb的XCode，在这种破网速中用了两天才搞定。</p>
+
+<p>Python的一个类库MySQL-python需要gcc-4.2才能编译，于是还需要下载CommandLineTool，又是155Mb。。。（但装好XCode后可以从XCode.app中找到llvm-gcc-4.2，我是用这个编译的，也能用）。</p>
+
+<p>还有几个小的python类库，装好后就能继续用了。这次系统升级后MySQL竟然没有问题，值得表扬一下！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[管理VirtualBox中的XP]]></title>
+    <link href="http://www.youth2009.org/blog/2012/07/01/manage-xp-in-virtualbox/"/>
+    <updated>2012-07-01T23:16:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/07/01/manage-xp-in-virtualbox</id>
+    <content type="html"><![CDATA[<p>今天打算好好整理一下XP系统，本想在几个虚拟机软件中选一个出来的，大家都说ParllelsDesktop不错，但我一直在用VirtualBox，主要原因是VB这个免费，其实买PD的中文版也就是199元，很容易买，如果真的性能优秀我就决定入一个（哈哈，又在炫耀了！）</p>
+
+<p>中途我卸载了xp中的ie7，打算装ie8呢，结果重启后发现找不到iertutil.dll，随便下载了一个版本不对的放到了system32中，结果更是不能用了，好在家里还有台xp电脑，拿来了一个正确的版本（大小1.9Mb左右，而且我发现系统中的dllcache中会保留以前用得dll，要不怎么叫cache呢），用老毛桃PE删掉原来的替换了新的dll，进入系统装了ie8，这算是告一段落。</p>
+
+<p>又安装了好几个小时的VS2010 Web Developer Express，最后说磁盘空间不够了。。。扩充磁盘空间还算是好用吧：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">VBoxManage modifyhd PATH_TO_VDI_FILE --resize NEW_SIZE</pre>
+
+
+<p>原本10G，现在改了20G，进入系统后原系统分区并不会增加，只是多了一块空闲的空间，然后又用老毛桃PE中的软件（PM）扩种分区。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[eclipse中最好配置上切换tabs的快捷键]]></title>
+    <link href="http://www.youth2009.org/blog/2012/06/18/it-is-better-to-config-two-shortkeys-for-switch-tags--in-eclipse/"/>
+    <updated>2012-06-18T08:01:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/06/18/it-is-better-to-config-two-shortkeys-for-switch-tags--in-eclipse</id>
+    <content type="html"><![CDATA[<p>在Terminal中用Command+Shift+[和Command+Shift+]来切换tabs太爽了，很多Mac下的程序都默认支持了这样的切换方式，不过eclipse中默认没支持，非常可惜，硬用这样切换倒是也有效果，不过你用两次就知道这不是你想要的那种！！</p>
+
+<p>于是配置快捷键，分别配置Privious Tag和Next Tag即可<img title="微笑" src="http://www.youth2009.org/usr/plugins/TinyMCE/tiny_mce/plugins/emotions/img/smiley-smile.gif" alt="微笑" border="0"></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: lambda | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/lambda/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[用lambda创建函数]]></title>
+    <link href="http://www.youth2009.org/blog/2011/06/05/lambda-in-python/"/>
+    <updated>2011-06-05T19:51:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/06/05/lambda-in-python</id>
+    <content type="html"><![CDATA[<p>又是一个bt功能：创建一种函数规则</p>
+
+<pre class="prettyprint linenums bush:python" lang="python">#!/usr/bin/python
+# Filename: lambda.py
+
+def make_repeater(n):
+   return lambda s: s*n
+
+twice = make_repeater(2)
+
+print twice('word')
+print twice(5)</pre>
+
+
+<p>  twice就是创建出来的函数规则，参数2传进入构建了lambda表达式中的n，s值需要再指定，于是后面的word字符串和数字5就算是这个s了吧。了解到这种bt方法很有用，不过对于我这样的初学者来说，暂时还看不到前景：）</p>
+]]></content>
+  </entry>
+  
+</feed>

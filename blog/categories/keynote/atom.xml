@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: keynote | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/keynote/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[感谢一下Mac上的软件Keynote]]></title>
+    <link href="http://www.youth2009.org/blog/2011/05/17/thanks-to-keynote-in-mac/"/>
+    <updated>2011-05-17T17:07:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/05/17/thanks-to-keynote-in-mac</id>
+    <content type="html"><![CDATA[<p>今天下午去图书馆借书，被同学叫道了报告厅，说是mac做的一个ppt无法在学校的投影仪上播放，<a title="mac" href="http://www.youth2009.org/tag/mac/">mac</a>电脑的接口不能接到投影仪上，于是打算转成office支持的格式试试，我又担心失去很多绚丽的特效，不过听说只是一些图片而已，所以就放心了。</p>
+
+<p>到了报告厅，已经在讲了，迂回到第一排，看到了11.6寸的air。</p>
+
+<p>keynote有功能是export，一看格式还真不少──视频、ppt、图片、html、pdf、ipod果断选择了ppt的格式，几乎能用了。我也没怎么用过keynote，只是用了一段时间的pages，看来<a title="mac" href="http://www.youth2009.org/tag/mac/">mac</a>下的<a title="软件" href="http://www.youth2009.org/tag/%E8%BD%AF%E4%BB%B6/">软件</a>做得还都很人性化。感谢一下这些为用户着想的工程师们！！！</p>
+]]></content>
+  </entry>
+  
+</feed>

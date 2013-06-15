@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 网站 | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/wang-zhan/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[项目在冲刺]]></title>
+    <link href="http://www.youth2009.org/blog/2011/05/29/project-is-rushing/"/>
+    <updated>2011-05-29T06:48:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/05/29/project-is-rushing</id>
+    <content type="html"><![CDATA[<p>看着日期就要到最后提交的日子了，这几天一直都在写最后的几个功能，昨天写的是活动功能，基本上完工了吧，只是没有一个很好的展示效果。今天主要做做基础通知功能，这个功能完成后就能把以前的很多模块产生的消息应用起来，首页也有一个不断抓取消息的语句。其实还是接口抓取啦，不知道那些大型网站，比如新浪微博是如何做这个的，可能也是如此吧。</p>
+
+<p>其实这样想来，做一个即使聊天的东西也就是这样吧，不断从一个接口抓取消息，不断向一个地方发送消息即可，只是若这样实现，会不会对数据库的压力非常大呢？也许还有更好的办法处理即时消息，比如NoSQL？</p>
+
+<p>这两天睡眠质量很不好，早上都是5点多起来，晚上差不多11点睡下，时长和高中的日子差不多了，不过白天竟然没有困意，只是偶尔感觉很饿，不知道该买些什么样的吃得放在身边：）</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[好累，好紧张]]></title>
+    <link href="http://www.youth2009.org/blog/2011/04/26/tired-and-nnervous/"/>
+    <updated>2011-04-26T05:57:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/04/26/tired-and-nnervous</id>
+    <content type="html"><![CDATA[<p>两个项目离最后的日期越来越近了，其中一个似乎要延期，这是我最不希望的结果，因为按照计划，在我回家之前是一定会把两个项目都做完的，从家里回来就能够做自己的东西了。因为自己的那个东西时间也非常紧张，6月6日到期。接着是可恶的四级考试和期末考试、中科杯比赛，暑期实习，再回来的时候就是一个成熟的大三人员了：）</p>
+
+<p>以上都是理想状况：）</p>
+
+<p>现实呢？是疲劳的：）</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[了解自己]]></title>
+    <link href="http://www.youth2009.org/blog/2011/04/19/know-myself/"/>
+    <updated>2011-04-19T22:15:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/04/19/know-myself</id>
+    <content type="html"><![CDATA[<p>最近活跃在制作网站的大潮中，不过我发现我并不适合制作网站，或者说我不适合做程序员这行！因为我感觉自己在编制程序的过程中考虑得太多，这点能够体现出我“完美主义者”的特质，不过这对于自己、项目来说就是不可想象的后果──复杂度不知不觉提高，制作周期不知不觉延长……</p>
+
+<p>可能我现在养成了这样的一种看待事物的态度──先要否定这个事物，然后自己再构建出来，就好像一开始发现了不符合自己认识模式的事物再经过构建就属于自己的一样。站在局外的人看来这根本没有什么价值嘛，完全是你自己过分地多想了。可能这能够让自己接受一些东西，但对于那个事物本身并没有得到什么改善。</p>
+
+<p>情况就是这样。也许在我内心中有一个对软件、网站这些东西的一个抽象模型，自己在实践的时候又不断完善它们，使得自己一直处于迭代过程中。总体看来这有些像是“瀑布开发模型”，虽然理想，但实际上使用频率很低：（</p>
+
+<p>可能是自我感觉压力有点儿大吧，毕竟答应了别人的工作一定要做完才是我的原则，无论时间多么紧张，谁让我当初答应了呢？！几乎每次我都想，要是我这次做完了这些东西，我以后就再也不做这个了！但好像再过一段时间，我又将返回这股大潮中：）</p>
+
+<p>OK，首先我要先接受一个事物，先不要全然否定，只是反映出自己的看法，如果有机会、有兴趣再深入研究这个事物的发展规律，切不可再对那种根本无法改变事物本身的“胡思乱想”而浪费精力啦！！！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[网站开发告一段落]]></title>
+    <link href="http://www.youth2009.org/blog/2011/02/19/pause-website-development/"/>
+    <updated>2011-02-19T13:26:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/02/19/pause-website-development</id>
+    <content type="html"><![CDATA[<p>刚刚把一个比较大的功能完成了——日历。还有一个星期就要回去了，我这次回家拿回来的几本书还没有看完，PHP的那本书看得差不多了，还没有回头细看，可能还需要再带回去。《深入理解计算机系统》那本书没有看，打算剩下的这一个星期全看那本书，能看多少是多少，不能总和PHP为伍，毕竟回去了有不少人还是能帮我继续做网站的！</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: app | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/app/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[end-sorted]]></title>
+    <link href="http://www.youth2009.org/blog/2013/03/18/end-sorted/"/>
+    <updated>2013-03-18T22:10:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/03/18/end-sorted</id>
+    <content type="html"><![CDATA[<p>暂时终止sorted的开发，经历了两天痛苦的、没白没黑的、浑浑噩噩的探索后，还是没能搞定iPhone上一个icon的移动过程。实在不行我都打算直接去修改iconstate.plist文件了。。。但就是修改了不能马上响应，需要respring这点受不了！</p>
+
+<p>网上这方面的资料依然少的可怜，很多时间竟然是花在寻找headers文件了，最后才知道根本不需要。你只要有headers拿来看看就ok了，需要什么类的声明自己用@interface写在xm文件中就可以了。tweak的远离是做出dylib后加载，替代系统的api，headers文件对于你来说就是看，然后找需要哪些私有api即可。</p>
+
+<p>过两天兴致来了或许又再搞一下。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[big-break-in-tweak-app-build]]></title>
+    <link href="http://www.youth2009.org/blog/2013/03/17/big-break-in-tweak-app-build/"/>
+    <updated>2013-03-17T09:15:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/03/17/big-break-in-tweak-app-build</id>
+    <content type="html"><![CDATA[<p>昨晚弄到1点多也没搞定iOSOpenDev，总是编译出问题，在irc上问了一下也没人回答我，看来还是有很多人在泡irc的！</p>
+
+<p>睡前又看了一下各种文章，等起床打算还是回归theos搞搞试试。</p>
+
+<p>没想到早晨用theos搞了一下竟然ok了！或许是用对了theos的版本？不清楚了。</p>
+
+<p>theos我删掉了原来的，用github上的版本</p>
+
+<p><code>bash
+git clone git://github.com/DHowett/theos.git $THEOS
+</code></p>
+
+<p>ldid我自己编译的，因为dropbox上的总是很难下载</p>
+
+<p><code>bash
+git clone git://git.saurik.com/ldid.git
+cd ldid
+git submodule update --init
+./make.sh
+cp -f ./ldid $THEOS/bin/ldid
+</code></p>
+
+<p>有篇教程说在iOS上也安装perl和theos，我实在不清楚有什么用，不过我也安装了，蛋疼，具体方法看
+<a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started" target="_blank">这里</a></p>
+
+<p>headers用这里的：<a href="https://github.com/rpetrich/iphoneheaders" target="_blank"><a href="https://github.com/rpetrich/iphoneheaders">https://github.com/rpetrich/iphoneheaders</a></a>
+需要注意一点的是IOSurface这个framework，你需要增加一个新的头文件，在Mac系统中，可能还得注释掉两行，这取决于你是不是10.7版本的Mac系统。命令是：<code>cp /System/Library/Frameworks/IOSurface.framework/Headers/IOSurfaceAPI.h .</code>，在251和255行（我编译错误时候提示的就这两行），注释掉</p>
+
+<p>```objective-c
+/<em> This call lets you get an xpc_object_t that holds a reference to the IOSurface.
+  Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&rsquo;s global use
+  count by one until the object is destroyed. </em>/
+//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)
+//IOSFC_AVAILABLE_STARTING(<strong>MAC_10_7, </strong>IPHONE_NA);</p>
+
+<p>/<em> This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. </em>/
+//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)
+//IOSFC_AVAILABLE_STARTING(<strong>MAC_10_7, </strong>IPHONE_NA);
+```</p>
+
+<p>然后做你的tweak就可以了，我按照经典的heloworld例子搞了个hook，springboard中applicationDidFinishLaunching弹出alert，成功了。</p>
+
+<p>OS:10.8.3，SDKVERSION：6.1</p>
+
+<p>另外昨天说的设置theos的环境变量，我今天又重新加到了bash_profile中，发现make package install都能自动部署了。。。看来真是昨天theos版本的问题？！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[open-development-env-for-xcode]]></title>
+    <link href="http://www.youth2009.org/blog/2013/03/16/open-development-env-for-xcode/"/>
+    <updated>2013-03-16T20:40:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/03/16/open-development-env-for-xcode</id>
+    <content type="html"><![CDATA[<p>发现一个问题，使用theos这个makefile工具做app有很大困难，就是headers不好管理，真希望能集成到xcode中开发tweak，结果发现了一个神器&mdash;&mdash;iOSOpenDev。</p>
+
+<p>安装好之后就能发现xcode中已经有很多可用的template了，对于tweak来说，有logos和CaptaionHook。logos就是theos，captainhook是另一个hook框架。</p>
+
+<p>不过很可惜，可能是sdk6.1的问题，结合上springboard和uialertview后就从来没build success，总说armv7中的springboard link error或者uialertview linker error，是在不知道怎么办了，仔细又看了别人的做法，发现他们还在用sdk5.1，估计就是这点差异吧？</p>
+
+<p>彻夜下载sdk5.1.。。。。。。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[build-up-env-for-sorted]]></title>
+    <link href="http://www.youth2009.org/blog/2013/03/16/build-up-env-for-sorted/"/>
+    <updated>2013-03-16T17:40:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/03/16/build-up-env-for-sorted</id>
+    <content type="html"><![CDATA[<p>找到了一篇教程，开始构建jailbreaken app的环境。</p>
+
+<p>基本需要的工具</p>
+
+<p><code>bash
+export THEOS=/opt/theos
+svn co http://svn.howett.net/svn/theos/trunk $THEOS
+curl -s https://dl.dropboxusercontent.com/u/3157793/ldid &gt; $THEOS/bin/ldid; chmod +x $THEOS/bin/ldid
+brew install dpkg(如果出错安不上dpkg，那就先update一下brew，我就遇到这么个问题)
+</code>
+用theos模板创建项目，<code>$THEOS/bin/nic.pl</code>，这会在当前目录中创建你的项目，选择模板类型，然后起名字之类的，填好就ok。</p>
+
+<p>在创见出来的项目中有Makefile，里面有一个地方需要注意，就是<code>xxxx_FILES=</code>这里，后面的m和mm文件是你当前所有的，如果你自己加了新的，你需要手动添加进去。</p>
+
+<p>再加两个环境变量</p>
+
+<p><code>bash
+export SDKVERSION=6.1
+export THEOS_DEVICE_IP=10.0.0.101
+</code>
+目标sdk版本，我用6.1了，后一个是手机的ip，自己弄到一个wifi中吧，后面部署需要。</p>
+
+<p>make&amp;make package，在make的时候不加sudo我会无法make成功。</p>
+
+<p><code>bash
+sudo make
+sudo make package
+</code>
+本目录下的deb就可以放到设备上安装了，安装命令是<code>dpkg -i xxx.deb</code></p>
+
+<p>不过你可以用部署的方式，<code>make package install</code>，他会依赖你刚刚设置的IP部署，但我这里似乎有问题，估计是环境变量的问题，光提示我找不到THEOS_DEVICE_IP</p>
+
+<p>我就scp到了设备上，手动执行了dpkg的命令，然后respring竟然没效果，只好reboot了一下，看到了刚刚的app已经被安装上了！！！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[about-Sorted]]></title>
+    <link href="http://www.youth2009.org/blog/2013/03/16/about-sorted/"/>
+    <updated>2013-03-16T12:54:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/03/16/about-sorted</id>
+    <content type="html"><![CDATA[<p>早就考虑做这么一个app，不过拖延到现在了，再次佩服一下我的拖延症。</p>
+
+<p>Sorted是这样一个app，安装上之后就会跟踪你使用手机上app的习惯，根据使用频率给桌面的app排序，估计等你用一段时间之后，第一页的apps就是最常用的了。</p>
+
+<p>当然，这需要你的iPhone jailbreaken。</p>
+
+<p>刚刚用iFile找到了存放app list的地方，在/User/Library/SpringBoard/IconState.plist，plist就像是python中的dict，里面两个key分别是：buttonBar、iconLists。</p>
+
+<p>buttonBar中有个list，是底部Dock上的app标识，例如有：com.apple.mobilephone、com.apple.MobileSMS等。</p>
+
+<p>iconLists中又是一个list，内容也是list，每个list表示桌面某一页上的apps。</p>
+
+<p>不过有个问题是：如果我手动修改了这里的值，比如我交换某页两个app的位置，回到桌面并不会立刻看到效果，如果要看效果，需要respring&hellip;就是重启SpringBoard，这是我不能接受的。需要再看SpringBoard的私有api有没有提供这方面的支持了。</p>
+]]></content>
+  </entry>
+  
+</feed>

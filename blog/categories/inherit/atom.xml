@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: inherit | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/inherit/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-06-15T17:44:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[python的继承]]></title>
+    <link href="http://www.youth2009.org/blog/2011/06/05/inherit-in-python/"/>
+    <updated>2011-06-05T18:41:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/06/05/inherit-in-python</id>
+    <content type="html"><![CDATA[<p>python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:</p>
+
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+# -*- coding:utf-8 -*-
+# Filename : inherit.py
+
+class Person:
+   def __init__(self,name,age):
+       self.name = name
+       self.age = age
+       print "init for %s" % self.name
+
+   def tell(self):
+       print "name:%s age:%d" % (self.name,self.age)
+
+class Teacher(Person):
+   def __init__(self,name,age,salary):
+       Person.__init__(self,name,age)
+       self.salary = salary
+       print "init for teacher %s" % self.name
+
+   def tell(self):
+       Person.tell(self)
+       print "salary:%d" % self.salary
+
+p = Person('tianzhen',20)
+p.tell()
+
+tea_p = Teacher('zhenzhen',20,1010000000)
+tea_p.tell()</pre>
+
+]]></content>
+  </entry>
+  
+</feed>
