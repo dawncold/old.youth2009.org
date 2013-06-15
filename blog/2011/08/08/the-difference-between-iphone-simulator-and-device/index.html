@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;昨天1ST告诉我代码到了设备上有些地方不正常，我一直没用设备调试过，只是用模拟器，这次就用设备试试，没想到果然有些问题。&lt;/p&gt; 1.模拟器编译没有任何问题，但编译到设备就出现了8个错误，是因为继承后访问不到某些属性的问题。由于我在基类中用了property， &hellip;">
+  <meta name="description" content="昨天1ST告诉我代码到了设备上有些地方不正常，我一直没用设备调试过，只是用模拟器，这次就用设备试试，没想到果然有些问题。 1.模拟器编译没有任何问题，但编译到设备就出现了8个错误，是因为继承后访问不到某些属性的问题。由于我在基类中用了property，在子类中直接引用，这样看来不行， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,17 +104,13 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;昨天1ST告诉我代码到了设备上有些地方不正常，我一直没用设备调试过，只是用模拟器，这次就用设备试试，没想到果然有些问题。&lt;/p&gt;
-</code></pre>
+<div class="entry-content"><p>昨天1ST告诉我代码到了设备上有些地方不正常，我一直没用设备调试过，只是用模拟器，这次就用设备试试，没想到果然有些问题。</p>
 
 <p>1.模拟器编译没有任何问题，但编译到设备就出现了8个错误，是因为继承后访问不到某些属性的问题。由于我在基类中用了property，在子类中直接引用，这样看来不行，于是在子类中但凡是从基类中继承过来的成员，都使用了self来引用。</p>
 
-
 <p>2.在Organzer的设备console中查看输出的时候，发现有个地方应该输出东西了反而不输出，最终能够确认这个操作已经执行了，但就是不输出内容。也不知道怎么回事，我把原先的printf输出改成了nslog，竟然好了。由于使用的一个类是用c++写的，就没有使用nslog，这竟然在后来调试变成了大问题。</p>
 
-
 <p>哎，以后有什么调试工作还是连接设备进行吧，虽然启动比模拟器慢一点，但能够暴露出问题啊！</p>
-
 </div>
 
 
@@ -182,6 +178,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -195,10 +195,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

@@ -181,42 +181,42 @@
 </span><span class='line'><span class="c"># coding: utf-8</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>    <span class="n">i</span> <span class="o">=</span> <span class="n">first</span>
-</span><span class='line'>    <span class="n">j</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="k">while</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">middle</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">last</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
-</span><span class='line'>            <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-</span><span class='line'>            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="k">while</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">middle</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="k">while</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">last</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-</span><span class='line'>        <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">last</span> <span class="o">-</span> <span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>        <span class="n">arraylist</span><span class="p">[</span><span class="n">first</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>   <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>   <span class="n">i</span> <span class="o">=</span> <span class="n">first</span>
+</span><span class='line'>   <span class="n">j</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">middle</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">last</span><span class="p">:</span>
+</span><span class='line'>       <span class="k">if</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+</span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>           <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>       <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span><span class='line'>           <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">middle</span><span class="p">:</span>
+</span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>       <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">while</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">last</span><span class="p">:</span>
+</span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span><span class='line'>       <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">last</span> <span class="o">-</span> <span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>       <span class="n">arraylist</span><span class="p">[</span><span class="n">first</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">first</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">last</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">first</span> <span class="o">+</span> <span class="n">last</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-</span><span class='line'>        <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>   <span class="k">if</span> <span class="n">first</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">last</span><span class="p">:</span>
+</span><span class='line'>       <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">first</span> <span class="o">+</span> <span class="n">last</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">)</span>
+</span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>       <span class="n">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">425</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">arr</span>
-</span><span class='line'>    <span class="n">merge_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">arr</span>
+</span><span class='line'>   <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">425</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+</span><span class='line'>   <span class="k">print</span> <span class="n">arr</span>
+</span><span class='line'>   <span class="n">merge_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>   <span class="k">print</span> <span class="n">arr</span>
 </span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>谢谢<a href="http://www.codecho.com/merge-sort-and-quick-sort-in-python">这里</a>的帮助，我自己照着《算法导论》写了好久都出错，哎，自己在这类问题上有点笨。</p></p>
+<p>谢谢<a href="http://www.codecho.com/merge-sort-and-quick-sort-in-python">这里</a>的帮助，我自己照着《算法导论》写了好久都出错，哎，自己在这类问题上有点笨。</p>
 </div>
 
 
@@ -284,6 +284,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -297,10 +301,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

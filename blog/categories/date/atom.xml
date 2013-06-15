@@ -4,7 +4,7 @@
   <title><![CDATA[Category: date | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/date/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,16 +18,14 @@
     <link href="http://www.youth2009.org/blog/2011/05/30/js-data-object-in-four-browers/"/>
     <updated>2011-05-30T22:20:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/05/30/js-data-object-in-four-browers</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：</p>
 
-<br /><pre class="prettyprint linenums bush:jscript" lang="jscript">var da = '2000-01-01 00:00:00';
+<pre class="prettyprint linenums bush:jscript" lang="jscript">var da = '2000-01-01 00:00:00';
+var da_array = da.split(' ');
+var da_1 = da_array[0].split('-');
+var da_2 = da_array[1].split(':');
+alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
 
-
-<p>var da_array = da.split(&lsquo; &rsquo;);
-var da_1 = da_array[0].split(&lsquo;&ndash;&rsquo;);
-var da_2 = da_array[1].split(&lsquo;:&rsquo;);
-alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GFW | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/gfw/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -42,34 +42,31 @@
 
 <p>添加一个My Agents就可以了，何时运行那里我勾选了at startup or login，生成的plist会放在~/Library/LaunchAgents/中，生成的内容如下：</p>
 
-<p>```
-&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?>
-&lt;!DOCTYPE plist PUBLIC &ldquo;&ndash;//Apple//DTD PLIST 1.0//EN&rdquo; &ldquo;<a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd</a>&rdquo;>
-<plist version="1.0">
-<dict></p>
-
-<pre><code>&lt;key&gt;Label&lt;/key&gt;
+<p><code>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+&lt;key&gt;Label&lt;/key&gt;
 &lt;string&gt;autossh&lt;/string&gt;
 &lt;key&gt;ProgramArguments&lt;/key&gt;
 &lt;array&gt;
-    &lt;string&gt;/usr/local/bin/autossh&lt;/string&gt;
-    &lt;string&gt;-M&lt;/string&gt;
-    &lt;string&gt;20000&lt;/string&gt;
-    &lt;string&gt;-f&lt;/string&gt;
-    &lt;string&gt;-p&lt;/string&gt;
-    &lt;string&gt;9999&lt;/string&gt;
-    &lt;string&gt;-D&lt;/string&gt;
-    &lt;string&gt;9998&lt;/string&gt;
-    &lt;string&gt;google@8.8.8.8&lt;/string&gt;
-    &lt;string&gt;-N&lt;/string&gt;
+&lt;string&gt;/usr/local/bin/autossh&lt;/string&gt;
+&lt;string&gt;-M&lt;/string&gt;
+&lt;string&gt;20000&lt;/string&gt;
+&lt;string&gt;-f&lt;/string&gt;
+&lt;string&gt;-p&lt;/string&gt;
+&lt;string&gt;9999&lt;/string&gt;
+&lt;string&gt;-D&lt;/string&gt;
+&lt;string&gt;9998&lt;/string&gt;
+&lt;string&gt;google@8.8.8.8&lt;/string&gt;
+&lt;string&gt;-N&lt;/string&gt;
 &lt;/array&gt;
 &lt;key&gt;RunAtLoad&lt;/key&gt;
 &lt;true/&gt;
-</code></pre>
-
-<p></dict>
-</plist>
-```</p>
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></p>
 
 <p>至此，开机自动连接ssh，自由surfing吧。</p>
 ]]></content>

@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;在&lt;a href="http://www.deepvps.com/dropbox-backup.html" target="_blank"&gt;这里&lt;/a&gt;看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。&lt;/p&gt; &hellip;">
+  <meta name="description" content="在这里看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。 安装linux下的dropbox（我的是32为系统，如果是64位在下面地址末尾加上“_64”即可）： wget -O dropbox.tar.gz http://www.dropbox.com/download?plat &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,99 +104,80 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;在&lt;a href="http://www.deepvps.com/dropbox-backup.html" target="_blank"&gt;这里&lt;/a&gt;看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。&lt;/p&gt;
-</code></pre>
+<div class="entry-content"><p>在<a href="http://www.deepvps.com/dropbox-backup.html" target="_blank">这里</a>看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。</p>
 
 <p>安装linux下的dropbox（我的是32为系统，如果是64位在下面地址末尾加上“_64”即可）：</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">wget -O dropbox.tar.gz http://www.dropbox.com/download?plat=lnx.x86</pre>
-
-
-<br /><p>解压后在.dropbox-dist目录中有dropboxd可执行文件，让其在后台执行（就是在执行文件后面加“&amp;”符号）</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">wget -O dropbox.tar.gz http://www.dropbox.com/download?plat=lnx.x86</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">~/.dropbox-dist/dropboxd &amp;</pre>
+<p>解压后在.dropbox-dist目录中有dropboxd可执行文件，让其在后台执行（就是在执行文件后面加“&amp;”符号）</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">~/.dropbox-dist/dropboxd &amp;</pre>
 
 
-<br /><p>此后会出现一个地址，你得复制出来然后在浏览器中打开，之后就是注册或者登陆dropbox，这样就激活了在这台机器上的dropbox，就可以同步文件了。</p>
-
+<p>此后会出现一个地址，你得复制出来然后在浏览器中打开，之后就是注册或者登陆dropbox，这样就激活了在这台机器上的dropbox，就可以同步文件了。</p>
 
 <p>把需要同步备份的文件软连接到Dropbox这个目录中：</p>
 
+<pre class="prettyprint linenums bush:bash" lang="bash">cd ~/Dropbox
+ln -s /home/wwwroot/
+。。。</pre>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">cd ~/Dropbox
 
-
-<p>ln -s /home/wwwroot/
-。。。</pre></p>
-
-<br /><p>此时dropbox已经在帮你同步了，你可以通过web端观察。</p>
-
+<p>此时dropbox已经在帮你同步了，你可以通过web端观察。</p>
 
 <p>我看到的文章中带着一个自动运行的脚本，用sh写的，我发现在主机上运行没反应，不会sh，会点python，于是我改写了一下，也是可用的：</p>
 
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+import sys
+import os
+
+def start():
+print "Starting Dropbox..."
+os.system("~/.dropbox-dist/dropboxd &amp;")
 
 
-<h1>coding: utf-8</h1>
-
-<p>import sys
-import os</p>
-
-<p>def start():</p>
-
-<pre><code>print "Starting Dropbox..."
-os.system("~/.dropbox-dist/dropboxd &amp;amp;")
-</code></pre>
-
-<p>def stop():</p>
-
-<pre><code>print "Stoping Dropbox..."
+def stop():
+print "Stoping Dropbox..."
 os.system("pkill dropbox")
-</code></pre>
 
-<p>def restart():</p>
 
-<pre><code>stop()
+def restart():
+stop()
 start()
-</code></pre>
 
-<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
 
-<pre><code>action = sys.argv[1]
+if __name__ == "__main__":
+action = sys.argv[1]
 print "now action: %s" % action
 if action == 'start':
-    start()
+start()
 elif action == "stop":
-    stop()
+stop()
 elif action == "restart":
-    restart()
+restart()
 else:
-    print "Bad arguments!"&lt;/pre&gt;
-</code></pre>
-
-<br /><p>相应的crontab配置文件中这样写就好了：</p>
+print "Bad arguments!"</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">#auto dropbox
+<p>相应的crontab配置文件中这样写就好了：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">#auto dropbox
+0 4 * * * python /root/dropbox.py restart
+0 5 * * * python /root/dropbox.py stop</pre>
 
 
-<p>0 4 * * * python /root/dropbox.py restart
-0 5 * * * python /root/dropbox.py stop</pre></p>
+<p>如果没装crontab（极少情况），这样(也许你用apt-get来做这件事，我的是centos系统，用yum了)：</p>
 
-<br /><p>如果没装crontab（极少情况），这样(也许你用apt-get来做这件事，我的是centos系统，用yum了)：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">yum -y install crontab</pre>
+<pre class="prettyprint linenums bush:bash" lang="bash">yum -y install crontab</pre>
 
 
-<br /><p>python让我很快乐：）</p>
-
+<p>python让我很快乐：）</p>
 
 <p>一开始在python用的是exec来执行命令发现不可用，于是用了os.system，查看pydoc才发现exec是执行python code用的……惭愧！</p>
-
 </div>
 
 
@@ -264,6 +245,10 @@ else:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -277,10 +262,6 @@ else:
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

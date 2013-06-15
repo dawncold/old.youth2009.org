@@ -125,9 +125,11 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
+<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>备份
 </span><span class='line'>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original&lt;/pre&gt;
-</span><span class='line'>&lt;br /&gt;10.8.1 or 10.7.5 or newer
+</span><span class='line'>
+</span><span class='line'>10.8.1 or 10.7.5 or newer
 </span><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x4D)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
 </span></code></pre></td></tr></table></div></figure>
 
@@ -305,6 +307,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -318,10 +324,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

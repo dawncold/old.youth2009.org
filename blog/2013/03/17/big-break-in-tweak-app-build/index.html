@@ -149,15 +149,15 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 </pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="cm">/* This call lets you get an xpc_object_t that holds a reference to the IOSurface.</span>
-</span><span class='line'><span class="cm">   Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&#39;s global use</span>
-</span><span class='line'><span class="cm">   count by one until the object is destroyed. */</span>
+</span><span class='line'><span class="cm">  Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&#39;s global use</span>
+</span><span class='line'><span class="cm">  count by one until the object is destroyed. */</span>
 </span><span class='line'><span class="c1">//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)</span>
-</span><span class='line'>  <span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
+</span><span class='line'><span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
 </span><span class='line'>
 </span><span class='line'>
 </span><span class='line'><span class="cm">/* This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. */</span>
 </span><span class='line'><span class="c1">//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)</span>
-</span><span class='line'>  <span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
+</span><span class='line'><span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -233,6 +233,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -246,10 +250,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

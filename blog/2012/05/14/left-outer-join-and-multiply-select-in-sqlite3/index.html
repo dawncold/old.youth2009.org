@@ -9,7 +9,8 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。&lt;/p&gt; 左外连接查询比两次select快10～20%左右。 #! /usr/bin/env python coding: utf-8 &hellip;">
+  <meta name="description" content="通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。 左外连接查询比两次select快10～20%左右。 #! /usr/bin/env python
+# coding: utf-8 import sqlite3 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,119 +105,93 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。&lt;/p&gt;
-</code></pre>
+<div class="entry-content"><p>通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。</p>
 
 <p>左外连接查询比两次select快10～20%左右。</p>
 
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-
-
-<h1>coding: utf-8</h1>
-
-<p>import sqlite3
+import sqlite3
 import os
 import time
-import random</p>
+import random
 
-<p>def connect():</p>
+def connect():
+return sqlite3.connect('./test.db')
 
-<pre><code>return sqlite3.connect('./test.db')
-</code></pre>
 
-<p>def insertProgress(conn, user_id):</p>
-
-<pre><code>cur = conn.execute('INSERT INTO todo(title, date) VALUES(?,?)', ['just test!!!', time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())])
+def insertProgress(conn, user_id):
+cur = conn.execute('INSERT INTO todo(title, date) VALUES(?,?)', ['just test!!!', time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())])
 conn.execute('INSERT INTO todo_meta(todo_id, user_id) VALUES(?,?)', [cur.lastrowid, user_id])
-</code></pre>
 
-<p>def insertManyData(conn):</p>
 
-<pre><code>#reset database
-os.system('sqlite3 test.db &amp;lt; schema.sql')
+def insertManyData(conn):
+#reset database
+os.system('sqlite3 test.db &lt; schema.sql')
 
 conn.cursor()
 counts = [0,0,0,0,0,0]
 for i in xrange(100000):
-    userid = random.choice([0, 1, 2, 3, 4, 5])
-    counts[userid] += 1
-    insertProgress(conn, userid)
+userid = random.choice([0, 1, 2, 3, 4, 5])
+counts[userid] += 1
+insertProgress(conn, userid)
 conn.commit()
 conn.close()
 print counts
-</code></pre>
 
-<p>def selectUsingLeftOuterJoin(conn, user_id):</p>
-
-<pre><code>conn.cursor()
+def selectUsingLeftOuterJoin(conn, user_id):
+conn.cursor()
 cur = conn.execute('SELECT t.title, t.date \
-        FROM todo t LEFT OUTER JOIN todo_meta tm \
-        ON tm.todo_id = t.id\WHERE tm.user_id = ?', [user_id])
-</code></pre>
-
-<p>def selectTwoTimes(conn, user_id):</p>
-
-<pre><code>conn.cursor()
+FROM todo t LEFT OUTER JOIN todo_meta tm \
+ON tm.todo_id = t.id\WHERE tm.user_id = ?', [user_id])
+def selectTwoTimes(conn, user_id):
+conn.cursor()
 cur = conn.execute('SELECT todo_id FROM todo_meta WHERE user_id = ?', [user_id])
 for tid in [row[0] for row in cur.fetchall()]:
-    cur = conn.execute('SELECT title, date FROM todo WHERE id = ?', [tid])
-</code></pre>
+cur = conn.execute('SELECT title, date FROM todo WHERE id = ?', [tid])
 
-<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
-
-<pre><code>uids = [0, 1, 2, 3, 4, 5]
+if __name__ == "__main__":
+uids = [0, 1, 2, 3, 4, 5]
 insert_time_start = time.time()
 insertManyData(connect())
 print "Insert Time: %f" % (time.time() - insert_time_start)
 select_ULOJ_start = time.time()
 for uid in uids:
-    selectUsingLeftOuterJoin(connect(), uid)
+selectUsingLeftOuterJoin(connect(), uid)
 print "Select Using Left Outer Join time: %f" % (time.time() - select_ULOJ_start)
 select_two_times = time.time()
 for uid in uids:
-        selectTwoTimes(connect(), uid)
-print "Select Two Times time: %f" % (time.time() - select_two_times)&lt;/pre&gt;
-</code></pre>
-
-<br /><p>schema：</p>
+selectTwoTimes(connect(), uid)
+print "Select Two Times time: %f" % (time.time() - select_two_times)</pre>
 
 
-<br /><pre class="prettyprint linenums bush:sql" lang="sql">drop table if exists todo;
+<p>schema：</p>
 
-
-<p>drop table if exists user;
+<pre class="prettyprint linenums bush:sql" lang="sql">drop table if exists todo;
+drop table if exists user;
 drop table if exists todo_meta;
-create table todo (</p>
-
-<pre><code>id integer primary key autoincrement,
+create table todo (
+id integer primary key autoincrement,
 title string not null,
 date datetime not null
-</code></pre>
-
-<p>);
-create table user (</p>
-
-<pre><code>id integer primary key autoincrement,
+);
+create table user (
+id integer primary key autoincrement,
 email string not null,
 password string not null,
 nickname string not null,
 salt string not null
-</code></pre>
-
-<p>);
-create table todo_meta (</p>
-
-<pre><code>todo_id integer,
+);
+create table todo_meta (
+todo_id integer,
 user_id integer,
 foreign key(todo_id) references todo(id),
 foreign key(user_id) references user(id)
-</code></pre>
+);</pre>
 
-<p>);</pre></p>
 
-<br /><p>启动脚本就会创建数据库并开始测试。</p>
-
+<p>启动脚本就会创建数据库并开始测试。</p>
 </div>
 
 
@@ -284,6 +259,10 @@ foreign key(user_id) references user(id)
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -297,10 +276,6 @@ foreign key(user_id) references user(id)
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

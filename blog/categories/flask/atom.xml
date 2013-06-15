@@ -4,7 +4,7 @@
   <title><![CDATA[Category: flask | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/flask/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -55,8 +55,7 @@ app.jinja_env.add_extension("jinja2.ext.do")
 {# for item in order.items #}
 {# total_price = item.meal.price * item.quantity #}</p>
 
-<p class = "order_list_item"></p>
-
+<p><p class = "order_list_item"></p>
 
 <p>{# endfor #}
 </td>
@@ -70,10 +69,8 @@ app.jinja_env.add_extension("jinja2.ext.do")
 &hellip;&hellip;
 {# set prices = [] #}
 {# for item in order.items #}
-{# do prices.append(item.meal.price * item.quantity) #}</p>
-
+{# do prices.append(item.meal.price * item.quantity) #}
 <p class = "order_list_item"></p>
-
 
 <p>{# endfor #}
 </td>
@@ -90,23 +87,19 @@ app.jinja_env.add_extension("jinja2.ext.do")
     <link href="http://www.youth2009.org/blog/2012/07/05/validation-of-filefield-in-wtforms/"/>
     <updated>2012-07-05T20:17:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/07/05/validation-of-filefield-in-wtforms</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;本来打算针对上传的图片进行验证，不过发现在form中加入enctype属性之后原本针对FileField的验证就不管用了，field.data始终是None，但是去掉enctype属性就ok，不过去掉之后不能上传文件了，所以最终只好去掉验证，在request中进行验证。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>本来打算针对上传的图片进行验证，不过发现在form中加入enctype属性之后原本针对FileField的验证就不管用了，field.data始终是None，但是去掉enctype属性就ok，不过去掉之后不能上传文件了，所以最终只好去掉验证，在request中进行验证。</p>
 
 <p>比如我是这样验证没有选择图片的：</p>
 
-
-<br /><pre class="prettyprint linenums bush:python" lang="python">form = xxxForm(request.form)
-
-
-<p>f = request.files[&ldquo;image&rdquo;]
+<pre class="prettyprint linenums bush:python" lang="python">form = xxxForm(request.form)
+f = request.files["image"]
 if len(f.filename) == 0:
-  form.image.errors = ValidationError(u"need a pic file!!!&ldquo;)
-  return render_template("xxx&rdquo;, form = form)
-&hellip;&hellip;</pre></p>
+ form.image.errors = ValidationError(u"need a pic file!!!")
+ return render_template("xxx", form = form)
+......</pre>
 
-<br /><p>如果有不同的见解请告诉我哦！</p>
 
+<p>如果有不同的见解请告诉我哦！</p>
 ]]></content>
   </entry>
   
@@ -115,42 +108,35 @@ if len(f.filename) == 0:
     <link href="http://www.youth2009.org/blog/2012/07/02/deploy-flask-on-my-vps/"/>
     <updated>2012-07-02T20:46:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/07/02/deploy-flask-on-my-vps</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;一开始我也是用web.py的，不料接受不了它的session处理，然后离开，Django这种庞大的东西我是没精力去研究了，当然开始也伴随激情看过文档，没坚持下去，后来和强锅一起找了不少框架做东西，我实践性比较强，就找到了Flask，感觉还挺好用的，做了一个todo，有兴趣可以看：http://todo.wodeyitian.com。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>一开始我也是用web.py的，不料接受不了它的session处理，然后离开，Django这种庞大的东西我是没精力去研究了，当然开始也伴随激情看过文档，没坚持下去，后来和强锅一起找了不少框架做东西，我实践性比较强，就找到了Flask，感觉还挺好用的，做了一个todo，有兴趣可以看：<a href="http://todo.wodeyitian.com%E3%80%82">http://todo.wodeyitian.com%E3%80%82</a></p>
 
 <p>原先部署在dotcloud上，刚刚在自己的VPS上完成了nginx+uwsgi+flask的集成，当然还是没有废弃掉php，为了好几个博客嘛～</p>
 
-
 <p>总的来说就是用virtualenv来创建各个app的目录，在里面安装需要的环境（flask、mysql-python、beautifulsoup4等等吧），nginx的配置大概如下：</p>
 
+<pre class="prettyprint linenums bush:bash" lang="bash">server {
+     listen       80;
+     server_name  todo.wodeyitian.com;
+     location / {
+               include uwsgi_params;
+               uwsgi_pass 127.0.0.1:9090;
+               uwsgi_param UWSGI_PYHOME /home/wwwroot/python_app_todo;
+               uwsgi_param UWSGI_CHDIR /home/wwwroot/python_app_todo/app_dir;
+               uwsgi_param UWSGI_SCRIPT todoApp:app;
+     }
+}</pre>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">server {
 
-
-<pre><code>  listen       80;
-  server_name  todo.wodeyitian.com;
-  location / {
-            include uwsgi_params;
-            uwsgi_pass 127.0.0.1:9090;
-            uwsgi_param UWSGI_PYHOME /home/wwwroot/python_app_todo;
-            uwsgi_param UWSGI_CHDIR /home/wwwroot/python_app_todo/app_dir;
-            uwsgi_param UWSGI_SCRIPT todoApp:app;
-  }
-</code></pre>
-
-<p>}</pre></p>
-
-<br /><p>UWSGI_PYHOME是app的主目录，下面的CHDIR是app中py文件所在的目录，这个可以自己设置，下面的SCRIPT是入口脚本模块名和变量名，模块就是文件名喽，变量一般在flask都是用app作为整个网站的入口变量，写过python基本都能明白这个。</p>
-
+<p>UWSGI_PYHOME是app的主目录，下面的CHDIR是app中py文件所在的目录，这个可以自己设置，下面的SCRIPT是入口脚本模块名和变量名，模块就是文件名喽，变量一般在flask都是用app作为整个网站的入口变量，写过python基本都能明白这个。</p>
 
 <p>安装好uwsgi后可以配置开启：</p>
 
+<pre class="prettyprint linenums bush:bash" lang="bash">uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost</pre>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost</pre>
 
 
-<br /><p style="text-align: left;">使用9090端口监听，-M开启主控线程，-p 4是开启4个线程，-t 30是超过30秒不响应丢弃，limit-as 128是限制128Mb的内存占用，-R 10000是超过10000的请求就自动<span style="font-family: Verdana, sans-serif, 宋体;"><span style="line-height: 24px;">respawn（似乎是自动复制？重启？之类的），-d是日志，--vhost这个可以让多个app共用一个uwsgi，很好用的！</span></span></p>
 
+<p><p style="text-align: left;">使用9090端口监听，-M开启主控线程，-p 4是开启4个线程，-t 30是超过30秒不响应丢弃，limit-as 128是限制128Mb的内存占用，-R 10000是超过10000的请求就自动<span style="font-family: Verdana, sans-serif, 宋体;"><span style="line-height: 24px;">respawn（似乎是自动复制？重启？之类的），-d是日志，&mdash;vhost这个可以让多个app共用一个uwsgi，很好用的！</span></span></p>
 ]]></content>
   </entry>
   
@@ -159,17 +145,13 @@ if len(f.filename) == 0:
     <link href="http://www.youth2009.org/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3/"/>
     <updated>2012-05-14T17:00:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;最近写了一个todo的webapp，在用户登陆的时候是select数据库中的内容进行对比判断，当然如果select的内容是0那就表示用户登陆失败了，可能账号或者密码写错了，数据库用的sqlite3，在python的api中发现有cursor.rowcount可用，于是就这么判断一下是不是有数据被select出来了，没想到这样判断是错误的。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>最近写了一个todo的webapp，在用户登陆的时候是select数据库中的内容进行对比判断，当然如果select的内容是0那就表示用户登陆失败了，可能账号或者密码写错了，数据库用的sqlite3，在python的api中发现有cursor.rowcount可用，于是就这么判断一下是不是有数据被select出来了，没想到这样判断是错误的。</p>
 
 <p>select的rowcount永远为-1，哎，这里着实坑了我一番啊～</p>
 
-
 <p>只好cursor.fetchone()先，然后判断得到的内容是不是None。</p>
 
-
 <p>从<a href="http://stackoverflow.com/questions/839069/cursor-rowcount-always-1-in-sqlite3-in-python3k" target="_blank">这里</a>得到的答案。</p>
-
 ]]></content>
   </entry>
   

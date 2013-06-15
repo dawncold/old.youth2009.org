@@ -4,7 +4,7 @@
   <title><![CDATA[Category: form tag | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/form-tag/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,14 +18,11 @@
     <link href="http://www.youth2009.org/blog/2012/02/14/differentiate-form-for-and-form-tag/"/>
     <updated>2012-02-14T19:34:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/02/14/differentiate-form-for-and-form-tag</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][:username]，前面的:user是我给form_for的第一个参数，这个form的所有信息都得加[:user]这样的前缀才能得到了，让我十分痛苦（又加上是个2.14）&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][:username]，前面的:user是我给form_for的第一个参数，这个form的所有信息都得加[:user]这样的前缀才能得到了，让我十分痛苦（又加上是个2.14）</p>
 
 <p>使用form_tag后对于它的action不太会控制，所幸不写参数了，正好action指向本地址，省事儿！</p>
 
-
 <p>感谢<a href="http://blog.csdn.net/babylon_0049/article/details/4730763">这里</a>写的内容</p>
-
 ]]></content>
   </entry>
   

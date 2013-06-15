@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！&lt;/p&gt; 修改一下/usr/local的权限：(如果不修改的话， &hellip;">
+  <meta name="description" content="刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！ 修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,56 +104,45 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！&lt;/p&gt;
-</code></pre>
+<div class="entry-content"><p>刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！</p>
 
 <p>修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/bin中的情况，如果不能自动创建链接过去的话，麻烦是一个方面，关键是后面做的一些工作基本都白费了，可能你运行的一个软件是在/usr/bin中存在的，那样就不会自动搜索到你用brew安装的那个了。详情找找brew的工作原理吧：)</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo chown -R `whoami` /usr/local</pre>
-
-
-<br /><p>首先我用了大家推荐的Homwbrew管理工具，这里安装完homebrew后需要在自己的bash配置文件中加入新的path：</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">sudo chown -R `whoami` /usr/local</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">export PATH=/usr/local/bin:$PATH</pre>
+<p>首先我用了大家推荐的Homwbrew管理工具，这里安装完homebrew后需要在自己的bash配置文件中加入新的path：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">export PATH=/usr/local/bin:$PATH</pre>
 
 
-<br /><p>把这行加入到bash_profile中吧，这样就能让homebrew发挥作用了，你首先就能用上更新了的程序而不是从默认路径查找。（如果以前用了MacPorts的话你也会和我一样看到MacPorts的export命令，要去掉他们，或者你把Homebrew的export命令写在下面，这样能覆盖掉，既然我已经删除了MacPorts，所以干脆删除掉！）</p>
-
+<p>把这行加入到bash_profile中吧，这样就能让homebrew发挥作用了，你首先就能用上更新了的程序而不是从默认路径查找。（如果以前用了MacPorts的话你也会和我一样看到MacPorts的export命令，要去掉他们，或者你把Homebrew的export命令写在下面，这样能覆盖掉，既然我已经删除了MacPorts，所以干脆删除掉！）</p>
 
 <p>关闭terminal，重新加载刚才的bash_profile，这样就能用Homebrew了。</p>
 
-
 <p>首先安装git，自己和Homwbrew都用得到：</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">brew install git</pre>
-
-
-<br /><p>接着更新一下Homebrew的源：</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">brew install git</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">brew update</pre>
+<p>接着更新一下Homebrew的源：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">brew update</pre>
 
 
-<br /><p>然后安装了ruby后就能用gem来更新系统了：</p>
-
+<p>然后安装了ruby后就能用gem来更新系统了：</p>
 
 <p>安装ruby：</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">brew install ruby</pre>
-
-
-<br /><p>更新系统：</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">brew install ruby</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">gem update --system</pre>
+<p>更新系统：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">gem update --system</pre>
 
 
-<br /><p>后面的安装rails等操作就可以用gem来做了，看看自己的ruby版本，已经是1.9.3p0(2011-10-30)</p>
-
+<p>后面的安装rails等操作就可以用gem来做了，看看自己的ruby版本，已经是1.9.3p0(2011-10-30)</p>
 </div>
 
 
@@ -221,6 +210,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -234,10 +227,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

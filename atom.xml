@@ -4,7 +4,7 @@
   <title><![CDATA[dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,24 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[some-sed-work]]></title>
+    <link href="http://www.youth2009.org/blog/2013/06/15/some-sed-work/"/>
+    <updated>2013-06-15T16:34:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/06/15/some-sed-work</id>
+    <content type="html"><![CDATA[<p>博客内容是从wordpress转过来的，不可避免有很多地方没转换好，当时懒得弄，今天得空学习Shell编程，讲到了sed，就又搞了一下，基本满意了。</p>
+
+<p>以前用sed替换过分类等简单的文字错误，今天主要是把一些html给替换掉了。</p>
+
+<p>把<code>&lt;p&gt;</code>删掉，在删掉<code>&lt;/p&gt;以及&lt;br /&gt;</code>后面加换行等：</p>
+
+<p><code>sed -i "" -e 's;&lt;/p&gt;;\'$'\n;g' *.markdown</code>
+<code>sed -i "" -e 's;&lt;br /&gt;;\'$'\n;g' *.markdown</code></p>
+
+<p>需要注意的是Mac OS中的sed和我看到的很不一样，所以这个替换都是特殊的，来自<a href="http://cafenate.wordpress.com/2010/12/05/newlines-in-sed-on-mac/">这里</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[dog-pile-effect]]></title>
@@ -88,23 +106,23 @@
 </span><span class='line'>&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
 </span><span class='line'>&lt;plist version="1.0"&gt;
 </span><span class='line'>&lt;dict&gt;
-</span><span class='line'>  &lt;key&gt;Label&lt;/key&gt;
-</span><span class='line'>  &lt;string&gt;autossh&lt;/string&gt;
-</span><span class='line'>  &lt;key&gt;ProgramArguments&lt;/key&gt;
-</span><span class='line'>  &lt;array&gt;
-</span><span class='line'>      &lt;string&gt;/usr/local/bin/autossh&lt;/string&gt;
-</span><span class='line'>      &lt;string&gt;-M&lt;/string&gt;
-</span><span class='line'>      &lt;string&gt;20000&lt;/string&gt;
-</span><span class='line'>      &lt;string&gt;-f&lt;/string&gt;
-</span><span class='line'>      &lt;string&gt;-p&lt;/string&gt;
-</span><span class='line'>      &lt;string&gt;9999&lt;/string&gt;
-</span><span class='line'>      &lt;string&gt;-D&lt;/string&gt;
-</span><span class='line'>      &lt;string&gt;9998&lt;/string&gt;
-</span><span class='line'>      &lt;string&gt;google@8.8.8.8&lt;/string&gt;
-</span><span class='line'>      &lt;string&gt;-N&lt;/string&gt;
-</span><span class='line'>  &lt;/array&gt;
-</span><span class='line'>  &lt;key&gt;RunAtLoad&lt;/key&gt;
-</span><span class='line'>  &lt;true/&gt;
+</span><span class='line'>&lt;key&gt;Label&lt;/key&gt;
+</span><span class='line'>&lt;string&gt;autossh&lt;/string&gt;
+</span><span class='line'>&lt;key&gt;ProgramArguments&lt;/key&gt;
+</span><span class='line'>&lt;array&gt;
+</span><span class='line'>&lt;string&gt;/usr/local/bin/autossh&lt;/string&gt;
+</span><span class='line'>&lt;string&gt;-M&lt;/string&gt;
+</span><span class='line'>&lt;string&gt;20000&lt;/string&gt;
+</span><span class='line'>&lt;string&gt;-f&lt;/string&gt;
+</span><span class='line'>&lt;string&gt;-p&lt;/string&gt;
+</span><span class='line'>&lt;string&gt;9999&lt;/string&gt;
+</span><span class='line'>&lt;string&gt;-D&lt;/string&gt;
+</span><span class='line'>&lt;string&gt;9998&lt;/string&gt;
+</span><span class='line'>&lt;string&gt;google@8.8.8.8&lt;/string&gt;
+</span><span class='line'>&lt;string&gt;-N&lt;/string&gt;
+</span><span class='line'>&lt;/array&gt;
+</span><span class='line'>&lt;key&gt;RunAtLoad&lt;/key&gt;
+</span><span class='line'>&lt;true/&gt;
 </span><span class='line'>&lt;/dict&gt;
 </span><span class='line'>&lt;/plist&gt;</span></code></pre></td></tr></table></div></figure>
 
@@ -198,15 +216,15 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 </pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="cm">/* This call lets you get an xpc_object_t that holds a reference to the IOSurface.</span>
-</span><span class='line'><span class="cm">   Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&#39;s global use</span>
-</span><span class='line'><span class="cm">   count by one until the object is destroyed. */</span>
+</span><span class='line'><span class="cm">  Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&#39;s global use</span>
+</span><span class='line'><span class="cm">  count by one until the object is destroyed. */</span>
 </span><span class='line'><span class="c1">//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)</span>
-</span><span class='line'>  <span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
+</span><span class='line'><span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
 </span><span class='line'>
 </span><span class='line'>
 </span><span class='line'><span class="cm">/* This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. */</span>
 </span><span class='line'><span class="c1">//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)</span>
-</span><span class='line'>  <span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
+</span><span class='line'><span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -324,11 +342,11 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">other_firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">num</span><span class="p">,</span> <span class="n">nums</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[]</span>
-</span><span class='line'>  <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">nums</span>
+</span><span class='line'> <span class="n">num</span><span class="p">,</span> <span class="n">nums</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[]</span>
+</span><span class='line'> <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>   <span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</span><span class='line'>   <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'> <span class="k">return</span> <span class="n">nums</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -342,10 +360,10 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
-</span><span class='line'>    <span class="k">yield</span> <span class="n">num</span>
-</span><span class='line'>    <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'> <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>   <span class="k">yield</span> <span class="n">num</span>
+</span><span class='line'>   <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -392,33 +410,33 @@
 </span><span class='line'><span class="kn">import</span> <span class="nn">time</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
-</span><span class='line'>    <span class="k">yield</span> <span class="n">num</span>
-</span><span class='line'>    <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'> <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>   <span class="k">yield</span> <span class="n">num</span>
+</span><span class='line'>   <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">other_firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">num</span><span class="p">,</span> <span class="n">nums</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[]</span>
-</span><span class='line'>  <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">nums</span>
+</span><span class='line'> <span class="n">num</span><span class="p">,</span> <span class="n">nums</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[]</span>
+</span><span class='line'> <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>   <span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</span><span class='line'>   <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'> <span class="k">return</span> <span class="n">nums</span>
 </span><span class='line'>
 </span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="n">func_wrap</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwards</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">s</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-</span><span class='line'>  <span class="n">r</span> <span class="o">=</span> <span class="n">func_wrap</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwards</span><span class="p">))</span>
-</span><span class='line'>  <span class="n">e</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&#39;return: </span><span class="si">%s</span><span class="s">   use </span><span class="si">%f</span><span class="s"> ms[s: </span><span class="si">%s</span><span class="s">, e: </span><span class="si">%s</span><span class="s">]&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="p">(</span><span class="n">e</span> <span class="o">-</span> <span class="n">s</span><span class="p">),</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+</span><span class='line'> <span class="n">s</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span><span class='line'> <span class="n">r</span> <span class="o">=</span> <span class="n">func_wrap</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwards</span><span class="p">))</span>
+</span><span class='line'> <span class="n">e</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span><span class='line'> <span class="k">print</span> <span class="s">&#39;return: </span><span class="si">%s</span><span class="s">   use </span><span class="si">%f</span><span class="s"> ms[s: </span><span class="si">%s</span><span class="s">, e: </span><span class="si">%s</span><span class="s">]&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="p">(</span><span class="n">e</span> <span class="o">-</span> <span class="n">s</span><span class="p">),</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-</span><span class='line'>  <span class="n">timer</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">firstn</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">timer</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">other_firstn</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
+</span><span class='line'> <span class="n">timer</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">firstn</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
+</span><span class='line'> <span class="n">timer</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">other_firstn</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
 </span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>
 </span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">main</span><span class="p">()</span>
+</span><span class='line'> <span class="n">main</span><span class="p">()</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -472,35 +490,29 @@
 
 <p>1.使用brew安装dnsmasq</p>
 
-<pre><code>brew install dnsmasq
-</code></pre>
+<p>brew install dnsmasq</p>
 
 <p>2.修改一下dnsmasq的配置文件名字</p>
 
-<pre><code>cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf
-</code></pre>
+<p>cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf</p>
 
 <p>3.加入MacOS的启动项中</p>
 
-<pre><code>sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons
-</code></pre>
+<p>sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons</p>
 
 <p>4.加载并启动dnsmasq，如果没有出现什么错误就开始配置dnsmasq</p>
 
-<pre><code>sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
-</code></pre>
+<p>sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist</p>
 
 <p>5.配置dnsmasq，把no-resolve的注释去掉，加入<code>server=xxx.xxx.xxx.xxx#nnnn</code></p>
 
-<pre><code>mate /usr/local/etc/dnsmasq.conf
+<p>mate /usr/local/etc/dnsmasq.conf</p>
 
-server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比如v2ex那个用3389
-</code></pre>
+<p>server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比如v2ex那个用3389</p>
 
 <p>6.重启dnsmasq</p>
 
-<pre><code>sudo launchctl stop homebrew.mxcl.dnsmasq
-</code></pre>
+<p>sudo launchctl stop homebrew.mxcl.dnsmasq</p>
 
 <p>其实无需再执行<code>sudo launchctl start homebrew.mxcl.dnsmasq</code>这句了，因为你load了plist进去就已经启动了，如果此时stop的话会再自动start，所以没必要再start。要想关闭请使用unload（就修改上面的4即可）</p>
 
@@ -517,8 +529,7 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
     <id>http://www.youth2009.org/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error</id>
     <content type="html"><![CDATA[<p>前几天需要把本机的VMware虚拟机文件拷到工作机器上用，但文件比较大，有30G，U盘不行，无线共享太慢，网线直连无奈工作机器百兆网卡不给力还是慢，分割了我的TimeMachine备份盘，但用完后再合并划分出去的分区就出问题了，提示：</p>
 
-<pre><code>Couldn’t modify partition map because file system verification failed error
-</code></pre>
+<p>Couldn’t modify partition map because file system verification failed error</p>
 
 <p>此时可以Verify一下这个硬盘，如果有错误就repair，相信这里没问题的都应该可以再合并了吧，我这里还是出问题了，在提示repair complete之后出现了一个错误，好像是boot什么的错误，建议我reformat，再弄backup file，backup file too many？？记不清楚了，再合并一次分区，不行的话果断erase掉，再backup，反正现在backup都用不上，趁着清理一下也好。</p>
 ]]></content>
@@ -580,28 +591,6 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
     <content type="html"><![CDATA[<p>项目中有使用pytz这个第三方库来处理datetiem相关的东西。不过最近测试的时候发现，创建了一个时间点后，最终得到的时间点和预想的时间点有6分钟的误差，从网上搜到的资料是这样解决的：详情看<a href="http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1">http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1</a></p>
 
 <p>创建datetime的时候，特别是带timezone，需要localize一下，否则在使用pytz的时候就会出现这6分钟的差异。代码中首先创建了datetime，然后localize后再replace了timezone为pytz的，最终还astimezone为pytz.utc。我们是使用utc的，你的代码也许不需要：）</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[NAT实践]]></title>
-    <link href="http://www.youth2009.org/blog/2012/10/09/nat-practical/"/>
-    <updated>2012-10-09T14:09:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/10/09/nat-practical</id>
-    <content type="html"><![CDATA[<p>昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3.20这台container来处理，相应的response也会返回过去。这样就做到了服务隔离。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to 10.0.3.20
-</span><span class='line'>sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT --to 200.200.200.25
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样就把进入的请求都发到了10.0.3.20这台container上去处理。</p>
-
-<p><img src="http://pic.yupoo.com/dawncold0/CkkIbzDr/medish.jpg" alt="nat" /></p>
-
-<p>只默认开了一个nginx，就这样的效果。</p>
 ]]></content>
   </entry>
   

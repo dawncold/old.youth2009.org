@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １. &hellip;">
+  <meta name="description" content="这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １.安装git就不再多说了 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,62 +104,49 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １.安装git就不再多说了，我似乎把redhat中的一个仓库加入了rpm，直接yum install -y git安装了，不如下载源代码安装的git版本高，我这里似乎只有１.５的版本。 ２.我使用了gitosis来管理所有的项目，所以：  &lt;/p&gt;
-</code></pre>
+<div class="entry-content"><p>这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １.安装git就不再多说了，我似乎把redhat中的一个仓库加入了rpm，直接yum install -y git安装了，不如下载源代码安装的git版本高，我这里似乎只有１.５的版本。 ２.我使用了gitosis来管理所有的项目，所以：  </p>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">yum install python-setuptools
-
-
-<p>git clone git://eagain.net/gitosis.git
+<pre class="prettyprint linenums bush:bash" lang="bash">yum install python-setuptools
+git clone git://eagain.net/gitosis.git
 cd gitosis
-python setup.py install </pre></p>
-
-<br /><p>３.安装好了就可以初始化gitosis，还得先建立一个git的用户来做一些工作：  </p>
+python setup.py install </pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">useradd -m -s /bin/bash -d /home/git git
+<p>３.安装好了就可以初始化gitosis，还得先建立一个git的用户来做一些工作：  </p>
 
-
-<p>passwd git #给git用户加上密码
-su &ndash; git
+<pre class="prettyprint linenums bush:bash" lang="bash">useradd -m -s /bin/bash -d /home/git git
+passwd git #给git用户加上密码
+su - git
 cd ~
-gitosis-init &lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径</pre></p>
-
-<br /><p>４.修改一些权限，据说很重要，为了安全：  </p>
+gitosis-init &lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">chmod 755 /home/git
+<p>４.修改一些权限，据说很重要，为了安全：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">chmod 755 /home/git
+chmod 700 /home/git/.ssh
+chmod 644 /home/git/.ssh/authorized_keys 
+chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update </pre>
 
 
-<p>chmod 700 /home/git/.ssh
-chmod 644 /home/git/.ssh/authorized_keys
-chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update </pre></p>
+<p>５.在本地用git做最后的工作，修改gitosis的配置文件并上传：  </p>
 
-<br /><p>５.在本地用git做最后的工作，修改gitosis的配置文件并上传：  </p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">git clone ssh://git@DOMAIN:8888/gitosis-admin.git
-
-
-<p>cd gitosis-admin
-vi gitosis.conf</p>
-
-<h1>增加新的项目名字和相关配置</h1>
-
-<p>[group AWAD]#ＡＷＡＤ组
+<pre class="prettyprint linenums bush:bash" lang="bash">git clone ssh://git@DOMAIN:8888/gitosis-admin.git
+cd gitosis-admin
+vi gitosis.conf
+#增加新的项目名字和相关配置
+[group AWAD]#ＡＷＡＤ组
 writable = wodeyitian_web　　　#仓库中的名字
-members = dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员名字就是rsa共钥中最后的成员名字</pre></p>
-
-<br /><p>好像和那个pub文件的名字要一样，那样的pub文件放在和这个conf文件在一起的keydir文件夹下. 6.完成这里后提交一下再push到远程服务器上即可完成：  </p>
+members = dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员名字就是rsa共钥中最后的成员名字</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">git commit -a -m '建立了新的项目'
+<p>好像和那个pub文件的名字要一样，那样的pub文件放在和这个conf文件在一起的keydir文件夹下. 6.完成这里后提交一下再push到远程服务器上即可完成：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">git commit -a -m '建立了新的项目'
+git push</pre>
 
 
-<p>git push</pre></p>
-
-<br /><p>7.已经全部完成，在本地已经可以用了，不过还想说一下，如果做开源项目，还是放到github上比较好玩！</p>
-
+<p>7.已经全部完成，在本地已经可以用了，不过还想说一下，如果做开源项目，还是放到github上比较好玩！</p>
 </div>
 
 
@@ -227,6 +214,10 @@ members = dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -240,10 +231,6 @@ members = dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员�
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

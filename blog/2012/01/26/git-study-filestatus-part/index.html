@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;就几个简单的git命令记录一下自己的学习过程，我发现如果自己不随时记录自己学到的东西就会遗忘。&lt;/p&gt; 首先给出git中文件的状态转换图： 对于一个文件，如果没有被git跟踪，那必然是untracked状态，只有已经是tracked状态后才会有后面的三种状态（ &hellip;">
+  <meta name="description" content="就几个简单的git命令记录一下自己的学习过程，我发现如果自己不随时记录自己学到的东西就会遗忘。 首先给出git中文件的状态转换图： 对于一个文件，如果没有被git跟踪，那必然是untracked状态，只有已经是tracked状态后才会有后面的三种状态（unmodified、modified、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,38 +104,27 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;就几个简单的git命令记录一下自己的学习过程，我发现如果自己不随时记录自己学到的东西就会遗忘。&lt;/p&gt;
-</code></pre>
+<div class="entry-content"><p>就几个简单的git命令记录一下自己的学习过程，我发现如果自己不随时记录自己学到的东西就会遗忘。</p>
 
 <p>首先给出git中文件的状态转换图：</p>
 
-
 <p><a title="18333fig0201-tn.png" href="http://www.youth2009.org/attachment/135274/"><img src="http://www.youth2009.org/usr/uploads/2012/01/945576081.png" alt="18333fig0201-tn.png"></a></p>
-
 
 <p>对于一个文件，如果没有被git跟踪，那必然是untracked状态，只有已经是tracked状态后才会有后面的三种状态（unmodified、modified、staged（暂存状态））。</p>
 
-
 <p>此时你如果add了一个文件进入git，那么git就会开始跟踪，那么此时这个文件是tracked状态，但没有修改，查看状态（git status）会现实new file：xxx，此时提交（commit）就会把文件快照放入历史记录中了。这里的add意思是放入暂存区，后面的add还有不同的意思。</p>
-
 
 <p>对于已经跟踪的文件，我们修改后再查看状态，就会发现刚刚的文件被放入了一个modified那行中，样子大概是这样的：modified：xxx，同时观察一下上面几行，有这样的提示“Changed but not updated:”，意思就是修改了，但没有放入暂存区，此时需要add的另一层意思——把已修改但没放入暂存区的文件放入暂存区。</p>
 
-
 <p>git commit -a 选项可以跳过暂存过程，直接把已经跟踪的文件放入历史记录中。</p>
-
 
 <p>总之就是及时看status，并且要看里面的提示，只有changes to be committed后面的文件才会在commit的时候加入到历史记录中。</p>
 
-
 <p>删除和移动文件：git rm，git mv。</p>
-
 
 <p>改名操作与linux下的mv命令用法一样。</p>
 
-
-<p>删除时如果仅仅希望在git中删除，实际仍然保存文件那么加上&#8211;cached选项即可。</p>
-
+<p>删除时如果仅仅希望在git中删除，实际仍然保存文件那么加上&mdash;cached选项即可。</p>
 </div>
 
 
@@ -203,6 +192,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -216,10 +209,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

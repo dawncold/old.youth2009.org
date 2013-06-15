@@ -4,7 +4,7 @@
   <title><![CDATA[Category: macports | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/macports/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,26 +18,24 @@
     <link href="http://www.youth2009.org/blog/2012/02/04/uninstall-macports/"/>
     <updated>2012-02-04T21:53:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/02/04/uninstall-macports</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;sudo port -f uninstall installed
-</code></pre>
+    <content type="html"><![CDATA[<pre class="prettyprint linenums bush:bash" lang="bash">sudo port -f uninstall installed
 
-<p>sudo rm -rf \
+sudo rm -rf \
 /opt/local \
 /Applications/DarwinPorts \
 /Applications/MacPorts \
-/Library/LaunchDaemons/org.macports.<em> \
-/Library/Receipts/DarwinPorts</em>.pkg \
+/Library/LaunchDaemons/org.macports.* \
+/Library/Receipts/DarwinPorts*.pkg \
 /Library/Receipts/MacPorts*.pkg \
 /Library/StartupItems/DarwinPortsStartup \
 /Library/Tcl/darwinports1.0 \
 /Library/Tcl/macports1.0 \
-~/.macports</pre></p>
+~/.macports</pre>
 
-<br /><p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
 
+<p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
 
 <p>我删除了MacPorts后就开始用Homebrew了。</p>
-
 ]]></content>
   </entry>
   

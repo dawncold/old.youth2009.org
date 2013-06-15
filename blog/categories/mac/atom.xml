@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/mac/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -20,8 +20,7 @@
     <id>http://www.youth2009.org/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error</id>
     <content type="html"><![CDATA[<p>前几天需要把本机的VMware虚拟机文件拷到工作机器上用，但文件比较大，有30G，U盘不行，无线共享太慢，网线直连无奈工作机器百兆网卡不给力还是慢，分割了我的TimeMachine备份盘，但用完后再合并划分出去的分区就出问题了，提示：</p>
 
-<pre><code>Couldn’t modify partition map because file system verification failed error
-</code></pre>
+<p>Couldn’t modify partition map because file system verification failed error</p>
 
 <p>此时可以Verify一下这个硬盘，如果有错误就repair，相信这里没问题的都应该可以再合并了吧，我这里还是出问题了，在提示repair complete之后出现了一个错误，好像是boot什么的错误，建议我reformat，再弄backup file，backup file too many？？记不清楚了，再合并一次分区，不行的话果断erase掉，再backup，反正现在backup都用不上，趁着清理一下也好。</p>
 ]]></content>
@@ -32,56 +31,45 @@
     <link href="http://www.youth2009.org/blog/2012/02/05/update-ruby-on-mac/"/>
     <updated>2012-02-05T00:00:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/02/05/update-ruby-on-mac</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！</p>
 
 <p>修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/bin中的情况，如果不能自动创建链接过去的话，麻烦是一个方面，关键是后面做的一些工作基本都白费了，可能你运行的一个软件是在/usr/bin中存在的，那样就不会自动搜索到你用brew安装的那个了。详情找找brew的工作原理吧：)</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo chown -R `whoami` /usr/local</pre>
-
-
-<br /><p>首先我用了大家推荐的Homwbrew管理工具，这里安装完homebrew后需要在自己的bash配置文件中加入新的path：</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">sudo chown -R `whoami` /usr/local</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">export PATH=/usr/local/bin:$PATH</pre>
+<p>首先我用了大家推荐的Homwbrew管理工具，这里安装完homebrew后需要在自己的bash配置文件中加入新的path：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">export PATH=/usr/local/bin:$PATH</pre>
 
 
-<br /><p>把这行加入到bash_profile中吧，这样就能让homebrew发挥作用了，你首先就能用上更新了的程序而不是从默认路径查找。（如果以前用了MacPorts的话你也会和我一样看到MacPorts的export命令，要去掉他们，或者你把Homebrew的export命令写在下面，这样能覆盖掉，既然我已经删除了MacPorts，所以干脆删除掉！）</p>
-
+<p>把这行加入到bash_profile中吧，这样就能让homebrew发挥作用了，你首先就能用上更新了的程序而不是从默认路径查找。（如果以前用了MacPorts的话你也会和我一样看到MacPorts的export命令，要去掉他们，或者你把Homebrew的export命令写在下面，这样能覆盖掉，既然我已经删除了MacPorts，所以干脆删除掉！）</p>
 
 <p>关闭terminal，重新加载刚才的bash_profile，这样就能用Homebrew了。</p>
 
-
 <p>首先安装git，自己和Homwbrew都用得到：</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">brew install git</pre>
-
-
-<br /><p>接着更新一下Homebrew的源：</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">brew install git</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">brew update</pre>
+<p>接着更新一下Homebrew的源：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">brew update</pre>
 
 
-<br /><p>然后安装了ruby后就能用gem来更新系统了：</p>
-
+<p>然后安装了ruby后就能用gem来更新系统了：</p>
 
 <p>安装ruby：</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">brew install ruby</pre>
-
-
-<br /><p>更新系统：</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">brew install ruby</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">gem update --system</pre>
+<p>更新系统：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">gem update --system</pre>
 
 
-<br /><p>后面的安装rails等操作就可以用gem来做了，看看自己的ruby版本，已经是1.9.3p0(2011-10-30)</p>
-
+<p>后面的安装rails等操作就可以用gem来做了，看看自己的ruby版本，已经是1.9.3p0(2011-10-30)</p>
 ]]></content>
   </entry>
   
@@ -90,26 +78,24 @@
     <link href="http://www.youth2009.org/blog/2012/02/04/uninstall-macports/"/>
     <updated>2012-02-04T21:53:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/02/04/uninstall-macports</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;sudo port -f uninstall installed
-</code></pre>
+    <content type="html"><![CDATA[<pre class="prettyprint linenums bush:bash" lang="bash">sudo port -f uninstall installed
 
-<p>sudo rm -rf \
+sudo rm -rf \
 /opt/local \
 /Applications/DarwinPorts \
 /Applications/MacPorts \
-/Library/LaunchDaemons/org.macports.<em> \
-/Library/Receipts/DarwinPorts</em>.pkg \
+/Library/LaunchDaemons/org.macports.* \
+/Library/Receipts/DarwinPorts*.pkg \
 /Library/Receipts/MacPorts*.pkg \
 /Library/StartupItems/DarwinPortsStartup \
 /Library/Tcl/darwinports1.0 \
 /Library/Tcl/macports1.0 \
-~/.macports</pre></p>
+~/.macports</pre>
 
-<br /><p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
 
+<p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
 
 <p>我删除了MacPorts后就开始用Homebrew了。</p>
-
 ]]></content>
   </entry>
   
@@ -118,31 +104,25 @@
     <link href="http://www.youth2009.org/blog/2012/01/26/turn-off-dashboard-on-mac/"/>
     <updated>2012-01-26T00:49:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/01/26/turn-off-dashboard-on-mac</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;一开始感觉dashboard这个东西挺好的，加上了好几个小插件玩，但现在发现使用频率超低，所以干脆想办法关闭吧，听说还能节约部分内存和提升开机速度，对这些倒是不太关心，只能有种不用就关闭的态度驱使着我。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>一开始感觉dashboard这个东西挺好的，加上了好几个小插件玩，但现在发现使用频率超低，所以干脆想办法关闭吧，听说还能节约部分内存和提升开机速度，对这些倒是不太关心，只能有种不用就关闭的态度驱使着我。</p>
 
 <p>关闭命令：</p>
 
+<pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean YES</pre>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean YES</pre>
 
-
-<br /><p> </p>
-
+<p> </p>
 
 <p>运行后最好再执行一下这个生效：</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">killall Dock</pre>
-
-
-<br /><p>如果需要重新开启，请使用这条命令，包括了killall Dock：</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">killall Dock</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean NO
+<p>如果需要重新开启，请使用这条命令，包括了killall Dock：</p>
 
+<pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean NO
+killall Dock</pre>
 
-<p>killall Dock</pre></p>
 ]]></content>
   </entry>
   
@@ -151,17 +131,14 @@
     <link href="http://www.youth2009.org/blog/2012/01/13/open-the-stack-function-of-dock/"/>
     <updated>2012-01-13T21:56:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/01/13/open-the-stack-function-of-dock</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;打开Terminal，输入：&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>打开Terminal，输入：</p>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock</pre>
+<pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock</pre>
 
 
-<br /><p>然后回车（return），等Dock再次出现后，在已打开程序图标上滚动鼠标滚轮或者手势模拟滚轮，就能看到这个程序打开的子窗口或者子程序，很过瘾好用。</p>
-
+<p>然后回车（return），等Dock再次出现后，在已打开程序图标上滚动鼠标滚轮或者手势模拟滚轮，就能看到这个程序打开的子窗口或者子程序，很过瘾好用。</p>
 
 <p>我的MacOS：Lion</p>
-
 ]]></content>
   </entry>
   

@@ -9,9 +9,11 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;sudo port -f uninstall installed sudo rm -rf \
+  <meta name="description" content="sudo port -f uninstall installed sudo rm -rf \
 /opt/local \
-/Applications/DarwinPorts &hellip;">
+/Applications/DarwinPorts \
+/Applications/MacPorts \
+/Library/LaunchDaemons/org.macports &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -106,26 +108,24 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;sudo port -f uninstall installed
-</code></pre>
+<div class="entry-content"><pre class="prettyprint linenums bush:bash" lang="bash">sudo port -f uninstall installed
 
-<p>sudo rm -rf \
+sudo rm -rf \
 /opt/local \
 /Applications/DarwinPorts \
 /Applications/MacPorts \
-/Library/LaunchDaemons/org.macports.<em> \
-/Library/Receipts/DarwinPorts</em>.pkg \
+/Library/LaunchDaemons/org.macports.* \
+/Library/Receipts/DarwinPorts*.pkg \
 /Library/Receipts/MacPorts*.pkg \
 /Library/StartupItems/DarwinPortsStartup \
 /Library/Tcl/darwinports1.0 \
 /Library/Tcl/macports1.0 \
-~/.macports</pre></p>
+~/.macports</pre>
 
-<br /><p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
 
+<p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
 
 <p>我删除了MacPorts后就开始用Homebrew了。</p>
-
 </div>
 
 
@@ -193,6 +193,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -206,10 +210,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

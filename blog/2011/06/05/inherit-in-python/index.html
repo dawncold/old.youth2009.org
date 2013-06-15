@@ -9,7 +9,9 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:&lt;/p&gt; #! /usr/bin/python &ndash;&ndash; coding:utf-8 &ndash;&ndash; Filename &hellip;">
+  <meta name="description" content="python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码: #! /usr/bin/python
+# -*- coding:utf-8 -*-
+# Filename : inherit.py class Person: def __init__ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,44 +106,37 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:&lt;/p&gt;
-</code></pre>
+<div class="entry-content"><p>python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:</p>
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+# -*- coding:utf-8 -*-
+# Filename : inherit.py
 
+class Person:
+   def __init__(self,name,age):
+       self.name = name
+       self.age = age
+       print "init for %s" % self.name
 
-<h1>&ndash;<em>&ndash; coding:utf-8 &ndash;</em>&ndash;</h1>
+   def tell(self):
+       print "name:%s age:%d" % (self.name,self.age)
 
-<h1>Filename : inherit.py</h1>
+class Teacher(Person):
+   def __init__(self,name,age,salary):
+       Person.__init__(self,name,age)
+       self.salary = salary
+       print "init for teacher %s" % self.name
 
-<p>class Person:</p>
+   def tell(self):
+       Person.tell(self)
+       print "salary:%d" % self.salary
 
-<pre><code>def __init__(self,name,age):
-    self.name = name
-    self.age = age
-    print "init for %s" % self.name
+p = Person('tianzhen',20)
+p.tell()
 
-def tell(self):
-    print "name:%s age:%d" % (self.name,self.age)
-</code></pre>
+tea_p = Teacher('zhenzhen',20,1010000000)
+tea_p.tell()</pre>
 
-<p>class Teacher(Person):</p>
-
-<pre><code>def __init__(self,name,age,salary):
-    Person.__init__(self,name,age)
-    self.salary = salary
-    print "init for teacher %s" % self.name
-
-def tell(self):
-    Person.tell(self)
-    print "salary:%d" % self.salary
-</code></pre>
-
-<p>p = Person(&lsquo;tianzhen&rsquo;,20)
-p.tell()</p>
-
-<p>tea_p = Teacher(&lsquo;zhenzhen&rsquo;,20,1010000000)
-tea_p.tell()</pre></p>
 </div>
 
 
@@ -209,6 +204,10 @@ tea_p.tell()</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -222,10 +221,6 @@ tea_p.tell()</pre></p>
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

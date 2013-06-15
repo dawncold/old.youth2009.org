@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。&lt;/p&gt; 在保存iptables规则的时候遇到这样的问题： iptables: &hellip;">
+  <meta name="description" content="开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。 在保存iptables规则的时候遇到这样的问题： iptables: Saving firewall rules to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,29 +104,23 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。&lt;/p&gt;
-</code></pre>
+<div class="entry-content"><p>开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。</p>
 
 <p>在保存iptables规则的时候遇到这样的问题：</p>
 
+<pre class="prettyprint linenums bush:bash" lang="bash">iptables: Saving firewall rules to /etc/sysconfig/iptables: /etc/init.d/iptables: line 268: restorecon: command not found</pre>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">iptables: Saving firewall rules to /etc/sysconfig/iptables: /etc/init.d/iptables: line 268: restorecon: command not found</pre>
 
-
-<br /><p>当然你可能会看到中文的提示（我的就是），意思是一样的。从<a href="http://www.live-in.org/archives/1112.html">这里</a>得到了解决方案：</p>
-
+<p>当然你可能会看到中文的提示（我的就是），意思是一样的。从<a href="http://www.live-in.org/archives/1112.html">这里</a>得到了解决方案：</p>
 
 <p>安装一个包包：</p>
 
+<pre class="prettyprint linenums bush:bash" lang="bash">yum install policycoreutils</pre>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">yum install policycoreutils</pre>
 
-
-<br /><p>行了，剩下就没遇到问题了：）</p>
-
+<p>行了，剩下就没遇到问题了：）</p>
 
 <p>稍稍广告一下吧：欢迎使用Yardvps的VPS哦，我就在使用，现在很稳定，现在有了中文界面，支持支付宝，挺好吧？可以点击<a href="http://www.yardvps.com/billing/aff.php?aff=399">这里</a>购买，这样我也许能得到一点推广费用：）</p>
-
 </div>
 
 
@@ -194,6 +188,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -207,10 +205,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: eclipse | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/eclipse/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,11 +18,9 @@
     <link href="http://www.youth2009.org/blog/2012/06/18/it-is-better-to-config-two-shortkeys-for-switch-tags--in-eclipse/"/>
     <updated>2012-06-18T08:01:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/06/18/it-is-better-to-config-two-shortkeys-for-switch-tags--in-eclipse</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;在Terminal中用Command+Shift+[和Command+Shift+]来切换tabs太爽了，很多Mac下的程序都默认支持了这样的切换方式，不过eclipse中默认没支持，非常可惜，硬用这样切换倒是也有效果，不过你用两次就知道这不是你想要的那种！！&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>在Terminal中用Command+Shift+[和Command+Shift+]来切换tabs太爽了，很多Mac下的程序都默认支持了这样的切换方式，不过eclipse中默认没支持，非常可惜，硬用这样切换倒是也有效果，不过你用两次就知道这不是你想要的那种！！</p>
 
 <p>于是配置快捷键，分别配置Privious Tag和Next Tag即可<img title="微笑" src="http://www.youth2009.org/usr/plugins/TinyMCE/tiny_mce/plugins/emotions/img/smiley-smile.gif" alt="微笑" border="0"></p>
-
 ]]></content>
   </entry>
   
@@ -31,17 +29,13 @@
     <link href="http://www.youth2009.org/blog/2011/12/12/be-careful-of-eclipse-when-developing-android/"/>
     <updated>2011-12-12T19:14:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/12/12/be-careful-of-eclipse-when-developing-android</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;简单说，eclipse3.6这个版本中有些jar有问题，在代码提示的时候会卡死，我还以为是机器运算不过来了，但在JavaEE中很正常，所以一搜索得到的答案，需要替换一个系统jar包。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>简单说，eclipse3.6这个版本中有些jar有问题，在代码提示的时候会卡死，我还以为是机器运算不过来了，但在JavaEE中很正常，所以一搜索得到的答案，需要替换一个系统jar包。</p>
 
 <p>需要被替换的jar是：org.eclipse.jdt.core_3.6.1.v_A68_R36x.jar，在eclipse的plugins目录中。</p>
 
-
-<p>从这位朋友的网盘中也许能找到，在Eclipse目录中：<a href="http://breakan.ys168.com/">http://breakan.ys168.com/</a></p>
-
+<p>从这位朋友的网盘中也许能找到，在Eclipse目录中：<a href="http://breakan.ys168.com/"><a href="http://breakan.ys168.com/">http://breakan.ys168.com/</a></a></p>
 
 <p>为了备份，我传到了自己服务器上，下载地址：<a title="eclipse-android-plugin.rar" href="http://www.youth2009.org/usr/uploads/2011/12/2062328791.rar">eclipse-android-plugin.rar</a></p>
-
 ]]></content>
   </entry>
   
@@ -50,8 +44,7 @@
     <link href="http://www.youth2009.org/blog/2011/12/01/struts-xml-assistant/"/>
     <updated>2011-12-01T14:32:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/12/01/struts-xml-assistant</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;写struts2的配置文件时如果有提示那最好了，添加方法比较简单，从框架的jar包中找到sruts-2.1.7.dtd文件，在preference搜索xml找到xml catalog，然后add一个，文件就是刚刚找到的dtd文件，Key type选URI，我用过publicID但没有提示效果，相应的，key中写：http://struts.apache.org/dtds/struts-2.0.dtd即可。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>写struts2的配置文件时如果有提示那最好了，添加方法比较简单，从框架的jar包中找到sruts-2.1.7.dtd文件，在preference搜索xml找到xml catalog，然后add一个，文件就是刚刚找到的dtd文件，Key type选URI，我用过publicID但没有提示效果，相应的，key中写：<a href="http://struts.apache.org/dtds/struts-2.0.dtd%E5%8D%B3%E5%8F%AF%E3%80%82">http://struts.apache.org/dtds/struts-2.0.dtd%E5%8D%B3%E5%8F%AF%E3%80%82</a></p>
 ]]></content>
   </entry>
   
@@ -60,23 +53,17 @@
     <link href="http://www.youth2009.org/blog/2011/06/04/eclipse-gae-on-mac/"/>
     <updated>2011-06-04T18:43:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/06/04/eclipse-gae-on-mac</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;用了不少时间PHP，也有些喜欢这种开发语言，但我仍然对Python有强烈的热情，但支持Python的主机服务还不算多，很想体验GAE，但由于在国内嘛，只能这样忍受了。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>用了不少时间PHP，也有些喜欢这种开发语言，但我仍然对Python有强烈的热情，但支持Python的主机服务还不算多，很想体验GAE，但由于在国内嘛，只能这样忍受了。</p>
 
 <p>原本想在Emacs中配置Python的环境，但……有些过于复杂了。安装了很久的emacs，到头来不知道该怎么用，打算卸载掉算了，自己不需要的东西，不管它多么优秀，对于我来说，目前都没有价值！所以我还是选择了Eclipse环境。</p>
 
-
 <p>在安装PyDev插件的时候遇到点问题：安装时候有3个项目可安装，我第一次是都安装的，但中途出现错误停止了，于是我第二次只安装了第一个，就是主要的PyDev程序，没有问题。</p>
-
 
 <p>在创建一个GAE项目后，需要填写GAE的location，在Mac系统下，装了Google提供的SDK For Mac就找不到GAE的相关文件了，因为都在那个app包中，只是在/usr/local/bin中有几个相关的py文件，在/usr/local/中有个链接，链接到app包中的一个地方，主要就是用这个链接，不过你会发现这样用之后还有点问题，插件需要找到lib目录下的django，如果你看看目录的话会发现根本没有django目录，只有另一个叫django_0_96这样的目录，于是建立一个软连接到django过去即可。</p>
 
-
 <p>以上方法来自国外一技术博客：</p>
 
-
-<p><a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/" target="_blank">http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/</a></p>
-
+<p><a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/" target="_blank"><a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/">http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/</a></a></p>
 ]]></content>
   </entry>
   
@@ -85,23 +72,17 @@
     <link href="http://www.youth2009.org/blog/2011/02/23/install-egit-plugin-in-eclipse/"/>
     <updated>2011-02-23T19:06:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/02/23/install-egit-plugin-in-eclipse</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;其实根本没必要写成文章的，eclipse的插件安装不外乎：打开Install Software的界面，输入某个插件的地址，然后一路next&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>其实根本没必要写成文章的，eclipse的插件安装不外乎：打开Install Software的界面，输入某个插件的地址，然后一路next</p>
 
-<p>EGit的官方下载页面是：http://www.eclipse.org/egit/download/</p>
+<p>EGit的官方下载页面是：<a href="http://www.eclipse.org/egit/download/">http://www.eclipse.org/egit/download/</a></p>
 
+<p>官方推荐的用于eclipse安装地址是：<a href="http://download.eclipse.org/egit/updates">http://download.eclipse.org/egit/updates</a></p>
 
-<p>官方推荐的用于eclipse安装地址是：http://download.eclipse.org/egit/updates</p>
-
-
-<p>所以我们就在eclipse的Help-》Install New Software的那个地址中输入：http://download.eclipse.org/egit/updates</p>
-
+<p>所以我们就在eclipse的Help-》Install New Software的那个地址中输入：<a href="http://download.eclipse.org/egit/updates">http://download.eclipse.org/egit/updates</a></p>
 
 <p>随后能够得到2个安装条目，我倒是没怎么了解详情，全部安装了，next后就是下载相关的文件自动安装。</p>
 
-
 <p>安装完毕后重启eclipse，在已经建立的项目上右键单击，选择Team，Share Project，再选GIT方式share。下一步就是建立针对某个项目的git仓库，直接点击Create xxx 按钮即可，这样就在本地完成了git管理相关项目的步骤。人比较懒，不想放出图来：）</p>
-
 ]]></content>
   </entry>
   

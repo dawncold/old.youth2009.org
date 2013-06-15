@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dock | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/dock/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,17 +18,14 @@
     <link href="http://www.youth2009.org/blog/2012/01/13/open-the-stack-function-of-dock/"/>
     <updated>2012-01-13T21:56:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/01/13/open-the-stack-function-of-dock</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;打开Terminal，输入：&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>打开Terminal，输入：</p>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock</pre>
+<pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock</pre>
 
 
-<br /><p>然后回车（return），等Dock再次出现后，在已打开程序图标上滚动鼠标滚轮或者手势模拟滚轮，就能看到这个程序打开的子窗口或者子程序，很过瘾好用。</p>
-
+<p>然后回车（return），等Dock再次出现后，在已打开程序图标上滚动鼠标滚轮或者手势模拟滚轮，就能看到这个程序打开的子窗口或者子程序，很过瘾好用。</p>
 
 <p>我的MacOS：Lion</p>
-
 ]]></content>
   </entry>
   

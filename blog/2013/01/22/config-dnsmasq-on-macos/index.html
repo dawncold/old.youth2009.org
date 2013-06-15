@@ -110,35 +110,29 @@
 
 <p>1.使用brew安装dnsmasq</p>
 
-<pre><code>brew install dnsmasq
-</code></pre>
+<p>brew install dnsmasq</p>
 
 <p>2.修改一下dnsmasq的配置文件名字</p>
 
-<pre><code>cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf
-</code></pre>
+<p>cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf</p>
 
 <p>3.加入MacOS的启动项中</p>
 
-<pre><code>sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons
-</code></pre>
+<p>sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons</p>
 
 <p>4.加载并启动dnsmasq，如果没有出现什么错误就开始配置dnsmasq</p>
 
-<pre><code>sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
-</code></pre>
+<p>sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist</p>
 
 <p>5.配置dnsmasq，把no-resolve的注释去掉，加入<code>server=xxx.xxx.xxx.xxx#nnnn</code></p>
 
-<pre><code>mate /usr/local/etc/dnsmasq.conf
+<p>mate /usr/local/etc/dnsmasq.conf</p>
 
-server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比如v2ex那个用3389
-</code></pre>
+<p>server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比如v2ex那个用3389</p>
 
 <p>6.重启dnsmasq</p>
 
-<pre><code>sudo launchctl stop homebrew.mxcl.dnsmasq
-</code></pre>
+<p>sudo launchctl stop homebrew.mxcl.dnsmasq</p>
 
 <p>其实无需再执行<code>sudo launchctl start homebrew.mxcl.dnsmasq</code>这句了，因为你load了plist进去就已经启动了，如果此时stop的话会再自动start，所以没必要再start。要想关闭请使用unload（就修改上面的4即可）</p>
 
@@ -212,6 +206,10 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -225,10 +223,6 @@ server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比�
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

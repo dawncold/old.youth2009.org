@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -24,31 +24,25 @@
 
 <p>generator这个东西是很有意思的，比如：</p>
 
-<p>```python
+<p><code>python
 def other_firstn(n):
-  num, nums = 0, []
-  while num &lt; n:</p>
-
-<pre><code>nums.append(num)
-num += 1
-</code></pre>
-
-<p>  return nums
-```
+ num, nums = 0, []
+ while num &lt; n:
+   nums.append(num)
+   num += 1
+ return nums
+</code>
 可以产生一个list，里面是按顺序的数字，有n个，结果类似于range(n)的返回值。</p>
 
 <p>还有一个版本的firstn：</p>
 
-<p>```python
+<p><code>python
 def firstn(n):
-  num = 0
-  while num &lt; n:</p>
-
-<pre><code>yield num
-num += 1
-</code></pre>
-
-<p>```
+ num = 0
+ while num &lt; n:
+   yield num
+   num += 1
+</code>
 这个看起来就很帅了，代码也简洁了很多，yield是十分神奇的表达式，产生了一个num，这里不太好想，不能按照正常的function来思考这个执行顺序了。</p>
 
 <p>总之，如果产生100个数字，你可以一下子弄出100个来，或者你知道规则的话，你就弄出第一个来，然后用的时候按照规则，从第一个一直走下去，也产生了100个。最大的不同就是性能，后者必然速度更快了，前提是数量要足够多！写了一个简单的性能对比，主要是时间上的，内存上的不容易监控。</p>
@@ -62,35 +56,30 @@ num += 1
 <p>import time</p>
 
 <p>def firstn(n):
-  num = 0
-  while num &lt; n:</p>
-
-<pre><code>yield num
-num += 1
-</code></pre>
+ num = 0
+ while num &lt; n:
+   yield num
+   num += 1</p>
 
 <p>def other_firstn(n):
-  num, nums = 0, []
-  while num &lt; n:</p>
-
-<pre><code>nums.append(num)
-num += 1
-</code></pre>
-
-<p>  return nums</p>
+ num, nums = 0, []
+ while num &lt; n:
+   nums.append(num)
+   num += 1
+ return nums</p>
 
 <p>def timer(func_wrap, func, <em>args, **kwards):
-  s = time.time()
-  r = func_wrap(func(</em>args, **kwards))
-  e = time.time()
-  print &lsquo;return: %s   use %f ms[s: %s, e: %s]&rsquo; % (r, (e &ndash; s), s, e)</p>
+ s = time.time()
+ r = func_wrap(func(</em>args, **kwards))
+ e = time.time()
+ print &lsquo;return: %s   use %f ms[s: %s, e: %s]&rsquo; % (r, (e &ndash; s), s, e)</p>
 
 <p>def main():
-  timer(sum, firstn, 1000000)
-  timer(sum, other_firstn, 1000000)</p>
+ timer(sum, firstn, 1000000)
+ timer(sum, other_firstn, 1000000)</p>
 
 <p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:
-  main()
+ main()
 <code>
 输出结果是：大约会慢1倍
 </code>bash
@@ -140,9 +129,9 @@ db().execute('SELECT * FROM xxx WHERE id = %(id)s', id=get_id())
 
 <p><code>python
 def sort_last(tuples):
-  # +++your code here+++
-  tuples.sort(key = lambda t: t[-1])
-  return tuples
+ # +++your code here+++
+ tuples.sort(key = lambda t: t[-1])
+ return tuples
 </code></p>
 
 <p>根据tuple中最后一个排序。</p>
@@ -154,17 +143,13 @@ def sort_last(tuples):
     <link href="http://www.youth2009.org/blog/2012/08/09/return-to-develop/"/>
     <updated>2012-08-09T10:45:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/08/09/return-to-develop</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;前两天把系统从Lion升级到了MountainLion，这一升级不要紧，很多开发环境都需要重装，比如Java又得重新下载，Python的类库又消失了，XCode过期了。。。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>前两天把系统从Lion升级到了MountainLion，这一升级不要紧，很多开发环境都需要重装，比如Java又得重新下载，Python的类库又消失了，XCode过期了。。。</p>
 
 <p>听说了一个好消息，从XCode4.4.1开始，以后的XCode都会采用增量更新，但这次除外，1.56Gb的XCode，在这种破网速中用了两天才搞定。</p>
 
-
 <p>Python的一个类库MySQL-python需要gcc-4.2才能编译，于是还需要下载CommandLineTool，又是155Mb。。。（但装好XCode后可以从XCode.app中找到llvm-gcc-4.2，我是用这个编译的，也能用）。</p>
 
-
 <p>还有几个小的python类库，装好后就能继续用了。这次系统升级后MySQL竟然没有问题，值得表扬一下！</p>
-
 ]]></content>
   </entry>
   

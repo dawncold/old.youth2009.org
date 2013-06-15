@@ -4,7 +4,7 @@
   <title><![CDATA[Category: write attribute | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/write-attribute/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,28 +18,22 @@
     <link href="http://www.youth2009.org/blog/2012/02/14/write-attribute-in-ruby/"/>
     <updated>2012-02-14T16:06:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/02/14/write-attribute-in-ruby</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误：&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误：</p>
 
-<br /><pre class="prettyprint linenums bush:ruby" lang="ruby">  def password=(pwd)
-
-
-<pre><code>@password = pwd
-return if @password.blank?
-create_new_salt
-self.password = xxx
-</code></pre>
-
-<p>  end</pre></p>
-
-<br /><p>最后那行使用了self.password= xxx，你有没有注意到我们这个方法就是password=，你在自己调用自己，如果有条件停止的话，那这叫递归，如果没有的话，这就是死循环喽，ruby可能会抛出一个stack too deep的错误（rails至少会这样说），此时需要一个magic！</p>
+<pre class="prettyprint linenums bush:ruby" lang="ruby">  def password=(pwd)
+   @password = pwd
+   return if @password.blank?
+   create_new_salt
+   self.password = xxx
+ end</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">write_attribute(:password, User.encrypted_password(self.password, self.salt))</pre>
+<p>最后那行使用了self.password= xxx，你有没有注意到我们这个方法就是password=，你在自己调用自己，如果有条件停止的话，那这叫递归，如果没有的话，这就是死循环喽，ruby可能会抛出一个stack too deep的错误（rails至少会这样说），此时需要一个magic！</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">write_attribute(:password, User.encrypted_password(self.password, self.salt))</pre>
 
 
-<br /><p>使用write_attribute(xxx,jjj)即可，意思就是把jjj赋值给xxx了，因为此时正好在定义xxx，所以不能用xxx = 这样的方法赋值。</p>
-
+<p>使用write_attribute(xxx,jjj)即可，意思就是把jjj赋值给xxx了，因为此时正好在定义xxx，所以不能用xxx = 这样的方法赋值。</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 宕机 | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/dang-ji/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,17 +18,13 @@
     <link href="http://www.youth2009.org/blog/2012/06/08/very-long-offline-of-my-vps-in-yardvps/"/>
     <updated>2012-06-08T13:51:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/06/08/very-long-offline-of-my-vps-in-yardvps</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;这次宕机持续了1天零13小时，具体什么原因不清楚，yardvps那边说ip自动归零，这是什么原因？！反正我是不清楚怎么回事了，而且买了vpsee的vps，正考虑着是依然延续lnmp的架构还是自己整一套lnmp+python的架构，这样方便以后自己用python做webapp，嗯，先睡觉，起来再搞新的vps吧！！！&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>这次宕机持续了1天零13小时，具体什么原因不清楚，yardvps那边说ip自动归零，这是什么原因？！反正我是不清楚怎么回事了，而且买了vpsee的vps，正考虑着是依然延续lnmp的架构还是自己整一套lnmp+python的架构，这样方便以后自己用python做webapp，嗯，先睡觉，起来再搞新的vps吧！！！</p>
 
 <p>UPDATE:我没有睡觉……</p>
 
-
-<p>yardvps给我的回复是这样的——“It's nulled by PPS (Packet Per Second) Once it exceeds the thresholds and simulates a DDOS attack our system automatically nulls your IP within seconds.”</p>
-
+<p>yardvps给我的回复是这样的——“It&rsquo;s nulled by PPS (Packet Per Second) Once it exceeds the thresholds and simulates a DDOS attack our system automatically nulls your IP within seconds.”</p>
 
 <p>看来是我被攻击了？！好奇怪！！！反正我用着vpsee的vps很爽，不出问题就不再用yardvps了！</p>
-
 ]]></content>
   </entry>
   

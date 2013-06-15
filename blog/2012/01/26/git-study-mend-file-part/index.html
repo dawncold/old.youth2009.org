@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;&lt;strong&gt;修改最后一次提交&lt;/strong&gt;：git commit --amend&lt;/p&gt; 如果只是提交信息写错了，运行后会让你重新写提交信息，但如果你忘记了加文件进入，可以这样做，先commit，再add忘记的文件，最后来一句git &hellip;">
+  <meta name="description" content="修改最后一次提交：git commit &mdash;amend 如果只是提交信息写错了，运行后会让你重新写提交信息，但如果你忘记了加文件进入，可以这样做，先commit，再add忘记的文件，最后来一句git commit &mdash;amend，这看似两次提交，实际只是一次， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,20 +104,15 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;&lt;strong&gt;修改最后一次提交&lt;/strong&gt;：git commit --amend&lt;/p&gt;
-</code></pre>
+<div class="entry-content"><p><strong>修改最后一次提交</strong>：git commit &mdash;amend</p>
 
-<p>如果只是提交信息写错了，运行后会让你重新写提交信息，但如果你忘记了加文件进入，可以这样做，先commit，再add忘记的文件，最后来一句git commit &#8211;amend，这看似两次提交，实际只是一次，后面的提交修正了前面的。</p>
-
+<p>如果只是提交信息写错了，运行后会让你重新写提交信息，但如果你忘记了加文件进入，可以这样做，先commit，再add忘记的文件，最后来一句git commit &mdash;amend，这看似两次提交，实际只是一次，后面的提交修正了前面的。</p>
 
 <p><strong>取消已暂存的文件</strong>：看status的时候有提示，git reset HEAD &lt;file&gt;，执行后可以把一个已修改的文件从暂存区拉回到“changed but not update”里，前面日志说过，在这里面的文件需要add后才能进入暂存区被提交。</p>
 
-
-<p><strong>取消修改</strong>：如果感觉刚才的修改没有必要，需要取消修改，那么用git checkout &#8211; &lt;file&gt;，在1.6.1以上的版本才会有这样的功能，我刚刚看了下git的版本（git &#8211;version）是1.7.5.4，看来暂时不用升级就能体验了。使用后就会发现文件的修改已经被撤销，此命令很危险，如果只是想回退版本可以用stashing和分支来处理，后面再说。</p>
-
+<p><strong>取消修改</strong>：如果感觉刚才的修改没有必要，需要取消修改，那么用git checkout &mdash; &lt;file&gt;，在1.6.1以上的版本才会有这样的功能，我刚刚看了下git的版本（git &mdash;version）是1.7.5.4，看来暂时不用升级就能体验了。使用后就会发现文件的修改已经被撤销，此命令很危险，如果只是想回退版本可以用stashing和分支来处理，后面再说。</p>
 
 <p>最后说一句，任何被提交的数据都能被恢复，即便是在已经删除的分支中提交的等等，但没有提交的丢了就丢了！！！</p>
-
 </div>
 
 
@@ -185,6 +180,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -198,10 +197,6 @@
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sudo | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/sudo/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,20 +18,17 @@
     <link href="http://www.youth2009.org/blog/2012/06/08/solved-sudo-unable-to-resolve-host/"/>
     <updated>2012-06-08T16:23:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/06/08/solved-sudo-unable-to-resolve-host</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）</p>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo ：unable to resolve host HOSTNAME</pre>
-
-
-<br /><p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">sudo ：unable to resolve host HOSTNAME</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">127.0.0.1               localhost.localdomain localhost HOSTNAME</pre>
+<p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">127.0.0.1               localhost.localdomain localhost HOSTNAME</pre>
 
 
-<br /><p>希望vpsee的admin能在iso中修复这个问题</p>
-
+<p>希望vpsee的admin能在iso中修复这个问题</p>
 ]]></content>
   </entry>
   

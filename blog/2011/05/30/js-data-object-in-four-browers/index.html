@@ -9,7 +9,9 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：&lt;/p&gt; var da = '2000-01-01 00:00:00'; var da_array = da.split(& &hellip;">
+  <meta name="description" content="测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的： var da = '2000-01-01 00:00:00';
+var da_array = da.split(' ');
+var da_1 = &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,16 +106,14 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：&lt;/p&gt;
-</code></pre>
+<div class="entry-content"><p>测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：</p>
 
-<br /><pre class="prettyprint linenums bush:jscript" lang="jscript">var da = '2000-01-01 00:00:00';
+<pre class="prettyprint linenums bush:jscript" lang="jscript">var da = '2000-01-01 00:00:00';
+var da_array = da.split(' ');
+var da_1 = da_array[0].split('-');
+var da_2 = da_array[1].split(':');
+alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
 
-
-<p>var da_array = da.split(&lsquo; &rsquo;);
-var da_1 = da_array[0].split(&lsquo;&ndash;&rsquo;);
-var da_2 = da_array[1].split(&lsquo;:&rsquo;);
-alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
 </div>
 
 
@@ -181,6 +181,10 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -194,10 +198,6 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre></p>
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

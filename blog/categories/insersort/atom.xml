@@ -4,7 +4,7 @@
   <title><![CDATA[Category: insersort | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/insersort/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,34 +18,27 @@
     <link href="http://www.youth2009.org/blog/2012/01/26/insert-sort-in-python/"/>
     <updated>2012-01-26T11:07:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/01/26/insert-sort-in-python</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python
-</code></pre>
+    <content type="html"><![CDATA[<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
 
-<h1>coding: utf-8</h1>
+def insert_sort(arraylist):
+   for j in range(1, len(arraylist)):
+       key = arraylist[j]
+       i = j - 1
+       while i &gt;= 0 and arraylist[i] &gt; key:
+           arraylist[i + 1] = arraylist[i]
+           i = i - 1
+       arraylist[i + 1] = key
 
-<p>def insert_sort(arraylist):</p>
+if __name__ == "__main__":
+   arr = [2,3,55,31,1,20,44,12,1,99]
+   print arr
+   insert_sort(arr)
+   print arr
+</pre>
 
-<pre><code>for j in range(1, len(arraylist)):
-    key = arraylist[j]
-    i = j - 1
-    while i &amp;gt;= 0 and arraylist[i] &amp;gt; key:
-        arraylist[i + 1] = arraylist[i]
-        i = i - 1
-    arraylist[i + 1] = key
-</code></pre>
 
-<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
-
-<pre><code>arr = [2,3,55,31,1,20,44,12,1,99]
-print arr
-insert_sort(arr)
-print arr
-</code></pre>
-
-<p></pre></p>
-
-<br /><p>只要改变while那句中的arraylist[i] &lt; key即可变成非升序排列</p>
-
+<p>只要改变while那句中的arraylist[i] &lt; key即可变成非升序排列</p>
 ]]></content>
   </entry>
   

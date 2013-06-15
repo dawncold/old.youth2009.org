@@ -4,7 +4,7 @@
   <title><![CDATA[Category: desktop | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/desktop/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,8 +18,7 @@
     <link href="http://www.youth2009.org/blog/2011/07/22/lion-eat-my-file-on-desktop/"/>
     <updated>2011-07-22T07:28:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/07/22/lion-eat-my-file-on-desktop</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;很奇怪的现象：我在桌面上放了一个文件，是用Bean生成的文本文件，接着从这个Desktop往下一个Desktop切换，但不完全切换，只需要看下一个Desktop内容的一点，然后再回到当前这个Desktop，就会发现桌面上的那个文件没了，但点击文件的位置仍然能够打开！！这应该是一个相当大的bug吧？难道还能是一个专门给用户着想的地方？！&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>很奇怪的现象：我在桌面上放了一个文件，是用Bean生成的文本文件，接着从这个Desktop往下一个Desktop切换，但不完全切换，只需要看下一个Desktop内容的一点，然后再回到当前这个Desktop，就会发现桌面上的那个文件没了，但点击文件的位置仍然能够打开！！这应该是一个相当大的bug吧？难道还能是一个专门给用户着想的地方？！</p>
 ]]></content>
   </entry>
   

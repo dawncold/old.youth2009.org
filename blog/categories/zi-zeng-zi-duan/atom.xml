@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 自增字段 | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/zi-zeng-zi-duan/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,11 +18,9 @@
     <link href="http://www.youth2009.org/blog/2011/01/27/mysql-auto-increasement-column/"/>
     <updated>2011-01-27T23:45:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/01/27/mysql-auto-increasement-column</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;一定要设定为NULL或者一个正确的int，一般是用作id的，看到有个自增选项我就选上了，没想到以后就无法插入数据了，Google到了解决方法，原来我的插入SQL是以前写的，那时候还没有设定id字段，现在要改改了，在那个字段的位置用NULL代替，反正是自动计算的嘛，我就不再劳神帮它算了……&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>一定要设定为NULL或者一个正确的int，一般是用作id的，看到有个自增选项我就选上了，没想到以后就无法插入数据了，Google到了解决方法，原来我的插入SQL是以前写的，那时候还没有设定id字段，现在要改改了，在那个字段的位置用NULL代替，反正是自动计算的嘛，我就不再劳神帮它算了……</p>
 
 <p>感谢<a href="http://www.realfex.com/archives/427" target="_blank">这里</a></p>
-
 ]]></content>
   </entry>
   

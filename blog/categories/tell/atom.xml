@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tell | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/tell/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,24 +18,20 @@
     <link href="http://www.youth2009.org/blog/2011/07/09/seek-and-tell-in-python/"/>
     <updated>2011-07-09T15:12:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/07/09/seek-and-tell-in-python</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;对于一个&lt;a title="file" href="http://www.youth2009.org/tag/file/"&gt;file&lt;/a&gt;，调用&lt;a title="tell" href="http://www.youth2009.org/tag/tell/"&gt;tell&lt;/a&gt;能够知道现在的文件位置。&lt;a title="seek" href="http://www.youth2009.org/tag/seek/"&gt;seek&lt;/a&gt;是改变文件位置。  比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完&lt;a title="tell" href="http://www.youth2009.org/tag/tell/"&gt;tell&lt;/a&gt;我又使用了&lt;a title="seek" href="http://www.youth2009.org/tag/seek/"&gt;seek&lt;/a&gt;(0),这样文件位置就回到开头了，下次再调用readline就会输出原来第一行的内容了，这应该是很容易理解的。不明白可以亲自试试。&lt;/p&gt;
-</code></pre>
-
-<p></p>
-
+    <content type="html"><![CDATA[<p>对于一个<a title="file" href="http://www.youth2009.org/tag/file/">file</a>，调用<a title="tell" href="http://www.youth2009.org/tag/tell/">tell</a>能够知道现在的文件位置。<a title="seek" href="http://www.youth2009.org/tag/seek/">seek</a>是改变文件位置。  比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完<a title="tell" href="http://www.youth2009.org/tag/tell/">tell</a>我又使用了<a title="seek" href="http://www.youth2009.org/tag/seek/">seek</a>(0),这样文件位置就回到开头了，下次再调用readline就会输出原来第一行的内容了，这应该是很容易理解的。不明白可以亲自试试。</p>
 
 <pre class="prettyprint linenums bush:python" lang="python">from sys import argv
 
 script, input_file = argv
 
 def print_all(f):
-    print f.read()
+   print f.read()
 
 def rewind(f):
-    f.seek(0)
+   f.seek(0)
 
 def print_a_line(line_count, f):
-    print line_count, f.readline()
+   print line_count, f.readline()
 
 current_file = open(input_file)
 

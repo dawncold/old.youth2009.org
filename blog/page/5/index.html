@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;前面几篇log中有提及，实在无法忍受yardvps的服务了，一开始真的不错，但现在越来越不行了，可能这就是标志着一个vps提供商由正规经营到超卖的转变。上次停机超过了24个小时，发了ticket过去问，结果是说我被ddos了，就自动把我从网络中断开了，真有意思的说法， &hellip;">
+  <meta name="description" content="看到vpsee上的vi打开网页啥的都能自动高亮，原本一直用着纯文本方式vi的我动心了，搜索了一点点配置，加入这些配置到~/vimrc这样的文件中后，打开vi就能自动加载配置。 下面的分别是：显示行号、自动缩进、开启语法高亮、编辑背景为暗色调、开启粘贴（传说复制过来的代码不会乱掉） set &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +84,53 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/06/13/config-vi-simply/">简单配置一下vi</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-13T22:26:00+08:00" pubdate data-updated="true">Jun 13<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>看到vpsee上的vi打开网页啥的都能自动高亮，原本一直用着纯文本方式vi的我动心了，搜索了一点点配置，加入这些配置到~/vimrc这样的文件中后，打开vi就能自动加载配置。</p>
+
+<p>下面的分别是：显示行号、自动缩进、开启语法高亮、编辑背景为暗色调、开启粘贴（传说复制过来的代码不会乱掉）</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">set number
+set autoindent
+syntax enable
+set background=dark
+set paste</pre>
+
+
+<p>vim是和emace同样重量级的编辑器，如果你是一个Linux控你肯定明白那句话，vi是vim的前身（允许我这样描述吧），所以配置都是这些编辑器的看家本领，这几条简单配置仅仅是个入门，还可以根据自己的需要添加修改<img title="微笑" src="http://www.youth2009.org/usr/plugins/TinyMCE/tiny_mce/plugins/emotions/img/smiley-smile.gif" alt="微笑" border="0"></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/06/13/migrate-to-new-vps/">迁移到了新VPS上</a></h1>
     
     
@@ -107,14 +154,11 @@
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;前面几篇log中有提及，实在无法忍受yardvps的服务了，一开始真的不错，但现在越来越不行了，可能这就是标志着一个vps提供商由正规经营到超卖的转变。上次停机超过了24个小时，发了ticket过去问，结果是说我被ddos了，就自动把我从网络中断开了，真有意思的说法，反正已经无法考证其真实性了，我只好选择离开。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>前面几篇log中有提及，实在无法忍受yardvps的服务了，一开始真的不错，但现在越来越不行了，可能这就是标志着一个vps提供商由正规经营到超卖的转变。上次停机超过了24个小时，发了ticket过去问，结果是说我被ddos了，就自动把我从网络中断开了，真有意思的说法，反正已经无法考证其真实性了，我只好选择离开。</p>
 
 <p>新的VPS比以前贵，大约是每月10刀（原来的512Mb的YardVPS是7.59刀），但新的vps性能很好，网络也很好很快，希望能一直用下去，贵点就贵点呗，比起神器Linode便宜了不少。</p>
 
-
 <p>这个技术blog是最后迁移过来的了，原先有几个php写得东西光是把数据库保存下来了，就不再挂出来让大家访问了吧，我猜也没几个用得，留着数据库做个纪念<img title="微笑" src="http://www.youth2009.org/usr/plugins/TinyMCE/tiny_mce/plugins/emotions/img/smiley-smile.gif" alt="微笑" border="0"></p>
-
 </div>
   
   
@@ -150,34 +194,29 @@
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;今天基本完成了LoveSMS，想checkout一下jdrcom来看看，所以就安装上了svn for eclipse，然后在导入的时候提示缺少javahl库，去了官方查看了一下，说是对于Mac用户，只需要下载他们的bin文件就能解决，我一看才给到1.6.5的版本，而我自己用brew都装到了1.7.5，而且svn插件用的是1.8.x，需要1.7+的svn支持才行，所以就自己重新安装了svn：&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>今天基本完成了LoveSMS，想checkout一下jdrcom来看看，所以就安装上了svn for eclipse，然后在导入的时候提示缺少javahl库，去了官方查看了一下，说是对于Mac用户，只需要下载他们的bin文件就能解决，我一看才给到1.6.5的版本，而我自己用brew都装到了1.7.5，而且svn插件用的是1.8.x，需要1.7+的svn支持才行，所以就自己重新安装了svn：</p>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">brew install subversion --universal --java</pre>
+<pre class="prettyprint linenums bush:bash" lang="bash">brew install subversion --universal --java</pre>
 
 
-<br /><p>这句是关键哦，当然你得先uninstall已经安装的svn才行。加了java开关就可以告诉svn需要java IDE的库，编译的完成后会继续编译javahl～</p>
-
+<p>这句是关键哦，当然你得先uninstall已经安装的svn才行。加了java开关就可以告诉svn需要java IDE的库，编译的完成后会继续编译javahl～</p>
 
 <p>会有这样的提示哦：</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">To use Java bindings with various Java IDEs, you might need a universal build:
-
-
-<p>  brew install subversion &mdash;universal &mdash;java
-==&gt; ./configure &mdash;disable-debug &mdash;prefix=/usr/local/Cellar/subversion/1.7.5 &mdash;with-ssl &mdash;with-zlib=/usr &mdash;with-sqlite=/usr/local &mdash;disable-neon-version-chec
+<pre class="prettyprint linenums bush:bash" lang="bash">To use Java bindings with various Java IDEs, you might need a universal build:
+ brew install subversion --universal --java
+==&gt; ./configure --disable-debug --prefix=/usr/local/Cellar/subversion/1.7.5 --with-ssl --with-zlib=/usr --with-sqlite=/usr/local --disable-neon-version-chec
 ==&gt; make
 ==&gt; make install
 ==&gt; make javahl
 ==&gt; make install-javahl
 ==&gt; Caveats
 You may need to link the Java bindings into the Java Extensions folder:
-  sudo mkdir -p /Library/Java/Extensions
-  sudo ln -s /usr/local/lib/libsvnjavahl-1.dylib /Library/Java/Extensions/libsvnjavahl-1.dylib</pre></p>
+ sudo mkdir -p /Library/Java/Extensions
+ sudo ln -s /usr/local/lib/libsvnjavahl-1.dylib /Library/Java/Extensions/libsvnjavahl-1.dylib</pre>
 
-<br /><p>自己加入后面的链接就ok了！</p>
 
+<p>自己加入后面的链接就ok了！</p>
 </div>
   
   
@@ -213,20 +252,17 @@ You may need to link the Java bindings into the Java Extensions folder:
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）</p>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo ：unable to resolve host HOSTNAME</pre>
-
-
-<br /><p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">sudo ：unable to resolve host HOSTNAME</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">127.0.0.1               localhost.localdomain localhost HOSTNAME</pre>
+<p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">127.0.0.1               localhost.localdomain localhost HOSTNAME</pre>
 
 
-<br /><p>希望vpsee的admin能在iso中修复这个问题</p>
-
+<p>希望vpsee的admin能在iso中修复这个问题</p>
 </div>
   
   
@@ -262,36 +298,28 @@ You may need to link the Java bindings into the Java Extensions folder:
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;刚拿到vps，打算更新一些软件，发现有些warning挺讨厌的，于是就想根除他们！！他们一般是这样的：&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>刚拿到vps，打算更新一些软件，发现有些warning挺讨厌的，于是就想根除他们！！他们一般是这样的：</p>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">locale: Cannot set LC_CTYPE to default locale: No such file or directory
-
-
-<p>locale: Cannot set LC_MESSAGES to default locale: No such file or directory
-locale: Cannot set LC_ALL to default locale: No such file or directory</pre></p>
-
-<br /><p>我看到我的LANG被设定为zh_CN.utf8，虽然我们是国人，但这个语言习惯不能代表我们的爱国情怀吧，我就改为en_US.utf8了：</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">locale: Cannot set LC_CTYPE to default locale: No such file or directory
+locale: Cannot set LC_MESSAGES to default locale: No such file or directory
+locale: Cannot set LC_ALL to default locale: No such file or directory</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">sudo touch /etc/default/locale
+<p>我看到我的LANG被设定为zh_CN.utf8，虽然我们是国人，但这个语言习惯不能代表我们的爱国情怀吧，我就改为en_US.utf8了：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">sudo touch /etc/default/locale
+vi /etc/default/locale</pre>
 
 
-<p>vi /etc/default/locale</pre></p>
+<p>加入：</p>
 
-<br /><p>加入：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">LANG="en_US.UTF-8"
+<pre class="prettyprint linenums bush:bash" lang="bash">LANG="en_US.UTF-8"
+LANGUAGE="en_US:en"</pre>
 
 
-<p>LANGUAGE=&ldquo;en_US:en&rdquo;</pre></p>
-
-<br /><p>再执行一下locale就发现问题不见了。</p>
-
+<p>再执行一下locale就发现问题不见了。</p>
 
 <p>希望vpsee的admin能在iso中修正这个事儿～</p>
-
 </div>
   
   
@@ -327,58 +355,44 @@ locale: Cannot set LC_ALL to default locale: No such file or directory</pre></p>
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;今天刚刚换了vps，ssh的安全早就该配置好，没想到竟然是现在了……&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>今天刚刚换了vps，ssh的安全早就该配置好，没想到竟然是现在了……</p>
 
-<p>首先这些基本需要做：<a href="http://www.deepvps.com/improve-ssh-security.html">http://www.deepvps.com/improve-ssh-security.html</a></p>
-
+<p>首先这些基本需要做：<a href="http://www.deepvps.com/improve-ssh-security.html"><a href="http://www.deepvps.com/improve-ssh-security.html">http://www.deepvps.com/improve-ssh-security.html</a></a></p>
 
 <p>再就是禁止root后需要创建一个马甲账号：</p>
 
-
 <p> </p>
-
 
 <p>0.增加ubuntu的admin组，我的vps默认没有，所以就创建了，sudoer文件中写明了admin组可以用sudo，所以我省略了这一步</p>
 
-
 <p> </p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">groupadd admin</pre>
-
-
-<br /><p>1.增加马甲账号(-m表示创建home目录，-s表示后面跟着的是terminal，-G表示加入后面的那个组，最后的USERNAME各位自己发挥)</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">groupadd admin</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">useradd -m -s /bin/bash -G admin USERNAME</pre>
+<p>1.增加马甲账号(-m表示创建home目录，-s表示后面跟着的是terminal，-G表示加入后面的那个组，最后的USERNAME各位自己发挥)</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">useradd -m -s /bin/bash -G admin USERNAME</pre>
 
 
-<br /><p>2.修改刚刚马甲的密码：(输入两次新密码就ok了)</p>
+<p>2.修改刚刚马甲的密码：(输入两次新密码就ok了)</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">passwd USERNAME</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">passwd USERNAME</pre>
-
-
-<br /><p>＃＃＃＃＃＃＃＃＃＃＃禁止root登陆＃＃＃＃＃＃＃＃＃＃＃</p>
-
+<p>＃＃＃＃＃＃＃＃＃＃＃禁止root登陆＃＃＃＃＃＃＃＃＃＃＃</p>
 
 <p>下面禁止root登陆，直接修改/etc/ssh/sshd_config中的PermitRootLogin为no即可，然后重启ssh：</p>
 
+<pre class="prettyprint linenums bush:bash" lang="bash">service ssh restart
+</pre>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">service ssh restart
 
-
-<p></pre></p>
-
-<br /><p>不放心的可以断开ssh连接用root和刚刚的马甲账号登陆试试看，肯定root不能用了，而且用马甲登陆上去之后你可以“su -”一下，输入root的密码后就切换到了root的环境下了（不要忘记su后面的短横杠哦，那样才切换环境）。</p>
-
+<p>不放心的可以断开ssh连接用root和刚刚的马甲账号登陆试试看，肯定root不能用了，而且用马甲登陆上去之后你可以“su -”一下，输入root的密码后就切换到了root的环境下了（不要忘记su后面的短横杠哦，那样才切换环境）。</p>
 
 <p> </p>
 
-
 <p> </p>
-
 </div>
   
   
@@ -414,17 +428,13 @@ locale: Cannot set LC_ALL to default locale: No such file or directory</pre></p>
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;这次宕机持续了1天零13小时，具体什么原因不清楚，yardvps那边说ip自动归零，这是什么原因？！反正我是不清楚怎么回事了，而且买了vpsee的vps，正考虑着是依然延续lnmp的架构还是自己整一套lnmp+python的架构，这样方便以后自己用python做webapp，嗯，先睡觉，起来再搞新的vps吧！！！&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>这次宕机持续了1天零13小时，具体什么原因不清楚，yardvps那边说ip自动归零，这是什么原因？！反正我是不清楚怎么回事了，而且买了vpsee的vps，正考虑着是依然延续lnmp的架构还是自己整一套lnmp+python的架构，这样方便以后自己用python做webapp，嗯，先睡觉，起来再搞新的vps吧！！！</p>
 
 <p>UPDATE:我没有睡觉……</p>
 
-
-<p>yardvps给我的回复是这样的——“It&#8217;s nulled by PPS (Packet Per Second) Once it exceeds the thresholds and simulates a DDOS attack our system automatically nulls your IP within seconds.”</p>
-
+<p>yardvps给我的回复是这样的——“It&rsquo;s nulled by PPS (Packet Per Second) Once it exceeds the thresholds and simulates a DDOS attack our system automatically nulls your IP within seconds.”</p>
 
 <p>看来是我被攻击了？！好奇怪！！！反正我用着vpsee的vps很爽，不出问题就不再用yardvps了！</p>
-
 </div>
   
   
@@ -460,17 +470,13 @@ locale: Cannot set LC_ALL to default locale: No such file or directory</pre></p>
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;我上次记录过一次这样的情况，突然间所有的php应用无法连接数据库了，但可惜我忘记是为何导致了这样的结果，总是有很多奇怪的地方在这个vps上发生，比如有次突然在某个app中出现了嵌入的广告，这个app可是我写的呀，怎么会有广告？！还有就是那次mysql突然无法连接了，最后用127.0.0.1代替了localhost。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>我上次记录过一次这样的情况，突然间所有的php应用无法连接数据库了，但可惜我忘记是为何导致了这样的结果，总是有很多奇怪的地方在这个vps上发生，比如有次突然在某个app中出现了嵌入的广告，这个app可是我写的呀，怎么会有广告？！还有就是那次mysql突然无法连接了，最后用127.0.0.1代替了localhost。</p>
 
 <p>昨晚国庆安装了织梦的后台，但提示无法使用数据库，由于昨天太晚了没有深入研究，早晨起来看了一下，有人说去查看data/common.inc.php文件中的信息，我去看了一下，突然想起来localhost不能用了，于是改为127.0.0.1就可以了，但这也只是缓兵之计，于是想办法解决！</p>
 
-
 <p>解决方法也不尽相同，就是在php.ini中的三处添加“/tmp/mysql.sock”，那三处就是：mysql.default_socket、mysqli.default_socket、pdo_mysql.default_socket，看名字就是php连接mysql的三种方法的默认socket路径，原来我就修改了两处，漏掉了mysqli这种，结果现在不少程序都是用这种方式连接，比如phpmyadmin和织梦，所以呢，修改了这三处就ok了（当然你得确定你用socket这种方式连接）</p>
 
-
 <p>至此我的phpmyadmin也可以用socket登录了，织梦也能访问数据库了，再也不用127.0.0.1啦~</p>
-
 </div>
   
   
@@ -506,60 +512,52 @@ locale: Cannot set LC_ALL to default locale: No such file or directory</pre></p>
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;刚刚翻了翻《Java核心技术》这本书，里面提到了swing中的Timer的用法，我就实践一下，结果发现根本没有反映，于是网上搜索答案，在stackoverflow中找到。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>刚刚翻了翻《Java核心技术》这本书，里面提到了swing中的Timer的用法，我就实践一下，结果发现根本没有反映，于是网上搜索答案，在stackoverflow中找到。</p>
 
 <p>我写的测试是每秒输出现在的时间而已。</p>
 
-
-<br /><pre class="prettyprint linenums bush:java" lang="java">import java.awt.Toolkit;
-
-
-<p>import java.awt.event.ActionEvent;
+<pre class="prettyprint linenums bush:java" lang="java">import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;</p>
+import java.util.Date;
 
-<p>public class TimePrint implements ActionListener
-{</p>
 
-<pre><code>@Override
-public void actionPerformed(ActionEvent e)
+public class TimePrint implements ActionListener
 {
-    // TODO Auto-generated method stub
-    System.out.println("date is: " + (new Date()));
-    Toolkit.getDefaultToolkit().beep();
+
+   @Override
+   public void actionPerformed(ActionEvent e)
+   {
+       // TODO Auto-generated method stub
+       System.out.println("date is: " + (new Date()));
+       Toolkit.getDefaultToolkit().beep();
+   }
 }
-</code></pre>
+</pre>
 
-<p>}
-</pre></p>
 
-<br /><p>在调用的时候如果忘记写Thread.sleep(xxx)这行就不会看到效果，具体原因不太清楚，可能这个swing中的Timer只是用来在GUI中做些什么工作的，而我用终端输出内容就不太合适了，于是就牵扯出来很多线程的问题。</p>
-
+<p>在调用的时候如果忘记写Thread.sleep(xxx)这行就不会看到效果，具体原因不太清楚，可能这个swing中的Timer只是用来在GUI中做些什么工作的，而我用终端输出内容就不太合适了，于是就牵扯出来很多线程的问题。</p>
 
 <p>这是main方法中的内容：</p>
 
+<pre class="prettyprint linenums bush:bash" lang="bash">import java.awt.event.ActionListener;
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 
-<p>import javax.swing.Timer;</p>
-
-<p>public class TimerPrintTest
-{</p>
-
-<pre><code>public static void main(String[] argStrings) throws InterruptedException
+public class TimerPrintTest
 {
-    System.out.println("Running...");
-    ActionListener listener = new TimePrint();
-    Timer timer = new Timer(1000, listener);
-    timer.start();
-    Thread.sleep(4000);
+   public static void main(String[] argStrings) throws InterruptedException
+   {
+       System.out.println("Running...");
+       ActionListener listener = new TimePrint();
+       Timer timer = new Timer(1000, listener);
+       timer.start();
+       Thread.sleep(4000);
+   }
 }
-</code></pre>
+</pre>
 
-<p>}
-</pre></p>
 </div>
   
   
@@ -595,84 +593,31 @@ public void actionPerformed(ActionEvent e)
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（</p>
 
-<br /><pre class="prettyprint linenums bush:c" lang="c">#include &lt;stdio.h&gt;
+<pre class="prettyprint linenums bush:c" lang="c">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
 
-
-<h1>include &lt;string.h&gt;</h1>
-
-<h1>include &lt;stdlib.h&gt;</h1>
-
-<p>void strcp(char<em>, char</em>);
+void strcp(char*, char*);
 int main()
-{</p>
-
-<pre><code>char* s = "test string...";
+{
+char* s = "test string...";
 char* t = malloc(strlen(s));
 strcp(t, s);
 printf("%s\n", t);
 free(t);
 
 return 0;
-</code></pre>
+}
 
-<p>}</p>
-
-<p>void strcp(char <em>s,char </em>t)<br/>
-{<br/>
-while(<em>s++ = </em>t++);<br/>
-}</pre></p>
-
-<br /><p>最漂亮的就是那句strcp的函数了，非常简洁好用：）</p>
-
-</div>
-  
-  
+void strcp(char *s,char *t)  
+{  
+while(*s++ = *t++);  
+}</pre>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/30/2012-astar-qualification-match/">2012Astar资格赛</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-30T12:09:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;其实挺那啥的，那啥呢？说不出来感受，些须高兴又些须失望。&lt;/p&gt;
-</code></pre>
-
-<p>资格赛10个题，仔细一看才知道是POJ的原题，随便找了10个，有简单到算a+b结果的，也有复杂点用动态规划、解方程组的等等。总之和大多数人一样，比较失望。</p>
-
-
-<p>虽然ac了10个，现在排名88，不过都直到答案网上有的是，自己找来不就可以了么，这样的资格赛有啥意思，难道这不就是随便让人们来参加的么？</p>
-
-
-<p>现在一想这和GoogleCodeJam的资格赛相比，真是差别很大，相当的大呀~</p>
-
+<p>最漂亮的就是那句strcp的函数了，非常简洁好用：）</p>
 </div>
   
   
@@ -697,6 +642,10 @@ while(<em>s++ = </em>t++);<br/>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -710,10 +659,6 @@ while(<em>s++ = </em>t++);<br/>
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

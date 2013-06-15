@@ -4,7 +4,7 @@
   <title><![CDATA[Category: webpy | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/webpy/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,11 +18,9 @@
     <link href="http://www.youth2009.org/blog/2012/05/06/webpy-frameworks-is-not-convinent-to-use/"/>
     <updated>2012-05-06T16:31:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/05/06/webpy-frameworks-is-not-convinent-to-use</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;本来做了个一个todo的app感觉python写web app真得好快啊，于是想加入一个user的功能，这样注册的用户就可以写自己的todo了，不过这么一加才感觉到web.py真不好用了，特别是session，还有templates也不怎么好用，官方的文档不知道为何也不给个完整版的，api只是写出来了，但基本都不说是什么作用，想清楚知道运行机制那就得看源代码了，还好不“那么”长！&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>本来做了个一个todo的app感觉python写web app真得好快啊，于是想加入一个user的功能，这样注册的用户就可以写自己的todo了，不过这么一加才感觉到web.py真不好用了，特别是session，还有templates也不怎么好用，官方的文档不知道为何也不给个完整版的，api只是写出来了，但基本都不说是什么作用，想清楚知道运行机制那就得看源代码了，还好不“那么”长！</p>
 
 <p>哎，暂时就放一下web.py吧！到头来过度依赖框架绝对不是什么好事，嗯，不是什么好兆头现在的我！</p>
-
 ]]></content>
   </entry>
   
@@ -31,40 +29,30 @@
     <link href="http://www.youth2009.org/blog/2011/11/20/also-helloworld-with-webpy/"/>
     <updated>2011-11-20T23:58:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/11/20/also-helloworld-with-webpy</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;学计算机编程语言的人都有helloworld情节，不管学成什么样，他们写helloworld的能力都很强。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>学计算机编程语言的人都有helloworld情节，不管学成什么样，他们写helloworld的能力都很强。</p>
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">import web
+<pre class="prettyprint linenums bush:python" lang="python">import web
+
+urls = ("/hello", "hello")
+app = web.application(urls, globals())
+
+class hello:
+   def GET(self):
+       return "hello, world"
+
+if __name__ == "__main__":
+   app.run()</pre>
 
 
-<p>urls = (&ldquo;/hello&rdquo;, &ldquo;hello&rdquo;)
-app = web.application(urls, globals())</p>
-
-<p>class hello:</p>
-
-<pre><code>def GET(self):
-    return "hello, world"
-</code></pre>
-
-<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
-
-<pre><code>app.run()&lt;/pre&gt;
-</code></pre>
-
-<br /><p>今晚已经开始了Web.py的学习阶段。</p>
-
+<p>今晚已经开始了Web.py的学习阶段。</p>
 
 <p>看官方介绍的在Mac系统下安装webpy有点特别，于是我直接使用了easy_install的安装方法，不知道自己以前安装过easy_install这个软件管理工具，直接使用就好了，不过最好加上sudo，否则会提示无法创建什么目录，权限不够吧。</p>
 
-
 <p>安装完web.py后就能使用框架来写东西了，上面的helloworld就算是。</p>
-
 
 <p>通过这个简单的helloworld能够学到一点框架的知识——在urls中一个url字符串对应一个处理的类对象，如果需要为这个app配置多个url和对应的处理类，就需要使用add_mapping方法，这些内容请参考<a href="http://webpy.org/docs/0.3/api#web.application">官方的api</a>，很是简单，具体不在此赘述。</p>
 
-
 <p>第一天就学到这里，以后就要变学习变开发了。</p>
-
 ]]></content>
   </entry>
   

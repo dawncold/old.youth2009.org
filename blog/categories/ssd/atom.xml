@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SSD | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/ssd/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -37,10 +37,8 @@ sudo pmset -a sms 0&lt;/pre&gt;
 备份
 sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original</pre></p>
 
-<br />10.8.1 or 10.7.5 or newer
-
-
-<p>sudo perl -pi -e &rsquo;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x4D)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+<p>10.8.1 or 10.7.5 or newer
+sudo perl -pi -e &rsquo;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x4D)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
 ```</p>
 
 <p>10.8.0 or 10.7.4 or below</p>
@@ -128,14 +126,11 @@ mount | grep " / "
     <link href="http://www.youth2009.org/blog/2012/10/01/bought-a-ssd-called-m4/"/>
     <updated>2012-10-01T14:05:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/10/01/bought-a-ssd-called-m4</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;256Gb，1200块。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>256Gb，1200块。</p>
 
 <p>速度还不错，读取260Mb/s，写入206Mb/s。</p>
 
-
 <p>至此，MC374能升级的部分都升级到位了。</p>
-
 ]]></content>
   </entry>
   

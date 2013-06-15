@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sorted | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/sorted/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -61,20 +61,15 @@ cp -f ./ldid $THEOS/bin/ldid
 
 <p>```objective-c
 /<em> This call lets you get an xpc_object_t that holds a reference to the IOSurface.
-   Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&rsquo;s global use
-   count by one until the object is destroyed. </em>/
-//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)</p>
-
-<pre><code>//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);
-</code></pre>
+  Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&rsquo;s global use
+  count by one until the object is destroyed. </em>/
+//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)
+//IOSFC_AVAILABLE_STARTING(<strong>MAC_10_7, </strong>IPHONE_NA);</p>
 
 <p>/<em> This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. </em>/
-//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)</p>
-
-<pre><code>//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);
-</code></pre>
-
-<p>```</p>
+//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)
+//IOSFC_AVAILABLE_STARTING(<strong>MAC_10_7, </strong>IPHONE_NA);
+```</p>
 
 <p>然后做你的tweak就可以了，我按照经典的heloworld例子搞了个hook，springboard中applicationDidFinishLaunching弹出alert，成功了。</p>
 

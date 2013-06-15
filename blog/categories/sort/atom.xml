@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sort | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/sort/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -24,9 +24,9 @@
 
 <p><code>python
 def sort_last(tuples):
-  # +++your code here+++
-  tuples.sort(key = lambda t: t[-1])
-  return tuples
+ # +++your code here+++
+ tuples.sort(key = lambda t: t[-1])
+ return tuples
 </code></p>
 
 <p>根据tuple中最后一个排序。</p>

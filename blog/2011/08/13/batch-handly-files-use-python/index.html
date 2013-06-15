@@ -9,7 +9,9 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;从某网站上下载了几个压缩包，里面全是目录，每个目录下都有一个doc文件，但可恶的是这些doc文件被换了扩展名，原本是xxx.doc现在变成xxx.doc.resx，我得用python批量处理一下：&lt;/p&gt; #! /usr/bin/python &ndash;& &hellip;">
+  <meta name="description" content="从某网站上下载了几个压缩包，里面全是目录，每个目录下都有一个doc文件，但可恶的是这些doc文件被换了扩展名，原本是xxx.doc现在变成xxx.doc.resx，我得用python批量处理一下： #! /usr/bin/python
+# -*- coding:utf-8 -*-
+# 遍历所有目录 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,65 +106,54 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;从某网站上下载了几个压缩包，里面全是目录，每个目录下都有一个doc文件，但可恶的是这些doc文件被换了扩展名，原本是xxx.doc现在变成xxx.doc.resx，我得用python批量处理一下：&lt;/p&gt;
-</code></pre>
+<div class="entry-content"><p>从某网站上下载了几个压缩包，里面全是目录，每个目录下都有一个doc文件，但可恶的是这些doc文件被换了扩展名，原本是xxx.doc现在变成xxx.doc.resx，我得用python批量处理一下：</p>
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+# -*- coding:utf-8 -*-
+# 遍历所有目录，把resx文件扩展名删掉
 
+import os
 
-<h1>&ndash;<em>&ndash; coding:utf-8 &ndash;</em>&ndash;</h1>
+current_path = os.getcwd()
+allsubdir = os.listdir(current_path)
 
-<h1>遍历所有目录，把resx文件扩展名删掉</h1>
-
-<p>import os</p>
-
-<p>current_path = os.getcwd()
-allsubdir = os.listdir(current_path)</p>
-
-<p>for subdir in allsubdir:</p>
-
-<pre><code>subdir_path = './' + subdir
-if os.path.isdir(subdir_path):
-    files = os.listdir(subdir_path)
-    for _file in files:
-        basename = os.path.basename(_file)
-        allname = os.path.splitext(basename)
-        if '.resx' in allname:
-            print 'resx file %s' % basename
-            without_resx = allname[0]
-            os.rename(subdir_path+'/'+_file,without_resx)
-        else:
-            print 'not resx file'
-            continue&lt;/pre&gt;
-</code></pre>
-
-<br /><p>还用了一个删除空目录的脚本：</p>
+for subdir in allsubdir:
+   subdir_path = './' + subdir
+   if os.path.isdir(subdir_path):
+       files = os.listdir(subdir_path)
+       for _file in files:
+           basename = os.path.basename(_file)
+           allname = os.path.splitext(basename)
+           if '.resx' in allname:
+               print 'resx file %s' % basename
+               without_resx = allname[0]
+               os.rename(subdir_path+'/'+_file,without_resx)
+           else:
+               print 'not resx file'
+               continue</pre>
 
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+<p>还用了一个删除空目录的脚本：</p>
+
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+# -*- coding:utf-8 -*-
+#删除空目录
+
+import os
+
+alldir = os.listdir(os.getcwd())
+for _dir in alldir:
+   if os.path.isdir('./'+_dir):
+       print 'dir: %s' % _dir
+       if os.listdir('./'+_dir):
+           print 'have something %s' % os.listdir('./'+_dir)
+       else:
+           os.rmdir('./'+_dir)
+   else:
+       print 'file or others'</pre>
 
 
-<h1>&ndash;<em>&ndash; coding:utf-8 &ndash;</em>&ndash;</h1>
-
-<h1>删除空目录</h1>
-
-<p>import os</p>
-
-<p>alldir = os.listdir(os.getcwd())
-for _dir in alldir:</p>
-
-<pre><code>if os.path.isdir('./'+_dir):
-    print 'dir: %s' % _dir
-    if os.listdir('./'+_dir):
-        print 'have something %s' % os.listdir('./'+_dir)
-    else:
-        os.rmdir('./'+_dir)
-else:
-    print 'file or others'&lt;/pre&gt;
-</code></pre>
-
-<br /><p>用python，很快乐！</p>
-
+<p>用python，很快乐！</p>
 </div>
 
 
@@ -230,6 +221,10 @@ else:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -243,10 +238,6 @@ else:
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

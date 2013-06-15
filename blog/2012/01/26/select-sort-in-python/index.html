@@ -9,7 +9,8 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python coding: utf-8 def select_sort(arraylist): for i in range(0 &hellip;">
+  <meta name="description" content="#! /usr/bin/env python
+# coding: utf-8 def select_sort(arraylist): for i in range(0, len(arraylist)): minElement = i for j in range(i, len(arraylist &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,32 +105,26 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python
-</code></pre>
+<div class="entry-content"><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
 
-<h1>coding: utf-8</h1>
+def select_sort(arraylist):
+   for i in range(0, len(arraylist)):
+       minElement = i
+       for j in range(i, len(arraylist)):
+           if arraylist[j] &lt; arraylist[minElement]:
+               minElement = j
+       temp = arraylist[i]
+       arraylist[i] = arraylist[minElement]
+       arraylist[minElement] = temp
 
-<p>def select_sort(arraylist):</p>
+if __name__ == "__main__":
+   arr = [2, 424, 4, 13, 5, 99, 100, 231, 0, 1]
+   print arr
+   select_sort(arr)
+   print arr
+</pre>
 
-<pre><code>for i in range(0, len(arraylist)):
-    minElement = i
-    for j in range(i, len(arraylist)):
-        if arraylist[j] &amp;lt; arraylist[minElement]:
-            minElement = j
-    temp = arraylist[i]
-    arraylist[i] = arraylist[minElement]
-    arraylist[minElement] = temp
-</code></pre>
-
-<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
-
-<pre><code>arr = [2, 424, 4, 13, 5, 99, 100, 231, 0, 1]
-print arr
-select_sort(arr)
-print arr
-</code></pre>
-
-<p></pre></p>
 </div>
 
 
@@ -197,6 +192,10 @@ print arr
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -210,10 +209,6 @@ print arr
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

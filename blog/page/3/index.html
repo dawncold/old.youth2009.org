@@ -9,10 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="这里的LXC是基于Ubuntu12.04的，在其他系统下可能不太一样。 0.安装lxc 1
-sudo apt-get install lxc 1.修改lxc的mirror，不修改的话下载一个ubuntu景象会非常慢！！！ 1
-2
-sudo emacs /etc/default/lxc &hellip;">
+  <meta name="description" content="昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +78,55 @@ sudo emacs /etc/default/lxc &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/09/nat-practical/">NAT实践</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-09T14:09:00+08:00" pubdate data-updated="true">Oct 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3.20这台container来处理，相应的response也会返回过去。这样就做到了服务隔离。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to 10.0.3.20
+</span><span class='line'>sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT --to 200.200.200.25
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就把进入的请求都发到了10.0.3.20这台container上去处理。</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/CkkIbzDr/medish.jpg" alt="nat" /></p>
+
+<p>只默认开了一个nginx，就这样的效果。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -338,9 +384,9 @@ sudo emacs /etc/default/lxc &hellip;">
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">sort_last</span><span class="p">(</span><span class="n">tuples</span><span class="p">):</span>
-</span><span class='line'>  <span class="c"># +++your code here+++</span>
-</span><span class='line'>  <span class="n">tuples</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">tuples</span>
+</span><span class='line'> <span class="c"># +++your code here+++</span>
+</span><span class='line'> <span class="n">tuples</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'> <span class="k">return</span> <span class="n">tuples</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -401,9 +447,11 @@ sudo emacs /etc/default/lxc &hellip;">
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
+<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>备份
 </span><span class='line'>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original&lt;/pre&gt;
-</span><span class='line'>&lt;br /&gt;10.8.1 or 10.7.5 or newer
+</span><span class='line'>
+</span><span class='line'>10.8.1 or 10.7.5 or newer
 </span><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x4D)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
 </span></code></pre></td></tr></table></div></figure>
 
@@ -549,14 +597,11 @@ sudo emacs /etc/default/lxc &hellip;">
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;256Gb，1200块。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>256Gb，1200块。</p>
 
 <p>速度还不错，读取260Mb/s，写入206Mb/s。</p>
 
-
 <p>至此，MC374能升级的部分都升级到位了。</p>
-
 </div>
   
   
@@ -592,14 +637,11 @@ sudo emacs /etc/default/lxc &hellip;">
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;疏于管理啊，让各路垃圾评论之小人得了空，钻到这里写了那么多，还好spam插件够给力，全部截获。以后不该再这样了，但也是没什么时间。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>疏于管理啊，让各路垃圾评论之小人得了空，钻到这里写了那么多，还好spam插件够给力，全部截获。以后不该再这样了，但也是没什么时间。</p>
 
 <p>去了honovation之后发觉自己写过的代码基本就不叫代码啊，自觉的对python算是熟悉的，到了那里也感觉从没写过python了，怪我平日光想着感情来感情去了，就和我这技术blog似的，疏于管束，才弄得我今天这个结果。</p>
 
-
 <p>现在比较感兴趣的是敏捷实践，看书上网上的资料毕竟比较浮华，身处于敏捷团队，每天都在做得就是最好的实践，怪我一时还不太会总结，现在好像又要深陷到代码里了，我这个程序员何时能成长？！</p>
-
 </div>
   
   
@@ -635,57 +677,9 @@ sudo emacs /etc/default/lxc &hellip;">
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;最近有个网站需要一个简单的功能——全选一些checkbox，但用attr的方法总是出问题，主要问题如下：第一次全选没问题，如果此时取消选择一些checkbox，再用全选就不管用了，主要原因就是第一次全选的时候自动加入了checked属性，以后再强制attr("checked",true)就会没反应。在&lt;a href="http://blog.csdn.net/yaerfeng/article/details/7792832"&gt;这里&lt;/a&gt;看到一篇文章，里面提到了prop方法，是1.6以后才加入的，就是部分替换了attr的功能，用了prop就可以及时对操作做出反应（这里我不太理解），总之本来用attr的操作现在需要用prop才有效果，当然了，如果你用纯js肯定是没问题喽。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>最近有个网站需要一个简单的功能——全选一些checkbox，但用attr的方法总是出问题，主要问题如下：第一次全选没问题，如果此时取消选择一些checkbox，再用全选就不管用了，主要原因就是第一次全选的时候自动加入了checked属性，以后再强制attr(&ldquo;checked&rdquo;,true)就会没反应。在<a href="http://blog.csdn.net/yaerfeng/article/details/7792832">这里</a>看到一篇文章，里面提到了prop方法，是1.6以后才加入的，就是部分替换了attr的功能，用了prop就可以及时对操作做出反应（这里我不太理解），总之本来用attr的操作现在需要用prop才有效果，当然了，如果你用纯js肯定是没问题喽。</p>
 
 <p>换用prop之后，问题解决！</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/09/return-to-develop/">终于又回到了开发一线</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-09T10:45:00+08:00" pubdate data-updated="true">Aug 9<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;前两天把系统从Lion升级到了MountainLion，这一升级不要紧，很多开发环境都需要重装，比如Java又得重新下载，Python的类库又消失了，XCode过期了。。。&lt;/p&gt;
-</code></pre>
-
-<p>听说了一个好消息，从XCode4.4.1开始，以后的XCode都会采用增量更新，但这次除外，1.56Gb的XCode，在这种破网速中用了两天才搞定。</p>
-
-
-<p>Python的一个类库MySQL-python需要gcc-4.2才能编译，于是还需要下载CommandLineTool，又是155Mb。。。（但装好XCode后可以从XCode.app中找到llvm-gcc-4.2，我是用这个编译的，也能用）。</p>
-
-
-<p>还有几个小的python类库，装好后就能继续用了。这次系统升级后MySQL竟然没有问题，值得表扬一下！</p>
-
 </div>
   
   
@@ -710,6 +704,10 @@ sudo emacs /etc/default/lxc &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -723,10 +721,6 @@ sudo emacs /etc/default/lxc &hellip;">
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

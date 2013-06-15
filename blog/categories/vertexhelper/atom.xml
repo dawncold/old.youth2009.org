@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vertexhelper | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/vertexhelper/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,25 +18,18 @@
     <link href="http://www.youth2009.org/blog/2011/08/04/use-vertexhelper/"/>
     <updated>2011-08-04T23:02:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/08/04/use-vertexhelper</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;最近在用Box2d开发小游戏，不可避免用到多边形物体，当然有的形状还好描述，但大多数是那种难以描述的物体，所以这个VertexHelper就是不可或缺的武器了，它能够让你把需要的物体边界描出来，自动生成Box2d需要的边界代码。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>最近在用Box2d开发小游戏，不可避免用到多边形物体，当然有的形状还好描述，但大多数是那种难以描述的物体，所以这个VertexHelper就是不可或缺的武器了，它能够让你把需要的物体边界描出来，自动生成Box2d需要的边界代码。</p>
 
 <p>没想到作者把软件放到app store上卖，但还提供源代码，不知道他们之间是什么不一样……</p>
 
-
 <p>从GitHub那里得到源代码，打开xcode编译一下就能用了。</p>
-
 
 <p>有一点需要说明，得到的源代码中Project的Base SDK是10.5，在我编译的时候提示了一个警告，现在找不到了。只需要把Target中VertexHelper的BaseSDK改为10.7就可以了，当然如果你没有10.7就只能用10.6了。可能是因为我没有10.5SDK才出现的错误吧。</p>
 
-
 <p><a title="Screen Shot 2011-08-04 at 下午11.01.34.png" href="http://www.youth2009.org/attachment/135222/"><img src="http://www.youth2009.org/usr/uploads/2011/08/2070161037.png" alt="Screen Shot 2011-08-04 at 下午11.01.34.png"></a></p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro Project$ git clone https://github.com/jfahrenkrug/VertexHelper.git
-
-
-<p>Cloning into VertexHelper&hellip;
+<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro Project$ git clone https://github.com/jfahrenkrug/VertexHelper.git
+Cloning into VertexHelper...
 remote: Counting objects: 150, done.
 remote: Compressing objects: 100% (88/88), done.
 remote: Total 150 (delta 85), reused 96 (delta 53)
@@ -54,7 +47,8 @@ English.lproj               PrioritySplitViewDelegate.h VertexDocument.h        
 ImageViewGridLayer.h        PrioritySplitViewDelegate.m VertexDocument.m            VertexScanner.h
 ImageViewGridLayer.m        README.md                   VertexHelper-Info.plist     VertexScannerMain.cpp
 PNGLoader.cpp               SWImageView.h               VertexHelper.xcodeproj      drop_sprite.png
-PNGLoader.h                 SWImageView.m               VertexHelper_Prefix.pch     icon.icns</pre></p>
+PNGLoader.h                 SWImageView.m               VertexHelper_Prefix.pch     icon.icns</pre>
+
 ]]></content>
   </entry>
   

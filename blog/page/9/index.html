@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;我记得自己好像说过要在python上坚持一段时间，现在发现有些不可能了，我要转向ruby了，因为自学了好久的python，只是觉得很酷，有时候也解决了不少问题，的确是一种高效的开发语言，但开发了一段时间的web app后并不像我当初预想的那样， &hellip;">
+  <meta name="description" content="刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！ 修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +84,80 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/02/05/update-ruby-on-mac/">更新Mac下的ruby</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-05T00:00:00+08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！</p>
+
+<p>修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/bin中的情况，如果不能自动创建链接过去的话，麻烦是一个方面，关键是后面做的一些工作基本都白费了，可能你运行的一个软件是在/usr/bin中存在的，那样就不会自动搜索到你用brew安装的那个了。详情找找brew的工作原理吧：)</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">sudo chown -R `whoami` /usr/local</pre>
+
+
+<p>首先我用了大家推荐的Homwbrew管理工具，这里安装完homebrew后需要在自己的bash配置文件中加入新的path：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">export PATH=/usr/local/bin:$PATH</pre>
+
+
+<p>把这行加入到bash_profile中吧，这样就能让homebrew发挥作用了，你首先就能用上更新了的程序而不是从默认路径查找。（如果以前用了MacPorts的话你也会和我一样看到MacPorts的export命令，要去掉他们，或者你把Homebrew的export命令写在下面，这样能覆盖掉，既然我已经删除了MacPorts，所以干脆删除掉！）</p>
+
+<p>关闭terminal，重新加载刚才的bash_profile，这样就能用Homebrew了。</p>
+
+<p>首先安装git，自己和Homwbrew都用得到：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">brew install git</pre>
+
+
+<p>接着更新一下Homebrew的源：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">brew update</pre>
+
+
+<p>然后安装了ruby后就能用gem来更新系统了：</p>
+
+<p>安装ruby：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">brew install ruby</pre>
+
+
+<p>更新系统：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">gem update --system</pre>
+
+
+<p>后面的安装rails等操作就可以用gem来做了，看看自己的ruby版本，已经是1.9.3p0(2011-10-30)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/02/04/sorry-to-me-help-my-ruby/">Sorry to Me</a></h1>
     
     
@@ -107,14 +181,11 @@
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;我记得自己好像说过要在python上坚持一段时间，现在发现有些不可能了，我要转向ruby了，因为自学了好久的python，只是觉得很酷，有时候也解决了不少问题，的确是一种高效的开发语言，但开发了一段时间的web app后并不像我当初预想的那样，python的相关框架在做开放的时候挺复杂的，即便是web.py这样号称simple的框架也让人用起来不舒服，可能用习惯了的话没什么，但我毕竟是一个新手，就算是php也只是才写了几K行的垃圾代码。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>我记得自己好像说过要在python上坚持一段时间，现在发现有些不可能了，我要转向ruby了，因为自学了好久的python，只是觉得很酷，有时候也解决了不少问题，的确是一种高效的开发语言，但开发了一段时间的web app后并不像我当初预想的那样，python的相关框架在做开放的时候挺复杂的，即便是web.py这样号称simple的框架也让人用起来不舒服，可能用习惯了的话没什么，但我毕竟是一个新手，就算是php也只是才写了几K行的垃圾代码。</p>
 
 <p>就为了ruby的宗旨吧——code for fun，虽然现在没有感觉到fun到底来自何处，我也不管了，因为最近实在没什么让我happy的事情，了解我的人可能都知道这段时间我怎么了。</p>
 
-
 <p>ruby，救救我吧！</p>
-
 </div>
   
   
@@ -150,26 +221,24 @@
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:bash" lang="bash"&gt;sudo port -f uninstall installed
-</code></pre>
+  <div class="entry-content"><pre class="prettyprint linenums bush:bash" lang="bash">sudo port -f uninstall installed
 
-<p>sudo rm -rf \
+sudo rm -rf \
 /opt/local \
 /Applications/DarwinPorts \
 /Applications/MacPorts \
-/Library/LaunchDaemons/org.macports.<em> \
-/Library/Receipts/DarwinPorts</em>.pkg \
+/Library/LaunchDaemons/org.macports.* \
+/Library/Receipts/DarwinPorts*.pkg \
 /Library/Receipts/MacPorts*.pkg \
 /Library/StartupItems/DarwinPortsStartup \
 /Library/Tcl/darwinports1.0 \
 /Library/Tcl/macports1.0 \
-~/.macports</pre></p>
+~/.macports</pre>
 
-<br /><p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
 
+<p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
 
 <p>我删除了MacPorts后就开始用Homebrew了。</p>
-
 </div>
   
   
@@ -205,60 +274,51 @@
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;其实和昨天的归并排序基本内容一样，就多加了几行输出来帮助理解，找逆序对就是多了一个统计变量而已。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>其实和昨天的归并排序基本内容一样，就多加了几行输出来帮助理解，找逆序对就是多了一个统计变量而已。</p>
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
 
+def merge(arraylist, first, middle, last):
+   temp = []
+   i = first
+   j = middle + 1
+   while i &lt;= middle and j &lt;= last:
+       if arraylist[i] &lt;= arraylist[j]:
+           temp.append(arraylist[i])
+           i += 1
+       else:
+           global inv
+           inv += middle - i + 1
+           temp.append(arraylist[j])
+           j += 1
+   while i &lt;= middle:
+       temp.append(arraylist[i])
+       i += 1
+   while j &lt;= last:
+       temp.append(arraylist[j])
+       j += 1
+   print temp
+   for i in range(0, last - first + 1):
+       arraylist[first + i] = temp[i]
 
-<h1>coding: utf-8</h1>
+def merge_sort(arraylist, first, last):
+   if first &lt; last:
+       middle = (first + last) / 2
+       print "first = %d, middle = %d, last = %d" % (first, middle, last)
+       merge_sort(arraylist, first, middle)  
+       merge_sort(arraylist, middle + 1, last)
+       merge(arraylist, first, middle, last)
 
-<p>def merge(arraylist, first, middle, last):</p>
+if __name__ == "__main__":
+   inv = 0
+   arr = [2,3,8,6,1]
+   print "orign: ", arr
+   merge_sort(arr, 0, len(arr) - 1)
+   print "final: ", arr
+   print "inv = %d" % inv
+</pre>
 
-<pre><code>temp = []
-i = first
-j = middle + 1
-while i &amp;lt;= middle and j &amp;lt;= last:
-    if arraylist[i] &amp;lt;= arraylist[j]:
-        temp.append(arraylist[i])
-        i += 1
-    else:
-        global inv
-        inv += middle - i + 1
-        temp.append(arraylist[j])
-        j += 1
-while i &amp;lt;= middle:
-    temp.append(arraylist[i])
-    i += 1
-while j &amp;lt;= last:
-    temp.append(arraylist[j])
-    j += 1
-print temp
-for i in range(0, last - first + 1):
-    arraylist[first + i] = temp[i]
-</code></pre>
-
-<p>def merge_sort(arraylist, first, last):</p>
-
-<pre><code>if first &amp;lt; last:
-    middle = (first + last) / 2
-    print "first = %d, middle = %d, last = %d" % (first, middle, last)
-    merge_sort(arraylist, first, middle)  
-    merge_sort(arraylist, middle + 1, last)
-    merge(arraylist, first, middle, last)
-</code></pre>
-
-<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
-
-<pre><code>inv = 0
-arr = [2,3,8,6,1]
-print "orign: ", arr
-merge_sort(arr, 0, len(arr) - 1)
-print "final: ", arr
-print "inv = %d" % inv
-</code></pre>
-
-<p></pre></p>
 </div>
   
   
@@ -334,42 +394,42 @@ print "inv = %d" % inv
 </span><span class='line'><span class="c"># coding: utf-8</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>    <span class="n">i</span> <span class="o">=</span> <span class="n">first</span>
-</span><span class='line'>    <span class="n">j</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="k">while</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">middle</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">last</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
-</span><span class='line'>            <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-</span><span class='line'>            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="k">while</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">middle</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="k">while</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">last</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-</span><span class='line'>        <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">last</span> <span class="o">-</span> <span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>        <span class="n">arraylist</span><span class="p">[</span><span class="n">first</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>   <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>   <span class="n">i</span> <span class="o">=</span> <span class="n">first</span>
+</span><span class='line'>   <span class="n">j</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">middle</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">last</span><span class="p">:</span>
+</span><span class='line'>       <span class="k">if</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+</span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>           <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>       <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span><span class='line'>           <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">middle</span><span class="p">:</span>
+</span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>       <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">while</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">last</span><span class="p">:</span>
+</span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span><span class='line'>       <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">last</span> <span class="o">-</span> <span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>       <span class="n">arraylist</span><span class="p">[</span><span class="n">first</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">first</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">last</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">first</span> <span class="o">+</span> <span class="n">last</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-</span><span class='line'>        <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>   <span class="k">if</span> <span class="n">first</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">last</span><span class="p">:</span>
+</span><span class='line'>       <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">first</span> <span class="o">+</span> <span class="n">last</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">)</span>
+</span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>       <span class="n">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">425</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">arr</span>
-</span><span class='line'>    <span class="n">merge_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">arr</span>
+</span><span class='line'>   <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">425</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+</span><span class='line'>   <span class="k">print</span> <span class="n">arr</span>
+</span><span class='line'>   <span class="n">merge_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>   <span class="k">print</span> <span class="n">arr</span>
 </span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>谢谢<a href="http://www.codecho.com/merge-sort-and-quick-sort-in-python">这里</a>的帮助，我自己照着《算法导论》写了好久都出错，哎，自己在这类问题上有点笨。</p></p>
+<p>谢谢<a href="http://www.codecho.com/merge-sort-and-quick-sort-in-python">这里</a>的帮助，我自己照着《算法导论》写了好久都出错，哎，自己在这类问题上有点笨。</p>
 </div>
   
   
@@ -405,11 +465,9 @@ print "inv = %d" % inv
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;rebase被人翻译成衍合，是和merge功能差不多的一种操作，但提醒一点，进行rebase的内容一定不可以是提交到公共服务器上的内容，简单讲就是rebase操作你在本地自己玩就好了。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>rebase被人翻译成衍合，是和merge功能差不多的一种操作，但提醒一点，进行rebase的内容一定不可以是提交到公共服务器上的内容，简单讲就是rebase操作你在本地自己玩就好了。</p>
 
-<p>详细点的说明去这里看吧：<a href="http://progit.org/book/zh/ch3-6.html">http://progit.org/book/zh/ch3-6.html</a></p>
-
+<p>详细点的说明去这里看吧：<a href="http://progit.org/book/zh/ch3-6.html"><a href="http://progit.org/book/zh/ch3-6.html">http://progit.org/book/zh/ch3-6.html</a></a></p>
 </div>
   
   
@@ -445,26 +503,19 @@ print "inv = %d" % inv
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;分支的使用比较繁杂，前面光说了一些皮毛，现在记录一下分支的管理部分。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>分支的使用比较繁杂，前面光说了一些皮毛，现在记录一下分支的管理部分。</p>
 
 <p>查看分支的详细信息：git branch -v，列出分支最后提交的内容，带星号表示当前分支。</p>
 
-
-<p>查看哪些分支已经被并入当前分支：git branch &#8211;merged，也就是说除了那个带星号的分支都是可以删除（-d）的，因为都合并进来了嘛！查看没合并进来的就是&#8211;no-merged开关。删除那些没有合并进来的分支会提示错误，但强制删除就可以了，强制删除用-D开关。</p>
-
+<p>查看哪些分支已经被并入当前分支：git branch &mdash;merged，也就是说除了那个带星号的分支都是可以删除（-d）的，因为都合并进来了嘛！查看没合并进来的就是&mdash;no-merged开关。删除那些没有合并进来的分支会提示错误，但强制删除就可以了，强制删除用-D开关。</p>
 
 <p><strong>不得不说的远程分支</strong></p>
 
-
 <p>在github创建了一个项目，在项目管理中开启了github Pages服务，这是个给项目做介绍页面的服务，开启后出现了一个远程分支gh-pages，但本地根本访问不到。首先我们应该明确，这个分支暂时不在我们本地，除非你是在这个服务开启后clone了项目，这样肯定有，否则和我一样的话（从本地push过去的），需要先fetch过来这些远程分支：git fetch origin gh-pages:gh-pages。后面两个由冒号分隔的意思是获取origin中的gh-pages分支，放到本地，在本地也叫gh-pages（冒号右侧），当然你可以根据需要更改冒号右侧的本地分支名字。现在查看一下本地分支就能发现出现两个分支了，切换过去后就能看到github给我们生成的index.html文件，你可以编辑了：）</p>
-
 
 <p>推送本地分支到远程分支的时候可以像上面这样写:git push origin xxx1:xxx2，意思就是推送本地叫xxx1的分支到origin中，推过去叫xxx2，但此处一般简写，光写本地分支名，这样远程分支中的名字也是和本地一样的。</p>
 
-
 <p>删除远程分支的命令挺好玩的：git push origin  :xxx，在xxx左边冒号左侧有一个空格，意思是把本地的空分支推到远程的xxx分支上，就是删除xxx分支的意思。</p>
-
 </div>
   
   
@@ -500,32 +551,23 @@ print "inv = %d" % inv
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;在git中分支是一个变态技能！&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>在git中分支是一个变态技能！</p>
 
 <p>创建分支：git branch [branch-name]即可。</p>
 
-
 <p><a title="18333fig0305-tn.png" href="http://www.youth2009.org/attachment/135279/"><img src="http://www.youth2009.org/usr/uploads/2012/01/528893353.png" alt="18333fig0305-tn.png"></a></p>
-
 
 <p>git中有个叫master的分支，这是默认的，刚刚创建了一个testing分支，所以这两个指向是一样的，因为刚刚就在master分支下。但是git为何知道我在master呢？因为还有个叫HEAD的默认指针指向了当前正在使用的分支，所以当你切换分支的时候HEAD就会指向新的地方。</p>
 
-
 <p>切换分支：git checkout [branch-name]（git checkout -b [branch-name]可以实现新建并切换到此分支）切换分支时最好保持暂存区清洁，否则有可能产生冲突阻止你切换。</p>
-
 
 <p>当我们切换到了testing分支后，再做一些提交，我们的testing分支会继续往下走，但master分支还停留在刚才离开的地方，如果我们需要回去，只需要再切换回master分支即可屏蔽刚才所作的提交，保持文件的原始性。</p>
 
-
 <p>合并分支：git merge [branch-name]，把分支合并到你现在所在的那个分支中，可别合并反喽，当然我感觉反了也没关系，就是个名字的问题吧？</p>
-
 
 <p>分支删除用-d开关，git branch -d [branch-name]即可。</p>
 
-
 <p>合并分支的时候遇到冲突是不可避免的，有些冲突能够自动解决，但还有不少是需要我们手动解决的，此时git会在status中告诉我们，我们打开后就能看到由“=====”分割开的两部分，就是让我们选择，等手动修改好后需要再add进暂存区，此时就能提交了。 </p>
-
 </div>
   
   
@@ -561,41 +603,32 @@ print "inv = %d" % inv
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;打标签，挺有用的一个功能，一般是加版本号吧。v1.0，v2.0，vN.0&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>打标签，挺有用的一个功能，一般是加版本号吧。v1.0，v2.0，vN.0</p>
 
 <p>git tag是看标签</p>
 
-
-<p>git tag -a 是加带附注的标签，（还有轻量级标签不用加-a，直接给出标签名字完事），接下来一个参数是标签名字，再者需要-m引出附注内容，完整就像这样：git tag -a v1.0 -m &#8216;first version&#8217;</p>
-
+<p>git tag -a 是加带附注的标签，（还有轻量级标签不用加-a，直接给出标签名字完事），接下来一个参数是标签名字，再者需要-m引出附注内容，完整就像这样：git tag -a v1.0 -m &lsquo;first version&rsquo;</p>
 
 <p>加完后可以show一下：git show v1.0，所谓附注就是包含了很多提交者的信息，以后可以慢慢查证使用。</p>
 
-
 <p>如果你有GPG的话还可以签署标签，把前面的-a改成-s即可，-s是signed的意思，-a是annotated的意思。（刚刚尝试了一下-s，可惜Mac系统上没装gpg软件，签署失败，但大多linux系统都会有的吧，Mac系统的用户请从<a href="http://www.gpgtools.org/">这里</a>下载GPGTools）</p>
-
 
 <p>刚才用GPG签名了，现在验证一下：git tag -v xxx，-v就是verify的意思，比如我得到了如下的提示信息：</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">object a20e6b9c2433e88a9da63abd8d74ddede9bccde6
-
-
-<p>type commit
+<pre class="prettyprint linenums bush:bash" lang="bash">object a20e6b9c2433e88a9da63abd8d74ddede9bccde6
+type commit
 tag v_2012-01-26-s
-tagger dawncold &lt;loooseleaves@gmail.com&gt; 1327569076 +0800</p>
+tagger dawncold &lt;loooseleaves@gmail.com&gt; 1327569076 +0800
 
-<p>signed this tag
+signed this tag
 gpg: 于 四  1/26 17:11:24 2012 CST 创建的签名，使用 RSA，钥匙号 1B1ECF39
 gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
-</pre></p>
+</pre>
 
-<br /><p>很可惜，默认tag是不被push到远程仓库中的，如果要分享你的tags，在push的时候要显示地写明：git push origin [tag-name]，推送所有tags可以直接用&#8211;tags来代替tag-name参数</p>
 
+<p>很可惜，默认tag是不被push到远程仓库中的，如果要分享你的tags，在push的时候要显示地写明：git push origin [tag-name]，推送所有tags可以直接用&mdash;tags来代替tag-name参数</p>
 
 <p>删除tag需要用-d完成：git tag -d [tag-name]</p>
-
 </div>
   
   
@@ -631,75 +664,19 @@ gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;查看当前远程仓库：git remote  -v，加上-v属性能看得内容详细一些。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>查看当前远程仓库：git remote  -v，加上-v属性能看得内容详细一些。</p>
 
 <p>添加远程仓库：git remote add [shortname] [url]</p>
 
-
 <p>有了shortname，就相对于给仓库了一个别名，以后可以用别名操作，git fetch xx即可</p>
-
 
 <p>get fetch xx是获取远程仓库中有而本地没有的数据</p>
 
-
 <p>提送数据到远程仓库用：git push remote-name branch-name，推送的时候要注意必须没有他人在推送，且没有其他更新才行，如果他人推送了不少更新，你需要先得到更新，合并后再推送。（这里并不是说和svn一样了，只是你可以自己先在本地提交，但推送到远程服务器上时，需要按照先来后到的原则，保证每个人的提交是不冲突的，是最新的。这是我个人的理解）</p>
-
 
 <p>远程仓库重命名、删除：git remote rename short-name new-name，git remote rm xx</p>
 
-
 <p>另外git remote show repo-name能够得到不少信息，有哪些要合并啦，哪些已经删除啦，哪些新仓库出现啦等等，这个是需要连接服务器获取的。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-mend-file-part/">Git使用重新学习（撤销操作）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T15:05:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;&lt;strong&gt;修改最后一次提交&lt;/strong&gt;：git commit --amend&lt;/p&gt;
-</code></pre>
-
-<p>如果只是提交信息写错了，运行后会让你重新写提交信息，但如果你忘记了加文件进入，可以这样做，先commit，再add忘记的文件，最后来一句git commit &#8211;amend，这看似两次提交，实际只是一次，后面的提交修正了前面的。</p>
-
-
-<p><strong>取消已暂存的文件</strong>：看status的时候有提示，git reset HEAD &lt;file&gt;，执行后可以把一个已修改的文件从暂存区拉回到“changed but not update”里，前面日志说过，在这里面的文件需要add后才能进入暂存区被提交。</p>
-
-
-<p><strong>取消修改</strong>：如果感觉刚才的修改没有必要，需要取消修改，那么用git checkout &#8211; &lt;file&gt;，在1.6.1以上的版本才会有这样的功能，我刚刚看了下git的版本（git &#8211;version）是1.7.5.4，看来暂时不用升级就能体验了。使用后就会发现文件的修改已经被撤销，此命令很危险，如果只是想回退版本可以用stashing和分支来处理，后面再说。</p>
-
-
-<p>最后说一句，任何被提交的数据都能被恢复，即便是在已经删除的分支中提交的等等，但没有提交的丢了就丢了！！！</p>
-
 </div>
   
   
@@ -724,6 +701,10 @@ gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -737,10 +718,6 @@ gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

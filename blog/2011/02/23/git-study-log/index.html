@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;1.从http://code.google.com/p/git-osx-installer/downloads/list下载最新的git安装包&lt;/p&gt; 2.安装 3.配置git git config --global user.name 'dawncold' git &hellip;">
+  <meta name="description" content="1.从http://code.google.com/p/git-osx-installer/downloads/list%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%9A%84git%E5%AE%89%E8%A3%85%E5%8C%85 2.安装 3.配置git &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,136 +104,192 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;1.从http://code.google.com/p/git-osx-installer/downloads/list下载最新的git安装包&lt;/p&gt;
-</code></pre>
+<div class="entry-content"><p>1.从<a href="http://code.google.com/p/git-osx-installer/downloads/list%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%9A%84git%E5%AE%89%E8%A3%85%E5%8C%85">http://code.google.com/p/git-osx-installer/downloads/list%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%9A%84git%E5%AE%89%E8%A3%85%E5%8C%85</a></p>
 
 <p>2.安装</p>
 
-
 <p>3.配置git</p>
 
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">git config --global user.name 'dawncold'
-
-
-<p>git config &mdash;global user.email <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#x6c;&#x6f;&#x6f;&#x6f;&#x73;&#101;&#x6c;&#x65;&#x61;&#118;&#101;&#x73;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#111;&#109;">&#x6c;&#x6f;&#111;&#x6f;&#x73;&#x65;&#108;&#101;&#x61;&#118;&#101;&#x73;&#x40;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></pre></p>
-
-<br /><p>4.学习git 建立一个项目文件夹</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">git config --global user.name 'dawncold'
+git config --global user.email loooseleaves@gmail.com</pre>
 
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">mkdir studygit</pre>
+<p>4.学习git 建立一个项目文件夹</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">mkdir studygit</pre>
 
 
-<br /><div id="cke_pastebin">进入这个文件夹</div>
 
 
-<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">cd studygit/</pre></div>
+<div id="cke_pastebin">进入这个文件夹</div>
 
 
-<br /><div id="cke_pastebin">初始化git</div>
 
 
-<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">git init</pre></div>
+<div><pre class="prettyprint linenums bush:bash" lang="bash">cd studygit/</pre></div>
 
 
-<br /><div id="cke_pastebin">返回这样一句:</div>
 
 
-<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">Initialized empty Git repository in /Users/dawncold/Documents/Project/studygit/.git/</pre></div>
+<div id="cke_pastebin">初始化git</div>
 
 
-<br /><div id="cke_pastebin">然后创建几个文件来试试git的跟踪:</div>
 
 
-<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">vi test.c
+<div><pre class="prettyprint linenums bush:bash" lang="bash">git init</pre></div>
 
 
-<p>vi README</pre></div></p>
-
-<br /><div id="cke_pastebin">加入git跟踪:</div>
 
 
-<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">git add *.c
+<div id="cke_pastebin">返回这样一句:</div>
 
 
-<p>git add README</pre></div></p>
-
-<br /><div id="cke_pastebin">提交一下</div>
 
 
-<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">git commit -m 'init project----studygit'</pre></div>
+<div><pre class="prettyprint linenums bush:bash" lang="bash">Initialized empty Git repository in /Users/dawncold/Documents/Project/studygit/.git/</pre></div>
 
 
-<br /><div id="cke_pastebin">返回了:</div>
 
 
-<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">[master (root-commit) 2e2368b] init project----studygit
+<div id="cke_pastebin">然后创建几个文件来试试git的跟踪:</div>
 
 
-<p>2 files changed, 6 insertions(+), 0 deletions(&ndash;)
+
+
+<div><pre class="prettyprint linenums bush:bash" lang="bash">vi test.c
+vi README</pre></div>
+
+
+
+
+<div id="cke_pastebin">加入git跟踪:</div>
+
+
+
+
+<div><pre class="prettyprint linenums bush:bash" lang="bash">git add *.c
+git add README</pre></div>
+
+
+
+
+<div id="cke_pastebin">提交一下</div>
+
+
+
+
+<div><pre class="prettyprint linenums bush:bash" lang="bash">git commit -m 'init project----studygit'</pre></div>
+
+
+
+
+<div id="cke_pastebin">返回了:</div>
+
+
+
+
+<div><pre class="prettyprint linenums bush:bash" lang="bash">[master (root-commit) 2e2368b] init project----studygit
+2 files changed, 6 insertions(+), 0 deletions(-)
 create mode 100644 README
-create mode 100644 test.c</pre></div></p>
-
-<br /><div id="cke_pastebin">查看一下git状态</div>
+create mode 100644 test.c</pre></div>
 
 
-<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">git status</pre></div>
 
 
-<br /><div id="cke_pastebin">返回:</div>
+<div id="cke_pastebin">查看一下git状态</div>
 
 
-<br /><div><pre class="prettyprint linenums bush:bash" lang="bash"># On branch master
 
 
-<p>nothing to commit (working directory clean)</pre></div></p>
-
-<br /><div id="cke_pastebin">表示现在跟踪的这些文件没有更改，如果更改了就会显示出来有差异。</div>
+<div><pre class="prettyprint linenums bush:bash" lang="bash">git status</pre></div>
 
 
-<br /><div id="cke_pastebin">如果在这个目录下建立了新的文件，再次查看status会出现一个untracked files:，此时要想加入到git跟踪，用git add xxx即可。</div>
 
 
-<br /><div id="cke_pastebin"> </div>
+<div id="cke_pastebin">返回:</div>
 
 
-<br /><div id="cke_pastebin">git有个看起来麻烦的地方:如果add了a这个文件，然后再更改一下这个文件，比如加了一句话，此时查看status会发现untracked中又出现了刚才的那个a文件，如果此时commit的话我们刚刚改的a文件不会被提交上去，只会提交那个add后而且没有再更改的a文件。此时应该再add一次才可以!!!(用git commit -a即可略过add的步骤，只要跟踪过a这个文件，那就肯定会提交最新的)</div>
 
 
-<br /><div id="cke_pastebin"> </div>
+<div><pre class="prettyprint linenums bush:bash" lang="bash"># On branch master
+nothing to commit (working directory clean)</pre></div>
 
 
-<br /><div id="cke_pastebin">git的忽略文件，在本项目的文件夹中建立一个叫.gitignore的文件，里面加入要忽略的文件名字，似乎能用正则表达式，比如:</div>
 
 
-<br /><div id="cke_pastebin">*.[oa] 是忽略o和a结尾的文件;*~ 是忽略带波浪线的文件，这类文件一般是文本编辑器创建的备份。要养成良好的习惯，项目一开始就建立这个文件。</div>
+<div id="cke_pastebin">表示现在跟踪的这些文件没有更改，如果更改了就会显示出来有差异。</div>
 
 
-<br /><div id="cke_pastebin"> </div>
 
 
-<br /><div id="cke_pastebin">git的删除文件，如果用git rm xxx则在版本仓库中删除，并且在目录下也删除了，如果用git rm &#8211;cache xxx则只是在版本仓库里删除跟踪。</div>
+<div id="cke_pastebin">如果在这个目录下建立了新的文件，再次查看status会出现一个untracked files:，此时要想加入到git跟踪，用git add xxx即可。</div>
 
 
-<br /><div id="cke_pastebin"> </div>
 
 
-<br /><div id="cke_pastebin">git的重命名文件，一般在linux下都是使用mv命令，在git中也是如此，git mv xxx，git可以了解你做了重命名还是其他的。</div>
+<div id="cke_pastebin"> </div>
 
 
-<br /><div id="cke_pastebin"> </div>
 
 
-<br /><div id="cke_pastebin">git的撤销，刚刚提交的文件中少了一个，可以这样做:</div>
+<div id="cke_pastebin">git有个看起来麻烦的地方:如果add了a这个文件，然后再更改一下这个文件，比如加了一句话，此时查看status会发现untracked中又出现了刚才的那个a文件，如果此时commit的话我们刚刚改的a文件不会被提交上去，只会提交那个add后而且没有再更改的a文件。此时应该再add一次才可以!!!(用git commit -a即可略过add的步骤，只要跟踪过a这个文件，那就肯定会提交最新的)</div>
 
 
-<br /><div><pre class="prettyprint linenums bush:bash" lang="bash">$ git commit -m 'initial commit'
 
 
-<p>$ git add forgotten_file
-$ git commit &mdash;amend</pre></div></p>
+<div id="cke_pastebin"> </div>
 
-<br /><div id="cke_pastebin">后续内容请查看progit这本书在github上的翻译，我就是对着翻译来写了这一小篇文正，还有不少遗漏的地方没有写出来。</div>
+
+
+
+<div id="cke_pastebin">git的忽略文件，在本项目的文件夹中建立一个叫.gitignore的文件，里面加入要忽略的文件名字，似乎能用正则表达式，比如:</div>
+
+
+
+
+<div id="cke_pastebin">*.[oa] 是忽略o和a结尾的文件;*~ 是忽略带波浪线的文件，这类文件一般是文本编辑器创建的备份。要养成良好的习惯，项目一开始就建立这个文件。</div>
+
+
+
+
+<div id="cke_pastebin"> </div>
+
+
+
+
+<div id="cke_pastebin">git的删除文件，如果用git rm xxx则在版本仓库中删除，并且在目录下也删除了，如果用git rm &#8211;cache xxx则只是在版本仓库里删除跟踪。</div>
+
+
+
+
+<div id="cke_pastebin"> </div>
+
+
+
+
+<div id="cke_pastebin">git的重命名文件，一般在linux下都是使用mv命令，在git中也是如此，git mv xxx，git可以了解你做了重命名还是其他的。</div>
+
+
+
+
+<div id="cke_pastebin"> </div>
+
+
+
+
+<div id="cke_pastebin">git的撤销，刚刚提交的文件中少了一个，可以这样做:</div>
+
+
+
+
+<div><pre class="prettyprint linenums bush:bash" lang="bash">$ git commit -m 'initial commit'
+$ git add forgotten_file 
+$ git commit --amend</pre></div>
+
+
+
+
+<div id="cke_pastebin">后续内容请查看progit这本书在github上的翻译，我就是对着翻译来写了这一小篇文正，还有不少遗漏的地方没有写出来。</div>
 
 </div>
 
@@ -302,6 +358,10 @@ $ git commit &mdash;amend</pre></div></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -315,10 +375,6 @@ $ git commit &mdash;amend</pre></div></p>
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

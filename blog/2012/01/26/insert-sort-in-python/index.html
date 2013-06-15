@@ -9,7 +9,8 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python coding: utf-8 def insert_sort(arraylist): for j in range(1 &hellip;">
+  <meta name="description" content="#! /usr/bin/env python
+# coding: utf-8 def insert_sort(arraylist): for j in range(1, len(arraylist)): key = arraylist[j] i = j - 1 while i &gt;= 0 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,34 +105,27 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python
-</code></pre>
+<div class="entry-content"><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
 
-<h1>coding: utf-8</h1>
+def insert_sort(arraylist):
+   for j in range(1, len(arraylist)):
+       key = arraylist[j]
+       i = j - 1
+       while i &gt;= 0 and arraylist[i] &gt; key:
+           arraylist[i + 1] = arraylist[i]
+           i = i - 1
+       arraylist[i + 1] = key
 
-<p>def insert_sort(arraylist):</p>
+if __name__ == "__main__":
+   arr = [2,3,55,31,1,20,44,12,1,99]
+   print arr
+   insert_sort(arr)
+   print arr
+</pre>
 
-<pre><code>for j in range(1, len(arraylist)):
-    key = arraylist[j]
-    i = j - 1
-    while i &amp;gt;= 0 and arraylist[i] &amp;gt; key:
-        arraylist[i + 1] = arraylist[i]
-        i = i - 1
-    arraylist[i + 1] = key
-</code></pre>
 
-<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
-
-<pre><code>arr = [2,3,55,31,1,20,44,12,1,99]
-print arr
-insert_sort(arr)
-print arr
-</code></pre>
-
-<p></pre></p>
-
-<br /><p>只要改变while那句中的arraylist[i] &lt; key即可变成非升序排列</p>
-
+<p>只要改变while那句中的arraylist[i] &lt; key即可变成非升序排列</p>
 </div>
 
 
@@ -199,6 +193,10 @@ print arr
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -212,10 +210,6 @@ print arr
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

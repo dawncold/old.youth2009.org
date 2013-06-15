@@ -4,7 +4,7 @@
   <title><![CDATA[Category: phpmyadmin | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/phpmyadmin/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,8 +18,7 @@
     <link href="http://www.youth2009.org/blog/2011/09/19/show-content-of-blob-in-phpmyadmin/"/>
     <updated>2011-09-19T18:22:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/09/19/show-content-of-blob-in-phpmyadmin</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;从stackoverflow上看的一个解决方案，修改$cfg['Servers'][$i]['extension']的值为mysqli，原来是mysql。这样就能看到blob字段的内容了。不过即使是这样，blob内容也许只能是text的才能看到，要是把图片什么的存成了blob还是看不到。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>从stackoverflow上看的一个解决方案，修改$cfg[&lsquo;Servers&rsquo;][$i][&lsquo;extension&rsquo;]的值为mysqli，原来是mysql。这样就能看到blob字段的内容了。不过即使是这样，blob内容也许只能是text的才能看到，要是把图片什么的存成了blob还是看不到。</p>
 ]]></content>
   </entry>
   

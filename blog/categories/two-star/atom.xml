@@ -4,7 +4,7 @@
   <title><![CDATA[Category: two star | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/two-star/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,17 +18,14 @@
     <link href="http://www.youth2009.org/blog/2011/07/09/python-one-star-and-two-star/"/>
     <updated>2011-07-09T14:44:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/07/09/python-one-star-and-two-star</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;在&lt;a title="python" href="http://www.youth2009.org/tag/python/"&gt;python&lt;/a&gt;的函数参数中，可以在变量名称前面加一个或者两个星号代表不一样的变量类型：&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>在<a title="python" href="http://www.youth2009.org/tag/python/">python</a>的函数参数中，可以在变量名称前面加一个或者两个星号代表不一样的变量类型：</p>
 
 <p>在stack overflow上看到有人问这两个的区别了，就转载过来答案吧：</p>
-
 
 <blockquote>If the form *identifier is present, it is initialized to a tuple receiving any excess positional parameters, defaulting to the empty tuple. If the form **identifier is present, it is initialized to a new dictionary receiving any excess keyword arguments, defaulting to a new empty dictionary.</blockquote>
 
 
 <p><span style="font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;"><span style="border-collapse: collapse;">加一个星号代表这个参数是一个tuple类型；加两个则是一个dictionary类型，很好用。</span></span></p>
-
 ]]></content>
   </entry>
   

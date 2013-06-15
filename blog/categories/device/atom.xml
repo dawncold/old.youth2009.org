@@ -4,7 +4,7 @@
   <title><![CDATA[Category: device | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/device/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,17 +18,13 @@
     <link href="http://www.youth2009.org/blog/2011/08/08/the-difference-between-iphone-simulator-and-device/"/>
     <updated>2011-08-08T07:27:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/08/08/the-difference-between-iphone-simulator-and-device</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;昨天1ST告诉我代码到了设备上有些地方不正常，我一直没用设备调试过，只是用模拟器，这次就用设备试试，没想到果然有些问题。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>昨天1ST告诉我代码到了设备上有些地方不正常，我一直没用设备调试过，只是用模拟器，这次就用设备试试，没想到果然有些问题。</p>
 
 <p>1.模拟器编译没有任何问题，但编译到设备就出现了8个错误，是因为继承后访问不到某些属性的问题。由于我在基类中用了property，在子类中直接引用，这样看来不行，于是在子类中但凡是从基类中继承过来的成员，都使用了self来引用。</p>
 
-
 <p>2.在Organzer的设备console中查看输出的时候，发现有个地方应该输出东西了反而不输出，最终能够确认这个操作已经执行了，但就是不输出内容。也不知道怎么回事，我把原先的printf输出改成了nslog，竟然好了。由于使用的一个类是用c++写的，就没有使用nslog，这竟然在后来调试变成了大问题。</p>
 
-
 <p>哎，以后有什么调试工作还是连接设备进行吧，虽然启动比模拟器慢一点，但能够暴露出问题啊！</p>
-
 ]]></content>
   </entry>
   

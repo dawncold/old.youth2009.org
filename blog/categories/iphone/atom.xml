@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iphone | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/iphone/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,17 +18,13 @@
     <link href="http://www.youth2009.org/blog/2011/08/08/the-difference-between-iphone-simulator-and-device/"/>
     <updated>2011-08-08T07:27:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/08/08/the-difference-between-iphone-simulator-and-device</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;昨天1ST告诉我代码到了设备上有些地方不正常，我一直没用设备调试过，只是用模拟器，这次就用设备试试，没想到果然有些问题。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>昨天1ST告诉我代码到了设备上有些地方不正常，我一直没用设备调试过，只是用模拟器，这次就用设备试试，没想到果然有些问题。</p>
 
 <p>1.模拟器编译没有任何问题，但编译到设备就出现了8个错误，是因为继承后访问不到某些属性的问题。由于我在基类中用了property，在子类中直接引用，这样看来不行，于是在子类中但凡是从基类中继承过来的成员，都使用了self来引用。</p>
 
-
 <p>2.在Organzer的设备console中查看输出的时候，发现有个地方应该输出东西了反而不输出，最终能够确认这个操作已经执行了，但就是不输出内容。也不知道怎么回事，我把原先的printf输出改成了nslog，竟然好了。由于使用的一个类是用c++写的，就没有使用nslog，这竟然在后来调试变成了大问题。</p>
 
-
 <p>哎，以后有什么调试工作还是连接设备进行吧，虽然启动比模拟器慢一点，但能够暴露出问题啊！</p>
-
 ]]></content>
   </entry>
   
@@ -37,8 +33,7 @@
     <link href="http://www.youth2009.org/blog/2011/08/05/iphone4-hk-4360/"/>
     <updated>2011-08-05T22:44:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/08/05/iphone4-hk-4360</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;&lt;img src="http://pic.yupoo.com/dawncold0/BgPcwrcI/medish.jpg" alt="iphone4" width="640" height="425"&gt;&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p><img src="http://pic.yupoo.com/dawncold0/BgPcwrcI/medish.jpg" alt="iphone4" width="640" height="425"></p>
 ]]></content>
   </entry>
   
@@ -47,26 +42,20 @@
     <link href="http://www.youth2009.org/blog/2011/07/26/iphone-simulator-and-sqlite/"/>
     <updated>2011-07-26T09:19:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/07/26/iphone-simulator-and-sqlite</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。</p>
 
 <p>今天update进去信息，总是没发现数据库更新，怀疑是忘记commit，查看一下FMDB的使用方法，确实有commit一说，而我在看国内某博客写的使用教程时发现他就是随意的update和insert，殊不知这些都需要commit呀！在update和insert代码前后需要加入</p>
 
+<pre class="prettyprint linenums bush:cpp" lang="cpp">[db beginTransaction];
+和
+[db commit];</pre>
 
-<br /><pre class="prettyprint linenums bush:cpp" lang="cpp">[db beginTransaction];
 
-
-<p>和
-[db commit];</pre></p>
-
-<br /><p> 我用的Objective-C。</p>
-
+<p> 我用的Objective-C。</p>
 
 <p>然而即便是这样，更新了数据库后再查询，确实数据被更改了，但我重新在模拟器中运行程序时候又恢复成了以前的值。偶然在模拟器中打开了程序而不是用xcode运行程序，数据竟然被永久更新了。</p>
 
-
 <p>所以，以后测试update的时候，前后对比应该只在模拟器中看，如果再用xcode启动，会把原来的数据传入模拟器，这样你就看不到效果了。</p>
-
 ]]></content>
   </entry>
   
@@ -75,20 +64,15 @@
     <link href="http://www.youth2009.org/blog/2010/10/26/go-home-during-class-is-great/"/>
     <updated>2010-10-26T13:09:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2010/10/26/go-home-during-class-is-great</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;借着去济南答辩的名义，我们团队和学校请了三天假——星期三到星期五，再加上周末，一共五天。在济南挥霍了2天，结束了答辩就匆匆坐上动车回家了。唉，这还是我第一次做动车，去的时候也是我人生中的二次坐火车，真是有不少的经历值得说一说了。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>借着去济南答辩的名义，我们团队和学校请了三天假——星期三到星期五，再加上周末，一共五天。在济南挥霍了2天，结束了答辩就匆匆坐上动车回家了。唉，这还是我第一次做动车，去的时候也是我人生中的二次坐火车，真是有不少的经历值得说一说了。</p>
 
 <p>本次答辩应该算是很成功吧，由于我们在去之前就知道了我们的对手们做出了什么样的作品，在我们看过他们的作品后，感觉我们队伍做得更好一些，虽然免不了维护自己东西的嫌疑，但无论是从美观性还是从复杂度上来说，我们的作品都可以算得上不错。</p>
 
-
 <p>我们提前到达了答辩会场，组委会热情地帮我们解决了住宿问题，给我们省下了一小笔钱，和他们公司的一个学员吃了顿饭。随后就是我们的准备第二天答辩环节，把我们每人都紧张得不得了，但终究还是睡下了。第二天发现我们是在下午进行的答辩的，上午的每场答辩我们都看过了，本来所有让我们紧张的地方都不存在了，中午又回到了昨晚吃饭的饭馆，吃了一顿，下午就让我们尽情发挥去吧！</p>
-
 
 <p>结束了后，以为评委告诉我们，我们还是有机会来的，唉，这意图已经很明显了，看来我们获奖的希望比较大。回去后就开始准备论文，期待发奖。</p>
 
-
 <p>答辩结束后我和其他的成员们告别了，他们要在济南多玩一会，我则是恋家的人，匆匆打车去了车站，买票，回家。（打车45，车票才33……）</p>
-
 ]]></content>
   </entry>
   
@@ -97,29 +81,21 @@
     <link href="http://www.youth2009.org/blog/2010/09/20/i-am-a-homeseek-man/"/>
     <updated>2010-09-20T20:59:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2010/09/20/i-am-a-homeseek-man</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;中秋节马上就到了，虽然明天还有几节课，但我打算逃跑！&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>中秋节马上就到了，虽然明天还有几节课，但我打算逃跑！</p>
 
 <p>收拾好东西，本以为能够找个快递公司帮我把行李送回去呢，可到门口转悠看了看，除了几个倒票的人还在不辞辛苦地蹲守，就没有别人了，看来我还得自己提着沉重的行李回家。幸好坐的车能来接我，不用再跑去车站了。</p>
 
-
 <p>这次在外面待了挺长时间，和几个同学完成了一个iphone平台上的手机游戏。游戏本身趣味性不大，可能是因为这是亲自开发的缘故吧，自己也很自豪！</p>
-
 
 <p>这算是我经手的最大的程序了，总共1万行代码！以前写的最多的就是一个400多行的小程序。那个程序的源代码我还留着，当时我还打算开发后续的2.0版本，但仅仅更新到了1.5，现在停滞好久了，都不打算再写什么了。人在某个时候的一个愿景总是那么美好，慢慢就被很多很多东西扼杀了。这次开发比较可惜的地方就是利用了一个成熟的游戏开发框架（我们现在总是生活在各种框架之中）——cocos2d。没有过多关注iphone的API和底层，更多的是参考了那个框架提供的API，当然有些基础消息还是必须使用iphone的API。这也是网络中心某个神秘老师说的，当初我没有意识到这个，以为开发出来就不错了：）</p>
 
-
 <p>晚上竟然有人在宿舍前面的小操场上开什么舞会，不知道这帮人怎么想的，提前庆祝中秋？弄得这里乱哄哄的。不过值得庆祝的是服务器正常了，问了管理员，我也不想再去追究什么，幸好没有耽误游戏主题下载的使用。有了这次经历，我总是怕，组委会在审核游戏的时候会不会正好出现服务器宕机？！还是不这样想了吧！</p>
-
 
 <p>最后，附上一段话，我当初不敢相信这段话是出自一个技术人员之手（易知cocos2d系列教程的作者）：</p>
 
-
 <p>“<span style="color: #ff00ff;">让每一个愿意努力的人都可以通过自身的奋斗而过上体面并受人尊敬的生活，这些年的经历让我深感这并不是一个很容易解决的问题。夜色降临，城市深处的大小支路路边开始弥漫起烟雾，一片片沿街而置的灯火喧嚣此起彼伏。彼景彼情，总是可以让我们感受到生命的顽强。</span>”</p>
 
-
 <p>不过我总是感觉这段话有些别扭，有点矛盾。</p>
-
 ]]></content>
   </entry>
   

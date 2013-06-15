@@ -9,7 +9,8 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;今天似乎写了很多文章，间隔也不长，似乎是想要把前几天缺失的都补回来。&lt;/p&gt; 似乎是从中午开始的吧，看《Python简明教程》，到晚上吃饭的时候，正好看完了，不知道是我看得快呢还是这本书本身就不厚。这就算是我正式学习python的开始了吧。 &hellip;">
+  <meta name="description" content="我本以为outerHTML是W3C的标准，结果搜索了一下才知道这是IE的方法，不过Chrome和Safari都支持了，FF竟然不支持，于是找到了扩展Firefox的outerHTML的方法：点击这里
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +85,42 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2011/06/09/bad-firefox-it-doesnt-support-outerhtml/">可恶的Firefox不支持outerHTML</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-09T05:57:00+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>我本以为outerHTML是W3C的标准，结果搜索了一下才知道这是IE的方法，不过Chrome和Safari都支持了，FF竟然不支持，于是找到了扩展Firefox的outerHTML的方法：<a href="http://www.cnblogs.com/doll-net/archive/2007/06/17/786835.html">点击这里</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2011/06/05/today-i-write-too-articles/">写了不少文章</a></h1>
     
     
@@ -107,20 +144,15 @@
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;今天似乎写了很多文章，间隔也不长，似乎是想要把前几天缺失的都补回来。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>今天似乎写了很多文章，间隔也不长，似乎是想要把前几天缺失的都补回来。</p>
 
 <p>似乎是从中午开始的吧，看《Python简明教程》，到晚上吃饭的时候，正好看完了，不知道是我看得快呢还是这本书本身就不厚。这就算是我正式学习<a title="python" href="http://www.youth2009.org/tag/python/">python</a>的开始了吧。</p>
 
-
 <p>现在我越来越发现我对于自己的未来很难掌控，当然是对于那部分可控部分变得难以掌控。心理学上的专用词汇可能是“延迟满足效应”。就是说，一个人对于自己未来的满足感能够控制。我本以为自己这样带有“理想主义者”标签的人，对于未来这样的憧憬因该是一点问题都没有的，当然，我证明了没有问题，可出现问题的却是“控制”这种满足上。</p>
-
 
 <p>简单地讲，似乎是我对于某件事的<a title="坚持" href="http://www.youth2009.org/tag/%E5%9D%9A%E6%8C%81/">坚持</a>程度很低，很脆弱。这点我确实证明过了！</p>
 
-
 <p>在网上看过几篇文章，<a href="http://www.read.org.cn/html/368-learning-how-to-adhere-to-the-daily.html">这里</a>的一篇提供了一些不错的方法，值得学习。自己根据软件工程的方法总结出来：把宏伟的目标分解成小任务，就是一个个小目标，大的目标你可能一下子做不完，而且只要一次难以完成就会产生懈怠情绪，可能会很快走向失败。小任务基本上是可以短时间完成的，再结合上文提供的方法，让完成小任务成为自己的习惯。我想应该就没什么问题了吧。</p>
-
 </div>
   
   
@@ -156,26 +188,21 @@
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;又是一个bt功能：创建一种函数规则&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>又是一个bt功能：创建一种函数规则</p>
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">#!/usr/bin/python
+<pre class="prettyprint linenums bush:python" lang="python">#!/usr/bin/python
+# Filename: lambda.py
+
+def make_repeater(n):
+   return lambda s: s*n
+
+twice = make_repeater(2)
+
+print twice('word')
+print twice(5)</pre>
 
 
-<h1>Filename: lambda.py</h1>
-
-<p>def make_repeater(n):</p>
-
-<pre><code>return lambda s: s*n
-</code></pre>
-
-<p>twice = make_repeater(2)</p>
-
-<p>print twice(&lsquo;word&rsquo;)
-print twice(5)</pre></p>
-
-<br /><p>  twice就是创建出来的函数规则，参数2传进入构建了lambda表达式中的n，s值需要再指定，于是后面的word字符串和数字5就算是这个s了吧。了解到这种bt方法很有用，不过对于我这样的初学者来说，暂时还看不到前景：）</p>
-
+<p>  twice就是创建出来的函数规则，参数2传进入构建了lambda表达式中的n，s值需要再指定，于是后面的word字符串和数字5就算是这个s了吧。了解到这种bt方法很有用，不过对于我这样的初学者来说，暂时还看不到前景：）</p>
 </div>
   
   
@@ -211,23 +238,17 @@ print twice(5)</pre></p>
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;如果你感觉列表这种数据结构就已经很bt了的话，再看看这个吧，我感觉这简直就在破坏程序员的正常思维！&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>如果你感觉列表这种数据结构就已经很bt了的话，再看看这个吧，我感觉这简直就在破坏程序员的正常思维！</p>
 
 <p>example_list = [2,3,4]</p>
 
-
 <p>other_list = [i*2 for i in example_list if i &gt; 2]</p>
-
 
 <p>执行之后other_list就是[6,8]了！！！</p>
 
-
 <p>意思就是说，对于example_list中的元素进行遍历，将大于2的元素乘上2构成新的列表！</p>
 
-
 <p>这样的自由构建方式，是被推广使用的么？！</p>
-
 </div>
   
   
@@ -263,34 +284,30 @@ print twice(5)</pre></p>
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;刚刚得知pickle的意思是泡菜，而这篇文章可不打算讲解泡菜的制作方法，只是说明一下python语言中的pickle模块。 这个模块说是能够存储任何python对象，而且还能取出来再使用，有pickle和cPickle两个模块，功能是一样的，只是后者用C语言实现，据说速度比前者快1000倍。那么我们就用后者吧！！！&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>刚刚得知pickle的意思是泡菜，而这篇文章可不打算讲解泡菜的制作方法，只是说明一下python语言中的pickle模块。 这个模块说是能够存储任何python对象，而且还能取出来再使用，有pickle和cPickle两个模块，功能是一样的，只是后者用C语言实现，据说速度比前者快1000倍。那么我们就用后者吧！！！</p>
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+# -*- coding:utf-8 -*-
+# Filename : pickling.py
 
+import cPickle as p
 
-<h1>&ndash;<em>&ndash; coding:utf-8 &ndash;</em>&ndash;</h1>
+shoplistfile = 'shoplist.dat'
 
-<h1>Filename : pickling.py</h1>
+shoplist = ['apple mac book pro','iphone4']
 
-<p>import cPickle as p</p>
-
-<p>shoplistfile = &lsquo;shoplist.dat&rsquo;</p>
-
-<p>shoplist = [&lsquo;apple mac book pro&rsquo;,&lsquo;iphone4&rsquo;]</p>
-
-<p>f = file(shoplistfile,&lsquo;w&rsquo;)
+f = file(shoplistfile,'w')
 p.dump(shoplist,f)
-f.close()</p>
+f.close()
 
-<p>print &lsquo;ok,we can read the data from &rsquo;+shoplistfile+&lsquo;:&rsquo;</p>
+print 'ok,we can read the data from '+shoplistfile+':'
 
-<p>f = file(shoplistfile)
+f = file(shoplistfile)
 from_file = p.load(f)
-print from_file</pre></p>
+print from_file</pre>
 
-<br /><p>首先定义了一个列表，想要把列表存储到文件中，再打开取出列表。 p作为cPickle的别名了。用dump方法把shoplist存储到f指向的文件中。 后面用load方法从f指向的文件取出数据给了from_file这个变量，而取出的就是我们存起来的那个列表，于是再输出。</p>
 
+<p>首先定义了一个列表，想要把列表存储到文件中，再打开取出列表。 p作为cPickle的别名了。用dump方法把shoplist存储到f指向的文件中。 后面用load方法从f指向的文件取出数据给了from_file这个变量，而取出的就是我们存起来的那个列表，于是再输出。</p>
 </div>
   
   
@@ -326,44 +343,37 @@ print from_file</pre></p>
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:</p>
 
-<br /><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+# -*- coding:utf-8 -*-
+# Filename : inherit.py
 
+class Person:
+   def __init__(self,name,age):
+       self.name = name
+       self.age = age
+       print "init for %s" % self.name
 
-<h1>&ndash;<em>&ndash; coding:utf-8 &ndash;</em>&ndash;</h1>
+   def tell(self):
+       print "name:%s age:%d" % (self.name,self.age)
 
-<h1>Filename : inherit.py</h1>
+class Teacher(Person):
+   def __init__(self,name,age,salary):
+       Person.__init__(self,name,age)
+       self.salary = salary
+       print "init for teacher %s" % self.name
 
-<p>class Person:</p>
+   def tell(self):
+       Person.tell(self)
+       print "salary:%d" % self.salary
 
-<pre><code>def __init__(self,name,age):
-    self.name = name
-    self.age = age
-    print "init for %s" % self.name
+p = Person('tianzhen',20)
+p.tell()
 
-def tell(self):
-    print "name:%s age:%d" % (self.name,self.age)
-</code></pre>
+tea_p = Teacher('zhenzhen',20,1010000000)
+tea_p.tell()</pre>
 
-<p>class Teacher(Person):</p>
-
-<pre><code>def __init__(self,name,age,salary):
-    Person.__init__(self,name,age)
-    self.salary = salary
-    print "init for teacher %s" % self.name
-
-def tell(self):
-    Person.tell(self)
-    print "salary:%d" % self.salary
-</code></pre>
-
-<p>p = Person(&lsquo;tianzhen&rsquo;,20)
-p.tell()</p>
-
-<p>tea_p = Teacher(&lsquo;zhenzhen&rsquo;,20,1010000000)
-tea_p.tell()</pre></p>
 </div>
   
   
@@ -399,8 +409,7 @@ tea_p.tell()</pre></p>
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;在python简明教程中找到这样一句话，关于复制复杂python对象的，如果单纯变量名相互赋值可能只是把引用拷贝过去，一旦原对象更改了，目标对象就会出现问题。文章中对于序列、字典这样的拷贝做出了解释，要用分片来复制，但其他对象该怎么做，暂时还不太清除，可能后面会说吧：）&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>在python简明教程中找到这样一句话，关于复制复杂python对象的，如果单纯变量名相互赋值可能只是把引用拷贝过去，一旦原对象更改了，目标对象就会出现问题。文章中对于序列、字典这样的拷贝做出了解释，要用分片来复制，但其他对象该怎么做，暂时还不太清除，可能后面会说吧：）</p>
 </div>
   
   
@@ -436,13 +445,10 @@ tea_p.tell()</pre></p>
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;域名用的是app.wodeyitian.com 昨天用的方法不太稳定，现在找来一个不错的方法：&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>域名用的是app.wodeyitian.com 昨天用的方法不太稳定，现在找来一个不错的方法：</p>
 
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">upstream ghs {
-
-
-<p>ip_hash;
+<pre class="prettyprint linenums bush:bash" lang="bash">upstream ghs {
+ip_hash;
 server ghs.google.com;
 server 72.14.203.121;
 server 72.14.207.121;
@@ -457,39 +463,47 @@ server 216.239.32.21;
 server 216.239.34.21;
 server 216.239.36.21;
 server 216.239.38.21;
-}</p>
+}
 
-<p>server {</p>
-
-<pre><code>            listen       80;
-            server_name app.wodeyitian.com;
-            access_log  /home/wwwlogs/app.wodeyitian.com.log;
-            location / {
-                    proxy_redirect off;
-                    proxy_set_header Host $host;
-                    proxy_pass http://ghs;
-                    proxy_set_header  x-real-IP  $remote_addr;
-                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            }
-    }&lt;/pre&gt;
-</code></pre>
-
-<br /><div>下面说说DNS这边怎么操作，因为网上说的太简单，我弄了好久都没弄好，终于在一篇文章那里找到了方法：</div>
+server {
+               listen       80;
+               server_name app.wodeyitian.com;
+               access_log  /home/wwwlogs/app.wodeyitian.com.log;
+               location / {
+                       proxy_redirect off;
+                       proxy_set_header Host $host;
+                       proxy_pass http://ghs;
+                       proxy_set_header  x-real-IP  $remote_addr;
+                       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+               }
+       }</pre>
 
 
-<br /><div>首先上面的nginx配置完毕后，在dns面板中把app.wodeyitian.com的A记录只想VPS的IP，然后要保证wodeyitian.com这个域注册了Google的app服务，这样就能在appspot那里把wodeyitian.com旗下的子域名加到你的appspot上了，后台把app.wodeyitian.com添加到了dawncold1.appapot.com这个应用上，然后就不用管Google提供的更改cname到ghs.google.com的建议了，国内基本没戏了。</div>
 
 
-<br /><div>Google说的cname方法就是我们现在正在使用的反向代理吧，于是我们只需要有app.wodeyitian.com到主机的A记录即可，后面的操作都是nginx的反向代理在工作。</div>
+<div>下面说说DNS这边怎么操作，因为网上说的太简单，我弄了好久都没弄好，终于在一篇文章那里找到了方法：</div>
 
 
-<br /><div>我一开始建立了app.wodeyitian.com这个站之后，我以为就是当成ghs的工作了，用了另外一个域名做了cname到这里，结果不响应，可能还有其他问题吧：（</div>
 
 
-<br /><div>感谢这里：<a href="http://www.nealmi.com/index.php/2011/03/nginx-reverse-proxy-usage/">http://www.nealmi.com/index.php/2011/03/nginx-reverse-proxy-usage/</a>
+<div>首先上面的nginx配置完毕后，在dns面板中把app.wodeyitian.com的A记录只想VPS的IP，然后要保证wodeyitian.com这个域注册了Google的app服务，这样就能在appspot那里把wodeyitian.com旗下的子域名加到你的appspot上了，后台把app.wodeyitian.com添加到了dawncold1.appapot.com这个应用上，然后就不用管Google提供的更改cname到ghs.google.com的建议了，国内基本没戏了。</div>
 
 
-<p></div></p>
+
+
+<div>Google说的cname方法就是我们现在正在使用的反向代理吧，于是我们只需要有app.wodeyitian.com到主机的A记录即可，后面的操作都是nginx的反向代理在工作。</div>
+
+
+
+
+<div>我一开始建立了app.wodeyitian.com这个站之后，我以为就是当成ghs的工作了，用了另外一个域名做了cname到这里，结果不响应，可能还有其他问题吧：（</div>
+
+
+
+
+<div>感谢这里：<a href="http://www.nealmi.com/index.php/2011/03/nginx-reverse-proxy-usage/">http://www.nealmi.com/index.php/2011/03/nginx-reverse-proxy-usage/</a>
+</div>
+
 </div>
   
   
@@ -525,23 +539,17 @@ server 216.239.38.21;
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;用了不少时间PHP，也有些喜欢这种开发语言，但我仍然对Python有强烈的热情，但支持Python的主机服务还不算多，很想体验GAE，但由于在国内嘛，只能这样忍受了。&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>用了不少时间PHP，也有些喜欢这种开发语言，但我仍然对Python有强烈的热情，但支持Python的主机服务还不算多，很想体验GAE，但由于在国内嘛，只能这样忍受了。</p>
 
 <p>原本想在Emacs中配置Python的环境，但……有些过于复杂了。安装了很久的emacs，到头来不知道该怎么用，打算卸载掉算了，自己不需要的东西，不管它多么优秀，对于我来说，目前都没有价值！所以我还是选择了Eclipse环境。</p>
 
-
 <p>在安装PyDev插件的时候遇到点问题：安装时候有3个项目可安装，我第一次是都安装的，但中途出现错误停止了，于是我第二次只安装了第一个，就是主要的PyDev程序，没有问题。</p>
-
 
 <p>在创建一个GAE项目后，需要填写GAE的location，在Mac系统下，装了Google提供的SDK For Mac就找不到GAE的相关文件了，因为都在那个app包中，只是在/usr/local/bin中有几个相关的py文件，在/usr/local/中有个链接，链接到app包中的一个地方，主要就是用这个链接，不过你会发现这样用之后还有点问题，插件需要找到lib目录下的django，如果你看看目录的话会发现根本没有django目录，只有另一个叫django_0_96这样的目录，于是建立一个软连接到django过去即可。</p>
 
-
 <p>以上方法来自国外一技术博客：</p>
 
-
-<p><a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/" target="_blank">http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/</a></p>
-
+<p><a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/" target="_blank"><a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/">http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/</a></a></p>
 </div>
   
   
@@ -577,61 +585,11 @@ server 216.239.38.21;
   </header>
 
 
-  <div class="entry-content"><pre><code>        &lt;p&gt;虽然最后的几个功能还没有完成，但总归目前已经能用了。如果说端午过后还有机会继续提交的话，可能最终就是完成这几个功能吧。不过最大的问题是现在已经到了考试前夕，如果不想承受考前突击带来的痛苦和自责，那必须得提前准备，何况今年还要考英语四级。按照Fnln的说法，按照正常退步速度就能通过，但我已经不清楚现在是不是正常退步速度了，应该还没有吧，仅仅是最近大家都在复习的时候我在做网站而已：）&lt;/p&gt;
-</code></pre>
+  <div class="entry-content"><p>虽然最后的几个功能还没有完成，但总归目前已经能用了。如果说端午过后还有机会继续提交的话，可能最终就是完成这几个功能吧。不过最大的问题是现在已经到了考试前夕，如果不想承受考前突击带来的痛苦和自责，那必须得提前准备，何况今年还要考英语四级。按照Fnln的说法，按照正常退步速度就能通过，但我已经不清楚现在是不是正常退步速度了，应该还没有吧，仅仅是最近大家都在复习的时候我在做网站而已：）</p>
 
 <p>刚刚用phpDocumentor把文档生成出来了，还遇到了可恶的乱码问题，最终用了强大的替换工具，硬生生把字符集换成了utf8，总算是解决了吧，虽然解决方法不太好，但这是个看结果的事情：）</p>
 
-
 <p>不知道Yfan那边的css工作怎么样了，要是进展顺利，明天全线停止，开始写写计划书什么的文字材料，在最后一个工作日交上去。当然这算是理想的情况。</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/06/01/install-pear/">安装PEAR</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-01T13:26:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>        &lt;p&gt;在服务器上找了好久也没看到pear包的存在，于是下载重装。&lt;/p&gt;
-</code></pre>
-
-<br /><pre class="prettyprint linenums bush:bash" lang="bash">wget http://pear.php.net/go-pear.phar 
-
-
-<p>php ./go-pear.phar</p>
-
-<p>./pear install XXXX(XXXX就是要新加入的扩展库名称)</pre></p>
-
-<br /><p>根据提示修改一些参数即可，其中比较重要的是最后的include_path这个参数，要确保这里面包含了pear的目录，否则用pear安装上的扩展就不好运行了，比如我的PhpDocumentor就是如此，好在最后加入到了path中，phpdocumentor就能用了。</p>
-
 </div>
   
   
@@ -656,6 +614,10 @@ server 216.239.38.21;
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -669,10 +631,6 @@ server 216.239.38.21;
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

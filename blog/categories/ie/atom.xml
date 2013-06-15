@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ie | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/ie/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,14 +18,11 @@
     <link href="http://www.youth2009.org/blog/2011/06/09/indexof-in-ie/"/>
     <updated>2011-06-09T14:53:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/06/09/indexof-in-ie</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;js中在数组中查找我一般都用indexOf来完成，没想到到了IE下就不能用了，搜索后才知道IE下根本不支持这个，于是从网上找了资料，扩展了IE下的这个功能。&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>js中在数组中查找我一般都用indexOf来完成，没想到到了IE下就不能用了，搜索后才知道IE下根本不支持这个，于是从网上找了资料，扩展了IE下的这个功能。</p>
 
-<p>感谢这里：<a href="http://nootn.com/blog/Develop/35/">http://nootn.com/blog/Develop/35/</a></p>
-
+<p>感谢这里：<a href="http://nootn.com/blog/Develop/35/"><a href="http://nootn.com/blog/Develop/35/">http://nootn.com/blog/Develop/35/</a></a></p>
 
 <p>还好js支持原型功能，否则一旦不兼容了就会很麻烦。现在想来，是不是这个功能就是为了让标准不同意做出来的呢？！</p>
-
 ]]></content>
   </entry>
   

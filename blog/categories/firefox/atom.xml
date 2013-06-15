@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Firefox | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/firefox/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,8 +18,7 @@
     <link href="http://www.youth2009.org/blog/2011/06/09/bad-firefox-it-doesnt-support-outerhtml/"/>
     <updated>2011-06-09T05:57:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2011/06/09/bad-firefox-it-doesnt-support-outerhtml</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;p&gt;我本以为outerHTML是W3C的标准，结果搜索了一下才知道这是IE的方法，不过Chrome和Safari都支持了，FF竟然不支持，于是找到了扩展Firefox的outerHTML的方法：&lt;a href="http://www.cnblogs.com/doll-net/archive/2007/06/17/786835.html"&gt;点击这里&lt;/a&gt;&lt;/p&gt;
-</code></pre>
+    <content type="html"><![CDATA[<p>我本以为outerHTML是W3C的标准，结果搜索了一下才知道这是IE的方法，不过Chrome和Safari都支持了，FF竟然不支持，于是找到了扩展Firefox的outerHTML的方法：<a href="http://www.cnblogs.com/doll-net/archive/2007/06/17/786835.html">点击这里</a></p>
 ]]></content>
   </entry>
   

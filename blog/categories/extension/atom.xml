@@ -4,7 +4,7 @@
   <title><![CDATA[Category: extension | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/extension/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -36,8 +36,7 @@ app.jinja_env.add_extension("jinja2.ext.do")
 {# for item in order.items #}
 {# total_price = item.meal.price * item.quantity #}</p>
 
-<p class = "order_list_item"></p>
-
+<p><p class = "order_list_item"></p>
 
 <p>{# endfor #}
 </td>
@@ -51,10 +50,8 @@ app.jinja_env.add_extension("jinja2.ext.do")
 &hellip;&hellip;
 {# set prices = [] #}
 {# for item in order.items #}
-{# do prices.append(item.meal.price * item.quantity) #}</p>
-
+{# do prices.append(item.meal.price * item.quantity) #}
 <p class = "order_list_item"></p>
-
 
 <p>{# endfor #}
 </td>

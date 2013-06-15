@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="&lt;p&gt;本来打算针对上传的图片进行验证，不过发现在form中加入enctype属性之后原本针对FileField的验证就不管用了，field.data始终是None，但是去掉enctype属性就ok，不过去掉之后不能上传文件了，所以最终只好去掉验证，在request中进行验证。&lt &hellip;">
+  <meta name="description" content="本来打算针对上传的图片进行验证，不过发现在form中加入enctype属性之后原本针对FileField的验证就不管用了，field.data始终是None，但是去掉enctype属性就ok，不过去掉之后不能上传文件了，所以最终只好去掉验证，在request中进行验证。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,23 +104,19 @@
   </header>
 
 
-<div class="entry-content"><pre><code>        &lt;p&gt;本来打算针对上传的图片进行验证，不过发现在form中加入enctype属性之后原本针对FileField的验证就不管用了，field.data始终是None，但是去掉enctype属性就ok，不过去掉之后不能上传文件了，所以最终只好去掉验证，在request中进行验证。&lt;/p&gt;
-</code></pre>
+<div class="entry-content"><p>本来打算针对上传的图片进行验证，不过发现在form中加入enctype属性之后原本针对FileField的验证就不管用了，field.data始终是None，但是去掉enctype属性就ok，不过去掉之后不能上传文件了，所以最终只好去掉验证，在request中进行验证。</p>
 
 <p>比如我是这样验证没有选择图片的：</p>
 
-
-<br /><pre class="prettyprint linenums bush:python" lang="python">form = xxxForm(request.form)
-
-
-<p>f = request.files[&ldquo;image&rdquo;]
+<pre class="prettyprint linenums bush:python" lang="python">form = xxxForm(request.form)
+f = request.files["image"]
 if len(f.filename) == 0:
-  form.image.errors = ValidationError(u"need a pic file!!!&ldquo;)
-  return render_template("xxx&rdquo;, form = form)
-&hellip;&hellip;</pre></p>
+ form.image.errors = ValidationError(u"need a pic file!!!")
+ return render_template("xxx", form = form)
+......</pre>
 
-<br /><p>如果有不同的见解请告诉我哦！</p>
 
+<p>如果有不同的见解请告诉我哦！</p>
 </div>
 
 
@@ -188,6 +184,10 @@ if len(f.filename) == 0:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
       </li>
     
@@ -201,10 +201,6 @@ if len(f.filename) == 0:
     
       <li class="post">
         <a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/18/end-sorted/">End-sorted</a>
       </li>
     
   </ul>

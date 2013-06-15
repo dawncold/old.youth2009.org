@@ -4,7 +4,7 @@
   <title><![CDATA[Category: selectsort | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/selectsort/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-04T23:31:35+08:00</updated>
+  <updated>2013-06-15T16:40:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -18,32 +18,26 @@
     <link href="http://www.youth2009.org/blog/2012/01/26/select-sort-in-python/"/>
     <updated>2012-01-26T12:27:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2012/01/26/select-sort-in-python</id>
-    <content type="html"><![CDATA[<pre><code>        &lt;pre class="prettyprint linenums bush:python" lang="python"&gt;#! /usr/bin/env python
-</code></pre>
+    <content type="html"><![CDATA[<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
 
-<h1>coding: utf-8</h1>
+def select_sort(arraylist):
+   for i in range(0, len(arraylist)):
+       minElement = i
+       for j in range(i, len(arraylist)):
+           if arraylist[j] &lt; arraylist[minElement]:
+               minElement = j
+       temp = arraylist[i]
+       arraylist[i] = arraylist[minElement]
+       arraylist[minElement] = temp
 
-<p>def select_sort(arraylist):</p>
+if __name__ == "__main__":
+   arr = [2, 424, 4, 13, 5, 99, 100, 231, 0, 1]
+   print arr
+   select_sort(arr)
+   print arr
+</pre>
 
-<pre><code>for i in range(0, len(arraylist)):
-    minElement = i
-    for j in range(i, len(arraylist)):
-        if arraylist[j] &amp;lt; arraylist[minElement]:
-            minElement = j
-    temp = arraylist[i]
-    arraylist[i] = arraylist[minElement]
-    arraylist[minElement] = temp
-</code></pre>
-
-<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
-
-<pre><code>arr = [2, 424, 4, 13, 5, 99, 100, 231, 0, 1]
-print arr
-select_sort(arr)
-print arr
-</code></pre>
-
-<p></pre></p>
 ]]></content>
   </entry>
   
