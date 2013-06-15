@@ -3,77 +3,65 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Haskell的学习开始了 - dawncold's tech blog</title>
+	<title>Haskell的学习开始了 | dawncold's tech blog</title>
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="总算是这本新书仍旧躺在图书馆的新书架上，上次看到后感觉没时间来学习，自己总是拼命追赶技术的前沿，而在这里是有难度的，虽然网络让我们和世界保持同步，但知识的追赶总还是需要时间来加冕。不知道这还算不算是技术前沿了，不过总是比其他的那些新了不少，函数式编程。 这也是我第一次阅读全英文的技术书籍， &hellip;">
+	<meta name="description" content="Haskell的学习开始了 3Mar 总算是这本新书仍旧躺在图书馆的新书架上，上次看到后感觉没时间来学习，自己总是拼命追赶技术的前沿，而在这里是有难度的，虽然网络让我们和世界保持同步，但知识的追赶总还是需要时间来加冕。不知道这还算不算是技术前沿了，不过总是比其他的那些新了不少，函数式编程。 &hellip;">
 	
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
 	<link rel="canonical" href="">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
 	
 </head>
 
 <body>
-	<header id="header" class="inner"><h1><a href="/">dawncold's tech blog</a></h1>
-<nav id="main-nav"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-</ul>
-</nav>
-<nav id="mobile-nav">
-	<div class="alignleft menu">
-		<a class="button">Menu</a>
-		<div class="container"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-</ul>
-</div>
-	</div>
-	<div class="alignright search">
-		<a class="button"></a>
-		<div class="container">
-			<form action="http://google.com/search" method="get">
-				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org">
-			</form>
-		</div>
-	</div>
-</nav>
-<nav id="sub-nav" class="alignright">
-	<div class="social">
-		
-		
-		
-		
-    
-		
-		
-		
-		
-		
-		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-		
-	</div>
-	<form class="search" action="http://google.com/search" method="get">
-		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org">
-	</form>
-</nav>
+	<header id="header" class="inner"><nav><ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul></nav>
+</header>
+	<div id="content" class="inner"><article class="post"><header>
+  
+  <h1 class="title">Haskell的学习开始了</h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-03-03T23:44:00+08:00">
+			<span class="day"> 3</span><span class="month">Mar</span>
+		</time>
+	
 
 </header>
-	
-		
-	
-	<div id="content" class="inner"><article class="post">
-	<h2 class="title">Haskell的学习开始了</h2>
-	<div class="entry-content"><p>总算是这本新书仍旧躺在图书馆的新书架上，上次看到后感觉没时间来学习，自己总是拼命追赶技术的前沿，而在这里是有难度的，虽然网络让我们和世界保持同步，但知识的追赶总还是需要时间来加冕。不知道这还算不算是技术前沿了，不过总是比其他的那些新了不少，函数式编程。 这也是我第一次阅读全英文的技术书籍，以前也曾阅读过带注释的《程序员修炼之道》，可惜没有看完，现在图书馆中也见不到了，以后有机会再找回来看看。 Haskell的不少语法规则都和已经学过的编程语言差不多，如果一种新的语言推出了极其怪异的语法而它又不能自圆其说的话，那这门语言很快就将泯灭，原因不用多讲。这样的话学习起来就能稍微简单些了。 使用的书籍叫《Real World Haskell》。 首先接触到了GHC的概念，这是个缩写，包括了三个组件：ghc、ghci、runghc。 ghc是编译器；ghci是个交互模式的命令行，类似python的那个；runghc是可以作为脚本运行haskell的东西，不用编译就可以运行了，感觉这就是个脚本解释器吧。</p>
+<div class="entry-content">
+  
+    <p>总算是这本新书仍旧躺在图书馆的新书架上，上次看到后感觉没时间来学习，自己总是拼命追赶技术的前沿，而在这里是有难度的，虽然网络让我们和世界保持同步，但知识的追赶总还是需要时间来加冕。不知道这还算不算是技术前沿了，不过总是比其他的那些新了不少，函数式编程。 这也是我第一次阅读全英文的技术书籍，以前也曾阅读过带注释的《程序员修炼之道》，可惜没有看完，现在图书馆中也见不到了，以后有机会再找回来看看。 Haskell的不少语法规则都和已经学过的编程语言差不多，如果一种新的语言推出了极其怪异的语法而它又不能自圆其说的话，那这门语言很快就将泯灭，原因不用多讲。这样的话学习起来就能稍微简单些了。 使用的书籍叫《Real World Haskell》。 首先接触到了GHC的概念，这是个缩写，包括了三个组件：ghc、ghci、runghc。 ghc是编译器；ghci是个交互模式的命令行，类似python的那个；runghc是可以作为脚本运行haskell的东西，不用编译就可以运行了，感觉这就是个脚本解释器吧。</p>
 
 <h1>安装GHC平台</h1>
 
@@ -209,63 +197,72 @@ infixl 6 +</pre>
 
 
 <p>这里没什么体别，字符串就是用引号引起来的内容。在字符串中可以使用转义字符，类似\n、\t这类。 字符串就是把每一个字符一个个放入列表中实现的，所以一个空字符串──“”与一个空列表──[]是等价的。   就先到这儿吧，英文版书籍看起来也不算快，边看变查字典呢！haskell的前言中说过这是一个比较奇特的语言，会引发对软件设计的新方法，当然是因为函数式编程吧。</p>
-</div>
 
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-03-03T23:44:00+08:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/haskell/'>Haskell</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div></article>
-
-	<div class="share">
+    
+      <div class="sharing">
 	<div class="addthis_toolbox addthis_default_style ">
 	
 	
 	
 	<a class="addthis_counter addthis_pill_style"></a>
 	</div>
-  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4daee9911f9dfcb4"></script>
 </div>
+    
+  
+  
+  <footer class="meta">
+    
 
 
+
+	<div class="tags"><a class='category' href='/blog/categories/haskell/'>Haskell</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
 
 <section id="comment">
-    <h2 class="title">Comments</h2>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
+	<div id="disqus_thread" aria-live="polite">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> 
+  </div>
 </section>
+</article></div>
+	<footer id="footer" class="inner"><div class="social alignright">
+	
+	
+	
+	
+	
+	<a class="rss" href="/atom.xml" title="RSS">RSS</a>
 </div>
-	<footer id="footer" class="inner">Copyright &copy; 2013
-
-    dawncold
-
-</footer>
-	<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<p>&copy; 2013 dawncold</p>
+<div class="clearfix"></div></footer>
+	<script src="/javascripts/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
-(function($){
-	$('.fancybox').fancybox();
-})(jQuery);
-</script> <!-- Delete or comment this line to disable Fancybox -->
+	(function($){
+		$('.entry-content').each(function(i){
+			var _i = i;
+			$(this).find('img').each(function(){
+				var alt = $(this).attr('alt');
+
+				if (alt == '' || typeof alt == 'undefined'){
+					$(this).wrap('<a href="'+$(this).attr('src')+'" class="fancybox" rel="gallery'+_i+'" />');
+				} else {
+					$(this).after('<span class="caption">'+alt+'</span>').wrap('<a href="'+$(this).attr('src')+'" class="fancybox" title="'+alt+'" rel="gallery'+_i+'" />');
+				}
+			});
+		});
+		$('.fancybox').fancybox();
+	})(jQuery);
+</script>
+<div id="phasebeam">
+	<canvas></canvas>
+	<canvas></canvas>
+	<canvas></canvas>
+</div>
+<script src="/javascripts/phasebeam.js"></script>
 
 
 <script type="text/javascript">
@@ -283,20 +280,6 @@ infixl 6 +</pre>
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
-
-
-
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-8650400-5']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
 
 
 
