@@ -67,8 +67,9 @@
 
 <p>把<code>&lt;p&gt;</code>删掉，在删掉<code>&lt;/p&gt;以及&lt;br /&gt;</code>后面加换行等：</p>
 
-<p><code>sed -i "" -e 's;&lt;/p&gt;;\'$'\n;g' *.markdown</code>
-<code>sed -i "" -e 's;&lt;br /&gt;;\'$'\n;g' *.markdown</code></p>
+<p><code>sed -i "" -e 's;&lt;/p&gt;;\'$'\n;g' *.markdown</code></p>
+
+<p><code>sed -i "" -e 's;&lt;br /&gt;;\'$'\n;g' *.markdown</code></p>
 
 <p>需要注意的是Mac OS中的sed和我看到的很不一样，所以这个替换都是特殊的，来自<a href="http://cafenate.wordpress.com/2010/12/05/newlines-in-sed-on-mac/">这里</a></p>
 
