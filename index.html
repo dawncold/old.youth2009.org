@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="博客内容是从wordpress转过来的，不可避免有很多地方没转换好，当时懒得弄，今天得空学习Shell编程，讲到了sed，就又搞了一下，基本满意了。 以前用sed替换过分类等简单的文字错误，今天主要是把一些html给替换掉了。 把&lt;p&gt;删掉，在删掉&lt;/p&gt;以及&lt;br &hellip;">
+	<meta name="description" content="以前用了nginx-upload-module，不过这个module的作者不打算继续更新了，导致nginx版本高于1.3.9就无法使用这个module来处理上传文件。本着不引入更多依赖并且使用一个比较成熟方法的前提，只有client_body_in_file_only，这是nginx &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
@@ -40,6 +40,82 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2013/06/25/nginx-upload-file-without-backend/">Nginx-upload-file-without-backend</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2013-06-25T23:09:00+08:00">
+			<span class="day">25</span><span class="month">Jun</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>以前用了nginx-upload-module，不过这个module的作者不打算继续更新了，导致nginx版本高于1.3.9就无法使用这个module来处理上传文件。本着不引入更多依赖并且使用一个比较成熟方法的前提，只有client_body_in_file_only，这是nginx buildin方法。</p>
+
+<p>原本用upload-module的时候在location / 中有个if，如果发现有multipart就会处理一下，再pass回去。处理完后会多出两个参数，比如image.name和image.path，其中image是file input的name。然后back-end就直接那path和name来处理文件了，临时文件会放在一个固定的地方。</p>
+
+<p>由于client_body_in_file_only只能放在server、http、location中，得专门建立一个location而不能放在if中。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>location ^~ /upload/ {
+</span><span class='line'>  client_body_temp_path      /tmp/;
+</span><span class='line'>  client_body_in_file_only   on;
+</span><span class='line'>  client_body_buffer_size    128K;
+</span><span class='line'>  client_max_body_size       1000M;
+</span><span class='line'>
+</span><span class='line'>  proxy_pass_request_headers on;
+</span><span class='line'>  proxy_set_header           X-FILE $request_body_file; 
+</span><span class='line'>  proxy_set_body             off;
+</span><span class='line'>  proxy_redirect             off;
+</span><span class='line'>  proxy_pass                 http://backend/
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样以upload开头的就会做这样处理，上传的文件path会放在header中，至于name该怎么办，我是把name的值作为query string拼在了form的action中，在上传开始前得到文件名，然后拼上去。</p>
+
+<p>需要注意的是，client_body_in_file_only不支持RFC2388，也就是说multipart不管用，你可以考虑用ajax上传插件来做上传，注意插件里的multipart设为false。上传插件推荐JQuery-File-Upload。</p>
+
+<p>依赖，越少越好。</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/dev/'>dev</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -595,58 +671,6 @@
 <p>不过你可以用部署的方式，<code>make package install</code>，他会依赖你刚刚设置的IP部署，但我这里似乎有问题，估计是环境变量的问题，光提示我找不到THEOS_DEVICE_IP</p>
 
 <p>我就scp到了设备上，手动执行了dpkg的命令，然后respring竟然没效果，只好reboot了一下，看到了刚刚的app已经被安装上了！！！</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/app/'>app</a><a class='category' href='/blog/categories/sorted/'>sorted</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2013/03/16/about-sorted/">about-Sorted</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2013-03-16T12:54:00+08:00">
-			<span class="day">16</span><span class="month">Mar</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>早就考虑做这么一个app，不过拖延到现在了，再次佩服一下我的拖延症。</p>
-
-<p>Sorted是这样一个app，安装上之后就会跟踪你使用手机上app的习惯，根据使用频率给桌面的app排序，估计等你用一段时间之后，第一页的apps就是最常用的了。</p>
-
-<p>当然，这需要你的iPhone jailbreaken。</p>
-
-<p>刚刚用iFile找到了存放app list的地方，在/User/Library/SpringBoard/IconState.plist，plist就像是python中的dict，里面两个key分别是：buttonBar、iconLists。</p>
-
-<p>buttonBar中有个list，是底部Dock上的app标识，例如有：com.apple.mobilephone、com.apple.MobileSMS等。</p>
-
-<p>iconLists中又是一个list，内容也是list，每个list表示桌面某一页上的apps。</p>
-
-<p>不过有个问题是：如果我手动修改了这里的值，比如我交换某页两个app的位置，回到桌面并不会立刻看到效果，如果要看效果，需要respring&hellip;就是重启SpringBoard，这是我不能接受的。需要再看SpringBoard的私有api有没有提供这方面的支持了。</p>
 
   
   

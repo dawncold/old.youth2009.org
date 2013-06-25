@@ -7,13 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="今天在代码中遇到一个next方法（python代码），以前从没用过这个，于是简单了解了一下。 next就是iterator了，可以通过iterator来找东西，找到就停下了，如果给了默认值，没找到的话就用默认值。 generator这个东西是很有意思的，比如： 1
-2
-3
-4
-5
-6
-def &hellip;">
+	<meta name="description" content="早就考虑做这么一个app，不过拖延到现在了，再次佩服一下我的拖延症。 Sorted是这样一个app，安装上之后就会跟踪你使用手机上app的习惯，根据使用频率给桌面的app排序，估计等你用一段时间之后，第一页的apps就是最常用的了。 当然，这需要你的iPhone jailbreaken。 &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
@@ -46,6 +40,58 @@ def &hellip;">
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2013/03/16/about-sorted/">about-Sorted</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2013-03-16T12:54:00+08:00">
+			<span class="day">16</span><span class="month">Mar</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>早就考虑做这么一个app，不过拖延到现在了，再次佩服一下我的拖延症。</p>
+
+<p>Sorted是这样一个app，安装上之后就会跟踪你使用手机上app的习惯，根据使用频率给桌面的app排序，估计等你用一段时间之后，第一页的apps就是最常用的了。</p>
+
+<p>当然，这需要你的iPhone jailbreaken。</p>
+
+<p>刚刚用iFile找到了存放app list的地方，在/User/Library/SpringBoard/IconState.plist，plist就像是python中的dict，里面两个key分别是：buttonBar、iconLists。</p>
+
+<p>buttonBar中有个list，是底部Dock上的app标识，例如有：com.apple.mobilephone、com.apple.MobileSMS等。</p>
+
+<p>iconLists中又是一个list，内容也是list，每个list表示桌面某一页上的apps。</p>
+
+<p>不过有个问题是：如果我手动修改了这里的值，比如我交换某页两个app的位置，回到桌面并不会立刻看到效果，如果要看效果，需要respring&hellip;就是重启SpringBoard，这是我不能接受的。需要再看SpringBoard的私有api有没有提供这方面的支持了。</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/app/'>app</a><a class='category' href='/blog/categories/sorted/'>sorted</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -578,48 +624,6 @@ def &hellip;">
 
 
 	<div class="tags"><a class='category' href='/blog/categories/blog/'>blog</a><a class='category' href='/blog/categories/octopress/'>octopress</a><a class='category' href='/blog/categories/vps/'>vps</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">Pytz的6分钟时差</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2012-10-20T16:13:00+08:00">
-			<span class="day">20</span><span class="month">Oct</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>项目中有使用pytz这个第三方库来处理datetiem相关的东西。不过最近测试的时候发现，创建了一个时间点后，最终得到的时间点和预想的时间点有6分钟的误差，从网上搜到的资料是这样解决的：详情看<a href="http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1">http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1</a></p>
-
-<p>创建datetime的时候，特别是带timezone，需要localize一下，否则在使用pytz的时候就会出现这6分钟的差异。代码中首先创建了datetime，然后localize后再replace了timezone为pytz的，最终还astimezone为pytz.utc。我们是使用utc的，你的代码也许不需要：）</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/datetime/'>datetime</a><a class='category' href='/blog/categories/pytz/'>pytz</a><a class='category' href='/blog/categories/timezone/'>timezone</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
   </footer>

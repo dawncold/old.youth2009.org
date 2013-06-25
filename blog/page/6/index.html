@@ -7,7 +7,9 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="其实挺那啥的，那啥呢？说不出来感受，些须高兴又些须失望。 资格赛10个题，仔细一看才知道是POJ的原题，随便找了10个，有简单到算a+b结果的，也有复杂点用动态规划、解方程组的等等。总之和大多数人一样，比较失望。 虽然ac了10个，现在排名88，不过都直到答案网上有的是，自己找来不就可以了么， &hellip;">
+	<meta name="description" content="嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（ #include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt; void strcp( &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
@@ -40,6 +42,70 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/05/30/simple-c-language-program/">一个简单的C程序</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2012-05-30T19:39:00+08:00">
+			<span class="day">30</span><span class="month">May</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（</p>
+
+<pre class="prettyprint linenums bush:c" lang="c">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+
+void strcp(char*, char*);
+int main()
+{
+char* s = "test string...";
+char* t = malloc(strlen(s));
+strcp(t, s);
+printf("%s\n", t);
+free(t);
+
+return 0;
+}
+
+void strcp(char *s,char *t)  
+{  
+while(*s++ = *t++);  
+}</pre>
+
+
+<p>最漂亮的就是那句strcp的函数了，非常简洁好用：）</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/c/'>c</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -636,52 +702,6 @@ merge_sort(lst, 0, len(lst) - 1)</pre>
 
 
 	<div class="tags"><a class='category' href='/blog/categories/gui-bing-pai-xu/'>归并排序</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a><a class='category' href='/blog/categories/ni-xu-dui/'>逆序对</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/05/06/miserable-code-jam-2012/">悲惨的CodeJam2012</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2012-05-06T21:49:00+08:00">
-			<span class="day"> 6</span><span class="month">May</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>资格赛晋级之后还稍稍得到了点自信，起码原来只能远观CodeJam的我现在也能继续走进看看了，不过家下来的Round1三场比赛直接被虐杀了，每一场都是最后，每个题都做不出来，说出来也是很惭愧的，但得承认自己这点能力，有人不到5分钟就能做对一个大题，而我5分钟可能都没读完题，更别说写代码了。</p>
-
-<p>但最重要的是理解题目，能够理解了也就完成了90%，剩下的工作就是coding的过程，参加比赛的人基本都是有备而来，各种模版、脚本都准备好了，写起来非常快。对于非英语系国家的选手来说，读题似乎是很大的障碍，起码会比别人慢好多倍，这点只能多多看英文的资料来弥补了！</p>
-
-<p>今天的Round1第三场出现了两个动态规划的题，感觉知道了怎么做可就是不会写，我也就是停留在知道有动态规划这种变态方法的层面上，真让我写出来可不行，抱着《算法导论》看了半天也是毫无头绪……</p>
-
-<p>毕竟不是Acmer，咱也就只能止步于此啦！希望进入下一轮的国人们继续加油！</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/code-jam/'>Code jam</a><a class='category' href='/blog/categories/zhe-si/'>哲思</a></div>
 
     
   </footer>
