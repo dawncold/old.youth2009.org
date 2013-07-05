@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 4pm.la | dawncold's tech blog]]></title>
+  <link href="http://www.youth2009.org/blog/categories/4pm-dot-la/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-07-05T23:48:01+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[搭建4pm.la的数据库服务器]]></title>
+    <link href="http://www.youth2009.org/blog/2013/07/04/build-4pm-env/"/>
+    <updated>2013-07-04T21:54:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/07/04/build-4pm-env</id>
+    <content type="html"><![CDATA[<p>原来用MySQL比较多，现在工作上主要用PostgreSQL，对于低级的应用来说，选什么数据库都差不多，但也要为以后发展做准备，不过我暂时看不到那么远，PG作为一个开源的数据库来说，还算是比MySQL有优势一点，所以就用这个了。</p>
+
+<p>在Mac上安装的时候有个locale的选择，我选了这个：</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/CZ9bpp9U/medish.jpg" alt="locale select" /></p>
+
+<p>然后下载了pgAdmin作为GUI工具，结合PG的CLI一起使用比较好。使用psql登陆数据库可以用：<code>psql -h localhost -U postgres -W</code></p>
+
+<pre><code>其中
+-h db host
+-U db user
+-W use password
+</code></pre>
+
+<p>pgAdmin用起来感觉超差，目测是java写的，有点小卡，远不如在Ubuntu上的体验。</p>
+
+<p>创建一个网站用的用户，可以用createuser这条命令，或者连上PG后写CREATE USER这种SQL，官方文档介绍两者没什么差别。createuser只是包装了一下SQL而已。（<a href="http://www.postgresql.org/docs/current/static/app-createuser.html">官方文档</a>）</p>
+
+<p><code>createuser -dEeP -h localhost -U postgres -W xxx</code></p>
+
+<pre><code>其中
+-d can create db
+-E encrypted user's password
+-e echo SQL command
+-P can not create role
+</code></pre>
+
+<p>创建一个数据库，同样可以用包装了CREATE DATABASE的createdb。(<a href="http://www.postgresql.org/docs/9.2/static/app-createdb.html">官方文档</a>）</p>
+
+<p><code>createdb -e -E UTF8 -l zh_CN.UTF-8 -O OWNER -h localhost -U postgres -W DBNAME</code></p>
+
+<pre><code>其中
+-e echo SQL command
+-E use encoding
+-l set locale, included LC_COLLATE and LC_CTYPE
+-O db's owner
+</code></pre>
+
+<p>看到篇不错的文章，介绍PG的ROLE、USER、SCHEMA、TABLESPACE、DATABASE等概念的关系：<a href="http://blog.csdn.net/kanon_lgt/article/details/5931522">这里</a></p>
+]]></content>
+  </entry>
+  
+</feed>

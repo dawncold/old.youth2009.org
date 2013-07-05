@@ -4,7 +4,7 @@
   <title><![CDATA[dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-06-25T23:44:53+08:00</updated>
+  <updated>2013-07-05T23:48:01+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,53 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[搭建4pm.la的数据库服务器]]></title>
+    <link href="http://www.youth2009.org/blog/2013/07/04/build-4pm-env/"/>
+    <updated>2013-07-04T21:54:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/07/04/build-4pm-env</id>
+    <content type="html"><![CDATA[<p>原来用MySQL比较多，现在工作上主要用PostgreSQL，对于低级的应用来说，选什么数据库都差不多，但也要为以后发展做准备，不过我暂时看不到那么远，PG作为一个开源的数据库来说，还算是比MySQL有优势一点，所以就用这个了。</p>
+
+<p>在Mac上安装的时候有个locale的选择，我选了这个：</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/CZ9bpp9U/medish.jpg" alt="locale select" /></p>
+
+<p>然后下载了pgAdmin作为GUI工具，结合PG的CLI一起使用比较好。使用psql登陆数据库可以用：<code>psql -h localhost -U postgres -W</code></p>
+
+<pre><code>其中
+-h db host
+-U db user
+-W use password
+</code></pre>
+
+<p>pgAdmin用起来感觉超差，目测是java写的，有点小卡，远不如在Ubuntu上的体验。</p>
+
+<p>创建一个网站用的用户，可以用createuser这条命令，或者连上PG后写CREATE USER这种SQL，官方文档介绍两者没什么差别。createuser只是包装了一下SQL而已。（<a href="http://www.postgresql.org/docs/current/static/app-createuser.html">官方文档</a>）</p>
+
+<p><code>createuser -dEeP -h localhost -U postgres -W xxx</code></p>
+
+<pre><code>其中
+-d can create db
+-E encrypted user's password
+-e echo SQL command
+-P can not create role
+</code></pre>
+
+<p>创建一个数据库，同样可以用包装了CREATE DATABASE的createdb。(<a href="http://www.postgresql.org/docs/9.2/static/app-createdb.html">官方文档</a>）</p>
+
+<p><code>createdb -e -E UTF8 -l zh_CN.UTF-8 -O OWNER -h localhost -U postgres -W DBNAME</code></p>
+
+<pre><code>其中
+-e echo SQL command
+-E use encoding
+-l set locale, included LC_COLLATE and LC_CTYPE
+-O db's owner
+</code></pre>
+
+<p>看到篇不错的文章，介绍PG的ROLE、USER、SCHEMA、TABLESPACE、DATABASE等概念的关系：<a href="http://blog.csdn.net/kanon_lgt/article/details/5931522">这里</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[nginx-upload-file-without-backend]]></title>
@@ -615,17 +662,6 @@
 <p>一开始添加了usage for macos users，commit然后push，作者和我说少一个blank line，我加了再commit和push，另一个开发者和我说你不应该多次commit，需要说清楚commit的工作而不是一味用commit修改，我改好了发现remote的版本和本地不一样，因为我是在上一个版本的基础上amend后再提交的，无奈之下我merge了remote然后commit又push，这时候作者跳出来一对一教我怎么做了，有不少细节地方需要注意，比如完全的command line可以在markdown中用tab的indent，而list的indent和tab是完全不一样的。。。又给我罗列了markdown的语法。我让他写一个正确的给我看一下，他真的就给我写了一遍，但是他给希望让别人来做这部分工作而不是自己来做，并不是自己能力不足什么的，光是在我这里付出的时间就远超编辑好几个版本的README了。这点在国内开发者的身上很难发现吧？！</p>
 
 <p>最后当然是pull request被接受了：）这次经历很难得！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[我在考虑迁移到octopress上]]></title>
-    <link href="http://www.youth2009.org/blog/2012/11/25/thinking-convert-to-octopress-blog-system/"/>
-    <updated>2012-11-25T21:51:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/11/25/thinking-convert-to-octopress-blog-system</id>
-    <content type="html"><![CDATA[<p>最近的work@honovation博客一直是用octopress写的，就是直接写markdown内容即可，github负责转换并提供托管服务，而且可以自己绑定域名，比如现在的<a href="http://workathonovation.youth2009.org%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%BC%84%E5%BE%97%EF%BC%8C%E9%9D%9E%E5%B8%B8%E7%AE%80%E6%B4%81%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E8%80%8C%E4%B8%94%E6%9C%89%E7%A7%8D%E5%9B%9E%E5%BD%92%E6%9C%AC%E7%9C%9F%E7%9A%84%E6%84%9F%E8%A7%89%E3%80%82">http://workathonovation.youth2009.org%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%BC%84%E5%BE%97%EF%BC%8C%E9%9D%9E%E5%B8%B8%E7%AE%80%E6%B4%81%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E8%80%8C%E4%B8%94%E6%9C%89%E7%A7%8D%E5%9B%9E%E5%BD%92%E6%9C%AC%E7%9C%9F%E7%9A%84%E6%84%9F%E8%A7%89%E3%80%82</a></p>
-
-<p>迟迟没有动作是因为我付了30刀个这个VPS，也就是到2月才过期，如果全部转到了octopress那么空着这个VPS干嘛？翻墙玩？呵呵，那真是无聊死了吧。。。说实在的，vps除了放个blog和自己做出来的小站外，好像就没什么用处了，但现在自己连小站都没有了，悉数关闭。。。</p>
 ]]></content>
   </entry>
   
