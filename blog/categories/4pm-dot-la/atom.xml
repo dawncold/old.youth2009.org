@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 4pm.la | dawncold's tech blog]]></title>
   <link href="http://www.youth2009.org/blog/categories/4pm-dot-la/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-07-05T23:48:01+08:00</updated>
+  <updated>2013-07-06T10:14:00+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -57,6 +57,8 @@
 </code></pre>
 
 <p>看到篇不错的文章，介绍PG的ROLE、USER、SCHEMA、TABLESPACE、DATABASE等概念的关系：<a href="http://blog.csdn.net/kanon_lgt/article/details/5931522">这里</a></p>
+
+<p>生产环境用的Ubuntu12.04.2，在创建数据库的时候制定locale，但没有zh_CN这个locale，于是需要安装：<code>/usr/shard/locales/install-language-pack zh_CN</code>，安装完了最好能重启机器，不然的话好像createdb一直会报错说zh_CN.UTF-8这个locale不正确。重启了之后再创建db就ok了，但告诉你说collection你选了zh_CN的，和默认模板template1的en_US冲突，提示是换成template0模板，于是加了参数<code>-T</code>:<code>createdb -e -E UTF8 -l "zh_CN.UTF-8" -O :OWNER -T template0 -h localhost -U postgres -W :DBNAME</code></p>
 ]]></content>
   </entry>
   
