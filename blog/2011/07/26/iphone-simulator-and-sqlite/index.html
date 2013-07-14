@@ -1,33 +1,22 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>iphone模拟器和sqlite的问题 - dawncold's tech blog</title>
-  <meta name="author" content="dawncold">
+	<meta charset="utf-8">
+	<title>iphone模拟器和sqlite的问题 | dawncold's tech blog</title>
+	<meta name="author" content="dawncold">
 
-  
-  <meta name="description" content="最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。 今天update进去信息，总是没发现数据库更新， &hellip;">
-  
+	
+	<meta name="description" content="Iphone模拟器和sqlite的问题 26Jul 最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。 &hellip;">
+	
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://www.youth2009.org/blog/2011/07/26/iphone-simulator-and-sqlite">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  
-  
+	<link href="/atom.xml" rel="alternate" title="dawncold's tech blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-8650400-5']);
@@ -41,59 +30,39 @@
   </script>
 
 
+	
 </head>
 
-<body   >
-  <header role="banner">
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:www.youth2009.org" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul>
+<body>
+	<header id="header" class="inner"><nav><ul>
   <li><a href="/">Home</a></li>
+  <li><a href="/about">About</li>
   <li><a href="/blog/archives">Archives</a></li>
-</ul>
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
+</ul></nav>
+</header>
+	<div id="content" class="inner"><article class="post"><header>
   
-  <header>
-    
-      <h1 class="entry-title">Iphone模拟器和sqlite的问题</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
+  <h1 class="title">Iphone模拟器和sqlite的问题</h1>
+  
   
 
 
-<time datetime="2011-07-26T09:19:00+08:00" pubdate data-updated="true">Jul 26<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
 
 
-<div class="entry-content"><p>最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。</p>
+
+
+
+
+	
+		<time datetime="2011-07-26T09:19:00+08:00">
+			<span class="day">26</span><span class="month">Jul</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。</p>
 
 <p>今天update进去信息，总是没发现数据库更新，怀疑是忘记commit，查看一下FMDB的使用方法，确实有commit一说，而我在看国内某博客写的使用教程时发现他就是随意的update和insert，殊不知这些都需要commit呀！在update和insert代码前后需要加入</p>
 
@@ -107,108 +76,73 @@
 <p>然而即便是这样，更新了数据库后再查询，确实数据被更改了，但我重新在模拟器中运行程序时候又恢复成了以前的值。偶然在模拟器中打开了程序而不是用xcode运行程序，数据竟然被永久更新了。</p>
 
 <p>所以，以后测试update的时候，前后对比应该只在模拟器中看，如果再用xcode启动，会把原来的数据传入模拟器，这样你就看不到效果了。</p>
-</div>
 
-
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-26T09:19:00+08:00" pubdate data-updated="true">Jul 26<span>th</span>, 2011</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/iphone/'>iphone</a>, <a class='category' href='/blog/categories/sqlite/'>sqlite</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-  
-</span>
-
-
-    </p>
     
       <div class="sharing">
-  
-  
-  
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4daee9911f9dfcb4"></script>
 </div>
+    
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/iphone/'>iphone</a><a class='category' href='/blog/categories/sqlite/'>sqlite</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2011/07/23/sadly-box2d-expreiences/" title="Previous Post: 惨痛的Box2d经验">&laquo; 惨痛的Box2d经验</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2011/07/28/use-uinavigationcontroller-in-uitabbarcontroller/" title="Next Post: UINavigationController和UITabBarController的搭配">UINavigationController和UITabBarController的搭配 &raquo;</a>
-      
-    </p>
   </footer>
-</article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
-
+  
 </div>
 
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/07/04/build-4pm-env/">搭建4pm.la的数据库服务器</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/25/nginx-upload-file-without-backend/">Nginx-upload-file-without-backend</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/11/ssh-proxy-with-autossh/">Ssh-proxy-with-autossh-in-mac</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-
-
-
-  
-</aside>
-
-
-    </div>
+<section id="comment">
+	<div id="disqus_thread" aria-live="polite">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> 
   </div>
-  <footer role="contentinfo"><p>&copy; 2013 dawncold</p>
-</footer>
-  
+</section>
+</article></div>
+	<footer id="footer" class="inner"><div class="social alignright">
+	
+	
+	
+	
+	
+	<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>&copy; 2013 dawncold</p>
+<div class="clearfix"></div></footer>
+	<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+	(function($){
+		$('.entry-content').each(function(i){
+			var _i = i;
+			$(this).find('img').each(function(){
+				var alt = $(this).attr('alt');
+
+				if (alt == '' || typeof alt == 'undefined'){
+					$(this).wrap('<a href="'+$(this).attr('src')+'" class="fancybox" rel="gallery'+_i+'" />');
+				} else {
+					$(this).after('<span class="caption">'+alt+'</span>').wrap('<a href="'+$(this).attr('src')+'" class="fancybox" title="'+alt+'" rel="gallery'+_i+'" />');
+				}
+			});
+		});
+		$('.fancybox').fancybox();
+	})(jQuery);
+</script>
+<div id="phasebeam">
+	<canvas></canvas>
+	<canvas></canvas>
+	<canvas></canvas>
+</div>
+<script src="/javascripts/phasebeam.js"></script>
+
 
 <script type="text/javascript">
       var disqus_shortname = 'dawncoldtechblog';
@@ -225,13 +159,6 @@
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
-
-
-
-
-
-
-
 
 
 
