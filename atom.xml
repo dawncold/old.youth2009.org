@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-07-14T12:12:33+08:00</updated>
+  <updated>2013-07-21T22:45:56+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[crontab a python script]]></title>
+    <link href="http://www.youth2009.org/blog/2013/07/21/crontab-a-python-script/"/>
+    <updated>2013-07-21T22:28:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/07/21/crontab-a-python-script</id>
+    <content type="html"><![CDATA[<p>今天用python写了个<a href="https://github.com/dawncold/stuff/blob/master/ping_test.py">小程序</a>检测网络是否通断，如果断了就弹出一个Notification，当然是Mac上的，并且弹出一个terminal，带着执行ping www.baidu.com。</p>
+
+<p>一开始用Lingon加入到启动项中并且打算2分钟执行一次，几经折腾终于失败，弃之。打算用crontab弄。</p>
+
+<p>好歹算是可用了吧，注意的是：script的开头写/usr/bin/python，crontab中写PATH没用，得写PYTHONPATH才管用，而且我还写了MAILTO（现在不知道管什么用）。由于在script中用了popen，可能这个需要依赖一些环境或者是tty（这是从stackoverflow上看来的，具体可以搜popen crontab），现在想来launchd是不是也因为如此没能成功启动呢？（总提示255退出代码）</p>
+
+<p>crontab:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">MAILTO</span><span class="o">=</span><span class="s2">&quot;dawncold@me.com&quot;</span>
+</span><span class='line'><span class="nv">PATH</span><span class="o">=</span>/Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin:/Users/dawncold/.rvm/gems/ruby-1.9.3-p286@global/bin:/Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/bin:/Users/dawncold/.rvm/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin
+</span><span class='line'><span class="nv">PYTHONPATH</span><span class="o">=</span>/usr/bin
+</span><span class='line'>* * * * * /Users/dawncold/ping_test.py &gt; /Users/dawncold/pt
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[搭建4pm.la的数据库服务器]]></title>
@@ -651,19 +677,6 @@
 <p>前几天看到Learn Python the Hard Way发布了3.0版，同时网站也更名为Learn Code the Hard Way，十分符合技术人士的胃口，当然用来入门还是可以的，深入的话还是得靠自己阅读更高级的书和工作实践。这个网站现在也有Ruby、C、Regex、SQL等等教程，于是在没有书的情况下，我就从这里学习Ruby了。</p>
 
 <p>现在已经学了基本的puts和gets，能写超小的CLI了，不过还得学点loop什么的才可以，而且各种object的method也得熟悉，否则很痛苦：（</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[给开源项目做贡献了]]></title>
-    <link href="http://www.youth2009.org/blog/2012/12/19/make-a-contribution-to-open-source-project/"/>
-    <updated>2012-12-19T21:18:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/12/19/make-a-contribution-to-open-source-project</id>
-    <content type="html"><![CDATA[<p>惭愧，第一次给开源项目做贡献竟然是现在，其实早就想帮着做点啥了，无奈技术能力不足，终于发现一个机会，给progit的README文档添加MacOS用户的使用方式，可惜噩梦也是这样开始的。</p>
-
-<p>一开始添加了usage for macos users，commit然后push，作者和我说少一个blank line，我加了再commit和push，另一个开发者和我说你不应该多次commit，需要说清楚commit的工作而不是一味用commit修改，我改好了发现remote的版本和本地不一样，因为我是在上一个版本的基础上amend后再提交的，无奈之下我merge了remote然后commit又push，这时候作者跳出来一对一教我怎么做了，有不少细节地方需要注意，比如完全的command line可以在markdown中用tab的indent，而list的indent和tab是完全不一样的。。。又给我罗列了markdown的语法。我让他写一个正确的给我看一下，他真的就给我写了一遍，但是他给希望让别人来做这部分工作而不是自己来做，并不是自己能力不足什么的，光是在我这里付出的时间就远超编辑好几个版本的README了。这点在国内开发者的身上很难发现吧？！</p>
-
-<p>最后当然是pull request被接受了：）这次经历很难得！</p>
 ]]></content>
   </entry>
   

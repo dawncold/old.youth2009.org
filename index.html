@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="原来用MySQL比较多，现在工作上主要用PostgreSQL，对于低级的应用来说，选什么数据库都差不多，但也要为以后发展做准备，不过我暂时看不到那么远，PG作为一个开源的数据库来说，还算是比MySQL有优势一点，所以就用这个了。 在Mac上安装的时候有个locale的选择，我选了这个： &hellip;">
+	<meta name="description" content="今天用python写了个小程序检测网络是否通断，如果断了就弹出一个Notification，当然是Mac上的，并且弹出一个terminal，带着执行ping www.baidu.com。 一开始用Lingon加入到启动项中并且打算2分钟执行一次，几经折腾终于失败，弃之。打算用crontab弄。 &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,63 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2013/07/21/crontab-a-python-script/">Crontab a Python Script</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2013-07-21T22:28:00+08:00">
+			<span class="day">21</span><span class="month">Jul</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>今天用python写了个<a href="https://github.com/dawncold/stuff/blob/master/ping_test.py">小程序</a>检测网络是否通断，如果断了就弹出一个Notification，当然是Mac上的，并且弹出一个terminal，带着执行ping www.baidu.com。</p>
+
+<p>一开始用Lingon加入到启动项中并且打算2分钟执行一次，几经折腾终于失败，弃之。打算用crontab弄。</p>
+
+<p>好歹算是可用了吧，注意的是：script的开头写/usr/bin/python，crontab中写PATH没用，得写PYTHONPATH才管用，而且我还写了MAILTO（现在不知道管什么用）。由于在script中用了popen，可能这个需要依赖一些环境或者是tty（这是从stackoverflow上看来的，具体可以搜popen crontab），现在想来launchd是不是也因为如此没能成功启动呢？（总提示255退出代码）</p>
+
+<p>crontab:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">MAILTO</span><span class="o">=</span><span class="s2">&quot;dawncold@me.com&quot;</span>
+</span><span class='line'><span class="nv">PATH</span><span class="o">=</span>/Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin:/Users/dawncold/.rvm/gems/ruby-1.9.3-p286@global/bin:/Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/bin:/Users/dawncold/.rvm/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin
+</span><span class='line'><span class="nv">PYTHONPATH</span><span class="o">=</span>/usr/bin
+</span><span class='line'>* * * * * /Users/dawncold/ping_test.py &gt; /Users/dawncold/pt
+</span></code></pre></td></tr></table></div></figure>
+
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/dev/'>dev</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -623,52 +680,6 @@
 <p>OS:10.8.3，SDKVERSION：6.1</p>
 
 <p>另外昨天说的设置theos的环境变量，我今天又重新加到了bash_profile中，发现make package install都能自动部署了。。。看来真是昨天theos版本的问题？！</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/app/'>app</a><a class='category' href='/blog/categories/sorted/'>sorted</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2013/03/16/open-development-env-for-xcode/">Open-development-env-for-xcode</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2013-03-16T20:40:00+08:00">
-			<span class="day">16</span><span class="month">Mar</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>发现一个问题，使用theos这个makefile工具做app有很大困难，就是headers不好管理，真希望能集成到xcode中开发tweak，结果发现了一个神器&mdash;&mdash;iOSOpenDev。</p>
-
-<p>安装好之后就能发现xcode中已经有很多可用的template了，对于tweak来说，有logos和CaptaionHook。logos就是theos，captainhook是另一个hook框架。</p>
-
-<p>不过很可惜，可能是sdk6.1的问题，结合上springboard和uialertview后就从来没build success，总说armv7中的springboard link error或者uialertview linker error，是在不知道怎么办了，仔细又看了别人的做法，发现他们还在用sdk5.1，估计就是这点差异吧？</p>
-
-<p>彻夜下载sdk5.1.。。。。。。</p>
 
   
   

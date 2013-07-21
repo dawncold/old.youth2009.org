@@ -7,13 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="找到了一篇教程，开始构建jailbreaken app的环境。 基本需要的工具 1
-2
-3
-4
-export THEOS=/opt/theos
-svn co http://svn.howett.net/svn/theos/trunk $THEOS
-curl -s https://dl. &hellip;">
+	<meta name="description" content="发现一个问题，使用theos这个makefile工具做app有很大困难，就是headers不好管理，真希望能集成到xcode中开发tweak，结果发现了一个神器&mdash;&mdash;iOSOpenDev。 安装好之后就能发现xcode中已经有很多可用的template了，对于tweak来说 &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -47,6 +41,52 @@ curl -s https://dl. &hellip;">
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2013/03/16/open-development-env-for-xcode/">Open-development-env-for-xcode</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2013-03-16T20:40:00+08:00">
+			<span class="day">16</span><span class="month">Mar</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>发现一个问题，使用theos这个makefile工具做app有很大困难，就是headers不好管理，真希望能集成到xcode中开发tweak，结果发现了一个神器&mdash;&mdash;iOSOpenDev。</p>
+
+<p>安装好之后就能发现xcode中已经有很多可用的template了，对于tweak来说，有logos和CaptaionHook。logos就是theos，captainhook是另一个hook框架。</p>
+
+<p>不过很可惜，可能是sdk6.1的问题，结合上springboard和uialertview后就从来没build success，总说armv7中的springboard link error或者uialertview linker error，是在不知道怎么办了，仔细又看了别人的做法，发现他们还在用sdk5.1，估计就是这点差异吧？</p>
+
+<p>彻夜下载sdk5.1.。。。。。。</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/app/'>app</a><a class='category' href='/blog/categories/sorted/'>sorted</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -628,50 +668,6 @@ curl -s https://dl. &hellip;">
 
 
 	<div class="tags"><a class='category' href='/blog/categories/study/'>study</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">给开源项目做贡献了</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2012-12-19T21:18:00+08:00">
-			<span class="day">19</span><span class="month">Dec</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>惭愧，第一次给开源项目做贡献竟然是现在，其实早就想帮着做点啥了，无奈技术能力不足，终于发现一个机会，给progit的README文档添加MacOS用户的使用方式，可惜噩梦也是这样开始的。</p>
-
-<p>一开始添加了usage for macos users，commit然后push，作者和我说少一个blank line，我加了再commit和push，另一个开发者和我说你不应该多次commit，需要说清楚commit的工作而不是一味用commit修改，我改好了发现remote的版本和本地不一样，因为我是在上一个版本的基础上amend后再提交的，无奈之下我merge了remote然后commit又push，这时候作者跳出来一对一教我怎么做了，有不少细节地方需要注意，比如完全的command line可以在markdown中用tab的indent，而list的indent和tab是完全不一样的。。。又给我罗列了markdown的语法。我让他写一个正确的给我看一下，他真的就给我写了一遍，但是他给希望让别人来做这部分工作而不是自己来做，并不是自己能力不足什么的，光是在我这里付出的时间就远超编辑好几个版本的README了。这点在国内开发者的身上很难发现吧？！</p>
-
-<p>最后当然是pull request被接受了：）这次经历很难得！</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/open-source/'>open-source</a></div>
 
     
   </footer>

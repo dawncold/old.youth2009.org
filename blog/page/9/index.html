@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="今天断断续续把昨天提到的那个Ruby编程入门看完了，原本打算按照教程中的例子做一遍，不过看得时候感觉这样做的话有些浪费时间，对于有一定编程经验的人来说按照例子做一遍没多大意义，很多内容看看就过了。 但很可惜，在Ruby这里，看看还不一定就能理解，要不然今天也不会单独写一篇日志了， &hellip;">
+	<meta name="description" content="开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。 在保存iptables规则的时候遇到这样的问题： iptables: Saving firewall rules &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,62 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/02/07/some-issue-when-saving-rules-in-iptables/">保存iptables规则遇到的问题</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2012-02-07T18:03:00+08:00">
+			<span class="day"> 7</span><span class="month">Feb</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。</p>
+
+<p>在保存iptables规则的时候遇到这样的问题：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">iptables: Saving firewall rules to /etc/sysconfig/iptables: /etc/init.d/iptables: line 268: restorecon: command not found</pre>
+
+
+<p>当然你可能会看到中文的提示（我的就是），意思是一样的。从<a href="http://www.live-in.org/archives/1112.html">这里</a>得到了解决方案：</p>
+
+<p>安装一个包包：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">yum install policycoreutils</pre>
+
+
+<p>行了，剩下就没遇到问题了：）</p>
+
+<p>稍稍广告一下吧：欢迎使用Yardvps的VPS哦，我就在使用，现在很稳定，现在有了中文界面，支持支付宝，挺好吧？可以点击<a href="http://www.yardvps.com/billing/aff.php?aff=399">这里</a>购买，这样我也许能得到一点推广费用：）</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/iptables/'>iptables</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -590,62 +646,6 @@ if __name__ == "__main__":
 <p>推送本地分支到远程分支的时候可以像上面这样写:git push origin xxx1:xxx2，意思就是推送本地叫xxx1的分支到origin中，推过去叫xxx2，但此处一般简写，光写本地分支名，这样远程分支中的名字也是和本地一样的。</p>
 
 <p>删除远程分支的命令挺好玩的：git push origin  :xxx，在xxx左边冒号左侧有一个空格，意思是把本地的空分支推到远程的xxx分支上，就是删除xxx分支的意思。</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/branch/'>branch</a><a class='category' href='/blog/categories/git/'>git</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/01/26/git-study-branch/">Git使用重新学习（分支）</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2012-01-26T19:36:00+08:00">
-			<span class="day">26</span><span class="month">Jan</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>在git中分支是一个变态技能！</p>
-
-<p>创建分支：git branch [branch-name]即可。</p>
-
-<p><a title="18333fig0305-tn.png" href="http://www.youth2009.org/attachment/135279/"><img src="http://www.youth2009.org/usr/uploads/2012/01/528893353.png" alt="18333fig0305-tn.png"></a></p>
-
-<p>git中有个叫master的分支，这是默认的，刚刚创建了一个testing分支，所以这两个指向是一样的，因为刚刚就在master分支下。但是git为何知道我在master呢？因为还有个叫HEAD的默认指针指向了当前正在使用的分支，所以当你切换分支的时候HEAD就会指向新的地方。</p>
-
-<p>切换分支：git checkout [branch-name]（git checkout -b [branch-name]可以实现新建并切换到此分支）切换分支时最好保持暂存区清洁，否则有可能产生冲突阻止你切换。</p>
-
-<p>当我们切换到了testing分支后，再做一些提交，我们的testing分支会继续往下走，但master分支还停留在刚才离开的地方，如果我们需要回去，只需要再切换回master分支即可屏蔽刚才所作的提交，保持文件的原始性。</p>
-
-<p>合并分支：git merge [branch-name]，把分支合并到你现在所在的那个分支中，可别合并反喽，当然我感觉反了也没关系，就是个名字的问题吧？</p>
-
-<p>分支删除用-d开关，git branch -d [branch-name]即可。</p>
-
-<p>合并分支的时候遇到冲突是不可避免的，有些冲突能够自动解决，但还有不少是需要我们手动解决的，此时git会在status中告诉我们，我们打开后就能看到由“=====”分割开的两部分，就是让我们选择，等手动修改好后需要再add进暂存区，此时就能提交了。 </p>
 
   
   
