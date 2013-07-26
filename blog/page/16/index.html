@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="昨天Lion在AppStore发布了，我也就是看了几眼。后来在论坛上有人说通过香港的免费升级服务有一小部分大陆的机器也得到了免费升级的机会，我也算是个港行的mbp，去试试看，结果我的机器似乎不在那个享受范围内。 不过在微博上有人转发了一个Lion的种子，我就下载去了，一会儿竟然下载完了。 &hellip;">
+	<meta name="description" content="刚刚看到cnbeta上一篇关于flash在lion中cpu占用率很高的问题，我感觉这都不算什么问题了，以前就发现占用率相当高，看flash视频的时候电脑会非常热。 但这次说的不是这个问题，而是adobe提到的lion没有预置java，这点有些奇怪，难道lion安装上就把java删除了？ &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,65 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2011/07/22/lion-eat-my-java/">Lion吃了我的Java</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-07-22T07:12:00+08:00">
+			<span class="day">22</span><span class="month">Jul</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>刚刚看到cnbeta上一篇关于flash在lion中cpu占用率很高的问题，我感觉这都不算什么问题了，以前就发现占用率相当高，看flash视频的时候电脑会非常热。</p>
+
+<p>但这次说的不是这个问题，而是adobe提到的lion没有预置java，这点有些奇怪，难道lion安装上就把java删除了？我开了Terminal，输入:</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">java -version</pre>
+
+
+<p>你猜显示什么？</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">No Java runtime present, requesting install.</pre>
+
+
+<p>接着安装更新的那种小窗口就跳出来了，问我是否安装java，那就装上吧，我有时可能用eclipse。</p>
+
+<p>装好后就能用了，不知道还有什么东西被偷偷“吃掉”了。</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">java version "1.6.0_26"
+Java(TM) SE Runtime Environment (build 1.6.0_26-b03-383-11A511)
+Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre>
+
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/java/'>java</a><a class='category' href='/blog/categories/lion/'>lion</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -647,65 +706,6 @@ release */
 
 
 	<div class="tags"><a class='category' href='/blog/categories/an-quan/'>安全</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/07/10/nginx-location-config/">Nginx下的location配置</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-07-10T20:15:00+08:00">
-			<span class="day">10</span><span class="month">Jul</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>原来的location只是处理了“/”的情况，结果访问一个目录，即使此目录下有index.html也不会成功显示，于是改成了这样：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">location ~.*\.(php|php5)?$
-{
-    处理php
-}</pre>
-
-
-<p>这样之后，发现直接访问目录或者域名的时候不能正常显示了，必须跟上index.php这样的才可以。</p>
-
-<p>最终改成这样，解决了问题：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">location / {
-               root html;
-               index index.html index.php;
-}
-location ~.*\.(php|php5)?$ {
-处理php
-}</pre>
-
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/nginx/'>nginx</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
   </footer>

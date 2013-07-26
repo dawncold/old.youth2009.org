@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="不知道最终能否配置好，先记录下来吧！ 安装了openssl库，但安装nginx的时候还是使用了&mdash;without-http-cache，要不总是提示找不到openssl。默认把nginx安装到了/usr/local/nginx这个地方。 下面是php，我总是配置不好……     tar &hellip;">
+	<meta name="description" content="为了减少一个USB接口的占用买了个蓝牙鼠标，当然这是因为我的电脑（mbp13）只有两个USB。但M555b这款鼠标在Mac系统下工作非常好，不过到了windows7下就异常了，根本连不上，刚刚在百度知道中看到一个方法可用，分享一下！ 1.在mac系统下删除m555b这个设备。 2. &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,52 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2011/06/18/m555b-in-windows7-and-mac-os-x/">M555b鼠标在Windows7下的使用</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-06-18T13:04:00+08:00">
+			<span class="day">18</span><span class="month">Jun</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>为了减少一个USB接口的占用买了个蓝牙鼠标，当然这是因为我的电脑（mbp13）只有两个USB。但M555b这款鼠标在Mac系统下工作非常好，不过到了windows7下就异常了，根本连不上，刚刚在百度知道中看到一个方法可用，分享一下！</p>
+
+<p>1.在mac系统下删除m555b这个设备。</p>
+
+<p>2.到widnows7下用系统的蓝牙服务扫描到鼠标，然后用触摸板右键点扫描到的鼠标，选属性，在蓝牙服务中勾选“鼠标、键盘驱动HID”这个选项。然后你会发现已经匹配完成了，此时鼠标就能用了。</p>
+
+<p>3.再回到mac下重新加上m555b这个设备就可以了：）</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/ji-zhu/'>技术</a><a class='category' href='/blog/categories/lan-ya/'>蓝牙</a><a class='category' href='/blog/categories/shu-biao/'>鼠标</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -608,76 +654,6 @@ print from_file</pre>
 
 
 	<div class="tags"><a class='category' href='/blog/categories/pickle/'>pickle</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/06/05/inherit-in-python/">Python的继承</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-06-05T18:41:00+08:00">
-			<span class="day"> 5</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
-# -*- coding:utf-8 -*-
-# Filename : inherit.py
-
-class Person:
-   def __init__(self,name,age):
-       self.name = name
-       self.age = age
-       print "init for %s" % self.name
-
-   def tell(self):
-       print "name:%s age:%d" % (self.name,self.age)
-
-class Teacher(Person):
-   def __init__(self,name,age,salary):
-       Person.__init__(self,name,age)
-       self.salary = salary
-       print "init for teacher %s" % self.name
-
-   def tell(self):
-       Person.tell(self)
-       print "salary:%d" % self.salary
-
-p = Person('tianzhen',20)
-p.tell()
-
-tea_p = Teacher('zhenzhen',20,1010000000)
-tea_p.tell()</pre>
-
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/inherit/'>inherit</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
   </footer>

@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-07-26T23:33:26+08:00</updated>
+  <updated>2013-07-27T01:44:29+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[link-layer]]></title>
+    <link href="http://www.youth2009.org/blog/2013/07/27/link-layer/"/>
+    <updated>2013-07-27T00:03:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/07/27/link-layer</id>
+    <content type="html"><![CDATA[<h2>link layer</h2>
+
+<h3>link layer&rsquo;s usage</h3>
+
+<ol>
+<li>send and receive IP datagram</li>
+<li>ARP request and reply</li>
+<li>RARP request and reply</li>
+</ol>
+
+
+<p>many different link layers, depending on the type of networking: ethernet, token ring, FDDI, RS232 serial lines, etc.</p>
+
+<p>IEEE 802.2/3 format and Ethernet format</p>
+
+<p>in 802 format, after 2 bytes length field, there are 3 bytes LLC and 5 bytes SNAP and data field(38~1492) but in Ethernet format, there will be data field(46~1500), the end field is 4 bytes CRC.</p>
+
+<p>frame formats use 48-bits destination and source address</p>
+
+<h2>SLIP: Serial Line IP</h2>
+
+<p>END &mdash; 0xc0</p>
+
+<p>SLIP ESC &mdash; 0xdb</p>
+
+<p>IP datagram will be terminated by a special character called END(0xc0), most implementations transmit an END at the beginning of the datagram.</p>
+
+<p>if a byte of IP datagram equals:</p>
+
+<p>0xc0 &mdash;> 0xdb, 0xdc</p>
+
+<p>0xdb&mdash;>0xdb, 0xdd</p>
+
+<h2>PPP</h2>
+
+<ol>
+<li>async link with 8bits of data and no parity(no checksum)</li>
+<li>bit-oriented sync links</li>
+</ol>
+
+
+<p>start and end with a flag byte whose value is 0x7e, and if a byte value appears in information field, it should be escaped.</p>
+
+<p>batter than SLIP:(pay for 3 bytes addition)</p>
+
+<ol>
+<li>multiple protocols on a serial line</li>
+<li>CRC</li>
+<li>IP network control protocol negotiate IP address for each end</li>
+<li>header compress like CSLIP</li>
+<li>link control protocol negotiate many data-link options</li>
+</ol>
+
+
+<h2>Loopback</h2>
+
+<p>127.0.0.1 or localhost is the loopback interface, an IP datagram sent to this must not appear on any network.</p>
+
+<p>datagrams sent to broadcast and multicast addtess are copied to the loopback interface and sent out on the Ethernet.</p>
+
+<p>anything sent to one of the host&rsquo;s own IP addresses is ent to the loopback interface!</p>
+
+<h1>MTU</h1>
+
+<p>if the length of data field in IP datagram is larger than MTU(1500 or 1492 in Ethernet and 802 format), it will be fragmented.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[OCP-talks]]></title>
@@ -672,15 +745,6 @@
 <p>Couldn’t modify partition map because file system verification failed error</p>
 
 <p>此时可以Verify一下这个硬盘，如果有错误就repair，相信这里没问题的都应该可以再合并了吧，我这里还是出问题了，在提示repair complete之后出现了一个错误，好像是boot什么的错误，建议我reformat，再弄backup file，backup file too many？？记不清楚了，再合并一次分区，不行的话果断erase掉，再backup，反正现在backup都用不上，趁着清理一下也好。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[gets method in ruby]]></title>
-    <link href="http://www.youth2009.org/blog/2013/01/03/gets-method-in-ruby/"/>
-    <updated>2013-01-03T20:40:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/01/03/gets-method-in-ruby</id>
-    <content type="html"><![CDATA[<p><strong>Important</strong>: Also notice that we&rsquo;re using STDIN.gets instead of plain &lsquo;ol gets. That is because if there is stuff in ARGV, the default gets method tries to treat the first one as a file and read from that. To read from the user&rsquo;s input (i.e., stdin) in such a situation, you have to use it STDIN.gets explicitly.</p>
 ]]></content>
   </entry>
   

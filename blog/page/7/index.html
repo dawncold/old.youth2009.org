@@ -7,8 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。 左外连接查询比两次select快10～20%左右。 #! /usr/bin/env python
-# coding: utf-8 import sqlite3 &hellip;">
+	<meta name="description" content="有这么一个小游戏，按照顺序输入字母表的26个英文字母，看看你输入的总时间是多少。有个变态的人竟然在2s内就输入了26个字母，而且不允许有任何错误，真心佩服！！！ 我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊…… tell application "Google &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -42,6 +41,63 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/05/22/little-cheat-for-game/">小作弊玩游戏</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2012-05-22T23:31:00+08:00">
+			<span class="day">22</span><span class="month">May</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>有这么一个小游戏，按照顺序输入字母表的26个英文字母，看看你输入的总时间是多少。有个变态的人竟然在2s内就输入了26个字母，而且不允许有任何错误，真心佩服！！！</p>
+
+<p>我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊……</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">tell application "Google Chrome"
+activate
+repeat with i from 0 to 25
+delay 0.04
+tell application "System Events"
+keystroke (ASCII character of (97 + i))
+end tell
+end repeat
+end tell</pre>
+
+
+<p>不减速的话系统根本无法记录，所以还是减速了，这个速度正好拿到第一名的位置，OK，剩下的让人去羡慕吧！！！</p>
+
+<p>感谢Apple提供的AppleScript这样优秀的脚本工具～</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/applescript/'>applescript</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -714,50 +770,6 @@ print len(link_list)</pre>
 
 
 	<div class="tags"><a class='category' href='/blog/categories/html/'>html</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/regex/'>regex</a><a class='category' href='/blog/categories/table/'>table</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/04/16/google-code-jam-2012/">Code Jam 2012</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2012-04-16T13:20:00+08:00">
-			<span class="day">16</span><span class="month">Apr</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>资格赛已经结束了，还好做出来几个题，现在来看这些题目都不算是特别有难度，最主要的还是在理解题目的要求，这当然对于我们非英语系国家的人来说是有些困难的，可能我们需要多读几遍题目才能开始编码，这确实有些不利，但最主要的还是理解错了题目，这样才可怕。</p>
-
-<p>第二个题我就理解有些问题，考虑得太多了，看优秀选手的代码，才十几行结束，真是羡慕死我了！！！</p>
-
-<p>下一轮比赛可能就要在家做了吧？毕竟到了我跑回家的日子：）</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/code-jam/'>Code jam</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
   </footer>
