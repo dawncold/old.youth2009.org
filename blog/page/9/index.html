@@ -7,7 +7,10 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。 在保存iptables规则的时候遇到这样的问题： iptables: Saving firewall rules &hellip;">
+	<meta name="description" content="dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql
+Fetching: mysql-2.8.1.gem (100%)
+Building native extensions. This could take a while...
+ERROR &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +44,124 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/">安装mysql的Ruby驱动遇到的问题</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2012-02-09T20:08:00+08:00">
+			<span class="day"> 9</span><span class="month">Feb</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql
+Fetching: mysql-2.8.1.gem (100%)
+Building native extensions.  This could take a while...
+ERROR:  Error installing mysql:
+ERROR: Failed to build gem native extension.
+
+       /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lm... yes
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lz... yes
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lsocket... no
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lnsl... no
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lmygcc... no
+checking for mysql_query() in -lmysqlclient... no
+*** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of
+necessary libraries and/or headers.  Check the mkmf.log file for more
+details.  You may need configuration options.
+
+Provided configuration options:
+--with-opt-dir
+--without-opt-dir
+--with-opt-include
+--without-opt-include=${opt-dir}/include
+--with-opt-lib
+--without-opt-lib=${opt-dir}/lib
+--with-make-prog
+--without-make-prog
+--srcdir=.
+--curdir
+--ruby=/usr/local/Cellar/ruby/1.9.3-p0/bin/ruby
+--with-mysql-config
+--without-mysql-config
+--with-mysql-dir
+--without-mysql-dir
+--with-mysql-include
+--without-mysql-include=${mysql-dir}/include
+--with-mysql-lib
+--without-mysql-lib=${mysql-dir}/lib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-mlib
+--without-mlib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-zlib
+--without-zlib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-socketlib
+--without-socketlib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-nsllib
+--without-nsllib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-mygcclib
+--without-mygcclib
+--with-mysqlclientlib
+--without-mysqlclientlib
+
+
+Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 for inspection.
+Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out</pre>
+
+
+<p>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">gem install mysql -- --with-mysql-dir=/usr/local/mysql</pre>
+
+
+<p>一开始的那两个“&mdash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
+
+<p>我已经解决问题了，成功安装mysql的ruby驱动，如果仍然遇到问题，可以试试参考<a href="http://blog.bmn.name/2008/02/rails-gem-install-mysql-throws-error-extconfrb-failed/">这里</a>（同样感谢这里）。</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/mysql/'>mysql</a><a class='category' href='/blog/categories/ruby/'>ruby</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -594,58 +715,6 @@ if __name__ == "__main__":
     <p>rebase被人翻译成衍合，是和merge功能差不多的一种操作，但提醒一点，进行rebase的内容一定不可以是提交到公共服务器上的内容，简单讲就是rebase操作你在本地自己玩就好了。</p>
 
 <p>详细点的说明去这里看吧：<a href="http://progit.org/book/zh/ch3-6.html"><a href="http://progit.org/book/zh/ch3-6.html">http://progit.org/book/zh/ch3-6.html</a></a></p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/branch/'>branch</a><a class='category' href='/blog/categories/git/'>git</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/01/26/git-study-branch-manage/">Git使用重新学习（分支管理）</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2012-01-26T20:10:00+08:00">
-			<span class="day">26</span><span class="month">Jan</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>分支的使用比较繁杂，前面光说了一些皮毛，现在记录一下分支的管理部分。</p>
-
-<p>查看分支的详细信息：git branch -v，列出分支最后提交的内容，带星号表示当前分支。</p>
-
-<p>查看哪些分支已经被并入当前分支：git branch &mdash;merged，也就是说除了那个带星号的分支都是可以删除（-d）的，因为都合并进来了嘛！查看没合并进来的就是&mdash;no-merged开关。删除那些没有合并进来的分支会提示错误，但强制删除就可以了，强制删除用-D开关。</p>
-
-<p><strong>不得不说的远程分支</strong></p>
-
-<p>在github创建了一个项目，在项目管理中开启了github Pages服务，这是个给项目做介绍页面的服务，开启后出现了一个远程分支gh-pages，但本地根本访问不到。首先我们应该明确，这个分支暂时不在我们本地，除非你是在这个服务开启后clone了项目，这样肯定有，否则和我一样的话（从本地push过去的），需要先fetch过来这些远程分支：git fetch origin gh-pages:gh-pages。后面两个由冒号分隔的意思是获取origin中的gh-pages分支，放到本地，在本地也叫gh-pages（冒号右侧），当然你可以根据需要更改冒号右侧的本地分支名字。现在查看一下本地分支就能发现出现两个分支了，切换过去后就能看到github给我们生成的index.html文件，你可以编辑了：）</p>
-
-<p>推送本地分支到远程分支的时候可以像上面这样写:git push origin xxx1:xxx2，意思就是推送本地叫xxx1的分支到origin中，推过去叫xxx2，但此处一般简写，光写本地分支名，这样远程分支中的名字也是和本地一样的。</p>
-
-<p>删除远程分支的命令挺好玩的：git push origin  :xxx，在xxx左边冒号左侧有一个空格，意思是把本地的空分支推到远程的xxx分支上，就是删除xxx分支的意思。</p>
 
   
   

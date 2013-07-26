@@ -7,12 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="域名用的是app.wodeyitian.com 昨天用的方法不太稳定，现在找来一个不错的方法： upstream ghs {
-ip_hash;
-server ghs.google.com;
-server 72.14.203.121;
-server 72.14.207.121;
-server 74 &hellip;">
+	<meta name="description" content=" 在python简明教程中找到这样一句话，关于复制复杂python对象的，如果单纯变量名相互赋值可能只是把引用拷贝过去，一旦原对象更改了，目标对象就会出现问题。文章中对于序列、字典这样的拷贝做出了解释，要用分片来复制，但其他对象该怎么做，暂时还不太清除，可能后面会说吧：） python技术 ">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -46,6 +41,46 @@ server 74 &hellip;">
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2011/06/05/copy-object-in-python/">Python中的复制对象</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-06-05T16:06:00+08:00">
+			<span class="day"> 5</span><span class="month">Jun</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>在python简明教程中找到这样一句话，关于复制复杂python对象的，如果单纯变量名相互赋值可能只是把引用拷贝过去，一旦原对象更改了，目标对象就会出现问题。文章中对于序列、字典这样的拷贝做出了解释，要用分片来复制，但其他对象该怎么做，暂时还不太清除，可能后面会说吧：）</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -509,46 +544,6 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
 
 
 	<div class="tags"><a class='category' href='/blog/categories/zhe-si/'>哲思</a><a class='category' href='/blog/categories/zai-hu/'>在乎</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/05/18/notice-get-methdo-in-php/">PHP中的Get注意一则</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-05-18T22:48:00+08:00">
-			<span class="day">18</span><span class="month">May</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>用一个页面接收Get过来的参数时要注意这点：如果接受了0这个参数，一定要确保是在$_GET前面加了强制转换为int的标志，否则如果是0，PHP可能会当成是假，没有任何值被保存到变量中：）</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/php/'>php</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
   </footer>

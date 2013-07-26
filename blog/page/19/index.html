@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="首轮的两场比赛就快结束了，昨晚我也准时出现在19：00的那场之中，经历了10分钟的宕机，不过我想这10分钟根本不会造成什么影响吧，该做出来的不差这10分钟，做不出来的再给1小时还是做不出来。 当然我属于做不出来的那一部分。其实还算好一些的，至少我昨晚提交了第一题的解决方案，就是不清楚能否满足要求 &hellip;">
+	<meta name="description" content="不知道最终能否配置好，先记录下来吧！ 安装了openssl库，但安装nginx的时候还是使用了&mdash;without-http-cache，要不总是提示找不到openssl。默认把nginx安装到了/usr/local/nginx这个地方。 下面是php，我总是配置不好……     tar &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,190 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2011/06/16/suse-nginx-php-mysql/">配置一台suse服务器</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-06-16T11:58:00+08:00">
+			<span class="day">16</span><span class="month">Jun</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>不知道最终能否配置好，先记录下来吧！ 安装了openssl库，但安装nginx的时候还是使用了&mdash;without-http-cache，要不总是提示找不到openssl。默认把nginx安装到了/usr/local/nginx这个地方。 下面是php，我总是配置不好…… <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;"> </span></p>
+
+<p> </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">tar xvf php-5.2.17.tar.bz2 
+gzip  -cd php-5.2.17-fpm-0.5.14.diff.gz | patch -d php-5.2.17 -p1
+cd php-5.2.17
+./configure --prefix=/usr/local/php \
+--with-config-file-path=/usr/local/php/etc \
+--with-mysql=/usr/local/mysql/ \
+--with-mysqli=/usr/local/mysql/bin/mysql_config \
+--with-iconv-dir=/usr/local/ \
+--with-jpeg-dir \
+--with-png-dir \
+--with-zlib \
+--with-libxml-dir=/usr/  \
+--enable-xml \
+--disable-rpath \
+--enable-discard-path  \
+--enable-bcmath  \
+--enable-shmop \
+--enable-sysvsem \
+--enable-inline-optimization \
+--with-curl \
+--with-curlwrappers  \
+--enable-mbregex \
+--enable-fastcgi \
+--enable-fpm \
+--enable-force-cgi-redirect \
+--enable-mbstring  \
+--with-mcrypt \
+--enable-gd-native-ttf \
+--with-openssl \
+--with-mhash \
+--enable-pcntl  \
+--enable-sockets  \
+--with-xmlrpc \
+--enable-zip \
+--enable-soap \
+--enable-safe-mode \
+--with-gd=/usr/local/gd/
+
+./configure &amp;&amp; make &amp;&amp; make install</pre>
+
+
+<p> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">jpeg8c lib!!!</span> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">libpng lib!!!</span> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">GD_2.XX（直接写&mdash;with-gd容易找不到，就制定好位置（此位置要在安装gd的时候用prefix制定））</span> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;"> </span></p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">ln -s /usr/local/lib/libmcrypt.la /usr/lib/libmcrypt.la
+ln -s /usr/local/lib/libmcrypt.so /usr/lib/libmcrypt.so
+ln -s /usr/local/lib/libmcrypt.so.4 /usr/lib/libmcrypt.so.4 
+ln -s /usr/local/lib/libmcrypt.so.4.4.8 /usr/lib/libmcrypt.so.4.4.8 
+ln -s  /usr/local/lib/libmhash.a /usr/lib/libmhash.a  
+ln -s  /usr/local/lib/libmhash.la /usr/lib/libmhash.la  
+ln -s  /usr/local/lib/libmhash.so /usr/lib/libmhash.so 
+ln -s  /usr/local/lib/libmhash.so.2 /usr/lib/libmhash.so.2
+ln -s  /usr/local/lib/libmhash.so.2.0.1 /usr/lib/libmhash.so.2.0.1</pre>
+
+
+<p><span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;"> </span></p>
+
+<p><span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;">删剪了不少内容，终于编译成功了……php啊……(</span></span><span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">make ZEND_EXTRA_LIBS=&lsquo;-liconv&rsquo;</span><span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">)</span> 缺少相关库的情况请使用/sbin/ldconfig -v 更新一下，先把/usr/local/lib加入/etc/ld.so.conf中再更新！ <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;">make install</span></span> <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;"><span>cp php.ini-dist  /usr/local/php/etc/php.ini </span></span></span> <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;"><span><span> </span></span></span></span></p>
+
+<div style="padding: 0px; margin: 0px;">7、创建php-fpm配置文件，php-fpm是开源社区为php开发的一个补丁，可以平滑变更php.ini，而无需重启php-cgi<br style="padding: 0px; margin: 0px;">  php-fpm.conf文件的详细解释<a style="color: #015f91; text-decoration: none; padding: 0px; margin: 0px;" href="http://php-fpm.org/wiki/Configuration_File">http://php-fpm.org/wiki/Configuration_File</a><br style="padding: 0px; margin: 0px;">  vim /usr/local/php/etc/php-fpm.conf ，使用 :set nu显示行号。<br style="padding: 0px; margin: 0px;">  需要注意的几行，给大家说说<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  (原)41                         &lt;value name=&#8221;listen_address&#8221;&gt;127.0.0.1:9000&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  (改)41                         &lt;value name=&#8221;listen_address&#8221;&gt;/tmp/php-cgi.sock&lt;/value&gt; #个人习惯，比较喜欢使用sock。<br style="padding: 0px; margin: 0px;">  (原)63                 &lt;!&#8211;    &lt;value name=&#8221;user&#8221;&gt;nobody&lt;/value&gt;     &#8211;&gt;#进程的所有者<br style="padding: 0px; margin: 0px;">  (原)66                 &lt;!&#8211;    &lt;value name=&#8221;group&#8221;&gt;nobody&lt;/value&gt;     &#8211;&gt;#进程的所有组，默认都为nobody<br style="padding: 0px; margin: 0px;">  (改)       &lt;value name=&#8221;user&#8221;&gt;nobody&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  (改)       &lt;value name=&#8221;group&#8221;&gt;nobody&lt;/value&gt;  <br style="padding: 0px; margin: 0px;">  59                 &lt;!&#8211;    &lt;value name=&#8221;display_errors&#8221;&gt;0&lt;/value&gt;   &#8211;&gt; #是否显示错误，1为关闭显示错误，0为打开错误显示，调试期间可以打开<br style="padding: 0px; margin: 0px;">  79                             &lt;value name=&#8221;max_children&#8221;&gt;5&lt;/value&gt; #为客户端服务的最大进程数<br style="padding: 0px; margin: 0px;">  86                             &lt;value name=&#8221;StartServers&#8221;&gt;20&lt;/value&gt; #启动时创建的进程数<br style="padding: 0px; margin: 0px;">         &lt;value name=&#8221;MinSpareServers&#8221;&gt;5&lt;/value&gt; #最小空闲进程数<br style="padding: 0px; margin: 0px;">  94                             &lt;value name=&#8221;MaxSpareServers&#8221;&gt;35&lt;/value&gt;#最大空闲进程数<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  (原)107                        &lt;value name=&#8221;request_slowlog_timeout&#8221;&gt;0s&lt;/value&gt; #默认关闭慢查询，建议还是打开，对性能分析有好处<br style="padding: 0px; margin: 0px;">  (改)107                        &lt;value name=&#8221;request_slowlog_timeout&#8221;&gt;5s&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  (原)113                        &lt;value name=&#8221;rlimit_files&#8221;&gt;1024&lt;/value&gt; #设定打开文件的限制<br style="padding: 0px; margin: 0px;">  (改)113                        &lt;value name=&#8221;rlimit_files&#8221;&gt;51200&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  132                         &lt;value name=&#8221;max_requests&#8221;&gt;5000&lt;/value&gt; #设置大可以接受的请求数<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  137                        &lt;value name=&#8221;allowed_clients&#8221;&gt;127.0.0.1&lt;/value&gt; #允许连接的客户端</div>
+
+
+<p> </p>
+
+<div style="padding: 0px; margin: 0px;">  启动php-cgi<br style="padding: 0px; margin: 0px;">  Usage: /usr/local/php/sbin/php-fpm {start|stop|quit|restart|reload|logrotate}</div>
+
+
+
+
+<div style="padding: 0px; margin: 0px;">
+<pre class="prettyprint linenums bush:bash" lang="bash">/usr/local/php/sbin/php-fpm start</pre>
+
+<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;"> 8、安装nginx-1.0<br style="padding: 0px; margin: 0px;">  安装pcre-7.9.tar.gz，perl扩展正则表达式的支持，主要用于支持url rewrite<br style="padding: 0px; margin: 0px;">  
+<pre class="prettyprint linenums bush:bash" lang="bash">tar -zxvf pcre-7.9.tar.gz
+cd pcre-7.9
+./configure
+make &amp;&amp; make install
+cd ..</pre>
+</div>
+
+
+
+
+<div style="padding: 0px; margin: 0px;">
+<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  安装ngnx-1.0</div>
+
+
+
+
+<div style="padding: 0px; margin: 0px;">
+<pre class="prettyprint linenums bush:bash" lang="bash">tar -zxvf nginx-1.0.0.tar.gz
+cd nginx-1.0.0
+./configure --prefix=/usr/local/nginx \
+--user=nobody \
+--group=nobody \
+--with-http_stub_status_module \
+--with-http_ssl_module</pre>
+
+<br style="padding: 0px; margin: 0px;">  #config完成后，查看结果，使用了哪些库，如果有些你希望使用的库没有使用，需要安装或者添加配置参数<br style="padding: 0px; margin: 0px;">   Configuration summary<br style="padding: 0px; margin: 0px;">   + using system PCRE library<br style="padding: 0px; margin: 0px;">   + using system OpenSSL library<br style="padding: 0px; margin: 0px;">   + md5: using OpenSSL library<br style="padding: 0px; margin: 0px;">   + sha1 library is not used<br style="padding: 0px; margin: 0px;">   + using system zlib library<br style="padding: 0px; margin: 0px;">   <br style="padding: 0px; margin: 0px;">  make &amp;&amp; make install<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  修改配置文件<br style="padding: 0px; margin: 0px;">  
+<pre class="prettyprint linenums bush:bash" lang="bash">vim /usr/local/nginx/conf/nginx.conf
+user  nobody; #取消注释
+events {
+   use epoll;
+   worker_connections  51200;
+}
+server {
+   listen       80;
+   server_name  122.225.32.135;
+   location ~ \.php$ {
+       if ( $fastcgi_script_name ~ \..*\/.*php ) {
+           return 403;
+       }
+       root           html;
+       fastcgi_pass   unix:/tmp/php-cgi.sock;
+       fastcgi_index  index.php;
+       fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+       include        fastcgi.conf;
+}</pre>
+
+<br style="padding: 0px; margin: 0px;">  
+<pre class="prettyprint linenums bush:bash" lang="bash">/usr/local/nginx/sbin/nginx  -t -c /usr/local/nginx/conf/nginx.conf  #测试配置文件是否正确
+/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf 或者/usr/local/nginx/sbin/nginx  </pre>
+
+<br style="padding: 0px; margin: 0px;">  </div>
+
+
+<p>  <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;">##############PHP结束#################</span></span> mysql的配置,根本没配置</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">./configure --prefix=/usr/local/mysql \
+--sysconfdir=/etc \
+--localstatedir=/var/lib/mysql  
+
+make 
+
+make install</pre>
+
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/lnmp/'>lnmp</a><a class='category' href='/blog/categories/suse/'>suse</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -494,46 +678,6 @@ tea_p.tell()</pre>
 
 
 	<div class="tags"><a class='category' href='/blog/categories/inherit/'>inherit</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/06/05/copy-object-in-python/">Python中的复制对象</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-06-05T16:06:00+08:00">
-			<span class="day"> 5</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>在python简明教程中找到这样一句话，关于复制复杂python对象的，如果单纯变量名相互赋值可能只是把引用拷贝过去，一旦原对象更改了，目标对象就会出现问题。文章中对于序列、字典这样的拷贝做出了解释，要用分片来复制，但其他对象该怎么做，暂时还不太清除，可能后面会说吧：）</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
   </footer>

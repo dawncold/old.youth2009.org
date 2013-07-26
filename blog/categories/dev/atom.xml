@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dev | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-07-21T22:45:56+08:00</updated>
+  <updated>2013-07-26T23:33:26+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[OCP-talks]]></title>
+    <link href="http://www.youth2009.org/blog/2013/07/26/ocp-talks/"/>
+    <updated>2013-07-26T22:27:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/07/26/ocp-talks</id>
+    <content type="html"><![CDATA[<p>Good design should be open for extension and closed for modification. You can extend the module instead of modifying some working code.</p>
+
+<p>Abstraction is the Key: for example, a Client should use an Server object that implemented some interfaces instead of a concrete Server object.</p>
+
+<p>Interface&rsquo;s name should be named more closely associated to the dependent side instead of the implement side.</p>
+
+<p>A function that is closed for modification: if we add some changes for this function, it must be modified for working right, it may unconform OCP. For example, a function that draw all shapes in a shape list, it should be draw shapes one by one, and don&rsquo;t care this shape should draw in this way, another shape should draw in that way, etc.</p>
+
+<p>No matter how &ldquo;closed&rdquo; a module is, there will always be some kind of change against which it is not closed.</p>
+
+<p>Abstraction may gain &ldquo;closed&rdquo; software entity(func, module, class, etc), but it also need trade off.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[crontab a python script]]></title>
