@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="打算从今天开始自习再学学Python的基础，选了Google提供的Python课程，学到list部分，有个练习题目要求针对一组tuples排序，根据tuples的最后一个元素排序，有个hint，可以用key=function这种方法，于是搜索了一番， &hellip;">
+	<meta name="description" content="记得上次参加美味书签电面的时候被问到如何统计一个语料库中的词频，当时有点傻，刚刚在复习Python的dict也遇到了这样的问题，一下子认识到，原来可以做得这么简单。虽然不知道有没有更爽的办法，但我觉得我这种方法也算是能用了，能够保证一定效率的情况下，可理解性也很强。 读取一行行的word， &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,97 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/10/04/print-words-count/">统计词频方法</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2012-10-04T18:32:00+08:00">
+			<span class="day"> 4</span><span class="month">Oct</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>记得上次参加美味书签电面的时候被问到如何统计一个语料库中的词频，当时有点傻，刚刚在复习Python的dict也遇到了这样的问题，一下子认识到，原来可以做得这么简单。虽然不知道有没有更爽的办法，但我觉得我这种方法也算是能用了，能够保证一定效率的情况下，可理解性也很强。</p>
+
+<p>读取一行行的word，存入dict，word作为key，value就是出现次数了，这样都是linear的事件复杂度，如果在字典就把value加1，要是不在就把value设为1即可。dict的查找复杂度很低，是hash查找。</p>
+
+<p>唉，会不会就是这样我才被拒掉了呢？！</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/dict/'>dict</a><a class='category' href='/blog/categories/meiwei-dot-fm/'>meiwei.fm</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/10/04/dict-formatting-in-python/">Python中dict格式化</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2012-10-04T17:54:00+08:00">
+			<span class="day"> 4</span><span class="month">Oct</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>最近在工作中遇到过写SQL的问题，参数是直接传递进去的，比如这样：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">db</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;SELECT * FROM xxx WHERE id = </span><span class="si">%(id)s</span><span class="s">&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">get_id</span><span class="p">())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>今天细看Google提供的Python课程发现一个叫DictFormatting的部分，里面就有类似这样的语法，现在才明白。以前用过Python的格式化输出，其实这个dict的格式化和字符串的类似，就是在字符串格式化的基础之上加入了dict的key，%s是表示这里有字符串，而%(xxx)s是表示字符串，而且是以xxx为key的字符串，这个value就是从字典中给出。一半会在这样一个字符串后加“% dictname”表示值从dictname这个字典中给出，这不就是和字符串格式化一样么。</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/dict/'>dict</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -544,153 +635,6 @@
 
 
 	<div class="tags"><a class='category' href='/blog/categories/encoding/'>encoding</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/sqlalchemy/'>sqlalchemy</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/07/06/load-jinja2-extension-in-flask/">Flask中Jinja2加载扩展</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2012-07-06T20:34:00+08:00">
-			<span class="day"> 6</span><span class="month">Jul</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>代码中我把jinja2的语法改成了这样的，{##}，因为这样就不会和blog生成html冲突了，大家改回来就可以。</p>
-
-<p>在Flask中接触到了jinja2，由于某个简单的需要——在模板系统中计算某些订单项的总价格，必须打开Jinja2的“do”扩展，用一种hack的方法来计算，十分不喜欢这样，但能用。</p>
-
-<p>在Flask的API中没有公开这样的方法，不过在邮件列表的索引里找到了：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">app</span><span class="o">.</span><span class="n">jinja_env</span><span class="o">.</span><span class="n">add_extension</span><span class="p">(</span><span class="s">&quot;jinja2.ext.do&quot;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>还想多说一下Jinja2的set方法，超级不爽的一个方法，原本以为set出来的变量就可以和python中的变量一样使用呢，结果在这里的set出来的变量也就是一个助记作用，根本不能保存新的值，也就是说这里的变量相当于我们通常意义上的常量！！！</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>......
-</span><span class='line'>{# set total_price = 0 #}
-</span><span class='line'>{# for item in order.items #}
-</span><span class='line'>{# total_price = item.meal.price * item.quantity #}
-</span><span class='line'><span class="nt">&lt;p</span> <span class="na">class =</span><span class="err"> </span><span class="s">&quot;order_list_item&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>
-</span><span class='line'>{# endfor #}
-</span><span class='line'><span class="nt">&lt;/td&gt;</span>
-</span><span class='line'><span class="nt">&lt;td&gt;</span><span class="nt">&lt;/td&gt;</span>
-</span><span class='line'>......
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>原本希望在for外面设置一个变量，然后在for中计算好total_price使用，结果根本不行，这样写的结果就是“找不到total_price变量”，如果去掉for中对total_price的引用就可以正常看到total_price，是0。总之，这里set出来的变量就是一个常量了！！！后来打开了do扩展，把total_price设置成一个list，然后在for中把没一项的价格都append进去，最终输出的地方用了jinja2的filter计算总和。大约会写成这样：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>......
-</span><span class='line'>{# set prices = [] #}
-</span><span class='line'>{# for item in order.items #}
-</span><span class='line'>{# do prices.append(item.meal.price * item.quantity) #}
-</span><span class='line'><span class="nt">&lt;p</span> <span class="na">class =</span><span class="err"> </span><span class="s">&quot;order_list_item&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>
-</span><span class='line'>{# endfor #}
-</span><span class='line'><span class="nt">&lt;/td&gt;</span>
-</span><span class='line'><span class="nt">&lt;td&gt;</span><span class="nt">&lt;/td&gt;</span>
-</span><span class='line'>......
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>相信jinja2改进set之后会是一个很不错的模板系统：）</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/extension/'>extension</a><a class='category' href='/blog/categories/flask/'>flask</a><a class='category' href='/blog/categories/jinja2/'>jinja2</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/07/05/onetomany-in-sqlalchemy/">SQLalchemy中的oneToMany</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2012-07-05T22:54:00+08:00">
-			<span class="day"> 5</span><span class="month">Jul</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>今天在这里遇到些问题，花了一段时间，后来看官方文档解决了，很管用！</p>
-
-<p>各个orm中的关系设置大同小异，一对多的关系中需要在“多”方的列中加入一个外键，指向“一”方，然后在“一”方加入一个存储“多”方的变量（这个orm中需要使用relationship方法声明）。</p>
-
-<p>至此一个单项的OneToMany就弄好了，如果需要加入“反向”，形成双向的关系，那就在刚才的“一”方中存储“多”方的变量中指明backref参数，值就是在“多”方的属性中存储“一”方的这个属性名。我在这里弄错了，受了EJB的影响，以为双方都需要设置，结果弄的重复了，还好看了官方文档。</p>
-
-<p>其他关系请参考<a href="http://docs.sqlalchemy.org/en/rel_0_7/orm/relationships.html#sqlalchemy.orm.relationship">官方文档</a></p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/onetomany/'>onetomany</a><a class='category' href='/blog/categories/orm/'>orm</a><a class='category' href='/blog/categories/sqlalchemy/'>sqlalchemy</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
   </footer>

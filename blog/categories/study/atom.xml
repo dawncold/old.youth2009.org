@@ -4,7 +4,7 @@
   <title><![CDATA[Category: study | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/study/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-07-27T01:44:29+08:00</updated>
+  <updated>2013-08-03T00:09:20+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[internet protocol]]></title>
+    <link href="http://www.youth2009.org/blog/2013/07/27/internet-protocol/"/>
+    <updated>2013-07-27T23:02:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/07/27/internet-protocol</id>
+    <content type="html"><![CDATA[<p>TCP, UDP, ICMP, IGMP need IP datagrams as data transmitting method.</p>
+
+<p>IP is a unrealiable and connectionless delivery service.</p>
+
+<ul>
+<li>unrealiable: no guarantee that an IP datagram successfully get to its destination.</li>
+<li>connectionless: IP doesn&rsquo;t maintain any state of successive datagrams, it means there is no order in IP datagrams, latter sent IP datagram may arrived before former sent.</li>
+</ul>
+
+
+<h2>Header</h2>
+
+<p>TOS: 3 bits precedence field(ignored today), 4 bits TOS(mini delay, max throughput, max relability, mini monetary cost), 1 bit always 0. TOS maynot supported by most TCP/IP implementations today, but some routing protocol such as OSPF and IS-IS are capable of making routing decisions based on this field.</p>
+
+<p>Furthermore, a host isn&rsquo;t required to receive a datagram larger than 576 bytes. TCP and UDP will divide user data into small pieces, so one IP datagram will below that limit.</p>
+
+<p>Some small IP datagram will be padded up to the mini length of frame, which maybe 46 or 38 bytes, so total length field is required when you want to know how long the IP datagram&rsquo;s length on earth.</p>
+
+<p>TTL: set by sender, if this datagram pass a router, it will decrease 1, when it reaches 0, this datagram will thrown away, and sender will received an ICMP message. prevent routing loop.</p>
+
+<p>Checksum: TCP, UDP, ICMP, IGMP use same algorithm to computing checksum. Since a router often cheages only TTL value, a router can incrementally update the checksum when it forwards a datagram, instead of calculating the checksum over the entire IP header again.</p>
+
+<h2>IP routing</h2>
+
+<p>The fundamental difference is that a host never forward a datagram from one of its interface to another, while a router forwards datagram.</p>
+
+<p>Router may reach a local optimum result, because every search route table, the router will get a closer next-hop router address, but it may not global optimum.</p>
+
+<p>Frame&rsquo;s destination address(MAC address) may not the really destination address, it may the next-hop router&rsquo;s MAC address, because when it is routing, it can&rsquo;t be found in the current network, it must be routed to a next-hop router, so the destination address is the next-hop router&rsquo;s.</p>
+
+<h2>Subnet addressing</h2>
+
+<p>Don&rsquo;t forget subtract 2, because all 0 bits and all 1 bits address for host address is invalid.</p>
+
+<p>The advantage to using s single class B address with 30 subnets, compared to 30 class C addresses, is that subnetting reduces the size of the Internet&rsquo;s routing tables entry.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[link-layer]]></title>
@@ -134,15 +177,6 @@
 <p>虽然一个coder要保持技术的敏感性与前瞻性，但频繁换编程语言实在不是一件好事，我现在仍然对于自己涉猎太多编程语言而感到烦躁，主要就是会的太多而不精，一旦用上了还真拿不出手，那种感觉很不爽！所以，暂且不要跟着《Pragmatic Programmer》中说得那样来了。</p>
 
 <p>暂且这样吧。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[gets method in ruby]]></title>
-    <link href="http://www.youth2009.org/blog/2013/01/03/gets-method-in-ruby/"/>
-    <updated>2013-01-03T20:40:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/01/03/gets-method-in-ruby</id>
-    <content type="html"><![CDATA[<p><strong>Important</strong>: Also notice that we&rsquo;re using STDIN.gets instead of plain &lsquo;ol gets. That is because if there is stuff in ARGV, the default gets method tries to treat the first one as a file and read from that. To read from the user&rsquo;s input (i.e., stdin) in such a situation, you have to use it STDIN.gets explicitly.</p>
 ]]></content>
   </entry>
   

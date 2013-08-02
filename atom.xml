@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-07-27T01:44:29+08:00</updated>
+  <updated>2013-08-03T00:09:20+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,71 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[got-raspberry]]></title>
+    <link href="http://www.youth2009.org/blog/2013/08/02/got-raspberry/"/>
+    <updated>2013-08-02T21:40:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/08/02/got-raspberry</id>
+    <content type="html"><![CDATA[<p>工资一发就买了块表。。。并且还狠心买了这个玩具——raspberry。</p>
+
+<p>默认用了新手的那个镜像，叫NOOBS，就是里面装好了不少东西，系统也有好几个，默认用了推荐的Raspbian，是Debian的一个变种啦，开发用的Ubuntu都是一个家族的。</p>
+
+<p>配置的话，没啥可说的，就是把显卡占用的内存改成了16Mb，默认似乎分配了128M过去，对于我这种总看命令行的人足够了。如果你和我一样买了官方的摄像头模块，那就可以把camera给enable了。再就是在adcanced options中把SSH打开，否则你还得连上键盘鼠标去操作。。。</p>
+
+<p>不喜欢插网线，但很可惜办公室的Cisco双频无线网卡AE2500装不上，貌似是驱动问题，不想折腾，还好买了个免驱的小网卡叫EOUP。我的无线路由是hidden SSID了，所以在连接的时候还有点问题。在配置文件<code>/etc/wpa_supp/wpa_supp.conf</code>中多加了一行：
+<code>scan_ssid=1</code></p>
+
+<p>apt的source也改到了ustc.edu.cn的：<code>http://mirrors.ustc.edu.cn/raspbian/raspbian/</code>，具体就是把<code>/etc/apt/source.list</code>中第一行的URL改成上面那个即可。</p>
+
+<p>camera的官方使用教程：<a href="http://www.raspberrypi.org/archives/3890">http://www.raspberrypi.org/archives/3890</a></p>
+
+<p>如果想用camera捕捉视频，然后传到你这里看的话，需要在raspberry上先装netcat，我是用的Mac系统，系统本身有nc了，再用brew多装一个mplayer。不过很可惜我没有捕捉视频成功过。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[internet protocol]]></title>
+    <link href="http://www.youth2009.org/blog/2013/07/27/internet-protocol/"/>
+    <updated>2013-07-27T23:02:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/07/27/internet-protocol</id>
+    <content type="html"><![CDATA[<p>TCP, UDP, ICMP, IGMP need IP datagrams as data transmitting method.</p>
+
+<p>IP is a unrealiable and connectionless delivery service.</p>
+
+<ul>
+<li>unrealiable: no guarantee that an IP datagram successfully get to its destination.</li>
+<li>connectionless: IP doesn&rsquo;t maintain any state of successive datagrams, it means there is no order in IP datagrams, latter sent IP datagram may arrived before former sent.</li>
+</ul>
+
+
+<h2>Header</h2>
+
+<p>TOS: 3 bits precedence field(ignored today), 4 bits TOS(mini delay, max throughput, max relability, mini monetary cost), 1 bit always 0. TOS maynot supported by most TCP/IP implementations today, but some routing protocol such as OSPF and IS-IS are capable of making routing decisions based on this field.</p>
+
+<p>Furthermore, a host isn&rsquo;t required to receive a datagram larger than 576 bytes. TCP and UDP will divide user data into small pieces, so one IP datagram will below that limit.</p>
+
+<p>Some small IP datagram will be padded up to the mini length of frame, which maybe 46 or 38 bytes, so total length field is required when you want to know how long the IP datagram&rsquo;s length on earth.</p>
+
+<p>TTL: set by sender, if this datagram pass a router, it will decrease 1, when it reaches 0, this datagram will thrown away, and sender will received an ICMP message. prevent routing loop.</p>
+
+<p>Checksum: TCP, UDP, ICMP, IGMP use same algorithm to computing checksum. Since a router often cheages only TTL value, a router can incrementally update the checksum when it forwards a datagram, instead of calculating the checksum over the entire IP header again.</p>
+
+<h2>IP routing</h2>
+
+<p>The fundamental difference is that a host never forward a datagram from one of its interface to another, while a router forwards datagram.</p>
+
+<p>Router may reach a local optimum result, because every search route table, the router will get a closer next-hop router address, but it may not global optimum.</p>
+
+<p>Frame&rsquo;s destination address(MAC address) may not the really destination address, it may the next-hop router&rsquo;s MAC address, because when it is routing, it can&rsquo;t be found in the current network, it must be routed to a next-hop router, so the destination address is the next-hop router&rsquo;s.</p>
+
+<h2>Subnet addressing</h2>
+
+<p>Don&rsquo;t forget subtract 2, because all 0 bits and all 1 bits address for host address is invalid.</p>
+
+<p>The advantage to using s single class B address with 30 subnets, compared to 30 class C addresses, is that subnetting reduces the size of the Internet&rsquo;s routing tables entry.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[link-layer]]></title>
@@ -689,62 +754,6 @@
 <p>虽然一个coder要保持技术的敏感性与前瞻性，但频繁换编程语言实在不是一件好事，我现在仍然对于自己涉猎太多编程语言而感到烦躁，主要就是会的太多而不精，一旦用上了还真拿不出手，那种感觉很不爽！所以，暂且不要跟着《Pragmatic Programmer》中说得那样来了。</p>
 
 <p>暂且这样吧。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[在MacOS上配置dnsmasq]]></title>
-    <link href="http://www.youth2009.org/blog/2013/01/22/config-dnsmasq-on-macos/"/>
-    <updated>2013-01-22T22:26:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/01/22/config-dnsmasq-on-macos</id>
-    <content type="html"><![CDATA[<p>最近那个伟大的墙把我们敬爱的git大神封锁了，无奈很多代码都托管在上面，其中也不乏很多商业项目。自己的几个blog也都放在上面，倒不是因为在那里免费，而是这已然已经成为程序员们的一种生活style。</p>
-
-<p>ubuntu下有个dnsmasq可以连接别的dns，这样能够避免dns污染导致上不了github的问题。相关配置不算难，下面记录一下在MacOS下的dnsmasq配置方法。</p>
-
-<p>1.使用brew安装dnsmasq</p>
-
-<p>brew install dnsmasq</p>
-
-<p>2.修改一下dnsmasq的配置文件名字</p>
-
-<p>cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf</p>
-
-<p>3.加入MacOS的启动项中</p>
-
-<p>sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons</p>
-
-<p>4.加载并启动dnsmasq，如果没有出现什么错误就开始配置dnsmasq</p>
-
-<p>sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist</p>
-
-<p>5.配置dnsmasq，把no-resolve的注释去掉，加入<code>server=xxx.xxx.xxx.xxx#nnnn</code></p>
-
-<p>mate /usr/local/etc/dnsmasq.conf</p>
-
-<p>server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比如v2ex那个用3389</p>
-
-<p>6.重启dnsmasq</p>
-
-<p>sudo launchctl stop homebrew.mxcl.dnsmasq</p>
-
-<p>其实无需再执行<code>sudo launchctl start homebrew.mxcl.dnsmasq</code>这句了，因为你load了plist进去就已经启动了，如果此时stop的话会再自动start，所以没必要再start。要想关闭请使用unload（就修改上面的4即可）</p>
-
-<p>7.把网络的dns设置成127.0.0.1，这样你才能用自己的dns服务</p>
-
-<p>至此，我们的git大神就回归了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[merge partition got Couldn’t modify partition map because file system verification failed error]]></title>
-    <link href="http://www.youth2009.org/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/"/>
-    <updated>2013-01-20T19:36:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error</id>
-    <content type="html"><![CDATA[<p>前几天需要把本机的VMware虚拟机文件拷到工作机器上用，但文件比较大，有30G，U盘不行，无线共享太慢，网线直连无奈工作机器百兆网卡不给力还是慢，分割了我的TimeMachine备份盘，但用完后再合并划分出去的分区就出问题了，提示：</p>
-
-<p>Couldn’t modify partition map because file system verification failed error</p>
-
-<p>此时可以Verify一下这个硬盘，如果有错误就repair，相信这里没问题的都应该可以再合并了吧，我这里还是出问题了，在提示repair complete之后出现了一个错误，好像是boot什么的错误，建议我reformat，再弄backup file，backup file too many？？记不清楚了，再合并一次分区，不行的话果断erase掉，再backup，反正现在backup都用不上，趁着清理一下也好。</p>
 ]]></content>
   </entry>
   

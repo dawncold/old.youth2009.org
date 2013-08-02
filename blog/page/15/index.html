@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="本想一味看英文版的，但看了开头后实在不敢继续看下去了，太难了，基本上随便看几个词就不认识，而且这本书也不是说用太浅显的语言描述的。运气不错在Verycd上遇到了这本书的中译本，不知道是从哪儿得到的翻译，还是电子版的，凑合看看吧。（英文版可以从作者的网站免费下载到：kk.org） &hellip;">
+	<meta name="description" content="最近在用Box2d开发小游戏，不可避免用到多边形物体，当然有的形状还好描述，但大多数是那种难以描述的物体，所以这个VertexHelper就是不可或缺的武器了，它能够让你把需要的物体边界描出来，自动生成Box2d需要的边界代码。 没想到作者把软件放到app store上卖，但还提供源代码， &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,272 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2011/08/04/use-vertexhelper/">VertexHelper的使用</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-08-04T23:02:00+08:00">
+			<span class="day"> 4</span><span class="month">Aug</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>最近在用Box2d开发小游戏，不可避免用到多边形物体，当然有的形状还好描述，但大多数是那种难以描述的物体，所以这个VertexHelper就是不可或缺的武器了，它能够让你把需要的物体边界描出来，自动生成Box2d需要的边界代码。</p>
+
+<p>没想到作者把软件放到app store上卖，但还提供源代码，不知道他们之间是什么不一样……</p>
+
+<p>从GitHub那里得到源代码，打开xcode编译一下就能用了。</p>
+
+<p>有一点需要说明，得到的源代码中Project的Base SDK是10.5，在我编译的时候提示了一个警告，现在找不到了。只需要把Target中VertexHelper的BaseSDK改为10.7就可以了，当然如果你没有10.7就只能用10.6了。可能是因为我没有10.5SDK才出现的错误吧。</p>
+
+<p><a title="Screen Shot 2011-08-04 at 下午11.01.34.png" href="http://www.youth2009.org/attachment/135222/"><img src="http://www.youth2009.org/usr/uploads/2011/08/2070161037.png" alt="Screen Shot 2011-08-04 at 下午11.01.34.png"></a></p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro Project$ git clone https://github.com/jfahrenkrug/VertexHelper.git
+Cloning into VertexHelper...
+remote: Counting objects: 150, done.
+remote: Compressing objects: 100% (88/88), done.
+remote: Total 150 (delta 85), reused 96 (delta 53)
+Receiving objects: 100% (150/150), 159.25 KiB | 27 KiB/s, done.
+Resolving deltas: 100% (85/85), done.
+dawncold@tianzhenmatoMacBook-Pro Project$ ls
+A Word is A Day                   NRSMS                             gitosis-admin                     test
+ConjunctionsGame                  SystemProgrammer                  hide-other-bookmark-button        齐鲁软件大赛作品源程序
+EasyEditor                        Timer4NX                          progit
+JavaStudy                         VertexHelper                      scifihifi-iphone
+MyAchievement                     fmdb                              studygit
+dawncold@tianzhenmatoMacBook-Pro Project$ cd VertexHelper/
+dawncold@tianzhenmatoMacBook-Pro VertexHelper$ ls
+English.lproj               PrioritySplitViewDelegate.h VertexDocument.h            VertexScanner.cpp           main.m
+ImageViewGridLayer.h        PrioritySplitViewDelegate.m VertexDocument.m            VertexScanner.h
+ImageViewGridLayer.m        README.md                   VertexHelper-Info.plist     VertexScannerMain.cpp
+PNGLoader.cpp               SWImageView.h               VertexHelper.xcodeproj      drop_sprite.png
+PNGLoader.h                 SWImageView.m               VertexHelper_Prefix.pch     icon.icns</pre>
+
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/box2d/'>box2d</a><a class='category' href='/blog/categories/vertexhelper/'>vertexhelper</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2011/08/04/shard-debug-app-in-device-without-idp-xcode4/">分享在设备上不用iDP调试app的方法</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-08-04T22:51:00+08:00">
+			<span class="day"> 4</span><span class="month">Aug</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>原来在开发一个3.1.3上的游戏时用过这样的方法，没想到现在仍然能够使用，这直接刺激我要不要购买iDP，那可是99美元啊。当然购买iDP也不是光为了能够调试，还有机会去app store，这点可能还值那99美元。</p>
+
+<p>这是1ST告诉我的办法，第一次就是他告诉的，没想到这次还是他告诉的。</p>
+
+<p>下面是所有的代码操作，请对照操作步骤来进行，代码操作这是作为参考：</p>
+
+<p>操作步骤：</p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">iPhone</span>必须是越狱后的，并且安装了<span class="s1" style="font: normal normal normal 15px/normal Times;">afc2add</span>。</p>
+
+<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">将<span class="s1" style="font: normal normal normal 15px/normal Times;">iPhone</span>接入<span class="s1" style="font: normal normal normal 15px/normal Times;">Mac</span>，并打开<span class="s1" style="font: normal normal normal 15px/normal Times;">xCode</span>，会自动弹出<span class="s1" style="font: normal normal normal 15px/normal Times;">Organizer</span>（或在<span class="s1" style="font: normal normal normal 15px/normal Times;">xCode</span>的菜单<span class="s1" style="font: normal normal normal 15px/normal Times;">Window</span>中打开），在其中点击<span class="s1" style="font: normal normal normal 15px/normal Times;">“</span>用这台设备进行开发<span class="s1" style="font: normal normal normal 15px/normal Times;">”</span></p>
+
+<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">xCode<span class="s2" style="font: normal normal normal 15px/normal STSong;">配置步骤：</span></p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">零、开始前的注意事项</p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">1</span>、<span class="s1" style="font: normal normal normal 15px/normal Times;"> </span>权限问题：</p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">   </span>要想修改并保存文件，须先修改该文件及其上层目录的权限（在右键菜单的显示简介中），添加当前用户并赋读和写权限，才能修改文件。</p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">2</span>、注意备份</p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">   </span>修改之前一定注意备份原有文件</p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;"><span class="s2" style="font: normal normal normal 15px/normal STSong;">一、修改文件</span>SDKSettings.plist</p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;"> </span>文件位置：</p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">   /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk</p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">  </span>修改方法：</p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">    <span class="s2" style="font: normal normal normal 15px/normal STSong;">找到</span>&lt;key&gt;CODE_SIGNING_REQUIRED&lt;/key&gt;&lt;string&gt;YES&lt;/string&gt;</p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">    </span>将值从YES改为<span class="s1" style="font: normal normal normal 15px/normal Times;">NO</span></p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">    <span class="s2" style="font: normal normal normal 15px/normal STSong;">找到</span>&lt;key&gt;ENTITLEMENTS_REQUIRED&lt;/key&gt;&lt;string&gt;YES&lt;/string&gt;</p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">    </span>将值从YES改为<span class="s1" style="font: normal normal normal 15px/normal Times;">NO</span></p>
+
+<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;"><span class="s2" style="font: normal normal normal 15px/normal STSong;">二、修改文件</span>info.plist</p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;"> </span>文件位置：</p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">  /Developer/Platforms/iPhoneOS.platform/</p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">  </span>修改方法：</p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">  <span class="s2" style="font: normal normal normal 15px/normal STSong;">找到所有的</span>&lt;key&gt;CODE_SIGN_CONTEXT_CLASS&lt;/key&gt;&lt;string&gt;XCiPhoneOSCodeSignContext&lt;/string&gt;</p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">  <span class="s2" style="font: normal normal normal 15px/normal STSong;">将值从</span>XCiPhoneOSCodeSignContext<span class="s2" style="font: normal normal normal 15px/normal STSong;">改为</span> XCCodeSignContext</p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">（共<span class="s1" style="font: normal normal normal 15px/normal Times;">2</span>处）</p>
+
+<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">三、打开终端，输入以下命令：</p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">cd /Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Plug-ins/iPhoneOS\ Build\ System\ Support.xcplugin/Contents/MacOS/</p>
+
+<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">dd if=iPhoneOS\ Build\ System\ Support of=working bs=500 count=255</p>
+
+<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">printf &ldquo;\xc3\x26\x00\x00&rdquo; &gt;&gt; working</p>
+
+<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">dd if=iPhoneOS\ Build\ System\ Support of=working bs=1 skip=127504 seek=127504</p>
+
+<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">/bin/mv -n iPhoneOS\ Build\ System\ Support iPhoneOS\ Build\ System\ Support.original</p>
+
+<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">/bin/mv working iPhoneOS\ Build\ System\ Support</p>
+
+<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">chmod a+x iPhoneOS\ Build\ System\ Support</p>
+
+<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;"><span class="s2" style="font: normal normal normal 15px/normal STSong;">四、修改工程属性（</span>Project Settings<span class="s2" style="font: normal normal normal 15px/normal STSong;">）</span></p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">先打开工程属性，<span class="s1" style="font: normal normal normal 15px/normal Times;">xCode3</span>可在菜单<span class="s1" style="font: normal normal normal 15px/normal Times;">File-&gt;Project Settings</span>中打开，或右键点工程文件列表中的工程项，从中找到工程属性；<span class="s1" style="font: normal normal normal 15px/normal Times;">xCode4</span>直接单击工程文件列表中的工程项即可</p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;"><span class="s2" style="font: normal normal normal 15px/normal STSong;">在工程属性中，找到</span>Build Settings<span class="s2" style="font: normal normal normal 15px/normal STSong;">，修改其中的</span>Code Signing Identity<span class="s2" style="font: normal normal normal 15px/normal STSong;">，将所有属性值都从</span>iPhone Developer<span class="s2" style="font: normal normal normal 15px/normal STSong;">改为</span>Don&rsquo;t Code Sign</p>
+
+<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;"><span class="s2" style="font: normal normal normal 15px/normal STSong;">（若在</span>xCode4<span class="s2" style="font: normal normal normal 15px/normal STSong;">中找不到</span>Code Signing Identity<span class="s2" style="font: normal normal normal 15px/normal STSong;">，在属性列表的左上方有个</span>“Basic”<span class="s2" style="font: normal normal normal 15px/normal STSong;">和</span>“All”<span class="s2" style="font: normal normal normal 15px/normal STSong;">的选项，选择</span>All<span class="s2" style="font: normal normal normal 15px/normal STSong;">就能找到了。</span></p>
+
+<p><p class="p4" style="font: normal normal normal 15px/normal STSong; min-height: 15px; margin: 0px;"> </p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">最后、选择Device的SDK，Run。会将编译好的app传输到设备上，不过xCode会提示Error Starting Executable &ldquo;project name&rdquo;, Error launching remote program…这时，只需手动在设备上打开这个程序就可以了，调试信息可在Organizer里实时监控</p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"> </p>
+
+<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">再次最后，操作完quit一下Xcode，再打开往设备上安装app。</p>
+
+<p><pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro tests$ cd /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/
+dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ ls
+Developer           Entitlements.plist  ResourceRules.plist SDKSettings.plist   System              usr
+dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ cp SDKSettings.plist SDKSettings.plist.backup
+cp: SDKSettings.plist.backup: Permission denied
+dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ sudo cp SDKSettings.plist SDKSettings.plist.backup
+Password:
+dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ ls
+Developer                ResourceRules.plist      SDKSettings.plist.backup usr
+Entitlements.plist       SDKSettings.plist        System
+dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ sudo emacs SDKSettings.plist
+dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ cd /Developer/Platforms/iPhoneOS.platform/
+dawncold@tianzhenmatoMacBook-Pro iPhoneOS.platform$ ls
+Developer     DeviceSupport Info.plist    iPhoneOS.icns version.plist
+dawncold@tianzhenmatoMacBook-Pro iPhoneOS.platform$ sudo cp Info.plist Info.plist.backup
+dawncold@tianzhenmatoMacBook-Pro iPhoneOS.platform$ ls
+Developer         DeviceSupport     Info.plist        Info.plist.backup iPhoneOS.icns     version.plist
+dawncold@tianzhenmatoMacBook-Pro iPhoneOS.platform$ sudo emacs Info.plist
+dawncold@tianzhenmatoMacBook-Pro iPhoneOS.platform$ cd /Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Plug-ins/iPhoneOS\ Build\ System\ Support.xcplugin/Contents/MacOS/
+dawncold@tianzhenmatoMacBook-Pro MacOS$ ls
+iPhoneOS Build System Support
+dawncold@tianzhenmatoMacBook-Pro MacOS$ ls -al
+total 232
+drwxrwxr-x  3 root  admin     102  7 22 06:27 .
+drwxrwxr-x  7 root  admin     238  7 22 06:27 ..
+-rwxrwxr-x  1 root  admin  115904  3 31 09:22 iPhoneOS Build System Support
+dawncold@tianzhenmatoMacBook-Pro MacOS$ dd if=iPhoneOS\ Build\ System\ Support of=working bs=500 count=255
+231+1 records in
+231+1 records out
+115904 bytes transferred in 0.023461 secs (4940262 bytes/sec)
+dawncold@tianzhenmatoMacBook-Pro MacOS$ printf &ldquo;\xc3\x26\x00\x00&rdquo; &gt;&gt; working
+dawncold@tianzhenmatoMacBook-Pro MacOS$ dd if=iPhoneOS\ Build\ System\ Support of=working bs=1 skip=127504 seek=125504
+0+0 records in
+0+0 records out
+0 bytes transferred in 0.000013 secs (0 bytes/sec)
+dawncold@tianzhenmatoMacBook-Pro MacOS$ mv
+mv   mvn<br/>
+dawncold@tianzhenmatoMacBook-Pro MacOS$ mv
+mv   mvn<br/>
+dawncold@tianzhenmatoMacBook-Pro MacOS$ mv -n iPhoneOS\ Build\ System\ Support iPhoneOS\ Build\ System\ Support.backup
+dawncold@tianzhenmatoMacBook-Pro MacOS$ ls
+iPhoneOS Build System Support.backup working
+dawncold@tianzhenmatoMacBook-Pro MacOS$ mv working iPhoneOS\ Build\ System\ Support
+dawncold@tianzhenmatoMacBook-Pro MacOS$ ls
+iPhoneOS Build System Support        iPhoneOS Build System Support.backup
+dawncold@tianzhenmatoMacBook-Pro MacOS$ chmod a+x iPhoneOS\ Build\ System\ Support
+dawncold@tianzhenmatoMacBook-Pro MacOS$ ls
+iPhoneOS Build System Support        iPhoneOS Build System Support.backup
+</pre></p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/xcode/'>xcode</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -420,96 +686,6 @@ A style for a cell with a left-aligned label across the top and a left-aligned l
 
 
 	<div class="tags"><a class='category' href='/blog/categories/box2d/'>box2d</a><a class='category' href='/blog/categories/yuan-xing/'>圆形</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/07/23/write-to-xiaoxian/">写给小娴</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-07-23T08:16:00+08:00">
-			<span class="day">23</span><span class="month">Jul</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>小娴先生您好，不知道是不是每一位第一次读到您的作品的读者都会有一种想给您写信的冲动，但不知道该往哪个地方投递。</p>
-
-<p>以前初中、高中的时候似乎听过您的名字，那时仅仅指导您就是一位作家而已，那时候听过很多作家的名字了，有时还会买《读者》、《译林》、《特别关注》、《爱你》等书来看，可能那时候思想上特别寂寞吧，周围的人也都在看这些书。</p>
-
-<p>前一段时间在微博上看到您在推荐自己的新书——《想念》，看封面挺喜欢的，简洁，还有我喜欢的颜色，或许是那两个字吧。随后就在当当网买下来了。其实我还是喜欢在卓越网购买，只是当时卓越上似乎缺货了，要等一星期左右，而且商品图片都没有，一下子感觉卓越做了一回不专业的商家，就跑去当当了。</p>
-
-<p>几天就收到了书，但一直没看，连封皮都没有撕开，想，没有撕开的话，说不定还能送人，而且那时候正忙活考试，暂时找不到看这类书的闲情逸致，直到放假回家的车上才看起来。</p>
-
-<p>现在看了近200页，有得仔细读过，有得泛泛略过。从书中，渐渐地体会到了您的生活方式，而且您似乎正在享受着幸福的生活，至少在文章中看不出您对于生活有什么失望。当然也有可能不便流露吧。</p>
-
-<p>希望有机会您能看到。</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/xiao-xian/'>小娴</a><a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/07/22/lion-eat-my-file-on-desktop/">Lion吃了我的文件</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-07-22T07:28:00+08:00">
-			<span class="day">22</span><span class="month">Jul</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>很奇怪的现象：我在桌面上放了一个文件，是用Bean生成的文本文件，接着从这个Desktop往下一个Desktop切换，但不完全切换，只需要看下一个Desktop内容的一点，然后再回到当前这个Desktop，就会发现桌面上的那个文件没了，但点击文件的位置仍然能够打开！！这应该是一个相当大的bug吧？难道还能是一个专门给用户着想的地方？！</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/desktop/'>desktop</a><a class='category' href='/blog/categories/file/'>file</a><a class='category' href='/blog/categories/lion/'>lion</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
   </footer>
