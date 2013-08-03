@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="刚刚用yum升级了系统，发现日志中有很多这样的提示： ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a &hellip;">
+	<meta name="description" content="mac下的输入法一直让我耿耿于怀，官方的输入法就不多说了，基本不会去用，虽然UI做得不错，没用几分钟就再也不使用了。 然后使用了搜狗输入法，词汇量真的很大，这个和Windows平台的积累密不可分，但是我使用的时候搜狗输入法for mac的刚刚开始测试，bug比较多，渐渐被QQ输入法赶上了。 &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,54 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/05/23/new-input-method-on-mac-rimeime/">新的输入法测试</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2012-05-23T20:29:00+08:00">
+			<span class="day">23</span><span class="month">May</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>mac下的输入法一直让我耿耿于怀，官方的输入法就不多说了，基本不会去用，虽然UI做得不错，没用几分钟就再也不使用了。</p>
+
+<p>然后使用了搜狗输入法，词汇量真的很大，这个和Windows平台的积累密不可分，但是我使用的时候搜狗输入法for mac的刚刚开始测试，bug比较多，渐渐被QQ输入法赶上了。</p>
+
+<p>QQ输入法用了很久，不过偶尔出现打字时候卡死的情况，其他没啥问题，我就以为是我自己的问题吧，刚刚在微博上搜索了一下，不少用户都遇到这样的问题，搜狗那边也是如此，这就很奇怪了。。。</p>
+
+<p>有位朋友推荐了rimeime输入法，正在使用中，看这个反应速度很满意，听说是用配置文件可以做出很玄的样子，暂时不去研究这些，能保证不卡就是很好的进步，如果可以的话，果断放弃掉其他输入法！！！</p>
+
+<p>希望rimeime能够把中英文切换状态在growl中体现出来，起码也该给一个提醒：）</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a><a class='category' href='/blog/categories/shu-ru-fa/'>输入法</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -590,79 +638,6 @@ merge_sort(lst, 0, len(lst) - 1)</pre>
 
 
 	<div class="tags"><a class='category' href='/blog/categories/mysql/'>mysql</a><a class='category' href='/blog/categories/socket/'>socket</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/04/27/backup-mysql-databases-using-python/">用python备份mysql</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2012-04-27T20:44:00+08:00">
-			<span class="day">27</span><span class="month">Apr</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>备份数据库的重要性不想多说了。</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-# coding: utf-8
-
-import os
-import sys
-from datetime import *
-import time
-
-#mysql's path
-mysql_path = '/usr/local/mysql/bin/'
-#edit this if your mysql username and password is not like this:
-mysql_username = 'root'
-mysql_password = 'xxxxxx'
-#backup path
-backup_path = 'mysqlbackup/'
-
-def validate_backup_path():
-if os.path.exists(backup_path) == False:
-print "I create a directory here: %s " % backup_path
-os.mkdir(backup_path)
-
-def backup_all_databases():
-filename = "all_%s.sql" % (datetime.utcfromtimestamp(time.time()))
-os.system("%smysqldump -u%s -p%s --all-databases &gt; '%s%s'" % (mysql_path, mysql_username, mysql_password, backup_path, filename))
-
-if __name__ == "__main__":
-validate_backup_path()
-backup_all_databases()
-print "finish!!!"</pre>
-
-
-<p>这个是修改了一次的备份脚本，本来是分数据库备份的，无奈制定了分数据库备份需要输入密码，这就不容易加入cron来自动完成了，不过听说在my.cnf中加入mysqldump的设置可以避免输入账号密码，这也算是一个办法吧，不过还是本着简化的思想，只导出所有数据库出来就好，配合着上一篇的dropbox自动备份，这样VPS的灾备就稍稍好些了：）</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/backup/'>backup</a><a class='category' href='/blog/categories/crontab/'>crontab</a><a class='category' href='/blog/categories/dropbox/'>dropbox</a><a class='category' href='/blog/categories/mysql/'>mysql</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/vps/'>vps</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
   </footer>

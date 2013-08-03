@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="工资一发就买了块表。。。并且还狠心买了这个玩具——raspberry。 默认用了新手的那个镜像，叫NOOBS，就是里面装好了不少东西，系统也有好几个，默认用了推荐的Raspbian，是Debian的一个变种啦，开发用的Ubuntu都是一个家族的。 配置的话，没啥可说的， &hellip;">
+	<meta name="description" content="想了好久都觉得连续拍照片做监控实在是没什么效率，默认情况应该是什么都不做，如果发现有人来了才拍下来或者录下来，但用标配的摄像头录像实在是会录出非常大的文件，保存文件又是问题。在官网的博客中看到了一个用opencv做的人脸识别，可以这样干嘛。于是紧随那片文章开始干。 &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -45,6 +45,54 @@
 
 	<article class="post"><header>
   
+  <h1 class="title"><a href="/blog/2013/08/03/opencv-with-pi/">Opencv-with-pi</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2013-08-03T17:44:00+08:00">
+			<span class="day"> 3</span><span class="month">Aug</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>想了好久都觉得连续拍照片做监控实在是没什么效率，默认情况应该是什么都不做，如果发现有人来了才拍下来或者录下来，但用标配的摄像头录像实在是会录出非常大的文件，保存文件又是问题。在<a href="http://www.raspberrypi.org/archives/4207">官网的博客</a>中看到了一个用opencv做的人脸识别，可以这样干嘛。于是紧随那片文章开始干。</p>
+
+<p>由于标配摄像头模块不是usb设备，所以需要重新编译使用的几个程序，比如raspistill和raspivid等等。</p>
+
+<p>另外，如果直接在raspberrypi上编译，需要安装一些软件：<a href="http://thinkrpi.wordpress.com/2013/04/05/step-3-install-softwares-for-webcam-and-computer-vision/">http://thinkrpi.wordpress.com/2013/04/05/step-3-install-softwares-for-webcam-and-computer-vision/</a></p>
+
+<p>具体的操作请参照：<a href="http://thinkrpi.wordpress.com/2013/05/22/opencv-and-camera-board-csi/">http://thinkrpi.wordpress.com/2013/05/22/opencv-and-camera-board-csi/</a></p>
+
+<p>替换arm-linux.cmake的命令:<code>sed -i 's/if (DEFINED CMAKE_TOOLCHAIN_FILE)/if (NOT DEFINED CMAKE_TOOLCHAIN_FILE)/g' arm-linux.cmake</code>，看准了arm-linux.cmake的路径，我运行命令的时候已经到了和arm-linux.cmake一个目录下了。</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/life/'>life</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
+
+
+	<article class="post"><header>
+  
   <h1 class="title"><a href="/blog/2013/08/02/got-raspberry/">Got-raspberry</a></h1>
   
   
@@ -78,7 +126,11 @@
 
 <p>camera的官方使用教程：<a href="http://www.raspberrypi.org/archives/3890">http://www.raspberrypi.org/archives/3890</a></p>
 
-<p>如果想用camera捕捉视频，然后传到你这里看的话，需要在raspberry上先装netcat，我是用的Mac系统，系统本身有nc了，再用brew多装一个mplayer。不过很可惜我没有捕捉视频成功过。</p>
+<p>如果想用camera捕捉视频，然后传到你这里看的话，需要在raspberry上先装netcat，我是用的Mac系统，系统本身有nc了，再用brew多装一个mplayer。</p>
+
+<p>raspberrry上捕捉视频用：<code>raspivid -t 1000000 -vs -w 800 -h 600 -o -| nc 172.19.1.124 5001</code>，其中t参数指定了捕捉多少毫秒的视频，后面的vs是防抖，w和h控制宽高，这样就得到一个800x600的画面。</p>
+
+<p>Mac上用nc把发来的stream转到mplayer上：<code>nc -lp 5001 | mplayer -fps 31 -cache 512 -</code>，很无语的是<code>man nc</code>得到一句解释，l和p参数在一起用是个错误，但不加p就绝对在我这里不work！</p>
 
   
   
@@ -629,118 +681,6 @@
 
 
 	<div class="tags"><a class='category' href='/blog/categories/dev/'>dev</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2013/05/11/ssh-proxy-with-autossh/">Ssh-proxy-with-autossh-in-mac</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2013-05-11T13:10:00+08:00">
-			<span class="day">11</span><span class="month">May</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>在Mac下原来一直用iSSH，好处是简单，功能够用，但有个缺点很致命，ssh有时候会断开，谁知道最终是什么原因导致的，但iSSH不会自动重连，只是提示你。在忍受了很久之后换成了autossh，它没有GUI，但可以在ssh断开后自动重连。</p>
-
-<p>1.使用brew安装autossh，或者用其他工具安装autossh，包括手。</p>
-
-<p><code>brew install autossh</code></p>
-
-<p>2.配置你的海外主机，保证你可以不用密码登陆。无非就是在authorized_keys中加入你的public key。自己用ssh登陆只要不用密码了就ok。</p>
-
-<p>3.用autossh连接。</p>
-
-<p><code>autossh -M 20000 -f -p REMOTEPORT -D LOCALPORT xxx@8.8.8.8 -N</code></p>
-
-<p>autossh就3个参数，-M、-f、-V，其中-V是显示版本，其余两个参数的意思看<a href="http://www.harding.motd.ca/autossh/README" title="autossh README">文档描述</a>吧。</p>
-
-<p>如果你没改远程主机ssh的默认端口，那就省略-p REMOTEPORT。</p>
-
-<p>指定一个LOCALPORT，一般用什么1080，我用9998。</p>
-
-<p>后面是ssh连接信息，最后-N表示port forward不用terminal交互。</p>
-
-<p>4.(可选操作)如果你比较懒，希望login系统的时候自动帮你连接上ssh，Mac下使用launchd来做，推荐使用Lingon这个app，是个launchd的GUI。</p>
-
-<p>添加一个My Agents就可以了，何时运行那里我勾选了at startup or login，生成的plist会放在~/Library/LaunchAgents/中，生成的内容如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-</span><span class='line'>&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
-</span><span class='line'>&lt;plist version="1.0"&gt;
-</span><span class='line'>&lt;dict&gt;
-</span><span class='line'>&lt;key&gt;Label&lt;/key&gt;
-</span><span class='line'>&lt;string&gt;autossh&lt;/string&gt;
-</span><span class='line'>&lt;key&gt;ProgramArguments&lt;/key&gt;
-</span><span class='line'>&lt;array&gt;
-</span><span class='line'>&lt;string&gt;/usr/local/bin/autossh&lt;/string&gt;
-</span><span class='line'>&lt;string&gt;-M&lt;/string&gt;
-</span><span class='line'>&lt;string&gt;20000&lt;/string&gt;
-</span><span class='line'>&lt;string&gt;-f&lt;/string&gt;
-</span><span class='line'>&lt;string&gt;-p&lt;/string&gt;
-</span><span class='line'>&lt;string&gt;9999&lt;/string&gt;
-</span><span class='line'>&lt;string&gt;-D&lt;/string&gt;
-</span><span class='line'>&lt;string&gt;9998&lt;/string&gt;
-</span><span class='line'>&lt;string&gt;google@8.8.8.8&lt;/string&gt;
-</span><span class='line'>&lt;string&gt;-N&lt;/string&gt;
-</span><span class='line'>&lt;/array&gt;
-</span><span class='line'>&lt;key&gt;RunAtLoad&lt;/key&gt;
-</span><span class='line'>&lt;true/&gt;
-</span><span class='line'>&lt;/dict&gt;
-</span><span class='line'>&lt;/plist&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>至此，开机自动连接ssh，自由surfing吧。</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/gfw/'>GFW</a></div>
 
     
   </footer>

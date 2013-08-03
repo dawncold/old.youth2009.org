@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content=" 尊重极限，如同尊重自己。 刚刚从这里看到，尊重极限吧！ 极限精致de生活 ">
+	<meta name="description" content="只是更新一下代码，因为在mac中的mono工作得不太好！！ 1.求两个数的最大公约数和最小公倍数： Module Module1 Public Function Gcd(ByVal num1 As Integer, ByVal num2 As Integer) As Integer If &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,75 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2011/07/14/vb-net-programming-problems/">VB.net考试上机题目汇总</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-07-14T18:17:00+08:00">
+			<span class="day">14</span><span class="month">Jul</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>只是更新一下代码，因为在mac中的mono工作得不太好！！</p>
+
+<p>1.求两个数的最大公约数和最小公倍数：</p>
+
+<pre class="prettyprint linenums bush:vb" lang="vb">Module Module1
+
+   Public Function Gcd(ByVal num1 As Integer, ByVal num2 As Integer) As Integer
+       If num2 = 0 Then
+           Return num1
+       Else
+           Return Gcd(num2, num1 Mod num2)
+       End If
+   End Function
+
+   Public Sub Main()
+       Console.WriteLine("Input first num: ")
+       Dim num1 As Integer = Convert.ToInt32(Console.ReadLine())
+       Console.WriteLine("Input second num: ")
+       Dim num2 As Integer = Convert.ToInt32(Console.ReadLine())
+       Console.WriteLine("Gcd is :{0}", Gcd(num1, num2))
+       Console.WriteLine("Lcd is :{0}", (num1 * num2) / Gcd(num1, num2)) '两个数的积除以最大公约数就是最小公倍数
+       Console.ReadLine()
+   End Sub
+
+End Module
+</pre>
+
+
+
+
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/vb/'>vb</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -505,48 +574,6 @@ print "current_pos:%d" % current_file.tell()
 
 
 	<div class="tags"><a class='category' href='/blog/categories/e/'>e</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a><a class='category' href='/blog/categories/shu-xue/'>数学</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/07/08/little-fault-in-most-perfect/">美中不足</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-07-08T21:28:00+08:00">
-			<span class="day"> 8</span><span class="month">Jul</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>今天下午考完了OS，有个地方没有复习到，蒙上了，还有个计算题最后检查的时候，自己感觉不对，正在强力修改，不料到点了，就留下了这点美中不足吧。当然其他的题目不能这么简单地认为是美了，只是比这两个稍微有点把握而已，基本能够得到相应的分数吧。</p>
-
-<p>周末两天可以安心复习下面要考的内容了，下星期才是恶战——日语、离散数学！这两门要是都安全通过，再剩下的VB.net和Java Web我就得冲击满分试试啦！哈哈哈……独自狂妄中。</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/kao-shi/'>考试</a><a class='category' href='/blog/categories/qing-chun/'>青春</a></div>
 
     
   </footer>

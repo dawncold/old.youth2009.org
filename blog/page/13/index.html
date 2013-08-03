@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content=" 哲思 ">
+	<meta name="description" content="其实没有像标题中说的那么宏伟，只是需要写一个软件工程用的文档，就是一系列的需求分析、设计、开发、测试、维护文档，主题自定，我觉着看了很多国内的软件作品，动不动就是XXX系统，好象任何东西加上“系统”两个字之后都会变得无比金光闪闪，那我也来一个吧——“操作系统”。 虽然不需要实际编码， &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,50 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2011/10/22/i-am-writting-an-os-recently/">最近在写OS</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-10-22T08:10:00+08:00">
+			<span class="day">22</span><span class="month">Oct</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>其实没有像标题中说的那么宏伟，只是需要写一个软件工程用的文档，就是一系列的需求分析、设计、开发、测试、维护文档，主题自定，我觉着看了很多国内的软件作品，动不动就是XXX系统，好象任何东西加上“系统”两个字之后都会变得无比金光闪闪，那我也来一个吧——“操作系统”。</p>
+
+<p>虽然不需要实际编码，但还是需要参考很多资料，不可能一句代码都不出现，主要参考的是《Orange&#8217;s一个操作系统的实现》（《自己动手写操作系统》的第二版），里面最大的难点就是过多的汇编语言，其实C的程序我还是没大有问题的，只要不让我设计什么深奥算法就好：）</p>
+
+<p>学期末交上这个文档，已经分给了几个人去做，但他们可能感觉时间还早吧，到现在也没有动手，我不能等他们，我需要写好设计部分，现在就得深入阅读资料了。</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/os/'>OS</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -421,128 +465,6 @@ Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control conne
 
 
 	<div class="tags"><a class='category' href='/blog/categories/ji-zhu/'>技术</a><a class='category' href='/blog/categories/pi-lao/'>疲劳</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/08/13/config-vpn-on-centos5-use-ppp-and-pptpd/">centos5上ppp、pptpd配置VPN</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-08-13T17:53:00+08:00">
-			<span class="day">13</span><span class="month">Aug</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>安装ppp：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">yum install ppp</pre>
-
-
-<p>下载pptpd：</p>
-
-<p> </p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">wget -c http://poptop.sourceforge.net/yum/stable/packages/pptpd-1.3.4-1.rhel5.1.x86_64.rpm</pre>
-
-
-<p>安装pptpd：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">rpm -ivh pptpd-1.3.4-1.rhel5.1.x86_64.rpm</pre>
-
-
-<p>修改参数：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">vi /etc/ppp/options.pptpd</pre>
-
-
-<p>ms-dns 8.8.8.8和ms-dns 8.8.4.4(这里用了Google的dns，你可以用别的)</p>
-
-<p>加入分配IP等信息：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">vi /etc/pptpd.conf</pre>
-
-
-<p>localip 192.168.0.1</p>
-
-<p>remoteip 192.168.0.2-30(意思是连接上分配一个2～30的地址)</p>
-
-<p>加入账号密码：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">vi /etc/ppp/chap-secrets</pre>
-
-
-<p>用空格分开：USERNAME pptpd PASSWORD *   (最后的这个星号意思是不指定IP，自动分给你一个，pptpd是在配置文件中写的一个服务名称，默认就是这个，不用再修改了，你需要更改的就是大写的两组值)</p>
-
-<p>修改转发参数：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">vi /etc/sysctl.conf</pre>
-
-
-<p>把net.ipv4.ip_forward = 0改正1保存退出</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">/sbin/sysctl -p
-使刚才配置的转发参数生效，你能够看到系统打印出的参数列表，应该能够看到ip_forward = 1了</pre>
-
-
-<p>启动pptpd：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">/sbin/services pptpd start
-</pre>
-
-
-<p>配置iptables内容：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">/sbin/iptables -A INPUT -p tcp --dport 1723 -j ACCEPT
-/sbin/iptables -A INPUT -p tcp --dport 47 -j ACCEPT
-/sbin/iptables -A INPUT -p gre -j ACCEPT
-/sbin/iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o eth0 -j MASQUERADE</pre>
-
-
-<p>解释一下，前两行是开启1723和47端口，第三行是允许GRE协议，最后一行是设置转发到eth0轮询。至于这个轮询的概念我就不太清楚了。转发到eth0也就是说把请求发送到了网卡eth0，这个可以在/sbin/ifconfig看到网卡的名字。</p>
-
-<p>保存iptables规则，重启iptables：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">/etc/init.d/iptables save
-/etc/init.d/iptables restart
-如果原有iptables内容可能会和现有的冲突，所以发现问题后先检查一下这里，毕竟iptables是控制连接的所有出口</pre>
-
-
-<p>下面这两条根据需要执行吧：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">/sbin/chkconfig pptpd on
-/sbin/chkconfig iptables on</pre>
-
-
-<p>分别是让pptpd和iptables机器再次重启后也能运行。</p>
-
-<p>工作都完成了，连接上试试吧，用pptp方式连接哦，别的方式没用过，应该是不行的。有时候连接上不能访问网页建议断开几次再连接上试试，我曾更改了mtu，发现没什么作用，应该不出问题默认的都能用，服务器一般建立的ppp0、1、2……这些的mtu都是1496，本机对应的是1444，具体算法不想深究。</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/vpn/'>vpn</a><a class='category' href='/blog/categories/vps/'>vps</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
   </footer>

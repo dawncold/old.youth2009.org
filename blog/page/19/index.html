@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="我是最不擅长写影评的。 四级之后实在不知道做点什么，于是就找电影看，在VeryCD上看到了这部老一点的片子，就看起来了。 里面主要是围绕着日本人的工作压力之大展开描写的，总是听日语老师说起这些，看来这又一次印证了。在如此之大的工作压力下，很多人会做出一些平时不可能做的事情，简单地讲就是被逼无奈， &hellip;">
+	<meta name="description" content="刚刚看到github的help页面上有两条关于git的设置，是针对github用的： git config --global github.user USERNAME git config --global github.token TOKEN   &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,52 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2011/06/21/git-config-for-github-com/">针对github的两条设置</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-06-21T16:32:00+08:00">
+			<span class="day">21</span><span class="month">Jun</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>刚刚看到github的help页面上有两条关于git的设置，是针对github用的：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">git config --global github.user USERNAME 
+git config --global github.token TOKEN</pre>
+
+
+<p> 其中的TOKEN要从github网站的帐户管理中得到，而且这个TOKEN和密码相关，如果你更改了密码，需要重新设置。但我还不清楚设置了这个对于github的提交有什么特殊的好处，等以后用用再说吧。</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/git/'>git</a><a class='category' href='/blog/categories/github/'>github</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -579,60 +625,6 @@ make install</pre>
 
 
 	<div class="tags"><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/zhe-si/'>哲思</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/06/05/lambda-in-python/">用lambda创建函数</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-06-05T19:51:00+08:00">
-			<span class="day"> 5</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>又是一个bt功能：创建一种函数规则</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">#!/usr/bin/python
-# Filename: lambda.py
-
-def make_repeater(n):
-   return lambda s: s*n
-
-twice = make_repeater(2)
-
-print twice('word')
-print twice(5)</pre>
-
-
-<p>  twice就是创建出来的函数规则，参数2传进入构建了lambda表达式中的n，s值需要再指定，于是后面的word字符串和数字5就算是这个s了吧。了解到这种bt方法很有用，不过对于我这样的初学者来说，暂时还看不到前景：）</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/lambda/'>lambda</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
   </footer>

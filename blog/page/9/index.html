@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="由于rails给我带来的痛苦，让我对ruby这门写着code for fun的语言产生了怀疑，真得有fun么？一开始就没有感觉，现在来看更是如此。 rails是一个正在成长的框架，每一个小版本号的变动都可能会引入和废弃不少特性，而我又傻傻地在使用最新的rails（3.2.1）， &hellip;">
+	<meta name="description" content="有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误： def password=(pwd) @password = pwd return if @password.blank? create_new_salt self.password = xxx end 最后那行使用了self &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,61 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/02/14/write-attribute-in-ruby/">Ruby中的write_attribute</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2012-02-14T16:06:00+08:00">
+			<span class="day">14</span><span class="month">Feb</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误：</p>
+
+<pre class="prettyprint linenums bush:ruby" lang="ruby">  def password=(pwd)
+   @password = pwd
+   return if @password.blank?
+   create_new_salt
+   self.password = xxx
+ end</pre>
+
+
+<p>最后那行使用了self.password= xxx，你有没有注意到我们这个方法就是password=，你在自己调用自己，如果有条件停止的话，那这叫递归，如果没有的话，这就是死循环喽，ruby可能会抛出一个stack too deep的错误（rails至少会这样说），此时需要一个magic！</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">write_attribute(:password, User.encrypted_password(self.password, self.salt))</pre>
+
+
+<p>使用write_attribute(xxx,jjj)即可，意思就是把jjj赋值给xxx了，因为此时正好在定义xxx，所以不能用xxx = 这样的方法赋值。</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/ruby/'>ruby</a><a class='category' href='/blog/categories/write-attribute/'>write attribute</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -557,63 +612,6 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
 
 
 	<div class="tags"><a class='category' href='/blog/categories/fun/'>fun</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ruby/'>ruby</a><a class='category' href='/blog/categories/zhe-si/'>哲思</a><a class='category' href='/blog/categories/xi-wang-wo-huan-neng-ji-qi/'>希望我还能记起</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/02/04/uninstall-macports/">删除MacPorts</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2012-02-04T21:53:00+08:00">
-			<span class="day"> 4</span><span class="month">Feb</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <pre class="prettyprint linenums bush:bash" lang="bash">sudo port -f uninstall installed
-
-sudo rm -rf \
-/opt/local \
-/Applications/DarwinPorts \
-/Applications/MacPorts \
-/Library/LaunchDaemons/org.macports.* \
-/Library/Receipts/DarwinPorts*.pkg \
-/Library/Receipts/MacPorts*.pkg \
-/Library/StartupItems/DarwinPortsStartup \
-/Library/Tcl/darwinports1.0 \
-/Library/Tcl/macports1.0 \
-~/.macports</pre>
-
-
-<p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
-
-<p>我删除了MacPorts后就开始用Homebrew了。</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a><a class='category' href='/blog/categories/homebrew/'>homebrew</a><a class='category' href='/blog/categories/mac/'>mac</a><a class='category' href='/blog/categories/macports/'>macports</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
   </footer>

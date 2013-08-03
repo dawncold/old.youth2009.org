@@ -7,7 +7,8 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="如果你感觉列表这种数据结构就已经很bt了的话，再看看这个吧，我感觉这简直就在破坏程序员的正常思维！ example_list = [2,3,4] other_list = [i*2 for i in example_list if i &gt; 2] 执行之后other_list就是[6,8]了 &hellip;">
+	<meta name="description" content="又是一个bt功能：创建一种函数规则 #!/usr/bin/python
+# Filename: lambda.py def make_repeater(n): return lambda s: s*n twice = make_repeater(2) print twice('word') &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +42,60 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2011/06/05/lambda-in-python/">用lambda创建函数</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-06-05T19:51:00+08:00">
+			<span class="day"> 5</span><span class="month">Jun</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>又是一个bt功能：创建一种函数规则</p>
+
+<pre class="prettyprint linenums bush:python" lang="python">#!/usr/bin/python
+# Filename: lambda.py
+
+def make_repeater(n):
+   return lambda s: s*n
+
+twice = make_repeater(2)
+
+print twice('word')
+print twice(5)</pre>
+
+
+<p>  twice就是创建出来的函数规则，参数2传进入构建了lambda表达式中的n，s值需要再指定，于是后面的word字符串和数字5就算是这个s了吧。了解到这种bt方法很有用，不过对于我这样的初学者来说，暂时还看不到前景：）</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/lambda/'>lambda</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -545,48 +600,6 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
 
 
 	<div class="tags"><a class='category' href='/blog/categories/date/'>date</a><a class='category' href='/blog/categories/js/'>js</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/05/30/getyear-in-js/">js的Year</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-05-30T13:56:00+08:00">
-			<span class="day">30</span><span class="month">May</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>js中有个获取当前年的函数，叫getYear()，但我测试的时候没有单独让它显示出来看看，只是当成一个最大值限制使用，测试了一个值发现正确，就不再管它了，后来测试的时候总是不对，再一看，那个值竟然是111，怪不得我输入一个年份都显示对了呢，现在都是2xxx年，随便一个就比111大不少了……</p>
-
-<p>目前那个函数已经被废弃了，取而代之的是getFullYear()，这次就正常了：）</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/js/'>js</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
   </footer>
