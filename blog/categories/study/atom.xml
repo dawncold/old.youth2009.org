@@ -4,7 +4,7 @@
   <title><![CDATA[Category: study | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/study/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-08-03T23:32:09+08:00</updated>
+  <updated>2013-08-05T21:46:30+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -53,6 +53,8 @@
 <p>Don&rsquo;t forget subtract 2, because all 0 bits and all 1 bits address for host address is invalid.</p>
 
 <p>The advantage to using s single class B address with 30 subnets, compared to 30 class C addresses, is that subnetting reduces the size of the Internet&rsquo;s routing tables entry.</p>
+
+<p>A special address: 127.x.x.x means loopback address, not only 127.0.0.1 can be loopback address!</p>
 ]]></content>
   </entry>
   
