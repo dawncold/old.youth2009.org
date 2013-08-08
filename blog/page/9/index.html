@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误： def password=(pwd) @password = pwd return if @password.blank? create_new_salt self.password = xxx end 最后那行使用了self &hellip;">
+	<meta name="description" content="两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][: &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,50 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/02/14/differentiate-form-for-and-form-tag/">分清form_for和form_tag</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2012-02-14T19:34:00+08:00">
+			<span class="day">14</span><span class="month">Feb</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][:username]，前面的:user是我给form_for的第一个参数，这个form的所有信息都得加[:user]这样的前缀才能得到了，让我十分痛苦（又加上是个2.14）</p>
+
+<p>使用form_tag后对于它的action不太会控制，所幸不写参数了，正好action指向本地址，省事儿！</p>
+
+<p>感谢<a href="http://blog.csdn.net/babylon_0049/article/details/4730763">这里</a>写的内容</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/form-for/'>form for</a><a class='category' href='/blog/categories/form-tag/'>form tag</a><a class='category' href='/blog/categories/rails/'>rails</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -568,50 +612,6 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
 
 
 	<div class="tags"><a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a><a class='category' href='/blog/categories/homebrew/'>homebrew</a><a class='category' href='/blog/categories/mac/'>mac</a><a class='category' href='/blog/categories/ruby/'>ruby</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/02/04/sorry-to-me-help-my-ruby/">Sorry to Me</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2012-02-04T22:04:00+08:00">
-			<span class="day"> 4</span><span class="month">Feb</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>我记得自己好像说过要在python上坚持一段时间，现在发现有些不可能了，我要转向ruby了，因为自学了好久的python，只是觉得很酷，有时候也解决了不少问题，的确是一种高效的开发语言，但开发了一段时间的web app后并不像我当初预想的那样，python的相关框架在做开放的时候挺复杂的，即便是web.py这样号称simple的框架也让人用起来不舒服，可能用习惯了的话没什么，但我毕竟是一个新手，就算是php也只是才写了几K行的垃圾代码。</p>
-
-<p>就为了ruby的宗旨吧——code for fun，虽然现在没有感觉到fun到底来自何处，我也不管了，因为最近实在没什么让我happy的事情，了解我的人可能都知道这段时间我怎么了。</p>
-
-<p>ruby，救救我吧！</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/fun/'>fun</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ruby/'>ruby</a><a class='category' href='/blog/categories/zhe-si/'>哲思</a><a class='category' href='/blog/categories/xi-wang-wo-huan-neng-ji-qi/'>希望我还能记起</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
   </footer>

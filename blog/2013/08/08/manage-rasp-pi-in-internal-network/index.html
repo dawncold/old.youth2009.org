@@ -1,0 +1,169 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>manage-rasp-pi-in-internal-network | Trade Off</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="Manage-rasp-pi-in-internal-network 8Aug 今天早晨去公司后一开邮箱发现好多树莓派发来的警告信，如果是一封信可能是误报，但这么多，难道是真的有人闯入？不过看了大部分的图片都是空空的房间，但仍然有新的邮件过来，看来是红外探测器出问题了。 &hellip;">
+	
+
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+	
+</head>
+
+<body>
+	<header id="header" class="inner"><nav><ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/about">About</li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul></nav>
+</header>
+	<div id="content" class="inner"><article class="post"><header>
+  
+  <h1 class="title">Manage-rasp-pi-in-internal-network</h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2013-08-08T22:16:00+08:00">
+			<span class="day"> 8</span><span class="month">Aug</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>今天早晨去公司后一开邮箱发现好多树莓派发来的警告信，如果是一封信可能是误报，但这么多，难道是真的有人闯入？不过看了大部分的图片都是空空的房间，但仍然有新的邮件过来，看来是红外探测器出问题了。</p>
+
+<p>想了半天以为是昨天加的DHT11在读取数据的时候是不是改变了GPIO的布局，导致探测器的数据口得到数据，激活了它？后来证明不是。猜测啊：探测器放到了无线网卡下方，无线网卡有个工作指示灯一直闪烁，会不会触发了探测器，因为我换了个地方后探测器就正常工作了。</p>
+
+<p>在没有远程管理的前提下，解决的方法是去七牛把bucket先删掉，这样就不能再上传图片了，然后去sendgrid修改密码，这样就不能发送邮件了。其实我期待能引发一个异常，这样程序就退出了，但很可惜，七牛的lib似乎做了些处理，删掉bucket或者修改API KEY这样的方法也就是给个提示出来，他们处理了异常，不过好在sendgrid的lib没有处理异常，密码错误后引发的异常终止了程序！GREAT！我还担心了一天摄像头不断拍照会不会坏掉。</p>
+
+<p>上面都是背景吧，主题是一个远程管理的重要性，特别是出现这种突发情况而你又不在边上。</p>
+
+<p>受限于当地的网络环境，树莓派在一个很深的网络中——有家庭的路由器，再往上是小区的路由器，也许再往上就是公网IP了，和在原来的家不同，直接能拿到公网IP，这样基本可以让树莓派暴露在公网上，管理起来当然方便了。穿透这么多层网络，感觉好麻烦，虽然毕业论文是NAT穿透的应用。。。</p>
+
+<p>简单的做法就是利用第三方，我有一个VPS，当然在海外，除了速度上不如国内快之外，别的没啥了。</p>
+
+<p>于是在树莓派上建立一个反向SSH：<code>ssh -p VPS_PORT -fNR 2222:127.0.0.1:22 USER@VPS_HOST</code>，其中VPS_PORT如果你没修改默认的22的话，可以不写<code>-p VPS_PORT</code>，其他的，比如<code>fN</code>，你可以先不写，测试成功后再写上，只做端口转发而不执行命令。后面的R表示反向连接：就是127.0.0.1的22端口在后面远程主机中映射到2222端口。这样，登陆了远程主机的人，访问2222端口就可以访问到树莓派的22端口了。</p>
+
+<p>再临时生成几个rsa key加到authorized_keys中就可以不输密码登陆了，虽然速度稍慢一点，但至少是可用的！</p>
+
+<p>测试通过后使用autossh建立连接，这样即便是中断也会重连上：）</p>
+
+    
+      <div class="sharing">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4daee9911f9dfcb4"></script>
+</div>
+    
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/life/'>life</a></div>
+
+    
+  </footer>
+  
+</div>
+
+<section id="comment">
+	<div id="disqus_thread" aria-live="polite">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> 
+  </div>
+</section>
+</article></div>
+	<footer id="footer" class="inner"><div class="social alignright">
+	
+	
+	
+	
+	
+	<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>&copy; 2013 dawncold</p>
+<div class="clearfix"></div></footer>
+	<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+	(function($){
+		$('.entry-content').each(function(i){
+			var _i = i;
+			$(this).find('img').each(function(){
+				var alt = $(this).attr('alt');
+
+				if (alt == '' || typeof alt == 'undefined'){
+					$(this).wrap('<a href="'+$(this).attr('src')+'" class="fancybox" rel="gallery'+_i+'" />');
+				} else {
+					$(this).after('<span class="caption">'+alt+'</span>').wrap('<a href="'+$(this).attr('src')+'" class="fancybox" title="'+alt+'" rel="gallery'+_i+'" />');
+				}
+			});
+		});
+		$('.fancybox').fancybox();
+	})(jQuery);
+</script>
+<div id="phasebeam">
+	<canvas></canvas>
+	<canvas></canvas>
+	<canvas></canvas>
+</div>
+<script src="/javascripts/phasebeam.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2013/08/08/manage-rasp-pi-in-internal-network/';
+        var disqus_url = 'http://www.youth2009.org/blog/2013/08/08/manage-rasp-pi-in-internal-network/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+</html>
