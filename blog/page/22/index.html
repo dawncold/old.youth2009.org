@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="今晚为了实现一个有些漂亮的界面交互，我展开了和SESSION的战斗，明明同样使用的其他方法都能正常工作，偏偏这个就是不能了，这让我很奇怪，调试了很久都没有解决。网上搜索了很多内容也都看不到希望，其中一个朋友提到，这种问题很难解决，可能是对SESSION的机制不太了解吧，我也懒了，不去深入分析， &hellip;">
+	<meta name="description" content="最近一直还在忙活学校的那个项目，还有自己要做的同学录，看着日子越来越紧张，我也变得越来越紧张：） 学校的项目还有不多的工作了，我赶紧忙活一下，最后的几个功能也差不多没问题了，琐碎的工作交给另一个人了，这几天我没管，希望他做了些什么吧。同学录的工作写了不少代码，没去统计，外部引用的js库太多了， &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,60 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2011/05/14/i-am-tired-to-create-blog/">懒得写博客了</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-05-14T18:13:00+08:00">
+			<span class="day">14</span><span class="month">May</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>最近一直还在忙活学校的那个项目，还有自己要做的同学录，看着日子越来越紧张，我也变得越来越紧张：）</p>
+
+<p>学校的项目还有不多的工作了，我赶紧忙活一下，最后的几个功能也差不多没问题了，琐碎的工作交给另一个人了，这几天我没管，希望他做了些什么吧。同学录的工作写了不少代码，没去统计，外部引用的js库太多了，一统计都是别人的工作：（</p>
+
+<p>今天下午用了下jquery的表单验证插件，调试了好久的remote方法，现在分享点经验：</p>
+
+<p>1.远程的查询方法我接受了post的提交方法，不过我感觉get也是没问题的，只是没去测试，修改这个是在remote中传入type:&lsquo;post&#8217;即可。</p>
+
+<p>2.remote要提交上去的data用这样的方法：function(){return xxx;}</p>
+
+<p>3.remote对应的messages直接写remote即可，注意这里处理的是得到false结果显示的提示信息，所以查询数据库并返回值的那个页面要注意别写反了结果，当然要只能返回true或者false。我用php写的结果就是直接echo一个字符串，只有这样简单写才能让这个傻傻的remote认出来。一开始我还包装了一个json返回，现在想想根本就是奢望，根本不可能知道你的json是个什么东西！因为根本就没有告诉它去检查哪个元素的值：）</p>
+
+<p>如果按照这个速度做下去，可能到6月6日能够交上去作品：）希望其他人做得不太好吧，那样我就有机会去深圳旅游（答辩）啦：）</p>
+
+<p>最后在这里说一下QQMap的API，除了单一只能玩js的以外没什么太大的失误，用起来比较顺手，只是和Google的想比，还差很远，如果不是为了参赛，我可能会去用Google的，但那个相对用起来会很麻烦的：─（</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/jquery/'>jQuery</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a><a class='category' href='/blog/categories/bi-sai/'>比赛</a><a class='category' href='/blog/categories/biao-dan-yan-zheng/'>表单验证</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -447,52 +501,6 @@
 
 
 	<div class="tags"><a class='category' href='/blog/categories/xi-wang-wo-huan-neng-ji-qi/'>希望我还能记起</a><a class='category' href='/blog/categories/ai-qing/'>爱情</a><a class='category' href='/blog/categories/li-wu/'>礼物</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/04/23/my-change/">我的改变</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-04-23T22:10:00+08:00">
-			<span class="day">23</span><span class="month">Apr</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>其实我从来都不想去否认我变成了这样──越来越想被人在QQ空间、人人网、新浪微博上关注、留言，越来越想被那几个人访问，每次登录上去总是习惯性地看看“谁看过我”中是否有她们的身影。这一切可能都源自于她之后吧。</p>
-
-<p>这算不算想用一段新的感情来填补那段伤痛？</p>
-
-<p>我自己可能会回答是的。不过这算是不专一么？我只是不想让她充斥在我的思想中而已，对于这点不算过分的要求，我也有理由满足自己吧！</p>
-
-<p>以前都是看到同学们泡在这些社交网络上而大发感慨，现在看看自己，这不也是深深地被禁锢在其中了？倒是有点自嘲的意味了！谁也说不准这段时期过去之后会是什么样子，也许我还会去感慨他们，继而我又一次陷入这样往复不断地轮回之地了。每次的结果都大致相同，不同的是每次到来，都有不一样的心情，也是不一样的自己。希望这些轮回能够让我成熟！</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/zhe-si/'>哲思</a><a class='category' href='/blog/categories/cheng-shou/'>成熟</a><a class='category' href='/blog/categories/gai-bian/'>改变</a><a class='category' href='/blog/categories/she-jiao/'>社交</a></div>
 
     
   </footer>

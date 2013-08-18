@@ -7,7 +7,11 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="今天早晨去公司后一开邮箱发现好多树莓派发来的警告信，如果是一封信可能是误报，但这么多，难道是真的有人闯入？不过看了大部分的图片都是空空的房间，但仍然有新的邮件过来，看来是红外探测器出问题了。 想了半天以为是昨天加的DHT11在读取数据的时候是不是改变了GPIO的布局，导致探测器的数据口得到数据， &hellip;">
+	<meta name="description" content="32 bits Internet address
+| /|
+|ARP |RARP
+|/ |
+48 bits Ethernet address Gratuitous ARP send its own IP to verify whether someone has used this. &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +45,59 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2013/08/18/arp/">Arp</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2013-08-18T20:38:00+08:00">
+			<span class="day">18</span><span class="month">Aug</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <pre><code>32 bits Internet address
+|                   /|
+|ARP                 |RARP
+|/                   |
+48 bits Ethernet address
+</code></pre>
+
+<h3>Gratuitous ARP</h3>
+
+<ol>
+<li>send its own IP to verify whether someone has used this.</li>
+<li>update old MAC address in ARP cache</li>
+</ol>
+
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/study/'>study</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -639,56 +696,6 @@
 
 
 	<div class="tags"><a class='category' href='/blog/categories/dev/'>dev</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2013/06/15/some-sed-work/">Some-sed-work</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2013-06-15T16:34:00+08:00">
-			<span class="day">15</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>博客内容是从wordpress转过来的，不可避免有很多地方没转换好，当时懒得弄，今天得空学习Shell编程，讲到了sed，就又搞了一下，基本满意了。</p>
-
-<p>以前用sed替换过分类等简单的文字错误，今天主要是把一些html给替换掉了。</p>
-
-<p>把<code>&lt;p&gt;</code>删掉，在删掉<code>&lt;/p&gt;以及&lt;br /&gt;</code>后面加换行等：</p>
-
-<p><code>sed -i "" -e 's;&lt;/p&gt;;\'$'\n;g' *.markdown</code></p>
-
-<p><code>sed -i "" -e 's;&lt;br /&gt;;\'$'\n;g' *.markdown</code></p>
-
-<p>需要注意的是Mac OS中的sed和我看到的很不一样，所以这个替换都是特殊的，来自<a href="http://cafenate.wordpress.com/2010/12/05/newlines-in-sed-on-mac/">这里</a></p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/study/'>study</a></div>
 
     
   </footer>
