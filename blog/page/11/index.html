@@ -1,33 +1,22 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Trade Off</title>
-  <meta name="author" content="dawncold">
+	<meta charset="utf-8">
+	<title>Trade Off</title>
+	<meta name="author" content="dawncold">
 
-  
-  <meta name="description" content="打标签，挺有用的一个功能，一般是加版本号吧。v1.0，v2.0，vN.0 git tag是看标签 git tag -a 是加带附注的标签，（还有轻量级标签不用加-a，直接给出标签名字完事），接下来一个参数是标签名字，再者需要-m引出附注内容，完整就像这样：git tag -a v1.0 -m & &hellip;">
-  
+	
+	<meta name="description" content="打标签，挺有用的一个功能，一般是加版本号吧。v1.0，v2.0，vN.0 git tag是看标签 git tag -a 是加带附注的标签，（还有轻量级标签不用加-a，直接给出标签名字完事），接下来一个参数是标签名字，再者需要-m引出附注内容，完整就像这样：git tag -a v1.0 -m & &hellip;">
+	
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://www.youth2009.org/blog/page/11">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  
-  
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-8650400-5']);
@@ -41,63 +30,42 @@
   </script>
 
 
+	
 </head>
 
-<body   >
-  <header role="banner">
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:www.youth2009.org" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul>
+<body>
+	<header id="header" class="inner"><nav><ul>
   <li><a href="/">Home</a></li>
   <li><a href="/about">About</li>
   <li><a href="/blog/archives">Archives</a></li>
-</ul>
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
+</ul></nav>
+</header>
+	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/01/26/git-study-tag/">Git使用重新学习（标签）</a></h1>
   
   
+
+
+
+
+
+
+
+
+	
+		<time datetime="2012-01-26T17:29:00+08:00">
+			<span class="day">26</span><span class="month">Jan</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
   
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-tag/">Git使用重新学习（标签）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T17:29:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>打标签，挺有用的一个功能，一般是加版本号吧。v1.0，v2.0，vN.0</p>
+    <p>打标签，挺有用的一个功能，一般是加版本号吧。v1.0，v2.0，vN.0</p>
 
 <p>git tag是看标签</p>
 
@@ -123,42 +91,46 @@ gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
 <p>很可惜，默认tag是不被push到远程仓库中的，如果要分享你的tags，在push的时候要显示地写明：git push origin [tag-name]，推送所有tags可以直接用&mdash;tags来代替tag-name参数</p>
 
 <p>删除tag需要用-d完成：git tag -d [tag-name]</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/git/'>git</a><a class='category' href='/blog/categories/tag/'>tag</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
 </div>
+</article>
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/01/26/git-study-remote-repo/">Git使用重新学习（远程仓库）</a></h1>
   
   
 
 
-    </article>
+
+
+
+
+
+
+	
+		<time datetime="2012-01-26T16:08:00+08:00">
+			<span class="day">26</span><span class="month">Jan</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-remote-repo/">Git使用重新学习（远程仓库）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T16:08:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>查看当前远程仓库：git remote  -v，加上-v属性能看得内容详细一些。</p>
+    <p>查看当前远程仓库：git remote  -v，加上-v属性能看得内容详细一些。</p>
 
 <p>添加远程仓库：git remote add [shortname] [url]</p>
 
@@ -171,42 +143,46 @@ gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
 <p>远程仓库重命名、删除：git remote rename short-name new-name，git remote rm xx</p>
 
 <p>另外git remote show repo-name能够得到不少信息，有哪些要合并啦，哪些已经删除啦，哪些新仓库出现啦等等，这个是需要连接服务器获取的。</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/git/'>git</a><a class='category' href='/blog/categories/remote-repo/'>remote repo</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
 </div>
+</article>
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/01/26/git-study-mend-file-part/">Git使用重新学习（撤销操作）</a></h1>
   
   
 
 
-    </article>
+
+
+
+
+
+
+	
+		<time datetime="2012-01-26T15:05:00+08:00">
+			<span class="day">26</span><span class="month">Jan</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-mend-file-part/">Git使用重新学习（撤销操作）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T15:05:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>修改最后一次提交</strong>：git commit &mdash;amend</p>
+    <p><strong>修改最后一次提交</strong>：git commit &mdash;amend</p>
 
 <p>如果只是提交信息写错了，运行后会让你重新写提交信息，但如果你忘记了加文件进入，可以这样做，先commit，再add忘记的文件，最后来一句git commit &mdash;amend，这看似两次提交，实际只是一次，后面的提交修正了前面的。</p>
 
@@ -215,42 +191,46 @@ gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
 <p><strong>取消修改</strong>：如果感觉刚才的修改没有必要，需要取消修改，那么用git checkout &mdash; &lt;file&gt;，在1.6.1以上的版本才会有这样的功能，我刚刚看了下git的版本（git &mdash;version）是1.7.5.4，看来暂时不用升级就能体验了。使用后就会发现文件的修改已经被撤销，此命令很危险，如果只是想回退版本可以用stashing和分支来处理，后面再说。</p>
 
 <p>最后说一句，任何被提交的数据都能被恢复，即便是在已经删除的分支中提交的等等，但没有提交的丢了就丢了！！！</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/amend/'>amend</a><a class='category' href='/blog/categories/checkout/'>checkout</a><a class='category' href='/blog/categories/git/'>git</a><a class='category' href='/blog/categories/reset/'>reset</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
 </div>
+</article>
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/01/26/git-study-filestatus-part/">Git使用重新学习（文件状态）</a></h1>
   
   
 
 
-    </article>
+
+
+
+
+
+
+	
+		<time datetime="2012-01-26T14:47:00+08:00">
+			<span class="day">26</span><span class="month">Jan</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-filestatus-part/">Git使用重新学习（文件状态）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T14:47:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>就几个简单的git命令记录一下自己的学习过程，我发现如果自己不随时记录自己学到的东西就会遗忘。</p>
+    <p>就几个简单的git命令记录一下自己的学习过程，我发现如果自己不随时记录自己学到的东西就会遗忘。</p>
 
 <p>首先给出git中文件的状态转换图：</p>
 
@@ -271,78 +251,86 @@ gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
 <p>改名操作与linux下的mv命令用法一样。</p>
 
 <p>删除时如果仅仅希望在git中删除，实际仍然保存文件那么加上&mdash;cached选项即可。</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/git/'>git</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
 </div>
+</article>
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/01/26/do-not-accept-any-comments-which-do-not-write-in-chinese/">不接受非中文评论</a></h1>
   
   
 
 
-    </article>
+
+
+
+
+
+
+	
+		<time datetime="2012-01-26T13:32:00+08:00">
+			<span class="day">26</span><span class="month">Jan</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>由于某些原因（spam），这个博客系统（typecho）很容易被评论机器人俘获，几天不登陆发现已经有了上千条垃圾评论，删除都是一项繁重的工作，昨晚找了两个反垃圾评论插件都装上，现在是三个反垃圾评论插件同时工作！即便如此，还是有不少垃圾评论袭来，我只能q启用较严格的审核标准——禁止一切非中文评论，我本身就是用中文书写，所以假设有效用户就是会中文的，如果不是的话……</p>
+
   
   
-    <article>
-      
-  <header>
+  <footer class="meta">
     
-      <h1 class="entry-title"><a href="/blog/2012/01/26/do-not-accept-any-comments-which-do-not-write-in-chinese/">不接受非中文评论</a></h1>
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/comments/'>comments</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
     
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
+  </footer>
   
-
-
-<time datetime="2012-01-26T13:32:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>由于某些原因（spam），这个博客系统（typecho）很容易被评论机器人俘获，几天不登陆发现已经有了上千条垃圾评论，删除都是一项繁重的工作，昨晚找了两个反垃圾评论插件都装上，现在是三个反垃圾评论插件同时工作！即便如此，还是有不少垃圾评论袭来，我只能q启用较严格的审核标准——禁止一切非中文评论，我本身就是用中文书写，所以假设有效用户就是会中文的，如果不是的话……</p>
 </div>
+</article>
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/01/26/select-sort-in-python/">选择排序（Python）</a></h1>
   
   
 
 
-    </article>
+
+
+
+
+
+
+	
+		<time datetime="2012-01-26T12:27:00+08:00">
+			<span class="day">26</span><span class="month">Jan</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/26/select-sort-in-python/">选择排序（Python）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T12:27:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+    <pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
 # coding: utf-8
 
 def select_sort(arraylist):
@@ -362,42 +350,46 @@ if __name__ == "__main__":
    print arr
 </pre>
 
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/selectsort/'>selectsort</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
 </div>
+</article>
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/01/26/insert-sort-in-python/">插入排序（Python）</a></h1>
   
   
 
 
-    </article>
+
+
+
+
+
+
+	
+		<time datetime="2012-01-26T11:07:00+08:00">
+			<span class="day">26</span><span class="month">Jan</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/26/insert-sort-in-python/">插入排序（Python）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T11:07:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+    <pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
 # coding: utf-8
 
 def insert_sort(arraylist):
@@ -418,42 +410,46 @@ if __name__ == "__main__":
 
 
 <p>只要改变while那句中的arraylist[i] &lt; key即可变成非升序排列</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/insersort/'>insersort</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
 </div>
+</article>
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/01/26/turn-off-dashboard-on-mac/">Mac系统关闭dashboard</a></h1>
   
   
 
 
-    </article>
+
+
+
+
+
+
+	
+		<time datetime="2012-01-26T00:49:00+08:00">
+			<span class="day">26</span><span class="month">Jan</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/26/turn-off-dashboard-on-mac/">Mac系统关闭dashboard</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T00:49:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>一开始感觉dashboard这个东西挺好的，加上了好几个小插件玩，但现在发现使用频率超低，所以干脆想办法关闭吧，听说还能节约部分内存和提升开机速度，对这些倒是不太关心，只能有种不用就关闭的态度驱使着我。</p>
+    <p>一开始感觉dashboard这个东西挺好的，加上了好几个小插件玩，但现在发现使用频率超低，所以干脆想办法关闭吧，听说还能节约部分内存和提升开机速度，对这些倒是不太关心，只能有种不用就关闭的态度驱使着我。</p>
 
 <p>关闭命令：</p>
 
@@ -472,42 +468,46 @@ if __name__ == "__main__":
 <pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean NO
 killall Dock</pre>
 
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a><a class='category' href='/blog/categories/dashboard/'>dashboard</a><a class='category' href='/blog/categories/mac/'>mac</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
 </div>
+</article>
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/01/13/open-the-stack-function-of-dock/">开启Dock的堆栈功能</a></h1>
   
   
 
 
-    </article>
+
+
+
+
+
+
+	
+		<time datetime="2012-01-13T21:56:00+08:00">
+			<span class="day">13</span><span class="month">Jan</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/13/open-the-stack-function-of-dock/">开启Dock的堆栈功能</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-13T21:56:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>打开Terminal，输入：</p>
+    <p>打开Terminal，输入：</p>
 
 <pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock</pre>
 
@@ -515,104 +515,108 @@ killall Dock</pre>
 <p>然后回车（return），等Dock再次出现后，在已打开程序图标上滚动鼠标滚轮或者手势模拟滚轮，就能看到这个程序打开的子窗口或者子程序，很过瘾好用。</p>
 
 <p>我的MacOS：Lion</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a><a class='category' href='/blog/categories/dock/'>dock</a><a class='category' href='/blog/categories/mac/'>mac</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
 </div>
+</article>
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2012/01/07/the-first-paid-app/">购买的第一个付费app</a></h1>
   
   
 
 
-    </article>
+
+
+
+
+
+
+	
+		<time datetime="2012-01-07T01:12:00+08:00">
+			<span class="day"> 7</span><span class="month">Jan</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/07/the-first-paid-app/">购买的第一个付费app</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-07T01:12:00+08:00" pubdate data-updated="true">Jan 7<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>是切水果。</p>
+    <p>是切水果。</p>
 
 <p>由于itunes不支持我的信用卡，所以只能充50，一个一个买，第一个买的就是切水果！</p>
 
 <p>感觉挺好玩的！</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/app/'>app</a><a class='category' href='/blog/categories/qie-shui-guo/'>切水果</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
 </div>
-  
-  
+</article>
 
 
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/12/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-    <a class="next" href="/blog/page/10/">Newer &rarr;</a>
-    
-  </div>
+<nav id="pagenavi">
+	<a href="/blog/page/10/" class="prev alignleft">Prev</a>
+	<a href="/blog/page/12/" class="next alignright">Next</a>
+ <div class="clearfix"></div>
+</nav>
 </div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/08/25/rarp/">Rarp</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/19/conceptual-models/">Conceptual-models</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/18/arp/">Arp</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/08/manage-rasp-pi-in-internal-network/">Manage-rasp-pi-in-internal-network</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/03/opencv-with-pi/">Opencv-with-pi</a>
-      </li>
-    
-  </ul>
-</section>
+	<footer id="footer" class="inner"><div class="social alignright">
+	
+	
+	
+	
+	
+	<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>&copy; 2013 dawncold</p>
+<div class="clearfix"></div></footer>
+	<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+	(function($){
+		$('.entry-content').each(function(i){
+			var _i = i;
+			$(this).find('img').each(function(){
+				var alt = $(this).attr('alt');
 
+				if (alt == '' || typeof alt == 'undefined'){
+					$(this).wrap('<a href="'+$(this).attr('src')+'" class="fancybox" rel="gallery'+_i+'" />');
+				} else {
+					$(this).after('<span class="caption">'+alt+'</span>').wrap('<a href="'+$(this).attr('src')+'" class="fancybox" title="'+alt+'" rel="gallery'+_i+'" />');
+				}
+			});
+		});
+		$('.fancybox').fancybox();
+	})(jQuery);
+</script>
+<div id="phasebeam">
+	<canvas></canvas>
+	<canvas></canvas>
+	<canvas></canvas>
+</div>
+<script src="/javascripts/phasebeam.js"></script>
 
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>&copy; 2013 dawncold</p>
-</footer>
-  
 
 <script type="text/javascript">
       var disqus_shortname = 'dawncoldtechblog';
@@ -626,13 +630,6 @@ killall Dock</pre>
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
-
-
-
-
-
-
-
 
 
 

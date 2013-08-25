@@ -1,33 +1,22 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>UITableViewCell的对齐方式 - Trade Off</title>
-  <meta name="author" content="dawncold">
+	<meta charset="utf-8">
+	<title>UITableViewCell的对齐方式 | Trade Off</title>
+	<meta name="author" content="dawncold">
 
-  
-  <meta name="description" content="如果你用了Subtitle的Style，那么设置textAlignment为center就没用了，当然设置textAlignment目前只能针对textLabel来设置，听说在3.0以后的版本对于cell的textAlignment的设置方法废弃了。 &hellip;">
-  
+	
+	<meta name="description" content="UITableViewCell的对齐方式 31Jul 如果你用了Subtitle的Style，那么设置textAlignment为center就没用了，当然设置textAlignment目前只能针对textLabel来设置，听说在3. &hellip;">
+	
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://www.youth2009.org/blog/2011/07/31/alignment-of-uitableviewcell">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  
-  
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-8650400-5']);
@@ -41,60 +30,39 @@
   </script>
 
 
+	
 </head>
 
-<body   >
-  <header role="banner">
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:www.youth2009.org" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul>
+<body>
+	<header id="header" class="inner"><nav><ul>
   <li><a href="/">Home</a></li>
   <li><a href="/about">About</li>
   <li><a href="/blog/archives">Archives</a></li>
-</ul>
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
+</ul></nav>
+</header>
+	<div id="content" class="inner"><article class="post"><header>
   
-  <header>
-    
-      <h1 class="entry-title">UITableViewCell的对齐方式</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
+  <h1 class="title">UITableViewCell的对齐方式</h1>
+  
   
 
 
-<time datetime="2011-07-31T10:05:00+08:00" pubdate data-updated="true">Jul 31<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
 
 
-<div class="entry-content"><p>如果你用了Subtitle的Style，那么设置textAlignment为center就没用了，当然设置textAlignment目前只能针对textLabel来设置，听说在3.0以后的版本对于cell的textAlignment的设置方法废弃了。</p>
+
+
+
+
+	
+		<time datetime="2011-07-31T10:05:00+08:00">
+			<span class="day">31</span><span class="month">Jul</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>如果你用了Subtitle的Style，那么设置textAlignment为center就没用了，当然设置textAlignment目前只能针对textLabel来设置，听说在3.0以后的版本对于cell的textAlignment的设置方法废弃了。</p>
 
 <p>刚刚我把cell的style改成了default，然后再设置这些alignment，就能用了，真奇怪用subtitle的方式即使重建了cell，都不能设置alignment到center。但原因是这样的，我引用下官方reference：</p>
 
@@ -105,108 +73,73 @@ A style for a cell with a left-aligned label across the top and a left-aligned l
 
 
 <p>很明确了吧，subtitle就是left-aligned的label，再改也没用。当然还有个value1和value2的style，似乎是专门left-aligned和right-aligned的，不过在他们各自的反方向还有另外的label，最好看官方的说明和多多实践。</p>
-</div>
 
-
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-31T10:05:00+08:00" pubdate data-updated="true">Jul 31<span>st</span>, 2011</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/uitableviewcell/'>UITableViewCell</a>, <a class='category' href='/blog/categories/alignment/'>alignment</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-  
-</span>
-
-
-    </p>
     
       <div class="sharing">
-  
-  
-  
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4daee9911f9dfcb4"></script>
 </div>
+    
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/uitableviewcell/'>UITableViewCell</a><a class='category' href='/blog/categories/alignment/'>alignment</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2011/07/29/continue-buy-vps/" title="Previous Post: 还是继续买VPS了">&laquo; 还是继续买VPS了</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2011/08/03/a-japan-song/" title="Next Post: 从别人那儿看到的歌曲">从别人那儿看到的歌曲 &raquo;</a>
-      
-    </p>
   </footer>
-</article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
-
+  
 </div>
 
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/08/25/rarp/">Rarp</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/19/conceptual-models/">Conceptual-models</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/18/arp/">Arp</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/08/manage-rasp-pi-in-internal-network/">Manage-rasp-pi-in-internal-network</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/03/opencv-with-pi/">Opencv-with-pi</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-
-
-
-  
-</aside>
-
-
-    </div>
+<section id="comment">
+	<div id="disqus_thread" aria-live="polite">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> 
   </div>
-  <footer role="contentinfo"><p>&copy; 2013 dawncold</p>
-</footer>
-  
+</section>
+</article></div>
+	<footer id="footer" class="inner"><div class="social alignright">
+	
+	
+	
+	
+	
+	<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+</div>
+<p>&copy; 2013 dawncold</p>
+<div class="clearfix"></div></footer>
+	<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+	(function($){
+		$('.entry-content').each(function(i){
+			var _i = i;
+			$(this).find('img').each(function(){
+				var alt = $(this).attr('alt');
+
+				if (alt == '' || typeof alt == 'undefined'){
+					$(this).wrap('<a href="'+$(this).attr('src')+'" class="fancybox" rel="gallery'+_i+'" />');
+				} else {
+					$(this).after('<span class="caption">'+alt+'</span>').wrap('<a href="'+$(this).attr('src')+'" class="fancybox" title="'+alt+'" rel="gallery'+_i+'" />');
+				}
+			});
+		});
+		$('.fancybox').fancybox();
+	})(jQuery);
+</script>
+<div id="phasebeam">
+	<canvas></canvas>
+	<canvas></canvas>
+	<canvas></canvas>
+</div>
+<script src="/javascripts/phasebeam.js"></script>
+
 
 <script type="text/javascript">
       var disqus_shortname = 'dawncoldtechblog';
@@ -223,13 +156,6 @@ A style for a cell with a left-aligned label across the top and a left-aligned l
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
-
-
-
-
-
-
-
 
 
 
