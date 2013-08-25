@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="简单说，eclipse3.6这个版本中有些jar有问题，在代码提示的时候会卡死，我还以为是机器运算不过来了，但在JavaEE中很正常，所以一搜索得到的答案，需要替换一个系统jar包。 需要被替换的jar是：org.eclipse.jdt.core_3.6.1.v_A68_R36x.jar， &hellip;">
+	<meta name="description" content="自从前段时间学校封杀了研究生web端自由登陆drcom以来，我就只能找网络中心的老师开了本科生的web登陆，速度很慢，还有流量限制。 又加上Lion系统中的原drcom客户端不能用，我就攒了攒勇气下载了drcom4mac的源代码回来自己编译，本以为就是平台的微弱差异， &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,124 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2011/12/16/back-to-free-time/">终于回到自由的时候</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-12-16T21:27:00+08:00">
+			<span class="day">16</span><span class="month">Dec</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>自从前段时间学校封杀了研究生web端自由登陆drcom以来，我就只能找网络中心的老师开了本科生的web登陆，速度很慢，还有流量限制。</p>
+
+<p>又加上Lion系统中的原drcom客户端不能用，我就攒了攒勇气下载了drcom4mac的源代码回来自己编译，本以为就是平台的微弱差异，没想到一大堆根本看不懂的错误出现，也没那么平静的心来阅读一个个C函数，就这样搁置了。</p>
+
+<p>昨晚Drcom的GoogleGroups中有人发来邮件，说是写了个java的drcom客户端欢迎测试，我今天早晨配置好了libpcap库和jpcap库，然后使用了这个客户端，打开GUI后输入账号密码，登陆没反应。于是告诉了作者，中午收到作者来信，说暂时还只能用命令行方式，这我当然能够接受，可惜在Mac的terminal中显示的中文提示都是乱码，于是svn到了原代码到eclipse中看看吧，按照提示组合了命令行，成功登陆了！</p>
+
+<p>从此又自由了。</p>
+
+<p>项目地址：<a href="http://code.google.com/p/jdrcom/"><a href="http://code.google.com/p/jdrcom/">http://code.google.com/p/jdrcom/</a></a></p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/drcom/'>drcom</a><a class='category' href='/blog/categories/java/'>java</a><a class='category' href='/blog/categories/jpcap/'>jpcap</a><a class='category' href='/blog/categories/libcap/'>libcap</a><a class='category' href='/blog/categories/mac/'>mac</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2011/12/13/mssql-can-not-add-data-link/">MSSQL无法添加数据连接</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-12-13T19:10:00+08:00">
+			<span class="day">13</span><span class="month">Dec</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>“无法添加数据连接。未能加载文件或程序集“Microsoft SqlServer.Management.Sdk.sfc,Version=10.0.0.0,Culture=nutral,publicKey=89845dcd8080cc91&#8221;或它的某一个依赖项。系统找不到指定的文件。”</p>
+
+<p>今下午卸载了SQL2008，然后装了2005，在VS2010中使用SqlDataSource的时候发现无法创建数据库连接，错误就是这样说的，我现在猜想可能是卸载SQL2008的时候多卸载了一些东西。</p>
+
+<p>于是下载了下面这两个东西装上后就没问题了：</p>
+
+<p>感谢<a href="http://blog.sina.com.cn/s/blog_62fd44430100zccr.html">这位</a>（我直接复制了他的内容）</p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">（1）<strong style="font-weight: bold;">Microsoft SQL Server 系统 CLR 类型</strong></p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">SQL Server 系统 CLR 类型包中包含用于在 SQL Server 2008 中实现新的 geometry、geography 和 hierarchyid 类型的组件。此组件可与服务器分开安装，以允许客户端应用程序在服务器之外使用这些类型。</p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;">注意：</strong>此组件还要求有 <strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123373"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">Windows Installer 4.5</span></a></strong>。</p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">用户：<strong style="font-weight: bold;">客户、合作伙伴、开发人员</strong></p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123721&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X86 包</span></a></strong> (SQLSysClrTypes.msi) &ndash; 1588 KB
+<strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123722&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X64 包</span></a></strong> (SQLSysClrTypes.msi) &ndash; 1981 KB
+<strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123724&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">IA64 包</span></a></strong> (SQLSysClrTypes.msi) &ndash; 3289 KB</p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">（2）<strong style="font-weight: bold;">Microsoft SQL Server 2008 管理对象</strong></p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">SQL Server 管理对象 (SMO) 是一个 .NET Framework 对象模型，软件开发人员使用该模型可以创建用于管理 SQL Server 对象和服务的客户端应用程序。此对象模型将与 SQL Server 2000、SQL Server 2005 和 SQL Server 2008 协同工作。</p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;">注意：</strong>Microsoft SQL Server 2008 管理对象集合需要安装 <strong style="font-weight: bold;">Microsoft Core XML Services (MSXML) 6.0</strong> 和 Microsoft SQL Server Native Client，本页中也提供了这两个程序。</p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">用户：<strong style="font-weight: bold;">客户、合作伙伴、开发人员</strong></p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123708&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X86 包</span></a></strong> (SharedManagementObjects.msi) &ndash; 3225 KB
+<strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123709&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X64 包</span></a></strong> (SharedManagementObjects.msi) &ndash; 3895 KB
+<strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123710&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">IA64 包</span></a></strong> (SharedManagementObjects.msi) &ndash; 5640 KB</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/mssql/'>mssql</a><a class='category' href='/blog/categories/vs/'>vs</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -459,92 +577,6 @@ if __name__ == "__main__":
 
 
 	<div class="tags"><a class='category' href='/blog/categories/c/'>c</a><a class='category' href='/blog/categories/drcom/'>drcom</a><a class='category' href='/blog/categories/mac/'>mac</a><a class='category' href='/blog/categories/xcode/'>xcode</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/11/13/software-exam-is-finished/">软考结束了</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-11-13T07:58:00+08:00">
-			<span class="day">13</span><span class="month">Nov</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>经过昨天一天的努力，软考终于结束了，不知为何昨晚没有写这些，可能是因为晚上给同学过生日玩得很好，也很累，回来没有静下来写这些。</p>
-
-<p>一共复习了2个月，算是挺长的了，很多同学都复习几天就去参加了，不知道他做得怎么样。我感觉这次考试是我做得最难的一套题了，当然有不少成分是紧张，本来不算太难的题目只要有了紧张就会变得不知从哪里下手。开始做的时候有种在蒙答案的感觉，由于后来做完不能提前上交，我只能又做了一遍，修改了几个题目的答案（虽然知道越改越错的原则），再次做的时候感觉没有那么多题目拿不准，就是只有几个。</p>
-
-<p>下午的考试和上午一样，本来不担心下午考试的，不过一发下试卷来我看看题目，有些害怕——最担心的题目出现了，01背包，我忽略了那个题目直接做了后面的，不过后面那个题目我也有些摸不着头脑——没做过State模式的程序题，但后来又做了一遍后，最后那个题目的意思大致清楚了，按照我的想法写上了答案。回到前面看那个01背包，似乎没有我想得那么难，比较快得做出了答案，还是有些担心的，因为这么重要的一个题怎么会如此简短的答案呢，再仔细看过，没什么大问题，就先这样写上吧。</p>
-
-<p>总的来说时间是很充足的，如果第一遍不大会，那再做一遍或许就会有思路了，希望大家都能考过，明年就能参加高级的试试了！</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/ji-zhu/'>技术</a><a class='category' href='/blog/categories/ruan-kao/'>软考</a><a class='category' href='/blog/categories/qing-chun/'>青春</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/11/06/print-exam-id-tomorrow/">明天打印准考证</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-11-06T11:07:00+08:00">
-			<span class="day"> 6</span><span class="month">Nov</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>前天下午和Yz谈论了一下软考内容，他很不屑于这次考试了，发现了不少问题，而我同样也遇到了类似的问题——出题不规范、答案不清楚等等，让这次考试变得不正式。但我们都已经报名，如果不好好对待就会感觉有些亏了。</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/ji-zhu/'>技术</a><a class='category' href='/blog/categories/ruan-kao/'>软考</a></div>
 
     
   </footer>

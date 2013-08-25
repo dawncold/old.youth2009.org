@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-08-18T21:50:53+08:00</updated>
+  <updated>2013-08-25T14:17:14+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rarp]]></title>
+    <link href="http://www.youth2009.org/blog/2013/08/25/rarp/"/>
+    <updated>2013-08-25T12:01:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/08/25/rarp</id>
+    <content type="html"><![CDATA[<h2>Packet Format</h2>
+
+<p>RARP packet is identical to ARP packet, differences: RARP &lsquo;type&rsquo; field is 0x8035 for request and reply and &lsquo;op&rsquo; field is 3 for RARP request and 4 for RARP reply.</p>
+
+<p>RARP&rsquo;s reply is unicast.</p>
+
+<p>The implementation of RARP server is complex&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[conceptual-models]]></title>
+    <link href="http://www.youth2009.org/blog/2013/08/19/conceptual-models/"/>
+    <updated>2013-08-19T22:12:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/08/19/conceptual-models</id>
+    <content type="html"><![CDATA[<h2>Conceptual Models</h2>
+
+<p>Designing software so that its structure reflects that of the problem.</p>
+
+<p>Analysis is not only listing requirments, but also looking behind the surface requirments to come up with a mental model of what is going in the problem.</p>
+
+<p>Conceptual model is a human artifact.</p>
+
+<p>Developers use conceptual models to represent a model of the real world in order to understanding the read part of problems easily.</p>
+
+<p>There is no right or wrong model, merely one that is more useful for the job at hand.</p>
+
+<p>The example, snooker simulation, if your choose a Einsteinian model would be flexible enought to low speed or high speed situation, but the complexity is totally different you know, so the flexibility and many others aspects need a trade-off.</p>
+
+<p>When building a model in a programming language, maybe Python, you may get lost in this language or building this model using some features belong to Python, so this model is a Python-model, and it is hard to be implemented in other languages such as Java, PHP, etc. To avoid these problems, you need a third-party analysis techniques.</p>
+
+<p>Only domain experts could build right model, because of their domain knowledge.</p>
+
+<p>Conceptual model is closely to software interfaces rather than software implementations. One of the important things about OO is that it separates interface from implementation.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[arp]]></title>
@@ -596,79 +638,6 @@
 <p>不过很可惜，可能是sdk6.1的问题，结合上springboard和uialertview后就从来没build success，总说armv7中的springboard link error或者uialertview linker error，是在不知道怎么办了，仔细又看了别人的做法，发现他们还在用sdk5.1，估计就是这点差异吧？</p>
 
 <p>彻夜下载sdk5.1.。。。。。。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[build-up-env-for-sorted]]></title>
-    <link href="http://www.youth2009.org/blog/2013/03/16/build-up-env-for-sorted/"/>
-    <updated>2013-03-16T17:40:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/03/16/build-up-env-for-sorted</id>
-    <content type="html"><![CDATA[<p>找到了一篇教程，开始构建jailbreaken app的环境。</p>
-
-<p>基本需要的工具</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">THEOS</span><span class="o">=</span>/opt/theos
-</span><span class='line'>svn co http://svn.howett.net/svn/theos/trunk <span class="nv">$THEOS</span>
-</span><span class='line'>curl -s https://dl.dropboxusercontent.com/u/3157793/ldid &gt; <span class="nv">$THEOS</span>/bin/ldid; chmod +x <span class="nv">$THEOS</span>/bin/ldid
-</span><span class='line'>brew install dpkg<span class="o">(</span>如果出错安不上dpkg，那就先update一下brew，我就遇到这么个问题<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>用theos模板创建项目，<code>$THEOS/bin/nic.pl</code>，这会在当前目录中创建你的项目，选择模板类型，然后起名字之类的，填好就ok。</p>
-
-<p>在创见出来的项目中有Makefile，里面有一个地方需要注意，就是<code>xxxx_FILES=</code>这里，后面的m和mm文件是你当前所有的，如果你自己加了新的，你需要手动添加进去。</p>
-
-<p>再加两个环境变量</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">SDKVERSION</span><span class="o">=</span>6.1
-</span><span class='line'><span class="nb">export </span><span class="nv">THEOS_DEVICE_IP</span><span class="o">=</span>10.0.0.101
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>目标sdk版本，我用6.1了，后一个是手机的ip，自己弄到一个wifi中吧，后面部署需要。</p>
-
-<p>make&amp;make package，在make的时候不加sudo我会无法make成功。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo make
-</span><span class='line'>sudo make package
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>本目录下的deb就可以放到设备上安装了，安装命令是<code>dpkg -i xxx.deb</code></p>
-
-<p>不过你可以用部署的方式，<code>make package install</code>，他会依赖你刚刚设置的IP部署，但我这里似乎有问题，估计是环境变量的问题，光提示我找不到THEOS_DEVICE_IP</p>
-
-<p>我就scp到了设备上，手动执行了dpkg的命令，然后respring竟然没效果，只好reboot了一下，看到了刚刚的app已经被安装上了！！！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[about-Sorted]]></title>
-    <link href="http://www.youth2009.org/blog/2013/03/16/about-sorted/"/>
-    <updated>2013-03-16T12:54:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/03/16/about-sorted</id>
-    <content type="html"><![CDATA[<p>早就考虑做这么一个app，不过拖延到现在了，再次佩服一下我的拖延症。</p>
-
-<p>Sorted是这样一个app，安装上之后就会跟踪你使用手机上app的习惯，根据使用频率给桌面的app排序，估计等你用一段时间之后，第一页的apps就是最常用的了。</p>
-
-<p>当然，这需要你的iPhone jailbreaken。</p>
-
-<p>刚刚用iFile找到了存放app list的地方，在/User/Library/SpringBoard/IconState.plist，plist就像是python中的dict，里面两个key分别是：buttonBar、iconLists。</p>
-
-<p>buttonBar中有个list，是底部Dock上的app标识，例如有：com.apple.mobilephone、com.apple.MobileSMS等。</p>
-
-<p>iconLists中又是一个list，内容也是list，每个list表示桌面某一页上的apps。</p>
-
-<p>不过有个问题是：如果我手动修改了这里的值，比如我交换某页两个app的位置，回到桌面并不会立刻看到效果，如果要看效果，需要respring&hellip;就是重启SpringBoard，这是我不能接受的。需要再看SpringBoard的私有api有没有提供这方面的支持了。</p>
 ]]></content>
   </entry>
   

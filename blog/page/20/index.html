@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content=" 我本以为outerHTML是W3C的标准，结果搜索了一下才知道这是IE的方法，不过Chrome和Safari都支持了，FF竟然不支持，于是找到了扩展Firefox的outerHTML的方法：点击这里 Firefoxjs技术 ">
+	<meta name="description" content="用iCal的时候突然想起来这个早就可以与GoogleCalendar同步了，于是我就设置一下看看效果，但怎么设置都提示有问题。月光博客上有个解决方法，说是服务器地址写的是https://www.google.com/calendar/dav/EMAILADDRESS/user%E8%BF%99% &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -41,6 +41,94 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2011/06/11/ical-and-googlecalendar-sync-settings/">iCal4.0.4与GoogleCalendar同步设置</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-06-11T13:54:00+08:00">
+			<span class="day">11</span><span class="month">Jun</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>用iCal的时候突然想起来这个早就可以与GoogleCalendar同步了，于是我就设置一下看看效果，但怎么设置都提示有问题。月光博客上有个解决方法，说是服务器地址写的是<a href="https://www.google.com/calendar/dav/EMAILADDRESS/user%E8%BF%99%E6%A0%B7%E5%B0%B1%E5%8F%AF%E4%BB%A5%EF%BC%8C%E4%BD%86%E6%88%91%E8%BF%99%E6%A0%B7%E5%86%99%E4%BA%86%EF%BC%8C%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%9B%E4%BB%8EAccountType%E9%87%8C%E9%80%89%E6%8B%A9Google%E4%B9%9F%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%8C%E6%9C%80%E5%90%8E%E6%97%A0%E6%84%8F%E4%B8%AD%E5%B0%9D%E8%AF%95%E5%87%BA%E4%BA%86%E5%A6%82%E4%BD%95%E5%86%99%E8%83%BD%E5%A4%9F%E5%90%8C%E6%AD%A5%E3%80%82">https://www.google.com/calendar/dav/EMAILADDRESS/user%E8%BF%99%E6%A0%B7%E5%B0%B1%E5%8F%AF%E4%BB%A5%EF%BC%8C%E4%BD%86%E6%88%91%E8%BF%99%E6%A0%B7%E5%86%99%E4%BA%86%EF%BC%8C%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%9B%E4%BB%8EAccountType%E9%87%8C%E9%80%89%E6%8B%A9Google%E4%B9%9F%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%8C%E6%9C%80%E5%90%8E%E6%97%A0%E6%84%8F%E4%B8%AD%E5%B0%9D%E8%AF%95%E5%87%BA%E4%BA%86%E5%A6%82%E4%BD%95%E5%86%99%E8%83%BD%E5%A4%9F%E5%90%8C%E6%AD%A5%E3%80%82</a></p>
+
+<p>1.AccountType中选CalDav。</p>
+
+<p>2.username和password就写Google的，username应该是写邮箱的全部地址，server address写calendar.google.com就OK了，设置好后去看了详细的服务器地址信息，就是上面的那串很长的地址。以前的iCal也许是可以先建立一个账号再填写这些详细信息，但现在不能了。或许是想让用户写更少的信息就能得到服务吧，初衷是好的，但也应该设定一些应急措施…</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/google/'>Google</a><a class='category' href='/blog/categories/ical/'>iCal</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2011/06/09/indexof-in-ie/">IE中的indexOf功能</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2011-06-09T14:53:00+08:00">
+			<span class="day"> 9</span><span class="month">Jun</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <p>js中在数组中查找我一般都用indexOf来完成，没想到到了IE下就不能用了，搜索后才知道IE下根本不支持这个，于是从网上找了资料，扩展了IE下的这个功能。</p>
+
+<p>感谢这里：<a href="http://nootn.com/blog/Develop/35/"><a href="http://nootn.com/blog/Develop/35/">http://nootn.com/blog/Develop/35/</a></a></p>
+
+<p>还好js支持原型功能，否则一旦不兼容了就会很麻烦。现在想来，是不是这个功能就是为了让标准不同意做出来的呢？！</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/ie/'>ie</a><a class='category' href='/blog/categories/indexof/'>indexOf</a><a class='category' href='/blog/categories/js/'>js</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -498,100 +586,6 @@ server {
 
 
 	<div class="tags"><a class='category' href='/blog/categories/gae/'>gae</a><a class='category' href='/blog/categories/nginx/'>nginx</a><a class='category' href='/blog/categories/fan-xiang-dai-li/'>反向代理</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/06/04/eclipse-gae-on-mac/">Mac系统下的Eclipse中GAE配置</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-06-04T18:43:00+08:00">
-			<span class="day"> 4</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>用了不少时间PHP，也有些喜欢这种开发语言，但我仍然对Python有强烈的热情，但支持Python的主机服务还不算多，很想体验GAE，但由于在国内嘛，只能这样忍受了。</p>
-
-<p>原本想在Emacs中配置Python的环境，但……有些过于复杂了。安装了很久的emacs，到头来不知道该怎么用，打算卸载掉算了，自己不需要的东西，不管它多么优秀，对于我来说，目前都没有价值！所以我还是选择了Eclipse环境。</p>
-
-<p>在安装PyDev插件的时候遇到点问题：安装时候有3个项目可安装，我第一次是都安装的，但中途出现错误停止了，于是我第二次只安装了第一个，就是主要的PyDev程序，没有问题。</p>
-
-<p>在创建一个GAE项目后，需要填写GAE的location，在Mac系统下，装了Google提供的SDK For Mac就找不到GAE的相关文件了，因为都在那个app包中，只是在/usr/local/bin中有几个相关的py文件，在/usr/local/中有个链接，链接到app包中的一个地方，主要就是用这个链接，不过你会发现这样用之后还有点问题，插件需要找到lib目录下的django，如果你看看目录的话会发现根本没有django目录，只有另一个叫django_0_96这样的目录，于是建立一个软连接到django过去即可。</p>
-
-<p>以上方法来自国外一技术博客：</p>
-
-<p><a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/" target="_blank"><a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/">http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/</a></a></p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/eclipse/'>eclipse</a><a class='category' href='/blog/categories/gae/'>gae</a><a class='category' href='/blog/categories/mac/'>mac</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/06/01/mapapp-approaches-end/">项目要收工了</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-06-01T18:04:00+08:00">
-			<span class="day"> 1</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>虽然最后的几个功能还没有完成，但总归目前已经能用了。如果说端午过后还有机会继续提交的话，可能最终就是完成这几个功能吧。不过最大的问题是现在已经到了考试前夕，如果不想承受考前突击带来的痛苦和自责，那必须得提前准备，何况今年还要考英语四级。按照Fnln的说法，按照正常退步速度就能通过，但我已经不清楚现在是不是正常退步速度了，应该还没有吧，仅仅是最近大家都在复习的时候我在做网站而已：）</p>
-
-<p>刚刚用phpDocumentor把文档生成出来了，还遇到了可恶的乱码问题，最终用了强大的替换工具，硬生生把字符集换成了utf8，总算是解决了吧，虽然解决方法不太好，但这是个看结果的事情：）</p>
-
-<p>不知道Yfan那边的css工作怎么样了，要是进展顺利，明天全线停止，开始写写计划书什么的文字材料，在最后一个工作日交上去。当然这算是理想的情况。</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/di-tu-ying-yong/'>地图应用</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
   </footer>

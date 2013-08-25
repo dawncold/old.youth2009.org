@@ -4,7 +4,7 @@
   <title><![CDATA[Category: study | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/study/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-08-18T21:50:53+08:00</updated>
+  <updated>2013-08-25T14:17:14+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rarp]]></title>
+    <link href="http://www.youth2009.org/blog/2013/08/25/rarp/"/>
+    <updated>2013-08-25T12:01:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/08/25/rarp</id>
+    <content type="html"><![CDATA[<h2>Packet Format</h2>
+
+<p>RARP packet is identical to ARP packet, differences: RARP &lsquo;type&rsquo; field is 0x8035 for request and reply and &lsquo;op&rsquo; field is 3 for RARP request and 4 for RARP reply.</p>
+
+<p>RARP&rsquo;s reply is unicast.</p>
+
+<p>The implementation of RARP server is complex&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[conceptual-models]]></title>
+    <link href="http://www.youth2009.org/blog/2013/08/19/conceptual-models/"/>
+    <updated>2013-08-19T22:12:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/08/19/conceptual-models</id>
+    <content type="html"><![CDATA[<h2>Conceptual Models</h2>
+
+<p>Designing software so that its structure reflects that of the problem.</p>
+
+<p>Analysis is not only listing requirments, but also looking behind the surface requirments to come up with a mental model of what is going in the problem.</p>
+
+<p>Conceptual model is a human artifact.</p>
+
+<p>Developers use conceptual models to represent a model of the real world in order to understanding the read part of problems easily.</p>
+
+<p>There is no right or wrong model, merely one that is more useful for the job at hand.</p>
+
+<p>The example, snooker simulation, if your choose a Einsteinian model would be flexible enought to low speed or high speed situation, but the complexity is totally different you know, so the flexibility and many others aspects need a trade-off.</p>
+
+<p>When building a model in a programming language, maybe Python, you may get lost in this language or building this model using some features belong to Python, so this model is a Python-model, and it is hard to be implemented in other languages such as Java, PHP, etc. To avoid these problems, you need a third-party analysis techniques.</p>
+
+<p>Only domain experts could build right model, because of their domain knowledge.</p>
+
+<p>Conceptual model is closely to software interfaces rather than software implementations. One of the important things about OO is that it separates interface from implementation.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[arp]]></title>
@@ -150,44 +192,6 @@
 <h1>MTU</h1>
 
 <p>if the length of data field in IP datagram is larger than MTU(1500 or 1492 in Ethernet and 802 format), it will be fragmented.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OCP-talks]]></title>
-    <link href="http://www.youth2009.org/blog/2013/07/26/ocp-talks/"/>
-    <updated>2013-07-26T22:27:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/07/26/ocp-talks</id>
-    <content type="html"><![CDATA[<p>Good design should be open for extension and closed for modification. You can extend the module instead of modifying some working code.</p>
-
-<p>Abstraction is the Key: for example, a Client should use an Server object that implemented some interfaces instead of a concrete Server object.</p>
-
-<p>Interface&rsquo;s name should be named more closely associated to the dependent side instead of the implement side.</p>
-
-<p>A function that is closed for modification: if we add some changes for this function, it must be modified for working right, it may unconform OCP. For example, a function that draw all shapes in a shape list, it should be draw shapes one by one, and don&rsquo;t care this shape should draw in this way, another shape should draw in that way, etc.</p>
-
-<p>No matter how &ldquo;closed&rdquo; a module is, there will always be some kind of change against which it is not closed.</p>
-
-<p>Abstraction may gain &ldquo;closed&rdquo; software entity(func, module, class, etc), but it also need trade off.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[some-sed-work]]></title>
-    <link href="http://www.youth2009.org/blog/2013/06/15/some-sed-work/"/>
-    <updated>2013-06-15T16:34:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/06/15/some-sed-work</id>
-    <content type="html"><![CDATA[<p>博客内容是从wordpress转过来的，不可避免有很多地方没转换好，当时懒得弄，今天得空学习Shell编程，讲到了sed，就又搞了一下，基本满意了。</p>
-
-<p>以前用sed替换过分类等简单的文字错误，今天主要是把一些html给替换掉了。</p>
-
-<p>把<code>&lt;p&gt;</code>删掉，在删掉<code>&lt;/p&gt;以及&lt;br /&gt;</code>后面加换行等：</p>
-
-<p><code>sed -i "" -e 's;&lt;/p&gt;;\'$'\n;g' *.markdown</code></p>
-
-<p><code>sed -i "" -e 's;&lt;br /&gt;;\'$'\n;g' *.markdown</code></p>
-
-<p>需要注意的是Mac OS中的sed和我看到的很不一样，所以这个替换都是特殊的，来自<a href="http://cafenate.wordpress.com/2010/12/05/newlines-in-sed-on-mac/">这里</a></p>
 ]]></content>
   </entry>
   

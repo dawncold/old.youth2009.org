@@ -7,11 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="32 bits Internet address
-| /|
-|ARP |RARP
-|/ |
-48 bits Ethernet address Gratuitous ARP send its own IP to verify whether someone has used this. &hellip;">
+	<meta name="description" content="Packet Format RARP packet is identical to ARP packet, differences: RARP &lsquo;type&rsquo; field is 0x8035 for request and reply and &lsquo;op&rsquo &hellip;">
 	
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
@@ -45,6 +41,110 @@
 </ul></nav>
 </header>
 	<div id="content" class="inner">
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2013/08/25/rarp/">Rarp</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2013-08-25T12:01:00+08:00">
+			<span class="day">25</span><span class="month">Aug</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <h2>Packet Format</h2>
+
+<p>RARP packet is identical to ARP packet, differences: RARP &lsquo;type&rsquo; field is 0x8035 for request and reply and &lsquo;op&rsquo; field is 3 for RARP request and 4 for RARP reply.</p>
+
+<p>RARP&rsquo;s reply is unicast.</p>
+
+<p>The implementation of RARP server is complex&hellip;</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/study/'>study</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
+
+
+	<article class="post"><header>
+  
+  <h1 class="title"><a href="/blog/2013/08/19/conceptual-models/">Conceptual-models</a></h1>
+  
+  
+
+
+
+
+
+
+
+
+	
+		<time datetime="2013-08-19T22:12:00+08:00">
+			<span class="day">19</span><span class="month">Aug</span>
+		</time>
+	
+
+</header>
+<div class="entry-content">
+  
+    <h2>Conceptual Models</h2>
+
+<p>Designing software so that its structure reflects that of the problem.</p>
+
+<p>Analysis is not only listing requirments, but also looking behind the surface requirments to come up with a mental model of what is going in the problem.</p>
+
+<p>Conceptual model is a human artifact.</p>
+
+<p>Developers use conceptual models to represent a model of the real world in order to understanding the read part of problems easily.</p>
+
+<p>There is no right or wrong model, merely one that is more useful for the job at hand.</p>
+
+<p>The example, snooker simulation, if your choose a Einsteinian model would be flexible enought to low speed or high speed situation, but the complexity is totally different you know, so the flexibility and many others aspects need a trade-off.</p>
+
+<p>When building a model in a programming language, maybe Python, you may get lost in this language or building this model using some features belong to Python, so this model is a Python-model, and it is hard to be implemented in other languages such as Java, PHP, etc. To avoid these problems, you need a third-party analysis techniques.</p>
+
+<p>Only domain experts could build right model, because of their domain knowledge.</p>
+
+<p>Conceptual model is closely to software interfaces rather than software implementations. One of the important things about OO is that it separates interface from implementation.</p>
+
+  
+  
+  <footer class="meta">
+    
+
+
+
+	<div class="tags"><a class='category' href='/blog/categories/analysis-pattern/'>analysis-pattern</a><a class='category' href='/blog/categories/study/'>study</a></div>
+
+    
+  </footer>
+  
+</div>
+</article>
 
 
 	<article class="post"><header>
@@ -531,162 +631,6 @@
 </span><span class='line'>* * * * * /Users/dawncold/ping_test.py &gt; /Users/dawncold/pt
 </span></code></pre></td></tr></table></div></figure>
 
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/dev/'>dev</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2013/07/04/build-4pm-env/">搭建4pm.la的数据库服务器</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2013-07-04T21:54:00+08:00">
-			<span class="day"> 4</span><span class="month">Jul</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>原来用MySQL比较多，现在工作上主要用PostgreSQL，对于低级的应用来说，选什么数据库都差不多，但也要为以后发展做准备，不过我暂时看不到那么远，PG作为一个开源的数据库来说，还算是比MySQL有优势一点，所以就用这个了。</p>
-
-<p>在Mac上安装的时候有个locale的选择，我选了这个：</p>
-
-<p><img src="http://pic.yupoo.com/dawncold0/CZ9bpp9U/medish.jpg" alt="locale select" /></p>
-
-<p>然后下载了pgAdmin作为GUI工具，结合PG的CLI一起使用比较好。使用psql登陆数据库可以用：<code>psql -h localhost -U postgres -W</code></p>
-
-<pre><code>其中
--h db host
--U db user
--W use password
-</code></pre>
-
-<p>pgAdmin用起来感觉超差，目测是java写的，有点小卡，远不如在Ubuntu上的体验。</p>
-
-<p>创建一个网站用的用户，可以用createuser这条命令，或者连上PG后写CREATE USER这种SQL，官方文档介绍两者没什么差别。createuser只是包装了一下SQL而已。（<a href="http://www.postgresql.org/docs/current/static/app-createuser.html">官方文档</a>）</p>
-
-<p><code>createuser -dEeP -h localhost -U postgres -W xxx</code></p>
-
-<pre><code>其中
--d can create db
--E encrypted user's password
--e echo SQL command
--P can not create role
-</code></pre>
-
-<p>创建一个数据库，同样可以用包装了CREATE DATABASE的createdb。(<a href="http://www.postgresql.org/docs/9.2/static/app-createdb.html">官方文档</a>）</p>
-
-<p><code>createdb -e -E UTF8 -l zh_CN.UTF-8 -O OWNER -h localhost -U postgres -W DBNAME</code></p>
-
-<pre><code>其中
--e echo SQL command
--E use encoding
--l set locale, included LC_COLLATE and LC_CTYPE
--O db's owner
-</code></pre>
-
-<p>看到篇不错的文章，介绍PG的ROLE、USER、SCHEMA、TABLESPACE、DATABASE等概念的关系：<a href="http://blog.csdn.net/kanon_lgt/article/details/5931522">这里</a></p>
-
-<p>生产环境用的Ubuntu12.04.2，在创建数据库的时候制定locale，但没有zh_CN这个locale，于是需要安装：<code>/usr/shard/locales/install-language-pack zh_CN</code>，安装完了最好能重启机器，不然的话好像createdb一直会报错说zh_CN.UTF-8这个locale不正确。重启了之后再创建db就ok了，但告诉你说collection你选了zh_CN的，和默认模板template1的en_US冲突，提示是换成template0模板，于是加了参数<code>-T</code>:<code>createdb -e -E UTF8 -l "zh_CN.UTF-8" -O :OWNER -T template0 -h localhost -U postgres -W :DBNAME</code></p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/4pm-dot-la/'>4pm.la</a></div>
-
-    
-  </footer>
-  
-</div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2013/06/25/nginx-upload-file-without-backend/">Nginx-upload-file-without-backend</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2013-06-25T23:09:00+08:00">
-			<span class="day">25</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>以前用了nginx-upload-module，不过这个module的作者不打算继续更新了，导致nginx版本高于1.3.9就无法使用这个module来处理上传文件。本着不引入更多依赖并且使用一个比较成熟方法的前提，只有client_body_in_file_only，这是nginx buildin方法。</p>
-
-<p>原本用upload-module的时候在location / 中有个if，如果发现有multipart就会处理一下，再pass回去。处理完后会多出两个参数，比如image.name和image.path，其中image是file input的name。然后back-end就直接那path和name来处理文件了，临时文件会放在一个固定的地方。</p>
-
-<p>由于client_body_in_file_only只能放在server、http、location中，得专门建立一个location而不能放在if中。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>location ^~ /upload/ {
-</span><span class='line'>  client_body_temp_path      /tmp/;
-</span><span class='line'>  client_body_in_file_only   on;
-</span><span class='line'>  client_body_buffer_size    128K;
-</span><span class='line'>  client_max_body_size       1000M;
-</span><span class='line'>
-</span><span class='line'>  proxy_pass_request_headers on;
-</span><span class='line'>  proxy_set_header           X-FILE $request_body_file; 
-</span><span class='line'>  proxy_set_body             off;
-</span><span class='line'>  proxy_redirect             off;
-</span><span class='line'>  proxy_pass                 http://backend/
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样以upload开头的就会做这样处理，上传的文件path会放在header中，至于name该怎么办，我是把name的值作为query string拼在了form的action中，在上传开始前得到文件名，然后拼上去。</p>
-
-<p>需要注意的是，client_body_in_file_only不支持RFC2388，也就是说multipart不管用，你可以考虑用ajax上传插件来做上传，注意插件里的multipart设为false。上传插件推荐JQuery-File-Upload。</p>
-
-<p>依赖，越少越好。</p>
 
   
   
