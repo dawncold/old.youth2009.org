@@ -1,22 +1,33 @@
 
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<title>got-raspberry | Trade Off</title>
-	<meta name="author" content="dawncold">
+  <meta charset="utf-8">
+  <title>got-raspberry - Trade Off</title>
+  <meta name="author" content="dawncold">
 
-	
-	<meta name="description" content="Got-raspberry 2Aug 工资一发就买了块表。。。并且还狠心买了这个玩具——raspberry。 默认用了新手的那个镜像，叫NOOBS，就是里面装好了不少东西，系统也有好几个，默认用了推荐的Raspbian，是Debian的一个变种啦，开发用的Ubuntu都是一个家族的。 配置的话， &hellip;">
-	
+  
+  <meta name="description" content="工资一发就买了块表。。。并且还狠心买了这个玩具——raspberry。 默认用了新手的那个镜像，叫NOOBS，就是里面装好了不少东西，系统也有好几个，默认用了推荐的Raspbian，是Debian的一个变种啦，开发用的Ubuntu都是一个家族的。 配置的话，没啥可说的， &hellip;">
+  
 
-	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
-	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-	
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/blog/2013/08/02/got-raspberry">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-8650400-5']);
@@ -30,39 +41,60 @@
   </script>
 
 
-	
 </head>
 
-<body>
-	<header id="header" class="inner"><nav><ul>
+<body   >
+  <header role="banner">
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.youth2009.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul>
   <li><a href="/">Home</a></li>
   <li><a href="/about">About</li>
   <li><a href="/blog/archives">Archives</a></li>
-</ul></nav>
-</header>
-	<div id="content" class="inner"><article class="post"><header>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
   
-  <h1 class="title">Got-raspberry</h1>
+  <header>
+    
+      <h1 class="entry-title">Got-raspberry</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
   
-  
 
 
+<time datetime="2013-08-02T21:40:00+08:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
 
 
-
-
-
-
-	
-		<time datetime="2013-08-02T21:40:00+08:00">
-			<span class="day"> 2</span><span class="month">Aug</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>工资一发就买了块表。。。并且还狠心买了这个玩具——raspberry。</p>
+<div class="entry-content"><p>工资一发就买了块表。。。并且还狠心买了这个玩具——raspberry。</p>
 
 <p>默认用了新手的那个镜像，叫NOOBS，就是里面装好了不少东西，系统也有好几个，默认用了推荐的Raspbian，是Debian的一个变种啦，开发用的Ubuntu都是一个家族的。</p>
 
@@ -80,73 +112,108 @@
 <p>raspberrry上捕捉视频用：<code>raspivid -t 1000000 -vs -w 800 -h 600 -o -| nc 172.19.1.124 5001</code>，其中t参数指定了捕捉多少毫秒的视频，后面的vs是防抖，w和h控制宽高，这样就得到一个800x600的画面。</p>
 
 <p>Mac上用nc把发来的stream转到mplayer上：<code>nc -lp 5001 | mplayer -fps 31 -cache 512 -</code>，很无语的是<code>man nc</code>得到一句解释，l和p参数在一起用是个错误，但不加p就绝对在我这里不work！</p>
+</div>
 
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-02T21:40:00+08:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/life/'>life</a>
+  
+</span>
+
+
+    </p>
     
       <div class="sharing">
-	<div class="addthis_toolbox addthis_default_style ">
-	
-	
-	
-	<a class="addthis_counter addthis_pill_style"></a>
-	</div>
-	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4daee9911f9dfcb4"></script>
+  
+  
+  
 </div>
-    
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/life/'>life</a></div>
 
     
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/07/27/internet-protocol/" title="Previous Post: internet protocol">&laquo; internet protocol</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/08/03/opencv-with-pi/" title="Next Post: opencv-with-pi">opencv-with-pi &raquo;</a>
+      
+    </p>
   </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
   
-</div>
-
-<section id="comment">
-	<div id="disqus_thread" aria-live="polite">
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> 
-  </div>
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/25/rarp/">Rarp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/19/conceptual-models/">Conceptual-models</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/18/arp/">Arp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/08/manage-rasp-pi-in-internal-network/">Manage-rasp-pi-in-internal-network</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/03/opencv-with-pi/">Opencv-with-pi</a>
+      </li>
+    
+  </ul>
 </section>
-</article></div>
-	<footer id="footer" class="inner"><div class="social alignright">
-	
-	
-	
-	
-	
-	<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-</div>
-<p>&copy; 2013 dawncold</p>
-<div class="clearfix"></div></footer>
-	<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-	(function($){
-		$('.entry-content').each(function(i){
-			var _i = i;
-			$(this).find('img').each(function(){
-				var alt = $(this).attr('alt');
 
-				if (alt == '' || typeof alt == 'undefined'){
-					$(this).wrap('<a href="'+$(this).attr('src')+'" class="fancybox" rel="gallery'+_i+'" />');
-				} else {
-					$(this).after('<span class="caption">'+alt+'</span>').wrap('<a href="'+$(this).attr('src')+'" class="fancybox" title="'+alt+'" rel="gallery'+_i+'" />');
-				}
-			});
-		});
-		$('.fancybox').fancybox();
-	})(jQuery);
-</script>
-<div id="phasebeam">
-	<canvas></canvas>
-	<canvas></canvas>
-	<canvas></canvas>
-</div>
-<script src="/javascripts/phasebeam.js"></script>
 
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>&copy; 2013 dawncold</p>
+</footer>
+  
 
 <script type="text/javascript">
       var disqus_shortname = 'dawncoldtechblog';
@@ -163,6 +230,13 @@
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
+
+
+
+
+
+
+
 
 
 

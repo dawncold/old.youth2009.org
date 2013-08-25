@@ -1,22 +1,33 @@
 
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<title>Trade Off</title>
-	<meta name="author" content="dawncold">
+  <meta charset="utf-8">
+  <title>Trade Off</title>
+  <meta name="author" content="dawncold">
 
-	
-	<meta name="description" content="着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。 不过在用的时候发现查看带有中文字符的文件会出现乱码，在这里得到了解决方案： 0.打开putty主程序， &hellip;">
-	
+  
+  <meta name="description" content="着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。 不过在用的时候发现查看带有中文字符的文件会出现乱码，在这里得到了解决方案： 0.打开putty主程序， &hellip;">
+  
 
-	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
-	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-	
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/blog/page/9">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-8650400-5']);
@@ -30,88 +41,105 @@
   </script>
 
 
-	
 </head>
 
-<body>
-	<header id="header" class="inner"><nav><ul>
+<body   >
+  <header role="banner">
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.youth2009.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul>
   <li><a href="/">Home</a></li>
   <li><a href="/about">About</li>
   <li><a href="/blog/archives">Archives</a></li>
-</ul></nav>
-</header>
-	<div id="content" class="inner">
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/03/02/bad-chinese-encoding-in-putty/">Putty的中文乱码</a></h1>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
   
   
-
-
-
-
-
-
-
-
-	
-		<time datetime="2012-03-02T12:08:00+08:00">
-			<span class="day"> 2</span><span class="month">Mar</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
   
-    <p>着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。</p>
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/02/bad-chinese-encoding-in-putty/">Putty的中文乱码</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-02T12:08:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。</p>
 
 <p>不过在用的时候发现查看带有中文字符的文件会出现乱码，在<a href="http://koda.iteye.com/blog/219494">这里</a>得到了解决方案：</p>
 
 <p><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">0.打开putty主程序，选择window-〉Appearance-〉Font settings-〉Change&hellip;,选择Fixedsys字体,字符集选择CHINESE_GB2312。 </span><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">1.在window-〉Appearance -〉Translation中，Received data assumed to be in which character set 中,把Use font encoding改为UTF-8如果经常使用,把这些设置保存在session里面. </span><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">2.现在打开putty,登录成功后,在shell中输入:export LC_ALL=&lsquo;zh_CN.utf8&#8217; </span></p>
 
 <p><p style="text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif;"><span style="line-height: 25px;">然后再打开文件就没问题了。</span></span></p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/putty/'>putty</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
 </div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/02/23/have-bought-textmate/">买了textmate</a></h1>
   
   
 
 
-
-
-
-
-
-
-	
-		<time datetime="2012-02-23T19:29:00+08:00">
-			<span class="day">23</span><span class="month">Feb</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
+    </article>
   
-    <p>截至目前，这是我买得最贵的一款软件了——39欧元（327RMB）</p>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/23/have-bought-textmate/">买了textmate</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-23T19:29:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>截至目前，这是我买得最贵的一款软件了——39欧元（327RMB）</p>
 
 <p>一直在豆瓣Textmate小组中等人家团购，自己也从没在官网试过购买，一看是用的paypal做中转，感觉不靠谱，以前也没试过paypal的支付，没想到这次成功了，先用了张信用卡支付，发现不行，结果换普通银行卡，直接跳转到了银联，然后我又用的信用卡透支……</p>
 
@@ -128,46 +156,42 @@ osascript -e 'tell app "TextMate" to reload bundles'</pre>
 <p>第一次见cd还能这样用，这样简直太方便了！还有最后那句script，多么优美的句子：）</p>
 
 <p>以后就要多用textmate了，先放弃emacs。</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a><a class='category' href='/blog/categories/textmate/'>textmate</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
 </div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/02/15/set-timezone-in-rails/">设置Rails中的timezone</a></h1>
   
   
 
 
-
-
-
-
-
-
-	
-		<time datetime="2012-02-15T14:37:00+08:00">
-			<span class="day">15</span><span class="month">Feb</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
+    </article>
   
-    <p>Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。</p>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/15/set-timezone-in-rails/">设置Rails中的timezone</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-15T14:37:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。</p>
 
 <p>没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1</p>
 
@@ -188,90 +212,82 @@ Binary data inserted for `string` type on column `randstring`
 
 
 <p>最后的返回值那里还是晚了8小时，我用sqlite3查看的时候时间是正常的，所以这里怀疑是ruby的时间问题了，好在app中已经正常！</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/rails/'>rails</a><a class='category' href='/blog/categories/timezone/'>timezone</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
 </div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/02/14/differentiate-form-for-and-form-tag/">分清form_for和form_tag</a></h1>
   
   
 
 
-
-
-
-
-
-
-	
-		<time datetime="2012-02-14T19:34:00+08:00">
-			<span class="day">14</span><span class="month">Feb</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
+    </article>
   
-    <p>两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][:username]，前面的:user是我给form_for的第一个参数，这个form的所有信息都得加[:user]这样的前缀才能得到了，让我十分痛苦（又加上是个2.14）</p>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/14/differentiate-form-for-and-form-tag/">分清form_for和form_tag</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-14T19:34:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][:username]，前面的:user是我给form_for的第一个参数，这个form的所有信息都得加[:user]这样的前缀才能得到了，让我十分痛苦（又加上是个2.14）</p>
 
 <p>使用form_tag后对于它的action不太会控制，所幸不写参数了，正好action指向本地址，省事儿！</p>
 
 <p>感谢<a href="http://blog.csdn.net/babylon_0049/article/details/4730763">这里</a>写的内容</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/form-for/'>form for</a><a class='category' href='/blog/categories/form-tag/'>form tag</a><a class='category' href='/blog/categories/rails/'>rails</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
 </div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/02/14/write-attribute-in-ruby/">Ruby中的write_attribute</a></h1>
   
   
 
 
-
-
-
-
-
-
-	
-		<time datetime="2012-02-14T16:06:00+08:00">
-			<span class="day">14</span><span class="month">Feb</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
+    </article>
   
-    <p>有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误：</p>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/14/write-attribute-in-ruby/">Ruby中的write_attribute</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-14T16:06:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误：</p>
 
 <pre class="prettyprint linenums bush:ruby" lang="ruby">  def password=(pwd)
    @password = pwd
@@ -287,180 +303,164 @@ Binary data inserted for `string` type on column `randstring`
 
 
 <p>使用write_attribute(xxx,jjj)即可，意思就是把jjj赋值给xxx了，因为此时正好在定义xxx，所以不能用xxx = 这样的方法赋值。</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/ruby/'>ruby</a><a class='category' href='/blog/categories/write-attribute/'>write attribute</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
 </div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/02/12/pain-rails/">痛苦的rails</a></h1>
   
   
 
 
-
-
-
-
-
-
-	
-		<time datetime="2012-02-12T22:03:00+08:00">
-			<span class="day">12</span><span class="month">Feb</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
+    </article>
   
-    <p>由于rails给我带来的痛苦，让我对ruby这门写着code for fun的语言产生了怀疑，真得有fun么？一开始就没有感觉，现在来看更是如此。</p>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/12/pain-rails/">痛苦的rails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-12T22:03:00+08:00" pubdate data-updated="true">Feb 12<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>由于rails给我带来的痛苦，让我对ruby这门写着code for fun的语言产生了怀疑，真得有fun么？一开始就没有感觉，现在来看更是如此。</p>
 
 <p>rails是一个正在成长的框架，每一个小版本号的变动都可能会引入和废弃不少特性，而我又傻傻地在使用最新的rails（3.2.1），书上讲的都是rails2.2.2的内容，乍一看变动不应该太大啊，实际上并不是如此！！！</p>
 
 <p>对于一个新手来说，学习一个正在成长的框架是痛苦的：（</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/rails/'>rails</a><a class='category' href='/blog/categories/ruby/'>ruby</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
 </div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/02/09/egg-ache-no-route-matches-say-hello/">蛋疼的No Route Matches “/say/hello”</a></h1>
   
   
 
 
-
-
-
-
-
-
-	
-		<time datetime="2012-02-09T23:01:00+08:00">
-			<span class="day"> 9</span><span class="month">Feb</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
+    </article>
   
-    <p>现在有些后悔买的那本书了，《web开发敏捷之道第三版》，那本书的代码使用的是rails2.2.2，真够2的，现在用的是3.2.1，作者说有不少代码已经更改了，但没想到会差得连我都能看出来，我只是个初学者啊！好在我还能稍稍应付自如，后面可能就会更加累了！</p>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/09/egg-ache-no-route-matches-say-hello/">蛋疼的No Route Matches “/say/hello”</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-09T23:01:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>现在有些后悔买的那本书了，《web开发敏捷之道第三版》，那本书的代码使用的是rails2.2.2，真够2的，现在用的是3.2.1，作者说有不少代码已经更改了，但没想到会差得连我都能看出来，我只是个初学者啊！好在我还能稍稍应付自如，后面可能就会更加累了！</p>
 
 <p>一开始在helloworld部分就遇到一个问题，用rails generate controller say后根本不能自动添加一条routes，找了原作者的wiki更新发现这里已经需要自己修改routes的内容了，不过也好，消去一行注释即可：）</p>
 
 <p>感谢<a href="http://www.xiaoyangsheng.com/2011/02/routing-error-no-route-matches-sayhello/">这里</a></p>
 
 <p>如果还有谁遇到类似不兼容问题，请看<a href="http://pragprog.com/wikis/wiki/ChangesToRails">作者的wiki更新</a>吧，希望有帮助！</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/rails/'>rails</a><a class='category' href='/blog/categories/routes/'>routes</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
 </div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/02/09/arguments-issue-in-auto-complete-plugin/">Emacs中auto-complete插件问题</a></h1>
   
   
 
 
-
-
-
-
-
-
-	
-		<time datetime="2012-02-09T22:21:00+08:00">
-			<span class="day"> 9</span><span class="month">Feb</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
+    </article>
   
-    <p>一般都是直接打开emacs使用，偶尔在terminal中用emacs发现出现错误：Wrong number of arguments: called-interactively-p, 1</p>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/09/arguments-issue-in-auto-complete-plugin/">Emacs中auto-complete插件问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-09T22:21:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一般都是直接打开emacs使用，偶尔在terminal中用emacs发现出现错误：Wrong number of arguments: called-interactively-p, 1</p>
 
 <p>看了看是auto-complete的某些错误，通过Google得到了相关问题的解决，删除auto-complete的elc文件，似乎这些文件是可以加速插件的运行编译出来的，现在删除后在terminal中使用就没问题了！</p>
 
 <p>感谢<a href="http://www.lichaozheng.info/2011/10/19/%E8%A7%A3%E5%86%B3emacs-%E5%87%BA%E7%8E%B0wrong-number-of-arguments-called-interactively-p-1/">这里</a>的帮助</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/autocomplete/'>autocomplete</a><a class='category' href='/blog/categories/emacs/'>emacs</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
 </div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/">安装mysql的Ruby驱动遇到的问题</a></h1>
   
   
 
 
-
-
-
-
-
-
-	
-		<time datetime="2012-02-09T20:08:00+08:00">
-			<span class="day"> 9</span><span class="month">Feb</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
+    </article>
   
-    <pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/">安装mysql的Ruby驱动遇到的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-09T20:08:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql
 Fetching: mysql-2.8.1.gem (100%)
 Building native extensions.  This could take a while...
 ERROR:  Error installing mysql:
@@ -539,46 +539,42 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
 <p>一开始的那两个“&mdash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
 
 <p>我已经解决问题了，成功安装mysql的ruby驱动，如果仍然遇到问题，可以试试参考<a href="http://blog.bmn.name/2008/02/rails-gem-install-mysql-throws-error-extconfrb-failed/">这里</a>（同样感谢这里）。</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/mysql/'>mysql</a><a class='category' href='/blog/categories/ruby/'>ruby</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
 </div>
-</article>
-
-
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2012/02/07/some-issue-when-saving-rules-in-iptables/">保存iptables规则遇到的问题</a></h1>
   
   
 
 
-
-
-
-
-
-
-	
-		<time datetime="2012-02-07T18:03:00+08:00">
-			<span class="day"> 7</span><span class="month">Feb</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
+    </article>
   
-    <p>开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。</p>
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/07/some-issue-when-saving-rules-in-iptables/">保存iptables规则遇到的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-07T18:03:00+08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。</p>
 
 <p>在保存iptables规则的时候遇到这样的问题：</p>
 
@@ -595,64 +591,64 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
 <p>行了，剩下就没遇到问题了：）</p>
 
 <p>稍稍广告一下吧：欢迎使用Yardvps的VPS哦，我就在使用，现在很稳定，现在有了中文界面，支持支付宝，挺好吧？可以点击<a href="http://www.yardvps.com/billing/aff.php?aff=399">这里</a>购买，这样我也许能得到一点推广费用：）</p>
+</div>
+  
+  
 
+
+    </article>
   
-  
-  <footer class="meta">
+  <div class="pagination">
     
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/iptables/'>iptables</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
+      <a class="prev" href="/blog/page/10/">&larr; Older</a>
     
-  </footer>
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/8/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
   
-</div>
-</article>
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/25/rarp/">Rarp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/19/conceptual-models/">Conceptual-models</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/18/arp/">Arp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/08/manage-rasp-pi-in-internal-network/">Manage-rasp-pi-in-internal-network</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/03/opencv-with-pi/">Opencv-with-pi</a>
+      </li>
+    
+  </ul>
+</section>
 
 
-<nav id="pagenavi">
-	<a href="/blog/page/8/" class="prev alignleft">Prev</a>
-	<a href="/blog/page/10/" class="next alignright">Next</a>
- <div class="clearfix"></div>
-</nav>
-</div>
-	<footer id="footer" class="inner"><div class="social alignright">
-	
-	
-	
-	
-	
-	<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-</div>
-<p>&copy; 2013 dawncold</p>
-<div class="clearfix"></div></footer>
-	<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-	(function($){
-		$('.entry-content').each(function(i){
-			var _i = i;
-			$(this).find('img').each(function(){
-				var alt = $(this).attr('alt');
 
-				if (alt == '' || typeof alt == 'undefined'){
-					$(this).wrap('<a href="'+$(this).attr('src')+'" class="fancybox" rel="gallery'+_i+'" />');
-				} else {
-					$(this).after('<span class="caption">'+alt+'</span>').wrap('<a href="'+$(this).attr('src')+'" class="fancybox" title="'+alt+'" rel="gallery'+_i+'" />');
-				}
-			});
-		});
-		$('.fancybox').fancybox();
-	})(jQuery);
-</script>
-<div id="phasebeam">
-	<canvas></canvas>
-	<canvas></canvas>
-	<canvas></canvas>
-</div>
-<script src="/javascripts/phasebeam.js"></script>
 
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>&copy; 2013 dawncold</p>
+</footer>
+  
 
 <script type="text/javascript">
       var disqus_shortname = 'dawncoldtechblog';
@@ -666,6 +662,13 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
+
+
+
+
+
+
+
 
 
 

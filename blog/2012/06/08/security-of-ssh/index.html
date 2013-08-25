@@ -1,22 +1,33 @@
 
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<title>ssh的安全配置 | Trade Off</title>
-	<meta name="author" content="dawncold">
+  <meta charset="utf-8">
+  <title>ssh的安全配置 - Trade Off</title>
+  <meta name="author" content="dawncold">
 
-	
-	<meta name="description" content="Ssh的安全配置 8Jun 今天刚刚换了vps，ssh的安全早就该配置好，没想到竟然是现在了…… 首先这些基本需要做：http://www.deepvps.com/improve-ssh-security.html 再就是禁止root后需要创建一个马甲账号：   0. &hellip;">
-	
+  
+  <meta name="description" content="今天刚刚换了vps，ssh的安全早就该配置好，没想到竟然是现在了…… 首先这些基本需要做：http://www.deepvps.com/improve-ssh-security.html 再就是禁止root后需要创建一个马甲账号：   0.增加ubuntu的admin组，我的vps默认没有， &hellip;">
+  
 
-	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
-	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-	
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/blog/2012/06/08/security-of-ssh">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-8650400-5']);
@@ -30,39 +41,60 @@
   </script>
 
 
-	
 </head>
 
-<body>
-	<header id="header" class="inner"><nav><ul>
+<body   >
+  <header role="banner">
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.youth2009.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul>
   <li><a href="/">Home</a></li>
   <li><a href="/about">About</li>
   <li><a href="/blog/archives">Archives</a></li>
-</ul></nav>
-</header>
-	<div id="content" class="inner"><article class="post"><header>
+</ul>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
   
-  <h1 class="title">Ssh的安全配置</h1>
+  <header>
+    
+      <h1 class="entry-title">Ssh的安全配置</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
   
-  
 
 
+<time datetime="2012-06-08T16:11:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
 
 
-
-
-
-
-	
-		<time datetime="2012-06-08T16:11:00+08:00">
-			<span class="day"> 8</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>今天刚刚换了vps，ssh的安全早就该配置好，没想到竟然是现在了……</p>
+<div class="entry-content"><p>今天刚刚换了vps，ssh的安全早就该配置好，没想到竟然是现在了……</p>
 
 <p>首先这些基本需要做：<a href="http://www.deepvps.com/improve-ssh-security.html"><a href="http://www.deepvps.com/improve-ssh-security.html">http://www.deepvps.com/improve-ssh-security.html</a></a></p>
 
@@ -100,73 +132,108 @@
 <p> </p>
 
 <p> </p>
+</div>
 
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-08T16:11:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ssh/'>ssh</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+  
+</span>
+
+
+    </p>
     
       <div class="sharing">
-	<div class="addthis_toolbox addthis_default_style ">
-	
-	
-	
-	<a class="addthis_counter addthis_pill_style"></a>
-	</div>
-	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4daee9911f9dfcb4"></script>
+  
+  
+  
 </div>
-    
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/ssh/'>ssh</a><a class='category' href='/blog/categories/vps/'>vps</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
     
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/06/08/very-long-offline-of-my-vps-in-yardvps/" title="Previous Post: 超长宕机">&laquo; 超长宕机</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/06/08/solved-set-lc_ctype-to-default-locale-no-such-file-or-directory/" title="Next Post: 解决Cannot set LC_CTYPE to default locale: No such file or directory问题">解决Cannot set LC_CTYPE to default locale: No such file or directory问题 &raquo;</a>
+      
+    </p>
   </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
   
-</div>
-
-<section id="comment">
-	<div id="disqus_thread" aria-live="polite">
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> 
-  </div>
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/25/rarp/">Rarp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/19/conceptual-models/">Conceptual-models</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/18/arp/">Arp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/08/manage-rasp-pi-in-internal-network/">Manage-rasp-pi-in-internal-network</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/03/opencv-with-pi/">Opencv-with-pi</a>
+      </li>
+    
+  </ul>
 </section>
-</article></div>
-	<footer id="footer" class="inner"><div class="social alignright">
-	
-	
-	
-	
-	
-	<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-</div>
-<p>&copy; 2013 dawncold</p>
-<div class="clearfix"></div></footer>
-	<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-	(function($){
-		$('.entry-content').each(function(i){
-			var _i = i;
-			$(this).find('img').each(function(){
-				var alt = $(this).attr('alt');
 
-				if (alt == '' || typeof alt == 'undefined'){
-					$(this).wrap('<a href="'+$(this).attr('src')+'" class="fancybox" rel="gallery'+_i+'" />');
-				} else {
-					$(this).after('<span class="caption">'+alt+'</span>').wrap('<a href="'+$(this).attr('src')+'" class="fancybox" title="'+alt+'" rel="gallery'+_i+'" />');
-				}
-			});
-		});
-		$('.fancybox').fancybox();
-	})(jQuery);
-</script>
-<div id="phasebeam">
-	<canvas></canvas>
-	<canvas></canvas>
-	<canvas></canvas>
-</div>
-<script src="/javascripts/phasebeam.js"></script>
 
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>&copy; 2013 dawncold</p>
+</footer>
+  
 
 <script type="text/javascript">
       var disqus_shortname = 'dawncoldtechblog';
@@ -183,6 +250,13 @@
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
+
+
+
+
+
+
+
 
 
 
