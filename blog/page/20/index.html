@@ -9,191 +9,213 @@
 	
 	<meta name="description" content="用iCal的时候突然想起来这个早就可以与GoogleCalendar同步了，于是我就设置一下看看效果，但怎么设置都提示有问题。月光博客上有个解决方法，说是服务器地址写的是https://www.google.com/calendar/dav/EMAILADDRESS/user%E8%BF%99% &hellip;">
 	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
 	<link rel="canonical" href="">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-	
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-8650400-5']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	
 </head>
 
+
 <body>
-	<header id="header" class="inner"><nav><ul>
-  <li><a href="/">Home</a></li>
-  <li><a href="/about">About</li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul></nav>
+	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
+	</form>
+</nav>
+
 </header>
+	
+		
+	
 	<div id="content" class="inner">
 
 
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/06/11/ical-and-googlecalendar-sync-settings/">iCal4.0.4与GoogleCalendar同步设置</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-06-11T13:54:00+08:00">
-			<span class="day">11</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>用iCal的时候突然想起来这个早就可以与GoogleCalendar同步了，于是我就设置一下看看效果，但怎么设置都提示有问题。月光博客上有个解决方法，说是服务器地址写的是<a href="https://www.google.com/calendar/dav/EMAILADDRESS/user%E8%BF%99%E6%A0%B7%E5%B0%B1%E5%8F%AF%E4%BB%A5%EF%BC%8C%E4%BD%86%E6%88%91%E8%BF%99%E6%A0%B7%E5%86%99%E4%BA%86%EF%BC%8C%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%9B%E4%BB%8EAccountType%E9%87%8C%E9%80%89%E6%8B%A9Google%E4%B9%9F%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%8C%E6%9C%80%E5%90%8E%E6%97%A0%E6%84%8F%E4%B8%AD%E5%B0%9D%E8%AF%95%E5%87%BA%E4%BA%86%E5%A6%82%E4%BD%95%E5%86%99%E8%83%BD%E5%A4%9F%E5%90%8C%E6%AD%A5%E3%80%82">https://www.google.com/calendar/dav/EMAILADDRESS/user%E8%BF%99%E6%A0%B7%E5%B0%B1%E5%8F%AF%E4%BB%A5%EF%BC%8C%E4%BD%86%E6%88%91%E8%BF%99%E6%A0%B7%E5%86%99%E4%BA%86%EF%BC%8C%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%9B%E4%BB%8EAccountType%E9%87%8C%E9%80%89%E6%8B%A9Google%E4%B9%9F%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%8C%E6%9C%80%E5%90%8E%E6%97%A0%E6%84%8F%E4%B8%AD%E5%B0%9D%E8%AF%95%E5%87%BA%E4%BA%86%E5%A6%82%E4%BD%95%E5%86%99%E8%83%BD%E5%A4%9F%E5%90%8C%E6%AD%A5%E3%80%82</a></p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/11/ical-and-googlecalendar-sync-settings/">
+		
+			iCal4.0.4与GoogleCalendar同步设置</a>
+	</h2>
+	<div class="entry-content">
+		<p>用iCal的时候突然想起来这个早就可以与GoogleCalendar同步了，于是我就设置一下看看效果，但怎么设置都提示有问题。月光博客上有个解决方法，说是服务器地址写的是<a href="https://www.google.com/calendar/dav/EMAILADDRESS/user%E8%BF%99%E6%A0%B7%E5%B0%B1%E5%8F%AF%E4%BB%A5%EF%BC%8C%E4%BD%86%E6%88%91%E8%BF%99%E6%A0%B7%E5%86%99%E4%BA%86%EF%BC%8C%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%9B%E4%BB%8EAccountType%E9%87%8C%E9%80%89%E6%8B%A9Google%E4%B9%9F%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%8C%E6%9C%80%E5%90%8E%E6%97%A0%E6%84%8F%E4%B8%AD%E5%B0%9D%E8%AF%95%E5%87%BA%E4%BA%86%E5%A6%82%E4%BD%95%E5%86%99%E8%83%BD%E5%A4%9F%E5%90%8C%E6%AD%A5%E3%80%82">https://www.google.com/calendar/dav/EMAILADDRESS/user%E8%BF%99%E6%A0%B7%E5%B0%B1%E5%8F%AF%E4%BB%A5%EF%BC%8C%E4%BD%86%E6%88%91%E8%BF%99%E6%A0%B7%E5%86%99%E4%BA%86%EF%BC%8C%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%9B%E4%BB%8EAccountType%E9%87%8C%E9%80%89%E6%8B%A9Google%E4%B9%9F%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%8C%E6%9C%80%E5%90%8E%E6%97%A0%E6%84%8F%E4%B8%AD%E5%B0%9D%E8%AF%95%E5%87%BA%E4%BA%86%E5%A6%82%E4%BD%95%E5%86%99%E8%83%BD%E5%A4%9F%E5%90%8C%E6%AD%A5%E3%80%82</a></p>
 
 <p>1.AccountType中选CalDav。</p>
 
 <p>2.username和password就写Google的，username应该是写邮箱的全部地址，server address写calendar.google.com就OK了，设置好后去看了详细的服务器地址信息，就是上面的那串很长的地址。以前的iCal也许是可以先建立一个账号再填写这些详细信息，但现在不能了。或许是想让用户写更少的信息就能得到服务吧，初衷是好的，但也应该设定一些应急措施…</p>
 
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
   
-  
-  <footer class="meta">
-    
 
 
+<time datetime="2011-06-11T13:54:00+08:00" pubdate data-updated="true">Jun 11<span>th</span>, 2011</time></div>
+	<div class="tags">
 
-	<div class="tags"><a class='category' href='/blog/categories/google/'>Google</a><a class='category' href='/blog/categories/ical/'>iCal</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
-    
-  </footer>
-  
+	<a class='category' href='/blog/categories/google/'>Google</a>, <a class='category' href='/blog/categories/ical/'>iCal</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
 </div>
 </article>
 
 
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/06/09/indexof-in-ie/">IE中的indexOf功能</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-06-09T14:53:00+08:00">
-			<span class="day"> 9</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>js中在数组中查找我一般都用indexOf来完成，没想到到了IE下就不能用了，搜索后才知道IE下根本不支持这个，于是从网上找了资料，扩展了IE下的这个功能。</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/09/indexof-in-ie/">
+		
+			IE中的indexOf功能</a>
+	</h2>
+	<div class="entry-content">
+		<p>js中在数组中查找我一般都用indexOf来完成，没想到到了IE下就不能用了，搜索后才知道IE下根本不支持这个，于是从网上找了资料，扩展了IE下的这个功能。</p>
 
 <p>感谢这里：<a href="http://nootn.com/blog/Develop/35/"><a href="http://nootn.com/blog/Develop/35/">http://nootn.com/blog/Develop/35/</a></a></p>
 
 <p>还好js支持原型功能，否则一旦不兼容了就会很麻烦。现在想来，是不是这个功能就是为了让标准不同意做出来的呢？！</p>
 
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
   
-  
-  <footer class="meta">
-    
 
 
+<time datetime="2011-06-09T14:53:00+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2011</time></div>
+	<div class="tags">
 
-	<div class="tags"><a class='category' href='/blog/categories/ie/'>ie</a><a class='category' href='/blog/categories/indexof/'>indexOf</a><a class='category' href='/blog/categories/js/'>js</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
-    
-  </footer>
-  
+	<a class='category' href='/blog/categories/ie/'>ie</a>, <a class='category' href='/blog/categories/indexof/'>indexOf</a>, <a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
 </div>
 </article>
 
 
-	<article class="post"><header>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/09/bad-firefox-it-doesnt-support-outerhtml/">
+		
+			可恶的Firefox不支持outerHTML</a>
+	</h2>
+	<div class="entry-content">
+		<p>我本以为outerHTML是W3C的标准，结果搜索了一下才知道这是IE的方法，不过Chrome和Safari都支持了，FF竟然不支持，于是找到了扩展Firefox的outerHTML的方法：<a href="http://www.cnblogs.com/doll-net/archive/2007/06/17/786835.html">点击这里</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
   
-  <h1 class="title"><a href="/blog/2011/06/09/bad-firefox-it-doesnt-support-outerhtml/">可恶的Firefox不支持outerHTML</a></h1>
-  
-  
 
 
+<time datetime="2011-06-09T05:57:00+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2011</time></div>
+	<div class="tags">
 
 
+	<a class='category' href='/blog/categories/firefox/'>Firefox</a>, <a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
-
-
+</div>
 	
-		<time datetime="2011-06-09T05:57:00+08:00">
-			<span class="day"> 9</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>我本以为outerHTML是W3C的标准，结果搜索了一下才知道这是IE的方法，不过Chrome和Safari都支持了，FF竟然不支持，于是找到了扩展Firefox的outerHTML的方法：<a href="http://www.cnblogs.com/doll-net/archive/2007/06/17/786835.html">点击这里</a></p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/firefox/'>Firefox</a><a class='category' href='/blog/categories/js/'>js</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
 </div>
 </article>
 
 
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/06/05/today-i-write-too-articles/">写了不少文章</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-06-05T21:28:00+08:00">
-			<span class="day"> 5</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>今天似乎写了很多文章，间隔也不长，似乎是想要把前几天缺失的都补回来。</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/05/today-i-write-too-articles/">
+		
+			写了不少文章</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天似乎写了很多文章，间隔也不长，似乎是想要把前几天缺失的都补回来。</p>
 
 <p>似乎是从中午开始的吧，看《Python简明教程》，到晚上吃饭的时候，正好看完了，不知道是我看得快呢还是这本书本身就不厚。这就算是我正式学习<a title="python" href="http://www.youth2009.org/tag/python/">python</a>的开始了吧。</p>
 
@@ -203,45 +225,46 @@
 
 <p>在网上看过几篇文章，<a href="http://www.read.org.cn/html/368-learning-how-to-adhere-to-the-daily.html">这里</a>的一篇提供了一些不错的方法，值得学习。自己根据软件工程的方法总结出来：把宏伟的目标分解成小任务，就是一个个小目标，大的目标你可能一下子做不完，而且只要一次难以完成就会产生懈怠情绪，可能会很快走向失败。小任务基本上是可以短时间完成的，再结合上文提供的方法，让完成小任务成为自己的习惯。我想应该就没什么问题了吧。</p>
 
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
   
-  
-  <footer class="meta">
-    
 
 
+<time datetime="2011-06-05T21:28:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time></div>
+	<div class="tags">
 
-	<div class="tags"><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/zhe-si/'>哲思</a></div>
 
-    
-  </footer>
-  
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>
+
+
+</div>
+	
 </div>
 </article>
 
 
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/06/05/lambda-in-python/">用lambda创建函数</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-06-05T19:51:00+08:00">
-			<span class="day"> 5</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>又是一个bt功能：创建一种函数规则</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/05/lambda-in-python/">
+		
+			用lambda创建函数</a>
+	</h2>
+	<div class="entry-content">
+		<p>又是一个bt功能：创建一种函数规则</p>
 
 <pre class="prettyprint linenums bush:python" lang="python">#!/usr/bin/python
 # Filename: lambda.py
@@ -257,45 +280,46 @@ print twice(5)</pre>
 
 <p>  twice就是创建出来的函数规则，参数2传进入构建了lambda表达式中的n，s值需要再指定，于是后面的word字符串和数字5就算是这个s了吧。了解到这种bt方法很有用，不过对于我这样的初学者来说，暂时还看不到前景：）</p>
 
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
   
-  
-  <footer class="meta">
-    
 
 
+<time datetime="2011-06-05T19:51:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time></div>
+	<div class="tags">
 
-	<div class="tags"><a class='category' href='/blog/categories/lambda/'>lambda</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
-    
-  </footer>
-  
+	<a class='category' href='/blog/categories/lambda/'>lambda</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
 </div>
 </article>
 
 
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/06/05/bt-method-for-list-in-python/">Python中一个bt的列表方法</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-06-05T19:44:00+08:00">
-			<span class="day"> 5</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>如果你感觉列表这种数据结构就已经很bt了的话，再看看这个吧，我感觉这简直就在破坏程序员的正常思维！</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/05/bt-method-for-list-in-python/">
+		
+			Python中一个bt的列表方法</a>
+	</h2>
+	<div class="entry-content">
+		<p>如果你感觉列表这种数据结构就已经很bt了的话，再看看这个吧，我感觉这简直就在破坏程序员的正常思维！</p>
 
 <p>example_list = [2,3,4]</p>
 
@@ -307,45 +331,46 @@ print twice(5)</pre>
 
 <p>这样的自由构建方式，是被推广使用的么？！</p>
 
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
   
-  
-  <footer class="meta">
-    
 
 
+<time datetime="2011-06-05T19:44:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time></div>
+	<div class="tags">
 
-	<div class="tags"><a class='category' href='/blog/categories/list/'>list</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
-    
-  </footer>
-  
+	<a class='category' href='/blog/categories/list/'>list</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
 </div>
 </article>
 
 
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/06/05/pickle-in-python/">Python中的泡菜</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-06-05T18:59:00+08:00">
-			<span class="day"> 5</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>刚刚得知pickle的意思是泡菜，而这篇文章可不打算讲解泡菜的制作方法，只是说明一下python语言中的pickle模块。 这个模块说是能够存储任何python对象，而且还能取出来再使用，有pickle和cPickle两个模块，功能是一样的，只是后者用C语言实现，据说速度比前者快1000倍。那么我们就用后者吧！！！</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/05/pickle-in-python/">
+		
+			Python中的泡菜</a>
+	</h2>
+	<div class="entry-content">
+		<p>刚刚得知pickle的意思是泡菜，而这篇文章可不打算讲解泡菜的制作方法，只是说明一下python语言中的pickle模块。 这个模块说是能够存储任何python对象，而且还能取出来再使用，有pickle和cPickle两个模块，功能是一样的，只是后者用C语言实现，据说速度比前者快1000倍。那么我们就用后者吧！！！</p>
 
 <pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
 # -*- coding:utf-8 -*-
@@ -370,45 +395,46 @@ print from_file</pre>
 
 <p>首先定义了一个列表，想要把列表存储到文件中，再打开取出列表。 p作为cPickle的别名了。用dump方法把shoplist存储到f指向的文件中。 后面用load方法从f指向的文件取出数据给了from_file这个变量，而取出的就是我们存起来的那个列表，于是再输出。</p>
 
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
   
-  
-  <footer class="meta">
-    
 
 
+<time datetime="2011-06-05T18:59:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time></div>
+	<div class="tags">
 
-	<div class="tags"><a class='category' href='/blog/categories/pickle/'>pickle</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
-    
-  </footer>
-  
+	<a class='category' href='/blog/categories/pickle/'>pickle</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
 </div>
 </article>
 
 
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/06/05/inherit-in-python/">Python的继承</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-06-05T18:41:00+08:00">
-			<span class="day"> 5</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/05/inherit-in-python/">
+		
+			Python的继承</a>
+	</h2>
+	<div class="entry-content">
+		<p>python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:</p>
 
 <pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
 # -*- coding:utf-8 -*-
@@ -440,85 +466,87 @@ tea_p = Teacher('zhenzhen',20,1010000000)
 tea_p.tell()</pre>
 
 
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
   
-  
-  <footer class="meta">
-    
 
 
+<time datetime="2011-06-05T18:41:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time></div>
+	<div class="tags">
 
-	<div class="tags"><a class='category' href='/blog/categories/inherit/'>inherit</a><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
-    
-  </footer>
-  
+	<a class='category' href='/blog/categories/inherit/'>inherit</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
 </div>
 </article>
 
 
-	<article class="post"><header>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/05/copy-object-in-python/">
+		
+			Python中的复制对象</a>
+	</h2>
+	<div class="entry-content">
+		<p>在python简明教程中找到这样一句话，关于复制复杂python对象的，如果单纯变量名相互赋值可能只是把引用拷贝过去，一旦原对象更改了，目标对象就会出现问题。文章中对于序列、字典这样的拷贝做出了解释，要用分片来复制，但其他对象该怎么做，暂时还不太清除，可能后面会说吧：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
   
-  <h1 class="title"><a href="/blog/2011/06/05/copy-object-in-python/">Python中的复制对象</a></h1>
-  
-  
 
 
+<time datetime="2011-06-05T16:06:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time></div>
+	<div class="tags">
 
 
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
-
-
+</div>
 	
-		<time datetime="2011-06-05T16:06:00+08:00">
-			<span class="day"> 5</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>在python简明教程中找到这样一句话，关于复制复杂python对象的，如果单纯变量名相互赋值可能只是把引用拷贝过去，一旦原对象更改了，目标对象就会出现问题。文章中对于序列、字典这样的拷贝做出了解释，要用分片来复制，但其他对象该怎么做，暂时还不太清除，可能后面会说吧：）</p>
-
-  
-  
-  <footer class="meta">
-    
-
-
-
-	<div class="tags"><a class='category' href='/blog/categories/python/'>python</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
-
-    
-  </footer>
-  
 </div>
 </article>
 
 
-	<article class="post"><header>
-  
-  <h1 class="title"><a href="/blog/2011/06/04/reverse-proxy-for-gae/">架设GAE的反向代理</a></h1>
-  
-  
-
-
-
-
-
-
-
-
-	
-		<time datetime="2011-06-04T23:55:00+08:00">
-			<span class="day"> 4</span><span class="month">Jun</span>
-		</time>
-	
-
-</header>
-<div class="entry-content">
-  
-    <p>域名用的是app.wodeyitian.com 昨天用的方法不太稳定，现在找来一个不错的方法：</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/04/reverse-proxy-for-gae/">
+		
+			架设GAE的反向代理</a>
+	</h2>
+	<div class="entry-content">
+		<p>域名用的是app.wodeyitian.com 昨天用的方法不太稳定，现在找来一个不错的方法：</p>
 
 <pre class="prettyprint linenums bush:bash" lang="bash">upstream ghs {
 ip_hash;
@@ -578,62 +606,57 @@ server {
 </div>
 
 
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
   
-  
-  <footer class="meta">
-    
 
 
+<time datetime="2011-06-04T23:55:00+08:00" pubdate data-updated="true">Jun 4<span>th</span>, 2011</time></div>
+	<div class="tags">
 
-	<div class="tags"><a class='category' href='/blog/categories/gae/'>gae</a><a class='category' href='/blog/categories/nginx/'>nginx</a><a class='category' href='/blog/categories/fan-xiang-dai-li/'>反向代理</a><a class='category' href='/blog/categories/ji-zhu/'>技术</a></div>
 
-    
-  </footer>
-  
+	<a class='category' href='/blog/categories/gae/'>gae</a>, <a class='category' href='/blog/categories/nginx/'>nginx</a>, <a class='category' href='/blog/categories/fan-xiang-dai-li/'>反向代理</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
 </div>
 </article>
 
-
 <nav id="pagenavi">
-	<a href="/blog/page/19/" class="prev alignleft">Prev</a>
-	<a href="/blog/page/21/" class="next alignright">Next</a>
- <div class="clearfix"></div>
-</nav>
-</div>
-	<footer id="footer" class="inner"><div class="social alignright">
-	
-	
-	
-	
-	
-	<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-</div>
-<p>&copy; 2013 dawncold</p>
-<div class="clearfix"></div></footer>
-	<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-	(function($){
-		$('.entry-content').each(function(i){
-			var _i = i;
-			$(this).find('img').each(function(){
-				var alt = $(this).attr('alt');
+    
+        <a href="/blog/page/19/" class="prev">Prev</a>
+    
+    
+        <a href="/blog/page/21/" class="next">Next</a>
+    
+    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
+</nav></div>
+	<footer id="footer" class="inner">Copyright &copy; 2013
 
-				if (alt == '' || typeof alt == 'undefined'){
-					$(this).wrap('<a href="'+$(this).attr('src')+'" class="fancybox" rel="gallery'+_i+'" />');
-				} else {
-					$(this).after('<span class="caption">'+alt+'</span>').wrap('<a href="'+$(this).attr('src')+'" class="fancybox" title="'+alt+'" rel="gallery'+_i+'" />');
-				}
-			});
-		});
-		$('.fancybox').fancybox();
-	})(jQuery);
-</script>
-<div id="phasebeam">
-	<canvas></canvas>
-	<canvas></canvas>
-	<canvas></canvas>
-</div>
-<script src="/javascripts/phasebeam.js"></script>
+    dawncold
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
 
 
 <script type="text/javascript">
@@ -644,10 +667,24 @@ server {
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//go.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-8650400-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 
 
 
