@@ -4,7 +4,7 @@
   <title><![CDATA[Category: study | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/study/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-01T03:36:01+08:00</updated>
+  <updated>2013-12-01T03:46:30+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -67,7 +67,7 @@
 48 bits Ethernet address
 </code></pre>
 
-<h3>Gratuitous ARP</h3>
+<h1>Gratuitous ARP</h1>
 
 <ol>
 <li>send its own IP to verify whether someone has used this.</li>
@@ -189,7 +189,7 @@
 
 <p>anything sent to one of the host&rsquo;s own IP addresses is ent to the loopback interface!</p>
 
-<h1>MTU</h1>
+<h2>MTU</h2>
 
 <p>if the length of data field in IP datagram is larger than MTU(1500 or 1492 in Ethernet and 802 format), it will be fragmented.</p>
 ]]></content>
