@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="最近的work@honovation博客一直是用octopress写的，就是直接写markdown内容即可，github负责转换并提供托管服务，而且可以自己绑定域名，比如现在的http://workathonovation.youth2009.org%E5%B0%B1%E6%98%AF%E8% &hellip;">
+	<meta name="description" content="早就考虑做这么一个app，不过拖延到现在了，再次佩服一下我的拖延症。 Sorted是这样一个app，安装上之后就会跟踪你使用手机上app的习惯，根据使用频率给桌面的app排序，估计等你用一段时间之后，第一页的apps就是最常用的了。 当然，这需要你的iPhone jailbreaken。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,14 +79,24 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">
+		<a href="/blog/2013/03/16/about-sorted/">
 		
-			我在考虑迁移到octopress上</a>
+			about-Sorted</a>
 	</h2>
 	<div class="entry-content">
-		<p>最近的work@honovation博客一直是用octopress写的，就是直接写markdown内容即可，github负责转换并提供托管服务，而且可以自己绑定域名，比如现在的<a href="http://workathonovation.youth2009.org%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%BC%84%E5%BE%97%EF%BC%8C%E9%9D%9E%E5%B8%B8%E7%AE%80%E6%B4%81%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E8%80%8C%E4%B8%94%E6%9C%89%E7%A7%8D%E5%9B%9E%E5%BD%92%E6%9C%AC%E7%9C%9F%E7%9A%84%E6%84%9F%E8%A7%89%E3%80%82">http://workathonovation.youth2009.org%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%BC%84%E5%BE%97%EF%BC%8C%E9%9D%9E%E5%B8%B8%E7%AE%80%E6%B4%81%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E8%80%8C%E4%B8%94%E6%9C%89%E7%A7%8D%E5%9B%9E%E5%BD%92%E6%9C%AC%E7%9C%9F%E7%9A%84%E6%84%9F%E8%A7%89%E3%80%82</a></p>
+		<p>早就考虑做这么一个app，不过拖延到现在了，再次佩服一下我的拖延症。</p>
 
-<p>迟迟没有动作是因为我付了30刀个这个VPS，也就是到2月才过期，如果全部转到了octopress那么空着这个VPS干嘛？翻墙玩？呵呵，那真是无聊死了吧。。。说实在的，vps除了放个blog和自己做出来的小站外，好像就没什么用处了，但现在自己连小站都没有了，悉数关闭。。。</p>
+<p>Sorted是这样一个app，安装上之后就会跟踪你使用手机上app的习惯，根据使用频率给桌面的app排序，估计等你用一段时间之后，第一页的apps就是最常用的了。</p>
+
+<p>当然，这需要你的iPhone jailbreaken。</p>
+
+<p>刚刚用iFile找到了存放app list的地方，在/User/Library/SpringBoard/IconState.plist，plist就像是python中的dict，里面两个key分别是：buttonBar、iconLists。</p>
+
+<p>buttonBar中有个list，是底部Dock上的app标识，例如有：com.apple.mobilephone、com.apple.MobileSMS等。</p>
+
+<p>iconLists中又是一个list，内容也是list，每个list表示桌面某一页上的apps。</p>
+
+<p>不过有个问题是：如果我手动修改了这里的值，比如我交换某页两个app的位置，回到桌面并不会立刻看到效果，如果要看效果，需要respring&hellip;就是重启SpringBoard，这是我不能接受的。需要再看SpringBoard的私有api有没有提供这方面的支持了。</p>
 
 		
 		
@@ -106,11 +116,11 @@
   
 
 
-<time datetime="2012-11-25T21:51:00+08:00" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time></div>
+<time datetime="2013-03-16T12:54:00+08:00" pubdate data-updated="true">Mar 16<span>th</span>, 2013</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/blog/'>blog</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/app/'>app</a>, <a class='category' href='/blog/categories/sorted/'>sorted</a>
 
 
 </div>
@@ -122,477 +132,52 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">
+		<a href="/blog/2013/03/13/generator-in-python/">
 		
-			Pytz的6分钟时差</a>
+			Generator-in-python</a>
 	</h2>
 	<div class="entry-content">
-		<p>项目中有使用pytz这个第三方库来处理datetiem相关的东西。不过最近测试的时候发现，创建了一个时间点后，最终得到的时间点和预想的时间点有6分钟的误差，从网上搜到的资料是这样解决的：详情看<a href="http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1">http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1</a></p>
+		<p>今天在代码中遇到一个next方法（python代码），以前从没用过这个，于是简单了解了一下。</p>
 
-<p>创建datetime的时候，特别是带timezone，需要localize一下，否则在使用pytz的时候就会出现这6分钟的差异。代码中首先创建了datetime，然后localize后再replace了timezone为pytz的，最终还astimezone为pytz.utc。我们是使用utc的，你的代码也许不需要：）</p>
+<p>next就是iterator了，可以通过iterator来找东西，找到就停下了，如果给了默认值，没找到的话就用默认值。</p>
 
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-20T16:13:00+08:00" pubdate data-updated="true">Oct 20<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/datetime/'>datetime</a>, <a class='category' href='/blog/categories/pytz/'>pytz</a>, <a class='category' href='/blog/categories/timezone/'>timezone</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/09/nat-practical/">
-		
-			NAT实践</a>
-	</h2>
-	<div class="entry-content">
-		<p>昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3.20这台container来处理，相应的response也会返回过去。这样就做到了服务隔离。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to 10.0.3.20
-</span><span class='line'>sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT --to 200.200.200.25
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样就把进入的请求都发到了10.0.3.20这台container上去处理。</p>
-
-<p><img src="http://pic.yupoo.com/dawncold0/CkkIbzDr/medish.jpg" alt="nat" /></p>
-
-<p>只默认开了一个nginx，就这样的效果。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-09T14:09:00+08:00" pubdate data-updated="true">Oct 9<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/iptables/'>iptables</a>, <a class='category' href='/blog/categories/lxc/'>lxc</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/08/lxc-practical/">
-		
-			LXC实践</a>
-	</h2>
-	<div class="entry-content">
-		<p>这里的LXC是基于Ubuntu12.04的，在其他系统下可能不太一样。</p>
-
-<p>0.安装lxc</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install lxc
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>1.修改lxc的mirror，不修改的话下载一个ubuntu景象会非常慢！！！</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo emacs /etc/default/lxc
-</span><span class='line'>第三行的mirror注释去掉，并修改为cn.archive.ubuntu.com，这样就非常快了
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2.创建lxc容器，t表示模板中的名字，n表示这个容器的名字（可自定义）</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-create -t ubuntu -n ubuntu_container
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3.启动容器</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-start -n ubuntu_container
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>启动后就会出现登录ubuntu的界面，刚刚创建好容器后会给出一个提示，帐号密码都是ubuntu，登录进去就可以使用了。</p>
-
-<p>猜想lxc的用法可能是对于部署的某个进程使用lxc隔离，这并不能做vps用，lxc只是轻量虚拟化，针对进程来的，所以还是单机在使用，如果做vps就得用vmware、xen、openvz这样的东西了。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-08T20:46:00+08:00" pubdate data-updated="true">Oct 8<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/lxc/'>lxc</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/08/lvm-and-raid1/">
-		
-			LVM+RAID实践</a>
-	</h2>
-	<div class="entry-content">
-		<p>两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。</p>
-
-<p>0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>fdisk /dev/sda
-</span><span class='line'>fdisk /dev/sdb
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>1.创建PV</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pvcreate /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2.创建VG</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vgcreate -s 16M vg0 /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3.创建LV</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m 1 -lxxxx --corelog
-</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-08T14:09:00+08:00" pubdate data-updated="true">Oct 8<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/lvm/'>lvm</a>, <a class='category' href='/blog/categories/raid1/'>raid1</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/04/print-words-count/">
-		
-			统计词频方法</a>
-	</h2>
-	<div class="entry-content">
-		<p>记得上次参加美味书签电面的时候被问到如何统计一个语料库中的词频，当时有点傻，刚刚在复习Python的dict也遇到了这样的问题，一下子认识到，原来可以做得这么简单。虽然不知道有没有更爽的办法，但我觉得我这种方法也算是能用了，能够保证一定效率的情况下，可理解性也很强。</p>
-
-<p>读取一行行的word，存入dict，word作为key，value就是出现次数了，这样都是linear的事件复杂度，如果在字典就把value加1，要是不在就把value设为1即可。dict的查找复杂度很低，是hash查找。</p>
-
-<p>唉，会不会就是这样我才被拒掉了呢？！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-04T18:32:00+08:00" pubdate data-updated="true">Oct 4<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dict/'>dict</a>, <a class='category' href='/blog/categories/meiwei-dot-fm/'>meiwei.fm</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/04/dict-formatting-in-python/">
-		
-			Python中dict格式化</a>
-	</h2>
-	<div class="entry-content">
-		<p>最近在工作中遇到过写SQL的问题，参数是直接传递进去的，比如这样：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">db</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;SELECT * FROM xxx WHERE id = </span><span class="si">%(id)s</span><span class="s">&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">get_id</span><span class="p">())</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>今天细看Google提供的Python课程发现一个叫DictFormatting的部分，里面就有类似这样的语法，现在才明白。以前用过Python的格式化输出，其实这个dict的格式化和字符串的类似，就是在字符串格式化的基础之上加入了dict的key，%s是表示这里有字符串，而%(xxx)s是表示字符串，而且是以xxx为key的字符串，这个value就是从字典中给出。一半会在这样一个字符串后加“% dictname”表示值从dictname这个字典中给出，这不就是和字符串格式化一样么。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-04T17:54:00+08:00" pubdate data-updated="true">Oct 4<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dict/'>dict</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/04/sort-method-in-python/">
-		
-			Python中的sort方法</a>
-	</h2>
-	<div class="entry-content">
-		<p>打算从今天开始自习再学学Python的基础，选了Google提供的Python课程，学到list部分，有个练习题目要求针对一组tuples排序，根据tuples的最后一个元素排序，有个hint，可以用key=function这种方法，于是搜索了一番，在Python的wiki中找到这个key方法的描述：</p>
-
-<p>从Python2.4以后list.sort()和sorted()方法都提供了一个key可选参数，传入一个function用来决定排序需要的key。这个key就是所排序元素的权值，最终就是根据权值来排序了。你也可以自己写一个方法，就是那种用def来定义的方法，不过要求接受一个参数，返回一个值，接受的参数就是这个集合（list、dict、tuple）中的某个元素。我是这样写的，it works：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">sort_last</span><span class="p">(</span><span class="n">tuples</span><span class="p">):</span>
-</span><span class='line'> <span class="c"># +++your code here+++</span>
-</span><span class='line'> <span class="n">tuples</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-</span><span class='line'> <span class="k">return</span> <span class="n">tuples</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>根据tuple中最后一个排序。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-04T14:58:00+08:00" pubdate data-updated="true">Oct 4<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/sort/'>sort</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/01/optimzation-for-m4/">
-		
-			M4的一点优化</a>
-	</h2>
-	<div class="entry-content">
-		<p>1.关闭紧急运动传感器</p>
-
-<p>mac系统没有把这些传感器的设置、界面什么的体现到UI里，让我一度以为mbp没有这种设备，实际这也算是mac系统的设计理念吧，把普通用户无须知晓的东西屏蔽掉，让用户看起来、用起来异常简单，不像thinkpad那样，直接把硬盘活动保护啥的做成一个功能给用户展示。。。你看，你看，我们（thinkpad）有保护您硬盘的设备。。。</p>
-
-<p>这些不让用户看到的功能大多需要相关工具或者命令行来设置：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pmset -a sms 0&lt;/pre&gt;
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>对于替换了原来硬盘的这种方案就可以关闭紧急运动传感器了，如果加了SSD在光驱位，那就甭管了，继续保护硬盘吧！</p>
-
-<p>2.开启Trim</p>
-
-<p>同样要使用命令行开启，有个app叫Trim Enabler，但不推荐用。也有呼声说M4带有GC功能，是不是不需要开Trim了，综合不少资料考虑，还是推荐开起来。</p>
+<p>generator这个东西是很有意思的，比如：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>备份
-</span><span class='line'>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>10.8.1 or 10.7.5 or newer
-</span><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x4D)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">other_firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'> <span class="n">num</span><span class="p">,</span> <span class="n">nums</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[]</span>
+</span><span class='line'> <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>   <span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</span><span class='line'>   <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'> <span class="k">return</span> <span class="n">nums</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>10.8.0 or 10.7.4 or below</p>
+<p>可以产生一个list，里面是按顺序的数字，有n个，结果类似于range(n)的返回值。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x51)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>清除系统内核扩展缓存</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo touch /System/Library/Extensions/
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>重启</p>
-
-<p>如果想禁止Trim</p>
-
-<p>FOR ML 10.8.1 AND LION 10.7.5 OR NEWER</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x4D)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>FOR ML 10.8.0 AND LION 10.7.4 BELOW</p>
+<p>还有一个版本的firstn：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x51)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-</span><span class='line'>
-</span><span class='line'>sudo touch /System/Library/Extensions/
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'> <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>   <span class="k">yield</span> <span class="n">num</span>
+</span><span class='line'>   <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>如果出错就恢复刚刚的备份</p>
+<p>这个看起来就很帅了，代码也简洁了很多，yield是十分神奇的表达式，产生了一个num，这里不太好想，不能按照正常的function来思考这个执行顺序了。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3.用noatime方式挂载硬盘，就是少加载一个文件属性参数而已，对于日常使用没啥影响，在/Library/LaunchDaemons里面创建一个noatime.plist，内容如下：</p>
+<p>总之，如果产生100个数字，你可以一下子弄出100个来，或者你知道规则的话，你就弄出第一个来，然后用的时候按照规则，从第一个一直走下去，也产生了100个。最大的不同就是性能，后者必然速度更快了，前提是数量要足够多！写了一个简单的性能对比，主要是时间上的，内存上的不容易监控。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -612,47 +197,65 @@
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-</span><span class='line'><span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot;</span>
-</span><span class='line'><span class="cp">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
-</span><span class='line'><span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;dict&gt;</span>
-</span><span class='line'><span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'><span class="nt">&lt;string&gt;</span>noatime<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'><span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'><span class="nt">&lt;array&gt;</span>
-</span><span class='line'><span class="nt">&lt;string&gt;</span>mount<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'><span class="nt">&lt;string&gt;</span>-vuwo<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'><span class="nt">&lt;string&gt;</span>noatime<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'><span class="nt">&lt;string&gt;</span>/<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'><span class="nt">&lt;/array&gt;</span>
-</span><span class='line'><span class="nt">&lt;key&gt;</span>RunAtLoad<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'><span class="nt">&lt;true/&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dict&gt;</span>
-</span><span class='line'><span class="nt">&lt;/plist&gt;</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># /usr/bin/python</span>
+</span><span class='line'><span class="c">#! -*- coding: utf-8 -*-</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">time</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'> <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>   <span class="k">yield</span> <span class="n">num</span>
+</span><span class='line'>   <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">other_firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'> <span class="n">num</span><span class="p">,</span> <span class="n">nums</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[]</span>
+</span><span class='line'> <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>   <span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</span><span class='line'>   <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'> <span class="k">return</span> <span class="n">nums</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="n">func_wrap</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwards</span><span class="p">):</span>
+</span><span class='line'> <span class="n">s</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span><span class='line'> <span class="n">r</span> <span class="o">=</span> <span class="n">func_wrap</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwards</span><span class="p">))</span>
+</span><span class='line'> <span class="n">e</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span><span class='line'> <span class="k">print</span> <span class="s">&#39;return: </span><span class="si">%s</span><span class="s">   use </span><span class="si">%f</span><span class="s"> ms[s: </span><span class="si">%s</span><span class="s">, e: </span><span class="si">%s</span><span class="s">]&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="p">(</span><span class="n">e</span> <span class="o">-</span> <span class="n">s</span><span class="p">),</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span><span class='line'> <span class="n">timer</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">firstn</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
+</span><span class='line'> <span class="n">timer</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">other_firstn</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class='line'> <span class="n">main</span><span class="p">()</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>修改刚刚创建的文件权限</p>
+<p>输出结果是：大约会慢1倍</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chown root:wheel /Library/LaunchDaemons/noatime.plist
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>重启</p>
-
-<p>检测结果</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mount | grep <span class="s2">&quot; / &quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果结果里有类似这样的内容（最后的noatime）就表示可以了</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/dev/disk0s2 on / <span class="o">(</span>hfs, <span class="nb">local</span>, journaled, noatime<span class="o">)</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold <span class="o">[</span>21:49:11<span class="o">]</span> ~<span class="o">=</span>&gt;<span class="nv">$ </span>python 1.py
+</span><span class='line'><span class="k">return</span>: 499999500000   use 0.137414 ms<span class="o">[</span>s: 1363182552.38, e: 1363182552.52<span class="o">]</span>
+</span><span class='line'><span class="k">return</span>: 499999500000   use 0.290716 ms<span class="o">[</span>s: 1363182552.52, e: 1363182552.81<span class="o">]</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -674,11 +277,11 @@
   
 
 
-<time datetime="2012-10-01T17:05:00+08:00" pubdate data-updated="true">Oct 1<span>st</span>, 2012</time></div>
+<time datetime="2013-03-13T21:52:00+08:00" pubdate data-updated="true">Mar 13<span>th</span>, 2013</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/ssd/'>SSD</a>
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -690,16 +293,29 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/10/01/bought-a-ssd-called-m4/">
+		<a href="/blog/2013/02/25/ckeditor-multi-instance-in-ajax/">
 		
-			买了个叫M4的硬盘</a>
+			Ckeditor Multi Instance in Ajax</a>
 	</h2>
 	<div class="entry-content">
-		<p>256Gb，1200块。</p>
+		<p>初始化ckeditor后再用ajax刷掉页面，如果此时再次初始化它就会报错，说你要初始化的那个已经存在了。。。</p>
 
-<p>速度还不错，读取260Mb/s，写入206Mb/s。</p>
+<p>此时需要检测一下是否已经存在，如果存在就remove掉：</p>
 
-<p>至此，MC374能升级的部分都升级到位了。</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="k">if</span><span class="p">(</span><span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">instances</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">instances</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">其中</span><span class="nx">description</span><span class="err">是一个</span><span class="nx">textarea</span><span class="err">的</span><span class="nx">name</span><span class="err">。</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 		
 		
@@ -719,11 +335,352 @@
   
 
 
-<time datetime="2012-10-01T14:05:00+08:00" pubdate data-updated="true">Oct 1<span>st</span>, 2012</time></div>
+<time datetime="2013-02-25T19:54:00+08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2013</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/ssd/'>SSD</a>
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/02/20/set-different-password-for-amazon-account/">
+		
+			Set Different Password for Amazon Account</a>
+	</h2>
+	<div class="entry-content">
+		<p>不知怎么，突然发现在iPad上注册kindle设备后，在国内的amazon上无法看到这个设备，云端购买的书籍也都没了，深夜给amazon发了邮件，没想到十几分钟就回复了！！！</p>
+
+<p>得知，如果在amazon美国用了和国内相同的账号，那注册设备的时候可能会被使用美国的数据，那里当然木有我买的书了。。。看来以后kindle要暂时和国际市场say byebye了。</p>
+
+<p>解决方法就是给国内外这两个账号设置不同的密码，试了一下，解决！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-20T00:16:00+08:00" pubdate data-updated="true">Feb 20<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/amazon/'>amazon</a>, <a class='category' href='/blog/categories/kindle/'>kindle</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/02/17/drop-not-null-in-postgresql/">
+		
+			Drop Not Null in Postgresql</a>
+	</h2>
+	<div class="entry-content">
+		<p>要修改带有NOT NULL约束的某列为NULLABLE该如何写SQL呢？</p>
+
+<p><code>ALTER　TABLE xxx ALTER COLUMN xxx DROP NOT NULL</code></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-17T23:31:00+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/02/17/encoder-error-2-when-writing-image-file-error/">
+		
+			Encoder Error -2 When Writing Image File Error</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天编辑们在上传一张图的时候出了500错误，他们觉得是图片太大了，传给我看了下果然很大，高度13000+，大约7Mb，本地调试确实是在save的时候出问题，具体错误就是<code>Encoder error -2 when writing image file Error</code>，github上的pilkit中有这个issue，是因为默认的maxblock不够大了，其实PIL中还有个SAFEMAXBLOCK，但那也只是1024*1024，对于这张图仍然不够大。具体的方法就是取出图片width和height的最大值，再来个平方。。。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>try:
+</span><span class='line'>  save porcess
+</span><span class='line'>except IOError:
+</span><span class='line'>  old_block = PIL.ImageFile.MAXBLOCK
+</span><span class='line'>  PIL.ImageFile.MAXBLOCK = max(image.size) ** 2
+</span><span class='line'>  try:
+</span><span class='line'>      save process
+</span><span class='line'>  finally:
+</span><span class='line'>      PIL.ImageFile.MAXBLOCK = old_block</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样试过后就好了。。。真要命啊这个max block</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-17T23:25:00+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/02/16/extend-in-jquery/">
+		
+			Extend in Jquery</a>
+	</h2>
+	<div class="entry-content">
+		<p>jquery中的extend方法可以扩展一个{}，今天用到了。写了一组配置文件：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var options = {
+</span><span class='line'>  data:1,
+</span><span class='line'>  data2:2
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>console.log($.extend(options, {data3:3}));
+</span><span class='line'>console.log(options);</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样的结果就是在extend之后optons已经被加入了data3这个key-value，因为默认extend使用的是deep copy，你可以<code>$.extend(false, options, {data3:3})</code>，这样就能够得到暂时的并且扩展了的options。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-16T20:02:00+08:00" pubdate data-updated="true">Feb 16<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/02/03/do-something-using-refactor/">
+		
+			Do Something Using Refactor</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近在做发送短信的时候犯了个错误——修改配置文件没有使用重构方式。dev环境和pro环境中有相同名字的配置，只是值不一样，再修改了dev中的配置name做开发，但pro环境中的name还是原来的，导致上线后拿不到配置，发不出短信去。。。</p>
+
+<p>以后为了防止遗忘，还是用重构吧！！！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-03T11:22:00+08:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/02/02/incrby-in-redis/">
+		
+			Incrby in Redis</a>
+	</h2>
+	<div class="entry-content">
+		<p>redis中的incrby可以让value+1，用这个的好处是：当你用setex给一个key设置了timeout之后，如果要再改变里面的值，比如加1，你再set回去的话就会丢掉timeout，这时用incrby就可以喽。</p>
+
+<p>再没用incrby的时候我用了ttl先取出timeout的值，再用一遍setex附带上ttl，显得好傻。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-02T13:26:00+08:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/29/use-octopress-isolate-function/">
+		
+			Use Octopress Isolate Function</a>
+	</h2>
+	<div class="entry-content">
+		<p>以前搜到过octpress的isolate功能，今天终于用上了，真TMD好用（除了操作稍微麻烦一点）</p>
+
+<p>使用isolate的注意：filename是除了日期外的名字，有空格得用短杠隔开，比如我的这篇就得用<code>rake isolate[use-octopress-isolate-function]</code>才可以。还有啊，我希望isolate这个功能自动点不知道靠不靠谱，就是new_post就顺带着执行isolate，如果你一般不修改以前的post那还是可行的，实在修改的话只好integrate过来再isolate需要修改的那篇修改喽。</p>
+
+<p>这样的话generate的速度会很快。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-29T08:27:00+08:00" pubdate data-updated="true">Jan 29<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>

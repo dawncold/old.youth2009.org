@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="1.从http://code.google.com/p/git-osx-installer/downloads/list%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%9A%84git%E5%AE%89%E8%A3%85%E5%8C%85 2.安装 3.配置git &hellip;">
+	<meta name="description" content="其实我从来都不想去否认我变成了这样──越来越想被人在QQ空间、人人网、新浪微博上关注、留言，越来越想被那几个人访问，每次登录上去总是习惯性地看看“谁看过我”中是否有她们的身影。这一切可能都源自于她之后吧。 这算不算想用一段新的感情来填补那段伤痛？ 我自己可能会回答是的。不过这算是不专一么？ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,198 +79,18 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/02/23/git-study-log/">
+		<a href="/blog/2011/04/23/my-change/">
 		
-			Git的学习笔记</a>
+			我的改变</a>
 	</h2>
 	<div class="entry-content">
-		<p>1.从<a href="http://code.google.com/p/git-osx-installer/downloads/list%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%9A%84git%E5%AE%89%E8%A3%85%E5%8C%85">http://code.google.com/p/git-osx-installer/downloads/list%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%9A%84git%E5%AE%89%E8%A3%85%E5%8C%85</a></p>
+		<p>其实我从来都不想去否认我变成了这样──越来越想被人在QQ空间、人人网、新浪微博上关注、留言，越来越想被那几个人访问，每次登录上去总是习惯性地看看“谁看过我”中是否有她们的身影。这一切可能都源自于她之后吧。</p>
 
-<p>2.安装</p>
+<p>这算不算想用一段新的感情来填补那段伤痛？</p>
 
-<p>3.配置git</p>
+<p>我自己可能会回答是的。不过这算是不专一么？我只是不想让她充斥在我的思想中而已，对于这点不算过分的要求，我也有理由满足自己吧！</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">git config --global user.name 'dawncold'
-git config --global user.email loooseleaves@gmail.com</pre>
-
-
-<p>4.学习git 建立一个项目文件夹</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">mkdir studygit</pre>
-
-
-
-
-<div id="cke_pastebin">进入这个文件夹</div>
-
-
-
-
-<div><pre class="prettyprint linenums bush:bash" lang="bash">cd studygit/</pre></div>
-
-
-
-
-<div id="cke_pastebin">初始化git</div>
-
-
-
-
-<div><pre class="prettyprint linenums bush:bash" lang="bash">git init</pre></div>
-
-
-
-
-<div id="cke_pastebin">返回这样一句:</div>
-
-
-
-
-<div><pre class="prettyprint linenums bush:bash" lang="bash">Initialized empty Git repository in /Users/dawncold/Documents/Project/studygit/.git/</pre></div>
-
-
-
-
-<div id="cke_pastebin">然后创建几个文件来试试git的跟踪:</div>
-
-
-
-
-<div><pre class="prettyprint linenums bush:bash" lang="bash">vi test.c
-vi README</pre></div>
-
-
-
-
-<div id="cke_pastebin">加入git跟踪:</div>
-
-
-
-
-<div><pre class="prettyprint linenums bush:bash" lang="bash">git add *.c
-git add README</pre></div>
-
-
-
-
-<div id="cke_pastebin">提交一下</div>
-
-
-
-
-<div><pre class="prettyprint linenums bush:bash" lang="bash">git commit -m 'init project----studygit'</pre></div>
-
-
-
-
-<div id="cke_pastebin">返回了:</div>
-
-
-
-
-<div><pre class="prettyprint linenums bush:bash" lang="bash">[master (root-commit) 2e2368b] init project----studygit
-2 files changed, 6 insertions(+), 0 deletions(-)
-create mode 100644 README
-create mode 100644 test.c</pre></div>
-
-
-
-
-<div id="cke_pastebin">查看一下git状态</div>
-
-
-
-
-<div><pre class="prettyprint linenums bush:bash" lang="bash">git status</pre></div>
-
-
-
-
-<div id="cke_pastebin">返回:</div>
-
-
-
-
-<div><pre class="prettyprint linenums bush:bash" lang="bash"># On branch master
-nothing to commit (working directory clean)</pre></div>
-
-
-
-
-<div id="cke_pastebin">表示现在跟踪的这些文件没有更改，如果更改了就会显示出来有差异。</div>
-
-
-
-
-<div id="cke_pastebin">如果在这个目录下建立了新的文件，再次查看status会出现一个untracked files:，此时要想加入到git跟踪，用git add xxx即可。</div>
-
-
-
-
-<div id="cke_pastebin"> </div>
-
-
-
-
-<div id="cke_pastebin">git有个看起来麻烦的地方:如果add了a这个文件，然后再更改一下这个文件，比如加了一句话，此时查看status会发现untracked中又出现了刚才的那个a文件，如果此时commit的话我们刚刚改的a文件不会被提交上去，只会提交那个add后而且没有再更改的a文件。此时应该再add一次才可以!!!(用git commit -a即可略过add的步骤，只要跟踪过a这个文件，那就肯定会提交最新的)</div>
-
-
-
-
-<div id="cke_pastebin"> </div>
-
-
-
-
-<div id="cke_pastebin">git的忽略文件，在本项目的文件夹中建立一个叫.gitignore的文件，里面加入要忽略的文件名字，似乎能用正则表达式，比如:</div>
-
-
-
-
-<div id="cke_pastebin">*.[oa] 是忽略o和a结尾的文件;*~ 是忽略带波浪线的文件，这类文件一般是文本编辑器创建的备份。要养成良好的习惯，项目一开始就建立这个文件。</div>
-
-
-
-
-<div id="cke_pastebin"> </div>
-
-
-
-
-<div id="cke_pastebin">git的删除文件，如果用git rm xxx则在版本仓库中删除，并且在目录下也删除了，如果用git rm &#8211;cache xxx则只是在版本仓库里删除跟踪。</div>
-
-
-
-
-<div id="cke_pastebin"> </div>
-
-
-
-
-<div id="cke_pastebin">git的重命名文件，一般在linux下都是使用mv命令，在git中也是如此，git mv xxx，git可以了解你做了重命名还是其他的。</div>
-
-
-
-
-<div id="cke_pastebin"> </div>
-
-
-
-
-<div id="cke_pastebin">git的撤销，刚刚提交的文件中少了一个，可以这样做:</div>
-
-
-
-
-<div><pre class="prettyprint linenums bush:bash" lang="bash">$ git commit -m 'initial commit'
-$ git add forgotten_file 
-$ git commit --amend</pre></div>
-
-
-
-
-<div id="cke_pastebin">后续内容请查看progit这本书在github上的翻译，我就是对着翻译来写了这一小篇文正，还有不少遗漏的地方没有写出来。</div>
-
+<p>以前都是看到同学们泡在这些社交网络上而大发感慨，现在看看自己，这不也是深深地被禁锢在其中了？倒是有点自嘲的意味了！谁也说不准这段时期过去之后会是什么样子，也许我还会去感慨他们，继而我又一次陷入这样往复不断地轮回之地了。每次的结果都大致相同，不同的是每次到来，都有不一样的心情，也是不一样的自己。希望这些轮回能够让我成熟！</p>
 
 		
 		
@@ -290,11 +110,11 @@ $ git commit --amend</pre></div>
   
 
 
-<time datetime="2011-02-23T11:00:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2011</time></div>
+<time datetime="2011-04-23T22:10:00+08:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/cheng-shou/'>成熟</a>, <a class='category' href='/blog/categories/gai-bian/'>改变</a>, <a class='category' href='/blog/categories/she-jiao/'>社交</a>
 
 
 </div>
@@ -306,14 +126,41 @@ $ git commit --amend</pre></div>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/02/22/validating-paypal/">
+		<a href="/blog/2011/04/23/algo-circle-count-quit/">
 		
-			正在验证paypal</a>
+			约瑟夫问题算法</a>
 	</h2>
 	<div class="entry-content">
-		<p>能够使用paypal最好了，因为那样可以隐藏自己的信用卡信息，总之支持paypal支付的国外商家还是非常多的。要开通这个功能需要在paypal上添加一张信用卡，我已经添加过一张银联卡了，验证方式是paypal给我打了两笔小额资金，真是很小，不到1毛钱！而验证信用卡就不一样了，需要扣除不到2美元的现金，而paypal这次很实在，不到2美元，扣了1.9x！！！接着就是等对账单，paypal会显示一个4位数的编号，等你看到后填写到paypal那里就算是验证成功了！但这个过程还是有点艰辛。</p>
+		<p>昨晚还在忙碌网站，一个同学发来短信问了这样一个算法问题：一些人手拉手围成一个圈，从一个人开始报数，数到3的人退出，然后下一个人再开始报数，依然是数到3者退出，问最后剩下2个人是哪两个？ 这题目看起来不算难，但这要是不靠一个语言的特性来解决，还是有些麻烦的。我说的语言特性就是一个bt数组方法，比如说移除元素啊这样的方法，用纯粹的C语言来写最好了。不过我那位同学是在雪VB.net不知道那里有没有语言特性。我手头上正在写PHP网页，就干脆用PHP写一个出来试试吧：）  </p>
 
-<p>昨天我进行了3次添加信用卡操作，全都是失败，还被银行的客服问候了一下，今天看到美元帐户里能够支付5美元了，再尝试一下，还是失败！Google原因，了解了还需要开通境外无卡支付业务才行，我从网银的设置中看到了这个业务，但后面的开通链接处是一个灰色的！只有柜面注册卡才能在线开通关闭！我这不是柜面注册么？！好象是自己在网银的后台添加进去的～于是电话让客服MM开通，顺利完成了paypal的添加卡业务。（我在网银中还自助开通了一个VISA验证服务，这个应该不影响吧）。再等几天验证完paypal就没事了。那时候再把境外无法支付关闭，要不然危险。</p>
+<pre class="prettyprint linenums bush:php" lang="php">$circle = array();
+$out = 0;
+$count = 0;
+$n = 0;
+
+for($i = 0;$i &lt; $num;$i++) {
+$circle[$i] = $i;
+}
+while(1) {
+$count %= $num;
+if($circle[$count] !== -1) {
+if(($n % $diff) == ($diff - 1)) {
+$circle[$count] = -1;
+$out++;
+if($out === $num - $sur)
+break;
+}
+$n++;
+}
+$count++;
+}</pre>
+
+
+<p>这就是主要代码了，还算是简单吧？去Google了一下，看到有些人的解法都用了好麻烦的链表来抽象，用链表确实更符合客观事实，不过那样写起来，是不是给别人看的呢？！</p>
+
+<p>算法的负责度显然是线性的，感觉还可以吧。</p>
+
+<p>这里有篇论文，我暂时还看不大懂，对于这个问题写得很详细。（下载：<a href="http://www.youth2009.org/works/josephus.pdf">josephus.pdf</a>）</p>
 
 		
 		
@@ -333,11 +180,11 @@ $ git commit --amend</pre></div>
   
 
 
-<time datetime="2011-02-22T18:30:00+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2011</time></div>
+<time datetime="2011-04-23T09:54:00+08:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/xin-yong-qia/'>信用卡</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
+	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/suan-fa/'>算法</a>, <a class='category' href='/blog/categories/yue-se-fu-wen-ti/'>约瑟夫问题</a>
 
 
 </div>
@@ -349,18 +196,14 @@ $ git commit --amend</pre></div>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/02/22/give-up-csapp/">
+		<a href="/blog/2011/04/22/blog-migrate/">
 		
-			含恨放弃了这本书</a>
+			博客迁移</a>
 	</h2>
 	<div class="entry-content">
-		<p>《深入理解计算机系统》这本书是我从《程序员》上看来的，记得有位高超的架构师吧，推荐了这本书，我就买了下来，现在放弃阅读这本书。看起来我还是能够放弃一些东西的，我并不是一个如同我描述得那样──“一个学不会放弃的人。”</p>
+		<p>最近dnspod总是给我发短信、邮件报告我的主机宕机了，又恢复了，又宕机了……于是我打算迁移回自己的VPS上，毕竟自己是有条件搭建博客的，为何还要总占用着别人的资源呢？只是自己的VPS访问速度不如这个快而已。</p>
 
-<p>我之所以放弃这本书是因为这本书前半部分讲得都是硬件相关的知识，就象是去年学习的《计算机组成原理》一样，还好比《数字逻辑电路》强了不少，因为这些知识都和计算机相关，数字逻辑简直就是在讲单纯的硬件。不过两者却都不是我所希望阅读的！以为这本书的后半部分能够提供一些编程优化相关的知识，因为看这本书的介绍是帮助程序员理解程序如何运行并且还讲解了一些实用的编程技巧，谁知根本不是这样。</p>
-
-<p>在大二的上学期我们也发了一本讲解汇编的教材，只是我们班的课程与其他计算机科班不太一样，就没有讲这门课，曾经的我想一度利用空闲时间来学习汇编，并且在大一的时候我从图书馆借来了一般汇编书，自学了一小部分，但现在看来，那一切都显得过于理想化了！刚才从床底下拿出来了汇编的书，看了两眼就放回去了。我之道如果我学会了汇编一定能看完这本《深入理解计算机系统》的，可惜我没学会：（</p>
-
-<p>还有不少书在手边，学会了任何一本都足以让我受益好几年，但我从未感受到这些益处，肯定是因为我没有学好，即便是这样，我竟然也能在班里排名比较靠前。似乎一切都反过来了！！！</p>
+<p>在此感谢一下提供给我主机空间的那位，希望他工作顺利！</p>
 
 		
 		
@@ -380,11 +223,11 @@ $ git commit --amend</pre></div>
   
 
 
-<time datetime="2011-02-22T13:53:00+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2011</time></div>
+<time datetime="2011-04-22T08:29:00+08:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/shu/'>书</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/fang-qi/'>放弃</a>, <a class='category' href='/blog/categories/hui-bian/'>汇编</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
+	<a class='category' href='/blog/categories/bo-ke/'>博客</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -396,22 +239,14 @@ $ git commit --amend</pre></div>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/02/21/trust-amount/">
+		<a href="/blog/2011/04/21/i-do-not-know-why-i-hate-rain/">
 		
-			信用额度</a>
+			不知为何讨厌下雨</a>
 	</h2>
 	<div class="entry-content">
-		<p>今天十分尴尬呀，刚刚领到了信用卡准备去透支一小把试试，虽说自己对这么容易申请到的卡信用额度的大小也未知，索性拿即将要买的酱油试试吧！</p>
+		<p>原来的我是不讨厌下雨的，甚至是喜欢下雨的。而现在却不是那样了，我有些讨厌下雨了，可能和我的鞋子有点关系，这听起来有些荒谬，但确实是这样的──我一直以来讨厌的是把鞋子里弄湿还穿着走。而我的这双鞋不知道什么时候变得容易进水，一下雨穿出去就会把鞋子里面弄湿，就这样我讨厌下雨了。</p>
 
-<p>母亲买了几本书，30.3元，透支刷卡，成功！</p>
-
-<p>又买了几盒药，75元，透支刷卡，失败！</p>
-
-<p>此后我问了客服，我的卡现在信用额度只有50元～美元的话我听成5美元了，回家一查才发现是3美元，下午在paypal上想把这卡添加上去，结果几次尝试都失败，因为paypal要先冻结几美金来确认的，我以为即使是3美金的透支额度也是能过的吧，尝试了3次都不行，也懒得再去问如何了，只能先放着，慢慢消费累计额度吧！</p>
-
-<p>晚饭期间客服热心打来电话问我是不是在paypal进行了3次没成功的交易，确保我的资金安全，这点很不错，不过希望不要每天都和我汇报一下，那样就麻烦了。</p>
-
-<p>新的征程已经开始──积累信用额度！</p>
+<p>心情不好的时候总是容易去想这想那，面对着一个个过往的陌生人，我总是想起那群让我认识了几年的同学们，是的，地球虽然不大，但每天遇到的陌生人总是很多的，你不能了解他们，他们也无法了解你，如果你还是在为了和过去的某个同学有所纠缠也算是一种幸运吧，因为有一点点其他的因素参与进来你就不可能认识那个人了，也许你看到的每个陌生人都差一点让你海誓山盟、深恶痛绝、悲喜交加……我们能够感到幸运的是，我认识了那样一群人，他们是填充我人生的一部分，感谢他们让我了解，感谢他们了解我：）</p>
 
 		
 		
@@ -431,11 +266,11 @@ $ git commit --amend</pre></div>
   
 
 
-<time datetime="2011-02-21T20:58:00+08:00" pubdate data-updated="true">Feb 21<span>st</span>, 2011</time></div>
+<time datetime="2011-04-21T21:39:00+08:00" pubdate data-updated="true">Apr 21<span>st</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/xin-yong-qia/'>信用卡</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
+	<a class='category' href='/blog/categories/liao-jie/'>了解</a>, <a class='category' href='/blog/categories/xi-wang-wo-huan-neng-ji-qi/'>希望我还能记起</a>, <a class='category' href='/blog/categories/yu/'>雨</a>, <a class='category' href='/blog/categories/qing-chun/'>青春</a>
 
 
 </div>
@@ -447,16 +282,82 @@ $ git commit --amend</pre></div>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/02/20/my-credit-card-life/">
+		<a href="/blog/2011/04/20/rework-study-final/">
 		
-			我的信用卡生活</a>
+			《REWORK》学习笔记之完结篇</a>
 	</h2>
 	<div class="entry-content">
-		<p>活了这么多年，这还是我第一次办理信用卡，虽然在前几年因为购买hostmonster主机的时候打算办理信用卡购买，可惜在咨询办理的时候发现银行根本不接受我这个客户，那时候应该是初中吧，实在有些幼稚。最终是通过代购，花了600多买了一年的hostmonster主机，作了个网站，最终失败告终。</p>
+		<p>招聘篇</p>
 
-<p>2月8日我从工行的网上银行中申请了一张信用卡，随后问了在银行工作的亲戚，他告诉我对于学生这个阶层无法办理信用卡，没有还款能力（即使你不乱花钱并且有不少钱，甚至有人能帮你还款），所以我就没有抱有希望，把那张表填写完就忘记了，昨天缴纳电话费的时候顺便看了一眼申请进度──“已经发卡到指定银行，请尽快领取！”</p>
+<p>「亲力亲为」中提到：</p>
 
-<p>8号提交，14号到的，我是19号看到的。工行的审批效率这么高啊！审批到卡到达只用了不到1星期？！今天我早上去领取了，很可惜，工作人员告诉我信用卡领取只能在星期一到星期五办理──今天星期日！唉，太可惜了，不过也不错，幸好今天不是星期六！！！</p>
+<p>    在你亲自尝试做这份工作之前，永远不要雇人去做。只有这样，你才能了解这项工作的本质。你才会懂得如何判断工作完成的好坏，才会知道怎样写出符合实际的岗位招聘要求，也才会清除在面试中该问什么问题。你才能之道该雇佣全职职员还是兼职职员，是将工作直接外包还是坚持自己搞定（强烈推荐后者，如果可能的话）。</p>
+
+<p>    你也会成为以为更加优秀的经理人，因为你是在指导人们完成你已经做过的工作，你知道何时该批评，何时该鼓励。</p>
+
+<p>    </p>
+
+<p>    有时候你可能觉得力有不逮，甚至可能觉得精疲力尽。这很正常。你可以通过招人来摆脱这种感受，也可以通过学习正确的处理方法来解决问题。先试着学习吧。在最初的运营中付出的所有努力，都会变成无数倍的管理只会，最终回报给你。</p>
+
+<p>    另外，你应该让自己密切融入业务的方方面面。否则你就会陷入一片茫然，把自己的命运交到别人的手上，这是非常危险的。</p>
+
+<p>「受不了时再招人」中提到：</p>
+
+<p>    当你在很长一段时间内都被超负荷的工作所困扰，这才是招人的正确时机。此时出现了一些你无法再亲力亲为的事情，你发现工作质量有所下滑，令你感到受不了了，这时才是招人的最佳时机，不要提前招人。</p>
+
+<p>「放弃牛人」中提到：</p>
+
+<p>    放弃那些你并不需要的牛人，即使你觉得这是个人才。把有能力的人招进来，却让其无所事事，这对公司来说是有害无益的。</p>
+
+<p>    牛与不牛没有任何意义，不需要就是不需要。</p>
+
+<p>「鸡尾酒会上的陌生人」中提到：</p>
+
+<p>    短期内大批招人的后果就如同陷入“全市陌生人的鸡尾酒会”一样。你身边充斥着新面孔，美国儿呢都彬彬有礼，每个人都努力避免矛盾或冲突，没有人说：“这点子真烂。”人们一团和气，互不攻击。</p>
+
+<p>    这种一团和气的氛围就是公司陷入麻烦的根源。当有人把事情弄得一团糟时，总得有人直言不讳地说出来。否则，你就是在经营一个既不惹人恨、又不招人爱的公司。</p>
+
+<p>    要营造一个能让人直言不讳并且有安全感的环境。你得清楚自己能把别人推多远，你得知道人们话里的真正含义。</p>
+
+<p>「可笑的求职简历」中提到：</p>
+
+<p>    一个具有6个月工作经验的应聘者和一个具有6年工作经验的应聘者相比，其差别小得令人吃惊。真正的差别来自于个人的努力程度、性格差异以及智力水平。</p>
+
+<p>    现在已经不是以时间长短论英雄的时候了，真正重要的是他们到底做得有多好。</p>
+
+<p>「人人都得干活」中提到：</p>
+
+<p>    在一个小团队里，你需要的是干活的人，而不是监工。每个人都得做事，没有人可以袖手旁观。</p>
+
+<p>救灾篇</p>
+
+<p>「主动掌控负面新闻」中提到：</p>
+
+<p>    如果你够坦荡，够诚实，够公开，危机应变速度够快，人们就会更加尊重你。不要把头缩回去，也不要苦苦压制坏消息，应该让你的顾客尽可能地拥有知情权。</p>
+
+<p>    掌控负面新闻的小贴士：</p>
+
+<p>        （1）要由公司高层来发布消息，而且要由公司内职位最高的人来强有力地控制局面。</p>
+
+<p>        （2）消息要广为传播，想尽一切办法将消息传递出去，别尝试隐瞒事实真相。</p>
+
+<p>        （3）千万别说“无可奉告”。</p>
+
+<p>        （4）要真情实意地表达歉意，要尽量详细地说明情况。</p>
+
+<p>        （5）要真切地关心客户的遭遇──然后要证明自己真的在为客户负责。</p>
+
+<p>文化篇</p>
+
+<p>「文化不是由谁创造的」中提到：</p>
+
+<p>    不要过多担心企业文化的事情，不要去强求，你无法给企业安装一种文化。企业文化就像上好的苏格兰威士忌一样，你得给它时间去酝酿。</p>
+
+<p>总结篇</p>
+
+<p>「灵感稍纵即逝」中提到：</p>
+
+<p>    灵感是个奇妙的东西，是效率放大器，是推进器。但是它不会停下来等你。灵感转瞬即逝，当它来找你时，要立即把它捕捉住，将其投入工作中去。</p>
 
 		
 		
@@ -476,11 +377,11 @@ $ git commit --amend</pre></div>
   
 
 
-<time datetime="2011-02-20T19:49:00+08:00" pubdate data-updated="true">Feb 20<span>th</span>, 2011</time></div>
+<time datetime="2011-04-20T23:02:00+08:00" pubdate data-updated="true">Apr 20<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/xin-yong-qia/'>信用卡</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
+	<a class='category' href='/blog/categories/chuang-ye/'>创业</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -492,12 +393,12 @@ $ git commit --amend</pre></div>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/02/19/pause-website-development/">
+		<a href="/blog/2011/04/20/php-retrieve-checkbox-content/">
 		
-			网站开发告一段落</a>
+			Php获取checkbox内容</a>
 	</h2>
 	<div class="entry-content">
-		<p>刚刚把一个比较大的功能完成了——日历。还有一个星期就要回去了，我这次回家拿回来的几本书还没有看完，PHP的那本书看得差不多了，还没有回头细看，可能还需要再带回去。《深入理解计算机系统》那本书没有看，打算剩下的这一个星期全看那本书，能看多少是多少，不能总和PHP为伍，毕竟回去了有不少人还是能帮我继续做网站的！</p>
+		<p>唯一需要注意的就是一组checkbox的name属性需要定义成一个相同的数组名字，比如说都定义成input_cb[]，这样在php的POST数组就能通过使用$_POST[&lsquo;input_cb&rsquo;]来获取这个数组的信息了，当然要注意的是，如果这一组checkbox没有一个被勾选，POST数组中是不会有这个叫input_cb数组的，届时就需要你自己来想办法怎么处理这种情况了：）</p>
 
 		
 		
@@ -517,11 +418,11 @@ $ git commit --amend</pre></div>
   
 
 
-<time datetime="2011-02-19T13:26:00+08:00" pubdate data-updated="true">Feb 19<span>th</span>, 2011</time></div>
+<time datetime="2011-04-20T15:19:00+08:00" pubdate data-updated="true">Apr 20<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/wang-zhan/'>网站</a>
+	<a class='category' href='/blog/categories/checkbox/'>checkbox</a>, <a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -533,18 +434,20 @@ $ git commit --amend</pre></div>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/02/16/after-app-approved/">
+		<a href="/blog/2011/04/19/know-myself/">
 		
-			应用通过审核之后</a>
+			了解自己</a>
 	</h2>
 	<div class="entry-content">
-		<p>这是第二次进行人人网的应用审核了，第一次只是把网站于人人网连接起来就草草申请审核，很快被打了回来，前天刚刚实现了发表新鲜事到人人网的功能，这次就有理由来申请了。今天下午我打开人人网，看到站内信中有开放平台发来的信件，告诉我已经上线了，至此，我的一天网站又一大功能实现了。</p>
+		<p>最近活跃在制作网站的大潮中，不过我发现我并不适合制作网站，或者说我不适合做程序员这行！因为我感觉自己在编制程序的过程中考虑得太多，这点能够体现出我“完美主义者”的特质，不过这对于自己、项目来说就是不可想象的后果──复杂度不知不觉提高，制作周期不知不觉延长……</p>
 
-<p>其实我不是很想实现与这些网站的连接，只是因为开放API的方式已经渐渐成了国内网站的主流，相信这点在国外同类网站已经做得相当成熟了，在国内，就连Tencent都喊着要开放了。实现与这些网站得对接能够利用他们已经建立的用户资源，也就是分享他们的用户，这点对于一个新兴的、不完全靠创新的网站是很有必要的。</p>
+<p>可能我现在养成了这样的一种看待事物的态度──先要否定这个事物，然后自己再构建出来，就好像一开始发现了不符合自己认识模式的事物再经过构建就属于自己的一样。站在局外的人看来这根本没有什么价值嘛，完全是你自己过分地多想了。可能这能够让自己接受一些东西，但对于那个事物本身并没有得到什么改善。</p>
 
-<p>本以为自己的点子是足够创新的，但在这个神奇的土地上，一个思想都快要变得神奇的人很难一下子突破这些禁锢达到真正创新的地步，不过我感觉现在我的这个网站还是足够创新的，至少还没大有这样做的。</p>
+<p>情况就是这样。也许在我内心中有一个对软件、网站这些东西的一个抽象模型，自己在实践的时候又不断完善它们，使得自己一直处于迭代过程中。总体看来这有些像是“瀑布开发模型”，虽然理想，但实际上使用频率很低：（</p>
 
-<p>国内人多，想到的点子也就丰富，虽说其中创新的并不多，但至少能有一小部分吧，由于基数比较大，所以即使比率低一些也无妨，可我们身边这些SNS、论坛之类的东西并不多。关键还在对于一个点子的运营上吧！</p>
+<p>可能是自我感觉压力有点儿大吧，毕竟答应了别人的工作一定要做完才是我的原则，无论时间多么紧张，谁让我当初答应了呢？！几乎每次我都想，要是我这次做完了这些东西，我以后就再也不做这个了！但好像再过一段时间，我又将返回这股大潮中：）</p>
+
+<p>OK，首先我要先接受一个事物，先不要全然否定，只是反映出自己的看法，如果有机会、有兴趣再深入研究这个事物的发展规律，切不可再对那种根本无法改变事物本身的“胡思乱想”而浪费精力啦！！！</p>
 
 		
 		
@@ -564,11 +467,11 @@ $ git commit --amend</pre></div>
   
 
 
-<time datetime="2011-02-16T21:35:00+08:00" pubdate data-updated="true">Feb 16<span>th</span>, 2011</time></div>
+<time datetime="2011-04-19T22:15:00+08:00" pubdate data-updated="true">Apr 19<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ying-yong/'>应用</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/liao-jie/'>了解</a>, <a class='category' href='/blog/categories/fou-ding/'>否定</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/wang-zhan/'>网站</a>, <a class='category' href='/blog/categories/ze-ren/'>责任</a>
 
 
 </div>
@@ -580,16 +483,54 @@ $ git commit --amend</pre></div>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/02/14/eclipse-color/">
+		<a href="/blog/2011/04/19/rework-study-part5/">
 		
-			新的eclipse配色</a>
+			《REWORK》学习笔记之推广篇</a>
 	</h2>
 	<div class="entry-content">
-		<p>本打算将php、java、android开发集成到eclipse中，因为这本来就是可以的嘛，但不知道该如何安装插件，索性就把php和java开发分开了，下载了两套eclipse，这是我找的一个eclipse配色，for java的：</p>
+		<p>推广篇</p>
 
-<p><img alt="" src="http://pic.yupoo.com/loose_v/AQCjlpBz/medium.jpg"></p>
+<p>「甘于低微」中提到：</p>
 
-<p>在此要感谢这位<a href="http://utensil.javaeye.com/blog/444590">作者</a>，他的博客中有更多的图可以看！</p>
+<p>    要牢牢记住，一旦你把事业做大、深入人心之后，就不可避免地要走稳健路线。当你成为传奇人物，你就必须保持预见性、建立相容性，你将变得更为保守、更难去冒险。这就是僵化的起点、变革的终点。</p>
+
+<p>「培养自己的拥趸」中提到：</p>
+
+<p>    所有的公司都有顾客，幸运的公司有粉丝，而最幸运的公司则有一帮观众。观众能成为你的秘密武器。</p>
+
+<p>「普及知识，赢得竞争」中提到：</p>
+
+<p>    不要在消费、销售或者赞助上和竞争对手去攀比。也许你的竞争对手根本还没考虑去传授别人些什么呢。绝大多数公司都在关注销售或服务，但是从未想过传授知识。</p>
+
+<p>    个人和小企业适合去传授知识，而大公司不适合。大公司支付得起巨额广告费，而你不能。你能在传授知识方面大力投入，而大公司不能。因为大公司受制于保密政策，公司里的每一款条文都得经由律师过目，并且再经层层严格审查。传授客户只是是专属于你的绝佳制胜机会。</p>
+
+<p>「效仿大厨」中提到：</p>
+
+<p>    作为一家公司的老板，你也应该分享自己之道的一切。这一点在商业世界中尚属禁区。商业活动总是带有偏执和隐秘的性质。人们认为自己在这方面拥有专利或在那方面又有竞争优势。也许这样想的只是少部分人，不是大部分人。大度的人不应该继续模仿小气者的行为，不要惧怕分享。</p>
+
+<p>「转到幕后看看」中提到：</p>
+
+<p>    让人们走入幕后，能改善你和他们之间的关系。他们会感到与你亲近起来，将你视为一个常人，而不是一个面目模糊的公司。他们将在你的产品中看到你在后台淌下的汗水和付出的努力。他们会对你的工作产生更深刻的理解和更诚挚的感激。</p>
+
+<p>「没人喜欢塑料花」中提到：</p>
+
+<p>    不要害怕你的缺点，不完美才真实，真实才能激起人们的共鸣。因此我们喜欢会凋零的真花，而不是那些用不变色的完美的塑料花。不要担心自己应该如何说、如何做。向世界展示你本来的面目、你的缺点、你的全部。</p>
+
+<p>    Leonard Koren在他的《侘寂》一书中说道：削减到本质，但不要剥离它的韵；保持干净纯洁，但不要剥夺它的生命力。</p>
+
+<p>    所以，你大可直言不讳，畅谈那些别人不愿意讨论的东西。直面你的弱点，向人们展示你最近的工作状况，即使你还没完全搞定它。不完美没关系，也许你看起来不专业，但你却更真实。</p>
+
+<p>「药贩子最精明」中提到：</p>
+
+<p>    只要你东西可卖，就不要怕给人一点点让其试用。要对自己的产品抱有信心。你应该知道人们会回来购买更多，如果你连这样的信心都没有，只能说明你的产品做得不够好。</p>
+
+<p>「一夜成名只是传说」中提到：</p>
+
+<p>    你了解那些道听途说来的“一夜成名”的故事吗？往里深挖一点，你就能发现这些成功人士在到达引爆点之前，都已经在这个方向苦熬了很长时间。也有凤毛麟角的几家突然成功的公司，但这种公司往往不能持久──没有牢固的基础去支撑。</p>
+
+<p>    把一夜成名的迷梦换成一步一个脚印的成长行动吧。道路很艰难，但你必须充满耐心。你得用功去做，在遇到伯乐之前，你得努力很长时间。</p>
+
+<p>    今天就开始培养你的观众，开始聚集那些对你有兴趣的人，然后一直保持下去。多年后，你也回在人们谈论你的“一夜成名”的故事时付之一笑。</p>
 
 		
 		
@@ -609,11 +550,11 @@ $ git commit --amend</pre></div>
   
 
 
-<time datetime="2011-02-14T15:31:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2011</time></div>
+<time datetime="2011-04-19T18:54:00+08:00" pubdate data-updated="true">Apr 19<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/eclipse/'>eclipse</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/pei-se/'>配色</a>
+	<a class='category' href='/blog/categories/chuang-ye/'>创业</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -625,14 +566,66 @@ $ git commit --amend</pre></div>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/02/13/compromise-choose/">
+		<a href="/blog/2011/04/19/rework-study-part4/">
 		
-			折衷的选择</a>
+			《REWORK》学习笔记之对手篇、进化篇</a>
 	</h2>
 	<div class="entry-content">
-		<p>新的VPS上绝对能够承受我所有的站点，不过就是访问的时候速度不理想，在我不知到该怎么办的时候遇到了Typecho这个精简的博客程序，而且在他们的论坛上遇到了一个赞助新加坡主机的朋友，我顺利申请了他的新加坡主机，当时ping值相当高，大约到了400多，怎么比我的VPS还慢？过后再试试，只有100ms了，果断把youth2009.org搬过去吧。其实，我不买这个VPS也就可以了，只是现在能够学到一些linux下的小知识，花些钱也就能说得过去了（还是要把自己说服）。再者说了，自己的VPS毕竟能够掌握所有控制，也相对安全一些。</p>
+		<p>对手篇</p>
 
-<p>折衷的选择就是把原来国内的那个空间迁移到这里，看看ningxin.org还要不要动，这样就空出来了国内的垃圾空间，如果能够退款就更好了，不能的话，我也没办法了，我会一直相信一分钱一分货的！</p>
+<p>「拒绝照搬」中提到：</p>
+
+<p>    怎样判断自己是否在盲目模仿别人？如果同一种产品，别人已经完成了绝大部分的工作，那你就是在模仿。你可以受别人影响，但不要去剽窃。</p>
+
+<p>「将你的产品去商业化」中提到：</p>
+
+<p>    一旦你扬名立万，模仿者便会蜂拥而上，这就是生活。但是你可以用一种绝佳的方法来保护自己不被盲从者们吞没：让你自己成为你的产品或服务的一部分。将你独一无二的想法注入你的产品中，让它变成一件别人做不到的东西。</p>
+
+<p>    把你的特点融入你的产品以及和你的产品有关的一切事物当中去：你的销售方式、支持模式、说明方式、递送方式。竞争者们是无法复制你的产品中的独特性的。</p>
+
+<p>「向对手挑战」中提到：</p>
+
+<p>    拥有对手，就等于为客户制造出了讲故事的素材。驻足观望者只能站在外围，人们热衷于看到冲突，喜欢偏袒一方，乐于被点燃激情。而这正是吸引人们眼球的绝佳办法。</p>
+
+<p>「给竞争力做减法」中提到：</p>
+
+<p>    不要因为你的产品或服务不如别人的花哨就感到自惭形秽。要高调一些，要引以为豪。要向你的对手推广他们的多功能产品一样充满激情地推销你的简约产品。</p>
+
+<p>「谁管他们在做什么」中提到：</p>
+
+<p>    把目光放到你自己身上来吧。你自己本身的变化比外界的变化更为重要。当你吧时间浪费在关注他人身上时，就没有时间去自我提高了。</p>
+
+<p>    过多关注竞争对手会分散你的视线。当你的脑子里充斥这他人的想法时，就会错过发现新鲜创意的机会。你会从富有远见的人变成固步自封的人，最终为你的竞争对手做嫁衣裳。</p>
+
+<p>    如果你想做的只是和别人一样，那又何必去做呢？简单抄袭对手是无法在市场上找到立足之地的。即使注定会输，也要为自己的信念而奋斗，而不是仅仅模仿他人。</p>
+
+<p>进化篇</p>
+
+<p>「养成对客户说“不”的习惯」中提到：</p>
+
+<p>    现在就开始培养说“不”的习惯──即使是面对自己最好的创意。利用拒绝的力量，成就你的优先顺序。人们很少会因为拒绝而后悔，却常常宁愿自己当初没有答应别人。</p>
+
+<p>    人们不愿意开口拒绝，是因为针锋相对的感觉并不舒服。但是另一个选择的后果会更糟。你自找麻烦，把事情弄得更复杂，最后连你自己都不知道自己在干什么。</p>
+
+<p>    这就象两性关系：分手很难，但是因为自己的懦弱而一直忍受下去，情况会更糟。长痛不如短痛。</p>
+
+<p>「不要攀客户的高枝」中提到：</p>
+
+<p>    没有用过你们产品的客户永远比用过的多。要确保你的产品让这些人容易上手。这就是你持续成长的潜力所在。</p>
+
+<p>    人在变，环境也在变，你不可能满足所有人的所有要求。公司要对某一类型的客户全情投入，而不是对某一个善变的客户唯唯诺诺。</p>
+
+<p>「头脑发热不等于当务之急」中提到：</p>
+
+<p>    首先要把你的伟大想法冷却一下。要想尽一切办法找出所有伟大的创意，让自己激情澎湃一把，但是不要轻举妄动。把它们都写下来，然后放上几天，再用冷静下来的思路去为它们安排优先顺序吧。</p>
+
+<p>「家用便利就是好」中提到：</p>
+
+<p>    当你制造出一个能成为“镇宅之宝”的产品时，可能要因此牺牲一些“镇店”的噱头。一个能够完美演绎基本功能的产品，势必在花哨程度上要略逊对手一筹。长于某些功能的产品，远远看上去肯定不是那么面面俱到。这没什么，毕竟你的目标是与它建立长期关系，而不是“一夜情”。</p>
+
+<p>「必须逐字记下客户的需求」中提到：</p>
+
+<p>    如果某个要求悖逆一次一次地遗忘在脑后，这就说明这个要求并不是太重要──真正重要的东西是忘不掉的。</p>
 
 		
 		
@@ -652,11 +645,11 @@ $ git commit --amend</pre></div>
   
 
 
-<time datetime="2011-02-13T21:47:00+08:00" pubdate data-updated="true">Feb 13<span>th</span>, 2011</time></div>
+<time datetime="2011-04-19T16:20:00+08:00" pubdate data-updated="true">Apr 19<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>, <a class='category' href='/blog/categories/xuan-ze/'>选择</a>
+	<a class='category' href='/blog/categories/chuang-ye/'>创业</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -668,16 +661,110 @@ $ git commit --amend</pre></div>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/02/09/thanks-for-myself-choose/">
+		<a href="/blog/2011/04/17/rework-study-part3/">
 		
-			感谢自己的选择</a>
+			《REWORK》学习笔记之效率篇</a>
 	</h2>
 	<div class="entry-content">
-		<p>有时候在作出一些决定的时候总是要思前想后，不得不承认这是一个不可避免的过程，有的人很快就作出决定，有的人就会很慢，我就是后者。然而我总是在考虑这个决定作出后给我带来的各种各样的后果，一下在还能想好几年！</p>
+		<p>效率篇</p>
 
-<p>刚刚有4个RSS可以订阅，我选择了2个。完全可以全部订阅啊，那样我就能了解各种资讯了，不用因为少订阅了的而看不到有可能影响我一生的话了……不排除这类可能，但应该感谢此时自己作出的这个决定。这里并没有对错之分，只是自己把未来规划了一下，瞬间，我的未来将发生一个变化，而如果我仍然在考虑甚久，就没有必要了，谁也说不准未来是什么样子。</p>
+<p>「赞同的错觉」中提到：</p>
 
-<p><span style="color: #ff0000;">所以，感谢自己所作的一切决定。我们所后悔的只是在今天看到了某些已经变成历史的事件，而这些事件，恰恰是我们过去非常“纠结”的那些吧！</span></p>
+<p>    如果你一定要说明某事，那就务实一点。不要描述它长什么样子，直接画出来；不要解释它的声音如何，直接哼出来。要尽一切可能去掉那些抽象的东西。</p>
+
+<p>    这就是我们要求尽量贴近实际的原因。只有这样才能让人真正理解你的想法。这就好像当我们在书中读到某些角色描述时，每个人都会联想到不同的形象。但如果我们实际上看到这些人了，我们就都回准确地之道他们到底长什么样子。</p>
+
+<p>「退出的理由」中提到：</p>
+
+<p>    退出之前，问问自己：</p>
+
+<p>    （1）为什么要这么做？</p>
+
+<p>    （2）你在解决什么问题？</p>
+
+<p>    （3）这真的有用吗？</p>
+
+<p>    （4）你加上去的东西有价值吗？</p>
+
+<p>    （5）这种改变真得会起作用吗？</p>
+
+<p>    （6）这种方法更简单吗？</p>
+
+<p>    （7）有其他更值得做的事情吗？</p>
+
+<p>    （8）这样做值吗？</p>
+
+<p>    同时，要用于亮出你的结论。有时候放弃其实是一步好棋，即使你已经为之投入很多努力，也不要继续把大好的时间浪费在不值得做的事情上。</p>
+
+<p>「打岔是效率的敌人」中提到：</p>
+
+<p>    你应该打到一种旁若无人的境界。长时间的单独工作能使你达到最高效率。当你不再为了不同的任务去切换思维时，你能干完一整车活儿。（有没有注意过自己在飞机上那种零打扰、无网络的状态下能达到怎样的工作效率？）</p>
+
+<p>    要达到这种旁若无人的警戒是需要时间的，而且还要不被打扰。就好像快速动眼睡眠（REM）一样（一种多梦的浅睡眠状态）：人不会直接进入快速动眼睡眠状态，你得睡着才行。一旦在这种浅睡眠状态中受到打扰，你就会彻底醒过来，有得重新入睡。快速动眼睡眠是真正神奇的梦幻睡眠时段，与此同理，人们处于那种旁若无人的境界时，效率也会出奇的高。</p>
+
+<p>    一个成功的独立时段意味着戒掉八卦瘾。在这个时段内，封锁即使聊天工具、挂掉电话、关闭邮箱、叫停会议。惟一能做的就是闭嘴、干活。你会惊讶于自己居然能干这么多活。</p>
+
+<p>    同样，当你需要与人合作时，要采用被动交流工具，比如用电子邮件这种不需要立即回复的交流方式，去代替那些会打断别人工作的方式，比如电话、开会之类。这样一来，别人能在方便的时候再回复你，而不是被迫立即放下手头的事情来回复你。</p>
+
+<p>    你的生活被各种干扰包围着，只有你自己才能去发起反击。</p>
+
+<p>「会议有毒」中提到：</p>
+
+<p>    假设安排一个长达1小时的会议，有10人参加，则实际上这是一场花费了10小时的会议，而不是1小时。你是在用10小时的生产力来换这1小时的会议。而且，如果算上方下工作、走到会议室开会、然后又走回办公室重新开始工作的这个过程中的思维转换时间，实际上会议的成本是15小时。</p>
+
+<p>    简单几条规则，让会议更加有效：</p>
+
+<p>        （1）放一个闹钟，闹钟想起，会议结束。</p>
+
+<p>        （2）与会人员尽量精简。</p>
+
+<p>        （3）议程尽量明晰。</p>
+
+<p>        （4）从明确的问题开始讨论。</p>
+
+<p>        （5）不要去会议室，就在出现问题的地点开会，直面现实，提出切合实际的改进建议。</p>
+
+<p>        （6）以明确的解决方案结束会议，并安排好由谁负责实施。</p>
+
+<p>「刚刚好就是真的好」中提到：</p>
+
+<p>    我们总能用简单平常的方法去解决问题。这也就意味着不需要超炫的表现，你没有机会炫耀你的超强技术。你只要找个办法把问题解决就行了，赶紧去办下一件事去。这种方案也许没发为你带来声声喝彩，但是能让你不断前行。</p>
+
+<p>「速战速决」中提到：</p>
+
+<p>    积累动力的方法就是完成一项任务，然后紧接着去完成下一项任务。没人愿意被困在一个看不到尽头的任务中。把人困在长达9个月并且毫无成就的项目中，等于是拿钝刀子杀人，迟早会耗尽你全部精力。想要保持良好的势头和持续的动力，就要养成“积跬步以致千里”的习惯。哪怕是微小的进步也能让你士气大振。</p>
+
+<p>「不要逞英雄」中提到：</p>
+
+<p>    要谨记：最明显的解决方案有可能就是适时退出。人们容易自然而然地把放弃和失败联系起来，但有时你就该这么做。如果你已经在不值得做的事情上浪费了很多时间，那就赶快走开。失去的时间是再也找不回来了。现在最糟糕的事莫过于继续浪费时间。</p>
+
+<p>「该睡觉时就睡觉」中提到：</p>
+
+<p>    长期熬夜带来的代价：</p>
+
+<p>        （1）顽固不化。</p>
+
+<p>        （2）缺乏创意。</p>
+
+<p>        （3）士气低落。</p>
+
+<p>        （4）情绪失控。</p>
+
+<p>「预估的都是垃圾」中提到：</p>
+
+<p>    把大项目分解成小任务。越小的任务越容易预计。你可能还是会犯错，但错的肯定不会像预测大项目那么离谱。如果某个任务所用的时间比预计的长两倍，那么最好把它从长达数月的大项目拆解成耗时几周的小项目。</p>
+
+<p>    不断地把你的计时范围拆分成小块，把一个长达12周的项目重整成12个耗时1周的小项目。不要妄自揣测某个任务大概需要30个小时以上的时间来完成，直接把它砍成几个大约6～10小时的小任务。然后一步一个脚印地努力前进。</p>
+
+<p>「罗列问题，不得解决」中提到：</p>
+
+<p>    在此我们对事务的优先级别也有个小小的建议：不要按照序号或标签来排序。千万别说“这件事的优先级别比较高，那件事的优先级别比较低”。同理，不要说“这是第三件事，这是第二件，这是第一件，这是N件……”诸如此类的话。这会使你陷入一大堆迫在眉睫的任务中，这不是真正的优先排序。</p>
+
+<p>    相反，要把看起来最重要的事情放在清单的上端。然后把第二重要的事情放在清单中挨着上端的位置。这样一来，你就能够按照事情的轻重缓急来进行排序，这样就足够了。</p>
+
+<p>「决策宜小不宜大」中提到：</p>
+
+<p>    重大决策很难落实，也很难修正。一旦做出重</p>
 
 		
 		
@@ -697,11 +784,11 @@ $ git commit --amend</pre></div>
   
 
 
-<time datetime="2011-02-09T23:11:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2011</time></div>
+<time datetime="2011-04-17T20:54:00+08:00" pubdate data-updated="true">Apr 17<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/xuan-ze/'>选择</a>
+	<a class='category' href='/blog/categories/chuang-ye/'>创业</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。 不过在用的时候发现查看带有中文字符的文件会出现乱码，在这里得到了解决方案： 0.打开putty主程序， &hellip;">
+	<meta name="description" content="昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3. &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,18 +79,25 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/03/02/bad-chinese-encoding-in-putty/">
+		<a href="/blog/2012/10/09/nat-practical/">
 		
-			Putty的中文乱码</a>
+			NAT实践</a>
 	</h2>
 	<div class="entry-content">
-		<p>着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。</p>
+		<p>昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3.20这台container来处理，相应的response也会返回过去。这样就做到了服务隔离。</p>
 
-<p>不过在用的时候发现查看带有中文字符的文件会出现乱码，在<a href="http://koda.iteye.com/blog/219494">这里</a>得到了解决方案：</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to 10.0.3.20
+</span><span class='line'>sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT --to 200.200.200.25
+</span></code></pre></td></tr></table></div></figure>
 
-<p><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">0.打开putty主程序，选择window-〉Appearance-〉Font settings-〉Change&hellip;,选择Fixedsys字体,字符集选择CHINESE_GB2312。 </span><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">1.在window-〉Appearance -〉Translation中，Received data assumed to be in which character set 中,把Use font encoding改为UTF-8如果经常使用,把这些设置保存在session里面. </span><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">2.现在打开putty,登录成功后,在shell中输入:export LC_ALL=&lsquo;zh_CN.utf8&#8217; </span></p>
 
-<p><p style="text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif;"><span style="line-height: 25px;">然后再打开文件就没问题了。</span></span></p>
+<p>这样就把进入的请求都发到了10.0.3.20这台container上去处理。</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/CkkIbzDr/medish.jpg" alt="nat" /></p>
+
+<p>只默认开了一个nginx，就这样的效果。</p>
 
 		
 		
@@ -110,11 +117,11 @@
   
 
 
-<time datetime="2012-03-02T12:08:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2012</time></div>
+<time datetime="2012-10-09T14:09:00+08:00" pubdate data-updated="true">Oct 9<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/putty/'>putty</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/iptables/'>iptables</a>, <a class='category' href='/blog/categories/lxc/'>lxc</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -126,28 +133,46 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/23/have-bought-textmate/">
+		<a href="/blog/2012/10/08/lxc-practical/">
 		
-			买了textmate</a>
+			LXC实践</a>
 	</h2>
 	<div class="entry-content">
-		<p>截至目前，这是我买得最贵的一款软件了——39欧元（327RMB）</p>
+		<p>这里的LXC是基于Ubuntu12.04的，在其他系统下可能不太一样。</p>
 
-<p>一直在豆瓣Textmate小组中等人家团购，自己也从没在官网试过购买，一看是用的paypal做中转，感觉不靠谱，以前也没试过paypal的支付，没想到这次成功了，先用了张信用卡支付，发现不行，结果换普通银行卡，直接跳转到了银联，然后我又用的信用卡透支……</p>
+<p>0.安装lxc</p>
 
-<p>稍微配置了一下textmate，按照<a href="http://www.lixiaolai.com/archives/10895.html">这里</a>的方法，其中1.5版本的中文字体那里，建议不要尝试了，不完美，还是等2.0正式发布了吧，听说2.0对于中文字体支持得很好，但我懒得下载测试版来用：）</p>
-
-<p>加入GetBundles：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">mkdir -p ~/Library/Application\ Support/TextMate/Bundles
-cd !$
-svn co http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/
-osascript -e 'tell app "TextMate" to reload bundles'</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install lxc
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>第一次见cd还能这样用，这样简直太方便了！还有最后那句script，多么优美的句子：）</p>
+<p>1.修改lxc的mirror，不修改的话下载一个ubuntu景象会非常慢！！！</p>
 
-<p>以后就要多用textmate了，先放弃emacs。</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo emacs /etc/default/lxc
+</span><span class='line'>第三行的mirror注释去掉，并修改为cn.archive.ubuntu.com，这样就非常快了
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.创建lxc容器，t表示模板中的名字，n表示这个容器的名字（可自定义）</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-create -t ubuntu -n ubuntu_container
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.启动容器</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-start -n ubuntu_container
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>启动后就会出现登录ubuntu的界面，刚刚创建好容器后会给出一个提示，帐号密码都是ubuntu，登录进去就可以使用了。</p>
+
+<p>猜想lxc的用法可能是对于部署的某个进程使用lxc隔离，这并不能做vps用，lxc只是轻量虚拟化，针对进程来的，所以还是单机在使用，如果做vps就得用vmware、xen、openvz这样的东西了。</p>
 
 		
 		
@@ -167,11 +192,11 @@ osascript -e 'tell app "TextMate" to reload bundles'</pre>
   
 
 
-<time datetime="2012-02-23T19:29:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2012</time></div>
+<time datetime="2012-10-08T20:46:00+08:00" pubdate data-updated="true">Oct 8<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/textmate/'>textmate</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/lxc/'>lxc</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -183,32 +208,42 @@ osascript -e 'tell app "TextMate" to reload bundles'</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/15/set-timezone-in-rails/">
+		<a href="/blog/2012/10/08/lvm-and-raid1/">
 		
-			设置Rails中的timezone</a>
+			LVM+RAID实践</a>
 	</h2>
 	<div class="entry-content">
-		<p>Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。</p>
+		<p>两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。</p>
 
-<p>没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1</p>
+<p>0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响：</p>
 
-<pre class="prettyprint linenums bush:ruby" lang="ruby">config.active_record.default_timezone = :local  
-config.time_zone = 'Beijing'  </pre>
-
-
-<p>为何我说差不多呢，原因如下：</p>
-
-<pre class="prettyprint linenums bush:ruby" lang="ruby">irb(main):001:0&gt; Fpwd.store(1)
- Fpwd Load (0.2ms)  SELECT "fpwds".* FROM "fpwds" WHERE "fpwds"."user_id" = 1 LIMIT 1
- SQL (2.7ms)  DELETE FROM "fpwds" WHERE "fpwds"."user_id" = 1
-  (0.1ms)  begin transaction
-Binary data inserted for `string` type on column `randstring`
- SQL (429.6ms)  INSERT INTO "fpwds" ("created_at", "randstring", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", Wed, 15 Feb 2012 14:29:35 CST +08:00], ["randstring", "87e685e0d2ab37143fae248083822ffea600f577"], ["updated_at", Wed, 15 Feb 2012 14:29:35 CST +08:00], ["user_id", 1]]
-  (1.4ms)  commit transaction
-=&gt; #&lt;Fpwd user_id: 1, randstring: "87e685e0d2ab37143fae248083822ffea600f577", created_at: "2012-02-15 06:29:35", updated_at: "2012-02-15 06:29:35"&gt;</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>fdisk /dev/sda
+</span><span class='line'>fdisk /dev/sdb
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>最后的返回值那里还是晚了8小时，我用sqlite3查看的时候时间是正常的，所以这里怀疑是ruby的时间问题了，好在app中已经正常！</p>
+<p>1.创建PV</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pvcreate /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.创建VG</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vgcreate -s 16M vg0 /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.创建LV</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m 1 -lxxxx --corelog
+</span></code></pre></td></tr></table></div></figure>
+
 
 		
 		
@@ -228,11 +263,11 @@ Binary data inserted for `string` type on column `randstring`
   
 
 
-<time datetime="2012-02-15T14:37:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2012</time></div>
+<time datetime="2012-10-08T14:09:00+08:00" pubdate data-updated="true">Oct 8<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/timezone/'>timezone</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/lvm/'>lvm</a>, <a class='category' href='/blog/categories/raid1/'>raid1</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -244,16 +279,16 @@ Binary data inserted for `string` type on column `randstring`
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/14/differentiate-form-for-and-form-tag/">
+		<a href="/blog/2012/10/04/print-words-count/">
 		
-			分清form_for和form_tag</a>
+			统计词频方法</a>
 	</h2>
 	<div class="entry-content">
-		<p>两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][:username]，前面的:user是我给form_for的第一个参数，这个form的所有信息都得加[:user]这样的前缀才能得到了，让我十分痛苦（又加上是个2.14）</p>
+		<p>记得上次参加美味书签电面的时候被问到如何统计一个语料库中的词频，当时有点傻，刚刚在复习Python的dict也遇到了这样的问题，一下子认识到，原来可以做得这么简单。虽然不知道有没有更爽的办法，但我觉得我这种方法也算是能用了，能够保证一定效率的情况下，可理解性也很强。</p>
 
-<p>使用form_tag后对于它的action不太会控制，所幸不写参数了，正好action指向本地址，省事儿！</p>
+<p>读取一行行的word，存入dict，word作为key，value就是出现次数了，这样都是linear的事件复杂度，如果在字典就把value加1，要是不在就把value设为1即可。dict的查找复杂度很低，是hash查找。</p>
 
-<p>感谢<a href="http://blog.csdn.net/babylon_0049/article/details/4730763">这里</a>写的内容</p>
+<p>唉，会不会就是这样我才被拒掉了呢？！</p>
 
 		
 		
@@ -273,11 +308,11 @@ Binary data inserted for `string` type on column `randstring`
   
 
 
-<time datetime="2012-02-14T19:34:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2012</time></div>
+<time datetime="2012-10-04T18:32:00+08:00" pubdate data-updated="true">Oct 4<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/form-for/'>form for</a>, <a class='category' href='/blog/categories/form-tag/'>form tag</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/dict/'>dict</a>, <a class='category' href='/blog/categories/meiwei-dot-fm/'>meiwei.fm</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -289,27 +324,19 @@ Binary data inserted for `string` type on column `randstring`
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/14/write-attribute-in-ruby/">
+		<a href="/blog/2012/10/04/dict-formatting-in-python/">
 		
-			Ruby中的write_attribute</a>
+			Python中dict格式化</a>
 	</h2>
 	<div class="entry-content">
-		<p>有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误：</p>
+		<p>最近在工作中遇到过写SQL的问题，参数是直接传递进去的，比如这样：</p>
 
-<pre class="prettyprint linenums bush:ruby" lang="ruby">  def password=(pwd)
-   @password = pwd
-   return if @password.blank?
-   create_new_salt
-   self.password = xxx
- end</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">db</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;SELECT * FROM xxx WHERE id = </span><span class="si">%(id)s</span><span class="s">&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">get_id</span><span class="p">())</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>最后那行使用了self.password= xxx，你有没有注意到我们这个方法就是password=，你在自己调用自己，如果有条件停止的话，那这叫递归，如果没有的话，这就是死循环喽，ruby可能会抛出一个stack too deep的错误（rails至少会这样说），此时需要一个magic！</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">write_attribute(:password, User.encrypted_password(self.password, self.salt))</pre>
-
-
-<p>使用write_attribute(xxx,jjj)即可，意思就是把jjj赋值给xxx了，因为此时正好在定义xxx，所以不能用xxx = 这样的方法赋值。</p>
+<p>今天细看Google提供的Python课程发现一个叫DictFormatting的部分，里面就有类似这样的语法，现在才明白。以前用过Python的格式化输出，其实这个dict的格式化和字符串的类似，就是在字符串格式化的基础之上加入了dict的key，%s是表示这里有字符串，而%(xxx)s是表示字符串，而且是以xxx为key的字符串，这个value就是从字典中给出。一半会在这样一个字符串后加“% dictname”表示值从dictname这个字典中给出，这不就是和字符串格式化一样么。</p>
 
 		
 		
@@ -329,11 +356,11 @@ Binary data inserted for `string` type on column `randstring`
   
 
 
-<time datetime="2012-02-14T16:06:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2012</time></div>
+<time datetime="2012-10-04T17:54:00+08:00" pubdate data-updated="true">Oct 4<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/write-attribute/'>write attribute</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/dict/'>dict</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -345,16 +372,27 @@ Binary data inserted for `string` type on column `randstring`
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/12/pain-rails/">
+		<a href="/blog/2012/10/04/sort-method-in-python/">
 		
-			痛苦的rails</a>
+			Python中的sort方法</a>
 	</h2>
 	<div class="entry-content">
-		<p>由于rails给我带来的痛苦，让我对ruby这门写着code for fun的语言产生了怀疑，真得有fun么？一开始就没有感觉，现在来看更是如此。</p>
+		<p>打算从今天开始自习再学学Python的基础，选了Google提供的Python课程，学到list部分，有个练习题目要求针对一组tuples排序，根据tuples的最后一个元素排序，有个hint，可以用key=function这种方法，于是搜索了一番，在Python的wiki中找到这个key方法的描述：</p>
 
-<p>rails是一个正在成长的框架，每一个小版本号的变动都可能会引入和废弃不少特性，而我又傻傻地在使用最新的rails（3.2.1），书上讲的都是rails2.2.2的内容，乍一看变动不应该太大啊，实际上并不是如此！！！</p>
+<p>从Python2.4以后list.sort()和sorted()方法都提供了一个key可选参数，传入一个function用来决定排序需要的key。这个key就是所排序元素的权值，最终就是根据权值来排序了。你也可以自己写一个方法，就是那种用def来定义的方法，不过要求接受一个参数，返回一个值，接受的参数就是这个集合（list、dict、tuple）中的某个元素。我是这样写的，it works：</p>
 
-<p>对于一个新手来说，学习一个正在成长的框架是痛苦的：（</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">sort_last</span><span class="p">(</span><span class="n">tuples</span><span class="p">):</span>
+</span><span class='line'> <span class="c"># +++your code here+++</span>
+</span><span class='line'> <span class="n">tuples</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'> <span class="k">return</span> <span class="n">tuples</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>根据tuple中最后一个排序。</p>
 
 		
 		
@@ -374,11 +412,11 @@ Binary data inserted for `string` type on column `randstring`
   
 
 
-<time datetime="2012-02-12T22:03:00+08:00" pubdate data-updated="true">Feb 12<span>th</span>, 2012</time></div>
+<time datetime="2012-10-04T14:58:00+08:00" pubdate data-updated="true">Oct 4<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/sort/'>sort</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -390,18 +428,147 @@ Binary data inserted for `string` type on column `randstring`
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/09/egg-ache-no-route-matches-say-hello/">
+		<a href="/blog/2012/10/01/optimzation-for-m4/">
 		
-			蛋疼的No Route Matches “/say/hello”</a>
+			M4的一点优化</a>
 	</h2>
 	<div class="entry-content">
-		<p>现在有些后悔买的那本书了，《web开发敏捷之道第三版》，那本书的代码使用的是rails2.2.2，真够2的，现在用的是3.2.1，作者说有不少代码已经更改了，但没想到会差得连我都能看出来，我只是个初学者啊！好在我还能稍稍应付自如，后面可能就会更加累了！</p>
+		<p>1.关闭紧急运动传感器</p>
 
-<p>一开始在helloworld部分就遇到一个问题，用rails generate controller say后根本不能自动添加一条routes，找了原作者的wiki更新发现这里已经需要自己修改routes的内容了，不过也好，消去一行注释即可：）</p>
+<p>mac系统没有把这些传感器的设置、界面什么的体现到UI里，让我一度以为mbp没有这种设备，实际这也算是mac系统的设计理念吧，把普通用户无须知晓的东西屏蔽掉，让用户看起来、用起来异常简单，不像thinkpad那样，直接把硬盘活动保护啥的做成一个功能给用户展示。。。你看，你看，我们（thinkpad）有保护您硬盘的设备。。。</p>
 
-<p>感谢<a href="http://www.xiaoyangsheng.com/2011/02/routing-error-no-route-matches-sayhello/">这里</a></p>
+<p>这些不让用户看到的功能大多需要相关工具或者命令行来设置：</p>
 
-<p>如果还有谁遇到类似不兼容问题，请看<a href="http://pragprog.com/wikis/wiki/ChangesToRails">作者的wiki更新</a>吧，希望有帮助！</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pmset -a sms 0&lt;/pre&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>对于替换了原来硬盘的这种方案就可以关闭紧急运动传感器了，如果加了SSD在光驱位，那就甭管了，继续保护硬盘吧！</p>
+
+<p>2.开启Trim</p>
+
+<p>同样要使用命令行开启，有个app叫Trim Enabler，但不推荐用。也有呼声说M4带有GC功能，是不是不需要开Trim了，综合不少资料考虑，还是推荐开起来。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>备份
+</span><span class='line'>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>10.8.1 or 10.7.5 or newer
+</span><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x4D)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>10.8.0 or 10.7.4 or below</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x51)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>清除系统内核扩展缓存</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo touch /System/Library/Extensions/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>重启</p>
+
+<p>如果想禁止Trim</p>
+
+<p>FOR ML 10.8.1 AND LION 10.7.5 OR NEWER</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x4D)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>FOR ML 10.8.0 AND LION 10.7.4 BELOW</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00).{9}(\x00\x51)|$1\x41\x50\x50\x4C\x45\x20\x53\x53\x44$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</span><span class='line'>
+</span><span class='line'>sudo touch /System/Library/Extensions/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果出错就恢复刚刚的备份</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.用noatime方式挂载硬盘，就是少加载一个文件属性参数而已，对于日常使用没啥影响，在/Library/LaunchDaemons里面创建一个noatime.plist，内容如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot;</span>
+</span><span class='line'><span class="cp">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
+</span><span class='line'><span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;dict&gt;</span>
+</span><span class='line'><span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
+</span><span class='line'><span class="nt">&lt;string&gt;</span>noatime<span class="nt">&lt;/string&gt;</span>
+</span><span class='line'><span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
+</span><span class='line'><span class="nt">&lt;array&gt;</span>
+</span><span class='line'><span class="nt">&lt;string&gt;</span>mount<span class="nt">&lt;/string&gt;</span>
+</span><span class='line'><span class="nt">&lt;string&gt;</span>-vuwo<span class="nt">&lt;/string&gt;</span>
+</span><span class='line'><span class="nt">&lt;string&gt;</span>noatime<span class="nt">&lt;/string&gt;</span>
+</span><span class='line'><span class="nt">&lt;string&gt;</span>/<span class="nt">&lt;/string&gt;</span>
+</span><span class='line'><span class="nt">&lt;/array&gt;</span>
+</span><span class='line'><span class="nt">&lt;key&gt;</span>RunAtLoad<span class="nt">&lt;/key&gt;</span>
+</span><span class='line'><span class="nt">&lt;true/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dict&gt;</span>
+</span><span class='line'><span class="nt">&lt;/plist&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>修改刚刚创建的文件权限</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chown root:wheel /Library/LaunchDaemons/noatime.plist
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>重启</p>
+
+<p>检测结果</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mount | grep <span class="s2">&quot; / &quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果结果里有类似这样的内容（最后的noatime）就表示可以了</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/dev/disk0s2 on / <span class="o">(</span>hfs, <span class="nb">local</span>, journaled, noatime<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 		
 		
@@ -421,11 +588,11 @@ Binary data inserted for `string` type on column `randstring`
   
 
 
-<time datetime="2012-02-09T23:01:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time></div>
+<time datetime="2012-10-01T17:05:00+08:00" pubdate data-updated="true">Oct 1<span>st</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/routes/'>routes</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/ssd/'>SSD</a>
 
 
 </div>
@@ -437,16 +604,16 @@ Binary data inserted for `string` type on column `randstring`
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/09/arguments-issue-in-auto-complete-plugin/">
+		<a href="/blog/2012/10/01/bought-a-ssd-called-m4/">
 		
-			Emacs中auto-complete插件问题</a>
+			买了个叫M4的硬盘</a>
 	</h2>
 	<div class="entry-content">
-		<p>一般都是直接打开emacs使用，偶尔在terminal中用emacs发现出现错误：Wrong number of arguments: called-interactively-p, 1</p>
+		<p>256Gb，1200块。</p>
 
-<p>看了看是auto-complete的某些错误，通过Google得到了相关问题的解决，删除auto-complete的elc文件，似乎这些文件是可以加速插件的运行编译出来的，现在删除后在terminal中使用就没问题了！</p>
+<p>速度还不错，读取260Mb/s，写入206Mb/s。</p>
 
-<p>感谢<a href="http://www.lichaozheng.info/2011/10/19/%E8%A7%A3%E5%86%B3emacs-%E5%87%BA%E7%8E%B0wrong-number-of-arguments-called-interactively-p-1/">这里</a>的帮助</p>
+<p>至此，MC374能升级的部分都升级到位了。</p>
 
 		
 		
@@ -466,11 +633,11 @@ Binary data inserted for `string` type on column `randstring`
   
 
 
-<time datetime="2012-02-09T22:21:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time></div>
+<time datetime="2012-10-01T14:05:00+08:00" pubdate data-updated="true">Oct 1<span>st</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/autocomplete/'>autocomplete</a>, <a class='category' href='/blog/categories/emacs/'>emacs</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/ssd/'>SSD</a>
 
 
 </div>
@@ -482,90 +649,16 @@ Binary data inserted for `string` type on column `randstring`
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/">
+		<a href="/blog/2012/09/23/247-rubbish-comments/">
 		
-			安装mysql的Ruby驱动遇到的问题</a>
+			247条垃圾评论</a>
 	</h2>
 	<div class="entry-content">
-		<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql
-Fetching: mysql-2.8.1.gem (100%)
-Building native extensions.  This could take a while...
-ERROR:  Error installing mysql:
-ERROR: Failed to build gem native extension.
+		<p>疏于管理啊，让各路垃圾评论之小人得了空，钻到这里写了那么多，还好spam插件够给力，全部截获。以后不该再这样了，但也是没什么时间。</p>
 
-       /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lm... yes
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lz... yes
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lsocket... no
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lnsl... no
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lmygcc... no
-checking for mysql_query() in -lmysqlclient... no
-*** extconf.rb failed ***
-Could not create Makefile due to some reason, probably lack of
-necessary libraries and/or headers.  Check the mkmf.log file for more
-details.  You may need configuration options.
+<p>去了honovation之后发觉自己写过的代码基本就不叫代码啊，自觉的对python算是熟悉的，到了那里也感觉从没写过python了，怪我平日光想着感情来感情去了，就和我这技术blog似的，疏于管束，才弄得我今天这个结果。</p>
 
-Provided configuration options:
---with-opt-dir
---without-opt-dir
---with-opt-include
---without-opt-include=${opt-dir}/include
---with-opt-lib
---without-opt-lib=${opt-dir}/lib
---with-make-prog
---without-make-prog
---srcdir=.
---curdir
---ruby=/usr/local/Cellar/ruby/1.9.3-p0/bin/ruby
---with-mysql-config
---without-mysql-config
---with-mysql-dir
---without-mysql-dir
---with-mysql-include
---without-mysql-include=${mysql-dir}/include
---with-mysql-lib
---without-mysql-lib=${mysql-dir}/lib
---with-mysqlclientlib
---without-mysqlclientlib
---with-mlib
---without-mlib
---with-mysqlclientlib
---without-mysqlclientlib
---with-zlib
---without-zlib
---with-mysqlclientlib
---without-mysqlclientlib
---with-socketlib
---without-socketlib
---with-mysqlclientlib
---without-mysqlclientlib
---with-nsllib
---without-nsllib
---with-mysqlclientlib
---without-mysqlclientlib
---with-mygcclib
---without-mygcclib
---with-mysqlclientlib
---without-mysqlclientlib
-
-
-Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 for inspection.
-Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out</pre>
-
-
-<p>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">gem install mysql -- --with-mysql-dir=/usr/local/mysql</pre>
-
-
-<p>一开始的那两个“&mdash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
-
-<p>我已经解决问题了，成功安装mysql的ruby驱动，如果仍然遇到问题，可以试试参考<a href="http://blog.bmn.name/2008/02/rails-gem-install-mysql-throws-error-extconfrb-failed/">这里</a>（同样感谢这里）。</p>
+<p>现在比较感兴趣的是敏捷实践，看书上网上的资料毕竟比较浮华，身处于敏捷团队，每天都在做得就是最好的实践，怪我一时还不太会总结，现在好像又要深陷到代码里了，我这个程序员何时能成长？！</p>
 
 		
 		
@@ -585,11 +678,11 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
   
 
 
-<time datetime="2012-02-09T20:08:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time></div>
+<time datetime="2012-09-23T21:24:00+08:00" pubdate data-updated="true">Sep 23<span>rd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/la-ji-ping-lun/'>垃圾评论</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/min-jie-kai-fa/'>敏捷开发</a>
 
 
 </div>
@@ -601,28 +694,14 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/07/some-issue-when-saving-rules-in-iptables/">
+		<a href="/blog/2012/08/18/prop-method-in-jquery1-6-or-later/">
 		
-			保存iptables规则遇到的问题</a>
+			jquery1.6+中的prop方法</a>
 	</h2>
 	<div class="entry-content">
-		<p>开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。</p>
+		<p>最近有个网站需要一个简单的功能——全选一些checkbox，但用attr的方法总是出问题，主要问题如下：第一次全选没问题，如果此时取消选择一些checkbox，再用全选就不管用了，主要原因就是第一次全选的时候自动加入了checked属性，以后再强制attr(&ldquo;checked&rdquo;,true)就会没反应。在<a href="http://blog.csdn.net/yaerfeng/article/details/7792832">这里</a>看到一篇文章，里面提到了prop方法，是1.6以后才加入的，就是部分替换了attr的功能，用了prop就可以及时对操作做出反应（这里我不太理解），总之本来用attr的操作现在需要用prop才有效果，当然了，如果你用纯js肯定是没问题喽。</p>
 
-<p>在保存iptables规则的时候遇到这样的问题：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">iptables: Saving firewall rules to /etc/sysconfig/iptables: /etc/init.d/iptables: line 268: restorecon: command not found</pre>
-
-
-<p>当然你可能会看到中文的提示（我的就是），意思是一样的。从<a href="http://www.live-in.org/archives/1112.html">这里</a>得到了解决方案：</p>
-
-<p>安装一个包包：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">yum install policycoreutils</pre>
-
-
-<p>行了，剩下就没遇到问题了：）</p>
-
-<p>稍稍广告一下吧：欢迎使用Yardvps的VPS哦，我就在使用，现在很稳定，现在有了中文界面，支持支付宝，挺好吧？可以点击<a href="http://www.yardvps.com/billing/aff.php?aff=399">这里</a>购买，这样我也许能得到一点推广费用：）</p>
+<p>换用prop之后，问题解决！</p>
 
 		
 		
@@ -642,11 +721,11 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
   
 
 
-<time datetime="2012-02-07T18:03:00+08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2012</time></div>
+<time datetime="2012-08-18T19:27:00+08:00" pubdate data-updated="true">Aug 18<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/iptables/'>iptables</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/jquery/'>jQuery</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

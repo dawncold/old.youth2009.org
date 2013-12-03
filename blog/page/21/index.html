@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="用了不少时间PHP，也有些喜欢这种开发语言，但我仍然对Python有强烈的热情，但支持Python的主机服务还不算多，很想体验GAE，但由于在国内嘛，只能这样忍受了。 原本想在Emacs中配置Python的环境，但……有些过于复杂了。安装了很久的emacs，到头来不知道该怎么用，打算卸载掉算了， &hellip;">
+	<meta name="description" content="经过近1天的实践才摸清了这两个控件的搭配使用方法，网上介绍的不算多，我就把自己的经验说说： 首先这两个的搭配是这样的，基础是UITabBarController，你完全可以在Xcode中选一个以Tabbar为基础的工程，用Tabbar来划分程序的大功能，每个功能中再用Navigation来做导航 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,22 +79,20 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/06/04/eclipse-gae-on-mac/">
+		<a href="/blog/2011/07/28/use-uinavigationcontroller-in-uitabbarcontroller/">
 		
-			Mac系统下的Eclipse中GAE配置</a>
+			UINavigationController和UITabBarController的搭配</a>
 	</h2>
 	<div class="entry-content">
-		<p>用了不少时间PHP，也有些喜欢这种开发语言，但我仍然对Python有强烈的热情，但支持Python的主机服务还不算多，很想体验GAE，但由于在国内嘛，只能这样忍受了。</p>
+		<p>经过近1天的实践才摸清了这两个控件的搭配使用方法，网上介绍的不算多，我就把自己的经验说说：</p>
 
-<p>原本想在Emacs中配置Python的环境，但……有些过于复杂了。安装了很久的emacs，到头来不知道该怎么用，打算卸载掉算了，自己不需要的东西，不管它多么优秀，对于我来说，目前都没有价值！所以我还是选择了Eclipse环境。</p>
+<p>首先这两个的搭配是这样的，基础是UITabBarController，你完全可以在Xcode中选一个以Tabbar为基础的工程，用Tabbar来划分程序的大功能，每个功能中再用Navigation来做导航。我想大家应该都会这样做，当然如果反过来也不是不行，就是感觉有点别扭。</p>
 
-<p>在安装PyDev插件的时候遇到点问题：安装时候有3个项目可安装，我第一次是都安装的，但中途出现错误停止了，于是我第二次只安装了第一个，就是主要的PyDev程序，没有问题。</p>
+<p>在AppDelegate的初始化过程中用几个UINavigationController包裹UIViewController或者其子类（比如UITableViewController）放入UITabBarController中，这样的设置应该都会。我一开始这样写后，到了每个功能中，需要用到Navigation了，又自己写了一个UINavigationController，但不管用。然后我猜想是不是要自己模拟类似的功能，就自己加上了UINavigationBar，样子是对了，可惜这个bar不带popViewController的功能，完全让navigation成了摆设。无意中看到apple官方的例子中在UIViewController中用到了self.navigationController，我这才意识到UIViewController自己就带着UINavigationController。代码又改回以前的，几个UInavigationController包裹UIViewController初始化，然后在每个功能中大胆用self的navigationController来导航，达到了效果。</p>
 
-<p>在创建一个GAE项目后，需要填写GAE的location，在Mac系统下，装了Google提供的SDK For Mac就找不到GAE的相关文件了，因为都在那个app包中，只是在/usr/local/bin中有几个相关的py文件，在/usr/local/中有个链接，链接到app包中的一个地方，主要就是用这个链接，不过你会发现这样用之后还有点问题，插件需要找到lib目录下的django，如果你看看目录的话会发现根本没有django目录，只有另一个叫django_0_96这样的目录，于是建立一个软连接到django过去即可。</p>
+<p>还有，如果要做TableView，最好在UIViewController的子类中加入一个UITableView而不是UITableViewController，前者是一个控件，而后者是一套处理（当然还包括控件）。我一开始想在某个功能中用表格，加了一个表格的controller，总是看到表格开头多了一大块灰色的区域，硬生生地把一个表格给隔开了，具体问题在网上没有搜索到相关结果。但后来用了UITableView就好了。</p>
 
-<p>以上方法来自国外一技术博客：</p>
-
-<p><a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/" target="_blank"><a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/">http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/</a></a></p>
+<p>啰嗦了这么多，其实写的是我的探索过程，并不是直接给出的结果。</p>
 
 		
 		
@@ -114,11 +112,11 @@
   
 
 
-<time datetime="2011-06-04T18:43:00+08:00" pubdate data-updated="true">Jun 4<span>th</span>, 2011</time></div>
+<time datetime="2011-07-28T06:01:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/eclipse/'>eclipse</a>, <a class='category' href='/blog/categories/gae/'>gae</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/uinavigationcontroller/'>UINavigationController</a>, <a class='category' href='/blog/categories/uitabbarcontroller/'>UITabBarController</a>, <a class='category' href='/blog/categories/uitableview/'>UITableView</a>, <a class='category' href='/blog/categories/uitableviewcontroller/'>UITableViewController</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -130,16 +128,25 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/06/01/mapapp-approaches-end/">
+		<a href="/blog/2011/07/26/iphone-simulator-and-sqlite/">
 		
-			项目要收工了</a>
+			Iphone模拟器和sqlite的问题</a>
 	</h2>
 	<div class="entry-content">
-		<p>虽然最后的几个功能还没有完成，但总归目前已经能用了。如果说端午过后还有机会继续提交的话，可能最终就是完成这几个功能吧。不过最大的问题是现在已经到了考试前夕，如果不想承受考前突击带来的痛苦和自责，那必须得提前准备，何况今年还要考英语四级。按照Fnln的说法，按照正常退步速度就能通过，但我已经不清楚现在是不是正常退步速度了，应该还没有吧，仅仅是最近大家都在复习的时候我在做网站而已：）</p>
+		<p>最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。</p>
 
-<p>刚刚用phpDocumentor把文档生成出来了，还遇到了可恶的乱码问题，最终用了强大的替换工具，硬生生把字符集换成了utf8，总算是解决了吧，虽然解决方法不太好，但这是个看结果的事情：）</p>
+<p>今天update进去信息，总是没发现数据库更新，怀疑是忘记commit，查看一下FMDB的使用方法，确实有commit一说，而我在看国内某博客写的使用教程时发现他就是随意的update和insert，殊不知这些都需要commit呀！在update和insert代码前后需要加入</p>
 
-<p>不知道Yfan那边的css工作怎么样了，要是进展顺利，明天全线停止，开始写写计划书什么的文字材料，在最后一个工作日交上去。当然这算是理想的情况。</p>
+<pre class="prettyprint linenums bush:cpp" lang="cpp">[db beginTransaction];
+和
+[db commit];</pre>
+
+
+<p> 我用的Objective-C。</p>
+
+<p>然而即便是这样，更新了数据库后再查询，确实数据被更改了，但我重新在模拟器中运行程序时候又恢复成了以前的值。偶然在模拟器中打开了程序而不是用xcode运行程序，数据竟然被永久更新了。</p>
+
+<p>所以，以后测试update的时候，前后对比应该只在模拟器中看，如果再用xcode启动，会把原来的数据传入模拟器，这样你就看不到效果了。</p>
 
 		
 		
@@ -159,11 +166,11 @@
   
 
 
-<time datetime="2011-06-01T18:04:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2011</time></div>
+<time datetime="2011-07-26T09:19:00+08:00" pubdate data-updated="true">Jul 26<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/di-tu-ying-yong/'>地图应用</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/iphone/'>iphone</a>, <a class='category' href='/blog/categories/sqlite/'>sqlite</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -175,20 +182,19 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/06/01/install-pear/">
+		<a href="/blog/2011/07/23/sadly-box2d-expreiences/">
 		
-			安装PEAR</a>
+			惨痛的Box2d经验</a>
 	</h2>
 	<div class="entry-content">
-		<p>在服务器上找了好久也没看到pear包的存在，于是下载重装。</p>
+		<p>说来也可笑，Box2d中有各种各样的Shape，有多边形，矩形，圆形。我就是在用圆形的时候遇到的这样的问题：需要设置圆形的半径，我就用了这样的表达式：26 / PTM_RADIO，后面的是一个宏定义，表示拿多少像素和box2d中的米作为兑换。我这样设置后总看着圆形很不正常，半径不对，而且落到底边也不弹起来，为此还查找了API、Google等地方，看着别人的代码都没问题，就是自己的不正常。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">wget http://pear.php.net/go-pear.phar 
-php ./go-pear.phar 
+<p>最终还是解决了这样的问题，真羞愧，原来半径需要一个float的值，但我的表达式算出来的应该是int，不过我也曾经写过 float radius = 26 / PTM_RADIO这样的，再把radius给半径，依然无果，感觉即便是类型不对也应该自动转换过去吧，没想到这里还就是不行了。</p>
 
-./pear install XXXX(XXXX就是要新加入的扩展库名称)</pre>
+<p>可恶的！</p>
 
+<pre class="prettyprint linenums bush:bash" lang="bash">26.0 / PTM_RADIO</pre>
 
-<p>根据提示修改一些参数即可，其中比较重要的是最后的include_path这个参数，要确保这里面包含了pear的目录，否则用pear安装上的扩展就不好运行了，比如我的PhpDocumentor就是如此，好在最后加入到了path中，phpdocumentor就能用了。</p>
 
 		
 		
@@ -208,11 +214,11 @@ php ./go-pear.phar
   
 
 
-<time datetime="2011-06-01T13:26:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2011</time></div>
+<time datetime="2011-07-23T11:30:00+08:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/box2d/'>box2d</a>, <a class='category' href='/blog/categories/yuan-xing/'>圆形</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -224,19 +230,22 @@ php ./go-pear.phar
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/30/js-data-object-in-four-browers/">
+		<a href="/blog/2011/07/23/write-to-xiaoxian/">
 		
-			四种浏览器下的JS日期对象</a>
+			写给小娴</a>
 	</h2>
 	<div class="entry-content">
-		<p>测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：</p>
+		<p>小娴先生您好，不知道是不是每一位第一次读到您的作品的读者都会有一种想给您写信的冲动，但不知道该往哪个地方投递。</p>
 
-<pre class="prettyprint linenums bush:jscript" lang="jscript">var da = '2000-01-01 00:00:00';
-var da_array = da.split(' ');
-var da_1 = da_array[0].split('-');
-var da_2 = da_array[1].split(':');
-alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
+<p>以前初中、高中的时候似乎听过您的名字，那时仅仅指导您就是一位作家而已，那时候听过很多作家的名字了，有时还会买《读者》、《译林》、《特别关注》、《爱你》等书来看，可能那时候思想上特别寂寞吧，周围的人也都在看这些书。</p>
 
+<p>前一段时间在微博上看到您在推荐自己的新书——《想念》，看封面挺喜欢的，简洁，还有我喜欢的颜色，或许是那两个字吧。随后就在当当网买下来了。其实我还是喜欢在卓越网购买，只是当时卓越上似乎缺货了，要等一星期左右，而且商品图片都没有，一下子感觉卓越做了一回不专业的商家，就跑去当当了。</p>
+
+<p>几天就收到了书，但一直没看，连封皮都没有撕开，想，没有撕开的话，说不定还能送人，而且那时候正忙活考试，暂时找不到看这类书的闲情逸致，直到放假回家的车上才看起来。</p>
+
+<p>现在看了近200页，有得仔细读过，有得泛泛略过。从书中，渐渐地体会到了您的生活方式，而且您似乎正在享受着幸福的生活，至少在文章中看不出您对于生活有什么失望。当然也有可能不便流露吧。</p>
+
+<p>希望有机会您能看到。</p>
 
 		
 		
@@ -256,11 +265,11 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
   
 
 
-<time datetime="2011-05-30T22:20:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2011</time></div>
+<time datetime="2011-07-23T08:16:00+08:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/date/'>date</a>, <a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/xiao-xian/'>小娴</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
 
 
 </div>
@@ -272,14 +281,12 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/30/getyear-in-js/">
+		<a href="/blog/2011/07/22/lion-eat-my-file-on-desktop/">
 		
-			js的Year</a>
+			Lion吃了我的文件</a>
 	</h2>
 	<div class="entry-content">
-		<p>js中有个获取当前年的函数，叫getYear()，但我测试的时候没有单独让它显示出来看看，只是当成一个最大值限制使用，测试了一个值发现正确，就不再管它了，后来测试的时候总是不对，再一看，那个值竟然是111，怪不得我输入一个年份都显示对了呢，现在都是2xxx年，随便一个就比111大不少了……</p>
-
-<p>目前那个函数已经被废弃了，取而代之的是getFullYear()，这次就正常了：）</p>
+		<p>很奇怪的现象：我在桌面上放了一个文件，是用Bean生成的文本文件，接着从这个Desktop往下一个Desktop切换，但不完全切换，只需要看下一个Desktop内容的一点，然后再回到当前这个Desktop，就会发现桌面上的那个文件没了，但点击文件的位置仍然能够打开！！这应该是一个相当大的bug吧？难道还能是一个专门给用户着想的地方？！</p>
 
 		
 		
@@ -299,11 +306,11 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
   
 
 
-<time datetime="2011-05-30T13:56:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2011</time></div>
+<time datetime="2011-07-22T07:28:00+08:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/desktop/'>desktop</a>, <a class='category' href='/blog/categories/file/'>file</a>, <a class='category' href='/blog/categories/lion/'>lion</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -315,16 +322,31 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/29/project-is-rushing/">
+		<a href="/blog/2011/07/22/lion-eat-my-java/">
 		
-			项目在冲刺</a>
+			Lion吃了我的Java</a>
 	</h2>
 	<div class="entry-content">
-		<p>看着日期就要到最后提交的日子了，这几天一直都在写最后的几个功能，昨天写的是活动功能，基本上完工了吧，只是没有一个很好的展示效果。今天主要做做基础通知功能，这个功能完成后就能把以前的很多模块产生的消息应用起来，首页也有一个不断抓取消息的语句。其实还是接口抓取啦，不知道那些大型网站，比如新浪微博是如何做这个的，可能也是如此吧。</p>
+		<p>刚刚看到cnbeta上一篇关于flash在lion中cpu占用率很高的问题，我感觉这都不算什么问题了，以前就发现占用率相当高，看flash视频的时候电脑会非常热。</p>
 
-<p>其实这样想来，做一个即使聊天的东西也就是这样吧，不断从一个接口抓取消息，不断向一个地方发送消息即可，只是若这样实现，会不会对数据库的压力非常大呢？也许还有更好的办法处理即时消息，比如NoSQL？</p>
+<p>但这次说的不是这个问题，而是adobe提到的lion没有预置java，这点有些奇怪，难道lion安装上就把java删除了？我开了Terminal，输入:</p>
 
-<p>这两天睡眠质量很不好，早上都是5点多起来，晚上差不多11点睡下，时长和高中的日子差不多了，不过白天竟然没有困意，只是偶尔感觉很饿，不知道该买些什么样的吃得放在身边：）</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">java -version</pre>
+
+
+<p>你猜显示什么？</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">No Java runtime present, requesting install.</pre>
+
+
+<p>接着安装更新的那种小窗口就跳出来了，问我是否安装java，那就装上吧，我有时可能用eclipse。</p>
+
+<p>装好后就能用了，不知道还有什么东西被偷偷“吃掉”了。</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">java version "1.6.0_26"
+Java(TM) SE Runtime Environment (build 1.6.0_26-b03-383-11A511)
+Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre>
+
 
 		
 		
@@ -344,11 +366,11 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
   
 
 
-<time datetime="2011-05-29T06:48:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2011</time></div>
+<time datetime="2011-07-22T07:12:00+08:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/di-tu-ying-yong/'>地图应用</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/wang-zhan/'>网站</a>
+	<a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/lion/'>lion</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -360,24 +382,22 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/24/thoughts-for-software-outsourcing/">
+		<a href="/blog/2011/07/22/lion-eat-my-xcode-4-0/">
 		
-			对软件外包专业的感想</a>
+			Lion吃了我的Xcode</a>
 	</h2>
 	<div class="entry-content">
-		<p>我将从以下三个方面简要谈一下对“软件外包”专业的感想</p>
+		<p>昨天Lion在AppStore发布了，我也就是看了几眼。后来在论坛上有人说通过香港的免费升级服务有一小部分大陆的机器也得到了免费升级的机会，我也算是个港行的mbp，去试试看，结果我的机器似乎不在那个享受范围内。</p>
 
-<p>    认识</p>
+<p>不过在微博上有人转发了一个Lion的种子，我就下载去了，一会儿竟然下载完了。然后晚上就装上了，apple在反盗版方面一点儿也不重视，下载是收费的，但你只要是得到了文件就随便使用。我这次也邪恶了一把。</p>
 
-<p>        我眼中的软件外包专业与其定义差不多──将非核心业务外包到劳动力相对本国较低的其他国家，从而达到降低劳动成本提高产品价值的目的。然而我想强调一下这个词──“非核心业务”，从这里就已经定性，软件外包的主要工作就是做一些产品中不涉及核心的部分，这让大部分以精英自居的大学生们感到有些可惜，有点怀才不遇的味道，我起初也是这样想的，不过现在的想法稍微有了些改变──在基础不太牢固的时候过分涉及核心业务会让自己深陷细节，比如在研究凸包算法的时候，大脑中本应充满数学逻辑，然而却因为语法问题不能继续下去，最终可能会走向选择语言的一条奇怪的道路上去。也就是说，我现在希望把软件外包作为强化内功的一个过程，同时能够接触到不少国外先进的管理方法，这些应该是以后走向管理岗位必不可少的经验，我不太希望一直走技术的道路。</p>
+<p>安装Lion好久了，先进行一个标明20min的预安装过程，再重启进行真正安装，那个过程标明33min但实际并不是这样，大约有3700s吧安装过程中鼠标移到最顶上，那个菜单条就出现了，可以看安装的log，比干等强一些。</p>
 
-<p>    感悟</p>
+<p>安装完Lion后我打开xcode，发现我的xcode4.0只能在10.6系统中运行，App Store中我还看到一个Xcode4.1而且是免费的，哎，这就很奇怪了，当初4.0是收费4.99美元下载的，现在又出来一个10.7系统下的免费4.1版本。既然免费就下载吧，但发现太慢。于是去了develop.apple.com上找develop tools在那里有xcode4.1的下载链接，本想用迅雷试试速度呢，不过igetter依然跳出来了，我也就没再换，速度还不错大约1MB/s左右，下载自动关机，就睡觉去了。</p>
 
-<p>        现在也快到了学期末，两年的学习就要走过。这两年我都想用“紧张”这个词来总结，大一的时候我就是因为爱好这个专业才来的，相比其他不太爱好这个，或者被调剂过来的同学，我有了很大的优势，加上以前有些基础，一开始学起来并不太疲劳，如果说是疲劳，基本上是自己让自己疲劳了──不断学习业界的新技术，把握业界的发展方向等，同时对哲学、摄影很有兴趣，看了不少这方面的书。对于国内的教材，我一概不看，主要原因是担心错误，当然也错过了为数不多的几本经典，但我相信这些损失远不如看错误内容带来的损害大。在大二，我的方向有些许的转变，技术上转到了互联网和移动应用这方面，和他们的发展分不开，更重要的是我的想法能够很快在这上面变成现实，相比研究一个图论上的算法，我更喜欢去追逐用户的需求，在合适的平台上搭建应用来满足他们，这让我感到我在不断追逐什么。正因如此，我个人对编程语言都有了一种倾向，偏好选择自由、简洁的那种──PHP、Python、JavaScript、Perl、LISP等（后两者还不会），而且我异常讨厌Java和.NET，我感觉他们这两种语言已经被设计得过于复杂，构建企业应用当然需要很多安全方面的考虑，但对于个人的灵感来说，他们太过于庞大了。本来我的一个想法用PHP可能几分钟就能上线，而用JSP，很可能我会卡在那只叫Tom的猫身上（Tomcat），我并没有贬低后者，当然前者PHP需要的Apache或者Nginx配置起来也不是说一帆风顺。还有一点就是自由的东西一般都是免费的，可能也因此GNU依然活跃。</p>
+<p>早上安装了那个xcode4.1，安装完毕后发现再打开xcode还是提示只能在10.6系统下使用。难道安装没用？！又去develop目录下找找application，只有一个xcode的app图标，很奇怪不知道为何。</p>
 
-<p>    希望    </p>
-
-<p>        记得前段时间读过的《REWORK》这本书（中文版译作《重来》）中提到“计划都是垃圾”的概念，就是说你永远都不可能预期明天会是什么样子。在我看来，“希望”也是如此，这或多或少就是在讲我自己的未来将会是什么样子的，这不也是在自己给自己指定计划吗？！本来不打算写一些空洞的东西，因为这是真实的感悟嘛，不过可以当作自己的愿景，能够帮助改善这个项目的话，还是值得说点。希望以后自己的连续时间段多一些，这样有助于产品的开发，学过操作系统的都了解，一次函数调用就要中断，越是中断越不能让指令流水，总体速度根本不可能上去，我想开发也是如此；希望学校中能够用贴近现实的方法传授知识，至少应该从实用性上再次考量一下。</p>
+<p>打开看了一眼我的Application目录，发现里面有一个InstallXcode，打开试试，没想到这才是升级，打开后升级了现有的Xcode，终于能用了。我想可能刚刚安装的时候发现我已经安装了以前的版本，所以就出来一个升级过程吧。</p>
 
 		
 		
@@ -397,11 +417,11 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
   
 
 
-<time datetime="2011-05-24T23:24:00+08:00" pubdate data-updated="true">May 24<span>th</span>, 2011</time></div>
+<time datetime="2011-07-22T06:48:00+08:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/ruan-jian-wai-bao/'>软件外包</a>, <a class='category' href='/blog/categories/qing-chun/'>青春</a>
+	<a class='category' href='/blog/categories/lion/'>lion</a>, <a class='category' href='/blog/categories/xcode/'>xcode</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -413,16 +433,24 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/21/sometime-i-do-care/">
+		<a href="/blog/2011/07/20/simple-intro-to-box2d/">
 		
-			我有时候太在乎</a>
+			Box2d的简单使用</a>
 	</h2>
 	<div class="entry-content">
-		<p>我太在乎什么呢？本来想限定一下范围，但想想再写上去一个范围似乎总不如现在这样，在面儿上谈谈我所<a title="在乎" href="http://www.youth2009.org/tag/%E5%9C%A8%E4%B9%8E/">在乎</a>的一类。</p>
+		<p>真不太想写，因为写这篇日志应该比写一个程序都要复杂。</p>
 
-<p>不过我并不总在乎什么东西，所以加了一个限定──“有时候”，就是在面对某几类问题的时候很在乎。现在想来，如果我是在各个方面都在乎的人，或者在各个方面都不在乎的人，会比现在这样有时候<a title="在乎" href="http://www.youth2009.org/tag/%E5%9C%A8%E4%B9%8E/">在乎</a>好很多吧？至少在成功的概率上前两者确实差不多，都是小概率，而中间是极其丰富的大概率。生活中就是如此充斥着各种各样的钟形曲线。</p>
+<p>我介绍的是box2d引擎在iphone上的使用方法，网上也有不少介绍的，我再简单啰嗦一番：</p>
 
-<p>我太在乎似乎是因为我喜欢去想一些事情，思考的时间比实践多一些，这究竟是不是有好处我搞不懂，但我确实感觉这是让我容易产生<a title="在乎" href="http://www.youth2009.org/tag/%E5%9C%A8%E4%B9%8E/">在乎</a>心理的主要动力！曾经想做个现实中的人，但总也把握不到，到底怎么才算是<a title="现实" href="http://www.youth2009.org/tag/%E7%8E%B0%E5%AE%9E/">现实</a>呢？找一个出来我观察一下他的行为跟着学学也好：）</p>
+<p>首先我们需要一个物理世界：b2world *world;在世界中创造各种各样的body，当然这些body都是刚体，如同经济学中的刚性需求那样，这里值得是形状不会被压扁的坚固物体。这些body默认在实例化后是静态的，除非你明显得把他们的type参数改成b2_dynamicBody，他们就能参与物理运动了。你可以给他们加入密度、弹性、摩擦等参数。这些都是每个body的属性，而这些body是需要刚刚的world创建的，而创建的函数需要一个配置单，就是一个结构体而已。</p>
+
+<p>body出现之后你还不能看到，因为还需要另外的两个重要性质：fixture和shape，这里的shape有两种，一个是多边形，一个是圆形；创建shape后定义一些参数，然后把这个对象传递给fixture的对象，fixture被我叫做材质，刚才介绍的密度、弹性、摩擦等属性就是在这里定义的。当然，fixture有个shape属性，把刚刚实例化的shape对象给他即可。最后用body对象的CreateFixture函数生成fixture。这样应该就能看到你创建的物理实体了。</p>
+
+<p>下面介绍一些刚刚遗漏的概念，在这个物理世界中，我们需要定义一个重要的量——重力，我们所有创建的物理实体都将按照这个重力的方向移动，而这里的重力实际上指的是一个向量，比如说是（0，-10），这样就会向着y轴-10的方向移动，而负坐标是y轴向下的，刚刚实验过，如果用（0，-100）的话，物体下移的速度会比（0，-10）的快很多，这也很明显。</p>
+
+<p>另一个有意义的概念就是休眠了，其实这是创建“世界”的又一个参数，意思是如果有物体到达了无法移动的地方，比如边界，或者说出去了边界，引擎应该就不再计算它的一些数据了，这理所应当，怎么还需要解释呢？我们当然希望引擎能够把主要的计算力量给予需要的物理实体。</p>
+
+<p>上面提到了一个区域的概念，是的，我们应该划定一个区域，在这个区域中的物体参与物理运算，外面的就不再参与了，但这里定义一个区域也是用了向量的方法，而且这个区域也算作一个body，有些难以理解。目前掌握得不好，就不再详述了。</p>
 
 		
 		
@@ -442,11 +470,11 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
   
 
 
-<time datetime="2011-05-21T22:15:00+08:00" pubdate data-updated="true">May 21<span>st</span>, 2011</time></div>
+<time datetime="2011-07-20T13:49:00+08:00" pubdate data-updated="true">Jul 20<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/zai-hu/'>在乎</a>
+	<a class='category' href='/blog/categories/box2d/'>box2d</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -458,12 +486,18 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/18/notice-get-methdo-in-php/">
+		<a href="/blog/2011/07/19/process-cis-and-zis-with-python/">
 		
-			PHP中的Get注意一则</a>
+			用python处理词汇</a>
 	</h2>
 	<div class="entry-content">
-		<p>用一个页面接收Get过来的参数时要注意这点：如果接受了0这个参数，一定要确保是在$_GET前面加了强制转换为int的标志，否则如果是0，PHP可能会当成是假，没有任何值被保存到变量中：）</p>
+		<p>要整理一些词汇，并且还要给每个词汇编码，我把所有的词汇分割称了独立的汉字，再把这些汉字压缩，去掉重复的汉字，最后把这些汉字导入数据库，得到了每个汉字的id，把这些id组合起来作为词的编码，这样还算是好用吧。</p>
+
+<p>用python写了7个脚本来做这些工作，最后得到了近7万条记录，包括单独的字和一些词。因为要用来做iphone应用，所以数据库用的是sqlite，大约4MB的数据，看来这些数据已经很够用了吧。</p>
+
+<p>代码实在不太美观，所幸就不粘贴了吧。</p>
+
+<p>哦，对了，在收集资料过程中，找到了一个用mdb包装的成语数据库，可惜mac下没有很好的浏览工具，就找找看有没有转换工具，在GoogleCode上找到了一个mdb转sqlite的工具，用java写的，下载下来后用了一下，出了一个warning，不过没有影响使用。很不错，感谢一下：<a href="http://code.google.com/p/mdb-sqlite/"><a href="http://code.google.com/p/mdb-sqlite/">http://code.google.com/p/mdb-sqlite/</a></a></p>
 
 		
 		
@@ -483,11 +517,11 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
   
 
 
-<time datetime="2011-05-18T22:48:00+08:00" pubdate data-updated="true">May 18<span>th</span>, 2011</time></div>
+<time datetime="2011-07-19T14:06:00+08:00" pubdate data-updated="true">Jul 19<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/sqlite/'>sqlite</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/ci-hui/'>词汇</a>
 
 
 </div>
@@ -499,16 +533,22 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/17/thanks-to-keynote-in-mac/">
+		<a href="/blog/2011/07/16/who-will-see-my-micro-blog/">
 		
-			感谢一下Mac上的软件Keynote</a>
+			微博是写给谁看的</a>
 	</h2>
 	<div class="entry-content">
-		<p>今天下午去图书馆借书，被同学叫道了报告厅，说是mac做的一个ppt无法在学校的投影仪上播放，<a title="mac" href="http://www.youth2009.org/tag/mac/">mac</a>电脑的接口不能接到投影仪上，于是打算转成office支持的格式试试，我又担心失去很多绚丽的特效，不过听说只是一些图片而已，所以就放心了。</p>
+		<p>目前主要玩新浪微博，关注24人，粉丝175人，微博2007条。写了这么多微博，也算是一个中度的微博使用者了吧。现在微博这个工具确实很有趣，有的人拿来当成发布信息的高速途径；有的人专门做微博广告（我深深讨厌这些人，大约删除了400～500的广告粉丝了）；还有些人有意无意地写写、看看，仅仅当作消磨时间的工具。</p>
 
-<p>到了报告厅，已经在讲了，迂回到第一排，看到了11.6寸的air。</p>
+<p>我深深感觉到，微博其实是写给“自己”看的。这里的“自己”应该不单指你这个读者，而含有一点深层的内涵。</p>
 
-<p>keynote有功能是export，一看格式还真不少──视频、ppt、图片、html、pdf、ipod果断选择了ppt的格式，几乎能用了。我也没怎么用过keynote，只是用了一段时间的pages，看来<a title="mac" href="http://www.youth2009.org/tag/mac/">mac</a>下的<a title="软件" href="http://www.youth2009.org/tag/%E8%BD%AF%E4%BB%B6/">软件</a>做得还都很人性化。感谢一下这些为用户着想的工程师们！！！</p>
+<p>一方面是因为它限制了字数，目前每条限制在140个字以内（似乎网易微博限制在163个字以内），这些都是跟着Twitter学来的，不过英文的140个字符能发一条短信，中文的话只有70个字呢，怎么国内不学学这个呢？发一条微博很快，能够记录自己短暂的灵感、对某个事物、现象的感受，而且很接近第一感受，我们不可能把自己对某个现象的第一感受写成一片论文那么长，大多数的第一感受也就是几个字，或者几个感叹词吧，这样的话，微博很合适。</p>
+
+<p>另一方面，以我为例，我不喜欢在微博上关注很多人，目前的原则是最多关注42个人，超过42个人就删除已关注的人再关注新的，但就目前看来，达到42这个数字还有很长的路要走。（为何是42呢？那就搜搜42这个神奇的数字吧，有一个很梦幻的理由）我只喜欢维护一个小型的成熟的社交网络，而不是全面撒网。所以绝大多数微博是写给自己看的，很少得到好友们的评论，也许只有几个固定好友会看我写的，并且给我说两句，而我同样也会多多关注他们，这是一个相互的过程，你很容易就会去关心那些曾经关心过你的人。渐渐地，马太效应促使下，这个关系会日益紧密；同样，其他人的关系会渐渐瓦解。</p>
+
+<p>相反的方面，既然我说这是写给自己看的微博，那我反而不愿意看自己写出来的东西，这该怎么解释？不知道这是不是只针对我而言，我确实不大看自己写过的东西，偶尔看看写了多少条，决不会从头看自己写出来了什么。也许写微博是一个自己对事物评价的过程，有时候也是对自身的解读、发泄等等，自己在这个过程中已经得到了发展，渐渐会形成一种属于自己的成长过程，微博在此时便成为了一种表现这个过程的形式而已。我们自己并不太关心过程，甚至也不关心结果，可能是因为看不到结果是什么吧。</p>
+
+<p>写了这么多关于微博给自己看的理由，不能否认，别人在了解你的过程中也可能看你写过的微博，所以必然会有给他人看的成分，要不然就应该叫微日记了。（微日记这个点子不错吧？！）</p>
 
 		
 		
@@ -528,11 +568,11 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
   
 
 
-<time datetime="2011-05-17T17:07:00+08:00" pubdate data-updated="true">May 17<span>th</span>, 2011</time></div>
+<time datetime="2011-07-16T21:09:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/keynote/'>keynote</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/wei-bo/'>微博</a>
 
 
 </div>

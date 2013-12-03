@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="好了，我直接说自己遇到的情况，就是上面这行提示，找不到name属性，在java.lang.String中，仔细看哦，这句话的意思是你在一个String类型中找name属性，当然不会找到了！！！因为本来String中就没有name属性。 初衷是一个list中，里面的每个元素都有name属性， &hellip;">
+	<meta name="description" content="惭愧，第一次给开源项目做贡献竟然是现在，其实早就想帮着做点啥了，无奈技术能力不足，终于发现一个机会，给progit的README文档添加MacOS用户的使用方式，可惜噩梦也是这样开始的。 一开始添加了usage for macos users，commit然后push，作者和我说少一个blank &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,26 +79,16 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/25/property-not-found-in-el-expression/">
+		<a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">
 		
-			关于EL表达式中的Property &#8216;Name&#8217; Not Found on Type java.lang.String错误</a>
+			给开源项目做贡献了</a>
 	</h2>
 	<div class="entry-content">
-		<p>好了，我直接说自己遇到的情况，就是上面这行提示，找不到name属性，在java.lang.String中，仔细看哦，这句话的意思是你在一个String类型中找name属性，当然不会找到了！！！因为本来String中就没有name属性。</p>
+		<p>惭愧，第一次给开源项目做贡献竟然是现在，其实早就想帮着做点啥了，无奈技术能力不足，终于发现一个机会，给progit的README文档添加MacOS用户的使用方式，可惜噩梦也是这样开始的。</p>
 
-<p>初衷是一个list中，里面的每个元素都有name属性，但是经过JPQL查询后的list给了jsp页面，在输出的时候就得到了这样的提示。实际上我是JPQL写错了，我直接得到了具体的值，所以是String类型的一个list，应该用JPQL得到实体，这样就OK了。</p>
+<p>一开始添加了usage for macos users，commit然后push，作者和我说少一个blank line，我加了再commit和push，另一个开发者和我说你不应该多次commit，需要说清楚commit的工作而不是一味用commit修改，我改好了发现remote的版本和本地不一样，因为我是在上一个版本的基础上amend后再提交的，无奈之下我merge了remote然后commit又push，这时候作者跳出来一对一教我怎么做了，有不少细节地方需要注意，比如完全的command line可以在markdown中用tab的indent，而list的indent和tab是完全不一样的。。。又给我罗列了markdown的语法。我让他写一个正确的给我看一下，他真的就给我写了一遍，但是他给希望让别人来做这部分工作而不是自己来做，并不是自己能力不足什么的，光是在我这里付出的时间就远超编辑好几个版本的README了。这点在国内开发者的身上很难发现吧？！</p>
 
-<p>比如：得到的是Student实体，可以用里面的name属性。</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">SELECT s FROM Student s, School sc WHERE sc.city = '北京' AND s.school.id = sc.id AND s.name LIKE '张%'</pre>
-
-
-<p>但是：得到的就是具体的name了，再用name属性就会出现上面的错误</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">SELECT s.name FROM Student s, School sc WHERE sc.city = '北京' AND s.school.id = sc.id AND s.name LIKE '张%'</pre>
-
-
-<p>这种错误很难搞的！！！</p>
+<p>最后当然是pull request被接受了：）这次经历很难得！</p>
 
 		
 		
@@ -118,11 +108,11 @@
   
 
 
-<time datetime="2012-06-25T09:00:00+08:00" pubdate data-updated="true">Jun 25<span>th</span>, 2012</time></div>
+<time datetime="2012-12-19T21:18:00+08:00" pubdate data-updated="true">Dec 19<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/el/'>el</a>, <a class='category' href='/blog/categories/jpql/'>jpql</a>, <a class='category' href='/blog/categories/jsp/'>jsp</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/open-source/'>open-source</a>
 
 
 </div>
@@ -134,14 +124,27 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/18/it-is-better-to-config-two-shortkeys-for-switch-tags--in-eclipse/">
+		<a href="/blog/2012/12/16/active-cron-log-in-ubuntu/">
 		
-			Eclipse中最好配置上切换tabs的快捷键</a>
+			Active Cron Log in Ubuntu</a>
 	</h2>
 	<div class="entry-content">
-		<p>在Terminal中用Command+Shift+[和Command+Shift+]来切换tabs太爽了，很多Mac下的程序都默认支持了这样的切换方式，不过eclipse中默认没支持，非常可惜，硬用这样切换倒是也有效果，不过你用两次就知道这不是你想要的那种！！</p>
+		<p>bnly.org使用crontab来不断fetch和send，这看起来很傻，不过挺容易搭建。目前send过程每分钟一次，fetch过程10分钟一次。</p>
 
-<p>于是配置快捷键，分别配置Privious Tag和Next Tag即可<img title="微笑" src="http://www.youth2009.org/usr/plugins/TinyMCE/tiny_mce/plugins/emotions/img/smiley-smile.gif" alt="微笑" border="0"></p>
+<p>在ubuntu下默认没有cron的日志，需要这样开启：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vi /etc/rsyslog.d/50-default.conf
+</span><span class='line'>解除cron的注释
+</span><span class='line'>service rsyslog restart
+</span><span class='line'>service cron restart
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就可以在/var/log/下找到cron.log查看了。</p>
 
 		
 		
@@ -161,11 +164,11 @@
   
 
 
-<time datetime="2012-06-18T08:01:00+08:00" pubdate data-updated="true">Jun 18<span>th</span>, 2012</time></div>
+<time datetime="2012-12-16T15:41:00+08:00" pubdate data-updated="true">Dec 16<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/eclipse/'>eclipse</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -177,23 +180,23 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/13/config-vi-simply/">
+		<a href="/blog/2012/12/01/shell-study/">
 		
-			简单配置一下vi</a>
+			Shell Study</a>
 	</h2>
 	<div class="entry-content">
-		<p>看到vpsee上的vi打开网页啥的都能自动高亮，原本一直用着纯文本方式vi的我动心了，搜索了一点点配置，加入这些配置到~/vimrc这样的文件中后，打开vi就能自动加载配置。</p>
+		<p>sed是个极其强大的东西，今天开始学习一点点：）</p>
 
-<p>下面的分别是：显示行号、自动缩进、开启语法高亮、编辑背景为暗色调、开启粘贴（传说复制过来的代码不会乱掉）</p>
+<p>以前的一个sed的命令终于明白了：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">set number
-set autoindent
-syntax enable
-set background=dark
-set paste</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>find ./ -name <span class="s1">&#39;*.html&#39;</span> | xargs sed -i <span class="s1">&#39;s/iso-8859-1/utf-8/g&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>vim是和emace同样重量级的编辑器，如果你是一个Linux控你肯定明白那句话，vi是vim的前身（允许我这样描述吧），所以配置都是这些编辑器的看家本领，这几条简单配置仅仅是个入门，还可以根据自己的需要添加修改<img title="微笑" src="http://www.youth2009.org/usr/plugins/TinyMCE/tiny_mce/plugins/emotions/img/smiley-smile.gif" alt="微笑" border="0"></p>
+<p>这是替换html编码用的一个语句，find出当前目录下的html文件名字，然后传给sed，当然这里用到了xrags中转，其实没有的话也ok（除非你不用-i模式），sed用了-i模式，可以编辑文件内容保存，并且存一个备份，当然你得传入一个扩展名字才能保存，没有的话就不存和没有-i效果一样。后面的一个字符串，s表示用正则匹配，s后面的是一个分隔符，可以用斜杠，可以换你喜欢的，但后面都要统一起来，上面的意思是iso-8859-1这个替换成utf-8，最后的加的/g是表示global替换，全部替换，否则就替换一次。</p>
+
+<p>后来看起别的书来了。。。</p>
 
 		
 		
@@ -213,11 +216,11 @@ set paste</pre>
   
 
 
-<time datetime="2012-06-13T22:26:00+08:00" pubdate data-updated="true">Jun 13<span>th</span>, 2012</time></div>
+<time datetime="2012-12-01T11:52:00+08:00" pubdate data-updated="true">Dec 1<span>st</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/vi/'>vi</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -229,16 +232,18 @@ set paste</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/13/migrate-to-new-vps/">
+		<a href="/blog/2012/11/28/change-shopping-cart/">
 		
-			迁移到了新VPS上</a>
+			Change Shopping Cart</a>
 	</h2>
 	<div class="entry-content">
-		<p>前面几篇log中有提及，实在无法忍受yardvps的服务了，一开始真的不错，但现在越来越不行了，可能这就是标志着一个vps提供商由正规经营到超卖的转变。上次停机超过了24个小时，发了ticket过去问，结果是说我被ddos了，就自动把我从网络中断开了，真有意思的说法，反正已经无法考证其真实性了，我只好选择离开。</p>
+		<p>今天taowen给我们show了一个很fancy的日志处理过程，当然是in the future的，深度打动了wanglei，由于是刚刚吃过饭，站着听久了难免会发困，主要听来的意思就是app的log会自己在local记录，然后发送json给syslog，后面接上logstash做一个处理，再往后就是接入各种图表啊、search啊这样的终端app，如果能完全跑起来应该是足够玄的。不知道成形的互联网电商们会不会也是这样做的。</p>
 
-<p>新的VPS比以前贵，大约是每月10刀（原来的512Mb的YardVPS是7.59刀），但新的vps性能很好，网络也很好很快，希望能一直用下去，贵点就贵点呗，比起神器Linode便宜了不少。</p>
+<p>我主要在修改shopping cart，临下班eric过来和我做了一点东西，后来taowen觉得shopping cart有redis和db两种不同实现很不爽，我倒是没那么强烈，不过如果要改全db对我的工作量会加大。回家后吃了饭感觉身体还好，就修改成全db吧，看看是什么效果。</p>
 
-<p>这个技术blog是最后迁移过来的了，原先有几个php写得东西光是把数据库保存下来了，就不再挂出来让大家访问了吧，我猜也没几个用得，留着数据库做个纪念<img title="微笑" src="http://www.youth2009.org/usr/plugins/TinyMCE/tiny_mce/plugins/emotions/img/smiley-smile.gif" alt="微笑" border="0"></p>
+<p>好在都过了测试，但我删掉了一个功能，所以测试文件也进行了修改，没问题：）</p>
+
+<p>明天应该会把手上的issue全部弄好，哦对了，今天花了挺长时间在Set-Cookie，弄了半天发现就只有几行增加，真是不全局看的话，工作量就会无形的被自己放大。。。</p>
 
 		
 		
@@ -258,11 +263,11 @@ set paste</pre>
   
 
 
-<time datetime="2012-06-13T16:22:00+08:00" pubdate data-updated="true">Jun 13<span>th</span>, 2012</time></div>
+<time datetime="2012-11-28T23:21:00+08:00" pubdate data-updated="true">Nov 28<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -274,34 +279,14 @@ set paste</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/11/lib-javahl-for-svn-on-mac/">
+		<a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">
 		
-			Svn的javahl库</a>
+			我在考虑迁移到octopress上</a>
 	</h2>
 	<div class="entry-content">
-		<p>今天基本完成了LoveSMS，想checkout一下jdrcom来看看，所以就安装上了svn for eclipse，然后在导入的时候提示缺少javahl库，去了官方查看了一下，说是对于Mac用户，只需要下载他们的bin文件就能解决，我一看才给到1.6.5的版本，而我自己用brew都装到了1.7.5，而且svn插件用的是1.8.x，需要1.7+的svn支持才行，所以就自己重新安装了svn：</p>
+		<p>最近的work@honovation博客一直是用octopress写的，就是直接写markdown内容即可，github负责转换并提供托管服务，而且可以自己绑定域名，比如现在的<a href="http://workathonovation.youth2009.org%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%BC%84%E5%BE%97%EF%BC%8C%E9%9D%9E%E5%B8%B8%E7%AE%80%E6%B4%81%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E8%80%8C%E4%B8%94%E6%9C%89%E7%A7%8D%E5%9B%9E%E5%BD%92%E6%9C%AC%E7%9C%9F%E7%9A%84%E6%84%9F%E8%A7%89%E3%80%82">http://workathonovation.youth2009.org%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%BC%84%E5%BE%97%EF%BC%8C%E9%9D%9E%E5%B8%B8%E7%AE%80%E6%B4%81%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E8%80%8C%E4%B8%94%E6%9C%89%E7%A7%8D%E5%9B%9E%E5%BD%92%E6%9C%AC%E7%9C%9F%E7%9A%84%E6%84%9F%E8%A7%89%E3%80%82</a></p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">brew install subversion --universal --java</pre>
-
-
-<p>这句是关键哦，当然你得先uninstall已经安装的svn才行。加了java开关就可以告诉svn需要java IDE的库，编译的完成后会继续编译javahl～</p>
-
-<p>会有这样的提示哦：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">To use Java bindings with various Java IDEs, you might need a universal build:
- brew install subversion --universal --java
-==&gt; ./configure --disable-debug --prefix=/usr/local/Cellar/subversion/1.7.5 --with-ssl --with-zlib=/usr --with-sqlite=/usr/local --disable-neon-version-chec
-==&gt; make
-==&gt; make install
-==&gt; make javahl
-==&gt; make install-javahl
-==&gt; Caveats
-You may need to link the Java bindings into the Java Extensions folder:
- sudo mkdir -p /Library/Java/Extensions
- sudo ln -s /usr/local/lib/libsvnjavahl-1.dylib /Library/Java/Extensions/libsvnjavahl-1.dylib</pre>
-
-
-<p>自己加入后面的链接就ok了！</p>
+<p>迟迟没有动作是因为我付了30刀个这个VPS，也就是到2月才过期，如果全部转到了octopress那么空着这个VPS干嘛？翻墙玩？呵呵，那真是无聊死了吧。。。说实在的，vps除了放个blog和自己做出来的小站外，好像就没什么用处了，但现在自己连小站都没有了，悉数关闭。。。</p>
 
 		
 		
@@ -321,11 +306,11 @@ You may need to link the Java bindings into the Java Extensions folder:
   
 
 
-<time datetime="2012-06-11T10:17:00+08:00" pubdate data-updated="true">Jun 11<span>th</span>, 2012</time></div>
+<time datetime="2012-11-25T21:51:00+08:00" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/javahl/'>javahl</a>, <a class='category' href='/blog/categories/svn/'>svn</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/blog/'>blog</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -337,22 +322,45 @@ You may need to link the Java bindings into the Java Extensions folder:
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/08/solved-sudo-unable-to-resolve-host/">
+		<a href="/blog/2012/11/25/the-pragmatic-programmer/">
 		
-			Sudo 出现unable to Resolve Host 解决方法</a>
+			Pragmatic Programmer Log</a>
 	</h2>
 	<div class="entry-content">
-		<p>执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）</p>
+		<p>Bad code requires lots of comments!</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">sudo ：unable to resolve host HOSTNAME</pre>
+<p>head file 也是一种重复，这属于language的重复，一般只能妥协。</p>
 
+<p>“出来混迟早要还的”，这句话又出现了！！！</p>
 
-<p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
+<p>deal with interdeveloper duplication的方法就是多多交流。。。每天的站立会议是不错的！</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">127.0.0.1               localhost.localdomain localhost HOSTNAME</pre>
+<p>依然补充几个单词：</p>
 
-
-<p>希望vpsee的admin能在iso中修复这个问题</p>
+<pre><code>contradictory:          矛盾的
+marauding:              恶意的
+harness:                管理，控制
+enhacing:               增强
+constantly:             不断地
+discrete:               不连续的
+entire:                 全部的
+representation:         陈述
+nightmare:              噩梦
+authoritative:          权威性的
+inadvertent:            不注意的
+imposed:                强制的
+honoring:               尊敬
+ingenuity:              精巧
+metadata:               元数据
+one-time:               一次的
+inevitably:             不可避免地
+defer:                  推迟
+reveal:                 显示
+illustrate:             说明
+violate:                违犯
+insidious:              暗中危害的
+foster:                 培养
+</code></pre>
 
 		
 		
@@ -372,11 +380,11 @@ You may need to link the Java bindings into the Java Extensions folder:
   
 
 
-<time datetime="2012-06-08T16:23:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time></div>
+<time datetime="2012-11-25T20:43:00+08:00" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/sudo/'>sudo</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/the-pragmatic-programmer/'>the-pragmatic-programmer</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -388,33 +396,29 @@ You may need to link the Java bindings into the Java Extensions folder:
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/08/solved-set-lc_ctype-to-default-locale-no-such-file-or-directory/">
+		<a href="/blog/2012/11/25/shell-study-2/">
 		
-			解决Cannot Set LC_CTYPE to Default Locale: No Such File or Directory问题</a>
+			Shell Study 2</a>
 	</h2>
 	<div class="entry-content">
-		<p>刚拿到vps，打算更新一些软件，发现有些warning挺讨厌的，于是就想根除他们！！他们一般是这样的：</p>
+		<p>shell的参数很有意思，是用数字来命名的，从1~9，如果超过了9就应该这样写：${10}，以后就以此类推。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">locale: Cannot set LC_CTYPE to default locale: No such file or directory
-locale: Cannot set LC_MESSAGES to default locale: No such file or directory
-locale: Cannot set LC_ALL to default locale: No such file or directory</pre>
+<p>跟踪shell的执行步骤：sh -x prog，这样就能看到prog的执行动作，如果是在脚本内部，使用set -x开启跟踪，使用set +x关闭跟踪。</p>
 
+<p>终于知道i18n和l10n的意思了：internationalization=i18n，起始字母和末尾字母之间有18个字母。。。同理，localization=l10n。</p>
 
-<p>我看到我的LANG被设定为zh_CN.utf8，虽然我们是国人，但这个语言习惯不能代表我们的爱国情怀吧，我就改为en_US.utf8了：</p>
+<p>UNIX中有几个环境变量和i18n,l10n相关：LANG、LC开头的很多个，LANG是默认值，没有任何LC_xxx设置的时候使用这个。这块内容实在太复杂了，还是用默认的英文简单，估计全球程序员也都看得懂。有时候不成熟反而是一种很好的解决方案：）</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">sudo touch /etc/default/locale
-vi /etc/default/locale</pre>
+<p>至此书的前两章就结束了，后面就开始具体的工具学习，至少我自己看着后面章节的标题是这么想的——查找与替换。这些study完全是为了给自己强化知识用的，没打算让别人照着学下去，所以我也就不在乎章节的分隔了，感到应该断开的地方就断开，其他基本是一气呵成，要吃饭睡觉的时候就不写了。</p>
 
+<p>原来的grep有好几个版本，最终在01年被合并成了一个，通过不同的option来选择如何查找字符串。使用</p>
 
-<p>加入：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">LANG="en_US.UTF-8"
-LANGUAGE="en_US:en"</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>grep -F xxx
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>再执行一下locale就发现问题不见了。</p>
-
-<p>希望vpsee的admin能在iso中修正这个事儿～</p>
+<p>可以查找带有xxx的文本行，默认情况下如果你查找的xxx内容不含正则的mate字符就是使用了-F选项，所以简单的查找可以不加这个选项。</p>
 
 		
 		
@@ -434,11 +438,11 @@ LANGUAGE="en_US:en"</pre>
   
 
 
-<time datetime="2012-06-08T16:20:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time></div>
+<time datetime="2012-11-25T13:50:00+08:00" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/locale/'>locale</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -450,49 +454,56 @@ LANGUAGE="en_US:en"</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/08/security-of-ssh/">
+		<a href="/blog/2012/11/25/shell-study/">
 		
-			Ssh的安全配置</a>
+			Shell Study</a>
 	</h2>
 	<div class="entry-content">
-		<p>今天刚刚换了vps，ssh的安全早就该配置好，没想到竟然是现在了……</p>
+		<p>上次说到了echo有可能出现标准不一致的情况，所以建议使用printf，但如果你只是使用最简单的echo输出一段话，那还是没问题的。printf更加复杂，功能和C语言中的printf基本相同。</p>
 
-<p>首先这些基本需要做：<a href="http://www.deepvps.com/improve-ssh-security.html"><a href="http://www.deepvps.com/improve-ssh-security.html">http://www.deepvps.com/improve-ssh-security.html</a></a></p>
+<p>IO重定向默认在你登录的时候就把standard input/output绑定到了terminal中，所以你可以在terminal中完成很多工作。</p>
 
-<p>再就是禁止root后需要创建一个马甲账号：</p>
+<p>简单的重定向：“>”、“&lt;”、“>>”，分别是改变重定向input、output，最后一个是附加到某个文件，如果你在使用&#8221;>&ldquo;的时候不存在目标文件，那么会被创建出来，如果已经存在就会被覆盖掉，原有数据丢失，如果使用&rdquo;>>&ldquo;则会追加到目标文件中，原有数据依然存在。</p>
 
-<p> </p>
+<p>管道也是重定向的一部分，prog1 | prog2，可以把prog1的标准输出重定向到prog2的标准输入上，如果你需要连接多个程序的时候，最好用管道方式，这样比临时文件效率高很多（据说10倍）。在使用管道的时候应该逐级让数据量减少，这样能够提高脚本的整体性能，例如在sort之前，你可以grep出需要sort的行，这样会好一些：）</p>
 
-<p>0.增加ubuntu的admin组，我的vps默认没有，所以就创建了，sudoer文件中写明了admin组可以用sudo，所以我省略了这一步</p>
+<p>特殊文件：/dev/null 和 /dev/tty。null这个被称为bit bucket，传输到这里的东西都会被丢弃，就如同黑洞一般：）程序把文件写入到这里就会被认为是成功的，但实际什么都没做，例如：</p>
 
-<p> </p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">groupadd admin</pre>
-
-
-<p>1.增加马甲账号(-m表示创建home目录，-s表示后面跟着的是terminal，-G表示加入后面的那个组，最后的USERNAME各位自己发挥)</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">useradd -m -s /bin/bash -G admin USERNAME</pre>
-
-
-<p>2.修改刚刚马甲的密码：(输入两次新密码就ok了)</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">passwd USERNAME</pre>
-
-
-<p>＃＃＃＃＃＃＃＃＃＃＃禁止root登陆＃＃＃＃＃＃＃＃＃＃＃</p>
-
-<p>下面禁止root登陆，直接修改/etc/ssh/sshd_config中的PermitRootLogin为no即可，然后重启ssh：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">service ssh restart
-</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if </span>grep pattern myfile &gt; /dev/null
+</span><span class='line'><span class="k">then</span>
+</span><span class='line'>…
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>…
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>不放心的可以断开ssh连接用root和刚刚的马甲账号登陆试试看，肯定root不能用了，而且用马甲登陆上去之后你可以“su -”一下，输入root的密码后就切换到了root的环境下了（不要忘记su后面的短横杠哦，那样才切换环境）。</p>
+<p>可以做一个探测，是否myfile有pattern，这样不会产生输出。</p>
 
-<p> </p>
+<p>/dev/tty的功能是，当程序打开这个文件时会重定向到一个terminal，在需要输入密码的时候用的到：</p>
 
-<p> </p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">printf</span> <span class="s2">&quot;Enter password: &quot;</span>
+</span><span class='line'>stty -echo <span class="c">#关闭自动回显输入的字符功能</span>
+</span><span class='line'><span class="nb">read </span>pass &lt; /dev/tty
+</span><span class='line'><span class="nb">printf</span> <span class="s2">&quot;Enter Again: &quot;</span>
+</span><span class='line'><span class="nb">read </span>pass2 &lt; /dev/tty
+</span><span class='line'>stty <span class="nb">echo</span> <span class="c">#打开自动回显输入的字符功能</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>shell的PATH中最好不要放入当前目录这一选项，这会带来安全问题，所以干脆就不要这么想了：）</p>
 
 		
 		
@@ -512,11 +523,11 @@ LANGUAGE="en_US:en"</pre>
   
 
 
-<time datetime="2012-06-08T16:11:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time></div>
+<time datetime="2012-11-25T10:24:00+08:00" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ssh/'>ssh</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -528,18 +539,35 @@ LANGUAGE="en_US:en"</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/08/very-long-offline-of-my-vps-in-yardvps/">
+		<a href="/blog/2012/11/21/shell-study/">
 		
-			超长宕机</a>
+			Shell Study</a>
 	</h2>
 	<div class="entry-content">
-		<p>这次宕机持续了1天零13小时，具体什么原因不清楚，yardvps那边说ip自动归零，这是什么原因？！反正我是不清楚怎么回事了，而且买了vpsee的vps，正考虑着是依然延续lnmp的架构还是自己整一套lnmp+python的架构，这样方便以后自己用python做webapp，嗯，先睡觉，起来再搞新的vps吧！！！</p>
+		<p>今天开始学学Shell编程，不光是因为需要在惯例服务器的时候使用到，平常作为一门必须掌握的脚本语言也是很有必要的，所以就学吧，况且那本《Shell脚本学习指南》已经买了放那里好久了，就书刚到的时候看了两页，真的就像是两页，后来光看《The Pragmatic Programmer》和《1Q84》了。</p>
 
-<p>UPDATE:我没有睡觉……</p>
+<p>shell脚本的第一行一般写明这个脚本使用哪种脚本解释器运行，以&#8221;#!&ldquo;开头，后面加脚本解释器的名字和相应参数，如果不需要什么参数就写上“-”，这是出于安全考虑，可以避免某种程度上的欺骗式攻击（spoofing attack）。</p>
 
-<p>yardvps给我的回复是这样的——“It&rsquo;s nulled by PPS (Packet Per Second) Once it exceeds the thresholds and simulates a DDOS attack our system automatically nulls your IP within seconds.”</p>
+<pre><code>选项：命令后面用一个“-”开头书写的内容，如：ls -l，那么“-l”就是选项。
+参数：有的选项需要传入参数，那么就要紧跟着那个需要参数的“选项”，如：cc -o exp exp.c
+没参数的选项合并，例如：ls -al = ls -a -l，书写非常方便吧。
+分号分隔开几条命令，会逐一执行；如果用“&amp;”的话，就会让命令进入后台执行，可以立刻相应你的下一条命令。
+</code></pre>
 
-<p>看来是我被攻击了？！好奇怪！！！反正我用着vpsee的vps很爽，不出问题就不再用yardvps了！</p>
+<p>shell中的变量赋值有个要求，变量名后，到等号，到值都不能有空格：“var=1”这是正确的，“var = 1、var= 1等等都不对”，这点有些别扭，我喜欢多加空格。。。而且大多数coder也是如此吧？</p>
+
+<p>取出刚刚你创建的变量需要在变量名前面加&#8221;$&ldquo;符号，看来和取钱的感觉差不多哈哈，或许以前认为变量中的值放在内存或者磁盘上都是昂贵的，如同取钱。</p>
+
+<p>变量赋值这里还有些东西值得说一下：</p>
+
+<pre><code>可以一行多次赋值，比如，first=1 second=2 third=3
+如果有空格就加双引号: var="1 2 3"，这看起来像string
+还可以这样，var="$first $second $third"，最后var的值里面会包含first、second、third的值，这点就不太像string了，需要注意！！！
+</code></pre>
+
+<p>由于echo命令在Unix多个发行版之间有差异，所以输出的话还是用printf好了：—）</p>
+
+<p>今天就先到这。</p>
 
 		
 		
@@ -559,11 +587,11 @@ LANGUAGE="en_US:en"</pre>
   
 
 
-<time datetime="2012-06-08T13:51:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time></div>
+<time datetime="2012-11-21T21:50:00+08:00" pubdate data-updated="true">Nov 21<span>st</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/dang-ji/'>宕机</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -575,18 +603,61 @@ LANGUAGE="en_US:en"</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/05/solved-mysql-refuse-localhost-connection/">
+		<a href="/blog/2012/11/11/pragmatic-programmer-log/">
 		
-			mysql只允许127.0.0.1连接的解决方法</a>
+			Pragmatic Programmer Log</a>
 	</h2>
 	<div class="entry-content">
-		<p>我上次记录过一次这样的情况，突然间所有的php应用无法连接数据库了，但可惜我忘记是为何导致了这样的结果，总是有很多奇怪的地方在这个vps上发生，比如有次突然在某个app中出现了嵌入的广告，这个app可是我写的呀，怎么会有广告？！还有就是那次mysql突然无法连接了，最后用127.0.0.1代替了localhost。</p>
+		<p>昨晚看完了第一章，顿时感觉十分充实，因为在过去的一个星期里每晚都在看书而不是把时间花在weibo上。Your Knowledge Protfolio讲的是为自己的知识不断投资，你现在钟爱的或者正在使用的技术可能只是当前这个时期火热的，他们会随着时间的推演发生巨变，如果你不不断为自己的知识投资，那很难适应社会的发展需要。我们搞编程的感受应该非常丰富，可以说每天都有新技术出现老技术衰亡，应对这种挑战就应该定期学习新技术，更多的掌握技术从而面对一个问题你能有很多种解决方案。</p>
 
-<p>昨晚国庆安装了织梦的后台，但提示无法使用数据库，由于昨天太晚了没有深入研究，早晨起来看了一下，有人说去查看data/common.inc.php文件中的信息，我去看了一下，突然想起来localhost不能用了，于是改为127.0.0.1就可以了，但这也只是缓兵之计，于是想办法解决！</p>
+<p>后面讲了要批判性思维，海量信息涌入的时候不要乱了阵脚，思考哪些是真的哪些是假的，对于信息社会这点已经很平常了。</p>
 
-<p>解决方法也不尽相同，就是在php.ini中的三处添加“/tmp/mysql.sock”，那三处就是：mysql.default_socket、mysqli.default_socket、pdo_mysql.default_socket，看名字就是php连接mysql的三种方法的默认socket路径，原来我就修改了两处，漏掉了mysqli这种，结果现在不少程序都是用这种方式连接，比如phpmyadmin和织梦，所以呢，修改了这三处就ok了（当然你得确定你用socket这种方式连接）</p>
+<p>交流。我们不能闭门造车，人与人之间的交流永远大于人与机器间的交流。作者介绍了一些交流方面的技巧，其实不必太在乎这么多，只要合理处理好人际关系，跟着感觉走就不会有问题。</p>
 
-<p>至此我的phpmyadmin也可以用socket登录了，织梦也能访问数据库了，再也不用127.0.0.1啦~</p>
+<p>补充很多单词：</p>
+
+<pre><code>interest:           投资
+pithy:              简称的
+homily:             训诫
+irrlelvant:         不恰当的、不想干的
+obsolete:           过时的
+regularly:          定期的，有规律的
+diversification:    多元化
+spectrum:           范围
+potentially:        潜在的
+high-reward:        高回报
+conservatively:     保守地
+miss out:           错过机会
+emerging:           正在浮现的
+payoff:             收益
+intellectual:       智力的
+capital:            资本
+rut:                常规
+equation:           相等、均衡
+vice:               代替
+versa:              反
+cross-pollination:  交叉授粉
+voraciously:        贪婪地
+faintest:           模糊的
+guru:               专家
+thumbing:           翻阅
+vendor:             小贩
+beware:             小心
+unswayed:           不受影响的
+zealot:             狂热者
+underestimate:      低估
+commercialism:      商业主义
+dogma:              教条
+insist:             坚持
+torrent:            激流
+sterile:            无结果的
+proposal:           提议
+advocate:           主张
+justify:            证明
+convey:             表达
+</code></pre>
+
+<p>“出来混总是要还的”，这句话已经被很多人认定是亘古不变的真理了，呵呵。</p>
 
 		
 		
@@ -606,11 +677,11 @@ LANGUAGE="en_US:en"</pre>
   
 
 
-<time datetime="2012-06-05T10:30:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time></div>
+<time datetime="2012-11-11T14:19:00+08:00" pubdate data-updated="true">Nov 11<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/127-dot-0-0-dot-1/'>127.0.0.1</a>, <a class='category' href='/blog/categories/localhost/'>localhost</a>, <a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/socket/'>socket</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/the-pragmatic-programmer/'>the-pragmatic-programmer</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>

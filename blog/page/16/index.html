@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="原来不太敢想象的VPS，现在也买了好几个月了。一开始用起来还很新鲜，配置了好几天，一旦配置完毕基本就不会再去动了，因为服务器最好还是不要乱去碰，除非访问量特别大才有必要每天看看日志什么的。也正是因为这个原因，我曾一度想退出VPS，但舍不得博客中的文字以及开发了好几个PHP程序（虽然不太好）， &hellip;">
+	<meta name="description" content="修改最后一次提交：git commit &mdash;amend 如果只是提交信息写错了，运行后会让你重新写提交信息，但如果你忘记了加文件进入，可以这样做，先commit，再add忘记的文件，最后来一句git commit &mdash;amend，这看似两次提交，实际只是一次， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,14 +79,20 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/29/continue-buy-vps/">
+		<a href="/blog/2012/01/26/git-study-mend-file-part/">
 		
-			还是继续买VPS了</a>
+			Git使用重新学习（撤销操作）</a>
 	</h2>
 	<div class="entry-content">
-		<p>原来不太敢想象的VPS，现在也买了好几个月了。一开始用起来还很新鲜，配置了好几天，一旦配置完毕基本就不会再去动了，因为服务器最好还是不要乱去碰，除非访问量特别大才有必要每天看看日志什么的。也正是因为这个原因，我曾一度想退出VPS，但舍不得博客中的文字以及开发了好几个PHP程序（虽然不太好），再想想，还想学学Python，还是有这么一个lab环境的好呀。</p>
+		<p><strong>修改最后一次提交</strong>：git commit &mdash;amend</p>
 
-<p>在博客首页下面加了Google的横幅广告，因为我刚刚看到我已经赚到了1.49美元了，不知道何时才能达到100美元支付给我呢，一点点攒起来吧。</p>
+<p>如果只是提交信息写错了，运行后会让你重新写提交信息，但如果你忘记了加文件进入，可以这样做，先commit，再add忘记的文件，最后来一句git commit &mdash;amend，这看似两次提交，实际只是一次，后面的提交修正了前面的。</p>
+
+<p><strong>取消已暂存的文件</strong>：看status的时候有提示，git reset HEAD &lt;file&gt;，执行后可以把一个已修改的文件从暂存区拉回到“changed but not update”里，前面日志说过，在这里面的文件需要add后才能进入暂存区被提交。</p>
+
+<p><strong>取消修改</strong>：如果感觉刚才的修改没有必要，需要取消修改，那么用git checkout &mdash; &lt;file&gt;，在1.6.1以上的版本才会有这样的功能，我刚刚看了下git的版本（git &mdash;version）是1.7.5.4，看来暂时不用升级就能体验了。使用后就会发现文件的修改已经被撤销，此命令很危险，如果只是想回退版本可以用stashing和分支来处理，后面再说。</p>
+
+<p>最后说一句，任何被提交的数据都能被恢复，即便是在已经删除的分支中提交的等等，但没有提交的丢了就丢了！！！</p>
 
 		
 		
@@ -106,11 +112,11 @@
   
 
 
-<time datetime="2011-07-29T22:06:00+08:00" pubdate data-updated="true">Jul 29<span>th</span>, 2011</time></div>
+<time datetime="2012-01-26T15:05:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/amend/'>amend</a>, <a class='category' href='/blog/categories/checkout/'>checkout</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/reset/'>reset</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -122,26 +128,32 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/29/some-config-about-uitableview-cell/">
+		<a href="/blog/2012/01/26/git-study-filestatus-part/">
 		
-			关于UITableView中的cell配置</a>
+			Git使用重新学习（文件状态）</a>
 	</h2>
 	<div class="entry-content">
-		<p>都是关于cell的，不知道值得写出来么：</p>
+		<p>就几个简单的git命令记录一下自己的学习过程，我发现如果自己不随时记录自己学到的东西就会遗忘。</p>
 
-<p>1。在定义cell样式的时候，如果你用</p>
+<p>首先给出git中文件的状态转换图：</p>
 
-<pre class="prettyprint linenums bush:cpp" lang="cpp">UITableViewCellStyleSubtitle</pre>
+<p><a title="18333fig0201-tn.png" href="http://www.youth2009.org/attachment/135274/"><img src="http://www.youth2009.org/usr/uploads/2012/01/945576081.png" alt="18333fig0201-tn.png"></a></p>
 
+<p>对于一个文件，如果没有被git跟踪，那必然是untracked状态，只有已经是tracked状态后才会有后面的三种状态（unmodified、modified、staged（暂存状态））。</p>
 
-<p>来初始化cell，那么设置cell的detailTextLabel的text属性就能看到详细的内容，在textLable的下一行显示着。</p>
+<p>此时你如果add了一个文件进入git，那么git就会开始跟踪，那么此时这个文件是tracked状态，但没有修改，查看状态（git status）会现实new file：xxx，此时提交（commit）就会把文件快照放入历史记录中了。这里的add意思是放入暂存区，后面的add还有不同的意思。</p>
 
-<p>2。设定cell：</p>
+<p>对于已经跟踪的文件，我们修改后再查看状态，就会发现刚刚的文件被放入了一个modified那行中，样子大概是这样的：modified：xxx，同时观察一下上面几行，有这样的提示“Changed but not updated:”，意思就是修改了，但没有放入暂存区，此时需要add的另一层意思——把已修改但没放入暂存区的文件放入暂存区。</p>
 
-<pre class="prettyprint linenums bush:cpp" lang="cpp">[cell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];</pre>
+<p>git commit -a 选项可以跳过暂存过程，直接把已经跟踪的文件放入历史记录中。</p>
 
+<p>总之就是及时看status，并且要看里面的提示，只有changes to be committed后面的文件才会在commit的时候加入到历史记录中。</p>
 
-<p>这样在每个cell右侧会有小箭头提示，很漂亮。</p>
+<p>删除和移动文件：git rm，git mv。</p>
+
+<p>改名操作与linux下的mv命令用法一样。</p>
+
+<p>删除时如果仅仅希望在git中删除，实际仍然保存文件那么加上&mdash;cached选项即可。</p>
 
 		
 		
@@ -161,11 +173,11 @@
   
 
 
-<time datetime="2011-07-29T13:28:00+08:00" pubdate data-updated="true">Jul 29<span>th</span>, 2011</time></div>
+<time datetime="2012-01-26T14:47:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/uitableview/'>UITableView</a>, <a class='category' href='/blog/categories/cell/'>cell</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -177,20 +189,12 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/28/use-uinavigationcontroller-in-uitabbarcontroller/">
+		<a href="/blog/2012/01/26/do-not-accept-any-comments-which-do-not-write-in-chinese/">
 		
-			UINavigationController和UITabBarController的搭配</a>
+			不接受非中文评论</a>
 	</h2>
 	<div class="entry-content">
-		<p>经过近1天的实践才摸清了这两个控件的搭配使用方法，网上介绍的不算多，我就把自己的经验说说：</p>
-
-<p>首先这两个的搭配是这样的，基础是UITabBarController，你完全可以在Xcode中选一个以Tabbar为基础的工程，用Tabbar来划分程序的大功能，每个功能中再用Navigation来做导航。我想大家应该都会这样做，当然如果反过来也不是不行，就是感觉有点别扭。</p>
-
-<p>在AppDelegate的初始化过程中用几个UINavigationController包裹UIViewController或者其子类（比如UITableViewController）放入UITabBarController中，这样的设置应该都会。我一开始这样写后，到了每个功能中，需要用到Navigation了，又自己写了一个UINavigationController，但不管用。然后我猜想是不是要自己模拟类似的功能，就自己加上了UINavigationBar，样子是对了，可惜这个bar不带popViewController的功能，完全让navigation成了摆设。无意中看到apple官方的例子中在UIViewController中用到了self.navigationController，我这才意识到UIViewController自己就带着UINavigationController。代码又改回以前的，几个UInavigationController包裹UIViewController初始化，然后在每个功能中大胆用self的navigationController来导航，达到了效果。</p>
-
-<p>还有，如果要做TableView，最好在UIViewController的子类中加入一个UITableView而不是UITableViewController，前者是一个控件，而后者是一套处理（当然还包括控件）。我一开始想在某个功能中用表格，加了一个表格的controller，总是看到表格开头多了一大块灰色的区域，硬生生地把一个表格给隔开了，具体问题在网上没有搜索到相关结果。但后来用了UITableView就好了。</p>
-
-<p>啰嗦了这么多，其实写的是我的探索过程，并不是直接给出的结果。</p>
+		<p>由于某些原因（spam），这个博客系统（typecho）很容易被评论机器人俘获，几天不登陆发现已经有了上千条垃圾评论，删除都是一项繁重的工作，昨晚找了两个反垃圾评论插件都装上，现在是三个反垃圾评论插件同时工作！即便如此，还是有不少垃圾评论袭来，我只能q启用较严格的审核标准——禁止一切非中文评论，我本身就是用中文书写，所以假设有效用户就是会中文的，如果不是的话……</p>
 
 		
 		
@@ -210,11 +214,11 @@
   
 
 
-<time datetime="2011-07-28T06:01:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2011</time></div>
+<time datetime="2012-01-26T13:32:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/uinavigationcontroller/'>UINavigationController</a>, <a class='category' href='/blog/categories/uitabbarcontroller/'>UITabBarController</a>, <a class='category' href='/blog/categories/uitableview/'>UITableView</a>, <a class='category' href='/blog/categories/uitableviewcontroller/'>UITableViewController</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/comments/'>comments</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -226,25 +230,31 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/26/iphone-simulator-and-sqlite/">
+		<a href="/blog/2012/01/26/select-sort-in-python/">
 		
-			Iphone模拟器和sqlite的问题</a>
+			选择排序（Python）</a>
 	</h2>
 	<div class="entry-content">
-		<p>最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。</p>
+		<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
 
-<p>今天update进去信息，总是没发现数据库更新，怀疑是忘记commit，查看一下FMDB的使用方法，确实有commit一说，而我在看国内某博客写的使用教程时发现他就是随意的update和insert，殊不知这些都需要commit呀！在update和insert代码前后需要加入</p>
+def select_sort(arraylist):
+   for i in range(0, len(arraylist)):
+       minElement = i
+       for j in range(i, len(arraylist)):
+           if arraylist[j] &lt; arraylist[minElement]:
+               minElement = j
+       temp = arraylist[i]
+       arraylist[i] = arraylist[minElement]
+       arraylist[minElement] = temp
 
-<pre class="prettyprint linenums bush:cpp" lang="cpp">[db beginTransaction];
-和
-[db commit];</pre>
+if __name__ == "__main__":
+   arr = [2, 424, 4, 13, 5, 99, 100, 231, 0, 1]
+   print arr
+   select_sort(arr)
+   print arr
+</pre>
 
-
-<p> 我用的Objective-C。</p>
-
-<p>然而即便是这样，更新了数据库后再查询，确实数据被更改了，但我重新在模拟器中运行程序时候又恢复成了以前的值。偶然在模拟器中打开了程序而不是用xcode运行程序，数据竟然被永久更新了。</p>
-
-<p>所以，以后测试update的时候，前后对比应该只在模拟器中看，如果再用xcode启动，会把原来的数据传入模拟器，这样你就看不到效果了。</p>
 
 		
 		
@@ -264,11 +274,11 @@
   
 
 
-<time datetime="2011-07-26T09:19:00+08:00" pubdate data-updated="true">Jul 26<span>th</span>, 2011</time></div>
+<time datetime="2012-01-26T12:27:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/iphone/'>iphone</a>, <a class='category' href='/blog/categories/sqlite/'>sqlite</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/selectsort/'>selectsort</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -280,19 +290,32 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/23/sadly-box2d-expreiences/">
+		<a href="/blog/2012/01/26/insert-sort-in-python/">
 		
-			惨痛的Box2d经验</a>
+			插入排序（Python）</a>
 	</h2>
 	<div class="entry-content">
-		<p>说来也可笑，Box2d中有各种各样的Shape，有多边形，矩形，圆形。我就是在用圆形的时候遇到的这样的问题：需要设置圆形的半径，我就用了这样的表达式：26 / PTM_RADIO，后面的是一个宏定义，表示拿多少像素和box2d中的米作为兑换。我这样设置后总看着圆形很不正常，半径不对，而且落到底边也不弹起来，为此还查找了API、Google等地方，看着别人的代码都没问题，就是自己的不正常。</p>
+		<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
 
-<p>最终还是解决了这样的问题，真羞愧，原来半径需要一个float的值，但我的表达式算出来的应该是int，不过我也曾经写过 float radius = 26 / PTM_RADIO这样的，再把radius给半径，依然无果，感觉即便是类型不对也应该自动转换过去吧，没想到这里还就是不行了。</p>
+def insert_sort(arraylist):
+   for j in range(1, len(arraylist)):
+       key = arraylist[j]
+       i = j - 1
+       while i &gt;= 0 and arraylist[i] &gt; key:
+           arraylist[i + 1] = arraylist[i]
+           i = i - 1
+       arraylist[i + 1] = key
 
-<p>可恶的！</p>
+if __name__ == "__main__":
+   arr = [2,3,55,31,1,20,44,12,1,99]
+   print arr
+   insert_sort(arr)
+   print arr
+</pre>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">26.0 / PTM_RADIO</pre>
 
+<p>只要改变while那句中的arraylist[i] &lt; key即可变成非升序排列</p>
 
 		
 		
@@ -312,11 +335,11 @@
   
 
 
-<time datetime="2011-07-23T11:30:00+08:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2011</time></div>
+<time datetime="2012-01-26T11:07:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/box2d/'>box2d</a>, <a class='category' href='/blog/categories/yuan-xing/'>圆形</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/insersort/'>insersort</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -328,22 +351,30 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/23/write-to-xiaoxian/">
+		<a href="/blog/2012/01/26/turn-off-dashboard-on-mac/">
 		
-			写给小娴</a>
+			Mac系统关闭dashboard</a>
 	</h2>
 	<div class="entry-content">
-		<p>小娴先生您好，不知道是不是每一位第一次读到您的作品的读者都会有一种想给您写信的冲动，但不知道该往哪个地方投递。</p>
+		<p>一开始感觉dashboard这个东西挺好的，加上了好几个小插件玩，但现在发现使用频率超低，所以干脆想办法关闭吧，听说还能节约部分内存和提升开机速度，对这些倒是不太关心，只能有种不用就关闭的态度驱使着我。</p>
 
-<p>以前初中、高中的时候似乎听过您的名字，那时仅仅指导您就是一位作家而已，那时候听过很多作家的名字了，有时还会买《读者》、《译林》、《特别关注》、《爱你》等书来看，可能那时候思想上特别寂寞吧，周围的人也都在看这些书。</p>
+<p>关闭命令：</p>
 
-<p>前一段时间在微博上看到您在推荐自己的新书——《想念》，看封面挺喜欢的，简洁，还有我喜欢的颜色，或许是那两个字吧。随后就在当当网买下来了。其实我还是喜欢在卓越网购买，只是当时卓越上似乎缺货了，要等一星期左右，而且商品图片都没有，一下子感觉卓越做了一回不专业的商家，就跑去当当了。</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean YES</pre>
 
-<p>几天就收到了书，但一直没看，连封皮都没有撕开，想，没有撕开的话，说不定还能送人，而且那时候正忙活考试，暂时找不到看这类书的闲情逸致，直到放假回家的车上才看起来。</p>
 
-<p>现在看了近200页，有得仔细读过，有得泛泛略过。从书中，渐渐地体会到了您的生活方式，而且您似乎正在享受着幸福的生活，至少在文章中看不出您对于生活有什么失望。当然也有可能不便流露吧。</p>
+<p> </p>
 
-<p>希望有机会您能看到。</p>
+<p>运行后最好再执行一下这个生效：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">killall Dock</pre>
+
+
+<p>如果需要重新开启，请使用这条命令，包括了killall Dock：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean NO
+killall Dock</pre>
+
 
 		
 		
@@ -363,11 +394,11 @@
   
 
 
-<time datetime="2011-07-23T08:16:00+08:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2011</time></div>
+<time datetime="2012-01-26T00:49:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/xiao-xian/'>小娴</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
+	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/dashboard/'>dashboard</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -379,12 +410,19 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/22/lion-eat-my-file-on-desktop/">
+		<a href="/blog/2012/01/13/open-the-stack-function-of-dock/">
 		
-			Lion吃了我的文件</a>
+			开启Dock的堆栈功能</a>
 	</h2>
 	<div class="entry-content">
-		<p>很奇怪的现象：我在桌面上放了一个文件，是用Bean生成的文本文件，接着从这个Desktop往下一个Desktop切换，但不完全切换，只需要看下一个Desktop内容的一点，然后再回到当前这个Desktop，就会发现桌面上的那个文件没了，但点击文件的位置仍然能够打开！！这应该是一个相当大的bug吧？难道还能是一个专门给用户着想的地方？！</p>
+		<p>打开Terminal，输入：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock</pre>
+
+
+<p>然后回车（return），等Dock再次出现后，在已打开程序图标上滚动鼠标滚轮或者手势模拟滚轮，就能看到这个程序打开的子窗口或者子程序，很过瘾好用。</p>
+
+<p>我的MacOS：Lion</p>
 
 		
 		
@@ -404,11 +442,11 @@
   
 
 
-<time datetime="2011-07-22T07:28:00+08:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2011</time></div>
+<time datetime="2012-01-13T21:56:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/desktop/'>desktop</a>, <a class='category' href='/blog/categories/file/'>file</a>, <a class='category' href='/blog/categories/lion/'>lion</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/dock/'>dock</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -420,31 +458,16 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/22/lion-eat-my-java/">
+		<a href="/blog/2012/01/07/the-first-paid-app/">
 		
-			Lion吃了我的Java</a>
+			购买的第一个付费app</a>
 	</h2>
 	<div class="entry-content">
-		<p>刚刚看到cnbeta上一篇关于flash在lion中cpu占用率很高的问题，我感觉这都不算什么问题了，以前就发现占用率相当高，看flash视频的时候电脑会非常热。</p>
+		<p>是切水果。</p>
 
-<p>但这次说的不是这个问题，而是adobe提到的lion没有预置java，这点有些奇怪，难道lion安装上就把java删除了？我开了Terminal，输入:</p>
+<p>由于itunes不支持我的信用卡，所以只能充50，一个一个买，第一个买的就是切水果！</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">java -version</pre>
-
-
-<p>你猜显示什么？</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">No Java runtime present, requesting install.</pre>
-
-
-<p>接着安装更新的那种小窗口就跳出来了，问我是否安装java，那就装上吧，我有时可能用eclipse。</p>
-
-<p>装好后就能用了，不知道还有什么东西被偷偷“吃掉”了。</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">java version "1.6.0_26"
-Java(TM) SE Runtime Environment (build 1.6.0_26-b03-383-11A511)
-Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre>
-
+<p>感觉挺好玩的！</p>
 
 		
 		
@@ -464,11 +487,11 @@ Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre>
   
 
 
-<time datetime="2011-07-22T07:12:00+08:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2011</time></div>
+<time datetime="2012-01-07T01:12:00+08:00" pubdate data-updated="true">Jan 7<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/lion/'>lion</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/app/'>app</a>, <a class='category' href='/blog/categories/qie-shui-guo/'>切水果</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -480,22 +503,20 @@ Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/22/lion-eat-my-xcode-4-0/">
+		<a href="/blog/2011/12/16/back-to-free-time/">
 		
-			Lion吃了我的Xcode</a>
+			终于回到自由的时候</a>
 	</h2>
 	<div class="entry-content">
-		<p>昨天Lion在AppStore发布了，我也就是看了几眼。后来在论坛上有人说通过香港的免费升级服务有一小部分大陆的机器也得到了免费升级的机会，我也算是个港行的mbp，去试试看，结果我的机器似乎不在那个享受范围内。</p>
+		<p>自从前段时间学校封杀了研究生web端自由登陆drcom以来，我就只能找网络中心的老师开了本科生的web登陆，速度很慢，还有流量限制。</p>
 
-<p>不过在微博上有人转发了一个Lion的种子，我就下载去了，一会儿竟然下载完了。然后晚上就装上了，apple在反盗版方面一点儿也不重视，下载是收费的，但你只要是得到了文件就随便使用。我这次也邪恶了一把。</p>
+<p>又加上Lion系统中的原drcom客户端不能用，我就攒了攒勇气下载了drcom4mac的源代码回来自己编译，本以为就是平台的微弱差异，没想到一大堆根本看不懂的错误出现，也没那么平静的心来阅读一个个C函数，就这样搁置了。</p>
 
-<p>安装Lion好久了，先进行一个标明20min的预安装过程，再重启进行真正安装，那个过程标明33min但实际并不是这样，大约有3700s吧安装过程中鼠标移到最顶上，那个菜单条就出现了，可以看安装的log，比干等强一些。</p>
+<p>昨晚Drcom的GoogleGroups中有人发来邮件，说是写了个java的drcom客户端欢迎测试，我今天早晨配置好了libpcap库和jpcap库，然后使用了这个客户端，打开GUI后输入账号密码，登陆没反应。于是告诉了作者，中午收到作者来信，说暂时还只能用命令行方式，这我当然能够接受，可惜在Mac的terminal中显示的中文提示都是乱码，于是svn到了原代码到eclipse中看看吧，按照提示组合了命令行，成功登陆了！</p>
 
-<p>安装完Lion后我打开xcode，发现我的xcode4.0只能在10.6系统中运行，App Store中我还看到一个Xcode4.1而且是免费的，哎，这就很奇怪了，当初4.0是收费4.99美元下载的，现在又出来一个10.7系统下的免费4.1版本。既然免费就下载吧，但发现太慢。于是去了develop.apple.com上找develop tools在那里有xcode4.1的下载链接，本想用迅雷试试速度呢，不过igetter依然跳出来了，我也就没再换，速度还不错大约1MB/s左右，下载自动关机，就睡觉去了。</p>
+<p>从此又自由了。</p>
 
-<p>早上安装了那个xcode4.1，安装完毕后发现再打开xcode还是提示只能在10.6系统下使用。难道安装没用？！又去develop目录下找找application，只有一个xcode的app图标，很奇怪不知道为何。</p>
-
-<p>打开看了一眼我的Application目录，发现里面有一个InstallXcode，打开试试，没想到这才是升级，打开后升级了现有的Xcode，终于能用了。我想可能刚刚安装的时候发现我已经安装了以前的版本，所以就出来一个升级过程吧。</p>
+<p>项目地址：<a href="http://code.google.com/p/jdrcom/"><a href="http://code.google.com/p/jdrcom/">http://code.google.com/p/jdrcom/</a></a></p>
 
 		
 		
@@ -515,11 +536,11 @@ Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre>
   
 
 
-<time datetime="2011-07-22T06:48:00+08:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2011</time></div>
+<time datetime="2011-12-16T21:27:00+08:00" pubdate data-updated="true">Dec 16<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/lion/'>lion</a>, <a class='category' href='/blog/categories/xcode/'>xcode</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/drcom/'>drcom</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/jpcap/'>jpcap</a>, <a class='category' href='/blog/categories/libcap/'>libcap</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -531,24 +552,42 @@ Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/20/simple-intro-to-box2d/">
+		<a href="/blog/2011/12/13/mssql-can-not-add-data-link/">
 		
-			Box2d的简单使用</a>
+			MSSQL无法添加数据连接</a>
 	</h2>
 	<div class="entry-content">
-		<p>真不太想写，因为写这篇日志应该比写一个程序都要复杂。</p>
+		<p>“无法添加数据连接。未能加载文件或程序集“Microsoft SqlServer.Management.Sdk.sfc,Version=10.0.0.0,Culture=nutral,publicKey=89845dcd8080cc91&#8221;或它的某一个依赖项。系统找不到指定的文件。”</p>
 
-<p>我介绍的是box2d引擎在iphone上的使用方法，网上也有不少介绍的，我再简单啰嗦一番：</p>
+<p>今下午卸载了SQL2008，然后装了2005，在VS2010中使用SqlDataSource的时候发现无法创建数据库连接，错误就是这样说的，我现在猜想可能是卸载SQL2008的时候多卸载了一些东西。</p>
 
-<p>首先我们需要一个物理世界：b2world *world;在世界中创造各种各样的body，当然这些body都是刚体，如同经济学中的刚性需求那样，这里值得是形状不会被压扁的坚固物体。这些body默认在实例化后是静态的，除非你明显得把他们的type参数改成b2_dynamicBody，他们就能参与物理运动了。你可以给他们加入密度、弹性、摩擦等参数。这些都是每个body的属性，而这些body是需要刚刚的world创建的，而创建的函数需要一个配置单，就是一个结构体而已。</p>
+<p>于是下载了下面这两个东西装上后就没问题了：</p>
 
-<p>body出现之后你还不能看到，因为还需要另外的两个重要性质：fixture和shape，这里的shape有两种，一个是多边形，一个是圆形；创建shape后定义一些参数，然后把这个对象传递给fixture的对象，fixture被我叫做材质，刚才介绍的密度、弹性、摩擦等属性就是在这里定义的。当然，fixture有个shape属性，把刚刚实例化的shape对象给他即可。最后用body对象的CreateFixture函数生成fixture。这样应该就能看到你创建的物理实体了。</p>
+<p>感谢<a href="http://blog.sina.com.cn/s/blog_62fd44430100zccr.html">这位</a>（我直接复制了他的内容）</p>
 
-<p>下面介绍一些刚刚遗漏的概念，在这个物理世界中，我们需要定义一个重要的量——重力，我们所有创建的物理实体都将按照这个重力的方向移动，而这里的重力实际上指的是一个向量，比如说是（0，-10），这样就会向着y轴-10的方向移动，而负坐标是y轴向下的，刚刚实验过，如果用（0，-100）的话，物体下移的速度会比（0，-10）的快很多，这也很明显。</p>
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">（1）<strong style="font-weight: bold;">Microsoft SQL Server 系统 CLR 类型</strong></p>
 
-<p>另一个有意义的概念就是休眠了，其实这是创建“世界”的又一个参数，意思是如果有物体到达了无法移动的地方，比如边界，或者说出去了边界，引擎应该就不再计算它的一些数据了，这理所应当，怎么还需要解释呢？我们当然希望引擎能够把主要的计算力量给予需要的物理实体。</p>
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">SQL Server 系统 CLR 类型包中包含用于在 SQL Server 2008 中实现新的 geometry、geography 和 hierarchyid 类型的组件。此组件可与服务器分开安装，以允许客户端应用程序在服务器之外使用这些类型。</p>
 
-<p>上面提到了一个区域的概念，是的，我们应该划定一个区域，在这个区域中的物体参与物理运算，外面的就不再参与了，但这里定义一个区域也是用了向量的方法，而且这个区域也算作一个body，有些难以理解。目前掌握得不好，就不再详述了。</p>
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;">注意：</strong>此组件还要求有 <strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123373"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">Windows Installer 4.5</span></a></strong>。</p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">用户：<strong style="font-weight: bold;">客户、合作伙伴、开发人员</strong></p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123721&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X86 包</span></a></strong> (SQLSysClrTypes.msi) &ndash; 1588 KB
+<strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123722&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X64 包</span></a></strong> (SQLSysClrTypes.msi) &ndash; 1981 KB
+<strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123724&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">IA64 包</span></a></strong> (SQLSysClrTypes.msi) &ndash; 3289 KB</p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">（2）<strong style="font-weight: bold;">Microsoft SQL Server 2008 管理对象</strong></p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">SQL Server 管理对象 (SMO) 是一个 .NET Framework 对象模型，软件开发人员使用该模型可以创建用于管理 SQL Server 对象和服务的客户端应用程序。此对象模型将与 SQL Server 2000、SQL Server 2005 和 SQL Server 2008 协同工作。</p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;">注意：</strong>Microsoft SQL Server 2008 管理对象集合需要安装 <strong style="font-weight: bold;">Microsoft Core XML Services (MSXML) 6.0</strong> 和 Microsoft SQL Server Native Client，本页中也提供了这两个程序。</p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">用户：<strong style="font-weight: bold;">客户、合作伙伴、开发人员</strong></p>
+
+<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123708&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X86 包</span></a></strong> (SharedManagementObjects.msi) &ndash; 3225 KB
+<strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123709&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X64 包</span></a></strong> (SharedManagementObjects.msi) &ndash; 3895 KB
+<strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123710&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">IA64 包</span></a></strong> (SharedManagementObjects.msi) &ndash; 5640 KB</p>
 
 		
 		
@@ -568,11 +607,11 @@ Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre>
   
 
 
-<time datetime="2011-07-20T13:49:00+08:00" pubdate data-updated="true">Jul 20<span>th</span>, 2011</time></div>
+<time datetime="2011-12-13T19:10:00+08:00" pubdate data-updated="true">Dec 13<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/box2d/'>box2d</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mssql/'>mssql</a>, <a class='category' href='/blog/categories/vs/'>vs</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

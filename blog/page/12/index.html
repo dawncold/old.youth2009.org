@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="自从前段时间学校封杀了研究生web端自由登陆drcom以来，我就只能找网络中心的老师开了本科生的web登陆，速度很慢，还有流量限制。 又加上Lion系统中的原drcom客户端不能用，我就攒了攒勇气下载了drcom4mac的源代码回来自己编译，本以为就是平台的微弱差异， &hellip;">
+	<meta name="description" content="其实挺那啥的，那啥呢？说不出来感受，些须高兴又些须失望。 资格赛10个题，仔细一看才知道是POJ的原题，随便找了10个，有简单到算a+b结果的，也有复杂点用动态规划、解方程组的等等。总之和大多数人一样，比较失望。 虽然ac了10个，现在排名88，不过都直到答案网上有的是，自己找来不就可以了么， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,20 +79,18 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/12/16/back-to-free-time/">
+		<a href="/blog/2012/05/30/2012-astar-qualification-match/">
 		
-			终于回到自由的时候</a>
+			2012Astar资格赛</a>
 	</h2>
 	<div class="entry-content">
-		<p>自从前段时间学校封杀了研究生web端自由登陆drcom以来，我就只能找网络中心的老师开了本科生的web登陆，速度很慢，还有流量限制。</p>
+		<p>其实挺那啥的，那啥呢？说不出来感受，些须高兴又些须失望。</p>
 
-<p>又加上Lion系统中的原drcom客户端不能用，我就攒了攒勇气下载了drcom4mac的源代码回来自己编译，本以为就是平台的微弱差异，没想到一大堆根本看不懂的错误出现，也没那么平静的心来阅读一个个C函数，就这样搁置了。</p>
+<p>资格赛10个题，仔细一看才知道是POJ的原题，随便找了10个，有简单到算a+b结果的，也有复杂点用动态规划、解方程组的等等。总之和大多数人一样，比较失望。</p>
 
-<p>昨晚Drcom的GoogleGroups中有人发来邮件，说是写了个java的drcom客户端欢迎测试，我今天早晨配置好了libpcap库和jpcap库，然后使用了这个客户端，打开GUI后输入账号密码，登陆没反应。于是告诉了作者，中午收到作者来信，说暂时还只能用命令行方式，这我当然能够接受，可惜在Mac的terminal中显示的中文提示都是乱码，于是svn到了原代码到eclipse中看看吧，按照提示组合了命令行，成功登陆了！</p>
+<p>虽然ac了10个，现在排名88，不过都直到答案网上有的是，自己找来不就可以了么，这样的资格赛有啥意思，难道这不就是随便让人们来参加的么？</p>
 
-<p>从此又自由了。</p>
-
-<p>项目地址：<a href="http://code.google.com/p/jdrcom/"><a href="http://code.google.com/p/jdrcom/">http://code.google.com/p/jdrcom/</a></a></p>
+<p>现在一想这和GoogleCodeJam的资格赛相比，真是差别很大，相当的大呀~</p>
 
 		
 		
@@ -112,11 +110,11 @@
   
 
 
-<time datetime="2011-12-16T21:27:00+08:00" pubdate data-updated="true">Dec 16<span>th</span>, 2011</time></div>
+<time datetime="2012-05-30T12:09:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/drcom/'>drcom</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/jpcap/'>jpcap</a>, <a class='category' href='/blog/categories/libcap/'>libcap</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/astar/'>astar</a>, <a class='category' href='/blog/categories/baidu/'>baidu</a>, <a class='category' href='/blog/categories/gcj/'>gcj</a>, <a class='category' href='/blog/categories/poj/'>poj</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>
 
 
 </div>
@@ -128,42 +126,57 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/12/13/mssql-can-not-add-data-link/">
+		<a href="/blog/2012/05/30/test-the-performace-of-vps-using-unixbench/">
 		
-			MSSQL无法添加数据连接</a>
+			用UnixBench测试VPS性能</a>
 	</h2>
 	<div class="entry-content">
-		<p>“无法添加数据连接。未能加载文件或程序集“Microsoft SqlServer.Management.Sdk.sfc,Version=10.0.0.0,Culture=nutral,publicKey=89845dcd8080cc91&#8221;或它的某一个依赖项。系统找不到指定的文件。”</p>
+		<p>本来就想测试一下性能的，不过中途遇到点问题。</p>
 
-<p>今下午卸载了SQL2008，然后装了2005，在VS2010中使用SqlDataSource的时候发现无法创建数据库连接，错误就是这样说的，我现在猜想可能是卸载SQL2008的时候多卸载了一些东西。</p>
+<p>UnixBench用了perl，但不知道为何我的VPS对perl似乎不太友好，提示有几个关键的moudle找不到，于是无法测试了，根据提示我需要安装Time::HiRes这个module。</p>
 
-<p>于是下载了下面这两个东西装上后就没问题了：</p>
+<p>听说perl5之后有了一个module管理器，叫CPAN（C盘？），就和yum这样的工具一样可以随意安装module，确实方便，可以和python的pip啊easy_install这样的工具媲美。</p>
 
-<p>感谢<a href="http://blog.sina.com.cn/s/blog_62fd44430100zccr.html">这位</a>（我直接复制了他的内容）</p>
+<p>但我在使用CPAN的时候发现连这个module都没有…………于是去CPAN.org这里搜索下载这个基础module，但在makefile的时候（用perl做makefile），发现又缺少一个module，看来这个更加底层。从网上找到方法说用yum进行安装，于是用yum -y install perl-CPAN，这样就能用了：）</p>
 
-<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">（1）<strong style="font-weight: bold;">Microsoft SQL Server 系统 CLR 类型</strong></p>
+<p>在安装Time::HiRes的时候发现找不到install工具………………天啊，又去了CPAN.org下载了这个module的源码，自己编译安装上了，这样就没问题了：）</p>
 
-<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">SQL Server 系统 CLR 类型包中包含用于在 SQL Server 2008 中实现新的 geometry、geography 和 hierarchyid 类型的组件。此组件可与服务器分开安装，以允许客户端应用程序在服务器之外使用这些类型。</p>
+<p>VPS的得分稍后更新：）</p>
 
-<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;">注意：</strong>此组件还要求有 <strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123373"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">Windows Installer 4.5</span></a></strong>。</p>
+<p>UPDATE:</p>
 
-<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">用户：<strong style="font-weight: bold;">客户、合作伙伴、开发人员</strong></p>
+<pre class="prettyprint linenums bush:bash" lang="bash">Benchmark Run: 三  5月 30 2012 11:38:34 - 12:06:53
+1 CPU in system; running 1 parallel copy of tests
 
-<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123721&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X86 包</span></a></strong> (SQLSysClrTypes.msi) &ndash; 1588 KB
-<strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123722&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X64 包</span></a></strong> (SQLSysClrTypes.msi) &ndash; 1981 KB
-<strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123724&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">IA64 包</span></a></strong> (SQLSysClrTypes.msi) &ndash; 3289 KB</p>
+Dhrystone 2 using register variables       12579232.4 lps   (10.0 s, 7 samples)
+Double-Precision Whetstone                     2268.2 MWIPS (10.3 s, 7 samples)
+Execl Throughput                               1140.1 lps   (29.6 s, 2 samples)
+File Copy 1024 bufsize 2000 maxblocks        270525.4 KBps  (30.0 s, 2 samples)
+File Copy 256 bufsize 500 maxblocks           77911.8 KBps  (30.1 s, 2 samples)
+File Copy 4096 bufsize 8000 maxblocks        709368.9 KBps  (30.0 s, 2 samples)
+Pipe Throughput                              394585.6 lps   (10.0 s, 7 samples)
+Pipe-based Context Switching                  40293.3 lps   (10.0 s, 7 samples)
+Process Creation                               1908.7 lps   (30.0 s, 2 samples)
+Shell Scripts (1 concurrent)                   1539.5 lpm   (60.0 s, 2 samples)
+Shell Scripts (8 concurrent)                    204.1 lpm   (60.1 s, 2 samples)
+System Call Overhead                         525047.2 lps   (10.0 s, 7 samples)
 
-<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">（2）<strong style="font-weight: bold;">Microsoft SQL Server 2008 管理对象</strong></p>
+System Benchmarks Index Values               BASELINE       RESULT    INDEX
+Dhrystone 2 using register variables         116700.0   12579232.4   1077.9
+Double-Precision Whetstone                       55.0       2268.2    412.4
+Execl Throughput                                 43.0       1140.1    265.1
+File Copy 1024 bufsize 2000 maxblocks          3960.0     270525.4    683.1
+File Copy 256 bufsize 500 maxblocks            1655.0      77911.8    470.8
+File Copy 4096 bufsize 8000 maxblocks          5800.0     709368.9   1223.0
+Pipe Throughput                               12440.0     394585.6    317.2
+Pipe-based Context Switching                   4000.0      40293.3    100.7
+Process Creation                                126.0       1908.7    151.5
+Shell Scripts (1 concurrent)                     42.4       1539.5    363.1
+Shell Scripts (8 concurrent)                      6.0        204.1    340.2
+System Call Overhead                          15000.0     525047.2    350.0
+                                                                  ========
+System Benchmarks Index Score                                         382.2</pre>
 
-<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">SQL Server 管理对象 (SMO) 是一个 .NET Framework 对象模型，软件开发人员使用该模型可以创建用于管理 SQL Server 对象和服务的客户端应用程序。此对象模型将与 SQL Server 2000、SQL Server 2005 和 SQL Server 2008 协同工作。</p>
-
-<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;">注意：</strong>Microsoft SQL Server 2008 管理对象集合需要安装 <strong style="font-weight: bold;">Microsoft Core XML Services (MSXML) 6.0</strong> 和 Microsoft SQL Server Native Client，本页中也提供了这两个程序。</p>
-
-<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;">用户：<strong style="font-weight: bold;">客户、合作伙伴、开发人员</strong></p>
-
-<p><p style="border-style: initial; border-color: initial; list-style-type: none; list-style-position: initial; list-style-image: initial; word-wrap: normal; word-break: normal; line-height: 21px; color: #464646; font-family: simsun; text-align: left; background-color: #e8dcc8; border-width: 0px; padding: 0px; margin: 0px;"><strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123708&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X86 包</span></a></strong> (SharedManagementObjects.msi) &ndash; 3225 KB
-<strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123709&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">X64 包</span></a></strong> (SharedManagementObjects.msi) &ndash; 3895 KB
-<strong style="font-weight: bold;"><a style="text-decoration: none; color: #905032;" href="http://go.microsoft.com/fwlink/?LinkId=123710&amp;clcid=0x804"><span style="word-wrap: normal; word-break: normal; color: #78afd3;">IA64 包</span></a></strong> (SharedManagementObjects.msi) &ndash; 5640 KB</p>
 
 		
 		
@@ -183,11 +196,11 @@
   
 
 
-<time datetime="2011-12-13T19:10:00+08:00" pubdate data-updated="true">Dec 13<span>th</span>, 2011</time></div>
+<time datetime="2012-05-30T12:02:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/mssql/'>mssql</a>, <a class='category' href='/blog/categories/vs/'>vs</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/unixbench/'>UnixBench</a>, <a class='category' href='/blog/categories/perl/'>perl</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -199,18 +212,20 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/12/12/be-careful-of-eclipse-when-developing-android/">
+		<a href="/blog/2012/05/23/new-input-method-on-mac-rimeime/">
 		
-			开发android得注意eclipse</a>
+			新的输入法测试</a>
 	</h2>
 	<div class="entry-content">
-		<p>简单说，eclipse3.6这个版本中有些jar有问题，在代码提示的时候会卡死，我还以为是机器运算不过来了，但在JavaEE中很正常，所以一搜索得到的答案，需要替换一个系统jar包。</p>
+		<p>mac下的输入法一直让我耿耿于怀，官方的输入法就不多说了，基本不会去用，虽然UI做得不错，没用几分钟就再也不使用了。</p>
 
-<p>需要被替换的jar是：org.eclipse.jdt.core_3.6.1.v_A68_R36x.jar，在eclipse的plugins目录中。</p>
+<p>然后使用了搜狗输入法，词汇量真的很大，这个和Windows平台的积累密不可分，但是我使用的时候搜狗输入法for mac的刚刚开始测试，bug比较多，渐渐被QQ输入法赶上了。</p>
 
-<p>从这位朋友的网盘中也许能找到，在Eclipse目录中：<a href="http://breakan.ys168.com/"><a href="http://breakan.ys168.com/">http://breakan.ys168.com/</a></a></p>
+<p>QQ输入法用了很久，不过偶尔出现打字时候卡死的情况，其他没啥问题，我就以为是我自己的问题吧，刚刚在微博上搜索了一下，不少用户都遇到这样的问题，搜狗那边也是如此，这就很奇怪了。。。</p>
 
-<p>为了备份，我传到了自己服务器上，下载地址：<a title="eclipse-android-plugin.rar" href="http://www.youth2009.org/usr/uploads/2011/12/2062328791.rar">eclipse-android-plugin.rar</a></p>
+<p>有位朋友推荐了rimeime输入法，正在使用中，看这个反应速度很满意，听说是用配置文件可以做出很玄的样子，暂时不去研究这些，能保证不卡就是很好的进步，如果可以的话，果断放弃掉其他输入法！！！</p>
+
+<p>希望rimeime能够把中英文切换状态在growl中体现出来，起码也该给一个提醒：）</p>
 
 		
 		
@@ -230,11 +245,11 @@
   
 
 
-<time datetime="2011-12-12T19:14:00+08:00" pubdate data-updated="true">Dec 12<span>th</span>, 2011</time></div>
+<time datetime="2012-05-23T20:29:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/android/'>android</a>, <a class='category' href='/blog/categories/eclipse/'>eclipse</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/shu-ru-fa/'>输入法</a>
 
 
 </div>
@@ -246,26 +261,24 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/12/11/update-gem-on-mac/">
+		<a href="/blog/2012/05/23/two-mysql-lib-issue-after-yum-update/">
 		
-			更新mac下的gem</a>
+			Ldconfig: /usr/lib/libmysqlclient.so.16 Is Not a Symbolic Link的问题</a>
 	</h2>
 	<div class="entry-content">
-		<p>要不是弄github的pages我也不会接触到gem。</p>
+		<p>刚刚用yum升级了系统，发现日志中有很多这样的提示：</p>
 
-<p>lion的gem是1.3.6这个超低版本，现在最新是1.8.12，我下载了update_rubygem1.8.12.gem，用gem安装上了：</p>
+<p><span style="color: #111111; font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; text-align: left;">ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link</span></p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">sudo gem install update_rubygem-1.8.12.gem</pre>
+<p><span style="color: #111111; font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; text-align: left;">ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a symbolic link</span></p>
 
+<p>于是Google了一下，找到一个解决方法，在<a href="http://tiger.im/286.html" target="_blank">这里</a>.</p>
 
-<p> </p>
+<p>就是重建了两条连接过去即可：</p>
 
-<p>然后不知道怎么用了，于是用gem开启来一个server玩：</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">ln -sf /usr/local/mysql/lib/mysql/libmysqlclient.so.16 /usr/lib/mysqlclient.so.16
+ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient_r.so.16</pre>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">gem server</pre>
-
-
-<p>不小心看到已经安装了两个gem，执行命令分别是gem和update_rubygem，于是我执行了后面那个，就更新到了1.8.12</p>
 
 		
 		
@@ -285,11 +298,11 @@
   
 
 
-<time datetime="2011-12-11T19:49:00+08:00" pubdate data-updated="true">Dec 11<span>th</span>, 2011</time></div>
+<time datetime="2012-05-23T19:50:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/yum/'>yum</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -301,36 +314,16 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/12/11/mysql-python-mac/">
+		<a href="/blog/2012/05/23/optimize-my-vps/">
 		
-			mac下的MySQL-python问题</a>
+			优化了一下VPS</a>
 	</h2>
 	<div class="entry-content">
-		<p>刚刚在学习web.py这个框架，找了一个不错的例子准备自己运行起来看看，结果一调试出现了MySQLdb没找到的情况，于是从官方（<a href="http://sourceforge.net/projects/mysql-python/"><a href="http://sourceforge.net/projects/mysql-python/">http://sourceforge.net/projects/mysql-python/</a></a>）下载源码准备编译安装，最好不要用easy_install安装了，因为还得修改几个地方才能正常编译安装。</p>
+		<p>一开始玩VPS的时候跟着网上的各种优化教程做了很多工作，中途重装了一次系统后什么优化工作都没做，基本就和裸奔一样啦，还有次好奇怪的突发事件，让我以为是hacker进来了，但后来又不了了之了。</p>
 
-<p>由于是mac系统，MySQL是使用的官方提供的dmg安装包装的，但不知为何MySQLdb的安装脚本找不到位置，于是修改MySQLdb的setup_posix.py，26行有个mysql_config.path = &hellip;，修改成你本机中mysql_config所在的地址，比如我的是/usr/local/mysql/bin/mysql_config，保存后分别执行：</p>
+<p>今天把ssh的端口改掉了，加入iptables各种规则，希望这样能让vps的uptime提升一下，现在不清楚是不是做了这些工作就有好处，但总归是没有坏处的。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">sudo python setup.py build
-sudo python setup.py install</pre>
-
-
-<p>安装后最好用python的shell加载一下MySQLdb看看能否正常使用，通常是不行的，因为我就遇到这么个情况，提示缺少image，具体是这样提示的：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash"> File "/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/MySQLdb/__init__.py", line 19, in &lt;module&gt;
-   import _mysql
-ImportError: dlopen(/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/_mysql.so, 2): Library not loaded: libmysqlclient.18.dylib
- Referenced from: /Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/_mysql.so
- Reason: image not found</pre>
-
-
-<p>于是用Google搜索问题，从<a href="http://alexbraunstein.com/2011/08/12/library-loaded-libmysqlclient-18-dylib/" target="_blank">这里</a>找到了解决方案：</p>
-
-<p>在~/.bash_profile中加入这样的一句：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH</pre>
-
-
-<p>然后quit掉terminal再进入一次让这个环境变量更新一下，再次使用MySQLdb就没问题了。</p>
+<p>在dnspod上开启了一个宕机监控，同时把监控宝上的ping测试改掉了，因为现在不允许ping了～就这样监控一段时间试试效果吧，如果真有用的话我就一定要每次重装os后都做！！！</p>
 
 		
 		
@@ -350,11 +343,11 @@ ImportError: dlopen(/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-m
   
 
 
-<time datetime="2011-12-11T14:19:00+08:00" pubdate data-updated="true">Dec 11<span>th</span>, 2011</time></div>
+<time datetime="2012-05-23T15:30:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -366,22 +359,29 @@ ImportError: dlopen(/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-m
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/12/10/spring-framework/">
+		<a href="/blog/2012/05/22/little-cheat-for-game/">
 		
-			Spring</a>
+			小作弊玩游戏</a>
 	</h2>
 	<div class="entry-content">
-		<p>这不是代表春天或者温泉的意思，实际上是我正在学习期末考试课程S2SH中的一个框架——Spring。</p>
+		<p>有这么一个小游戏，按照顺序输入字母表的26个英文字母，看看你输入的总时间是多少。有个变态的人竟然在2s内就输入了26个字母，而且不允许有任何错误，真心佩服！！！</p>
 
-<p>就一变态框架啊，Ioc、AOP这些都是令业界震撼的思想级产物。特别是AOP，就是和OOP同层次的东西，怪不得学习起来很慢很艰难，不过我清楚，期末考试肯定考得超简单，现在我基本是学到哪里忘到哪里。</p>
+<p>我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊……</p>
 
-<p>顺便说下，用Spring做一个简单的AOP测试实例的话，光用自带的jar包根本不行，还需要自己添加下面这几个：</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">tell application "Google Chrome"
+activate
+repeat with i from 0 to 25
+delay 0.04
+tell application "System Events"
+keystroke (ASCII character of (97 + i))
+end tell
+end repeat
+end tell</pre>
 
-<p>1.aopalliance-1.0.jar（在struts2的lib目录中找到的）</p>
 
-<p>2.aspcetjweaver-1.5.3.jar（aspcetj的官网怎么上都上不去：<a href="http://www.aspectj.org" target="_blank"><a href="http://www.aspectj.org">http://www.aspectj.org</a></a>，于是在这里下载的：<a href="http://www.jar114.com/j/982"><a href="http://www.jar114.com/j/982">http://www.jar114.com/j/982</a></a>）</p>
+<p>不减速的话系统根本无法记录，所以还是减速了，这个速度正好拿到第一名的位置，OK，剩下的让人去羡慕吧！！！</p>
 
-<p>3.cglib-nodep-2.2.2.jar（本来用cglib-2.2.2.jar的，但提示缺少asm就下载了这个集成asm的nodep版本，我以为asm就是Spring中的那个asm包呢。官方网站：<a href="http://cglib.sourceforge.net" target="_blank"><a href="http://cglib.sourceforge.net">http://cglib.sourceforge.net</a></a>）</p>
+<p>感谢Apple提供的AppleScript这样优秀的脚本工具～</p>
 
 		
 		
@@ -401,11 +401,11 @@ ImportError: dlopen(/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-m
   
 
 
-<time datetime="2011-12-10T16:48:00+08:00" pubdate data-updated="true">Dec 10<span>th</span>, 2011</time></div>
+<time datetime="2012-05-22T23:31:00+08:00" pubdate data-updated="true">May 22<span>nd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/s2sh/'>s2sh</a>, <a class='category' href='/blog/categories/spring/'>spring</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/applescript/'>applescript</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -417,138 +417,98 @@ ImportError: dlopen(/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-m
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/12/07/reset-the-password-of-mysql/">
+		<a href="/blog/2012/05/14/left-outer-join-and-multiply-select-in-sqlite3/">
 		
-			重置MySQL密码</a>
+			Sqlite3连接查询和多次select的对比</a>
 	</h2>
 	<div class="entry-content">
-		<p>前几天在Mac系统下装了MySQL，装完后是默认没有给root用户带密码的，于是出于安全考虑我就加上了密码，加密码的方式如下：</p>
+		<p>通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">mysqladmin -u root password "mysqlpassword"</pre>
+<p>左外连接查询比两次select快10～20%左右。</p>
 
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
 
-<p>很明显引号内的是root用户的新密码。</p>
+import sqlite3
+import os
+import time
+import random
 
-<p>但在使用的时候我一时想不起来密码了，于是搜索到了官方的Reset the password of MySQL，但看着好麻烦，没有尝试，在<a href="http://huoding.com/2011/06/12/85" target="_blank">这里</a>找到了方法，贴出来主要代码：</p>
-
-<p>先停止mysql的服务，用下面这句启动mysql：</p>
-
-<pre class="prettyprint linenums bush:sql" lang="sql">mysqld_safe --skip-grant-tables --skip-networking &amp;
-</pre>
-
-
-<p>用SQL语句修改root的密码：</p>
-
-<pre class="prettyprint linenums bush:sql" lang="sql">UPDATE mysql.user SET Password=PASSWORD('...') WHERE User='...' AND Host= '...';
-FLUSH PRIVILEGES;</pre>
+def connect():
+return sqlite3.connect('./test.db')
 
 
-<p>单引号内的东西自己补充吧，第一个是新密码，第二个写root，第三个用localhost就可以了。</p>
-
-		
-		
-	</div>
+def insertProgress(conn, user_id):
+cur = conn.execute('INSERT INTO todo(title, date) VALUES(?,?)', ['just test!!!', time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())])
+conn.execute('INSERT INTO todo_meta(todo_id, user_id) VALUES(?,?)', [cur.lastrowid, user_id])
 
 
-<div class="meta">
-	<div class="date">
+def insertManyData(conn):
+#reset database
+os.system('sqlite3 test.db &lt; schema.sql')
 
+conn.cursor()
+counts = [0,0,0,0,0,0]
+for i in xrange(100000):
+userid = random.choice([0, 1, 2, 3, 4, 5])
+counts[userid] += 1
+insertProgress(conn, userid)
+conn.commit()
+conn.close()
+print counts
 
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-07T17:46:00+08:00" pubdate data-updated="true">Dec 7<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/zhong-zhi-mi-ma/'>重置密码</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/12/01/struts-xml-assistant/">
-		
-			Struts2的eclipse提示</a>
-	</h2>
-	<div class="entry-content">
-		<p>写struts2的配置文件时如果有提示那最好了，添加方法比较简单，从框架的jar包中找到sruts-2.1.7.dtd文件，在preference搜索xml找到xml catalog，然后add一个，文件就是刚刚找到的dtd文件，Key type选URI，我用过publicID但没有提示效果，相应的，key中写：<a href="http://struts.apache.org/dtds/struts-2.0.dtd%E5%8D%B3%E5%8F%AF%E3%80%82">http://struts.apache.org/dtds/struts-2.0.dtd%E5%8D%B3%E5%8F%AF%E3%80%82</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-01T14:32:00+08:00" pubdate data-updated="true">Dec 1<span>st</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/eclipse/'>eclipse</a>, <a class='category' href='/blog/categories/struts/'>struts</a>, <a class='category' href='/blog/categories/xml/'>xml</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/11/20/also-helloworld-with-webpy/">
-		
-			又是helloworld</a>
-	</h2>
-	<div class="entry-content">
-		<p>学计算机编程语言的人都有helloworld情节，不管学成什么样，他们写helloworld的能力都很强。</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">import web
-
-urls = ("/hello", "hello")
-app = web.application(urls, globals())
-
-class hello:
-   def GET(self):
-       return "hello, world"
+def selectUsingLeftOuterJoin(conn, user_id):
+conn.cursor()
+cur = conn.execute('SELECT t.title, t.date \
+FROM todo t LEFT OUTER JOIN todo_meta tm \
+ON tm.todo_id = t.id\WHERE tm.user_id = ?', [user_id])
+def selectTwoTimes(conn, user_id):
+conn.cursor()
+cur = conn.execute('SELECT todo_id FROM todo_meta WHERE user_id = ?', [user_id])
+for tid in [row[0] for row in cur.fetchall()]:
+cur = conn.execute('SELECT title, date FROM todo WHERE id = ?', [tid])
 
 if __name__ == "__main__":
-   app.run()</pre>
+uids = [0, 1, 2, 3, 4, 5]
+insert_time_start = time.time()
+insertManyData(connect())
+print "Insert Time: %f" % (time.time() - insert_time_start)
+select_ULOJ_start = time.time()
+for uid in uids:
+selectUsingLeftOuterJoin(connect(), uid)
+print "Select Using Left Outer Join time: %f" % (time.time() - select_ULOJ_start)
+select_two_times = time.time()
+for uid in uids:
+selectTwoTimes(connect(), uid)
+print "Select Two Times time: %f" % (time.time() - select_two_times)</pre>
 
 
-<p>今晚已经开始了Web.py的学习阶段。</p>
+<p>schema：</p>
 
-<p>看官方介绍的在Mac系统下安装webpy有点特别，于是我直接使用了easy_install的安装方法，不知道自己以前安装过easy_install这个软件管理工具，直接使用就好了，不过最好加上sudo，否则会提示无法创建什么目录，权限不够吧。</p>
+<pre class="prettyprint linenums bush:sql" lang="sql">drop table if exists todo;
+drop table if exists user;
+drop table if exists todo_meta;
+create table todo (
+id integer primary key autoincrement,
+title string not null,
+date datetime not null
+);
+create table user (
+id integer primary key autoincrement,
+email string not null,
+password string not null,
+nickname string not null,
+salt string not null
+);
+create table todo_meta (
+todo_id integer,
+user_id integer,
+foreign key(todo_id) references todo(id),
+foreign key(user_id) references user(id)
+);</pre>
 
-<p>安装完web.py后就能使用框架来写东西了，上面的helloworld就算是。</p>
 
-<p>通过这个简单的helloworld能够学到一点框架的知识——在urls中一个url字符串对应一个处理的类对象，如果需要为这个app配置多个url和对应的处理类，就需要使用add_mapping方法，这些内容请参考<a href="http://webpy.org/docs/0.3/api#web.application">官方的api</a>，很是简单，具体不在此赘述。</p>
-
-<p>第一天就学到这里，以后就要变学习变开发了。</p>
+<p>启动脚本就会创建数据库并开始测试。</p>
 
 		
 		
@@ -568,11 +528,11 @@ if __name__ == "__main__":
   
 
 
-<time datetime="2011-11-20T23:58:00+08:00" pubdate data-updated="true">Nov 20<span>th</span>, 2011</time></div>
+<time datetime="2012-05-14T23:23:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/webpy/'>webpy</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/sqlite/'>sqlite</a>, <a class='category' href='/blog/categories/xing-neng/'>性能</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -584,18 +544,18 @@ if __name__ == "__main__":
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/11/19/also-back-to-drcom-for-mac/">
+		<a href="/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3/">
 		
-			又回到了drcom上</a>
+			Sqlite3的rowcount</a>
 	</h2>
 	<div class="entry-content">
-		<p>如果在mac系统下没有可用的drcom客户端真是很难受的一件事情，虽然现在有了web登陆的账号，但还是有限制的——流量总数、速度，特别是速度限制，真是拿生锈的刀杀人的感觉。</p>
+		<p>最近写了一个todo的webapp，在用户登陆的时候是select数据库中的内容进行对比判断，当然如果select的内容是0那就表示用户登陆失败了，可能账号或者密码写错了，数据库用的sqlite3，在python的api中发现有cursor.rowcount可用，于是就这么判断一下是不是有数据被select出来了，没想到这样判断是错误的。</p>
 
-<p>曾经两次打开了xcode来调试drcom4mac的源代码，但每次都感觉怎么这么复杂，我怎么能看得懂？里面的drcom库是用C写的，我个人一直对于C语言有好感，但就是不想接触。现在高级语言有的是，虽说从学术划分上来讲C也算是高级语言，但从语言上比较，C算是很底层的了。就这样拖延着，我想还是动力不够，如果有什么强大动力支持着我来做这个，可能会更好。</p>
+<p>select的rowcount永远为-1，哎，这里着实坑了我一番啊～</p>
 
-<p>再来一次吧，现在同时也在学着python，前段时间面试豆瓣的时候被问到是不是C的代码写得少，我只能正确回答是的，最终也没面试上，许是和这个有关，既然如此也算是给自己找了个理由——为了未来，还有广大生活在drcom阴影下的使用mac系统的人们。</p>
+<p>只好cursor.fetchone()先，然后判断得到的内容是不是None。</p>
 
-<p>我来了！</p>
+<p>从<a href="http://stackoverflow.com/questions/839069/cursor-rowcount-always-1-in-sqlite3-in-python3k" target="_blank">这里</a>得到的答案。</p>
 
 		
 		
@@ -615,11 +575,157 @@ if __name__ == "__main__":
   
 
 
-<time datetime="2011-11-19T14:33:00+08:00" pubdate data-updated="true">Nov 19<span>th</span>, 2011</time></div>
+<time datetime="2012-05-14T17:00:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/drcom/'>drcom</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/xcode/'>xcode</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/flask/'>flask</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/sqlite/'>sqlite</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/05/07/solve-inversion-by-using-merge/">
+		
+			逆序对的求解</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天看到算法导论上关于求解一个序列的逆序对的问题，以前自己在这个地方写着解答方法，不过今天怎么看都不懂了，从网上找了找，大都说得很模糊，不过自己突然有种领悟了的感觉，找了个简单的例子，实验了一下，自己的结论是正确的：）</p>
+
+<p>例子是（2，3，8，6，1）这个序列，找出所有的5个逆序对。最好的方法是nlogn复杂度的利用归并排序的副产品——merge部分统计，统计比较左右列表时，左侧大于右侧时“左侧”列表中剩余数目。</p>
+
+<p>归并的划分应该是这样的，（2，3，8）为左侧，（6，1）为右侧，继续划分为（2，3）和8，右边是6和1。下面就开始合并了，（2，3）和8这边还是（2，3，8），右侧出现一个逆序对，在合并6，1的时候因为作为“左侧”的6要大于1，所以这里有1个逆序对，这里的1就是此时“左侧”序列中的元素个数。</p>
+
+<p>在往下走，要合并（2，3，8）和（1，6），马上就出现了2&gt;1这样的情况，此时会出现（2，1）、（3，1）、（8，1）这几个逆序对，后面还会出现（8，6）这个逆序对，一共就这么5个。</p>
+
+<p>因为原始序列是（2，3，8，6，1），我们需要用到这个原始序列的顺序来判断顺序排在前面的值却大于后面的，这样的机会在每次merge的时候是非常合适的。</p>
+
+<p>这是修改后输出逆序对的归并排序算法，有点可惜哈，这么长的排序算法只让副产品在台前显露了一把！</p>
+
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
+
+def merge(arraylist, first, middle, last):
+   temp = []
+   i = first
+   j = middle + 1
+   while i &lt;= middle and j &lt;= last:
+       if arraylist[i] &lt;= arraylist[j]:
+           temp.append(arraylist[i])
+           i += 1
+       else:
+           for x in arraylist[i:middle + 1]:
+               print "(%d,%d)" % (x, arraylist[j])
+           temp.append(arraylist[j])
+           j += 1
+   while i &lt;= middle:
+       temp.append(arraylist[i])
+       i += 1
+   while j &lt;= last:
+       temp.append(arraylist[j])
+       j += 1
+   for i in range(0, last - first + 1):
+       arraylist[first + i] = temp[i]
+
+def merge_sort(arraylist, first, last):
+   if first &lt; last:
+       middle = (first + last) / 2
+       merge_sort(arraylist, first, middle)
+       merge_sort(arraylist, middle + 1, last)
+       merge(arraylist, first, middle, last)
+
+if __name__ == "__main__":
+lst = [2,3,8,6,1]
+merge_sort(lst, 0, len(lst) - 1)</pre>
+
+
+<p>运行结果：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">(6,1)
+(2,1)
+(3,1)
+(8,1)
+(8,6)</pre>
+
+
+<p>（我的代码缩进似乎出了点问题，本身这段归并排序也是从网上找来的，所以混合了不少tab和whitespace，弄了好久都是error indent，最后我无奈用whitespace来做缩进，好歹调试通过了！）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-07T17:08:00+08:00" pubdate data-updated="true">May 7<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/gui-bing-pai-xu/'>归并排序</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/ni-xu-dui/'>逆序对</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/05/06/miserable-code-jam-2012/">
+		
+			悲惨的CodeJam2012</a>
+	</h2>
+	<div class="entry-content">
+		<p>资格赛晋级之后还稍稍得到了点自信，起码原来只能远观CodeJam的我现在也能继续走进看看了，不过家下来的Round1三场比赛直接被虐杀了，每一场都是最后，每个题都做不出来，说出来也是很惭愧的，但得承认自己这点能力，有人不到5分钟就能做对一个大题，而我5分钟可能都没读完题，更别说写代码了。</p>
+
+<p>但最重要的是理解题目，能够理解了也就完成了90%，剩下的工作就是coding的过程，参加比赛的人基本都是有备而来，各种模版、脚本都准备好了，写起来非常快。对于非英语系国家的选手来说，读题似乎是很大的障碍，起码会比别人慢好多倍，这点只能多多看英文的资料来弥补了！</p>
+
+<p>今天的Round1第三场出现了两个动态规划的题，感觉知道了怎么做可就是不会写，我也就是停留在知道有动态规划这种变态方法的层面上，真让我写出来可不行，抱着《算法导论》看了半天也是毫无头绪……</p>
+
+<p>毕竟不是Acmer，咱也就只能止步于此啦！希望进入下一轮的国人们继续加油！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-06T21:49:00+08:00" pubdate data-updated="true">May 6<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/code-jam/'>Code jam</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>
 
 
 </div>

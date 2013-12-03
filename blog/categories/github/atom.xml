@@ -4,7 +4,7 @@
   <title><![CDATA[Category: github | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-01T03:46:30+08:00</updated>
+  <updated>2013-12-03T21:11:39+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hello World]]></title>
+    <link href="http://www.youth2009.org/blog/2012/10/20/hello-world/"/>
+    <updated>2012-10-20T20:25:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/10/20/hello-world</id>
+    <content type="html"><![CDATA[<p>这篇hello，world已经拖了好久了，想写的内容也换了很多，本想记一下怎么搭建出来的这个blog，原先感觉稍微有些难度，所以想记录一下，现在感觉也不是那么难，还是写点更值得记录的东西吧。</p>
+
+<p>记录一下遇到的问题：</p>
+
+<blockquote><p>ruby的管理：我原先用homebrew，感觉能用了，可惜在运行rake generate的时候遇到问题，仍然使用了我的老版本ruby，最终我卸载了homebrew中的ruby，重新安装了rvm，通过rvm安装ruby，相关操作请到ruby-china的wiki中寻找，另外需要注意的是，通过rvm安装readline的时候竟然不是安装的最新版，可能这里也有问题，我使用了homebrew安装的readline，只需要在rvm安装ruby的时候传入&mdash;with-readline-dir=xxx即可，指向到readline的include目录。</p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[更新mac下的gem]]></title>

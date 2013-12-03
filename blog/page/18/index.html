@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="对于一个file，调用tell能够知道现在的文件位置。seek是改变文件位置。 比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完tell我又使用了seek(0), &hellip;">
+	<meta name="description" content="前几天收到邮件，说是昨晚要升级网络带宽，时间大约30分钟，我也没管这事儿，造成起来看到有服务器宕机的邮件通知，看来昨晚确实网络断掉了。也没感觉速度有什么本质提升呀，我现在就希望在学校中ping值能进200ms就好了，现在是210～20x之间。仍然幻想Linode的东京机房， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,50 +79,12 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/09/seek-and-tell-in-python/">
+		<a href="/blog/2011/10/30/yardvps-add-network-throughout/">
 		
-			简要写写python的file中的tell和seek</a>
+			传说YardVPS增加了网络带宽</a>
 	</h2>
 	<div class="entry-content">
-		<p>对于一个<a title="file" href="http://www.youth2009.org/tag/file/">file</a>，调用<a title="tell" href="http://www.youth2009.org/tag/tell/">tell</a>能够知道现在的文件位置。<a title="seek" href="http://www.youth2009.org/tag/seek/">seek</a>是改变文件位置。  比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完<a title="tell" href="http://www.youth2009.org/tag/tell/">tell</a>我又使用了<a title="seek" href="http://www.youth2009.org/tag/seek/">seek</a>(0),这样文件位置就回到开头了，下次再调用readline就会输出原来第一行的内容了，这应该是很容易理解的。不明白可以亲自试试。</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">from sys import argv
-
-script, input_file = argv
-
-def print_all(f):
-   print f.read()
-
-def rewind(f):
-   f.seek(0)
-
-def print_a_line(line_count, f):
-   print line_count, f.readline()
-
-current_file = open(input_file)
-
-print "First let's print the while file:\n"
-print_all(current_file)
-
-print "Now let's rewind, kind of like a tape."
-rewind(current_file)
-
-print "Let's print three lines:"
-
-current_line = 1
-print_a_line(current_line, current_file)
-print "current_pos:%d" % current_file.tell()
-rewind(current_file)
-
-current_line += 1
-print_a_line(current_line, current_file)
-print "current_pos:%d" % current_file.tell()
-
-current_line += 1
-print_a_line(current_line, current_file)
-print "current_pos:%d" % current_file.tell()
-</pre>
-
+		<p>前几天收到邮件，说是昨晚要升级网络带宽，时间大约30分钟，我也没管这事儿，造成起来看到有服务器宕机的邮件通知，看来昨晚确实网络断掉了。也没感觉速度有什么本质提升呀，我现在就希望在学校中ping值能进200ms就好了，现在是210～20x之间。仍然幻想Linode的东京机房，但那天看到YardVPS已经能保证4个9的上线时间，也就是一年中的下线时间不会超过1小时（大约52分钟）。</p>
 
 		
 		
@@ -142,11 +104,11 @@ print "current_pos:%d" % current_file.tell()
   
 
 
-<time datetime="2011-07-09T15:12:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
+<time datetime="2011-10-30T07:28:00+08:00" pubdate data-updated="true">Oct 30<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/file/'>file</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/seek/'>seek</a>, <a class='category' href='/blog/categories/tell/'>tell</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -158,19 +120,14 @@ print "current_pos:%d" % current_file.tell()
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/09/python-one-star-and-two-star/">
+		<a href="/blog/2011/10/28/software-exam-is-comming-soon/">
 		
-			Python中的*和**</a>
+			马上就要软考了</a>
 	</h2>
 	<div class="entry-content">
-		<p>在<a title="python" href="http://www.youth2009.org/tag/python/">python</a>的函数参数中，可以在变量名称前面加一个或者两个星号代表不一样的变量类型：</p>
+		<p>我充满了信心，但自己感觉准备周期有些长，每天都用准备软考的理由在上课的时候看软考的资料，导致很多门课现在还是比较陌生的，不过大学中这样并不是大问题，即便是都不怎么学，到了年底要是肯努力几天的话，成绩还是会很给面子的。但我并不喜欢这样突击，我更喜欢轻松自在一点。</p>
 
-<p>在stack overflow上看到有人问这两个的区别了，就转载过来答案吧：</p>
-
-<blockquote>If the form *identifier is present, it is initialized to a tuple receiving any excess positional parameters, defaulting to the empty tuple. If the form **identifier is present, it is initialized to a new dictionary receiving any excess keyword arguments, defaulting to a new empty dictionary.</blockquote>
-
-
-<p><span style="font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;"><span style="border-collapse: collapse;">加一个星号代表这个参数是一个tuple类型；加两个则是一个dictionary类型，很好用。</span></span></p>
+<p>软考结束后本以为能够把丢下的知识拾起来，但国庆和光瑞都找我做些东西，我也想继续搞一些开发，一是能增加些经验，二是能够做一些真正的商业产品，产品和参赛作品毕竟有不少差别，参赛作品做了几个了，就那样放着，产品的话，目前还没有能拿得出手的：（</p>
 
 		
 		
@@ -190,11 +147,11 @@ print "current_pos:%d" % current_file.tell()
   
 
 
-<time datetime="2011-07-09T14:44:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
+<time datetime="2011-10-28T22:31:00+08:00" pubdate data-updated="true">Oct 28<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/star/'>star</a>, <a class='category' href='/blog/categories/two-star/'>two star</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/chan-pin/'>产品</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/ruan-kao/'>软考</a>
 
 
 </div>
@@ -206,16 +163,16 @@ print "current_pos:%d" % current_file.tell()
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/09/python-%25r-and-%25s/">
+		<a href="/blog/2011/10/22/i-am-writting-an-os-recently/">
 		
-			Python中的%r和%s</a>
+			最近在写OS</a>
 	</h2>
 	<div class="entry-content">
-		<p>我并不想完整地比较这两个替换符号的用处，只是发现了一点，可能以后也会这样用。</p>
+		<p>其实没有像标题中说的那么宏伟，只是需要写一个软件工程用的文档，就是一系列的需求分析、设计、开发、测试、维护文档，主题自定，我觉着看了很多国内的软件作品，动不动就是XXX系统，好象任何东西加上“系统”两个字之后都会变得无比金光闪闪，那我也来一个吧——“操作系统”。</p>
 
-<p>%r是原始的输入，如果输入了中文，在输出的时候会出现一些类似unicode的代码；其他的会输出带单引号的内容。</p>
+<p>虽然不需要实际编码，但还是需要参考很多资料，不可能一句代码都不出现，主要参考的是《Orange&#8217;s一个操作系统的实现》（《自己动手写操作系统》的第二版），里面最大的难点就是过多的汇编语言，其实C的程序我还是没大有问题的，只要不让我设计什么深奥算法就好：）</p>
 
-<p>%s就是字符串了，输出就是字符串，如果原始输入是中文，那这里也会输出中文。其他的会输出不带单引号的字符串内容。</p>
+<p>学期末交上这个文档，已经分给了几个人去做，但他们可能感觉时间还早吧，到现在也没有动手，我不能等他们，我需要写好设计部分，现在就得深入阅读资料了。</p>
 
 		
 		
@@ -235,11 +192,11 @@ print "current_pos:%d" % current_file.tell()
   
 
 
-<time datetime="2011-07-09T13:30:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
+<time datetime="2011-10-22T08:10:00+08:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/raw/'>raw</a>, <a class='category' href='/blog/categories/string/'>string</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/os/'>OS</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -251,18 +208,12 @@ print "current_pos:%d" % current_file.tell()
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/09/want-cry-after-seeing-prove-for-math/">
+		<a href="/blog/2011/10/06/steve-jobs/">
 		
-			看到数学有点流泪</a>
+			希望你依然能够领导我们的创新</a>
 	</h2>
 	<div class="entry-content">
-		<p>其实是喜悦得流泪，每次理解了数学的证明，就有点惊喜！</p>
-
-<p>刚刚看到一篇关于e的理解，很不错！</p>
-
-<p>原文链接：<a href="http://www.ruanyifeng.com/blog/2011/07/mathematical_constant_e.html"><a href="http://www.ruanyifeng.com/blog/2011/07/mathematical_constant_e.html">http://www.ruanyifeng.com/blog/2011/07/mathematical_constant_e.html</a></a></p>
-
-<p>e是单位时间内，持续翻倍增长的极限值。</p>
+		<p><a title="t_hero.png" href="http://www.youth2009.org/attachment/135250/"><img src="http://www.youth2009.org/usr/uploads/2011/10/332484186.png" alt="t_hero.png"></a></p>
 
 		
 		
@@ -282,11 +233,11 @@ print "current_pos:%d" % current_file.tell()
   
 
 
-<time datetime="2011-07-09T12:52:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
+<time datetime="2011-10-06T17:19:00+08:00" pubdate data-updated="true">Oct 6<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/e/'>e</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/shu-xue/'>数学</a>
+	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>
 
 
 </div>
@@ -298,14 +249,24 @@ print "current_pos:%d" % current_file.tell()
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/08/little-fault-in-most-perfect/">
+		<a href="/blog/2011/10/04/bad-exp-on-centos6/">
 		
-			美中不足</a>
+			Centos6不好</a>
 	</h2>
 	<div class="entry-content">
-		<p>今天下午考完了OS，有个地方没有复习到，蒙上了，还有个计算题最后检查的时候，自己感觉不对，正在强力修改，不料到点了，就留下了这点美中不足吧。当然其他的题目不能这么简单地认为是美了，只是比这两个稍微有点把握而已，基本能够得到相应的分数吧。</p>
+		<p>原来的vps是用的centos5.5，一直挺稳定，前段时间为了弄一个小项目停掉了lnmp，装了apache，后来发现lnmp本身带了apache，我绕了圈子。</p>
 
-<p>周末两天可以安心复习下面要考的内容了，下星期才是恶战——日语、离散数学！这两门要是都安全通过，再剩下的VB.net和Java Web我就得冲击满分试试啦！哈哈哈……独自狂妄中。</p>
+<p>项目完毕后我重装了centos6，现在想用vpn了，不过发现按照centos5.5的方法安装一些列东西后客户端无法连接—就是一连接上接着被服务器断开。pptpd的日志经常显示：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">Oct  4 12:54:28 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control connection started
+Oct  4 12:54:28 wodeyitian pptpd[1615]: CTRL: Starting call (launching pppd, opening GRE)
+Oct  4 12:54:28 wodeyitian pppd[1616]: Plugin /usr/lib/pptpd/pptpd-logwtmp.so loaded.
+Oct  4 12:54:35 wodeyitian pptpd[1615]: GRE: read(fd=7,buffer=80515c0,len=8260) from network failed: status = -1 error = Message too long
+Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: GRE read or PTY write failed (gre,pty)=(7,6)
+Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control connection finished</pre>
+
+
+<p>不知道有没有人用centos6成功安装了pptpd的帮帮我呢：）</p>
 
 		
 		
@@ -325,11 +286,11 @@ print "current_pos:%d" % current_file.tell()
   
 
 
-<time datetime="2011-07-08T21:28:00+08:00" pubdate data-updated="true">Jul 8<span>th</span>, 2011</time></div>
+<time datetime="2011-10-04T16:59:00+08:00" pubdate data-updated="true">Oct 4<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/kao-shi/'>考试</a>, <a class='category' href='/blog/categories/qing-chun/'>青春</a>
+	<a class='category' href='/blog/categories/centos6/'>centos6</a>, <a class='category' href='/blog/categories/pptpd/'>pptpd</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -341,20 +302,12 @@ print "current_pos:%d" % current_file.tell()
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/06/jiang-gone-today/">
+		<a href="/blog/2011/09/19/show-content-of-blob-in-phpmyadmin/">
 		
-			今天要纪念一下么？</a>
+			Phpmyadmin显示blob内容</a>
 	</h2>
 	<div class="entry-content">
-		<p>今天国内似乎发生了不少事情，大事就那么一件。也不知道这几天是怎么了，从开始考试的那天我的右眼就一直在跳，直到今天都没能停息，在果壳看过关于“左眼跳财，右眼跳灾”的破解，所以我也不相信这套，从这几天的考试情形来看，我还感觉很顺畅呢，希望能继续下去！</p>
-
-<p>昨晚开窗户睡觉了，竟然还开了风扇，早上起来稍微有些感冒，但不开风扇又感觉床单潮湿。我现在是不是太紧张了，每天都5点起床，起来也没大有事做，看看日程，复习一下，然后等着叫闹钟起来。</p>
-
-<p>忘了说今天的大事，他走了。我对于他的概念不多，感觉就是一般的人吧，但由于他，我背诵了不少政治题目。</p>
-
-<p>今天看到学校教务处公布的考试作弊情况，似乎有很多同学因为各种原因作弊被抓住，感觉比我刚刚来的那时候还要多，今天可能是10级第一次考试，他们怎么了？或者说我们整个90后怎么了？90后需要有人站出来说话，目前还不清楚代言人是谁，我们90后的不少人都跑到80后韩寒专场去了，他是一个90后的代言人吗？</p>
-
-<p>我想早睡，这几天明显感觉有点儿头疼。</p>
+		<p>从stackoverflow上看的一个解决方案，修改$cfg[&lsquo;Servers&rsquo;][$i][&lsquo;extension&rsquo;]的值为mysqli，原来是mysql。这样就能看到blob字段的内容了。不过即使是这样，blob内容也许只能是text的才能看到，要是把图片什么的存成了blob还是看不到。</p>
 
 		
 		
@@ -374,11 +327,11 @@ print "current_pos:%d" % current_file.tell()
   
 
 
-<time datetime="2011-07-06T21:07:00+08:00" pubdate data-updated="true">Jul 6<span>th</span>, 2011</time></div>
+<time datetime="2011-09-19T18:22:00+08:00" pubdate data-updated="true">Sep 19<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/90hou/'>90后</a>, <a class='category' href='/blog/categories/zuo-bi/'>作弊</a>, <a class='category' href='/blog/categories/jiang/'>江</a>, <a class='category' href='/blog/categories/kao-shi/'>考试</a>, <a class='category' href='/blog/categories/qing-chun/'>青春</a>
+	<a class='category' href='/blog/categories/phpmyadmin/'>phpmyadmin</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -390,135 +343,12 @@ print "current_pos:%d" % current_file.tell()
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/06/cut-flac-file-on-macos/">
+		<a href="/blog/2011/09/14/i-am-always-working/">
 		
-			Mac下分割flac文件</a>
+			一直在努力</a>
 	</h2>
 	<div class="entry-content">
-		<p>原来我有很多ape和flac音乐的，在windows时代用foobar软件播放音乐很快乐，但在mac下，就有点儿别扭了，cog可以打开cue文件，并且播放也没问题，就是不能分割，这让人很头疼啊！ 从<a href="http://broadeno.wordpress.com/2009/06/16/%E5%A6%82%E4%BD%95%E5%9C%A8mac%E7%B3%BB%E7%BB%9F%E9%87%8C%E5%88%86%E5%89%B2flac%E9%9F%B3%E4%B9%90%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E8%BD%AC%E6%8D%A2%E4%B8%BAwav/">这里</a>找了些办法，应该可以！ 安装macports这个软件，希望用源代码的方式安装，否则如果用官方的dmg文件安装，到最后一步运行安装脚本的时候你会发现进度条总是停留在最后不动，打开install的日志一看，有很多记录，听其他人说最后在下载一些包的信息文件，就像是一个索引镜像吧，断了网还好。1423s过后，安装完了。 以下是终端的内容：</p>
-
-<p> </p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatomacBook-Pro ~$ sudo port install cuetools
-
-Password:
----&gt;  Fetching cuetools
----&gt;  Attempting to fetch cuetools-1.3.1.tar.gz from http://distfiles.macports.org/cuetools
----&gt;  Verifying checksum(s) for cuetools
----&gt;  Extracting cuetools
----&gt;  Configuring cuetools
----&gt;  Building cuetools
----&gt;  Staging cuetools into destroot
----&gt;  Installing cuetools @1.3.1_0
----&gt;  Activating cuetools @1.3.1_0
----&gt;  Cleaning cuetools
-dawncold@tianzhenmatoMacBook-Pro ~$ sudo port install shntool
----&gt;  Computing dependencies for shntool
----&gt;  Dependencies to be installed: expat gettext libiconv gperf ncurses ncursesw shorten
----&gt;  Fetching expat
----&gt;  Attempting to fetch expat-2.0.1.tar.gz from http://nchc.dl.sourceforge.net/project/expat/expat/2.0.1
----&gt;  Verifying checksum(s) for expat
----&gt;  Extracting expat
----&gt;  Configuring expat
----&gt;  Building expat
----&gt;  Staging expat into destroot
----&gt;  Installing expat @2.0.1_1
----&gt;  Activating expat @2.0.1_1
----&gt;  Cleaning expat
----&gt;  Fetching gperf
----&gt;  Attempting to fetch gperf-3.0.4.tar.gz from ftp://ftp.dti.ad.jp/pub/GNU/gperf
----&gt;  Verifying checksum(s) for gperf
----&gt;  Extracting gperf
----&gt;  Applying patches to gperf
----&gt;  Configuring gperf
----&gt;  Building gperf
----&gt;  Staging gperf into destroot
----&gt;  Installing gperf @3.0.4_2
----&gt;  Activating gperf @3.0.4_2
----&gt;  Cleaning gperf
----&gt;  Fetching libiconv
----&gt;  Attempting to fetch libiconv-1.13.1.tar.gz from ftp://ftp.dti.ad.jp/pub/GNU/libiconv
----&gt;  Verifying checksum(s) for libiconv
----&gt;  Extracting libiconv
----&gt;  Applying patches to libiconv
----&gt;  Configuring libiconv
----&gt;  Building libiconv
----&gt;  Staging libiconv into destroot
----&gt;  Installing libiconv @1.13.1_0
----&gt;  Activating libiconv @1.13.1_0
----&gt;  Cleaning libiconv
----&gt;  Fetching ncursesw
----&gt;  Verifying checksum(s) for ncursesw
----&gt;  Extracting ncursesw
----&gt;  Configuring ncursesw
----&gt;  Building ncursesw
----&gt;  Staging ncursesw into destroot
----&gt;  Installing ncursesw @5.8_0
----&gt;  Activating ncursesw @5.8_0
----&gt;  Cleaning ncursesw
----&gt;  Fetching ncurses
----&gt;  Attempting to fetch ncurses-5.9.tar.gz from ftp://ftp.dti.ad.jp/pub/GNU/ncurses
----&gt;  Attempting to fetch ncurses-5.9.tar.gz from http://mirrors.ibiblio.org/pub/mirrors/gnu/ftp/gnu/ncurses
----&gt;  Verifying checksum(s) for ncurses
----&gt;  Extracting ncurses
----&gt;  Applying patches to ncurses
----&gt;  Configuring ncurses
----&gt;  Building ncurses
----&gt;  Staging ncurses into destroot
----&gt;  Installing ncurses @5.9_0
----&gt;  Activating ncurses @5.9_0
----&gt;  Cleaning ncurses
----&gt;  Fetching gettext
----&gt;  Attempting to fetch gettext-0.18.1.1.tar.gz from ftp://ftp.dti.ad.jp/pub/GNU/gettext
----&gt;  Verifying checksum(s) for gettext
----&gt;  Extracting gettext
----&gt;  Applying patches to gettext
----&gt;  Configuring gettext
----&gt;  Building gettext
----&gt;  Staging gettext into destroot
----&gt;  Installing gettext @0.18.1.1_2
----&gt;  Activating gettext @0.18.1.1_2
----&gt;  Cleaning gettext
----&gt;  Fetching shorten
----&gt;  Attempting to fetch shorten-3.6.1.tar.gz from http://distfiles.macports.org/shorten
----&gt;  Verifying checksum(s) for shorten
----&gt;  Extracting shorten
----&gt;  Configuring shorten
----&gt;  Building shorten
----&gt;  Staging shorten into destroot
----&gt;  Installing shorten @3.6.1_0
----&gt;  Activating shorten @3.6.1_0
----&gt;  Cleaning shorten
----&gt;  Fetching shntool
----&gt;  Attempting to fetct shntool-3.0.10.tar.gz from http://distfiles.macports.org/shntool
----&gt;  Verifying checksum(s) for shntool
----&gt;  Extracting shntool
----&gt;  Configuring shntool
----&gt;  Building shntool
----&gt;  Staging shntool into destroot
----&gt;  Installing shntool @3.0.10_0
----&gt;  Activating shntool @3.0.10_0
----&gt;  Cleaning shntool</pre>
-
-
-<p>这样就安装好了cuetools和shntool这两个软件，其中缺失的依赖软件也被macports自动安装上了，只是在下载的时候没有进度，很可恶，如果又兴趣可以看这里学着改改macports的fetch部分，至少能看看下载了多少，心里也有个数！ 下面进行分割：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro Music$ cuebreakpoints 手嶌葵\(Teshima.Aoi\).-.\[The.Rose～I.Love.Cinemas～\].专辑.\(FLAC\).cue | shnsplit -o flac 手嶌葵\(Teshima.Aoi\).-.\[The.Rose～I.Love.Cinemas～\].专辑.\(FLAC\).flac 
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track01.flac] (3:56.27) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track02.flac] (3:21.71) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track03.flac] (5:36.65) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track04.flac] (2:56.00) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track05.flac] (2:57.12) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track06.flac] (4:31.59) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track07.flac] (4:03.01) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track08.flac] (3:14.16) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track09.flac] (3:34.67) : 100% OK</pre>
-
-
-
-
-<div>文件名有点差劲，也许可以配合cueprint和shnsplit的o参数可以实现完美的转换。</div>
-
+		<p>最近搞定了数学建模，接下来就是要准备软件设计师的考试，也许不会再有相关技术博客出现了，请大家不要走远呀！我还会回来！</p>
 
 		
 		
@@ -538,11 +368,11 @@ Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC)
   
 
 
-<time datetime="2011-07-06T13:59:00+08:00" pubdate data-updated="true">Jul 6<span>th</span>, 2011</time></div>
+<time datetime="2011-09-14T21:06:00+08:00" pubdate data-updated="true">Sep 14<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/flac/'>flac</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/nu-li/'>努力</a>, <a class='category' href='/blog/categories/qing-chun/'>青春</a>
 
 
 </div>
@@ -554,20 +384,16 @@ Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC)
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/05/techologist-always-want-to-buy-books/">
+		<a href="/blog/2011/09/12/3days-15hrs/">
 		
-			是不是技术人员都喜欢买书？</a>
+			三天睡了十几个小时</a>
 	</h2>
 	<div class="entry-content">
-		<p>自认为我也算是一个追求技术的人了，现在更加喜欢技术的世界了，那里没有一些弹性的东西，不像官场那样可以商量，严格地执行着计算机的语言——0、1。</p>
+		<p>为了这个数学建模啊，奋斗了3天，第一天是1点睡的，第二天4点睡的，第三天也是4点睡的，每天都是早上8点左右起来。稍微有点短，快要接近高中的生活，长时间没熬夜，突然一熬还真受不了，第二天我的两个同学可能要比我辛苦一些，我是感觉很累就去睡了，还是她们叫我起来。</p>
 
-<p>作为一个技术人员，我发现自己很喜欢买书，当然买的最多的可能就是技术方面的书籍，包括一些被称为计算机编程名著一类的书，当然这些书太多了，在网上混迹时间一长，经不住别人的鼓动、诱惑，终于也走上了收集名著的行列之中，买书之前总是希望自己能够通过这本书学到什么高深的技术，在职场、创业中屹立于不败之地。但买回来之后，并不像我期待的那样，终归还是有些好处的，只是要打些折扣了：）但总归还是比不看书荒废了那段时间好吧。</p>
+<p>哎，计算机系的同学搞数学建模真得很痛苦，痛苦的主要来源是很多东西根本不了解，而且短时间根本学不会，是一种无奈，看着时间一点点过去自己却什么都做不了，就这样不断打击自己的信心，人们就这样被击垮了：（</p>
 
-<p>除了买一些技术性的书籍之外，我还喜欢买一些哲学、心理学、散文等方面的书来看，这和个人的爱好有点关系，但哲学、心理学这类书买得很少，自己只是停留在喜欢的角度，不是非得去研究，所以就不太深入。</p>
-
-<p>不知怎么我又喜欢上了经济学的东西，原因很复杂，简单地说是事物之间那种千丝万缕的联系，而且我发现计算机系和经济系有着无法分割的联系，所以我还是喜欢点经济吧。</p>
-
-<p>今天稍微有点冲动买下了张小娴的一本新作——《想念》。首先声明一下，我不是因为这个名字才去买的，是我本身就喜欢张小娴写的一些文章，虽然自己没看过几篇，但有些耳熟能详的还是听过，比如“世上最远的距离不是⋯⋯而是⋯⋯”。一个计算机人士光是看技术书籍只能提高技术能力，而光靠技术，在这个社会中还是很难过上好日子的，如果你只是希望饿不着那就算啦。</p>
+<p>加了两个建模的讨论群，里面大多数（超过99%）人在要答案，很少有人是讨论的，而且即便是这样，我记得参赛时有个比赛注意事项——比赛期间不得与他人探讨，包括指导老师——这简直是不可能，我看到后都感觉新鲜，暂且不说和他人讨论，不能和指导老师讨论，都让我感觉不可思议，我反复读了几遍《承诺书》，确定了有这样一句——“<strong>我们完全明白，在竞赛开始后参赛队员不能以任何方式（包括电话、电子邮件、网上咨询等）与队外的任何人（包括指导教师）研究、讨论与赛题有关的问题。</strong>”有指导老师的一般都是指导老师在奋斗呢，怎么不能够讨论呢？！反正承诺书就这么写的，而且还是第一条。还好我们没有指导老师，只能全靠自己来做，可能做得不如别人的好，但至少不会感觉胆怯，我们也不会太敬佩夺得一二等奖的队伍，因为我们都明白这其中有多少代表了你们自己的能力，如果是你们自己完成的，那我们会佩服，可惜这样的队伍很少见，我只好当作没有了：（</p>
 
 		
 		
@@ -587,11 +413,11 @@ Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC)
   
 
 
-<time datetime="2011-07-05T21:50:00+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2011</time></div>
+<time datetime="2011-09-12T18:17:00+08:00" pubdate data-updated="true">Sep 12<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/shu/'>书</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/zhang-xiao-xian/'>张小娴</a>
+	<a class='category' href='/blog/categories/shu-xue-jian-mo/'>数学建模</a>, <a class='category' href='/blog/categories/ji-lu-wo-can-jia-shu-xue-jian-mo-de-shi-qing/'>记录我参加数学建模的事情</a>
 
 
 </div>
@@ -603,18 +429,12 @@ Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC)
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/03/comma-in-print-func-in-python/">
+		<a href="/blog/2011/09/05/ruankao-meiyong/">
 		
-			Python中print中的逗号</a>
+			是不是国内软考都没用了</a>
 	</h2>
 	<div class="entry-content">
-		<p>以往可能会写这样的代码：</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">print x 
-print y</pre>
-
-
-<p> 当然，x、y在前面都是定义过的变量，此时，如果在x后面加一个逗号，再看输出结果，print就不会再换行了，只会在输出完x后加一个空格接着就输出y了，这点不错！</p>
+		<p>去学校给报名表盖章也不怎么看表的内容，直接就盖上了，看来学校也不打算鼓励软考了，哪天考出系统架构师来也没人知道了：（不过这天应该不会很快到来，刚刚粗略看过系统架构师的题目，只看了最后论文题，没工作经验真难通过，而且还有大型系统的某种设计经验，哎我还是多看InfoQ的图文资料吧：）</p>
 
 		
 		
@@ -634,11 +454,11 @@ print y</pre>
   
 
 
-<time datetime="2011-07-03T20:11:00+08:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2011</time></div>
+<time datetime="2011-09-05T17:52:00+08:00" pubdate data-updated="true">Sep 5<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/ruan-kao/'>软考</a>
 
 
 </div>
@@ -650,18 +470,18 @@ print y</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/03/i-will-take-part-in-mathematical-modeling/">
+		<a href="/blog/2011/08/31/i-havent-ready-for-mm2011/">
 		
-			我要参加数学建模了</a>
+			MM2011我还没准备好</a>
 	</h2>
 	<div class="entry-content">
-		<p>这已经是很久之前的事情了，目前早就结束了报名。刚刚看到要买的书中有这样一本书－－《数学建模》，这才想起来还有这样一件重要的事情。</p>
+		<p>真没想到MM2011（2011年的数学建模）的时间改在了9月9日～12日，直接覆盖了中秋节，不知道组委会那帮人是不是有问题只顾自己过中秋，当然9月12日才是中秋，而且那天上午8点就结束了，但假期可是提前开始的。</p>
 
-<p>由于是第一次参加这样的专业性比赛，无经验、无指导让我无所畏惧，也无所担心。因为本来就不喜欢别人帮忙得来的成绩，所以我们没有选择指导老师，其实指导老师被抢走也是一个原因，又加上报名手册上鼓励学生不找指导老师，于是我们就大胆地抛弃了指导老师。</p>
+<p>本想在家看那本刚刚买来的书，但还有好多别的事情要做，就暂且搁置了看这本书的念头，而且每次看书都发现很简单，于是就不想继续看下去了。谁知难的东西都在后面，而且买的书是讲美国数学建模的，我们这个神奇的国家并不会太按照套路出牌，所以从这本书上找什么帮助看来渺茫了。</p>
 
-<p>无经验，确实没参与过这类比赛，只是听过有这样的比赛，姑且用来试试数学的思维吧，虽然考试成绩还能凑合，但实际应用一定会让我们捉襟见肘。</p>
+<p>报名前打算用Python代替Matlab来出些数据呢，现在也是渺茫了吧？！不是专门做这个的突然插足进来参赛都是这下场。索性也抛弃掉指导老师，这最后的救命稻草也没了（当然，我们一直就没找到）。</p>
 
-<p>也不是完全没有好处－－有两个美女和我一起参加，这算是动力了吧！</p>
+<p>MM2011，我还没准备好。</p>
 
 		
 		
@@ -681,7 +501,7 @@ print y</pre>
   
 
 
-<time datetime="2011-07-03T12:47:00+08:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2011</time></div>
+<time datetime="2011-08-31T11:48:00+08:00" pubdate data-updated="true">Aug 31<span>st</span>, 2011</time></div>
 	<div class="tags">
 
 

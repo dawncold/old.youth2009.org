@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="没想到配置过程有这么复杂，不过在按照Linode官方的指导做过之后发现一切又是那么简单，果然还是Linode的服务一流，同样的操作肯在所有发行版上都做一次教程，很少有VPS provider能够做到这些吧？看来贵还是有道理的。 不多赘述了，centos5的教程可以看这里（其他版本的在这里找： &hellip;">
+	<meta name="description" content="刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！ 修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,16 +79,50 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/08/python-uwsgi-nginx/">
+		<a href="/blog/2012/02/05/update-ruby-on-mac/">
 		
-			基本配置好了python+nginx</a>
+			更新Mac下的ruby</a>
 	</h2>
 	<div class="entry-content">
-		<p>没想到配置过程有这么复杂，不过在按照Linode官方的指导做过之后发现一切又是那么简单，果然还是Linode的服务一流，同样的操作肯在所有发行版上都做一次教程，很少有VPS provider能够做到这些吧？看来贵还是有道理的。</p>
+		<p>刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！</p>
 
-<p>不多赘述了，centos5的教程可以看这里（其他版本的在这里找：<a href="http://library.linode.com/web-servers/nginx/python-uwsgi"><a href="http://library.linode.com/web-servers/nginx/python-uwsgi">http://library.linode.com/web-servers/nginx/python-uwsgi</a></a>）</p>
+<p>修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/bin中的情况，如果不能自动创建链接过去的话，麻烦是一个方面，关键是后面做的一些工作基本都白费了，可能你运行的一个软件是在/usr/bin中存在的，那样就不会自动搜索到你用brew安装的那个了。详情找找brew的工作原理吧：)</p>
 
-<p><a href="http://library.linode.com/web-servers/nginx/python-uwsgi/centos-5"><a href="http://library.linode.com/web-servers/nginx/python-uwsgi/centos-5">http://library.linode.com/web-servers/nginx/python-uwsgi/centos-5</a></a></p>
+<pre class="prettyprint linenums bush:bash" lang="bash">sudo chown -R `whoami` /usr/local</pre>
+
+
+<p>首先我用了大家推荐的Homwbrew管理工具，这里安装完homebrew后需要在自己的bash配置文件中加入新的path：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">export PATH=/usr/local/bin:$PATH</pre>
+
+
+<p>把这行加入到bash_profile中吧，这样就能让homebrew发挥作用了，你首先就能用上更新了的程序而不是从默认路径查找。（如果以前用了MacPorts的话你也会和我一样看到MacPorts的export命令，要去掉他们，或者你把Homebrew的export命令写在下面，这样能覆盖掉，既然我已经删除了MacPorts，所以干脆删除掉！）</p>
+
+<p>关闭terminal，重新加载刚才的bash_profile，这样就能用Homebrew了。</p>
+
+<p>首先安装git，自己和Homwbrew都用得到：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">brew install git</pre>
+
+
+<p>接着更新一下Homebrew的源：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">brew update</pre>
+
+
+<p>然后安装了ruby后就能用gem来更新系统了：</p>
+
+<p>安装ruby：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">brew install ruby</pre>
+
+
+<p>更新系统：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">gem update --system</pre>
+
+
+<p>后面的安装rails等操作就可以用gem来做了，看看自己的ruby版本，已经是1.9.3p0(2011-10-30)</p>
 
 		
 		
@@ -108,11 +142,11 @@
   
 
 
-<time datetime="2011-08-08T11:12:00+08:00" pubdate data-updated="true">Aug 8<span>th</span>, 2011</time></div>
+<time datetime="2012-02-05T00:00:00+08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/nginx/'>nginx</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/uwsgi/'>uwsgi</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/homebrew/'>homebrew</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -124,18 +158,16 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/08/the-difference-between-iphone-simulator-and-device/">
+		<a href="/blog/2012/02/04/sorry-to-me-help-my-ruby/">
 		
-			Iphone模拟器和设备的差异</a>
+			Sorry to Me</a>
 	</h2>
 	<div class="entry-content">
-		<p>昨天1ST告诉我代码到了设备上有些地方不正常，我一直没用设备调试过，只是用模拟器，这次就用设备试试，没想到果然有些问题。</p>
+		<p>我记得自己好像说过要在python上坚持一段时间，现在发现有些不可能了，我要转向ruby了，因为自学了好久的python，只是觉得很酷，有时候也解决了不少问题，的确是一种高效的开发语言，但开发了一段时间的web app后并不像我当初预想的那样，python的相关框架在做开放的时候挺复杂的，即便是web.py这样号称simple的框架也让人用起来不舒服，可能用习惯了的话没什么，但我毕竟是一个新手，就算是php也只是才写了几K行的垃圾代码。</p>
 
-<p>1.模拟器编译没有任何问题，但编译到设备就出现了8个错误，是因为继承后访问不到某些属性的问题。由于我在基类中用了property，在子类中直接引用，这样看来不行，于是在子类中但凡是从基类中继承过来的成员，都使用了self来引用。</p>
+<p>就为了ruby的宗旨吧——code for fun，虽然现在没有感觉到fun到底来自何处，我也不管了，因为最近实在没什么让我happy的事情，了解我的人可能都知道这段时间我怎么了。</p>
 
-<p>2.在Organzer的设备console中查看输出的时候，发现有个地方应该输出东西了反而不输出，最终能够确认这个操作已经执行了，但就是不输出内容。也不知道怎么回事，我把原先的printf输出改成了nslog，竟然好了。由于使用的一个类是用c++写的，就没有使用nslog，这竟然在后来调试变成了大问题。</p>
-
-<p>哎，以后有什么调试工作还是连接设备进行吧，虽然启动比模拟器慢一点，但能够暴露出问题啊！</p>
+<p>ruby，救救我吧！</p>
 
 		
 		
@@ -155,11 +187,11 @@
   
 
 
-<time datetime="2011-08-08T07:27:00+08:00" pubdate data-updated="true">Aug 8<span>th</span>, 2011</time></div>
+<time datetime="2012-02-04T22:04:00+08:00" pubdate data-updated="true">Feb 4<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/device/'>device</a>, <a class='category' href='/blog/categories/iphone/'>iphone</a>, <a class='category' href='/blog/categories/nslog/'>nslog</a>, <a class='category' href='/blog/categories/printf/'>printf</a>, <a class='category' href='/blog/categories/simulator/'>simulator</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/fun/'>fun</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/xi-wang-wo-huan-neng-ji-qi/'>希望我还能记起</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -171,14 +203,29 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/06/have-read-learn-python-in-hard-way/">
+		<a href="/blog/2012/02/04/uninstall-macports/">
 		
-			看完了《learn Python in Hard Way》</a>
+			删除MacPorts</a>
 	</h2>
 	<div class="entry-content">
-		<p>这本书不算长，从考试期间就开始看了，一共有50多页，每一页都是一个使用python的例子，就是这样不断用例子来讲述python的基础用法，当然还不算全面，刚刚入门也勉强可以吧。最后有个old programmer&rsquo;s advice写得不错，大概的意思是帮助你建立一种自信。</p>
+		<pre class="prettyprint linenums bush:bash" lang="bash">sudo port -f uninstall installed
 
-<p>最后几页里提到了djangobook，我学习python的主要目的之一就是用来开发web，而django是主流的web framework。新的阅读时代又要到来了！</p>
+sudo rm -rf \
+/opt/local \
+/Applications/DarwinPorts \
+/Applications/MacPorts \
+/Library/LaunchDaemons/org.macports.* \
+/Library/Receipts/DarwinPorts*.pkg \
+/Library/Receipts/MacPorts*.pkg \
+/Library/StartupItems/DarwinPortsStartup \
+/Library/Tcl/darwinports1.0 \
+/Library/Tcl/macports1.0 \
+~/.macports</pre>
+
+
+<p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
+
+<p>我删除了MacPorts后就开始用Homebrew了。</p>
 
 		
 		
@@ -198,11 +245,11 @@
   
 
 
-<time datetime="2011-08-06T17:30:00+08:00" pubdate data-updated="true">Aug 6<span>th</span>, 2011</time></div>
+<time datetime="2012-02-04T21:53:00+08:00" pubdate data-updated="true">Feb 4<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/django/'>django</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/homebrew/'>homebrew</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/macports/'>macports</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -214,22 +261,56 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/06/how-to-record-youth/">
+		<a href="/blog/2012/02/03/get-inorder-pair-in-python/">
 		
-			青春要怎么记</a>
+			找逆序对（Python）</a>
 	</h2>
 	<div class="entry-content">
-		<p>前天在GoogleReader中看到了一个广播剧——《致我们终将逝去的青春》，我曾经看过同名的小说，现在也记不清楚那是不是小说了，对于书写青春故事的文学作品，都像是我们每个看客心中的自己，大部分人都没有把它当成小说来看。</p>
+		<p>其实和昨天的归并排序基本内容一样，就多加了几行输出来帮助理解，找逆序对就是多了一个统计变量而已。</p>
 
-<p>其中看到有一段关于“青春”的描写：</p>
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
+# coding: utf-8
 
-<blockquote>青春就是用来追忆的，当你怀揣着它时，它一文不值，只有将它耗尽后，再回过头看，一切才有了意义。爱过我们的人和伤害过我们的人，都是我们青春存在的意义。即便爱情有时候喜欢愚弄我们，即便爱情有时候不那么眷顾我们，经历了青春之后，才发现痛彻心扉的伤害也可化作最珍贵的礼物，来激励我们去发现更多爱情的美好……
-</blockquote>
+def merge(arraylist, first, middle, last):
+   temp = []
+   i = first
+   j = middle + 1
+   while i &lt;= middle and j &lt;= last:
+       if arraylist[i] &lt;= arraylist[j]:
+           temp.append(arraylist[i])
+           i += 1
+       else:
+           global inv
+           inv += middle - i + 1
+           temp.append(arraylist[j])
+           j += 1
+   while i &lt;= middle:
+       temp.append(arraylist[i])
+       i += 1
+   while j &lt;= last:
+       temp.append(arraylist[j])
+       j += 1
+   print temp
+   for i in range(0, last - first + 1):
+       arraylist[first + i] = temp[i]
 
+def merge_sort(arraylist, first, last):
+   if first &lt; last:
+       middle = (first + last) / 2
+       print "first = %d, middle = %d, last = %d" % (first, middle, last)
+       merge_sort(arraylist, first, middle)  
+       merge_sort(arraylist, middle + 1, last)
+       merge(arraylist, first, middle, last)
 
-<p>我曾想用这个博客，从上大学的第一天开始记录这一点点流动的青春痕迹，但现在看来已不是那样纯净，其中演变成了我经常写的“技术”、“精致的生活”等等，看起来想写成另一部《让青春继续》难度非常大。之所以难度大，就是因为，青春，它的精彩在于回忆，在于笔者回忆自己的过去而流露于纸上。看客们看到后再与自己的经历加以整合，发现这篇文学作品竟然与自己的经历无比契合，这就诞生了一代人很喜欢的作品。</p>
+if __name__ == "__main__":
+   inv = 0
+   arr = [2,3,8,6,1]
+   print "orign: ", arr
+   merge_sort(arr, 0, len(arr) - 1)
+   print "final: ", arr
+   print "inv = %d" % inv
+</pre>
 
-<p>或许没人来看你的青春，因为每人都有各自的成长历程，但于我自己，这份青春才是最宝贵的，因为它已不再。</p>
 
 		
 		
@@ -249,11 +330,11 @@
   
 
 
-<time datetime="2011-08-06T15:11:00+08:00" pubdate data-updated="true">Aug 6<span>th</span>, 2011</time></div>
+<time datetime="2012-02-03T11:56:00+08:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/qing-chun/'>青春</a>, <a class='category' href='/blog/categories/qing-chun/'>青春</a>
+	<a class='category' href='/blog/categories/inorder-pair/'>inorder pair</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -265,12 +346,87 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/05/iphone4-hk-4360/">
+		<a href="/blog/2012/02/02/merge-sort-in-python/">
 		
-			港行4360</a>
+			合并排序（Python）</a>
 	</h2>
 	<div class="entry-content">
-		<p><img src="http://pic.yupoo.com/dawncold0/BgPcwrcI/medish.jpg" alt="iphone4" width="640" height="425"></p>
+		<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="c"># coding: utf-8</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
+</span><span class='line'>   <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>   <span class="n">i</span> <span class="o">=</span> <span class="n">first</span>
+</span><span class='line'>   <span class="n">j</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">middle</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">last</span><span class="p">:</span>
+</span><span class='line'>       <span class="k">if</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+</span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>           <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>       <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span><span class='line'>           <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">middle</span><span class="p">:</span>
+</span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>       <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">while</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">last</span><span class="p">:</span>
+</span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span><span class='line'>       <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">last</span> <span class="o">-</span> <span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>       <span class="n">arraylist</span><span class="p">[</span><span class="n">first</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
+</span><span class='line'>   <span class="k">if</span> <span class="n">first</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">last</span><span class="p">:</span>
+</span><span class='line'>       <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">first</span> <span class="o">+</span> <span class="n">last</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">)</span>
+</span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>       <span class="n">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class='line'>   <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">425</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+</span><span class='line'>   <span class="k">print</span> <span class="n">arr</span>
+</span><span class='line'>   <span class="n">merge_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>   <span class="k">print</span> <span class="n">arr</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>谢谢<a href="http://www.codecho.com/merge-sort-and-quick-sort-in-python">这里</a>的帮助，我自己照着《算法导论》写了好久都出错，哎，自己在这类问题上有点笨。</p>
 
 		
 		
@@ -290,11 +446,11 @@
   
 
 
-<time datetime="2011-08-05T22:44:00+08:00" pubdate data-updated="true">Aug 5<span>th</span>, 2011</time></div>
+<time datetime="2012-02-02T15:11:00+08:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/iphone/'>iphone</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
+	<a class='category' href='/blog/categories/mergesort/'>mergesort</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -306,42 +462,14 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/04/use-vertexhelper/">
+		<a href="/blog/2012/01/26/git-study-branch-rebase/">
 		
-			VertexHelper的使用</a>
+			Git使用重新学习（分支rebase）</a>
 	</h2>
 	<div class="entry-content">
-		<p>最近在用Box2d开发小游戏，不可避免用到多边形物体，当然有的形状还好描述，但大多数是那种难以描述的物体，所以这个VertexHelper就是不可或缺的武器了，它能够让你把需要的物体边界描出来，自动生成Box2d需要的边界代码。</p>
+		<p>rebase被人翻译成衍合，是和merge功能差不多的一种操作，但提醒一点，进行rebase的内容一定不可以是提交到公共服务器上的内容，简单讲就是rebase操作你在本地自己玩就好了。</p>
 
-<p>没想到作者把软件放到app store上卖，但还提供源代码，不知道他们之间是什么不一样……</p>
-
-<p>从GitHub那里得到源代码，打开xcode编译一下就能用了。</p>
-
-<p>有一点需要说明，得到的源代码中Project的Base SDK是10.5，在我编译的时候提示了一个警告，现在找不到了。只需要把Target中VertexHelper的BaseSDK改为10.7就可以了，当然如果你没有10.7就只能用10.6了。可能是因为我没有10.5SDK才出现的错误吧。</p>
-
-<p><a title="Screen Shot 2011-08-04 at 下午11.01.34.png" href="http://www.youth2009.org/attachment/135222/"><img src="http://www.youth2009.org/usr/uploads/2011/08/2070161037.png" alt="Screen Shot 2011-08-04 at 下午11.01.34.png"></a></p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro Project$ git clone https://github.com/jfahrenkrug/VertexHelper.git
-Cloning into VertexHelper...
-remote: Counting objects: 150, done.
-remote: Compressing objects: 100% (88/88), done.
-remote: Total 150 (delta 85), reused 96 (delta 53)
-Receiving objects: 100% (150/150), 159.25 KiB | 27 KiB/s, done.
-Resolving deltas: 100% (85/85), done.
-dawncold@tianzhenmatoMacBook-Pro Project$ ls
-A Word is A Day                   NRSMS                             gitosis-admin                     test
-ConjunctionsGame                  SystemProgrammer                  hide-other-bookmark-button        齐鲁软件大赛作品源程序
-EasyEditor                        Timer4NX                          progit
-JavaStudy                         VertexHelper                      scifihifi-iphone
-MyAchievement                     fmdb                              studygit
-dawncold@tianzhenmatoMacBook-Pro Project$ cd VertexHelper/
-dawncold@tianzhenmatoMacBook-Pro VertexHelper$ ls
-English.lproj               PrioritySplitViewDelegate.h VertexDocument.h            VertexScanner.cpp           main.m
-ImageViewGridLayer.h        PrioritySplitViewDelegate.m VertexDocument.m            VertexScanner.h
-ImageViewGridLayer.m        README.md                   VertexHelper-Info.plist     VertexScannerMain.cpp
-PNGLoader.cpp               SWImageView.h               VertexHelper.xcodeproj      drop_sprite.png
-PNGLoader.h                 SWImageView.m               VertexHelper_Prefix.pch     icon.icns</pre>
-
+<p>详细点的说明去这里看吧：<a href="http://progit.org/book/zh/ch3-6.html"><a href="http://progit.org/book/zh/ch3-6.html">http://progit.org/book/zh/ch3-6.html</a></a></p>
 
 		
 		
@@ -361,11 +489,11 @@ PNGLoader.h                 SWImageView.m               VertexHelper_Prefix.pch 
   
 
 
-<time datetime="2011-08-04T23:02:00+08:00" pubdate data-updated="true">Aug 4<span>th</span>, 2011</time></div>
+<time datetime="2012-01-26T20:41:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/box2d/'>box2d</a>, <a class='category' href='/blog/categories/vertexhelper/'>vertexhelper</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/branch/'>branch</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -377,168 +505,24 @@ PNGLoader.h                 SWImageView.m               VertexHelper_Prefix.pch 
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/04/shard-debug-app-in-device-without-idp-xcode4/">
+		<a href="/blog/2012/01/26/git-study-branch-manage/">
 		
-			分享在设备上不用iDP调试app的方法</a>
+			Git使用重新学习（分支管理）</a>
 	</h2>
 	<div class="entry-content">
-		<p>原来在开发一个3.1.3上的游戏时用过这样的方法，没想到现在仍然能够使用，这直接刺激我要不要购买iDP，那可是99美元啊。当然购买iDP也不是光为了能够调试，还有机会去app store，这点可能还值那99美元。</p>
+		<p>分支的使用比较繁杂，前面光说了一些皮毛，现在记录一下分支的管理部分。</p>
 
-<p>这是1ST告诉我的办法，第一次就是他告诉的，没想到这次还是他告诉的。</p>
+<p>查看分支的详细信息：git branch -v，列出分支最后提交的内容，带星号表示当前分支。</p>
 
-<p>下面是所有的代码操作，请对照操作步骤来进行，代码操作这是作为参考：</p>
+<p>查看哪些分支已经被并入当前分支：git branch &mdash;merged，也就是说除了那个带星号的分支都是可以删除（-d）的，因为都合并进来了嘛！查看没合并进来的就是&mdash;no-merged开关。删除那些没有合并进来的分支会提示错误，但强制删除就可以了，强制删除用-D开关。</p>
 
-<p>操作步骤：</p>
+<p><strong>不得不说的远程分支</strong></p>
 
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">iPhone</span>必须是越狱后的，并且安装了<span class="s1" style="font: normal normal normal 15px/normal Times;">afc2add</span>。</p>
+<p>在github创建了一个项目，在项目管理中开启了github Pages服务，这是个给项目做介绍页面的服务，开启后出现了一个远程分支gh-pages，但本地根本访问不到。首先我们应该明确，这个分支暂时不在我们本地，除非你是在这个服务开启后clone了项目，这样肯定有，否则和我一样的话（从本地push过去的），需要先fetch过来这些远程分支：git fetch origin gh-pages:gh-pages。后面两个由冒号分隔的意思是获取origin中的gh-pages分支，放到本地，在本地也叫gh-pages（冒号右侧），当然你可以根据需要更改冒号右侧的本地分支名字。现在查看一下本地分支就能发现出现两个分支了，切换过去后就能看到github给我们生成的index.html文件，你可以编辑了：）</p>
 
-<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
+<p>推送本地分支到远程分支的时候可以像上面这样写:git push origin xxx1:xxx2，意思就是推送本地叫xxx1的分支到origin中，推过去叫xxx2，但此处一般简写，光写本地分支名，这样远程分支中的名字也是和本地一样的。</p>
 
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">将<span class="s1" style="font: normal normal normal 15px/normal Times;">iPhone</span>接入<span class="s1" style="font: normal normal normal 15px/normal Times;">Mac</span>，并打开<span class="s1" style="font: normal normal normal 15px/normal Times;">xCode</span>，会自动弹出<span class="s1" style="font: normal normal normal 15px/normal Times;">Organizer</span>（或在<span class="s1" style="font: normal normal normal 15px/normal Times;">xCode</span>的菜单<span class="s1" style="font: normal normal normal 15px/normal Times;">Window</span>中打开），在其中点击<span class="s1" style="font: normal normal normal 15px/normal Times;">“</span>用这台设备进行开发<span class="s1" style="font: normal normal normal 15px/normal Times;">”</span></p>
-
-<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">xCode<span class="s2" style="font: normal normal normal 15px/normal STSong;">配置步骤：</span></p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">零、开始前的注意事项</p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">1</span>、<span class="s1" style="font: normal normal normal 15px/normal Times;"> </span>权限问题：</p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">   </span>要想修改并保存文件，须先修改该文件及其上层目录的权限（在右键菜单的显示简介中），添加当前用户并赋读和写权限，才能修改文件。</p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">2</span>、注意备份</p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">   </span>修改之前一定注意备份原有文件</p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;"><span class="s2" style="font: normal normal normal 15px/normal STSong;">一、修改文件</span>SDKSettings.plist</p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;"> </span>文件位置：</p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">   /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk</p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">  </span>修改方法：</p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">    <span class="s2" style="font: normal normal normal 15px/normal STSong;">找到</span>&lt;key&gt;CODE_SIGNING_REQUIRED&lt;/key&gt;&lt;string&gt;YES&lt;/string&gt;</p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">    </span>将值从YES改为<span class="s1" style="font: normal normal normal 15px/normal Times;">NO</span></p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">    <span class="s2" style="font: normal normal normal 15px/normal STSong;">找到</span>&lt;key&gt;ENTITLEMENTS_REQUIRED&lt;/key&gt;&lt;string&gt;YES&lt;/string&gt;</p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">    </span>将值从YES改为<span class="s1" style="font: normal normal normal 15px/normal Times;">NO</span></p>
-
-<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;"><span class="s2" style="font: normal normal normal 15px/normal STSong;">二、修改文件</span>info.plist</p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;"> </span>文件位置：</p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">  /Developer/Platforms/iPhoneOS.platform/</p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"><span class="s1" style="font: normal normal normal 15px/normal Times;">  </span>修改方法：</p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">  <span class="s2" style="font: normal normal normal 15px/normal STSong;">找到所有的</span>&lt;key&gt;CODE_SIGN_CONTEXT_CLASS&lt;/key&gt;&lt;string&gt;XCiPhoneOSCodeSignContext&lt;/string&gt;</p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">  <span class="s2" style="font: normal normal normal 15px/normal STSong;">将值从</span>XCiPhoneOSCodeSignContext<span class="s2" style="font: normal normal normal 15px/normal STSong;">改为</span> XCCodeSignContext</p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">（共<span class="s1" style="font: normal normal normal 15px/normal Times;">2</span>处）</p>
-
-<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">三、打开终端，输入以下命令：</p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">cd /Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Plug-ins/iPhoneOS\ Build\ System\ Support.xcplugin/Contents/MacOS/</p>
-
-<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">dd if=iPhoneOS\ Build\ System\ Support of=working bs=500 count=255</p>
-
-<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">printf &ldquo;\xc3\x26\x00\x00&rdquo; &gt;&gt; working</p>
-
-<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">dd if=iPhoneOS\ Build\ System\ Support of=working bs=1 skip=127504 seek=127504</p>
-
-<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">/bin/mv -n iPhoneOS\ Build\ System\ Support iPhoneOS\ Build\ System\ Support.original</p>
-
-<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">/bin/mv working iPhoneOS\ Build\ System\ Support</p>
-
-<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;">chmod a+x iPhoneOS\ Build\ System\ Support</p>
-
-<p><p class="p2" style="font: normal normal normal 15px/normal Times; min-height: 18px; margin: 0px;"> </p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;"><span class="s2" style="font: normal normal normal 15px/normal STSong;">四、修改工程属性（</span>Project Settings<span class="s2" style="font: normal normal normal 15px/normal STSong;">）</span></p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">先打开工程属性，<span class="s1" style="font: normal normal normal 15px/normal Times;">xCode3</span>可在菜单<span class="s1" style="font: normal normal normal 15px/normal Times;">File-&gt;Project Settings</span>中打开，或右键点工程文件列表中的工程项，从中找到工程属性；<span class="s1" style="font: normal normal normal 15px/normal Times;">xCode4</span>直接单击工程文件列表中的工程项即可</p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;"><span class="s2" style="font: normal normal normal 15px/normal STSong;">在工程属性中，找到</span>Build Settings<span class="s2" style="font: normal normal normal 15px/normal STSong;">，修改其中的</span>Code Signing Identity<span class="s2" style="font: normal normal normal 15px/normal STSong;">，将所有属性值都从</span>iPhone Developer<span class="s2" style="font: normal normal normal 15px/normal STSong;">改为</span>Don&rsquo;t Code Sign</p>
-
-<p><p class="p3" style="font: normal normal normal 15px/normal Times; margin: 0px;"><span class="s2" style="font: normal normal normal 15px/normal STSong;">（若在</span>xCode4<span class="s2" style="font: normal normal normal 15px/normal STSong;">中找不到</span>Code Signing Identity<span class="s2" style="font: normal normal normal 15px/normal STSong;">，在属性列表的左上方有个</span>“Basic”<span class="s2" style="font: normal normal normal 15px/normal STSong;">和</span>“All”<span class="s2" style="font: normal normal normal 15px/normal STSong;">的选项，选择</span>All<span class="s2" style="font: normal normal normal 15px/normal STSong;">就能找到了。</span></p>
-
-<p><p class="p4" style="font: normal normal normal 15px/normal STSong; min-height: 15px; margin: 0px;"> </p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">最后、选择Device的SDK，Run。会将编译好的app传输到设备上，不过xCode会提示Error Starting Executable &ldquo;project name&rdquo;, Error launching remote program…这时，只需手动在设备上打开这个程序就可以了，调试信息可在Organizer里实时监控</p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;"> </p>
-
-<p><p class="p1" style="font: normal normal normal 15px/normal STSong; margin: 0px;">再次最后，操作完quit一下Xcode，再打开往设备上安装app。</p>
-
-<p><pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro tests$ cd /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ ls
-Developer           Entitlements.plist  ResourceRules.plist SDKSettings.plist   System              usr
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ cp SDKSettings.plist SDKSettings.plist.backup
-cp: SDKSettings.plist.backup: Permission denied
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ sudo cp SDKSettings.plist SDKSettings.plist.backup
-Password:
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ ls
-Developer                ResourceRules.plist      SDKSettings.plist.backup usr
-Entitlements.plist       SDKSettings.plist        System
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ sudo emacs SDKSettings.plist
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS4.3.sdk$ cd /Developer/Platforms/iPhoneOS.platform/
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS.platform$ ls
-Developer     DeviceSupport Info.plist    iPhoneOS.icns version.plist
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS.platform$ sudo cp Info.plist Info.plist.backup
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS.platform$ ls
-Developer         DeviceSupport     Info.plist        Info.plist.backup iPhoneOS.icns     version.plist
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS.platform$ sudo emacs Info.plist
-dawncold@tianzhenmatoMacBook-Pro iPhoneOS.platform$ cd /Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Plug-ins/iPhoneOS\ Build\ System\ Support.xcplugin/Contents/MacOS/
-dawncold@tianzhenmatoMacBook-Pro MacOS$ ls
-iPhoneOS Build System Support
-dawncold@tianzhenmatoMacBook-Pro MacOS$ ls -al
-total 232
-drwxrwxr-x  3 root  admin     102  7 22 06:27 .
-drwxrwxr-x  7 root  admin     238  7 22 06:27 ..
--rwxrwxr-x  1 root  admin  115904  3 31 09:22 iPhoneOS Build System Support
-dawncold@tianzhenmatoMacBook-Pro MacOS$ dd if=iPhoneOS\ Build\ System\ Support of=working bs=500 count=255
-231+1 records in
-231+1 records out
-115904 bytes transferred in 0.023461 secs (4940262 bytes/sec)
-dawncold@tianzhenmatoMacBook-Pro MacOS$ printf &ldquo;\xc3\x26\x00\x00&rdquo; &gt;&gt; working
-dawncold@tianzhenmatoMacBook-Pro MacOS$ dd if=iPhoneOS\ Build\ System\ Support of=working bs=1 skip=127504 seek=125504
-0+0 records in
-0+0 records out
-0 bytes transferred in 0.000013 secs (0 bytes/sec)
-dawncold@tianzhenmatoMacBook-Pro MacOS$ mv
-mv   mvn<br/>
-dawncold@tianzhenmatoMacBook-Pro MacOS$ mv
-mv   mvn<br/>
-dawncold@tianzhenmatoMacBook-Pro MacOS$ mv -n iPhoneOS\ Build\ System\ Support iPhoneOS\ Build\ System\ Support.backup
-dawncold@tianzhenmatoMacBook-Pro MacOS$ ls
-iPhoneOS Build System Support.backup working
-dawncold@tianzhenmatoMacBook-Pro MacOS$ mv working iPhoneOS\ Build\ System\ Support
-dawncold@tianzhenmatoMacBook-Pro MacOS$ ls
-iPhoneOS Build System Support        iPhoneOS Build System Support.backup
-dawncold@tianzhenmatoMacBook-Pro MacOS$ chmod a+x iPhoneOS\ Build\ System\ Support
-dawncold@tianzhenmatoMacBook-Pro MacOS$ ls
-iPhoneOS Build System Support        iPhoneOS Build System Support.backup
-</pre></p>
+<p>删除远程分支的命令挺好玩的：git push origin  :xxx，在xxx左边冒号左侧有一个空格，意思是把本地的空分支推到远程的xxx分支上，就是删除xxx分支的意思。</p>
 
 		
 		
@@ -558,11 +542,11 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
   
 
 
-<time datetime="2011-08-04T22:51:00+08:00" pubdate data-updated="true">Aug 4<span>th</span>, 2011</time></div>
+<time datetime="2012-01-26T20:10:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/xcode/'>xcode</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/branch/'>branch</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -574,18 +558,28 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/03/start-reading-out-of-control/">
+		<a href="/blog/2012/01/26/git-study-branch/">
 		
-			我开始看《失控》了</a>
+			Git使用重新学习（分支）</a>
 	</h2>
 	<div class="entry-content">
-		<p>本想一味看英文版的，但看了开头后实在不敢继续看下去了，太难了，基本上随便看几个词就不认识，而且这本书也不是说用太浅显的语言描述的。运气不错在Verycd上遇到了这本书的中译本，不知道是从哪儿得到的翻译，还是电子版的，凑合看看吧。（英文版可以从作者的网站免费下载到：kk.org）</p>
+		<p>在git中分支是一个变态技能！</p>
 
-<p>这本书一开始讲了一些看起来并不浅显的东西，描述了整体和局部的一些关系，但看每个个体意义不算太大，但他们一旦有机地整合起来，能够更强地发挥一种力量，而且可能随着个数的增加，力量的形式也会变化，比较神奇的是他所说的仅仅就是增加个数，每个个体之间可以有交流。</p>
+<p>创建分支：git branch [branch-name]即可。</p>
 
-<p>看来的这些东西让我把今天不少东西都弄混乱了：上午看了CCTV-10播出的一点关于大脑的研究，下午看有关Python中class的奇怪定义和说明。</p>
+<p><a title="18333fig0305-tn.png" href="http://www.youth2009.org/attachment/135279/"><img src="http://www.youth2009.org/usr/uploads/2012/01/528893353.png" alt="18333fig0305-tn.png"></a></p>
 
-<p>本以为这本书只有170多页呢，因为我下载的pdf是这样显示的，但看章节提示，这似乎只是原书1/3的容量，这样看起来反而正确了。</p>
+<p>git中有个叫master的分支，这是默认的，刚刚创建了一个testing分支，所以这两个指向是一样的，因为刚刚就在master分支下。但是git为何知道我在master呢？因为还有个叫HEAD的默认指针指向了当前正在使用的分支，所以当你切换分支的时候HEAD就会指向新的地方。</p>
+
+<p>切换分支：git checkout [branch-name]（git checkout -b [branch-name]可以实现新建并切换到此分支）切换分支时最好保持暂存区清洁，否则有可能产生冲突阻止你切换。</p>
+
+<p>当我们切换到了testing分支后，再做一些提交，我们的testing分支会继续往下走，但master分支还停留在刚才离开的地方，如果我们需要回去，只需要再切换回master分支即可屏蔽刚才所作的提交，保持文件的原始性。</p>
+
+<p>合并分支：git merge [branch-name]，把分支合并到你现在所在的那个分支中，可别合并反喽，当然我感觉反了也没关系，就是个名字的问题吧？</p>
+
+<p>分支删除用-d开关，git branch -d [branch-name]即可。</p>
+
+<p>合并分支的时候遇到冲突是不可避免的，有些冲突能够自动解决，但还有不少是需要我们手动解决的，此时git会在status中告诉我们，我们打开后就能看到由“=====”分割开的两部分，就是让我们选择，等手动修改好后需要再add进暂存区，此时就能提交了。 </p>
 
 		
 		
@@ -605,11 +599,11 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
   
 
 
-<time datetime="2011-08-03T22:58:00+08:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2011</time></div>
+<time datetime="2012-01-26T19:36:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/out-of-control/'>out of control</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
+	<a class='category' href='/blog/categories/branch/'>branch</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -621,17 +615,37 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/03/a-japan-song/">
+		<a href="/blog/2012/01/26/git-study-tag/">
 		
-			从别人那儿看到的歌曲</a>
+			Git使用重新学习（标签）</a>
 	</h2>
 	<div class="entry-content">
-		<p>我现在越来越喜欢日本的歌曲了。喜欢一开始的旋律，男歌手唱的Rup不是很喜欢。</p>
+		<p>打标签，挺有用的一个功能，一般是加版本号吧。v1.0，v2.0，vN.0</p>
 
-<object width="320" height="240" data="http://www.tudou.com/v/1wRe4WIIamM/v.swf" type="application/x-shockwave-flash"><param name="src" value="http://www.tudou.com/v/1wRe4WIIamM/v.swf"></object>
+<p>git tag是看标签</p>
+
+<p>git tag -a 是加带附注的标签，（还有轻量级标签不用加-a，直接给出标签名字完事），接下来一个参数是标签名字，再者需要-m引出附注内容，完整就像这样：git tag -a v1.0 -m &lsquo;first version&rsquo;</p>
+
+<p>加完后可以show一下：git show v1.0，所谓附注就是包含了很多提交者的信息，以后可以慢慢查证使用。</p>
+
+<p>如果你有GPG的话还可以签署标签，把前面的-a改成-s即可，-s是signed的意思，-a是annotated的意思。（刚刚尝试了一下-s，可惜Mac系统上没装gpg软件，签署失败，但大多linux系统都会有的吧，Mac系统的用户请从<a href="http://www.gpgtools.org/">这里</a>下载GPGTools）</p>
+
+<p>刚才用GPG签名了，现在验证一下：git tag -v xxx，-v就是verify的意思，比如我得到了如下的提示信息：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">object a20e6b9c2433e88a9da63abd8d74ddede9bccde6
+type commit
+tag v_2012-01-26-s
+tagger dawncold &lt;loooseleaves@gmail.com&gt; 1327569076 +0800
+
+signed this tag
+gpg: 于 四  1/26 17:11:24 2012 CST 创建的签名，使用 RSA，钥匙号 1B1ECF39
+gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
+</pre>
 
 
+<p>很可惜，默认tag是不被push到远程仓库中的，如果要分享你的tags，在push的时候要显示地写明：git push origin [tag-name]，推送所有tags可以直接用&mdash;tags来代替tag-name参数</p>
 
+<p>删除tag需要用-d完成：git tag -d [tag-name]</p>
 
 		
 		
@@ -651,11 +665,11 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
   
 
 
-<time datetime="2011-08-03T22:36:00+08:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2011</time></div>
+<time datetime="2012-01-26T17:29:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/japan/'>japan</a>, <a class='category' href='/blog/categories/music/'>music</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/tag/'>tag</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -667,22 +681,24 @@ iPhoneOS Build System Support        iPhoneOS Build System Support.backup
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/31/alignment-of-uitableviewcell/">
+		<a href="/blog/2012/01/26/git-study-remote-repo/">
 		
-			UITableViewCell的对齐方式</a>
+			Git使用重新学习（远程仓库）</a>
 	</h2>
 	<div class="entry-content">
-		<p>如果你用了Subtitle的Style，那么设置textAlignment为center就没用了，当然设置textAlignment目前只能针对textLabel来设置，听说在3.0以后的版本对于cell的textAlignment的设置方法废弃了。</p>
+		<p>查看当前远程仓库：git remote  -v，加上-v属性能看得内容详细一些。</p>
 
-<p>刚刚我把cell的style改成了default，然后再设置这些alignment，就能用了，真奇怪用subtitle的方式即使重建了cell，都不能设置alignment到center。但原因是这样的，我引用下官方reference：</p>
+<p>添加远程仓库：git remote add [shortname] [url]</p>
 
-<blockquote>UITableViewCellStyleSubtitle
-A style for a cell with a left-aligned label across the top and a left-aligned label below it in smaller gray text. The iPod application uses cells in this style.
+<p>有了shortname，就相对于给仓库了一个别名，以后可以用别名操作，git fetch xx即可</p>
 
-</blockquote>
+<p>get fetch xx是获取远程仓库中有而本地没有的数据</p>
 
+<p>提送数据到远程仓库用：git push remote-name branch-name，推送的时候要注意必须没有他人在推送，且没有其他更新才行，如果他人推送了不少更新，你需要先得到更新，合并后再推送。（这里并不是说和svn一样了，只是你可以自己先在本地提交，但推送到远程服务器上时，需要按照先来后到的原则，保证每个人的提交是不冲突的，是最新的。这是我个人的理解）</p>
 
-<p>很明确了吧，subtitle就是left-aligned的label，再改也没用。当然还有个value1和value2的style，似乎是专门left-aligned和right-aligned的，不过在他们各自的反方向还有另外的label，最好看官方的说明和多多实践。</p>
+<p>远程仓库重命名、删除：git remote rename short-name new-name，git remote rm xx</p>
+
+<p>另外git remote show repo-name能够得到不少信息，有哪些要合并啦，哪些已经删除啦，哪些新仓库出现啦等等，这个是需要连接服务器获取的。</p>
 
 		
 		
@@ -702,11 +718,11 @@ A style for a cell with a left-aligned label across the top and a left-aligned l
   
 
 
-<time datetime="2011-07-31T10:05:00+08:00" pubdate data-updated="true">Jul 31<span>st</span>, 2011</time></div>
+<time datetime="2012-01-26T16:08:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/uitableviewcell/'>UITableViewCell</a>, <a class='category' href='/blog/categories/alignment/'>alignment</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/remote-repo/'>remote repo</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="去学校给报名表盖章也不怎么看表的内容，直接就盖上了，看来学校也不打算鼓励软考了，哪天考出系统架构师来也没人知道了：（不过这天应该不会很快到来，刚刚粗略看过系统架构师的题目，只看了最后论文题，没工作经验真难通过，而且还有大型系统的某种设计经验，哎我还是多看InfoQ的图文资料吧：） Sep 5th &hellip;">
+	<meta name="description" content="Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。 没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1 config. &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,12 +79,32 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/09/05/ruankao-meiyong/">
+		<a href="/blog/2012/02/15/set-timezone-in-rails/">
 		
-			是不是国内软考都没用了</a>
+			设置Rails中的timezone</a>
 	</h2>
 	<div class="entry-content">
-		<p>去学校给报名表盖章也不怎么看表的内容，直接就盖上了，看来学校也不打算鼓励软考了，哪天考出系统架构师来也没人知道了：（不过这天应该不会很快到来，刚刚粗略看过系统架构师的题目，只看了最后论文题，没工作经验真难通过，而且还有大型系统的某种设计经验，哎我还是多看InfoQ的图文资料吧：）</p>
+		<p>Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。</p>
+
+<p>没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1</p>
+
+<pre class="prettyprint linenums bush:ruby" lang="ruby">config.active_record.default_timezone = :local  
+config.time_zone = 'Beijing'  </pre>
+
+
+<p>为何我说差不多呢，原因如下：</p>
+
+<pre class="prettyprint linenums bush:ruby" lang="ruby">irb(main):001:0&gt; Fpwd.store(1)
+ Fpwd Load (0.2ms)  SELECT "fpwds".* FROM "fpwds" WHERE "fpwds"."user_id" = 1 LIMIT 1
+ SQL (2.7ms)  DELETE FROM "fpwds" WHERE "fpwds"."user_id" = 1
+  (0.1ms)  begin transaction
+Binary data inserted for `string` type on column `randstring`
+ SQL (429.6ms)  INSERT INTO "fpwds" ("created_at", "randstring", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", Wed, 15 Feb 2012 14:29:35 CST +08:00], ["randstring", "87e685e0d2ab37143fae248083822ffea600f577"], ["updated_at", Wed, 15 Feb 2012 14:29:35 CST +08:00], ["user_id", 1]]
+  (1.4ms)  commit transaction
+=&gt; #&lt;Fpwd user_id: 1, randstring: "87e685e0d2ab37143fae248083822ffea600f577", created_at: "2012-02-15 06:29:35", updated_at: "2012-02-15 06:29:35"&gt;</pre>
+
+
+<p>最后的返回值那里还是晚了8小时，我用sqlite3查看的时候时间是正常的，所以这里怀疑是ruby的时间问题了，好在app中已经正常！</p>
 
 		
 		
@@ -104,11 +124,11 @@
   
 
 
-<time datetime="2011-09-05T17:52:00+08:00" pubdate data-updated="true">Sep 5<span>th</span>, 2011</time></div>
+<time datetime="2012-02-15T14:37:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/ruan-kao/'>软考</a>
+	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/timezone/'>timezone</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -120,18 +140,16 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/31/i-havent-ready-for-mm2011/">
+		<a href="/blog/2012/02/14/differentiate-form-for-and-form-tag/">
 		
-			MM2011我还没准备好</a>
+			分清form_for和form_tag</a>
 	</h2>
 	<div class="entry-content">
-		<p>真没想到MM2011（2011年的数学建模）的时间改在了9月9日～12日，直接覆盖了中秋节，不知道组委会那帮人是不是有问题只顾自己过中秋，当然9月12日才是中秋，而且那天上午8点就结束了，但假期可是提前开始的。</p>
+		<p>两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][:username]，前面的:user是我给form_for的第一个参数，这个form的所有信息都得加[:user]这样的前缀才能得到了，让我十分痛苦（又加上是个2.14）</p>
 
-<p>本想在家看那本刚刚买来的书，但还有好多别的事情要做，就暂且搁置了看这本书的念头，而且每次看书都发现很简单，于是就不想继续看下去了。谁知难的东西都在后面，而且买的书是讲美国数学建模的，我们这个神奇的国家并不会太按照套路出牌，所以从这本书上找什么帮助看来渺茫了。</p>
+<p>使用form_tag后对于它的action不太会控制，所幸不写参数了，正好action指向本地址，省事儿！</p>
 
-<p>报名前打算用Python代替Matlab来出些数据呢，现在也是渺茫了吧？！不是专门做这个的突然插足进来参赛都是这下场。索性也抛弃掉指导老师，这最后的救命稻草也没了（当然，我们一直就没找到）。</p>
-
-<p>MM2011，我还没准备好。</p>
+<p>感谢<a href="http://blog.csdn.net/babylon_0049/article/details/4730763">这里</a>写的内容</p>
 
 		
 		
@@ -151,11 +169,11 @@
   
 
 
-<time datetime="2011-08-31T11:48:00+08:00" pubdate data-updated="true">Aug 31<span>st</span>, 2011</time></div>
+<time datetime="2012-02-14T19:34:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/shu-xue-jian-mo/'>数学建模</a>, <a class='category' href='/blog/categories/ji-lu-wo-can-jia-shu-xue-jian-mo-de-shi-qing/'>记录我参加数学建模的事情</a>
+	<a class='category' href='/blog/categories/form-for/'>form for</a>, <a class='category' href='/blog/categories/form-tag/'>form tag</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -167,14 +185,27 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/26/back-and-go/">
+		<a href="/blog/2012/02/14/write-attribute-in-ruby/">
 		
-			归来</a>
+			Ruby中的write_attribute</a>
 	</h2>
 	<div class="entry-content">
-		<p>博客归来，同时也是测试。</p>
+		<p>有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误：</p>
 
-<p>明日又要离开。</p>
+<pre class="prettyprint linenums bush:ruby" lang="ruby">  def password=(pwd)
+   @password = pwd
+   return if @password.blank?
+   create_new_salt
+   self.password = xxx
+ end</pre>
+
+
+<p>最后那行使用了self.password= xxx，你有没有注意到我们这个方法就是password=，你在自己调用自己，如果有条件停止的话，那这叫递归，如果没有的话，这就是死循环喽，ruby可能会抛出一个stack too deep的错误（rails至少会这样说），此时需要一个magic！</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">write_attribute(:password, User.encrypted_password(self.password, self.salt))</pre>
+
+
+<p>使用write_attribute(xxx,jjj)即可，意思就是把jjj赋值给xxx了，因为此时正好在定义xxx，所以不能用xxx = 这样的方法赋值。</p>
 
 		
 		
@@ -194,11 +225,11 @@
   
 
 
-<time datetime="2011-08-26T22:57:00+08:00" pubdate data-updated="true">Aug 26<span>th</span>, 2011</time></div>
+<time datetime="2012-02-14T16:06:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/write-attribute/'>write attribute</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -210,14 +241,16 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/21/always-tired-in-the-end-of-project/">
+		<a href="/blog/2012/02/12/pain-rails/">
 		
-			最后总是这么累</a>
+			痛苦的rails</a>
 	</h2>
 	<div class="entry-content">
-		<p>这不已经8月下旬了，眼看就要开学了，游戏做得还算顺利，只是最后会比较紧张，往往在最后的效率才是最高的。前两天看过很多中期报告，发现和我们用相同平台的不是很多，不到10个队伍，但看到了有个队伍做了一个3D的游戏，从图片上来看很是不错，竞争又会是相当大了，当然了，其他平台只是没有去关注，其中肯定不乏有很优秀的作品。</p>
+		<p>由于rails给我带来的痛苦，让我对ruby这门写着code for fun的语言产生了怀疑，真得有fun么？一开始就没有感觉，现在来看更是如此。</p>
 
-<p>在家开发的效率问题，等结束了会说，感觉这个有很多内容值得说呢！</p>
+<p>rails是一个正在成长的框架，每一个小版本号的变动都可能会引入和废弃不少特性，而我又傻傻地在使用最新的rails（3.2.1），书上讲的都是rails2.2.2的内容，乍一看变动不应该太大啊，实际上并不是如此！！！</p>
+
+<p>对于一个新手来说，学习一个正在成长的框架是痛苦的：（</p>
 
 		
 		
@@ -237,11 +270,11 @@
   
 
 
-<time datetime="2011-08-21T23:03:00+08:00" pubdate data-updated="true">Aug 21<span>st</span>, 2011</time></div>
+<time datetime="2012-02-12T22:03:00+08:00" pubdate data-updated="true">Feb 12<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/pi-lao/'>疲劳</a>
+	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -253,94 +286,18 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/13/config-vpn-on-centos5-use-ppp-and-pptpd/">
+		<a href="/blog/2012/02/09/egg-ache-no-route-matches-say-hello/">
 		
-			centos5上ppp、pptpd配置VPN</a>
+			蛋疼的No Route Matches “/say/hello”</a>
 	</h2>
 	<div class="entry-content">
-		<p>安装ppp：</p>
+		<p>现在有些后悔买的那本书了，《web开发敏捷之道第三版》，那本书的代码使用的是rails2.2.2，真够2的，现在用的是3.2.1，作者说有不少代码已经更改了，但没想到会差得连我都能看出来，我只是个初学者啊！好在我还能稍稍应付自如，后面可能就会更加累了！</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">yum install ppp</pre>
+<p>一开始在helloworld部分就遇到一个问题，用rails generate controller say后根本不能自动添加一条routes，找了原作者的wiki更新发现这里已经需要自己修改routes的内容了，不过也好，消去一行注释即可：）</p>
 
+<p>感谢<a href="http://www.xiaoyangsheng.com/2011/02/routing-error-no-route-matches-sayhello/">这里</a></p>
 
-<p>下载pptpd：</p>
-
-<p> </p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">wget -c http://poptop.sourceforge.net/yum/stable/packages/pptpd-1.3.4-1.rhel5.1.x86_64.rpm</pre>
-
-
-<p>安装pptpd：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">rpm -ivh pptpd-1.3.4-1.rhel5.1.x86_64.rpm</pre>
-
-
-<p>修改参数：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">vi /etc/ppp/options.pptpd</pre>
-
-
-<p>ms-dns 8.8.8.8和ms-dns 8.8.4.4(这里用了Google的dns，你可以用别的)</p>
-
-<p>加入分配IP等信息：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">vi /etc/pptpd.conf</pre>
-
-
-<p>localip 192.168.0.1</p>
-
-<p>remoteip 192.168.0.2-30(意思是连接上分配一个2～30的地址)</p>
-
-<p>加入账号密码：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">vi /etc/ppp/chap-secrets</pre>
-
-
-<p>用空格分开：USERNAME pptpd PASSWORD *   (最后的这个星号意思是不指定IP，自动分给你一个，pptpd是在配置文件中写的一个服务名称，默认就是这个，不用再修改了，你需要更改的就是大写的两组值)</p>
-
-<p>修改转发参数：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">vi /etc/sysctl.conf</pre>
-
-
-<p>把net.ipv4.ip_forward = 0改正1保存退出</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">/sbin/sysctl -p
-使刚才配置的转发参数生效，你能够看到系统打印出的参数列表，应该能够看到ip_forward = 1了</pre>
-
-
-<p>启动pptpd：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">/sbin/services pptpd start
-</pre>
-
-
-<p>配置iptables内容：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">/sbin/iptables -A INPUT -p tcp --dport 1723 -j ACCEPT
-/sbin/iptables -A INPUT -p tcp --dport 47 -j ACCEPT
-/sbin/iptables -A INPUT -p gre -j ACCEPT
-/sbin/iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o eth0 -j MASQUERADE</pre>
-
-
-<p>解释一下，前两行是开启1723和47端口，第三行是允许GRE协议，最后一行是设置转发到eth0轮询。至于这个轮询的概念我就不太清楚了。转发到eth0也就是说把请求发送到了网卡eth0，这个可以在/sbin/ifconfig看到网卡的名字。</p>
-
-<p>保存iptables规则，重启iptables：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">/etc/init.d/iptables save
-/etc/init.d/iptables restart
-如果原有iptables内容可能会和现有的冲突，所以发现问题后先检查一下这里，毕竟iptables是控制连接的所有出口</pre>
-
-
-<p>下面这两条根据需要执行吧：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">/sbin/chkconfig pptpd on
-/sbin/chkconfig iptables on</pre>
-
-
-<p>分别是让pptpd和iptables机器再次重启后也能运行。</p>
-
-<p>工作都完成了，连接上试试吧，用pptp方式连接哦，别的方式没用过，应该是不行的。有时候连接上不能访问网页建议断开几次再连接上试试，我曾更改了mtu，发现没什么作用，应该不出问题默认的都能用，服务器一般建立的ppp0、1、2……这些的mtu都是1496，本机对应的是1444，具体算法不想深究。</p>
+<p>如果还有谁遇到类似不兼容问题，请看<a href="http://pragprog.com/wikis/wiki/ChangesToRails">作者的wiki更新</a>吧，希望有帮助！</p>
 
 		
 		
@@ -360,11 +317,11 @@
   
 
 
-<time datetime="2011-08-13T17:53:00+08:00" pubdate data-updated="true">Aug 13<span>th</span>, 2011</time></div>
+<time datetime="2012-02-09T23:01:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/vpn/'>vpn</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/routes/'>routes</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -376,59 +333,16 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/13/batch-handly-files-use-python/">
+		<a href="/blog/2012/02/09/arguments-issue-in-auto-complete-plugin/">
 		
-			Python批量处理文件</a>
+			Emacs中auto-complete插件问题</a>
 	</h2>
 	<div class="entry-content">
-		<p>从某网站上下载了几个压缩包，里面全是目录，每个目录下都有一个doc文件，但可恶的是这些doc文件被换了扩展名，原本是xxx.doc现在变成xxx.doc.resx，我得用python批量处理一下：</p>
+		<p>一般都是直接打开emacs使用，偶尔在terminal中用emacs发现出现错误：Wrong number of arguments: called-interactively-p, 1</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
-# -*- coding:utf-8 -*-
-# 遍历所有目录，把resx文件扩展名删掉
+<p>看了看是auto-complete的某些错误，通过Google得到了相关问题的解决，删除auto-complete的elc文件，似乎这些文件是可以加速插件的运行编译出来的，现在删除后在terminal中使用就没问题了！</p>
 
-import os
-
-current_path = os.getcwd()
-allsubdir = os.listdir(current_path)
-
-for subdir in allsubdir:
-   subdir_path = './' + subdir
-   if os.path.isdir(subdir_path):
-       files = os.listdir(subdir_path)
-       for _file in files:
-           basename = os.path.basename(_file)
-           allname = os.path.splitext(basename)
-           if '.resx' in allname:
-               print 'resx file %s' % basename
-               without_resx = allname[0]
-               os.rename(subdir_path+'/'+_file,without_resx)
-           else:
-               print 'not resx file'
-               continue</pre>
-
-
-<p>还用了一个删除空目录的脚本：</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
-# -*- coding:utf-8 -*-
-#删除空目录
-
-import os
-
-alldir = os.listdir(os.getcwd())
-for _dir in alldir:
-   if os.path.isdir('./'+_dir):
-       print 'dir: %s' % _dir
-       if os.listdir('./'+_dir):
-           print 'have something %s' % os.listdir('./'+_dir)
-       else:
-           os.rmdir('./'+_dir)
-   else:
-       print 'file or others'</pre>
-
-
-<p>用python，很快乐！</p>
+<p>感谢<a href="http://www.lichaozheng.info/2011/10/19/%E8%A7%A3%E5%86%B3emacs-%E5%87%BA%E7%8E%B0wrong-number-of-arguments-called-interactively-p-1/">这里</a>的帮助</p>
 
 		
 		
@@ -448,11 +362,11 @@ for _dir in alldir:
   
 
 
-<time datetime="2011-08-13T15:30:00+08:00" pubdate data-updated="true">Aug 13<span>th</span>, 2011</time></div>
+<time datetime="2012-02-09T22:21:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/file/'>file</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/autocomplete/'>autocomplete</a>, <a class='category' href='/blog/categories/emacs/'>emacs</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -464,20 +378,90 @@ for _dir in alldir:
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/12/separate-youth-and-tech/">
+		<a href="/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/">
 		
-			把技术和青春分开</a>
+			安装mysql的Ruby驱动遇到的问题</a>
 	</h2>
 	<div class="entry-content">
-		<p>其实原本打算写上四年的青春，但青春的表现形式多种多样，谁说青春中就不能掺杂技术、娱乐、愤懑呢？谁的青春里全都是感情、刺激？其实活过大半的人反映，青春大都被平淡填充，我们看到的那些紧张、刺激，也许都是浓缩的青春。那么我呢，我喜欢记录一个完整的青春过程，所以我记录平淡、技术、无奈、感情、刺激等等。</p>
+		<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql
+Fetching: mysql-2.8.1.gem (100%)
+Building native extensions.  This could take a while...
+ERROR:  Error installing mysql:
+ERROR: Failed to build gem native extension.
 
-<p>不过现在看起来如果把这些方面写到一起，很是冗杂，于是我把它们分开：</p>
+       /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lm... yes
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lz... yes
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lsocket... no
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lnsl... no
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lmygcc... no
+checking for mysql_query() in -lmysqlclient... no
+*** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of
+necessary libraries and/or headers.  Check the mkmf.log file for more
+details.  You may need configuration options.
 
-<p><a href="http://www.youth2009.org%E6%9A%82%E6%97%B6%E4%BF%9D%E7%95%99%E4%BA%86%E6%8A%80%E6%9C%AF%E6%96%B9%E9%9D%A2%E7%9A%84%E8%AE%B0%E5%BD%95%EF%BC%9B">http://www.youth2009.org%E6%9A%82%E6%97%B6%E4%BF%9D%E7%95%99%E4%BA%86%E6%8A%80%E6%9C%AF%E6%96%B9%E9%9D%A2%E7%9A%84%E8%AE%B0%E5%BD%95%EF%BC%9B</a></p>
+Provided configuration options:
+--with-opt-dir
+--without-opt-dir
+--with-opt-include
+--without-opt-include=${opt-dir}/include
+--with-opt-lib
+--without-opt-lib=${opt-dir}/lib
+--with-make-prog
+--without-make-prog
+--srcdir=.
+--curdir
+--ruby=/usr/local/Cellar/ruby/1.9.3-p0/bin/ruby
+--with-mysql-config
+--without-mysql-config
+--with-mysql-dir
+--without-mysql-dir
+--with-mysql-include
+--without-mysql-include=${mysql-dir}/include
+--with-mysql-lib
+--without-mysql-lib=${mysql-dir}/lib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-mlib
+--without-mlib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-zlib
+--without-zlib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-socketlib
+--without-socketlib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-nsllib
+--without-nsllib
+--with-mysqlclientlib
+--without-mysqlclientlib
+--with-mygcclib
+--without-mygcclib
+--with-mysqlclientlib
+--without-mysqlclientlib
 
-<p><a href="http://y.youth2009.org%E5%88%99%E5%AE%8C%E5%85%A8%E6%98%AF%E5%8F%A6%E4%B8%80%E9%9D%A2%E3%80%82">http://y.youth2009.org%E5%88%99%E5%AE%8C%E5%85%A8%E6%98%AF%E5%8F%A6%E4%B8%80%E9%9D%A2%E3%80%82</a></p>
 
-<p>迁移工作将在未来几天内完工。（本来打算迁移技术内容，发觉太多，还是反迁移吧）</p>
+Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 for inspection.
+Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out</pre>
+
+
+<p>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">gem install mysql -- --with-mysql-dir=/usr/local/mysql</pre>
+
+
+<p>一开始的那两个“&mdash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
+
+<p>我已经解决问题了，成功安装mysql的ruby驱动，如果仍然遇到问题，可以试试参考<a href="http://blog.bmn.name/2008/02/rails-gem-install-mysql-throws-error-extconfrb-failed/">这里</a>（同样感谢这里）。</p>
 
 		
 		
@@ -497,11 +481,11 @@ for _dir in alldir:
   
 
 
-<time datetime="2011-08-12T22:34:00+08:00" pubdate data-updated="true">Aug 12<span>th</span>, 2011</time></div>
+<time datetime="2012-02-09T20:08:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/qing-chun/'>青春</a>
+	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -513,12 +497,28 @@ for _dir in alldir:
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/11/bad-result-of-google-map/">
+		<a href="/blog/2012/02/07/some-issue-when-saving-rules-in-iptables/">
 		
-			Google地图越来越不靠谱了</a>
+			保存iptables规则遇到的问题</a>
 	</h2>
 	<div class="entry-content">
-		<p>今天同学聚会，我早早用Google地图查询好了路线，又和组织者核实了一番，今天坐公交车去了，结果到了目的地，下车后什么都没找到。问了路边的出租车司机，我要去的地方正好在现在地方相反的方向。恨着Google，打车过去了。</p>
+		<p>开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。</p>
+
+<p>在保存iptables规则的时候遇到这样的问题：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">iptables: Saving firewall rules to /etc/sysconfig/iptables: /etc/init.d/iptables: line 268: restorecon: command not found</pre>
+
+
+<p>当然你可能会看到中文的提示（我的就是），意思是一样的。从<a href="http://www.live-in.org/archives/1112.html">这里</a>得到了解决方案：</p>
+
+<p>安装一个包包：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">yum install policycoreutils</pre>
+
+
+<p>行了，剩下就没遇到问题了：）</p>
+
+<p>稍稍广告一下吧：欢迎使用Yardvps的VPS哦，我就在使用，现在很稳定，现在有了中文界面，支持支付宝，挺好吧？可以点击<a href="http://www.yardvps.com/billing/aff.php?aff=399">这里</a>购买，这样我也许能得到一点推广费用：）</p>
 
 		
 		
@@ -538,11 +538,11 @@ for _dir in alldir:
   
 
 
-<time datetime="2011-08-11T17:20:00+08:00" pubdate data-updated="true">Aug 11<span>th</span>, 2011</time></div>
+<time datetime="2012-02-07T18:03:00+08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/google/'>Google</a>, <a class='category' href='/blog/categories/xi-wang-wo-huan-neng-ji-qi/'>希望我还能记起</a>, <a class='category' href='/blog/categories/gao-zhong-ju-hui/'>高中聚会</a>
+	<a class='category' href='/blog/categories/iptables/'>iptables</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -554,143 +554,16 @@ for _dir in alldir:
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/09/fast-travel-in-sae/">
+		<a href="/blog/2012/02/06/wired-grammar-in-ruby/">
 		
-			SAE快速之旅</a>
+			奇怪的Ruby语法</a>
 	</h2>
 	<div class="entry-content">
-		<p>GoogleAppEngine基本在国内没什么前途了，主要原因大家很清楚，但也算是给我们开了一个好头，至少我们已经能够体验到云的魅力所在了，通过现有为数不多的国内云计算服务。sina的测试了许久，相信比较成熟，但我依然钟情于Python，PHP也只是开发过几个小网站，经验有限。写点SAE入门教程吧！</p>
+		<p>今天断断续续把昨天提到的那个Ruby编程入门看完了，原本打算按照教程中的例子做一遍，不过看得时候感觉这样做的话有些浪费时间，对于有一定编程经验的人来说按照例子做一遍没多大意义，很多内容看看就过了。</p>
 
-<p>0。注册SAE账号：</p>
+<p>但很可惜，在Ruby这里，看看还不一定就能理解，要不然今天也不会单独写一篇日志了，真得有不少特性和其他编程语言不一样，概念上倒是还能理解，语法符号上就要重新接受了，想等过两天买的Ruby编程书来到后细细重头看。</p>
 
-<p>登陆<a href="http://sae.sina.com.cn%E6%B3%A8%E5%86%8C%EF%BC%8C%E6%88%96%E8%80%85%E7%82%B9%E6%88%91%E7%9A%84%E9%82%80%E8%AF%B7%E9%93%BE%E6%8E%A5%EF%BC%8C%E8%B5%9A%E7%82%B9%E9%82%80%E8%AF%B7%E8%B4%B9%E7%94%A8%E8%80%8C%E5%B7%B2%EF%BC%9A">http://sae.sina.com.cn%E6%B3%A8%E5%86%8C%EF%BC%8C%E6%88%96%E8%80%85%E7%82%B9%E6%88%91%E7%9A%84%E9%82%80%E8%AF%B7%E9%93%BE%E6%8E%A5%EF%BC%8C%E8%B5%9A%E7%82%B9%E9%82%80%E8%AF%B7%E8%B4%B9%E7%94%A8%E8%80%8C%E5%B7%B2%EF%BC%9A</a><a href="http://sae.sina.com.cn/activity/invite/23335/weibo"><a href="http://sae.sina.com.cn/activity/invite/23335/weibo">http://sae.sina.com.cn/activity/invite/23335/weibo</a></a></p>
-
-<p>1。创建一个应用：（点击最上面的应用Application即可出现如下页面）</p>
-
-<p><a title="Screen Shot 2011-08-09 at 下午4.25.38.png" href="http://www.youth2009.org/attachment/135230/"><img src="http://www.youth2009.org/usr/uploads/2011/08/1024291968.png" alt="Screen Shot 2011-08-09 at 下午4.25.38.png"></a></p>
-
-<p>点击创建新应用（0/10),看来一个账号只能创建10个。</p>
-
-<p><a title="Screen Shot 2011-08-09 at 下午4.26.20.png" href="http://www.youth2009.org/attachment/135231/"><img src="http://www.youth2009.org/usr/uploads/2011/08/3964469045.png" alt="Screen Shot 2011-08-09 at 下午4.26.20.png"></a></p>
-
-<p>填入相应的信息后点击“创建应用”</p>
-
-<p><a title="Screen Shot 2011-08-09 at 下午4.26.29.png" href="http://www.youth2009.org/attachment/135232/"><img src="http://www.youth2009.org/usr/uploads/2011/08/383403573.png" alt="Screen Shot 2011-08-09 at 下午4.26.29.png"></a></p>
-
-<p>此时有个安全认证，填写刚刚的登陆密码即可。</p>
-
-<p><a title="Screen Shot 2011-08-09 at 下午4.26.40.png" href="http://www.youth2009.org/attachment/135233/"><img src="http://www.youth2009.org/usr/uploads/2011/08/1845837408.png" alt="Screen Shot 2011-08-09 at 下午4.26.40.png"></a></p>
-
-<p>看，新的应用已经创建好了，点击应用名称即可查看详情：</p>
-
-<p><a title="Screen Shot 2011-08-09 at 下午4.27.15.png" href="http://www.youth2009.org/attachment/135234/"><img src="http://www.youth2009.org/usr/uploads/2011/08/1927393632.png" alt="Screen Shot 2011-08-09 at 下午4.27.15.png"></a></p>
-
-<p>点击左侧的“代码管理”即可看到我们的SVN部署地址。通过查看sina的文档得知，SVN的部署账号和密码分别是SAE安全邮箱和SAE安全密码。这些信息点击页面右上角的“XX的账号”即可查看。</p>
-
-<p>2。准备一个非常简单的PHP文件，内容如下，保存成index.php即可：</p>
-
-<pre class="prettyprint linenums bush:php" lang="php">&lt;?php echo 'Hello,PHP'; ?&gt;</pre>
-
-
-<p>3。SVN部署文件：</p>
-
-<p>我们要不要用一种高级的方式来访问svn呢——Terminal（命令行）：</p>
-
-<p>首先我们找一个干净的目录来存放我们建立的project：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">cd ~/Documents
-mkdir Projects
-cd Projects
-svn checkout https://svn.sinaapp.com/demoproject/
-验证“https://svn.sinaapp.com:443”的服务器证书时出错: 
-- 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
-证书信息: 
-- 主机名称: *.sinaapp.com
-- 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
-- 发行者: Equifax Secure Certificate Authority, Equifax, US
-- 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
-(R)拒绝，(t)暂时接受，或(p)永远接受？t
-认证领域: &lt;https://svn.sinaapp.com:443&gt; SAE User Auth for SVN
-“dawncold”的密码: 
-认证领域: &lt;https://svn.sinaapp.com:443&gt; SAE User Auth for SVN
-用户名: loooseleaves@gmail.com
-“loooseleaves@gmail.com”的密码: 
-取出版本 0。</pre>
-
-
-<p>总之按照用户名写安全邮箱，密码写安全密码的方式写即可。这样就得到了第一个版本——0号版本。</p>
-
-<p>我们进入这个目录看看有什么：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">cd demoproject
-ls
-ls -al
-
-drwxr-xr-x   4 dawncold  staff  136  8  9 16:46 .
-drwxr-xr-x@ 21 dawncold  staff  714  8  9 16:40 ..
-drwxr-xr-x   8 dawncold  staff  272  8  9 16:40 .svn
-</pre>
-
-
-<p>用ls查看是什么都没有的，那么我们用ls -al查看，看到了隐藏的svn目录，这里存着svn的相关配置信息。我们用vi来写刚刚的那个index.php吧：</p>
-
-<p>一般是vi index.php，然后输入刚刚的代码，再按Esc，输入“冒号”，再输入“wq！”（注意有个感叹号），回车。</p>
-
-<p>下面把文件添加到svn：（有一个错误的演示）</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">svn add index.php</pre>
-
-
-<p>再提交（commit）到服务器：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">svn commit -m 'add index.php for show a demo'</pre>
-
-
-<p>但我遇到了错误，返回的信息告诉我不能提交文件进入版本库，查看sian的文档才知道这个版本库只能存放版本目录，i就是我需要再建立一个目录，而且名字是数字，表示这是几号版本，文件可以放入那些目录中。那就新建一个1号版本吧：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro demoproject$ mkdir 1
-dawncold@tianzhenmatoMacBook-Pro demoproject$ mv index.php 1/
-dawncold@tianzhenmatoMacBook-Pro demoproject$ svn add 1/
-A         1
-A         1/index.php
-dawncold@tianzhenmatoMacBook-Pro demoproject$ svn commit -m 'add ver_1 and index file index.php'
-svn: 提交失败(细节如下): 
-svn: 丢失了预定增加的“/Users/dawncold/Documents/Project/demoproject/index.php”
-dawncold@tianzhenmatoMacBook-Pro demoproject$ ls
-1
-dawncold@tianzhenmatoMacBook-Pro demoproject$ svn add *
-svn:  警告: “1”已纳入版本控制
-dawncold@tianzhenmatoMacBook-Pro demoproject$ cd 1/
-dawncold@tianzhenmatoMacBook-Pro 1$ ls
-index.php
-dawncold@tianzhenmatoMacBook-Pro 1$ svn add *
-svn:  警告: “index.php”已纳入版本控制
-dawncold@tianzhenmatoMacBook-Pro 1$ svn commit
-svn: 提交失败(细节如下): 
-svn: 无法使用外部编辑器获得日志信息；考虑设置环境变量 $SVN_EDITOR，或者使用 --message (-m) 或 --file (-F) 选项
-svn: 没有设置 SVN_EDITOR，VISUAL 或 EDITOR 环境变量，运行时的配置参数中也没有 “editor-cmd” 选项
-dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
-验证“https://svn.sinaapp.com:443”的服务器证书时出错: 
-- 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
-证书信息: 
-- 主机名称: *.sinaapp.com
-- 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
-- 发行者: Equifax Secure Certificate Authority, Equifax, US
-- 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
-(R)拒绝，(t)暂时接受，或(p)永远接受？t
-增加           1
-增加           1/index.php
-传输文件数据.
-提交后的版本为 1。</pre>
-
-
-<p>4。查看效果：</p>
-
-<p>部署完成后就能查看效果了，由于我们只有一个版本，这就是默认版本了，查看地址为：<a href="http://demoproject.sinaapp.com/"><a href="http://demoproject.sinaapp.com/">http://demoproject.sinaapp.com/</a></a></p>
-
-<p> </p>
-
-<p>总结一下，这是SAE的快速之旅，代码的部署方式使用的SVN命令行，你也许不喜欢这样，喜欢GUI的SVN部署方式，这当然也没有问题，sina的文档还是比较全面的。刚刚也看到了helloworld这样的例子，看来我白写了呢。希望等SAE出现Python的版本后我再去体验！</p>
+<p>还有20天了，真不知道当初设想的几个小理念能够实现多少，但也别失望，我还成功转型了呢，这个寒假收获将会颇丰！</p>
 
 		
 		
@@ -710,11 +583,11 @@ dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
   
 
 
-<time datetime="2011-08-09T17:01:00+08:00" pubdate data-updated="true">Aug 9<span>th</span>, 2011</time></div>
+<time datetime="2012-02-06T22:19:00+08:00" pubdate data-updated="true">Feb 6<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/cloud/'>cloud</a>, <a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/sae/'>sae</a>, <a class='category' href='/blog/categories/svn/'>svn</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/zhuan-xing/'>转型</a>
 
 
 </div>
@@ -726,50 +599,20 @@ dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/08/mysqldb-have_wcscoll-redefined/">
+		<a href="/blog/2012/02/06/firstly-study-ruby/">
 		
-			安装MySQLdb出现HAVE_WCSCOLL重定义问题的解决方法</a>
+			开学Ruby</a>
 	</h2>
 	<div class="entry-content">
-		<p>问题就是这样了：</p>
+		<p>先从官方文档那里找各种资料学习，已经在amazon上买书了，买了本rails应用的书，还买了两本考系统架构师的书，再就是想买一本讲ruby语言的书，很可惜amazon上没货，要是从非amazon商家买的话需要支付高昂的快递费，于是从淘宝上找了家靠谱的商家，还有满49包邮（幸亏这本书是51，包邮了）</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">[root@wodeyitian MySQL-python-1.2.3]# python setup.py install
-running install
-running bdist_egg
-running egg_info
-writing MySQL_python.egg-info/PKG-INFO
-writing top-level names to MySQL_python.egg-info/top_level.txt
-writing dependency_links to MySQL_python.egg-info/dependency_links.txt
-reading manifest file 'MySQL_python.egg-info/SOURCES.txt'
-reading manifest template 'MANIFEST.in'
-warning: no files found matching 'MANIFEST'
-warning: no files found matching 'ChangeLog'
-warning: no files found matching 'GPL'
-writing manifest file 'MySQL_python.egg-info/SOURCES.txt'
-installing library code to build/bdist.linux-x86_64/egg
-running install_lib
-running build_py
-copying MySQLdb/release.py -&gt; build/lib.linux-x86_64-2.7/MySQLdb
-running build_ext
-building '_mysql' extension
-gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info=(1,2,3,'final',0) -D__version__=1.2.3 -I/usr/include/mysql -I/usr/local/include/python2.7 -c _mysql.c -o build/temp.linux-x86_64-2.7/_mysql.o -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv
-在包含自 _mysql.c：36 的文件中:
-/usr/include/mysql/my_config.h:1062:1: 警告：“HAVE_WCSCOLL”重定义
-在包含自 /usr/local/include/python2.7/Python.h：8 的文件中，
-                从 pymemcompat.h：10，
-                从 _mysql.c：29:
-/usr/local/include/python2.7/pyconfig.h:887:1: 警告：这是先前定义的位置
-gcc -pthread -shared build/temp.linux-x86_64-2.7/_mysql.o -L/usr/lib64/mysql -L/usr/lib64 -lmysqlclient_r -lz -lpthread -lcrypt -lnsl -lm -lpthread -lssl -lcrypto -o build/lib.linux-x86_64-2.7/_mysql.so
-/usr/bin/ld: cannot find -lmysqlclient_r
-collect2: ld 返回 1
-error: command 'gcc' failed with exit status 1
-</pre>
+<p>对了，今天在amazon上买书是因为收到了amazon前段时间送的满100送20优惠券，对于我这种很喜欢在amazon上买技术书籍的书虫来说这类活动太好了，以后多多参加！</p>
 
+<p>说废话太多了，今天断断续续看了这里的教程，基本想要按照讲得做，看完一半了，明天把剩下弄完！</p>
 
-<p>也不算什么解决方法吧，就是缺失一些组件，安装了mysql-devel就好了：</p>
+<p>教程地址：<a href="http://pine.fm/LearnToProgram/"><a href="http://pine.fm/LearnToProgram/">http://pine.fm/LearnToProgram/</a></a>  </p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">yum install mysql-devel.x86_64</pre>
-
+<p>ruby的中文参考文档页：<a href="http://www.ruby-lang.org/zh_cn/documentation/"><a href="http://www.ruby-lang.org/zh_cn/documentation/">http://www.ruby-lang.org/zh_cn/documentation/</a></a></p>
 
 		
 		
@@ -789,11 +632,11 @@ error: command 'gcc' failed with exit status 1
   
 
 
-<time datetime="2011-08-08T14:35:00+08:00" pubdate data-updated="true">Aug 8<span>th</span>, 2011</time></div>
+<time datetime="2012-02-06T00:40:00+08:00" pubdate data-updated="true">Feb 6<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/mysqldb/'>MySQLdb</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/amazon/'>amazon</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/taobao/'>taobao</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

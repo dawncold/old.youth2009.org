@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="实际上一无所有是假的，只是我失去了一些东西──一个专门给她的网站、两个专门给她的邮箱、一个了解她的本子、一些思绪。或者可以简单地说，我在emotion这方面又变得一无所有了。上次我说出一无所有是什么时候呢？忘了。不过值得庆幸的是这两次都是针对同一个人，我还是很专一的。 &hellip;">
+	<meta name="description" content="在服务器上找了好久也没看到pear包的存在，于是下载重装。 wget http://pear.php.net/go-pear.phar php ./go-pear.phar ./pear install XXXX(XXXX就是要新加入的扩展库名称) 根据提示修改一些参数即可， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,16 +79,20 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/03/25/i-have-nothing-again/">
+		<a href="/blog/2011/06/01/install-pear/">
 		
-			我又变得一无所有</a>
+			安装PEAR</a>
 	</h2>
 	<div class="entry-content">
-		<p>实际上一无所有是假的，只是我失去了一些东西──一个专门给她的网站、两个专门给她的邮箱、一个了解她的本子、一些思绪。或者可以简单地说，我在emotion这方面又变得一无所有了。上次我说出一无所有是什么时候呢？忘了。不过值得庆幸的是这两次都是针对同一个人，我还是很专一的。</p>
+		<p>在服务器上找了好久也没看到pear包的存在，于是下载重装。</p>
 
-<p>可能我们每个人心理都有这样一个人，她/他是你的第一个真正喜欢的人，然而只有很少一部分人能够把这种喜欢转化为爱，接着转化为婚姻。至于婚姻之后是什么，我想不到。虽然如此，但生活还要继续。只有一小部分人会去脱离生活。我们大多数还是慢慢寻找、探索。</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">wget http://pear.php.net/go-pear.phar 
+php ./go-pear.phar 
 
-<p>这就是青春中不可磨灭的一部分吧：）</p>
+./pear install XXXX(XXXX就是要新加入的扩展库名称)</pre>
+
+
+<p>根据提示修改一些参数即可，其中比较重要的是最后的include_path这个参数，要确保这里面包含了pear的目录，否则用pear安装上的扩展就不好运行了，比如我的PhpDocumentor就是如此，好在最后加入到了path中，phpdocumentor就能用了。</p>
 
 		
 		
@@ -108,11 +112,11 @@
   
 
 
-<time datetime="2011-03-25T18:06:00+08:00" pubdate data-updated="true">Mar 25<span>th</span>, 2011</time></div>
+<time datetime="2011-06-01T13:26:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/lian-ai/'>恋爱</a>, <a class='category' href='/blog/categories/ai-qing/'>爱情</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>, <a class='category' href='/blog/categories/qing-chun/'>青春</a>
+	<a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -124,14 +128,19 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/03/23/time-plan/">
+		<a href="/blog/2011/05/30/js-data-object-in-four-browers/">
 		
-			这段时间的规划</a>
+			四种浏览器下的JS日期对象</a>
 	</h2>
 	<div class="entry-content">
-		<p>很简单，放弃很多不用的东西，专心研究操作系统以及相关的数据结构实现，手头上有《现代操作系统》、《系统程序员成长计划》、《一个操作系统的实现》、《Unix编程艺术》、汇编学习书籍、敏捷开发方法。放弃PHP这方面，不过有些冲突的是最近要做一个基于PHP+MySQL的网站出来，而且还得进行后期的维护，前端特效也得忙活，还好有几个人能分担一下工作。</p>
+		<p>测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：</p>
 
-<p>只是这看起来有限的时间内，我该如何安排阅读、实践呢？！这是我很头疼的问题。</p>
+<pre class="prettyprint linenums bush:jscript" lang="jscript">var da = '2000-01-01 00:00:00';
+var da_array = da.split(' ');
+var da_1 = da_array[0].split('-');
+var da_2 = da_array[1].split(':');
+alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
+
 
 		
 		
@@ -151,11 +160,11 @@
   
 
 
-<time datetime="2011-03-23T22:24:00+08:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2011</time></div>
+<time datetime="2011-05-30T22:20:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/os/'>OS</a>, <a class='category' href='/blog/categories/shi-jian-guan-li/'>时间管理</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
+	<a class='category' href='/blog/categories/date/'>date</a>, <a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -167,20 +176,14 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/03/22/study-time-mangement-from-os/">
+		<a href="/blog/2011/05/30/getyear-in-js/">
 		
-			从OS的角度学习时间管理</a>
+			js的Year</a>
 	</h2>
 	<div class="entry-content">
-		<p>OS的重要性不想再赘述，不过对于一个物理硬件，好的OS能够更大程度发挥其性能，这其中绝对不能缺乏好的设计模式以及优秀的各种调度算法。这里的一切几乎都是编程的理想学习材料，不过对于这样庞大的材料需要好好解读，否则可能根本领悟不到其中的真谛。</p>
+		<p>js中有个获取当前年的函数，叫getYear()，但我测试的时候没有单独让它显示出来看看，只是当成一个最大值限制使用，测试了一个值发现正确，就不再管它了，后来测试的时候总是不对，再一看，那个值竟然是111，怪不得我输入一个年份都显示对了呢，现在都是2xxx年，随便一个就比111大不少了……</p>
 
-<p>时间管理是我个人一直推崇的一种必备技能，自己也看过几本这方面的书，不过都不得要领，感觉书中讲得很多都无法在现在社会环境中普遍适应，所以读着读着就感觉那是作者在说教了。</p>
-
-<p>那么在优秀的OS架构中我们除了能够学到高超的编程技巧外，还可以对里面的一些概念进行抽象，使其能够应用到更多的方面中来，比如我感觉有些东西就能够应用到时间管理上！</p>
-
-<p>这里先说一点，以后如果有新的体会再分享。</p>
-
-<p>目前在单核心的CPU中，OS还是只让CPU在某个时刻只允许处理1条指令，那么我们人也应该如此。你每天要做很多事情，但你只有一个大脑，虽然这个大脑的工作效率非常高，复杂度也远远高于OS的任何调度算法之和，但一次只处理一件事的思想还是应该采纳的。传说有人做过实验，当然是传说，不知道出处。如果同时做多件事情，所需要的时间会比一件件做多出30%，这已经不是一个小数目了。这条经验告诉我们，日常工作中应该集中力量完成当前的这件事情，然后才是下一件，否则你看上去像是在并发执行多项任务，最后实际算下来多花了很多时间，这样就很难保证质量了。而且人类和机器不太一样，人类容易遗忘，机器和我们一样需要记住某些已经计算过的数据，不过机器有PCB，我们有什么呢？读书的话应该是读书笔记吧，其他方面就是备忘录了，总之要保持单一工作就好了！</p>
+<p>目前那个函数已经被废弃了，取而代之的是getFullYear()，这次就正常了：）</p>
 
 		
 		
@@ -200,11 +203,11 @@
   
 
 
-<time datetime="2011-03-22T22:51:00+08:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2011</time></div>
+<time datetime="2011-05-30T13:56:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/os/'>OS</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/shi-jian-guan-li/'>时间管理</a>
+	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -216,12 +219,16 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/03/20/this-blog-should-be-post-here/">
+		<a href="/blog/2011/05/29/project-is-rushing/">
 		
-			这段本应是青春</a>
+			项目在冲刺</a>
 	</h2>
 	<div class="entry-content">
-		<p><span style="text-decoration: line-through;"><a href="http://ningxin.org/?p=558"><a href="http://ningxin.org/?p=558">http://ningxin.org/?p=558</a></a></span> 不多解释。</p>
+		<p>看着日期就要到最后提交的日子了，这几天一直都在写最后的几个功能，昨天写的是活动功能，基本上完工了吧，只是没有一个很好的展示效果。今天主要做做基础通知功能，这个功能完成后就能把以前的很多模块产生的消息应用起来，首页也有一个不断抓取消息的语句。其实还是接口抓取啦，不知道那些大型网站，比如新浪微博是如何做这个的，可能也是如此吧。</p>
+
+<p>其实这样想来，做一个即使聊天的东西也就是这样吧，不断从一个接口抓取消息，不断向一个地方发送消息即可，只是若这样实现，会不会对数据库的压力非常大呢？也许还有更好的办法处理即时消息，比如NoSQL？</p>
+
+<p>这两天睡眠质量很不好，早上都是5点多起来，晚上差不多11点睡下，时长和高中的日子差不多了，不过白天竟然没有困意，只是偶尔感觉很饿，不知道该买些什么样的吃得放在身边：）</p>
 
 		
 		
@@ -241,11 +248,11 @@
   
 
 
-<time datetime="2011-03-20T22:51:00+08:00" pubdate data-updated="true">Mar 20<span>th</span>, 2011</time></div>
+<time datetime="2011-05-29T06:48:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/qing-gan/'>情感</a>, <a class='category' href='/blog/categories/qing-chun/'>青春</a>, <a class='category' href='/blog/categories/qing-chun/'>青春</a>
+	<a class='category' href='/blog/categories/di-tu-ying-yong/'>地图应用</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/wang-zhan/'>网站</a>
 
 
 </div>
@@ -257,20 +264,24 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/03/19/fully-communicate-is-everything-s-foundation/">
+		<a href="/blog/2011/05/24/thoughts-for-software-outsourcing/">
 		
-			充分地交流是一切的基础</a>
+			对软件外包专业的感想</a>
 	</h2>
 	<div class="entry-content">
-		<p>人的思维能力是无法控制的，看到某个事务一定会有自己的某些见解，当然有些人可能会表达出来，有些人只会自己想想而已。但就是这样的普遍性很容易造成人与人之间的误会。</p>
+		<p>我将从以下三个方面简要谈一下对“软件外包”专业的感想</p>
 
-<p>她不认为我是真正喜欢她的，而这点我比谁都清楚真相。她之所以这样认为是看到了我写给她的一些文字，其中我写到过她看起来像是一个替代品，是为了减轻上面一个女生带给我的痛苦感。至此，她就在根本上否定了我做的所有努力，而且一直都不赞成我们两人在一起。</p>
+<p>    认识</p>
 
-<p>其实这中间是有不少内容没有写出来的，毕竟我不是写小说或者严谨的论证过程，所有背景都得给出。这样只看这一点确实容易让人产生歧义，当然产生误会就在所难免。产生误会并不是最可怕的，最可怕的是让这种误会不断放大阻碍了其他优点。然而能够解决这个问题的唯一途径就是充分地交流。有机会相互针对某个问题交流一下，或许就不会认为这是问题，甚至还可能是些美好的东西。</p>
+<p>        我眼中的软件外包专业与其定义差不多──将非核心业务外包到劳动力相对本国较低的其他国家，从而达到降低劳动成本提高产品价值的目的。然而我想强调一下这个词──“非核心业务”，从这里就已经定性，软件外包的主要工作就是做一些产品中不涉及核心的部分，这让大部分以精英自居的大学生们感到有些可惜，有点怀才不遇的味道，我起初也是这样想的，不过现在的想法稍微有了些改变──在基础不太牢固的时候过分涉及核心业务会让自己深陷细节，比如在研究凸包算法的时候，大脑中本应充满数学逻辑，然而却因为语法问题不能继续下去，最终可能会走向选择语言的一条奇怪的道路上去。也就是说，我现在希望把软件外包作为强化内功的一个过程，同时能够接触到不少国外先进的管理方法，这些应该是以后走向管理岗位必不可少的经验，我不太希望一直走技术的道路。</p>
 
-<p>至此想要结束全文，不过需要提醒的是──不要因为“充分”而变得“面面俱到”，就是说不要深入到对方的各个方面，要是连吃饭、睡觉、洗澡这样的事情都要亲自过问，我并不认为这是一种关怀，可能感觉你太不自信，你怕不过问这些使得她感觉你在冷落她；反过来说，如果她对于你这样事无巨细地咨询还感觉不错的话，那我也只能认为她是一个不太会生活的女孩，自己的事情还都要比尔帮忙。</p>
+<p>    感悟</p>
 
-<p>其中的权重，各自斟酌吧：）</p>
+<p>        现在也快到了学期末，两年的学习就要走过。这两年我都想用“紧张”这个词来总结，大一的时候我就是因为爱好这个专业才来的，相比其他不太爱好这个，或者被调剂过来的同学，我有了很大的优势，加上以前有些基础，一开始学起来并不太疲劳，如果说是疲劳，基本上是自己让自己疲劳了──不断学习业界的新技术，把握业界的发展方向等，同时对哲学、摄影很有兴趣，看了不少这方面的书。对于国内的教材，我一概不看，主要原因是担心错误，当然也错过了为数不多的几本经典，但我相信这些损失远不如看错误内容带来的损害大。在大二，我的方向有些许的转变，技术上转到了互联网和移动应用这方面，和他们的发展分不开，更重要的是我的想法能够很快在这上面变成现实，相比研究一个图论上的算法，我更喜欢去追逐用户的需求，在合适的平台上搭建应用来满足他们，这让我感到我在不断追逐什么。正因如此，我个人对编程语言都有了一种倾向，偏好选择自由、简洁的那种──PHP、Python、JavaScript、Perl、LISP等（后两者还不会），而且我异常讨厌Java和.NET，我感觉他们这两种语言已经被设计得过于复杂，构建企业应用当然需要很多安全方面的考虑，但对于个人的灵感来说，他们太过于庞大了。本来我的一个想法用PHP可能几分钟就能上线，而用JSP，很可能我会卡在那只叫Tom的猫身上（Tomcat），我并没有贬低后者，当然前者PHP需要的Apache或者Nginx配置起来也不是说一帆风顺。还有一点就是自由的东西一般都是免费的，可能也因此GNU依然活跃。</p>
+
+<p>    希望    </p>
+
+<p>        记得前段时间读过的《REWORK》这本书（中文版译作《重来》）中提到“计划都是垃圾”的概念，就是说你永远都不可能预期明天会是什么样子。在我看来，“希望”也是如此，这或多或少就是在讲我自己的未来将会是什么样子的，这不也是在自己给自己指定计划吗？！本来不打算写一些空洞的东西，因为这是真实的感悟嘛，不过可以当作自己的愿景，能够帮助改善这个项目的话，还是值得说点。希望以后自己的连续时间段多一些，这样有助于产品的开发，学过操作系统的都了解，一次函数调用就要中断，越是中断越不能让指令流水，总体速度根本不可能上去，我想开发也是如此；希望学校中能够用贴近现实的方法传授知识，至少应该从实用性上再次考量一下。</p>
 
 		
 		
@@ -290,11 +301,11 @@
   
 
 
-<time datetime="2011-03-19T23:16:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2011</time></div>
+<time datetime="2011-05-24T23:24:00+08:00" pubdate data-updated="true">May 24<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/chong-fen-jiao-liu/'>充分交流</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>
+	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/ruan-jian-wai-bao/'>软件外包</a>, <a class='category' href='/blog/categories/qing-chun/'>青春</a>
 
 
 </div>
@@ -306,20 +317,16 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/03/19/function-interface-evolvement/">
+		<a href="/blog/2011/05/21/sometime-i-do-care/">
 		
-			一个函数的接口演化</a>
+			我有时候太在乎</a>
 	</h2>
 	<div class="entry-content">
-		<p>那天下午打算做个推荐饭菜的应用出来，上机课期间把雏形做好了，现在除了不能自由添加数据以外别的我还都满意，当然不谈UI设计。参观地址：<a href="http://food.wodeyitian.com"><a href="http://food.wodeyitian.com">http://food.wodeyitian.com</a></a></p>
+		<p>我太在乎什么呢？本来想限定一下范围，但想想再写上去一个范围似乎总不如现在这样，在面儿上谈谈我所<a title="在乎" href="http://www.youth2009.org/tag/%E5%9C%A8%E4%B9%8E/">在乎</a>的一类。</p>
 
-<p>介绍一下其中有一个地方的函数接口，就是用来显示“已经有的主食和菜”的两列列表，数据库中分成两个表，一个是主食，一个是菜，相关字段都是一样的──id,name,price加入price是为了提前设计下一个版本，似乎稍微有点过度设计？一开始这样设计没什么问题，相应的PHP函数是available($foodtype,&amp;$array_xx)；这样传递的数组进入后把数据push到数组中，再利用数组显示到网页上，这个函数本来并不负责echo，foodtype分别是数据库中的表名，这样传递进mainfood或者dish就能分别抓取相应表的数据。</p>
+<p>不过我并不总在乎什么东西，所以加了一个限定──“有时候”，就是在面对某几类问题的时候很在乎。现在想来，如果我是在各个方面都在乎的人，或者在各个方面都不在乎的人，会比现在这样有时候<a title="在乎" href="http://www.youth2009.org/tag/%E5%9C%A8%E4%B9%8E/">在乎</a>好很多吧？至少在成功的概率上前两者确实差不多，都是小概率，而中间是极其丰富的大概率。生活中就是如此充斥着各种各样的钟形曲线。</p>
 
-<p>接着发现主食中有些可以作为单独一顿饭的东西，比如西红柿鸡蛋面这个，光吃这一种就可以了，再推荐饭菜不合理，于是考虑了主食分级，加入面条类、包子类等，这样数据库中就增加了两个字段──parent、occupy。parent是保存它上级的id，occupy是标记是否可独占，如果独占就不会再推荐菜了。相应的函数就演化成了两个，因为目前不想让dish中的数据分级，所以原来的处理dish表中的数据还是可以的，mainfood中的数据需要一个单独的处理函数，索性叫echo_mf吧，参数还是传递进去一个数组，这个函数有两个主要功能──一个是把这个分级结构显示到页面上，另一个是把所有的子项目和没有子项目的父项目添加到数组中，前台shuffle这个数组来随机显示一个。</p>
-
-<p>我想下一步很可能是这两个函数的整合，即dish也分级后，这两个函数就都可以整合成第二个的样子，因为他们的工作就是一样的了。</p>
-
-<p>现在的mainfood输出还有些问题，原本想的是这样──有米饭、包子等类别，其中包子类中还有各种各样的包子，而米饭就是这一种，所以按照概率来算，父类（米饭、包子）被选择的概率应该是一样的，而只有选到了包子才会去各种包子中选择一个，就是所有选择各种包子的概率之和应该与米饭同样大，现在却不是这样，我把最末端的数据和没有子项目的数据一并放在一起，这样显得冷落了米饭等没有子项目的父类……到底要不要改回来呢？再看看吧。</p>
+<p>我太在乎似乎是因为我喜欢去想一些事情，思考的时间比实践多一些，这究竟是不是有好处我搞不懂，但我确实感觉这是让我容易产生<a title="在乎" href="http://www.youth2009.org/tag/%E5%9C%A8%E4%B9%8E/">在乎</a>心理的主要动力！曾经想做个现实中的人，但总也把握不到，到底怎么才算是<a title="现实" href="http://www.youth2009.org/tag/%E7%8E%B0%E5%AE%9E/">现实</a>呢？找一个出来我观察一下他的行为跟着学学也好：）</p>
 
 		
 		
@@ -339,11 +346,11 @@
   
 
 
-<time datetime="2011-03-19T07:50:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2011</time></div>
+<time datetime="2011-05-21T22:15:00+08:00" pubdate data-updated="true">May 21<span>st</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/jie-kou/'>接口</a>
+	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/zai-hu/'>在乎</a>
 
 
 </div>
@@ -355,14 +362,12 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/03/14/love-can-invent-many-things/">
+		<a href="/blog/2011/05/18/notice-get-methdo-in-php/">
 		
-			爱情可以创造很多东西</a>
+			PHP中的Get注意一则</a>
 	</h2>
 	<div class="entry-content">
-		<p>传为佳话的是Cisco的创始人，为了更好与妻子交流创造了路由器！其他的例子也不胜枚举。我只是想说爱情在这个创造活动中确实起到了一种催化剂的作用，一个人的能力我们说是无限量的，但表现出来的是固定的能力，爱情这种能够让人快乐到极点或者痛苦到极点的东西加入进来，能够迅速将潜能发挥出来。你在一种快乐的环境中创造性思维也是非常活跃的，或者说在一种痛苦环境中，你想报复XXX，这类思维也能被加倍。</p>
-
-<p>所以，珍惜爱情带给我们的创造性思维吧！</p>
+		<p>用一个页面接收Get过来的参数时要注意这点：如果接受了0这个参数，一定要确保是在$_GET前面加了强制转换为int的标志，否则如果是0，PHP可能会当成是假，没有任何值被保存到变量中：）</p>
 
 		
 		
@@ -382,11 +387,11 @@
   
 
 
-<time datetime="2011-03-14T22:55:00+08:00" pubdate data-updated="true">Mar 14<span>th</span>, 2011</time></div>
+<time datetime="2011-05-18T22:48:00+08:00" pubdate data-updated="true">May 18<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/cisco/'>Cisco</a>, <a class='category' href='/blog/categories/chuang-zao/'>创造</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/ai-qing/'>爱情</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
+	<a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -398,18 +403,16 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/03/13/a-classmate-is-hit-by-money/">
+		<a href="/blog/2011/05/17/thanks-to-keynote-in-mac/">
 		
-			身边同学被钱打到了</a>
+			感谢一下Mac上的软件Keynote</a>
 	</h2>
 	<div class="entry-content">
-		<p>最近经历了这样一件事：身边一位男同学找了一个女朋友，但不知道怎么回事女朋友离他而去了。这在大学里是极其常见的事情，我几乎都没什么兴趣看了。不过听说原因是女方家长用金钱来要挟女方让她和我这位同学分手，我本以为一个在热恋中的女生怎么会看中这些钱呢？那时候的女生不都是拿着爱情当饭吃的么？如果真是这样我也就没什么可写了，结果是我这位同学被甩了……后来经过我合理猜测加上道听途说，女方家长拿出了近千万资金来诱惑她！</p>
+		<p>今天下午去图书馆借书，被同学叫道了报告厅，说是mac做的一个ppt无法在学校的投影仪上播放，<a title="mac" href="http://www.youth2009.org/tag/mac/">mac</a>电脑的接口不能接到投影仪上，于是打算转成office支持的格式试试，我又担心失去很多绚丽的特效，不过听说只是一些图片而已，所以就放心了。</p>
 
-<p>这确实又验证了那句话──不是女人矜持，只是背叛的筹码不够大。一个小女生带着上千万资金，仔细花，找个不差的人家嫁了，也能够用下半辈子了吧！</p>
+<p>到了报告厅，已经在讲了，迂回到第一排，看到了11.6寸的air。</p>
 
-<p>可这样一闹，我这位同学就像是坠入无底洞一样，伤心、失落、绝望……所有能够形容一个人崩溃的词都能够拿来用了。这种伤痛不是本人当然理解不到，但也能猜测得差不多，谁没有追过几个女生而且又被拒绝啊？有的甚至恋爱几年后非常成熟的感情都被抛弃，且不说抛弃了需要复出多大的勇气，就是光回忆一下以前快乐过的时光都不可能这样忍痛做出决定吧，除非以前都是假的，都是在相互利用：（</p>
-
-<p>今晚正式和这位同学展开了劝告活动，我一向是用乐观的态度劝解别人，当然这也是因为我不见棺材不落泪的精神（甚至见到了棺材也不落泪）一直在自己身上实践的结果，最终引导他向着一个目标前进，不知道他现在是怎么想得，应该是很复杂。除非你是一个很伟大的人，对于感情这东西说拿起就拿起说放下就放下，这种人肯定对所有事情都能拿的起放得下，也应该很容易成功！向我这样优柔寡断的人，就是受罪的命～当然和我一样的人们，你们也要不断努力，各个方面！</p>
+<p>keynote有功能是export，一看格式还真不少──视频、ppt、图片、html、pdf、ipod果断选择了ppt的格式，几乎能用了。我也没怎么用过keynote，只是用了一段时间的pages，看来<a title="mac" href="http://www.youth2009.org/tag/mac/">mac</a>下的<a title="软件" href="http://www.youth2009.org/tag/%E8%BD%AF%E4%BB%B6/">软件</a>做得还都很人性化。感谢一下这些为用户着想的工程师们！！！</p>
 
 		
 		
@@ -429,11 +432,11 @@
   
 
 
-<time datetime="2011-03-13T22:13:00+08:00" pubdate data-updated="true">Mar 13<span>th</span>, 2011</time></div>
+<time datetime="2011-05-17T17:07:00+08:00" pubdate data-updated="true">May 17<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/ai-qing/'>爱情</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>, <a class='category' href='/blog/categories/jin-qian/'>金钱</a>
+	<a class='category' href='/blog/categories/keynote/'>keynote</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -445,16 +448,14 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/03/12/a-little-tired/">
+		<a href="/blog/2011/05/17/no421-error-in-ftp/">
 		
-			有些累了</a>
+			Ftp出现421错误</a>
 	</h2>
 	<div class="entry-content">
-		<p>探索一件事情的真相总会让一个人变得很累，不过这件事带来的无限好奇是能够吸引着探索下去的唯一动力。就像我现在在紧张地学习着各种语言──汇编、C++、Java、Haskell、Python、PHP、MySQL……我自己都不相信我能一次学习这些东西，然而书就在那里，静静地等着我。为何我会感受到这样强烈的紧迫感？我相信多年之后这会成为所谓的回忆，不过我真得不知道能够有多年之后回忆今天的兴趣。</p>
+		<p>由于编码问题，只能看清楚反馈回来的错误号是421，查询之后了解到这是因为ftp服务器限制同一个ip的连接数导致，于是在ftp的配置文件中找到最大连接数这个设置，由原来的5改成了500，重启ftp，没问题了。实际上我猜重启一下ftp也能解决问题的，5个最大连接数对于我自己来说也许就够用了吧。</p>
 
-<p>很多人看我都似乎是一个伟大的人──几乎我什么都会，不过这确实像一个惨痛的经历，我也是牺牲了部分才换来了这些，没有什么值不值得，到头来可能还要再回来把空缺的补齐。</p>
-
-<p>不明白计算机的人们学习计算机都会问学哪个语言好啊，但明白计算机的人都很难做出选择，我觉得哪个都有用，然而也明白学习这些都是一通百通的，精通任何一门都是强者，按照我这样下去，可能刚刚学熟练了好几门语言却又不知道该用哪一个了。像这样不明不白地学习还不如在使用中慢慢总结。就象是程序中函数调用一样，用到哪个函数就跑去展开调用，然后再回来；一个个都是如此，一个程序的一生就在这些函数的调用中慢慢进行下去，之道最后的return或者退出。这和一个人的一生又有什么差别呢？！</p>
+<p> </p>
 
 		
 		
@@ -474,11 +475,11 @@
   
 
 
-<time datetime="2011-03-12T20:30:00+08:00" pubdate data-updated="true">Mar 12<span>th</span>, 2011</time></div>
+<time datetime="2011-05-17T13:09:00+08:00" pubdate data-updated="true">May 17<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/xue-xi/'>学习</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/pi-lao/'>疲劳</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>, <a class='category' href='/blog/categories/bian-cheng/'>编程</a>, <a class='category' href='/blog/categories/ji-suan-ji/'>计算机</a>, <a class='category' href='/blog/categories/yu-yan/'>语言</a>
+	<a class='category' href='/blog/categories/ftp/'>ftp</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -490,16 +491,28 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/03/10/short-study-plan/">
+		<a href="/blog/2011/05/16/what-i-give-up-is-too-little/">
 		
-			一个短期学习计划</a>
+			我放弃得还不算多</a>
 	</h2>
 	<div class="entry-content">
-		<p>中午别人的午睡时间我用来学习Java；晚上睡觉前的时间看看相关杂志什么的，比如敏捷开发。</p>
+		<p>从内心来讲，我想要成为一个全能型的人，但很多事情证明了我基本上做不到这一点，我自己也认识到了做到这一会变得异常疲劳，就象是现实中的完美主义者一样，生活得很累，而且一个<a title="全能" href="http://www.youth2009.org/tag/%E5%85%A8%E8%83%BD/">全能</a>型的人往往难以相信别人，自己的地位是无庸置疑的，一旦和自己意见相左就完全认为是错误的，这点虽然在我身上没有导致致命错误，但我仍然是要激励避免的。</p>
 
-<p>下午要是有空就2小时Java，2小时C++</p>
+<p>总之，我更想做一个<a title="单一" href="http://www.youth2009.org/tag/%E5%8D%95%E4%B8%80/">单一</a>一点的人，技术上专注几个领域，甚至是一个领域；生活上崇尚简洁的<a title="实用" href="http://www.youth2009.org/tag/%E5%AE%9E%E7%94%A8/">实用</a>主义，甚至极简主义也想试试。</p>
 
-<p>去学校学习汇编、《软件设计师》、Haskell</p>
+<p>现在看来我的实用主义多是建立在拥有之上的，因为生活中的很多需要的、不太需要的东西（当然我这里并没有说完全不需要的东西我也拥有，因为在我看来没有一个人完全不需要的东西，只是暂时用不到而已，所以我一般说成不太需要）都拥有了，几乎是到了别无所求的程度，才进化到了<a title="实用" href="http://www.youth2009.org/tag/%E5%AE%9E%E7%94%A8/">实用</a>主义。这一点也能够从我不太迷恋游戏证明，看到周围不少人总是迷恋这些东西，可能是因为这些对于他们还算是新鲜的吧，对于我，可能是几年之前的产物了。虽然游戏的吸引程度在不断进步，但一个事物对于一个人的吸引力并不是随着技术的投入不断增大的，应该是有个上升的曲线，之后到达顶峰就趋于平缓。我想我应该到了那个平缓地带：）</p>
+
+<p>自我批判基本结束，那么我的<a title="单一" href="http://www.youth2009.org/tag/%E5%8D%95%E4%B8%80/">单一</a>化路线又该如何进行下去？</p>
+
+<p>可能在以前的博文中提到过类似的观点，我是没有习惯翻看自己以前写得东西的（至少现在还没有），所以我宁愿重写都不愿看后总结。</p>
+
+<p>技术上的<a title="单一" href="http://www.youth2009.org/tag/%E5%8D%95%E4%B8%80/">单一</a>化其实很难操作，只能凭借自己可能拥有的慧眼了，如果能够看到几年之后的发展方向那就没什么可说的了，现在应该没大有人喜欢做一些和潮流相反的事情，至少在我国是这样的，除了很少的领域，大部分都是按照一条清晰的脉络走下去，概括地讲可能还是围绕着资本的流动吧。</p>
+
+<p>不过惭愧地讲，我现在都不认为自己具备这样的慧眼，我也从没去锻炼，或许以后有吧。就目前的情况来看，我只能根据大概的市场潮流找出哪些东西是人们普遍关注的，未来怎么样很难说。但在现代软件技术这么发达的今天，未来的概念被弱化了，软件编写周期不断缩减，以个人为主体的超小型团队在不断涌现，他们有激情能够快速迭代产品，正因为如此才催生了<a title="移动互联网" href="http://www.youth2009.org/tag/%E7%A7%BB%E5%8A%A8%E4%BA%92%E8%81%94%E7%BD%91/">移动互联网</a>这样的新鲜事物（也不算新鲜了），这些在以前都难以预测，只是发生了我拿出来说说而已。</p>
+
+<p>不过值得庆幸的是我大致上找到了自己喜欢的技术领域，其实是一种愿景──自由、灵活。这一点无论在生活上还是其他方面，绝大多数人还是不希望被禁锢在他人的世界中，喜欢独自追逐点什么吧？至少在小时候是这样想过。那么技术上的自由、灵活呢？仍然难以描述，不过至少我能描述一下不<a title="自由" href="http://www.youth2009.org/tag/%E8%87%AA%E7%94%B1/">自由</a>的那些是什么样──比如java，看起来太正式、繁琐，但这并不阻碍它成为世界上最热门的编程语言。我希望的像是脚本语言那样随心所欲，能够快速构建产品的东西，当然就是Python、ROR等等。有时候还掺杂了不少个人生活上的原则，我不喜欢配置服务器，也担心哪天数据丢失了怎么办，所以我希望以后能够在云上做点什么，那里不需要管配置，可以全心投入到产品中，只是在国内，<a title="云" href="http://www.youth2009.org/tag/%E4%BA%91/">云</a>仍然太难到达终端用户手中。</p>
+
+<p>扯的稍微有点多，可能文章并没有分析出来How To，但写文章是梳理思绪的过程。剩下的就只有去做了！</p>
 
 		
 		
@@ -519,11 +532,11 @@
   
 
 
-<time datetime="2011-03-10T14:07:00+08:00" pubdate data-updated="true">Mar 10<span>th</span>, 2011</time></div>
+<time datetime="2011-05-16T23:33:00+08:00" pubdate data-updated="true">May 16<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/xue-xi/'>学习</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
+	<a class='category' href='/blog/categories/quan-neng/'>全能</a>, <a class='category' href='/blog/categories/dan-[?]/'>单一</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/shi-yong/'>实用</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/yi-dong-hu-lian-wang/'>移动互联网</a>, <a class='category' href='/blog/categories/zi-you/'>自由</a>
 
 
 </div>

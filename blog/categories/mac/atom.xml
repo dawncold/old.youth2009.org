@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/mac/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-01T03:46:30+08:00</updated>
+  <updated>2013-12-03T21:11:39+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -23,6 +23,31 @@
 <p>Couldn’t modify partition map because file system verification failed error</p>
 
 <p>此时可以Verify一下这个硬盘，如果有错误就repair，相信这里没问题的都应该可以再合并了吧，我这里还是出问题了，在提示repair complete之后出现了一个错误，好像是boot什么的错误，建议我reformat，再弄backup file，backup file too many？？记不清楚了，再合并一次分区，不行的话果断erase掉，再backup，反正现在backup都用不上，趁着清理一下也好。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[beautiful PS1]]></title>
+    <link href="http://www.youth2009.org/blog/2012/11/07/beautiful-ps1/"/>
+    <updated>2012-11-07T21:12:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/11/07/beautiful-ps1</id>
+    <content type="html"><![CDATA[<p>今天又加了不少红绿颜色的字在各种输出上，看起来更加顺眼了，无奈server的网关被人修改了，我们也不敢轻易改动，因为编辑们正在使用，怕改了他们不能访问了。。。那个负责人到我们下班都没回来，真不知道干嘛去了。</p>
+
+<p>研究了一下这种颜色是怎么回事，原来是在一个字符串前后加上颜色标记，就和html的标记一样，只不过颜色标记更加让人难以理解。临下班我想研究一下如何做一个autocomplete的veil出来，可惜都搜不到什么资料，可能这不是什么很值得人们写的东西吧，竟是些讲按Tab可以complete，但不说你怎么写code可以实现这种，猜想是有什么hook可以监听tab事件吧：）后来在<a href="http://hi.baidu.com/widebright/item/5f92a4cf65c79709c710b2ac" target="_blank">这里</a>找到一篇文章，介绍了一点原理和写法，准备翻翻我那本《Shell脚本学习指南》看看有没有帮助。</p>
+
+<p>研究这个的副产品就是看到了PS1的介绍，可以搭配出漂亮而功能强大的PS1。</p>
+
+<p>其实PS1就是一个字符串，Ta规定了提示符的那一行会怎么显示出来以及显示什么，这里面你可以写一些函数调用、配色什么的，terminal会自动帮你调用，然后就是显示出来。给你看个展示效果：</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/CoN0yCPa/medish.jpg" alt="PS1 pic" /></p>
+
+<p>是不是很好看呢？再看看让Ta显示成这个样的PS1字符串长什么样吧：</p>
+
+<p><code>bash
+export PS1='\[$(tput bold)\]\[$(tput setaf 3)\]\u\[$(tput setaf 2)\] [\t] \[$(tput setaf 1)\]\W=&gt;\\$\[$(tput sgr0)\] '
+</code></p>
+
+<p>相关颜色可不是那么好记忆的如果你用\033、\032这样标记的话，推荐个网站，你可以直接设置好效果，然后复制过来就可以了：<a href="http://www.kirsle.net/wizards/ps1.html" target="_blank"><a href="http://www.kirsle.net/wizards/ps1.html">http://www.kirsle.net/wizards/ps1.html</a></a></p>
 ]]></content>
   </entry>
   
@@ -123,22 +148,6 @@ sudo rm -rf \
 <pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean NO
 killall Dock</pre>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[开启Dock的堆栈功能]]></title>
-    <link href="http://www.youth2009.org/blog/2012/01/13/open-the-stack-function-of-dock/"/>
-    <updated>2012-01-13T21:56:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/01/13/open-the-stack-function-of-dock</id>
-    <content type="html"><![CDATA[<p>打开Terminal，输入：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock</pre>
-
-
-<p>然后回车（return），等Dock再次出现后，在已打开程序图标上滚动鼠标滚轮或者手势模拟滚轮，就能看到这个程序打开的子窗口或者子程序，很过瘾好用。</p>
-
-<p>我的MacOS：Lion</p>
 ]]></content>
   </entry>
   

