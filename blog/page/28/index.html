@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="其实根本没必要写成文章的，eclipse的插件安装不外乎：打开Install Software的界面，输入某个插件的地址，然后一路next EGit的官方下载页面是：http://www.eclipse.org/egit/download/ 官方推荐的用于eclipse安装地址是：http:// &hellip;">
+	<meta name="description" content="这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １. &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,89 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/02/24/git-for-project/">
+		
+			为项目搭建git版本控制</a>
+	</h2>
+	<div class="entry-content">
+		<p>这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １.安装git就不再多说了，我似乎把redhat中的一个仓库加入了rpm，直接yum install -y git安装了，不如下载源代码安装的git版本高，我这里似乎只有１.５的版本。 ２.我使用了gitosis来管理所有的项目，所以：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">yum install python-setuptools
+git clone git://eagain.net/gitosis.git
+cd gitosis
+python setup.py install </pre>
+
+
+<p>３.安装好了就可以初始化gitosis，还得先建立一个git的用户来做一些工作：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">useradd -m -s /bin/bash -d /home/git git
+passwd git #给git用户加上密码
+su - git
+cd ~
+gitosis-init &lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径</pre>
+
+
+<p>４.修改一些权限，据说很重要，为了安全：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">chmod 755 /home/git
+chmod 700 /home/git/.ssh
+chmod 644 /home/git/.ssh/authorized_keys 
+chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update </pre>
+
+
+<p>５.在本地用git做最后的工作，修改gitosis的配置文件并上传：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">git clone ssh://git@DOMAIN:8888/gitosis-admin.git
+cd gitosis-admin
+vi gitosis.conf
+#增加新的项目名字和相关配置
+[group AWAD]#ＡＷＡＤ组
+writable = wodeyitian_web　　　#仓库中的名字
+members = dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员名字就是rsa共钥中最后的成员名字</pre>
+
+
+<p>好像和那个pub文件的名字要一样，那样的pub文件放在和这个conf文件在一起的keydir文件夹下. 6.完成这里后提交一下再push到远程服务器上即可完成：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">git commit -a -m '建立了新的项目'
+git push</pre>
+
+
+<p>7.已经全部完成，在本地已经可以用了，不过还想说一下，如果做开源项目，还是放到github上比较好玩！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-24T17:37:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -663,49 +746,6 @@ $ git commit --amend</pre></div>
 
 
 	<a class='category' href='/blog/categories/jquery/'>jQuery</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/biao-dan-yan-zheng/'>表单验证</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/01/27/mysql-auto-increasement-column/">
-		
-			Mysql中自增字段的注意</a>
-	</h2>
-	<div class="entry-content">
-		<p>一定要设定为NULL或者一个正确的int，一般是用作id的，看到有个自增选项我就选上了，没想到以后就无法插入数据了，Google到了解决方法，原来我的插入SQL是以前写的，那时候还没有设定id字段，现在要改改了，在那个字段的位置用NULL代替，反正是自动计算的嘛，我就不再劳神帮它算了……</p>
-
-<p>感谢<a href="http://www.realfex.com/archives/427" target="_blank">这里</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-27T23:45:00+08:00" pubdate data-updated="true">Jan 27<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/zi-zeng-zi-duan/'>自增字段</a>
 
 
 </div>

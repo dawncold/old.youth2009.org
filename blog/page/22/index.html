@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="在python的函数参数中，可以在变量名称前面加一个或者两个星号代表不一样的变量类型： 在stack overflow上看到有人问这两个的区别了，就转载过来答案吧： If the form *identifier is present, it is initialized to a tuple &hellip;">
+	<meta name="description" content="对于一个file，调用tell能够知道现在的文件位置。seek是改变文件位置。 比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完tell我又使用了seek(0), &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,85 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/09/seek-and-tell-in-python/">
+		
+			简要写写python的file中的tell和seek</a>
+	</h2>
+	<div class="entry-content">
+		<p>对于一个<a title="file" href="http://www.youth2009.org/tag/file/">file</a>，调用<a title="tell" href="http://www.youth2009.org/tag/tell/">tell</a>能够知道现在的文件位置。<a title="seek" href="http://www.youth2009.org/tag/seek/">seek</a>是改变文件位置。  比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完<a title="tell" href="http://www.youth2009.org/tag/tell/">tell</a>我又使用了<a title="seek" href="http://www.youth2009.org/tag/seek/">seek</a>(0),这样文件位置就回到开头了，下次再调用readline就会输出原来第一行的内容了，这应该是很容易理解的。不明白可以亲自试试。</p>
+
+<pre class="prettyprint linenums bush:python" lang="python">from sys import argv
+
+script, input_file = argv
+
+def print_all(f):
+   print f.read()
+
+def rewind(f):
+   f.seek(0)
+
+def print_a_line(line_count, f):
+   print line_count, f.readline()
+
+current_file = open(input_file)
+
+print "First let's print the while file:\n"
+print_all(current_file)
+
+print "Now let's rewind, kind of like a tape."
+rewind(current_file)
+
+print "Let's print three lines:"
+
+current_line = 1
+print_a_line(current_line, current_file)
+print "current_pos:%d" % current_file.tell()
+rewind(current_file)
+
+current_line += 1
+print_a_line(current_line, current_file)
+print "current_pos:%d" % current_file.tell()
+
+current_line += 1
+print_a_line(current_line, current_file)
+print "current_pos:%d" % current_file.tell()
+</pre>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-09T15:12:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/file/'>file</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/seek/'>seek</a>, <a class='category' href='/blog/categories/tell/'>tell</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -603,53 +682,6 @@ print y</pre>
 
 
 	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/jian-chi/'>坚持</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/06/21/git-config-for-github-com/">
-		
-			针对github的两条设置</a>
-	</h2>
-	<div class="entry-content">
-		<p>刚刚看到github的help页面上有两条关于git的设置，是针对github用的：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">git config --global github.user USERNAME 
-git config --global github.token TOKEN</pre>
-
-
-<p> 其中的TOKEN要从github网站的帐户管理中得到，而且这个TOKEN和密码相关，如果你更改了密码，需要重新设置。但我还不清楚设置了这个对于github的提交有什么特殊的好处，等以后用用再说吧。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-21T16:32:00+08:00" pubdate data-updated="true">Jun 21<span>st</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

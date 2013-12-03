@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="突然发现mysql无法用localhost连接进去，而用127.0.0.1可以。 linux下是这样的，如果用localhost连接是走的socket路线，用127.0.0.1走的是tcp路线。 修改了php.ini中的mysql.default_socket，值为mysql.sock的文件路径 &hellip;">
+	<meta name="description" content="本来做了个一个todo的app感觉python写web app真得好快啊，于是想加入一个user的功能，这样注册的用户就可以写自己的todo了，不过这么一加才感觉到web.py真不好用了，特别是session，还有templates也不怎么好用，官方的文档不知道为何也不给个完整版的， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,49 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/05/06/webpy-frameworks-is-not-convinent-to-use/">
+		
+			web.py真不好用</a>
+	</h2>
+	<div class="entry-content">
+		<p>本来做了个一个todo的app感觉python写web app真得好快啊，于是想加入一个user的功能，这样注册的用户就可以写自己的todo了，不过这么一加才感觉到web.py真不好用了，特别是session，还有templates也不怎么好用，官方的文档不知道为何也不给个完整版的，api只是写出来了，但基本都不说是什么作用，想清楚知道运行机制那就得看源代码了，还好不“那么”长！</p>
+
+<p>哎，暂时就放一下web.py吧！到头来过度依赖框架绝对不是什么好事，嗯，不是什么好兆头现在的我！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-06T16:31:00+08:00" pubdate data-updated="true">May 6<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/webpy/'>webpy</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -843,67 +886,6 @@ osascript -e 'tell app "TextMate" to reload bundles'</pre>
 
 
 	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/textmate/'>textmate</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/02/15/set-timezone-in-rails/">
-		
-			设置Rails中的timezone</a>
-	</h2>
-	<div class="entry-content">
-		<p>Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。</p>
-
-<p>没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1</p>
-
-<pre class="prettyprint linenums bush:ruby" lang="ruby">config.active_record.default_timezone = :local  
-config.time_zone = 'Beijing'  </pre>
-
-
-<p>为何我说差不多呢，原因如下：</p>
-
-<pre class="prettyprint linenums bush:ruby" lang="ruby">irb(main):001:0&gt; Fpwd.store(1)
- Fpwd Load (0.2ms)  SELECT "fpwds".* FROM "fpwds" WHERE "fpwds"."user_id" = 1 LIMIT 1
- SQL (2.7ms)  DELETE FROM "fpwds" WHERE "fpwds"."user_id" = 1
-  (0.1ms)  begin transaction
-Binary data inserted for `string` type on column `randstring`
- SQL (429.6ms)  INSERT INTO "fpwds" ("created_at", "randstring", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", Wed, 15 Feb 2012 14:29:35 CST +08:00], ["randstring", "87e685e0d2ab37143fae248083822ffea600f577"], ["updated_at", Wed, 15 Feb 2012 14:29:35 CST +08:00], ["user_id", 1]]
-  (1.4ms)  commit transaction
-=&gt; #&lt;Fpwd user_id: 1, randstring: "87e685e0d2ab37143fae248083822ffea600f577", created_at: "2012-02-15 06:29:35", updated_at: "2012-02-15 06:29:35"&gt;</pre>
-
-
-<p>最后的返回值那里还是晚了8小时，我用sqlite3查看的时候时间是正常的，所以这里怀疑是ruby的时间问题了，好在app中已经正常！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-15T14:37:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/timezone/'>timezone</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

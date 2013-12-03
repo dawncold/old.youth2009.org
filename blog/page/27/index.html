@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="那天下午打算做个推荐饭菜的应用出来，上机课期间把雏形做好了，现在除了不能自由添加数据以外别的我还都满意，当然不谈UI设计。参观地址：http://food.wodeyitian.com 介绍一下其中有一个地方的函数接口，就是用来显示“已经有的主食和菜”的两列列表，数据库中分成两个表，一个是主食， &hellip;">
+	<meta name="description" content="OS的重要性不想再赘述，不过对于一个物理硬件，好的OS能够更大程度发挥其性能，这其中绝对不能缺乏好的设计模式以及优秀的各种调度算法。这里的一切几乎都是编程的理想学习材料，不过对于这样庞大的材料需要好好解读，否则可能根本领悟不到其中的真谛。 时间管理是我个人一直推崇的一种必备技能， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,55 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/03/22/study-time-mangement-from-os/">
+		
+			从OS的角度学习时间管理</a>
+	</h2>
+	<div class="entry-content">
+		<p>OS的重要性不想再赘述，不过对于一个物理硬件，好的OS能够更大程度发挥其性能，这其中绝对不能缺乏好的设计模式以及优秀的各种调度算法。这里的一切几乎都是编程的理想学习材料，不过对于这样庞大的材料需要好好解读，否则可能根本领悟不到其中的真谛。</p>
+
+<p>时间管理是我个人一直推崇的一种必备技能，自己也看过几本这方面的书，不过都不得要领，感觉书中讲得很多都无法在现在社会环境中普遍适应，所以读着读着就感觉那是作者在说教了。</p>
+
+<p>那么在优秀的OS架构中我们除了能够学到高超的编程技巧外，还可以对里面的一些概念进行抽象，使其能够应用到更多的方面中来，比如我感觉有些东西就能够应用到时间管理上！</p>
+
+<p>这里先说一点，以后如果有新的体会再分享。</p>
+
+<p>目前在单核心的CPU中，OS还是只让CPU在某个时刻只允许处理1条指令，那么我们人也应该如此。你每天要做很多事情，但你只有一个大脑，虽然这个大脑的工作效率非常高，复杂度也远远高于OS的任何调度算法之和，但一次只处理一件事的思想还是应该采纳的。传说有人做过实验，当然是传说，不知道出处。如果同时做多件事情，所需要的时间会比一件件做多出30%，这已经不是一个小数目了。这条经验告诉我们，日常工作中应该集中力量完成当前的这件事情，然后才是下一件，否则你看上去像是在并发执行多项任务，最后实际算下来多花了很多时间，这样就很难保证质量了。而且人类和机器不太一样，人类容易遗忘，机器和我们一样需要记住某些已经计算过的数据，不过机器有PCB，我们有什么呢？读书的话应该是读书笔记吧，其他方面就是备忘录了，总之要保持单一工作就好了！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-22T22:51:00+08:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/os/'>OS</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/shi-jian-guan-li/'>时间管理</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -702,89 +751,6 @@ infixl 6 +</pre>
 
 
 	<a class='category' href='/blog/categories/bookmark-chrome/'>bookmark chrome</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/02/24/git-for-project/">
-		
-			为项目搭建git版本控制</a>
-	</h2>
-	<div class="entry-content">
-		<p>这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １.安装git就不再多说了，我似乎把redhat中的一个仓库加入了rpm，直接yum install -y git安装了，不如下载源代码安装的git版本高，我这里似乎只有１.５的版本。 ２.我使用了gitosis来管理所有的项目，所以：  </p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">yum install python-setuptools
-git clone git://eagain.net/gitosis.git
-cd gitosis
-python setup.py install </pre>
-
-
-<p>３.安装好了就可以初始化gitosis，还得先建立一个git的用户来做一些工作：  </p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">useradd -m -s /bin/bash -d /home/git git
-passwd git #给git用户加上密码
-su - git
-cd ~
-gitosis-init &lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径</pre>
-
-
-<p>４.修改一些权限，据说很重要，为了安全：  </p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">chmod 755 /home/git
-chmod 700 /home/git/.ssh
-chmod 644 /home/git/.ssh/authorized_keys 
-chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update </pre>
-
-
-<p>５.在本地用git做最后的工作，修改gitosis的配置文件并上传：  </p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">git clone ssh://git@DOMAIN:8888/gitosis-admin.git
-cd gitosis-admin
-vi gitosis.conf
-#增加新的项目名字和相关配置
-[group AWAD]#ＡＷＡＤ组
-writable = wodeyitian_web　　　#仓库中的名字
-members = dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员名字就是rsa共钥中最后的成员名字</pre>
-
-
-<p>好像和那个pub文件的名字要一样，那样的pub文件放在和这个conf文件在一起的keydir文件夹下. 6.完成这里后提交一下再push到远程服务器上即可完成：  </p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">git commit -a -m '建立了新的项目'
-git push</pre>
-
-
-<p>7.已经全部完成，在本地已经可以用了，不过还想说一下，如果做开源项目，还是放到github上比较好玩！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-24T17:37:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

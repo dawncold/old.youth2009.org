@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="刚刚还在盼着工资到账呢，结果都十点多了，估计都睡了吧，我又对于肉包子事件愤愤不平，所以就开始bloging了，写了不少，突然看到95568来的短信，一般都是资金变动，果然工资到账了，扣除了15块的个税。这一下子就体验到了缴税的感觉，个税3500起征，我交了多出来的那500块税钱，按照3%算， &hellip;">
+	<meta name="description" content="我们今天终于上线了，给编辑们用了一下，我还不知道他们的反馈如何，应该还不错吧，但很可惜由于公司内部网络的问题，我们的服务器不是所有人都能访问到，好像听说有个部门访问不到，具体问了一下工程部说改个gateway就能行了，当时正在抓图，就没动，下周再修改一下试试吧。 据说下周要开始主攻特辑这部分了， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,51 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/02/online/">
+		
+			Online</a>
+	</h2>
+	<div class="entry-content">
+		<p>我们今天终于上线了，给编辑们用了一下，我还不知道他们的反馈如何，应该还不错吧，但很可惜由于公司内部网络的问题，我们的服务器不是所有人都能访问到，好像听说有个部门访问不到，具体问了一下工程部说改个gateway就能行了，当时正在抓图，就没动，下周再修改一下试试吧。</p>
+
+<p>据说下周要开始主攻特辑这部分了，eric说我可能会很忙了，因为一直是我再搞特辑，哎，说特辑真别扭，原来我们一直在用topic，现在竟然换一个说法。</p>
+
+<p>明天打算吃火锅，早晨早去买点菜，晚上happy一把。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-02T20:17:00+08:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/life/'>life</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -524,60 +569,6 @@
 
 
 	<a class='category' href='/blog/categories/datetime/'>datetime</a>, <a class='category' href='/blog/categories/pytz/'>pytz</a>, <a class='category' href='/blog/categories/timezone/'>timezone</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/09/nat-practical/">
-		
-			NAT实践</a>
-	</h2>
-	<div class="entry-content">
-		<p>昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3.20这台container来处理，相应的response也会返回过去。这样就做到了服务隔离。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to 10.0.3.20
-</span><span class='line'>sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT --to 200.200.200.25
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样就把进入的请求都发到了10.0.3.20这台container上去处理。</p>
-
-<p><img src="http://pic.yupoo.com/dawncold0/CkkIbzDr/medish.jpg" alt="nat" /></p>
-
-<p>只默认开了一个nginx，就这样的效果。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-09T14:09:00+08:00" pubdate data-updated="true">Oct 9<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/iptables/'>iptables</a>, <a class='category' href='/blog/categories/lxc/'>lxc</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

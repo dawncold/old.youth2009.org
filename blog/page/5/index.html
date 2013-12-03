@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="看到python捕获SIGINT event的文档，上面说signal这个包里的东西的功能是set handler for asynchronous event，于是背了下这两个词——asynchronous和synchronous，简称分别是async和sync，由于这两个词比较长， &hellip;">
+	<meta name="description" content="以前搜到过octpress的isolate功能，今天终于用上了，真TMD好用（除了操作稍微麻烦一点） 使用isolate的注意：filename是除了日期外的名字，有空格得用短杠隔开，比如我的这篇就得用rake isolate[use-octopress-isolate-function]才可以 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,51 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/29/use-octopress-isolate-function/">
+		
+			Use Octopress Isolate Function</a>
+	</h2>
+	<div class="entry-content">
+		<p>以前搜到过octpress的isolate功能，今天终于用上了，真TMD好用（除了操作稍微麻烦一点）</p>
+
+<p>使用isolate的注意：filename是除了日期外的名字，有空格得用短杠隔开，比如我的这篇就得用<code>rake isolate[use-octopress-isolate-function]</code>才可以。还有啊，我希望isolate这个功能自动点不知道靠不靠谱，就是new_post就顺带着执行isolate，如果你一般不修改以前的post那还是可行的，实在修改的话只好integrate过来再isolate需要修改的那篇修改喽。</p>
+
+<p>这样的话generate的速度会很快。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-29T08:27:00+08:00" pubdate data-updated="true">Jan 29<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -537,47 +582,6 @@ synchronous：  美 ['sɪŋkrənəs]
 
 
 <time datetime="2012-12-29T18:04:00+08:00" pubdate data-updated="true">Dec 29<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/12/20/ie6/">
-		
-			Ie6</a>
-	</h2>
-	<div class="entry-content">
-		<p>这几天都卡在ie6的兼容问题上了，都要上线了才想到要去用ie来看下效果，前一次看的时候没什么问题，还很欣慰，怎么会这么安全？最近用ie6、360、搜狗一看，直接无法接受了，但原网站的最大用户群就是360，现在搞不清楚360用的是不是ie6的内核，虽然它自称是ie8的内核了，但我今天下载了用仍然是ie6，然后他又会提示你可以升级到ie8内核，真是流氓啊。我们现在如果能够把网站调整到ie6下也正常显示，就基本不怕ie7、8、9了，相信不管一款软件多么垃圾，随着版本的提升，也会越来越好，要不然根本都不可能升级，也违背社会的发展啊。。。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-20T23:26:00+08:00" pubdate data-updated="true">Dec 20<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 

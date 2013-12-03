@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][: &hellip;">
+	<meta name="description" content="Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。 没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1 config. &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,67 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/02/15/set-timezone-in-rails/">
+		
+			设置Rails中的timezone</a>
+	</h2>
+	<div class="entry-content">
+		<p>Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。</p>
+
+<p>没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1</p>
+
+<pre class="prettyprint linenums bush:ruby" lang="ruby">config.active_record.default_timezone = :local  
+config.time_zone = 'Beijing'  </pre>
+
+
+<p>为何我说差不多呢，原因如下：</p>
+
+<pre class="prettyprint linenums bush:ruby" lang="ruby">irb(main):001:0&gt; Fpwd.store(1)
+ Fpwd Load (0.2ms)  SELECT "fpwds".* FROM "fpwds" WHERE "fpwds"."user_id" = 1 LIMIT 1
+ SQL (2.7ms)  DELETE FROM "fpwds" WHERE "fpwds"."user_id" = 1
+  (0.1ms)  begin transaction
+Binary data inserted for `string` type on column `randstring`
+ SQL (429.6ms)  INSERT INTO "fpwds" ("created_at", "randstring", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", Wed, 15 Feb 2012 14:29:35 CST +08:00], ["randstring", "87e685e0d2ab37143fae248083822ffea600f577"], ["updated_at", Wed, 15 Feb 2012 14:29:35 CST +08:00], ["user_id", 1]]
+  (1.4ms)  commit transaction
+=&gt; #&lt;Fpwd user_id: 1, randstring: "87e685e0d2ab37143fae248083822ffea600f577", created_at: "2012-02-15 06:29:35", updated_at: "2012-02-15 06:29:35"&gt;</pre>
+
+
+<p>最后的返回值那里还是晚了8小时，我用sqlite3查看的时候时间是正常的，所以这里怀疑是ruby的时间问题了，好在app中已经正常！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-15T14:37:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/timezone/'>timezone</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -576,85 +637,6 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
 
 
 	<a class='category' href='/blog/categories/amazon/'>amazon</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/taobao/'>taobao</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/02/05/update-ruby-on-mac/">
-		
-			更新Mac下的ruby</a>
-	</h2>
-	<div class="entry-content">
-		<p>刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！</p>
-
-<p>修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/bin中的情况，如果不能自动创建链接过去的话，麻烦是一个方面，关键是后面做的一些工作基本都白费了，可能你运行的一个软件是在/usr/bin中存在的，那样就不会自动搜索到你用brew安装的那个了。详情找找brew的工作原理吧：)</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">sudo chown -R `whoami` /usr/local</pre>
-
-
-<p>首先我用了大家推荐的Homwbrew管理工具，这里安装完homebrew后需要在自己的bash配置文件中加入新的path：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">export PATH=/usr/local/bin:$PATH</pre>
-
-
-<p>把这行加入到bash_profile中吧，这样就能让homebrew发挥作用了，你首先就能用上更新了的程序而不是从默认路径查找。（如果以前用了MacPorts的话你也会和我一样看到MacPorts的export命令，要去掉他们，或者你把Homebrew的export命令写在下面，这样能覆盖掉，既然我已经删除了MacPorts，所以干脆删除掉！）</p>
-
-<p>关闭terminal，重新加载刚才的bash_profile，这样就能用Homebrew了。</p>
-
-<p>首先安装git，自己和Homwbrew都用得到：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">brew install git</pre>
-
-
-<p>接着更新一下Homebrew的源：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">brew update</pre>
-
-
-<p>然后安装了ruby后就能用gem来更新系统了：</p>
-
-<p>安装ruby：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">brew install ruby</pre>
-
-
-<p>更新系统：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">gem update --system</pre>
-
-
-<p>后面的安装rails等操作就可以用gem来做了，看看自己的ruby版本，已经是1.9.3p0(2011-10-30)</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-05T00:00:00+08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/homebrew/'>homebrew</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

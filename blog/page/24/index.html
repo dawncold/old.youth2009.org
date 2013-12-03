@@ -7,9 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码: #! /usr/bin/python
-# -*- coding:utf-8 -*-
-# Filename : inherit.py class Person: def &hellip;">
+	<meta name="description" content="刚刚得知pickle的意思是泡菜，而这篇文章可不打算讲解泡菜的制作方法，只是说明一下python语言中的pickle模块。 这个模块说是能够存储任何python对象，而且还能取出来再使用，有pickle和cPickle两个模块，功能是一样的，只是后者用C语言实现，据说速度比前者快1000倍。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +74,70 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/05/pickle-in-python/">
+		
+			Python中的泡菜</a>
+	</h2>
+	<div class="entry-content">
+		<p>刚刚得知pickle的意思是泡菜，而这篇文章可不打算讲解泡菜的制作方法，只是说明一下python语言中的pickle模块。 这个模块说是能够存储任何python对象，而且还能取出来再使用，有pickle和cPickle两个模块，功能是一样的，只是后者用C语言实现，据说速度比前者快1000倍。那么我们就用后者吧！！！</p>
+
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+# -*- coding:utf-8 -*-
+# Filename : pickling.py
+
+import cPickle as p
+
+shoplistfile = 'shoplist.dat'
+
+shoplist = ['apple mac book pro','iphone4']
+
+f = file(shoplistfile,'w')
+p.dump(shoplist,f)
+f.close()
+
+print 'ok,we can read the data from '+shoplistfile+':'
+
+f = file(shoplistfile)
+from_file = p.load(f)
+print from_file</pre>
+
+
+<p>首先定义了一个列表，想要把列表存储到文件中，再打开取出列表。 p作为cPickle的别名了。用dump方法把shoplist存储到f指向的文件中。 后面用load方法从f指向的文件取出数据给了from_file这个变量，而取出的就是我们存起来的那个列表，于是再输出。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-05T18:59:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/pickle/'>pickle</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -566,47 +628,6 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
 
 
 	<a class='category' href='/blog/categories/di-tu-ying-yong/'>地图应用</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/wang-zhan/'>网站</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/05/18/notice-get-methdo-in-php/">
-		
-			PHP中的Get注意一则</a>
-	</h2>
-	<div class="entry-content">
-		<p>用一个页面接收Get过来的参数时要注意这点：如果接受了0这个参数，一定要确保是在$_GET前面加了强制转换为int的标志，否则如果是0，PHP可能会当成是假，没有任何值被保存到变量中：）</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-18T22:48:00+08:00" pubdate data-updated="true">May 18<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

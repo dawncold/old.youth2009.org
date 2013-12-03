@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="如果你的网站该去解决dog pile effect了，那应该有不小的PV了。今天看暴走漫画的架构设计，那是应对1000W PV的一个设计，当然架构这东西每家都不一样，可能这个就他们自己用着适合。里面提到了dog pile effect，这个的意思是：在多request去cache中拿数据的时候， &hellip;">
+	<meta name="description" content=" amazoing的两个命令，pushd和popd 相关介绍：pushd &amp; popd pushd /etc可以到etc目录下，工作完了后再用popd就回到了刚刚离开的目录。 Jun 13th, 2013 dev, work@honovation ">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,51 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/06/13/pushd-and-popd/">
+		
+			Pushd-and-popd</a>
+	</h2>
+	<div class="entry-content">
+		<p>amazoing的两个命令，pushd和popd</p>
+
+<p>相关介绍：<a href="http://en.wikipedia.org/wiki/Pushd_and_popd">pushd &amp; popd</a></p>
+
+<p><code>pushd /etc</code>可以到etc目录下，工作完了后再用<code>popd</code>就回到了刚刚离开的目录。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-13T19:50:00+08:00" pubdate data-updated="true">Jun 13<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -606,90 +651,6 @@
 
 
 <time datetime="2013-03-16T20:40:00+08:00" pubdate data-updated="true">Mar 16<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/app/'>app</a>, <a class='category' href='/blog/categories/sorted/'>sorted</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/03/16/build-up-env-for-sorted/">
-		
-			Build-up-env-for-sorted</a>
-	</h2>
-	<div class="entry-content">
-		<p>找到了一篇教程，开始构建jailbreaken app的环境。</p>
-
-<p>基本需要的工具</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">THEOS</span><span class="o">=</span>/opt/theos
-</span><span class='line'>svn co http://svn.howett.net/svn/theos/trunk <span class="nv">$THEOS</span>
-</span><span class='line'>curl -s https://dl.dropboxusercontent.com/u/3157793/ldid &gt; <span class="nv">$THEOS</span>/bin/ldid; chmod +x <span class="nv">$THEOS</span>/bin/ldid
-</span><span class='line'>brew install dpkg<span class="o">(</span>如果出错安不上dpkg，那就先update一下brew，我就遇到这么个问题<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>用theos模板创建项目，<code>$THEOS/bin/nic.pl</code>，这会在当前目录中创建你的项目，选择模板类型，然后起名字之类的，填好就ok。</p>
-
-<p>在创见出来的项目中有Makefile，里面有一个地方需要注意，就是<code>xxxx_FILES=</code>这里，后面的m和mm文件是你当前所有的，如果你自己加了新的，你需要手动添加进去。</p>
-
-<p>再加两个环境变量</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">SDKVERSION</span><span class="o">=</span>6.1
-</span><span class='line'><span class="nb">export </span><span class="nv">THEOS_DEVICE_IP</span><span class="o">=</span>10.0.0.101
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>目标sdk版本，我用6.1了，后一个是手机的ip，自己弄到一个wifi中吧，后面部署需要。</p>
-
-<p>make&amp;make package，在make的时候不加sudo我会无法make成功。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo make
-</span><span class='line'>sudo make package
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>本目录下的deb就可以放到设备上安装了，安装命令是<code>dpkg -i xxx.deb</code></p>
-
-<p>不过你可以用部署的方式，<code>make package install</code>，他会依赖你刚刚设置的IP部署，但我这里似乎有问题，估计是环境变量的问题，光提示我找不到THEOS_DEVICE_IP</p>
-
-<p>我就scp到了设备上，手动执行了dpkg的命令，然后respring竟然没效果，只好reboot了一下，看到了刚刚的app已经被安装上了！！！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-16T17:40:00+08:00" pubdate data-updated="true">Mar 16<span>th</span>, 2013</time></div>
 	<div class="tags">
 
 
