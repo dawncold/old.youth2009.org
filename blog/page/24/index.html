@@ -7,7 +7,9 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="本以为这个话题我以前似乎说到过，翻了一会日志却没找到。 这是刚刚看Mac下的FIT输入法主页的时候想起来的，主页上有个广告：“5年20万果粉的选择”。20W这个用户量相当大了呢，暂且不说有没有统计问题，这么大的用户量绝非一日之功，再看前面，5年啊！输入法是一个基础性的软件，每天都会用很多次， &hellip;">
+	<meta name="description" content="python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码: #! /usr/bin/python
+# -*- coding:utf-8 -*-
+# Filename : inherit.py class Person: def &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,22 +81,42 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/06/29/everything-need-persistence/">
+		<a href="/blog/2011/06/05/inherit-in-python/">
 		
-			万事唯有坚持</a>
+			Python的继承</a>
 	</h2>
 	<div class="entry-content">
-		<p>本以为这个话题我以前似乎说到过，翻了一会日志却没找到。</p>
+		<p>python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:</p>
 
-<p>这是刚刚看Mac下的FIT输入法主页的时候想起来的，主页上有个广告：“5年20万果粉的选择”。20W这个用户量相当大了呢，暂且不说有没有统计问题，这么大的用户量绝非一日之功，再看前面，5年啊！输入法是一个基础性的软件，每天都会用很多次，坚持开发维护了5年的这样一个软件，不断积累了这么庞大的用户，的确是不一般。真想采访一下他们在这5年来的所感所想。</p>
+<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
+# -*- coding:utf-8 -*-
+# Filename : inherit.py
 
-<p>再看Facebook，2004年2月4日上线，到现在有7年多的时间，稳居世界社交网站第一的宝座；Twitter也是经历过这样的历程。</p>
+class Person:
+   def __init__(self,name,age):
+       self.name = name
+       self.age = age
+       print "init for %s" % self.name
 
-<p>iphone上的应用，愤怒的小鸟，也是在做了很多产品之后继续坚持下去才获得今天的成功；植物大战僵尸的公司，在制作这款游戏时竟然优化了3年，这等坚持，不是一般的！</p>
+   def tell(self):
+       print "name:%s age:%d" % (self.name,self.age)
 
-<p>还有恋爱过程中的各种坚持…</p>
+class Teacher(Person):
+   def __init__(self,name,age,salary):
+       Person.__init__(self,name,age)
+       self.salary = salary
+       print "init for teacher %s" % self.name
 
-<p>总结一下，一个人能否坚持下去其实和这个人是否能够说服自己坚持下去的动力有一定关系，还有一点就是在坚持的过程中由于未来的不可预知性，容易中途放弃。</p>
+   def tell(self):
+       Person.tell(self)
+       print "salary:%d" % self.salary
+
+p = Person('tianzhen',20)
+p.tell()
+
+tea_p = Teacher('zhenzhen',20,1010000000)
+tea_p.tell()</pre>
+
 
 		
 		
@@ -114,11 +136,11 @@
   
 
 
-<time datetime="2011-06-29T21:52:00+08:00" pubdate data-updated="true">Jun 29<span>th</span>, 2011</time></div>
+<time datetime="2011-06-05T18:41:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/jian-chi/'>坚持</a>
+	<a class='category' href='/blog/categories/inherit/'>inherit</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -130,20 +152,12 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/06/27/exam-is-the-worst-thing/">
+		<a href="/blog/2011/06/05/copy-object-in-python/">
 		
-			考试最讨厌了！</a>
+			Python中的复制对象</a>
 	</h2>
 	<div class="entry-content">
-		<p>但愿这是最后一次讨厌的考试。</p>
-
-<p>原来上高中、初中的时候都是在盼望考试的时候能考个高分，而现在却变成对考试能够及格的盼望。其中落差还是挺大的吧。似乎随着我们上学的层次不断提高，我们对考试的要求越来越低了，这不就是我们教育制度的问题么？！虽然如此，我还是严格要求自己，可惜只要不是考试前夕，总也拿不出时间来复习，往往是考试的这几天很疲劳，考过之后成绩还算不错，于是下一年仍然这样准备。</p>
-
-<p>今年考了CET4，但自我感觉很不理想，听力似乎就和没听一样，当然不少人都有这样的感觉，不知道等成绩出来之后及格线会不会往下降低一些呢？对于CET4，我一贯的态度就是能过就行，我不指望给我带来什么好处，过了CET4并没有给英语带来什么提升，不过你要是说过了专业N级，那绝对不一般，只要是属于小众的东西，都是值钱的。</p>
-
-<p>下半年不知道还有没有时间考考软件设计师的证，虽然这个证在企业中用处不大，单至少是本专业国内来说比较高级的认证了，能够拿到总归是要付出一点努力的，我想对于经过大学学习的人来说，努力拿证问题不大，最大的问题可能就是找不到那么多时间来做。真想把自己的空闲时间积累起来一块用啊，可惜不行，似乎时间这种资源是唯一的，不能你想要积累就积累起来，如果允许你积累时间，那么相应地别人的那块时间就必须压缩掉，这样反而很不公平了。或许下个世纪能够突破时间吧！</p>
-
-<p>前两天恰巧遇到一个师兄，吃饭的时候谈起来考试，他说他一直都是裸考的，当时我十分震惊，我只能敬佩这种裸考的勇气，是的，裸考不是说说而已，是需要一定勇气的，我只能说我不具备这样的勇气，我不可能接受不复习去参加考试这样的情况。但我知道这能够反映出一个弱点－－放不下！不知道是哪些环节的原因，我很难放下某件托付给我的事情，很难。所以我现在一般不太想承诺什么事情啦！</p>
+		<p>在python简明教程中找到这样一句话，关于复制复杂python对象的，如果单纯变量名相互赋值可能只是把引用拷贝过去，一旦原对象更改了，目标对象就会出现问题。文章中对于序列、字典这样的拷贝做出了解释，要用分片来复制，但其他对象该怎么做，暂时还不太清除，可能后面会说吧：）</p>
 
 		
 		
@@ -163,11 +177,11 @@
   
 
 
-<time datetime="2011-06-27T13:43:00+08:00" pubdate data-updated="true">Jun 27<span>th</span>, 2011</time></div>
+<time datetime="2011-06-05T16:06:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/cet4/'>CET4</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/fang-bu-xia/'>放不下</a>, <a class='category' href='/blog/categories/shi-jian/'>时间</a>, <a class='category' href='/blog/categories/qi-mo-kao-shi/'>期末考试</a>, <a class='category' href='/blog/categories/luo-kao/'>裸考</a>, <a class='category' href='/blog/categories/ruan-jian-she-ji-shi/'>软件设计师</a>
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -179,343 +193,69 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/06/21/git-config-for-github-com/">
+		<a href="/blog/2011/06/04/reverse-proxy-for-gae/">
 		
-			针对github的两条设置</a>
+			架设GAE的反向代理</a>
 	</h2>
 	<div class="entry-content">
-		<p>刚刚看到github的help页面上有两条关于git的设置，是针对github用的：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">git config --global github.user USERNAME 
-git config --global github.token TOKEN</pre>
-
-
-<p> 其中的TOKEN要从github网站的帐户管理中得到，而且这个TOKEN和密码相关，如果你更改了密码，需要重新设置。但我还不清楚设置了这个对于github的提交有什么特殊的好处，等以后用用再说吧。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-21T16:32:00+08:00" pubdate data-updated="true">Jun 21<span>st</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/06/19/remark-of-tokyo-sonata/">
-		
-			看了《东京奏鸣曲》</a>
-	</h2>
-	<div class="entry-content">
-		<p>我是最不擅长写影评的。</p>
-
-<p>四级之后实在不知道做点什么，于是就找电影看，在VeryCD上看到了这部老一点的片子，就看起来了。</p>
-
-<p>里面主要是围绕着日本人的工作压力之大展开描写的，总是听日语老师说起这些，看来这又一次印证了。在如此之大的工作压力下，很多人会做出一些平时不可能做的事情，简单地讲就是被逼无奈，我想我们也会这样吧，那时自己的生活却要听从别人的安排，十分可悲！！！再加上好友之间往往要再吹嘘一番，家人面前还要极力掩饰着什么。对于一个日本男人来说，这就是压力！</p>
-
-<p>按照这样下去，日本的社会结构似乎在慢慢走向一个很危险的边缘，虽然我们现在还能看到不少世界级的产品存在，但那都是时间积淀出来的结果，近代以来，日本已经没有什么值得让人叹服的世界级产品和公司了吧？当然，我国也是如此，而且更可悲的是，我国都不曾有积淀出来的好产品：（但我国和日本又不太一样，我国的变数还是很大的，以后的机会要比日本多的多。</p>
-
-<p>在日本，还是当一个女人的好：）</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-19T06:57:00+08:00" pubdate data-updated="true">Jun 19<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ya-li/'>压力</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/ri-ben/'>日本</a>, <a class='category' href='/blog/categories/dian-ying/'>电影</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/06/18/thought-of-cet4/">
-		
-			四级的思考</a>
-	</h2>
-	<div class="entry-content">
-		<p>无疑，四级考试又一次让我陷入了一段紧张的生活。虽然短暂，但却深刻。每每这样的考试来临总要担心上一番，最终看来结果却不至于自己原先设想的那样糟糕，有一种峰回路转的感觉。不过可惜的是，我缺乏一种最自己的把握，对自己的估值没有信心，还夹杂着些许的强迫症味道。</p>
-
-<p>每每这种考试过后我可能都回这样总结一番，但总结终归是总结而已，要是能变成指导自己的思想就好了！</p>
-
-<p>让这一切都随风去吧！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-18T21:49:00+08:00" pubdate data-updated="true">Jun 18<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/xin-xin/'>信心</a>, <a class='category' href='/blog/categories/ba-wo/'>把握</a>, <a class='category' href='/blog/categories/jin-zhang/'>紧张</a>, <a class='category' href='/blog/categories/qing-chun/'>青春</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/06/18/m555b-in-windows7-and-mac-os-x/">
-		
-			M555b鼠标在Windows7下的使用</a>
-	</h2>
-	<div class="entry-content">
-		<p>为了减少一个USB接口的占用买了个蓝牙鼠标，当然这是因为我的电脑（mbp13）只有两个USB。但M555b这款鼠标在Mac系统下工作非常好，不过到了windows7下就异常了，根本连不上，刚刚在百度知道中看到一个方法可用，分享一下！</p>
-
-<p>1.在mac系统下删除m555b这个设备。</p>
-
-<p>2.到widnows7下用系统的蓝牙服务扫描到鼠标，然后用触摸板右键点扫描到的鼠标，选属性，在蓝牙服务中勾选“鼠标、键盘驱动HID”这个选项。然后你会发现已经匹配完成了，此时鼠标就能用了。</p>
-
-<p>3.再回到mac下重新加上m555b这个设备就可以了：）</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-18T13:04:00+08:00" pubdate data-updated="true">Jun 18<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/lan-ya/'>蓝牙</a>, <a class='category' href='/blog/categories/shu-biao/'>鼠标</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/06/16/suse-nginx-php-mysql/">
-		
-			配置一台suse服务器</a>
-	</h2>
-	<div class="entry-content">
-		<p>不知道最终能否配置好，先记录下来吧！ 安装了openssl库，但安装nginx的时候还是使用了&mdash;without-http-cache，要不总是提示找不到openssl。默认把nginx安装到了/usr/local/nginx这个地方。 下面是php，我总是配置不好…… <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;"> </span></p>
-
-<p> </p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">tar xvf php-5.2.17.tar.bz2 
-gzip  -cd php-5.2.17-fpm-0.5.14.diff.gz | patch -d php-5.2.17 -p1
-cd php-5.2.17
-./configure --prefix=/usr/local/php \
---with-config-file-path=/usr/local/php/etc \
---with-mysql=/usr/local/mysql/ \
---with-mysqli=/usr/local/mysql/bin/mysql_config \
---with-iconv-dir=/usr/local/ \
---with-jpeg-dir \
---with-png-dir \
---with-zlib \
---with-libxml-dir=/usr/  \
---enable-xml \
---disable-rpath \
---enable-discard-path  \
---enable-bcmath  \
---enable-shmop \
---enable-sysvsem \
---enable-inline-optimization \
---with-curl \
---with-curlwrappers  \
---enable-mbregex \
---enable-fastcgi \
---enable-fpm \
---enable-force-cgi-redirect \
---enable-mbstring  \
---with-mcrypt \
---enable-gd-native-ttf \
---with-openssl \
---with-mhash \
---enable-pcntl  \
---enable-sockets  \
---with-xmlrpc \
---enable-zip \
---enable-soap \
---enable-safe-mode \
---with-gd=/usr/local/gd/
-
-./configure &amp;&amp; make &amp;&amp; make install</pre>
-
-
-<p> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">jpeg8c lib!!!</span> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">libpng lib!!!</span> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">GD_2.XX（直接写&mdash;with-gd容易找不到，就制定好位置（此位置要在安装gd的时候用prefix制定））</span> <span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;"> </span></p>
-
-<p> </p>
-
-<p> </p>
-
-<p> </p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">ln -s /usr/local/lib/libmcrypt.la /usr/lib/libmcrypt.la
-ln -s /usr/local/lib/libmcrypt.so /usr/lib/libmcrypt.so
-ln -s /usr/local/lib/libmcrypt.so.4 /usr/lib/libmcrypt.so.4 
-ln -s /usr/local/lib/libmcrypt.so.4.4.8 /usr/lib/libmcrypt.so.4.4.8 
-ln -s  /usr/local/lib/libmhash.a /usr/lib/libmhash.a  
-ln -s  /usr/local/lib/libmhash.la /usr/lib/libmhash.la  
-ln -s  /usr/local/lib/libmhash.so /usr/lib/libmhash.so 
-ln -s  /usr/local/lib/libmhash.so.2 /usr/lib/libmhash.so.2
-ln -s  /usr/local/lib/libmhash.so.2.0.1 /usr/lib/libmhash.so.2.0.1</pre>
-
-
-<p><span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;"> </span></p>
-
-<p><span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;">删剪了不少内容，终于编译成功了……php啊……(</span></span><span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">make ZEND_EXTRA_LIBS=&lsquo;-liconv&rsquo;</span><span style="color: #555555; font-family: 宋体, 'Arial Narrow', arial, serif; line-height: 28px;">)</span> 缺少相关库的情况请使用/sbin/ldconfig -v 更新一下，先把/usr/local/lib加入/etc/ld.so.conf中再更新！ <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;">make install</span></span> <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;"><span>cp php.ini-dist  /usr/local/php/etc/php.ini </span></span></span> <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;"><span><span> </span></span></span></span></p>
-
-<div style="padding: 0px; margin: 0px;">7、创建php-fpm配置文件，php-fpm是开源社区为php开发的一个补丁，可以平滑变更php.ini，而无需重启php-cgi<br style="padding: 0px; margin: 0px;">  php-fpm.conf文件的详细解释<a style="color: #015f91; text-decoration: none; padding: 0px; margin: 0px;" href="http://php-fpm.org/wiki/Configuration_File">http://php-fpm.org/wiki/Configuration_File</a><br style="padding: 0px; margin: 0px;">  vim /usr/local/php/etc/php-fpm.conf ，使用 :set nu显示行号。<br style="padding: 0px; margin: 0px;">  需要注意的几行，给大家说说<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  (原)41                         &lt;value name=&#8221;listen_address&#8221;&gt;127.0.0.1:9000&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  (改)41                         &lt;value name=&#8221;listen_address&#8221;&gt;/tmp/php-cgi.sock&lt;/value&gt; #个人习惯，比较喜欢使用sock。<br style="padding: 0px; margin: 0px;">  (原)63                 &lt;!&#8211;    &lt;value name=&#8221;user&#8221;&gt;nobody&lt;/value&gt;     &#8211;&gt;#进程的所有者<br style="padding: 0px; margin: 0px;">  (原)66                 &lt;!&#8211;    &lt;value name=&#8221;group&#8221;&gt;nobody&lt;/value&gt;     &#8211;&gt;#进程的所有组，默认都为nobody<br style="padding: 0px; margin: 0px;">  (改)       &lt;value name=&#8221;user&#8221;&gt;nobody&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  (改)       &lt;value name=&#8221;group&#8221;&gt;nobody&lt;/value&gt;  <br style="padding: 0px; margin: 0px;">  59                 &lt;!&#8211;    &lt;value name=&#8221;display_errors&#8221;&gt;0&lt;/value&gt;   &#8211;&gt; #是否显示错误，1为关闭显示错误，0为打开错误显示，调试期间可以打开<br style="padding: 0px; margin: 0px;">  79                             &lt;value name=&#8221;max_children&#8221;&gt;5&lt;/value&gt; #为客户端服务的最大进程数<br style="padding: 0px; margin: 0px;">  86                             &lt;value name=&#8221;StartServers&#8221;&gt;20&lt;/value&gt; #启动时创建的进程数<br style="padding: 0px; margin: 0px;">         &lt;value name=&#8221;MinSpareServers&#8221;&gt;5&lt;/value&gt; #最小空闲进程数<br style="padding: 0px; margin: 0px;">  94                             &lt;value name=&#8221;MaxSpareServers&#8221;&gt;35&lt;/value&gt;#最大空闲进程数<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  (原)107                        &lt;value name=&#8221;request_slowlog_timeout&#8221;&gt;0s&lt;/value&gt; #默认关闭慢查询，建议还是打开，对性能分析有好处<br style="padding: 0px; margin: 0px;">  (改)107                        &lt;value name=&#8221;request_slowlog_timeout&#8221;&gt;5s&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  (原)113                        &lt;value name=&#8221;rlimit_files&#8221;&gt;1024&lt;/value&gt; #设定打开文件的限制<br style="padding: 0px; margin: 0px;">  (改)113                        &lt;value name=&#8221;rlimit_files&#8221;&gt;51200&lt;/value&gt;<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  132                         &lt;value name=&#8221;max_requests&#8221;&gt;5000&lt;/value&gt; #设置大可以接受的请求数<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  137                        &lt;value name=&#8221;allowed_clients&#8221;&gt;127.0.0.1&lt;/value&gt; #允许连接的客户端</div>
-
-
-<p> </p>
-
-<div style="padding: 0px; margin: 0px;">  启动php-cgi<br style="padding: 0px; margin: 0px;">  Usage: /usr/local/php/sbin/php-fpm {start|stop|quit|restart|reload|logrotate}</div>
-
-
-
-
-<div style="padding: 0px; margin: 0px;">
-<pre class="prettyprint linenums bush:bash" lang="bash">/usr/local/php/sbin/php-fpm start</pre>
-
-<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;"> 8、安装nginx-1.0<br style="padding: 0px; margin: 0px;">  安装pcre-7.9.tar.gz，perl扩展正则表达式的支持，主要用于支持url rewrite<br style="padding: 0px; margin: 0px;">  
-<pre class="prettyprint linenums bush:bash" lang="bash">tar -zxvf pcre-7.9.tar.gz
-cd pcre-7.9
-./configure
-make &amp;&amp; make install
-cd ..</pre>
-</div>
-
-
-
-
-<div style="padding: 0px; margin: 0px;">
-<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  安装ngnx-1.0</div>
-
-
-
-
-<div style="padding: 0px; margin: 0px;">
-<pre class="prettyprint linenums bush:bash" lang="bash">tar -zxvf nginx-1.0.0.tar.gz
-cd nginx-1.0.0
-./configure --prefix=/usr/local/nginx \
---user=nobody \
---group=nobody \
---with-http_stub_status_module \
---with-http_ssl_module</pre>
-
-<br style="padding: 0px; margin: 0px;">  #config完成后，查看结果，使用了哪些库，如果有些你希望使用的库没有使用，需要安装或者添加配置参数<br style="padding: 0px; margin: 0px;">   Configuration summary<br style="padding: 0px; margin: 0px;">   + using system PCRE library<br style="padding: 0px; margin: 0px;">   + using system OpenSSL library<br style="padding: 0px; margin: 0px;">   + md5: using OpenSSL library<br style="padding: 0px; margin: 0px;">   + sha1 library is not used<br style="padding: 0px; margin: 0px;">   + using system zlib library<br style="padding: 0px; margin: 0px;">   <br style="padding: 0px; margin: 0px;">  make &amp;&amp; make install<br style="padding: 0px; margin: 0px;">  <br style="padding: 0px; margin: 0px;">  修改配置文件<br style="padding: 0px; margin: 0px;">  
-<pre class="prettyprint linenums bush:bash" lang="bash">vim /usr/local/nginx/conf/nginx.conf
-user  nobody; #取消注释
-events {
-   use epoll;
-   worker_connections  51200;
+		<p>域名用的是app.wodeyitian.com 昨天用的方法不太稳定，现在找来一个不错的方法：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">upstream ghs {
+ip_hash;
+server ghs.google.com;
+server 72.14.203.121;
+server 72.14.207.121;
+server 74.125.43.121;
+server 74.125.47.121;
+server 74.125.53.121;
+server 74.125.77.121;
+server 74.125.93.121;
+server 74.125.95.121;
+server 74.125.113.121;
+server 216.239.32.21;
+server 216.239.34.21;
+server 216.239.36.21;
+server 216.239.38.21;
 }
+
 server {
-   listen       80;
-   server_name  122.225.32.135;
-   location ~ \.php$ {
-       if ( $fastcgi_script_name ~ \..*\/.*php ) {
-           return 403;
-       }
-       root           html;
-       fastcgi_pass   unix:/tmp/php-cgi.sock;
-       fastcgi_index  index.php;
-       fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
-       include        fastcgi.conf;
-}</pre>
-
-<br style="padding: 0px; margin: 0px;">  
-<pre class="prettyprint linenums bush:bash" lang="bash">/usr/local/nginx/sbin/nginx  -t -c /usr/local/nginx/conf/nginx.conf  #测试配置文件是否正确
-/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf 或者/usr/local/nginx/sbin/nginx  </pre>
-
-<br style="padding: 0px; margin: 0px;">  </div>
+               listen       80;
+               server_name app.wodeyitian.com;
+               access_log  /home/wwwlogs/app.wodeyitian.com.log;
+               location / {
+                       proxy_redirect off;
+                       proxy_set_header Host $host;
+                       proxy_pass http://ghs;
+                       proxy_set_header  x-real-IP  $remote_addr;
+                       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+               }
+       }</pre>
 
 
-<p>  <span style="font-family: 宋体, 'Arial Narrow', arial, serif; color: #555555;"><span style="line-height: 28px;">##############PHP结束#################</span></span> mysql的配置,根本没配置</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">./configure --prefix=/usr/local/mysql \
---sysconfdir=/etc \
---localstatedir=/var/lib/mysql  
 
-make 
+<div>下面说说DNS这边怎么操作，因为网上说的太简单，我弄了好久都没弄好，终于在一篇文章那里找到了方法：</div>
 
-make install</pre>
+
+
+
+<div>首先上面的nginx配置完毕后，在dns面板中把app.wodeyitian.com的A记录只想VPS的IP，然后要保证wodeyitian.com这个域注册了Google的app服务，这样就能在appspot那里把wodeyitian.com旗下的子域名加到你的appspot上了，后台把app.wodeyitian.com添加到了dawncold1.appapot.com这个应用上，然后就不用管Google提供的更改cname到ghs.google.com的建议了，国内基本没戏了。</div>
+
+
+
+
+<div>Google说的cname方法就是我们现在正在使用的反向代理吧，于是我们只需要有app.wodeyitian.com到主机的A记录即可，后面的操作都是nginx的反向代理在工作。</div>
+
+
+
+
+<div>我一开始建立了app.wodeyitian.com这个站之后，我以为就是当成ghs的工作了，用了另外一个域名做了cname到这里，结果不响应，可能还有其他问题吧：（</div>
+
+
+
+
+<div>感谢这里：<a href="http://www.nealmi.com/index.php/2011/03/nginx-reverse-proxy-usage/">http://www.nealmi.com/index.php/2011/03/nginx-reverse-proxy-usage/</a>
+</div>
 
 
 		
@@ -536,11 +276,11 @@ make install</pre>
   
 
 
-<time datetime="2011-06-16T11:58:00+08:00" pubdate data-updated="true">Jun 16<span>th</span>, 2011</time></div>
+<time datetime="2011-06-04T23:55:00+08:00" pubdate data-updated="true">Jun 4<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/lnmp/'>lnmp</a>, <a class='category' href='/blog/categories/suse/'>suse</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/gae/'>gae</a>, <a class='category' href='/blog/categories/nginx/'>nginx</a>, <a class='category' href='/blog/categories/fan-xiang-dai-li/'>反向代理</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -552,18 +292,22 @@ make install</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/06/12/briefly-talk-about-the-attitude-of-participants-in-baidu-astar/">
+		<a href="/blog/2011/06/04/eclipse-gae-on-mac/">
 		
-			浅谈百度之星参与者的态度</a>
+			Mac系统下的Eclipse中GAE配置</a>
 	</h2>
 	<div class="entry-content">
-		<p>首轮的两场比赛就快结束了，昨晚我也准时出现在19：00的那场之中，经历了10分钟的宕机，不过我想这10分钟根本不会造成什么影响吧，该做出来的不差这10分钟，做不出来的再给1小时还是做不出来。</p>
+		<p>用了不少时间PHP，也有些喜欢这种开发语言，但我仍然对Python有强烈的热情，但支持Python的主机服务还不算多，很想体验GAE，但由于在国内嘛，只能这样忍受了。</p>
 
-<p>当然我属于做不出来的那一部分。其实还算好一些的，至少我昨晚提交了第一题的解决方案，就是不清楚能否满足要求。后面两个题目只能说是看懂了，并且有一点思路做。但今天的这三个题显然比昨晚的难一些，至少我是这样感觉的。</p>
+<p>原本想在Emacs中配置Python的环境，但……有些过于复杂了。安装了很久的emacs，到头来不知道该怎么用，打算卸载掉算了，自己不需要的东西，不管它多么优秀，对于我来说，目前都没有价值！所以我还是选择了Eclipse环境。</p>
 
-<p>新浪微博上不少人在谈百度之星大赛，有人说明年要努力拿下，这当然很好，但更多的是在找组织方的漏洞──系统设计得不好啦、临时更改题目不通知啦、顶不住访问压力啦等等吧，他们说的似乎都没错，但我更希望看到他们先从自己身上找不足。可能大多数参与者都是和我一样的非ACM选手，我们有自己正常的生活，看到百度之星这个机会，参与进来挑战、检验一下自己所学，看看哪些地方是今后应该着重对待的，如果都没有漏洞了，那我们岂不就是到了去百度的时候了么？我们看到的应该是自己还差得远，所以继续努力才是真得！</p>
+<p>在安装PyDev插件的时候遇到点问题：安装时候有3个项目可安装，我第一次是都安装的，但中途出现错误停止了，于是我第二次只安装了第一个，就是主要的PyDev程序，没有问题。</p>
 
-<p>努力二字，打出来、说出来、写出来都很容易，唯独做起来难上加难，因为它太抽象，太不具体，简单得看只有两个字，做起来就可能被展开成千言万语描述的计划书。参与者们，共勉！</p>
+<p>在创建一个GAE项目后，需要填写GAE的location，在Mac系统下，装了Google提供的SDK For Mac就找不到GAE的相关文件了，因为都在那个app包中，只是在/usr/local/bin中有几个相关的py文件，在/usr/local/中有个链接，链接到app包中的一个地方，主要就是用这个链接，不过你会发现这样用之后还有点问题，插件需要找到lib目录下的django，如果你看看目录的话会发现根本没有django目录，只有另一个叫django_0_96这样的目录，于是建立一个软连接到django过去即可。</p>
+
+<p>以上方法来自国外一技术博客：</p>
+
+<p><a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/" target="_blank"><a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/">http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac/</a></a></p>
 
 		
 		
@@ -583,11 +327,11 @@ make install</pre>
   
 
 
-<time datetime="2011-06-12T20:26:00+08:00" pubdate data-updated="true">Jun 12<span>th</span>, 2011</time></div>
+<time datetime="2011-06-04T18:43:00+08:00" pubdate data-updated="true">Jun 4<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/bai-du-zhi-xing/'>百度之星</a>
+	<a class='category' href='/blog/categories/eclipse/'>eclipse</a>, <a class='category' href='/blog/categories/gae/'>gae</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -599,16 +343,16 @@ make install</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/06/11/ical-and-googlecalendar-sync-settings/">
+		<a href="/blog/2011/06/01/mapapp-approaches-end/">
 		
-			iCal4.0.4与GoogleCalendar同步设置</a>
+			项目要收工了</a>
 	</h2>
 	<div class="entry-content">
-		<p>用iCal的时候突然想起来这个早就可以与GoogleCalendar同步了，于是我就设置一下看看效果，但怎么设置都提示有问题。月光博客上有个解决方法，说是服务器地址写的是<a href="https://www.google.com/calendar/dav/EMAILADDRESS/user%E8%BF%99%E6%A0%B7%E5%B0%B1%E5%8F%AF%E4%BB%A5%EF%BC%8C%E4%BD%86%E6%88%91%E8%BF%99%E6%A0%B7%E5%86%99%E4%BA%86%EF%BC%8C%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%9B%E4%BB%8EAccountType%E9%87%8C%E9%80%89%E6%8B%A9Google%E4%B9%9F%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%8C%E6%9C%80%E5%90%8E%E6%97%A0%E6%84%8F%E4%B8%AD%E5%B0%9D%E8%AF%95%E5%87%BA%E4%BA%86%E5%A6%82%E4%BD%95%E5%86%99%E8%83%BD%E5%A4%9F%E5%90%8C%E6%AD%A5%E3%80%82">https://www.google.com/calendar/dav/EMAILADDRESS/user%E8%BF%99%E6%A0%B7%E5%B0%B1%E5%8F%AF%E4%BB%A5%EF%BC%8C%E4%BD%86%E6%88%91%E8%BF%99%E6%A0%B7%E5%86%99%E4%BA%86%EF%BC%8C%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%9B%E4%BB%8EAccountType%E9%87%8C%E9%80%89%E6%8B%A9Google%E4%B9%9F%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%8C%E6%9C%80%E5%90%8E%E6%97%A0%E6%84%8F%E4%B8%AD%E5%B0%9D%E8%AF%95%E5%87%BA%E4%BA%86%E5%A6%82%E4%BD%95%E5%86%99%E8%83%BD%E5%A4%9F%E5%90%8C%E6%AD%A5%E3%80%82</a></p>
+		<p>虽然最后的几个功能还没有完成，但总归目前已经能用了。如果说端午过后还有机会继续提交的话，可能最终就是完成这几个功能吧。不过最大的问题是现在已经到了考试前夕，如果不想承受考前突击带来的痛苦和自责，那必须得提前准备，何况今年还要考英语四级。按照Fnln的说法，按照正常退步速度就能通过，但我已经不清楚现在是不是正常退步速度了，应该还没有吧，仅仅是最近大家都在复习的时候我在做网站而已：）</p>
 
-<p>1.AccountType中选CalDav。</p>
+<p>刚刚用phpDocumentor把文档生成出来了，还遇到了可恶的乱码问题，最终用了强大的替换工具，硬生生把字符集换成了utf8，总算是解决了吧，虽然解决方法不太好，但这是个看结果的事情：）</p>
 
-<p>2.username和password就写Google的，username应该是写邮箱的全部地址，server address写calendar.google.com就OK了，设置好后去看了详细的服务器地址信息，就是上面的那串很长的地址。以前的iCal也许是可以先建立一个账号再填写这些详细信息，但现在不能了。或许是想让用户写更少的信息就能得到服务吧，初衷是好的，但也应该设定一些应急措施…</p>
+<p>不知道Yfan那边的css工作怎么样了，要是进展顺利，明天全线停止，开始写写计划书什么的文字材料，在最后一个工作日交上去。当然这算是理想的情况。</p>
 
 		
 		
@@ -628,11 +372,11 @@ make install</pre>
   
 
 
-<time datetime="2011-06-11T13:54:00+08:00" pubdate data-updated="true">Jun 11<span>th</span>, 2011</time></div>
+<time datetime="2011-06-01T18:04:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/google/'>Google</a>, <a class='category' href='/blog/categories/ical/'>iCal</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/di-tu-ying-yong/'>地图应用</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -644,16 +388,24 @@ make install</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/06/09/indexof-in-ie/">
+		<a href="/blog/2011/06/01/install-pear/">
 		
-			IE中的indexOf功能</a>
+			安装PEAR</a>
 	</h2>
 	<div class="entry-content">
-		<p>js中在数组中查找我一般都用indexOf来完成，没想到到了IE下就不能用了，搜索后才知道IE下根本不支持这个，于是从网上找了资料，扩展了IE下的这个功能。</p>
+		<p>在服务器上找了好久也没看到pear包的存在，于是下载重装。</p>
 
-<p>感谢这里：<a href="http://nootn.com/blog/Develop/35/"><a href="http://nootn.com/blog/Develop/35/">http://nootn.com/blog/Develop/35/</a></a></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://pear.php.net/go-pear.phar 
+</span><span class='line'>php ./go-pear.phar 
+</span><span class='line'>
+</span><span class='line'>./pear install XXXX(XXXX就是要新加入的扩展库名称)</span></code></pre></td></tr></table></div></figure>
 
-<p>还好js支持原型功能，否则一旦不兼容了就会很麻烦。现在想来，是不是这个功能就是为了让标准不同意做出来的呢？！</p>
+
+<p>根据提示修改一些参数即可，其中比较重要的是最后的include_path这个参数，要确保这里面包含了pear的目录，否则用pear安装上的扩展就不好运行了，比如我的PhpDocumentor就是如此，好在最后加入到了path中，phpdocumentor就能用了。</p>
 
 		
 		
@@ -673,11 +425,188 @@ make install</pre>
   
 
 
-<time datetime="2011-06-09T14:53:00+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2011</time></div>
+<time datetime="2011-06-01T13:26:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ie/'>ie</a>, <a class='category' href='/blog/categories/indexof/'>indexOf</a>, <a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/05/30/js-data-object-in-four-browers/">
+		
+			四种浏览器下的JS日期对象</a>
+	</h2>
+	<div class="entry-content">
+		<p>测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：</p>
+
+<pre class="prettyprint linenums bush:jscript" lang="jscript">var da = '2000-01-01 00:00:00';
+var da_array = da.split(' ');
+var da_1 = da_array[0].split('-');
+var da_2 = da_array[1].split(':');
+alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-30T22:20:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/date/'>date</a>, <a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/05/30/getyear-in-js/">
+		
+			js的Year</a>
+	</h2>
+	<div class="entry-content">
+		<p>js中有个获取当前年的函数，叫getYear()，但我测试的时候没有单独让它显示出来看看，只是当成一个最大值限制使用，测试了一个值发现正确，就不再管它了，后来测试的时候总是不对，再一看，那个值竟然是111，怪不得我输入一个年份都显示对了呢，现在都是2xxx年，随便一个就比111大不少了……</p>
+
+<p>目前那个函数已经被废弃了，取而代之的是getFullYear()，这次就正常了：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-30T13:56:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/05/29/project-is-rushing/">
+		
+			项目在冲刺</a>
+	</h2>
+	<div class="entry-content">
+		<p>看着日期就要到最后提交的日子了，这几天一直都在写最后的几个功能，昨天写的是活动功能，基本上完工了吧，只是没有一个很好的展示效果。今天主要做做基础通知功能，这个功能完成后就能把以前的很多模块产生的消息应用起来，首页也有一个不断抓取消息的语句。其实还是接口抓取啦，不知道那些大型网站，比如新浪微博是如何做这个的，可能也是如此吧。</p>
+
+<p>其实这样想来，做一个即使聊天的东西也就是这样吧，不断从一个接口抓取消息，不断向一个地方发送消息即可，只是若这样实现，会不会对数据库的压力非常大呢？也许还有更好的办法处理即时消息，比如NoSQL？</p>
+
+<p>这两天睡眠质量很不好，早上都是5点多起来，晚上差不多11点睡下，时长和高中的日子差不多了，不过白天竟然没有困意，只是偶尔感觉很饿，不知道该买些什么样的吃得放在身边：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-29T06:48:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/di-tu-ying-yong/'>地图应用</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/wang-zhan/'>网站</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/05/18/notice-get-methdo-in-php/">
+		
+			PHP中的Get注意一则</a>
+	</h2>
+	<div class="entry-content">
+		<p>用一个页面接收Get过来的参数时要注意这点：如果接受了0这个参数，一定要确保是在$_GET前面加了强制转换为int的标志，否则如果是0，PHP可能会当成是假，没有任何值被保存到变量中：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-18T22:48:00+08:00" pubdate data-updated="true">May 18<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

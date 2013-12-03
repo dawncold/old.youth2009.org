@@ -4,7 +4,7 @@
   <title><![CDATA[Category: php | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/php/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-03T21:11:39+08:00</updated>
+  <updated>2013-12-03T22:01:01+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -188,11 +188,12 @@ dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
     <id>http://www.youth2009.org/blog/2011/06/01/install-pear</id>
     <content type="html"><![CDATA[<p>在服务器上找了好久也没看到pear包的存在，于是下载重装。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">wget http://pear.php.net/go-pear.phar 
-php ./go-pear.phar 
+<p>```
+wget <a href="http://pear.php.net/go-pear.phar">http://pear.php.net/go-pear.phar</a>
+php ./go-pear.phar</p>
 
-./pear install XXXX(XXXX就是要新加入的扩展库名称)</pre>
-
+<p>./pear install XXXX(XXXX就是要新加入的扩展库名称)
+```</p>
 
 <p>根据提示修改一些参数即可，其中比较重要的是最后的include_path这个参数，要确保这里面包含了pear的目录，否则用pear安装上的扩展就不好运行了，比如我的PhpDocumentor就是如此，好在最后加入到了path中，phpdocumentor就能用了。</p>
 ]]></content>

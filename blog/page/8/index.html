@@ -447,59 +447,6 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/10/22/we-have-many-snack/">
-		
-			We Have Many Snack</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="http://pic.yupoo.com/dawncold0/CmmLLLmW/medish.jpg" alt="many snack" /></p>
-
-<p>这就是我们现在的零食们，绝大多数是taowen买的，基本是他自己吃，我们也顺便跟着吃一些，今天早晨去的时候和他一共签了6个包裹，大都是零食，还有个是U2412M的外置音箱配件，问他为何买这个，说是上次看视频的时候声音不够大，现在装上确实够大了。</p>
-
-<p><img src="http://pic.yupoo.com/dawncold0/CmmR3iAM/medish.jpg" alt="my small box of snack" /></p>
-
-<p>再看我这里的情况，就比较可怜了，只有刚刚收到的一小箱零食，而且全是干果，就从种类上也没法和taowen比。明天带去几包丰富一下我们的零食角。今天终于给metromall打通电话了，质问一下为何已经4天了还没有发货，对方客服MM也很无奈，为何我前几天没打通，仔细看过电话后发现我少播一个0！！！趁着没发货，我要求换成了完全脱脂的牛奶，0.3%脂肪，这下真能当水喝了，不知道味道会不会也和水一样。</p>
-
-<p>最近花钱有些快，前几天刚败了一个顶级墨水，是的，钢笔用的那种墨水，之所以叫顶级那当然价格是符合顶级的价格了，还有一些别的特性，等到货了再发图详述吧，而且现在比较可怜的是，墨水到了钢笔还没买，你说墨水都是这样顶级的了，难道我能买个六七块钱的英雄616配Ta么，要真是如此，墨水还不气死。必然是买只心仪已久的Lamy，但我是节约点买个safari呢还是多花点钱买个al-star，that&rsquo;s a good question！</p>
-
-<p>还有想败一笔的是买个咖啡机。。。嗯，受到taowen的影响（taowen在我人生中影响太大了！），越来越喜欢咖啡了，前几天喝了他一包日本挂耳咖啡，现在想自己磨一些喝，或者再有兴趣做个拉花，搞个卡布奇诺什么的往人人上、微博上发一发吸引一下小女生们（我也就这点虚荣了）。</p>
-
-<p>可这前提都是需要强大的money支持，马上到了要交房租的时候，稍感压力要来，还好学校的住宿费和部分学费及时退回我才敢这段时间大手大脚花个精光，还有就是申请到了最后这一年的国家励志奖学金，5K哦，加上一等奖学金1.2K，这么多应该够我再败一两件数码产品了。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-22T22:59:00+08:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/life/'>life</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
 		<a href="/blog/2012/10/20/hello-world/">
 		
 			Hello World</a>
@@ -577,6 +524,60 @@
 
 
 	<a class='category' href='/blog/categories/datetime/'>datetime</a>, <a class='category' href='/blog/categories/pytz/'>pytz</a>, <a class='category' href='/blog/categories/timezone/'>timezone</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/10/09/nat-practical/">
+		
+			NAT实践</a>
+	</h2>
+	<div class="entry-content">
+		<p>昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3.20这台container来处理，相应的response也会返回过去。这样就做到了服务隔离。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to 10.0.3.20
+</span><span class='line'>sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT --to 200.200.200.25
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就把进入的请求都发到了10.0.3.20这台container上去处理。</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/CkkIbzDr/medish.jpg" alt="nat" /></p>
+
+<p>只默认开了一个nginx，就这样的效果。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-09T14:09:00+08:00" pubdate data-updated="true">Oct 9<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/iptables/'>iptables</a>, <a class='category' href='/blog/categories/lxc/'>lxc</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

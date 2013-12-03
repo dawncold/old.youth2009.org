@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="最近一直还在忙活学校的那个项目，还有自己要做的同学录，看着日子越来越紧张，我也变得越来越紧张：） 学校的项目还有不多的工作了，我赶紧忙活一下，最后的几个功能也差不多没问题了，琐碎的工作交给另一个人了，这几天我没管，希望他做了些什么吧。同学录的工作写了不少代码，没去统计，外部引用的js库太多了， &hellip;">
+	<meta name="description" content="那天下午打算做个推荐饭菜的应用出来，上机课期间把雏形做好了，现在除了不能自由添加数据以外别的我还都满意，当然不谈UI设计。参观地址：http://food.wodeyitian.com 介绍一下其中有一个地方的函数接口，就是用来显示“已经有的主食和菜”的两列列表，数据库中分成两个表，一个是主食， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,26 +79,20 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/14/i-am-tired-to-create-blog/">
+		<a href="/blog/2011/03/19/function-interface-evolvement/">
 		
-			懒得写博客了</a>
+			一个函数的接口演化</a>
 	</h2>
 	<div class="entry-content">
-		<p>最近一直还在忙活学校的那个项目，还有自己要做的同学录，看着日子越来越紧张，我也变得越来越紧张：）</p>
+		<p>那天下午打算做个推荐饭菜的应用出来，上机课期间把雏形做好了，现在除了不能自由添加数据以外别的我还都满意，当然不谈UI设计。参观地址：<a href="http://food.wodeyitian.com"><a href="http://food.wodeyitian.com">http://food.wodeyitian.com</a></a></p>
 
-<p>学校的项目还有不多的工作了，我赶紧忙活一下，最后的几个功能也差不多没问题了，琐碎的工作交给另一个人了，这几天我没管，希望他做了些什么吧。同学录的工作写了不少代码，没去统计，外部引用的js库太多了，一统计都是别人的工作：（</p>
+<p>介绍一下其中有一个地方的函数接口，就是用来显示“已经有的主食和菜”的两列列表，数据库中分成两个表，一个是主食，一个是菜，相关字段都是一样的──id,name,price加入price是为了提前设计下一个版本，似乎稍微有点过度设计？一开始这样设计没什么问题，相应的PHP函数是available($foodtype,&amp;$array_xx)；这样传递的数组进入后把数据push到数组中，再利用数组显示到网页上，这个函数本来并不负责echo，foodtype分别是数据库中的表名，这样传递进mainfood或者dish就能分别抓取相应表的数据。</p>
 
-<p>今天下午用了下jquery的表单验证插件，调试了好久的remote方法，现在分享点经验：</p>
+<p>接着发现主食中有些可以作为单独一顿饭的东西，比如西红柿鸡蛋面这个，光吃这一种就可以了，再推荐饭菜不合理，于是考虑了主食分级，加入面条类、包子类等，这样数据库中就增加了两个字段──parent、occupy。parent是保存它上级的id，occupy是标记是否可独占，如果独占就不会再推荐菜了。相应的函数就演化成了两个，因为目前不想让dish中的数据分级，所以原来的处理dish表中的数据还是可以的，mainfood中的数据需要一个单独的处理函数，索性叫echo_mf吧，参数还是传递进去一个数组，这个函数有两个主要功能──一个是把这个分级结构显示到页面上，另一个是把所有的子项目和没有子项目的父项目添加到数组中，前台shuffle这个数组来随机显示一个。</p>
 
-<p>1.远程的查询方法我接受了post的提交方法，不过我感觉get也是没问题的，只是没去测试，修改这个是在remote中传入type:&lsquo;post&#8217;即可。</p>
+<p>我想下一步很可能是这两个函数的整合，即dish也分级后，这两个函数就都可以整合成第二个的样子，因为他们的工作就是一样的了。</p>
 
-<p>2.remote要提交上去的data用这样的方法：function(){return xxx;}</p>
-
-<p>3.remote对应的messages直接写remote即可，注意这里处理的是得到false结果显示的提示信息，所以查询数据库并返回值的那个页面要注意别写反了结果，当然要只能返回true或者false。我用php写的结果就是直接echo一个字符串，只有这样简单写才能让这个傻傻的remote认出来。一开始我还包装了一个json返回，现在想想根本就是奢望，根本不可能知道你的json是个什么东西！因为根本就没有告诉它去检查哪个元素的值：）</p>
-
-<p>如果按照这个速度做下去，可能到6月6日能够交上去作品：）希望其他人做得不太好吧，那样我就有机会去深圳旅游（答辩）啦：）</p>
-
-<p>最后在这里说一下QQMap的API，除了单一只能玩js的以外没什么太大的失误，用起来比较顺手，只是和Google的想比，还差很远，如果不是为了参赛，我可能会去用Google的，但那个相对用起来会很麻烦的：─（</p>
+<p>现在的mainfood输出还有些问题，原本想的是这样──有米饭、包子等类别，其中包子类中还有各种各样的包子，而米饭就是这一种，所以按照概率来算，父类（米饭、包子）被选择的概率应该是一样的，而只有选到了包子才会去各种包子中选择一个，就是所有选择各种包子的概率之和应该与米饭同样大，现在却不是这样，我把最末端的数据和没有子项目的数据一并放在一起，这样显得冷落了米饭等没有子项目的父类……到底要不要改回来呢？再看看吧。</p>
 
 		
 		
@@ -118,11 +112,11 @@
   
 
 
-<time datetime="2011-05-14T18:13:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2011</time></div>
+<time datetime="2011-03-19T07:50:00+08:00" pubdate data-updated="true">Mar 19<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/jquery/'>jQuery</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/bi-sai/'>比赛</a>, <a class='category' href='/blog/categories/biao-dan-yan-zheng/'>表单验证</a>
+	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/jie-kou/'>接口</a>
 
 
 </div>
@@ -134,12 +128,14 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/12/debug-is-a-work-that-wastes-time/">
+		<a href="/blog/2011/03/14/love-can-invent-many-things/">
 		
-			Debug是个浪费时间的活儿</a>
+			爱情可以创造很多东西</a>
 	</h2>
 	<div class="entry-content">
-		<p>今晚为了实现一个有些漂亮的界面交互，我展开了和SESSION的战斗，明明同样使用的其他方法都能正常工作，偏偏这个就是不能了，这让我很奇怪，调试了很久都没有解决。网上搜索了很多内容也都看不到希望，其中一个朋友提到，这种问题很难解决，可能是对SESSION的机制不太了解吧，我也懒了，不去深入分析，好在丢失了这个好看的界面也不影响使用，我就等等吧，希望明天能够自动解决：）</p>
+		<p>传为佳话的是Cisco的创始人，为了更好与妻子交流创造了路由器！其他的例子也不胜枚举。我只是想说爱情在这个创造活动中确实起到了一种催化剂的作用，一个人的能力我们说是无限量的，但表现出来的是固定的能力，爱情这种能够让人快乐到极点或者痛苦到极点的东西加入进来，能够迅速将潜能发挥出来。你在一种快乐的环境中创造性思维也是非常活跃的，或者说在一种痛苦环境中，你想报复XXX，这类思维也能被加倍。</p>
+
+<p>所以，珍惜爱情带给我们的创造性思维吧！</p>
 
 		
 		
@@ -159,11 +155,11 @@
   
 
 
-<time datetime="2011-05-12T23:06:00+08:00" pubdate data-updated="true">May 12<span>th</span>, 2011</time></div>
+<time datetime="2011-03-14T22:55:00+08:00" pubdate data-updated="true">Mar 14<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/cisco/'>Cisco</a>, <a class='category' href='/blog/categories/chuang-zao/'>创造</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/ai-qing/'>爱情</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
 
 
 </div>
@@ -175,16 +171,16 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/08/my-breakfast-is-dull/">
+		<a href="/blog/2011/03/10/short-study-plan/">
 		
-			我的早餐很单调</a>
+			一个短期学习计划</a>
 	</h2>
 	<div class="entry-content">
-		<p>现在想来确实是很<a title="单调" href="http://www.youth2009.org/tag/%E5%8D%95%E8%B0%83/">单调</a>的<a title="早餐" href="http://www.youth2009.org/tag/%E6%97%A9%E9%A4%90/">早餐</a>──牛奶、鸡蛋、面包、燕麦片。几乎很难逃出这四样东西的组合，最近一段时间发现面包的地位越来越不行了，吃了热牛奶冲的燕麦片再去吃面包的话，会感觉不舒服，于是现在我很少再买一块切片面包，而是买个精美的小面包，这样就有食欲了！</p>
+		<p>中午别人的午睡时间我用来学习Java；晚上睡觉前的时间看看相关杂志什么的，比如敏捷开发。</p>
 
-<p>早晨起来我是很孤独的，自己起来，一般会叫醒闹钟，然后去准备早晨吃的一些列饭：）等我吃完饭就会发现同宿舍的人起来了，接着就是白天的上课……</p>
+<p>下午要是有空就2小时Java，2小时C++</p>
 
-<p>不过我感觉这样的生活挺优雅的，多半可能是因为自己有工作填充了空余时间，偶尔也能和几个好友聊天，不用整天光顾<a title="人人" href="http://www.youth2009.org/tag/%E4%BA%BA%E4%BA%BA/">人人</a>、<a title="空间" href="http://www.youth2009.org/tag/%E7%A9%BA%E9%97%B4/">空间</a>。但下一步想针对微博做出点工作，既然删除不了，就让自己上<a title="微博" href="http://www.youth2009.org/tag/%E5%BE%AE%E5%8D%9A/">微博</a>的频率低一些：─）</p>
+<p>去学校学习汇编、《软件设计师》、Haskell</p>
 
 		
 		
@@ -204,11 +200,11 @@
   
 
 
-<time datetime="2011-05-08T20:57:00+08:00" pubdate data-updated="true">May 8<span>th</span>, 2011</time></div>
+<time datetime="2011-03-10T14:07:00+08:00" pubdate data-updated="true">Mar 10<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/wei-bo/'>微博</a>, <a class='category' href='/blog/categories/zao-can/'>早餐</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
+	<a class='category' href='/blog/categories/xue-xi/'>学习</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
 
 
 </div>
@@ -220,28 +216,18 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/08/short-day/">
+		<a href="/blog/2011/03/05/agile-develop-simple-bad-smell-analytics/">
 		
-			短暂的一天</a>
+			坏味的简单分析</a>
 	</h2>
 	<div class="entry-content">
-		<p>其实今天里有不少事情发生，虽然在我身边不是什么大事，但要是真一件件记录起来，也要花些时间，甚至都记不全了。不过整个今天过完，稍微感觉有些短暂。</p>
+		<p>软件工程的设计是一种抽象概念，设计的最终体现是源代码。</p>
 
-<p>早晨起来竟然看起来《风之谷》，还没看一半就发现到8点了，这就去和几个同学做网站了，很快上午过去，下午依然，很快到了晚上，老师请客吃饭去了，很快到了睡觉前夕，很快到了现在。</p>
+<p>软件需求总在变化，本来一个简单的程序，经过几次需求变化就需要添加上很多额外的参数来控制流程，这时根本不可能期望修改接口，因为这时很多模块可能已经在使用你，如果你进行了更改，依赖你的所有代码都需要重新编译，这在一个庞大的项目中简直就是灾难！</p>
 
-<p>这两天一直在和Y帆讨论给网站起一个什么名字，想了好久都没有结果，于是我想到了她（这是另一个她），在我看来，她是能够体会到生活的人，虽然我们相距更远，但……有电话呢！</p>
+<p>所以，出现坏味的根本原因就是一开始的轻视设计，又加上不断的需求变化，项目中不可避免的一些依赖，导致需要利用hacks这类方法来躲避灾难，而越是hacks，越是在让项目腐烂！！！</p>
 
-<p>本以为能够从她那儿得到信息，不过很可惜，上天在故意考察我们么？就是不给我们机会。只好让她也慢慢思考，同时我感觉现在也不一定非要起出名字来。可以是在制作过程中不经意发现一个什么什么灵感：）</p>
-
-<p>我们经常拿豆瓣来和自己的网站对比，虽然离豆瓣的距离还有很远，但有一些东西是相通的，比如创意的原始性。我们能够确保产品是原创的，从创意到产品都是如此。这样逆着国内互联网产品发展路线前进，我相信会有压力的！但我们坚信未来是美好的，有实力的东西始终会走向高峰：）</p>
-
-<p>她还让我帮她找找看她们专业的期刊杂志，想要发表一些论文上去，或者是跟着某个教授作为第二作者什么的发表相关论文，这样对于她申请“国外”大学有所帮助，同时有一些社区志愿者服务的经验，公司推荐也不错。唉，最后忙活一场，帮出国了：（不过也不能这样想，爱她不就是给她最好的环境，即使这个环境并不是你自己。当然我谈不上爱，喜欢还是有些的。</p>
-
-<p>只是，国内这个学术圈应该也不算平静吧？长期的审稿制度又是怎么一回事我们从未涉足的人根本难以把握，我不想去发觉可恶的东西，但每次都是必经之路，暂且先不去管这些了。对于一个女生，能够用钱打通的环节自然都不算是难题了，还有些地方钱不怎么好用，那就是底线了。希望她多想想这些！</p>
-
-<p>所以我更希望她能在志愿者服务方面积累一点经验，工作经历也是不好搞的：）</p>
-
-<p>唉，这个社会，一个女人起步，总是要有所顾虑，难一些的！</p>
+<p>那么敏捷开发者这帮神人是如何做的呢？他们遵循原则、模式等等。敏捷设计是一个过程，而不是事件。在不断变化中，他们能够利用变化，而其他人却被变化弄得不知所措。那么我们期待以后的敏捷原则介绍吧！我总感觉这和Unix里面的KISS有相同的意思。</p>
 
 		
 		
@@ -261,11 +247,11 @@
   
 
 
-<time datetime="2011-05-08T00:06:00+08:00" pubdate data-updated="true">May 8<span>th</span>, 2011</time></div>
+<time datetime="2011-03-05T22:10:00+08:00" pubdate data-updated="true">Mar 5<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/chu-guo/'>出国</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/xue-zhu/'>学术</a>, <a class='category' href='/blog/categories/gong-zuo/'>工作</a>, <a class='category' href='/blog/categories/duan-zan/'>短暂</a>, <a class='category' href='/blog/categories/lun-wen/'>论文</a>
+	<a class='category' href='/blog/categories/pi-wei/'>坏味</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/min-jie-kai-fa/'>敏捷开发</a>
 
 
 </div>
@@ -277,22 +263,18 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/04/youths-day-has-passed/">
+		<a href="/blog/2011/03/04/change-ssh-login/">
 		
-			五四过去了</a>
+			修改ssh登录方式</a>
 	</h2>
 	<div class="entry-content">
-		<p>刚刚还在新浪微博上即兴创作了符合“五四体”的一条微博──“今天这日子，两个含义”，没想到刚刚发布了一小会儿，豪猪就跑来评论了，他确实很强大，知道我所谓的“两个含义”的具体意思。</p>
+		<pre class="prettyprint linenums bush:bash" lang="bash">PasswordAuthentication yes
+ChallengeResponseAuthentication no
+GSSAPIAuthentication yes
+UsePAM no</pre>
 
-<p>在我有些困倦的时候，手机响了，来了一条短信，五四的含义到此为止了：）</p>
 
-<p>原本作为青年节这层含义对我来说并不是很重要，有没有是真无所谓，不过今天还是她的生日。有些事情永远都难以改变，比如说她始终在年龄上就是比我大几个月。</p>
-
-<p>在三月多的时候，我已经想好该送些什么东西，中途又看到了周国平先生的一本书──《爱情的容量》，还记得当时我只是去借《孤独六讲》这本书的，不过为何要去借这本书呢？主要目的记不清了：）《爱情的容量》这本书真得是讲了很多爱情，而且讲得很深奥，毕竟周国平是研究哲学的嘛。我只能大致了解到一小部分内涵，虽然读完了这本书，但现在也基本记不得里面那些高深莫测的分析了，希望都融合到自己体内了吧。</p>
-
-<p>综上所述吧，我重新组合了生日礼物，昨天刚刚从家里回来就跑去寄出去了。有快递这种服务真不错，只需要提前一天邮寄就能按时送到（本省），这比以前掐着日子算平邮可省心多了。当然我并没有用平邮给人寄过东西，也没有掐着日子算过日期。我订的杂志是要在路上走十几天才到手的，所以我感觉平邮都太慢，适合两个精致的人相互通信玩。</p>
-
-<p>她已经拿到了快递，五四对于我来说，最大的含义已经过去了：）</p>
+<p>这样就能有的用rsa登录有的用密码登陆了！</p>
 
 		
 		
@@ -312,11 +294,11 @@
   
 
 
-<time datetime="2011-05-04T14:47:00+08:00" pubdate data-updated="true">May 4<span>th</span>, 2011</time></div>
+<time datetime="2011-03-04T22:29:00+08:00" pubdate data-updated="true">Mar 4<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/xi-wang-wo-huan-neng-ji-qi/'>希望我还能记起</a>, <a class='category' href='/blog/categories/ai-qing/'>爱情</a>, <a class='category' href='/blog/categories/li-wu/'>礼物</a>
+	<a class='category' href='/blog/categories/ssh/'>ssh</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -328,14 +310,147 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/02/feeling-after-wedding/">
+		<a href="/blog/2011/03/03/start-haskell-study/">
 		
-			参加婚礼后的感想</a>
+			Haskell的学习开始了</a>
 	</h2>
 	<div class="entry-content">
-		<p>母亲老家的一个孩子结婚了，我也被带去参加婚礼。几年前见过今天的这位新郎。那时知道他是在SH工作，算是比较有前途的行业，今天终于和有情人成为眷属了！新娘很漂亮，有点儿像是董卿的神态，说话口音也很好听。不过我感觉这段感情能够建立并维系下去的基础是他们两人都有自己的事业──都在SH工作，甚至可以说是都有自己的公司，虽然不算非常大型，但基本能够在SH这个地方站住脚，这对于年轻人来说就是很好的起点了吧，他们有激情，又有基础，相信美好的生活就在不远处和他们招手呢！</p>
+		<p>总算是这本新书仍旧躺在图书馆的新书架上，上次看到后感觉没时间来学习，自己总是拼命追赶技术的前沿，而在这里是有难度的，虽然网络让我们和世界保持同步，但知识的追赶总还是需要时间来加冕。不知道这还算不算是技术前沿了，不过总是比其他的那些新了不少，函数式编程。 这也是我第一次阅读全英文的技术书籍，以前也曾阅读过带注释的《程序员修炼之道》，可惜没有看完，现在图书馆中也见不到了，以后有机会再找回来看看。 Haskell的不少语法规则都和已经学过的编程语言差不多，如果一种新的语言推出了极其怪异的语法而它又不能自圆其说的话，那这门语言很快就将泯灭，原因不用多讲。这样的话学习起来就能稍微简单些了。 使用的书籍叫《Real World Haskell》。 首先接触到了GHC的概念，这是个缩写，包括了三个组件：ghc、ghci、runghc。 ghc是编译器；ghci是个交互模式的命令行，类似python的那个；runghc是可以作为脚本运行haskell的东西，不用编译就可以运行了，感觉这就是个脚本解释器吧。</p>
 
-<p>我想最多还有十年我也要经历结婚了吧，在整个人生道路上来看，结婚还一直是占有很大比重的，是一个人踏入不同阶段的一个分水岭。十年这个不长不短的时间段，能够改变一个人很多的。</p>
+<h1>安装GHC平台</h1>
+
+
+<p>在<a href="http://www.haskell.org%E8%BF%99%E9%87%8C%E8%83%BD%E5%A4%9F%E4%B8%8B%E8%BD%BD%E5%88%B0%E5%90%84%E4%B8%AA%E7%B3%BB%E7%BB%9F%E4%B8%8A%E7%9A%84haskell%E5%B9%B3%E5%8F%B0%EF%BC%8C%E5%85%B7%E4%BD%93%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80%E8%BF%98%E6%98%AF%E7%9C%8B%E8%BF%99%E9%87%8C%EF%BC%9A">http://www.haskell.org%E8%BF%99%E9%87%8C%E8%83%BD%E5%A4%9F%E4%B8%8B%E8%BD%BD%E5%88%B0%E5%90%84%E4%B8%AA%E7%B3%BB%E7%BB%9F%E4%B8%8A%E7%9A%84haskell%E5%B9%B3%E5%8F%B0%EF%BC%8C%E5%85%B7%E4%BD%93%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80%E8%BF%98%E6%98%AF%E7%9C%8B%E8%BF%99%E9%87%8C%EF%BC%9A</a><a href="http://hackage.haskell.org/platform/" target="_blank"><a href="http://hackage.haskell.org/platform/">http://hackage.haskell.org/platform/</a></a> 我使用的是Mac版本的平台，下载后即可安装，但mac平台下需要先安装xcode，接着就能安装GHC了。安装过程可以参考相关文档，mac下的安装就是2步，第一是安装GHC，第二个是安装叫Haskell平台的东西，都在下载的dmg中。</p>
+
+<h1>帮助</h1>
+
+
+<p>在命令行中输入ghci即可使用交互式来学习haskell。 输入“：？”即可看到一串帮助信息。</p>
+
+<h1>基础模块</h1>
+
+
+<p>在shell中能够看到命令提示标志是一个叫“Prelude”的东西，书上讲这是haskell默认加载的一个模块，就是个基础模块吧，如果不喜欢这个名字可以这样更改掉：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">:set prompt "ghci &gt;"</pre>
+
+
+<p>现在的提示符标志就变成ghci &gt;了。</p>
+
+<h2>加载其他模块</h2>
+
+
+
+
+<pre class="prettyprint linenums bush:bash" lang="bash">:module + Data.Ratio</pre>
+
+
+<p>  这样就加载了Data.Ratio这个模块，这个模块似乎是使用浮点数之类的东西吧，我还没有细看。具体可以参考文档。</p>
+
+<h1>进行一些简单计算</h1>
+
+
+<p>输入2+2啦，3+3啦这样的表达式，haskell都能计算出来，这点和python的解释器一样。书中提及了关于负号应该注意的地方：如果输入2+-3这样的表达式就不对了，加入想要得到正确结果需要这样2+（-3）；再者，haskell中的函数调用没有括号，func -3这样的表达式到底是传递参数-3进去呢，还是func这个变量减去3呢？所以要多多注意！</p>
+
+<h1>Bool的注意</h1>
+
+
+<p>haskell中有True和False这两个(注意大小写），但和其它语言中不同的是这里的数字0、1不能和bool类型相互转化，如果输入表达式True&amp;&amp;1是不正确的！</p>
+
+<h1>运算符</h1>
+
+
+<p>说说不等号的表示方法──“/=”，像是其他语言中的x = x/y这样的，但这里看起来更象是不等号。 感叹号表示对一个变量的反，这里用not单词表示──“not True”  =&gt; False（=&gt;是我自己为了好看而打上的符号） 乘方运算符：**或者^</p>
+
+<h2>优先级</h2>
+
+
+<p>使用info查看运算符的优先级：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">:info (+)
+:info (*)</pre>
+
+
+<p>  分别查看加号、乘号的优先级，返回的结果类似这样：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">class (Eq a, Show a) =&gt; Num a where
+ (+) :: a -&gt; a -&gt; a
+ ...
+ -- Defined in GHC.Num
+infixl 6 +</pre>
+
+
+<p>  最后一样的6表示加号的优先级是6，在haskell中优先级是1～9不等，最高的是9.从这个结果中我们还能看出来如果相同的加号连接表达式的处理方法，是从左到右（在第二行中的三个a，顺次向右箭头）</p>
+
+<h1>几个常量</h1>
+
+
+<p>说来惭愧，我就知道一个──pi，连e都没有定义！树上教了这样定义临时常量的方法：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">let e = exp 1</pre>
+
+
+<p>这里我们就使用了exp函数，传递参数1进去。</p>
+
+<h1>List</h1>
+
+
+<p>list是haskell中的一种数据结构吧，好像和python中的一样，干脆叫列表好了。定义方法很简单，就是把元素放入两个中括号中，而且药注意的是中括号中的必须是同样的类型，不能放进去整形又放进去字符串这样的混合。在书写上，[1,2,3]这样是正确的，而[1,2,]这样多余了一个逗号，虽然在其他的语言中可能正确，但在这里不行！</p>
+
+<h2>枚举填充列表</h2>
+
+
+<p>可以使用枚举符号来快速把一个序列填充到列表中： </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">[1..10]</pre>
+
+
+<p>这样的列表就变成[1，2，3，4，5，6，7，8，9，10]了，最好别尝试[1..]，因为书上说这样做了就必须kill掉解释器，否则会一直循环下去。</p>
+
+<h3>数列填充</h3>
+
+
+<p>类似枚举填充，只是多输入几个数字，让haskell知道其中的规律，然后就能构造出各种数列填充了：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">[10,9..1]</pre>
+
+
+<p>这是一个从10到1的递减数列</p>
+
+<h2>注意</h2>
+
+
+
+
+<pre class="prettyprint linenums bush:bash" lang="bash">[1.0..1.8]</pre>
+
+
+<p>这样的结果会出现：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">[1.0,2.0]</pre>
+
+
+<p>不要感到奇怪，这是浮点数的四舍五入吧，总之使用浮点数填充的时候要多多注意这种细节。</p>
+
+<h2>列表的运算</h2>
+
+
+<p> </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">[1,2,3] ++ [4,5]</pre>
+
+
+<p>会得到一个[1,2,3,4,5]的列表，就是加起来而已，重复的元素也不会覆盖。  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">1:[2,3]</pre>
+
+
+<p>这样会把1放入后面的列表最前面。此处需要注意的是：冒号前面必须是列表中同类的元素，而冒号后面必须是列表，所以反过来就不行了。（遵循原则，前面是个列表，后面是包含列表的列表，这样都对）</p>
+
+<h1>字符串</h1>
+
+
+<p>这里没什么体别，字符串就是用引号引起来的内容。在字符串中可以使用转义字符，类似\n、\t这类。 字符串就是把每一个字符一个个放入列表中实现的，所以一个空字符串──“”与一个空列表──[]是等价的。   就先到这儿吧，英文版书籍看起来也不算快，边看变查字典呢！haskell的前言中说过这是一个比较奇特的语言，会引发对软件设计的新方法，当然是因为函数式编程吧。</p>
 
 		
 		
@@ -355,11 +470,11 @@
   
 
 
-<time datetime="2011-05-02T21:34:00+08:00" pubdate data-updated="true">May 2<span>nd</span>, 2011</time></div>
+<time datetime="2011-03-03T23:44:00+08:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/hun-li/'>婚礼</a>, <a class='category' href='/blog/categories/jie-hun/'>结婚</a>
+	<a class='category' href='/blog/categories/haskell/'>Haskell</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -371,18 +486,81 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/05/01/two-photos-about-exquisite-lift/">
+		<a href="/blog/2011/03/03/agile-software-development-priciples-and-bad-design/">
 		
-			展示两张精致的生活</a>
+			敏捷开发原则和坏设计表现</a>
 	</h2>
 	<div class="entry-content">
-		<p><a href="http://www.flickr.com/photos/dawncold/5675051417/" title="Flickr 上 DawnCold 的 肥皂盒"><img alt="肥皂盒" height="332" src="http://farm6.static.flickr.com/5022/5675051417_2021f0e943.jpg" width="500"></a></p>
+		<p> </p>
 
-<p>肥皂盒中各种颜色的肥皂，五颜六色挺好看的！</p>
+<div id="cke_pastebin">学到几点敏捷设计</div>
 
-<p><a href="http://www.flickr.com/photos/dawncold/5675671394/" title="Flickr 上 DawnCold 的 小地毯"><img alt="小地毯" height="332" src="http://farm6.static.flickr.com/5063/5675671394_0d34efdc8c.jpg" width="500"></a></p>
 
-<p>地毯，我曾经坐在上面冥想过……</p>
+<div id="cke_pastebin"> </div>
+
+
+<div id="cke_pastebin">糟糕设计的症状：</div>
+
+
+<div id="cke_pastebin"> </div>
+
+
+<div id="cke_pastebin">1.僵化：设计难以更改</div>
+
+
+<div id="cke_pastebin">2.脆弱：实际很容易破坏</div>
+
+
+<div id="cke_pastebin">3.顽固：设计难以复用</div>
+
+
+<div id="cke_pastebin">4.粘滞：很难做正确的事（It is hard to do the right thing）</div>
+
+
+<div id="cke_pastebin">5.不必要的复杂：过度设计</div>
+
+
+<div id="cke_pastebin">6.不必要的重复：滥用鼠标？（Mouse abuse）</div>
+
+
+<div id="cke_pastebin">7.晦涩：混乱表达</div>
+
+
+<div id="cke_pastebin"> </div>
+
+
+<div id="cke_pastebin">设计原则：</div>
+
+
+<div id="cke_pastebin"> </div>
+
+
+<div id="cke_pastebin">1.SRP</div>
+
+
+<div id="cke_pastebin">2.OCP</div>
+
+
+<div id="cke_pastebin">3.LSP</div>
+
+
+<div id="cke_pastebin">4.DIP</div>
+
+
+<div id="cke_pastebin">5.ISP</div>
+
+
+<div id="cke_pastebin"> </div>
+
+
+<div id="cke_pastebin">关于原则：</div>
+
+
+<div id="cke_pastebin"> </div>
+
+
+<div id="cke_pastebin">不要因为这是原则而不加限制地遵守，这不是香水，不要随便喷洒。过度遵守原则导致“不必要复杂”这样的设计出现！</div>
+
 
 		
 		
@@ -402,11 +580,11 @@
   
 
 
-<time datetime="2011-05-01T21:40:00+08:00" pubdate data-updated="true">May 1<span>st</span>, 2011</time></div>
+<time datetime="2011-03-03T12:27:00+08:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/di-tan/'>地毯</a>, <a class='category' href='/blog/categories/sheng-huo/'>生活</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>, <a class='category' href='/blog/categories/fei-zao/'>肥皂</a>
+	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/min-jie-kai-fa/'>敏捷开发</a>
 
 
 </div>
@@ -418,18 +596,28 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/04/29/responsibility-of-family/">
+		<a href="/blog/2011/02/25/my-goal/">
 		
-			家庭的责任</a>
+			我的目标</a>
 	</h2>
 	<div class="entry-content">
-		<p>看着成双成对的人们出出入入，我一直在幻想何时才能过上他们那样的生活。然而有很多事情是和自己的意愿完全相反的，比如感情这东西就属于这类不以人们意志为转移的事物，你幻想它，它偏偏不来。</p>
+		<p>人类如果缺失了目标，那么在社会上活着确实是盲目的；假如长期缺乏目标，那就很可悲了，因为活了好久却不知道是为了什么活着，还不如死掉一了百了。当然我说得可能有些激进，可现实确实如此！</p>
 
-<p>我今天坐在公交车上就在想，人们体验到的责任感是不是都是一样的感觉呢？比如说家庭的责任和工作上的责任是不是对于同一个人来说带来的感觉是一样的呢？我只能体会到对于答应别人而付出的那种责任感带给我的一些感觉。那不是一种舒服的感觉，很多情况下是很疲劳的。</p>
+<p>今天我用了很长时间思考我的目标是什么，不止是今天，很长一段时间就这样思考过了，我还买了程序员职业规划方面的书来学习，可惜那本书根本没有帮忙分析怎么规划。我手头边有很多很多的书，而且每一本都很厚，甚至每一本都能作为一个独立的科目来研究下去。曾想安安稳稳地朝着一个方向发展，现在的“战线”太长了，而个人能力有限，这样的结果想必是很明了的──样样不精。</p>
 
-<p>家庭的责任是不是也如同这样呢？在外人看来是两人世界的亲密，而真正来到了两人世界，那又是一个“现实”，那里有现实中的一切──疲劳、努力、成功、失败……</p>
+<p>原本的我对于样样不精这种现象是极力规避的，我不想成为那样的人，可这个时代驱使着我要那样做！我已经离那个原点太远了，可能根本回不去了，甚至说这个时代的人们都必须朝着另外的方向发展！</p>
 
-<p>如果真是如此的话，我现在还算是幸运的呢！不过，能够证明这个判断的方法只有去亲身体验一把，而像我这样责任感很强的人，是不可能单纯去“体验”的，应该会全身心地投入吧。就像昨天在微博上看到的关于用情专一的解释──“用情专一不是永远只对一个人，而是对每个人的时候都一心一意”。这样来表述用情专一确实比实际意义要好，而且很符合现实情况。</p>
+<p>以上的这些变化让我想到了尼采的断言──“重估一切价值”。</p>
+
+<p>现在的社会价值观一点点侵蚀着我们每个人，而且这已经到了需要我们重新评估一切价值的时候。这不是一场实实在在的战争，但影响力绝对不亚于真实的战争，这就是思想的力量。</p>
+
+<p>那么，我的目标呢？</p>
+
+<p>几乎每个寒暑假我都会尝试一个新的领域，这种好奇不也应该是一个人该有的品质么？然而我就是被这些新的技术一点点瓜分掉了精力，不知道该朝着哪个方向走，还总想找到一个冠冕堂皇的理由支配自己一定要选出来几个努力研究下去！技术上的各路大牛们还都能相信“让自己快乐的就是最适合自己的”这样的观点，然而我现在根本找不到那所谓的快乐所在，在我一贯称为喜欢的计算机行业里，我找不到能让我高兴的地方，这可能就是我困惑的原因。</p>
+
+<p>同样在感情方面我也遇到了不少挫折，一直喜欢着一个现在还不怎么喜欢我的人，而且我一直不断地在努力，长久的没有反馈似乎已经影响到了我的人生目标，我想情感方面的失败对我目标缺失的影响可能更大一些。</p>
+
+<p>目标？继续寻找！</p>
 
 		
 		
@@ -449,11 +637,11 @@
   
 
 
-<time datetime="2011-04-29T23:15:00+08:00" pubdate data-updated="true">Apr 29<span>th</span>, 2011</time></div>
+<time datetime="2011-02-25T20:17:00+08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/jia-ting/'>家庭</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>, <a class='category' href='/blog/categories/ze-ren/'>责任</a>
+	<a class='category' href='/blog/categories/ren-sheng/'>人生</a>, <a class='category' href='/blog/categories/jie-zhi-guan/'>价值观</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/qing-gan/'>情感</a>, <a class='category' href='/blog/categories/mu-biao/'>目标</a>
 
 
 </div>
@@ -465,16 +653,31 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/04/26/tired-and-nnervous/">
+		<a href="/blog/2011/02/24/i-know-why-the-other-bookmarks-can-not-be-delete-on-bookmark-toolbar/">
 		
-			好累，好紧张</a>
+			终于知道为何chrome浏览器中的“其他书签”为何无法去掉了</a>
 	</h2>
 	<div class="entry-content">
-		<p>两个项目离最后的日期越来越近了，其中一个似乎要延期，这是我最不希望的结果，因为按照计划，在我回家之前是一定会把两个项目都做完的，从家里回来就能够做自己的东西了。因为自己的那个东西时间也非常紧张，6月6日到期。接着是可恶的四级考试和期末考试、中科杯比赛，暑期实习，再回来的时候就是一个成熟的大三人员了：）</p>
+		<p><img src="http://pic.yupoo.com/loose_v/ASbtBMXR/TI9ji.png" alt="">早就看着这个文件夹不顺眼，但就是无法删除，打开chrome的书签管理器发现它和“书签栏”是同级的，刚刚去研究了一番chrome的扩展程序，本以为通过chrome本身能够操控自己，但经过实践后发现这根本行不通。 建立一个chrome的扩展程序是这样的： 1.建立一个目录，随便在什么地方。 2.进入这个目录，建立一个叫manifest.json的文件，从文件名就能看出这是个json，用vi、vim、emacs等写入如下内容：  </p>
 
-<p>以上都是理想状况：）</p>
+<pre class="prettyprint linenums bush:jscript" lang="jscript">{
+ "name": "hide-other-bookmark-button",
+ "version": "1.0",
+ "description": "I want to hide the 'other bookmark' button in Chrome's bookmark toolbar!",
+ "browser_action": {
+   "default_icon": "icon.ico"
+ },
+ "permissions": [
+    "bookmarks"
+  ],
+ "background_page":"index.html"
+}</pre>
 
-<p>现实呢？是疲劳的：）</p>
+
+<p>然后找个ico文件，命名成上面提到的icon.ico，只要和json文件中对应即可，png也行。现在这个扩展的配置文件就基本完成了，因为这是要操控bookmarks的扩展程序，所以在permissions那里药写上bookmarks以表示这个扩展要使用chrome的bookmarks的API来做一些东西。具体的API可以参考Google的文档。 3.建立上面提到的一个index.html文件，这是此扩展程序的主页面，就是一个标准的html页面。我曾经一度以为chrome的这些API到底是该怎么调用啊？用html能行么？于是我找到了一个不错的应用程序，看了它的代码，简单说，chrome的那些API就是一个JS库，和jQuery一样用，只不过chrome内置了这个库，你直接用就可以了，不用再明显声明（除了json里面的那句），我们的index中只有很简单的一句代码：（为了让人们看清楚，我完整给出index的内容）</p>
+
+<p>4.那么多出来的那句代码是做什么的呢？其实我是用了上面那句，才能确定“其他书签”这个的id是2而不是别的。 <img src="http://pic.yupoo.com/loose_v/ASbtC0ec/lNALS.png" alt=""> 从chrome自带的JavaScript控制台程序能够看到bookTree是一个Object，还能继续看它的属性，这是一个array，下面的1号object也是个array，我们能够看到他的id是2，而title就是我们渴望的“其他书签”。下面那句就是删除id为2的那个object，很可惜，返回了error，对于这个我也没办法了： <img src="http://pic.yupoo.com/loose_v/ASbvzoiM/kjvjq.png" alt=""> 到了这里，这篇文章也就基本结束了，虽然我们没有成功，但这个过程是值得的，能够在chrome这样的大型软件中体验扩展程序也是很不错的
+！</p>
 
 		
 		
@@ -494,11 +697,11 @@
   
 
 
-<time datetime="2011-04-26T05:57:00+08:00" pubdate data-updated="true">Apr 26<span>th</span>, 2011</time></div>
+<time datetime="2011-02-24T22:51:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/bi-sai/'>比赛</a>, <a class='category' href='/blog/categories/wang-zhan/'>网站</a>
+	<a class='category' href='/blog/categories/bookmark-chrome/'>bookmark chrome</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>
@@ -510,16 +713,54 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/04/23/pure-gift/">
+		<a href="/blog/2011/02/24/git-for-project/">
 		
-			纯净的礼物</a>
+			为项目搭建git版本控制</a>
 	</h2>
 	<div class="entry-content">
-		<p>在我还能自由地使用“她”这个称谓时，我设计了给她的下一份礼物，然而在送出之前，她离我而去了。不过我还是依然准备好了这份礼物。和以往不同，这是一份纯净的礼物，不掺杂多余的感情色彩。</p>
+		<p>这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １.安装git就不再多说了，我似乎把redhat中的一个仓库加入了rpm，直接yum install -y git安装了，不如下载源代码安装的git版本高，我这里似乎只有１.５的版本。 ２.我使用了gitosis来管理所有的项目，所以：  </p>
 
-<p>我如何做到的？</p>
+<pre class="prettyprint linenums bush:bash" lang="bash">yum install python-setuptools
+git clone git://eagain.net/gitosis.git
+cd gitosis
+python setup.py install </pre>
 
-<p>经历过就能做到，多说无益，等你自己愿意放弃一个人的时候，就能做出来了。这在你想放弃之前，谁说也无用。</p>
+
+<p>３.安装好了就可以初始化gitosis，还得先建立一个git的用户来做一些工作：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">useradd -m -s /bin/bash -d /home/git git
+passwd git #给git用户加上密码
+su - git
+cd ~
+gitosis-init &lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径</pre>
+
+
+<p>４.修改一些权限，据说很重要，为了安全：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">chmod 755 /home/git
+chmod 700 /home/git/.ssh
+chmod 644 /home/git/.ssh/authorized_keys 
+chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update </pre>
+
+
+<p>５.在本地用git做最后的工作，修改gitosis的配置文件并上传：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">git clone ssh://git@DOMAIN:8888/gitosis-admin.git
+cd gitosis-admin
+vi gitosis.conf
+#增加新的项目名字和相关配置
+[group AWAD]#ＡＷＡＤ组
+writable = wodeyitian_web　　　#仓库中的名字
+members = dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员名字就是rsa共钥中最后的成员名字</pre>
+
+
+<p>好像和那个pub文件的名字要一样，那样的pub文件放在和这个conf文件在一起的keydir文件夹下. 6.完成这里后提交一下再push到远程服务器上即可完成：  </p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">git commit -a -m '建立了新的项目'
+git push</pre>
+
+
+<p>7.已经全部完成，在本地已经可以用了，不过还想说一下，如果做开源项目，还是放到github上比较好玩！</p>
 
 		
 		
@@ -539,11 +780,11 @@
   
 
 
-<time datetime="2011-04-23T22:14:00+08:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2011</time></div>
+<time datetime="2011-02-24T17:37:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/xi-wang-wo-huan-neng-ji-qi/'>希望我还能记起</a>, <a class='category' href='/blog/categories/ai-qing/'>爱情</a>, <a class='category' href='/blog/categories/li-wu/'>礼物</a>
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

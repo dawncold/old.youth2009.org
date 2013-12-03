@@ -7,7 +7,11 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="在服务器上找了好久也没看到pear包的存在，于是下载重装。 wget http://pear.php.net/go-pear.phar php ./go-pear.phar ./pear install XXXX(XXXX就是要新加入的扩展库名称) 根据提示修改一些参数即可， &hellip;">
+	<meta name="description" content="在服务器上找了好久也没看到pear包的存在，于是下载重装。 1
+2
+3
+4
+wget http://pear.php.net/go-pear.phar php ./go-pear.phar ./pear install XXXX(XXXX就是要新加入的扩展库名称) 根据提示修改一些参数即可， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -77,10 +81,14 @@
 	<h2 class="title">安装PEAR</h2>
 	<div class="entry-content"><p>在服务器上找了好久也没看到pear包的存在，于是下载重装。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">wget http://pear.php.net/go-pear.phar 
-php ./go-pear.phar 
-
-./pear install XXXX(XXXX就是要新加入的扩展库名称)</pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://pear.php.net/go-pear.phar 
+</span><span class='line'>php ./go-pear.phar 
+</span><span class='line'>
+</span><span class='line'>./pear install XXXX(XXXX就是要新加入的扩展库名称)</span></code></pre></td></tr></table></div></figure>
 
 
 <p>根据提示修改一些参数即可，其中比较重要的是最后的include_path这个参数，要确保这里面包含了pear的目录，否则用pear安装上的扩展就不好运行了，比如我的PhpDocumentor就是如此，好在最后加入到了path中，phpdocumentor就能用了。</p>
