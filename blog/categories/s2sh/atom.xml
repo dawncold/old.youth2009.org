@@ -4,7 +4,7 @@
   <title><![CDATA[Category: S2SH | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/s2sh/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T17:02:32+08:00</updated>
+  <updated>2013-12-07T21:00:11+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -24,13 +24,15 @@
 
 <p>比如：得到的是Student实体，可以用里面的name属性。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">SELECT s FROM Student s, School sc WHERE sc.city = '北京' AND s.school.id = sc.id AND s.name LIKE '张%'</pre>
-
+<p><code>bash
+SELECT s FROM Student s, School sc WHERE sc.city = '北京' AND s.school.id = sc.id AND s.name LIKE '张%'
+</code></p>
 
 <p>但是：得到的就是具体的name了，再用name属性就会出现上面的错误</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">SELECT s.name FROM Student s, School sc WHERE sc.city = '北京' AND s.school.id = sc.id AND s.name LIKE '张%'</pre>
-
+<p><code>bash
+SELECT s.name FROM Student s, School sc WHERE sc.city = '北京' AND s.school.id = sc.id AND s.name LIKE '张%'
+</code></p>
 
 <p>这种错误很难搞的！！！</p>
 ]]></content>
@@ -49,9 +51,9 @@
 
 <p>1.aopalliance-1.0.jar（在struts2的lib目录中找到的）</p>
 
-<p>2.aspcetjweaver-1.5.3.jar（aspcetj的官网怎么上都上不去：<a href="http://www.aspectj.org" target="_blank"><a href="http://www.aspectj.org">http://www.aspectj.org</a></a>，于是在这里下载的：<a href="http://www.jar114.com/j/982"><a href="http://www.jar114.com/j/982">http://www.jar114.com/j/982</a></a>）</p>
+<p>2.aspcetjweaver-1.5.3.jar（aspcetj的官网怎么上都上不去：<a href="http://www.aspectj.org">http://www.aspectj.org</a>，于是在这里下载的：<a href="http://www.jar114.com/j/982">http://www.jar114.com/j/982</a>）</p>
 
-<p>3.cglib-nodep-2.2.2.jar（本来用cglib-2.2.2.jar的，但提示缺少asm就下载了这个集成asm的nodep版本，我以为asm就是Spring中的那个asm包呢。官方网站：<a href="http://cglib.sourceforge.net" target="_blank"><a href="http://cglib.sourceforge.net">http://cglib.sourceforge.net</a></a>）</p>
+<p>3.cglib-nodep-2.2.2.jar（本来用cglib-2.2.2.jar的，但提示缺少asm就下载了这个集成asm的nodep版本，我以为asm就是Spring中的那个asm包呢。官方网站：<a href="http://cglib.sourceforge.net">http://cglib.sourceforge.net</a>）</p>
 ]]></content>
   </entry>
   

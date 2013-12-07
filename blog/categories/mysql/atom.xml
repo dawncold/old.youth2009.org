@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mysql | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T17:02:32+08:00</updated>
+  <updated>2013-12-07T21:00:11+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -35,17 +35,19 @@
     <id>http://www.youth2009.org/blog/2012/05/23/two-mysql-lib-issue-after-yum-update</id>
     <content type="html"><![CDATA[<p>刚刚用yum升级了系统，发现日志中有很多这样的提示：</p>
 
-<p><span style="color: #111111; font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; text-align: left;">ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link</span></p>
+<p><code>bash
+ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link
+ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a symbolic link
+</code></p>
 
-<p><span style="color: #111111; font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; text-align: left;">ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a symbolic link</span></p>
-
-<p>于是Google了一下，找到一个解决方法，在<a href="http://tiger.im/286.html" target="_blank">这里</a>.</p>
+<p>于是Google了一下，找到一个解决方法，在<a href="http://tiger.im/286.html">这里</a>.</p>
 
 <p>就是重建了两条连接过去即可：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">ln -sf /usr/local/mysql/lib/mysql/libmysqlclient.so.16 /usr/lib/mysqlclient.so.16
-ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient_r.so.16</pre>
-
+<p><code>bash
+ln -sf /usr/local/mysql/lib/mysql/libmysqlclient.so.16 /usr/lib/mysqlclient.so.16
+ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient_r.so.16
+</code></p>
 ]]></content>
   </entry>
   
@@ -56,36 +58,44 @@ ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient
     <id>http://www.youth2009.org/blog/2012/04/27/backup-mysql-databases-using-python</id>
     <content type="html"><![CDATA[<p>备份数据库的重要性不想多说了。</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-# coding: utf-8
+<p>```python</p>
 
-import os
+<h1>! /usr/bin/env python</h1>
+
+<h1>coding: utf-8</h1>
+
+<p>import os
 import sys
 from datetime import *
-import time
+import time</p>
 
-#mysql's path
-mysql_path = '/usr/local/mysql/bin/'
-#edit this if your mysql username and password is not like this:
-mysql_username = 'root'
-mysql_password = 'xxxxxx'
-#backup path
-backup_path = 'mysqlbackup/'
+<h1>mysql&rsquo;s path</h1>
 
-def validate_backup_path():
+<p>mysql_path = &lsquo;/usr/local/mysql/bin/&rsquo;</p>
+
+<h1>edit this if your mysql username and password is not like this:</h1>
+
+<p>mysql_username = &lsquo;root&rsquo;
+mysql_password = &lsquo;xxxxxx&rsquo;</p>
+
+<h1>backup path</h1>
+
+<p>backup_path = &lsquo;mysqlbackup/&rsquo;</p>
+
+<p>def validate_backup_path():
 if os.path.exists(backup_path) == False:
-print "I create a directory here: %s " % backup_path
-os.mkdir(backup_path)
+print &ldquo;I create a directory here: %s &rdquo; % backup_path
+os.mkdir(backup_path)</p>
 
-def backup_all_databases():
-filename = "all_%s.sql" % (datetime.utcfromtimestamp(time.time()))
-os.system("%smysqldump -u%s -p%s --all-databases &gt; '%s%s'" % (mysql_path, mysql_username, mysql_password, backup_path, filename))
+<p>def backup_all_databases():
+filename = &ldquo;all_%s.sql&rdquo; % (datetime.utcfromtimestamp(time.time()))
+os.system(&ldquo;%smysqldump -u%s -p%s &mdash;all-databases > &lsquo;%s%s&rsquo;&rdquo; % (mysql_path, mysql_username, mysql_password, backup_path, filename))</p>
 
-if __name__ == "__main__":
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:
 validate_backup_path()
 backup_all_databases()
-print "finish!!!"</pre>
-
+print &ldquo;finish!!!&rdquo;
+```</p>
 
 <p>这个是修改了一次的备份脚本，本来是分数据库备份的，无奈制定了分数据库备份需要输入密码，这就不容易加入cron来自动完成了，不过听说在my.cnf中加入mysqldump的设置可以避免输入账号密码，这也算是一个办法吧，不过还是本着简化的思想，只导出所有数据库出来就好，配合着上一篇的dropbox自动备份，这样VPS的灾备就稍稍好些了：）</p>
 ]]></content>
@@ -98,24 +108,27 @@ print "finish!!!"</pre>
     <id>http://www.youth2009.org/blog/2011/12/07/reset-the-password-of-mysql</id>
     <content type="html"><![CDATA[<p>前几天在Mac系统下装了MySQL，装完后是默认没有给root用户带密码的，于是出于安全考虑我就加上了密码，加密码的方式如下：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">mysqladmin -u root password "mysqlpassword"</pre>
-
+<p><code>bash
+mysqladmin -u root password "mysqlpassword"
+</code></p>
 
 <p>很明显引号内的是root用户的新密码。</p>
 
-<p>但在使用的时候我一时想不起来密码了，于是搜索到了官方的Reset the password of MySQL，但看着好麻烦，没有尝试，在<a href="http://huoding.com/2011/06/12/85" target="_blank">这里</a>找到了方法，贴出来主要代码：</p>
+<p>但在使用的时候我一时想不起来密码了，于是搜索到了官方的Reset the password of MySQL，但看着好麻烦，没有尝试，在<a href="http://huoding.com/2011/06/12/85">这里</a>找到了方法，贴出来主要代码：</p>
 
 <p>先停止mysql的服务，用下面这句启动mysql：</p>
 
-<pre class="prettyprint linenums bush:sql" lang="sql">mysqld_safe --skip-grant-tables --skip-networking &amp;
-</pre>
+<p>```sql
+mysqld_safe &mdash;skip-grant-tables &mdash;skip-networking &amp;</p>
 
+<p>```</p>
 
 <p>用SQL语句修改root的密码：</p>
 
-<pre class="prettyprint linenums bush:sql" lang="sql">UPDATE mysql.user SET Password=PASSWORD('...') WHERE User='...' AND Host= '...';
-FLUSH PRIVILEGES;</pre>
-
+<p><code>sql
+UPDATE mysql.user SET Password=PASSWORD('...') WHERE User='...' AND Host= '...';
+FLUSH PRIVILEGES;
+</code></p>
 
 <p>单引号内的东西自己补充吧，第一个是新密码，第二个写root，第三个用localhost就可以了。</p>
 ]]></content>
@@ -128,43 +141,45 @@ FLUSH PRIVILEGES;</pre>
     <id>http://www.youth2009.org/blog/2011/08/08/mysqldb-have_wcscoll-redefined</id>
     <content type="html"><![CDATA[<p>问题就是这样了：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">[root@wodeyitian MySQL-python-1.2.3]# python setup.py install
+<p>```bash
+[root@wodeyitian MySQL-python-1.2.3]# python setup.py install
 running install
 running bdist_egg
 running egg_info
 writing MySQL_python.egg-info/PKG-INFO
 writing top-level names to MySQL_python.egg-info/top_level.txt
 writing dependency_links to MySQL_python.egg-info/dependency_links.txt
-reading manifest file 'MySQL_python.egg-info/SOURCES.txt'
-reading manifest template 'MANIFEST.in'
-warning: no files found matching 'MANIFEST'
-warning: no files found matching 'ChangeLog'
-warning: no files found matching 'GPL'
-writing manifest file 'MySQL_python.egg-info/SOURCES.txt'
+reading manifest file &lsquo;MySQL_python.egg-info/SOURCES.txt&rsquo;
+reading manifest template &lsquo;MANIFEST.in&rsquo;
+warning: no files found matching &lsquo;MANIFEST&rsquo;
+warning: no files found matching &lsquo;ChangeLog&rsquo;
+warning: no files found matching &lsquo;GPL&rsquo;
+writing manifest file &lsquo;MySQL_python.egg-info/SOURCES.txt&rsquo;
 installing library code to build/bdist.linux-x86_64/egg
 running install_lib
 running build_py
-copying MySQLdb/release.py -&gt; build/lib.linux-x86_64-2.7/MySQLdb
+copying MySQLdb/release.py &ndash;> build/lib.linux-x86_64-2.7/MySQLdb
 running build_ext
-building '_mysql' extension
-gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info=(1,2,3,'final',0) -D__version__=1.2.3 -I/usr/include/mysql -I/usr/local/include/python2.7 -c _mysql.c -o build/temp.linux-x86_64-2.7/_mysql.o -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv
-在包含自 _mysql.c：36 的文件中:
+building &lsquo;<em>mysql&rsquo; extension
+gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info=(1,2,3,&lsquo;final&rsquo;,0) -D<strong>version</strong>=1.2.3 -I/usr/include/mysql -I/usr/local/include/python2.7 -c </em>mysql.c -o build/temp.linux-x86_64-2.7/<em>mysql.o -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector &mdash;param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv
+在包含自 </em>mysql.c：36 的文件中:
 /usr/include/mysql/my_config.h:1062:1: 警告：“HAVE_WCSCOLL”重定义
-在包含自 /usr/local/include/python2.7/Python.h：8 的文件中，
-                从 pymemcompat.h：10，
-                从 _mysql.c：29:
-/usr/local/include/python2.7/pyconfig.h:887:1: 警告：这是先前定义的位置
-gcc -pthread -shared build/temp.linux-x86_64-2.7/_mysql.o -L/usr/lib64/mysql -L/usr/lib64 -lmysqlclient_r -lz -lpthread -lcrypt -lnsl -lm -lpthread -lssl -lcrypto -o build/lib.linux-x86_64-2.7/_mysql.so
+在包含自 /usr/local/include/python2.7/Python.h：8 的文件中，</p>
+
+<pre><code>            从 pymemcompat.h：10，
+            从 _mysql.c：29:
+</code></pre>
+
+<p>/usr/local/include/python2.7/pyconfig.h:887:1: 警告：这是先前定义的位置
+gcc -pthread -shared build/temp.linux-x86_64-2.7/<em>mysql.o -L/usr/lib64/mysql -L/usr/lib64 -lmysqlclient_r -lz -lpthread -lcrypt -lnsl -lm -lpthread -lssl -lcrypto -o build/lib.linux-x86_64-2.7/</em>mysql.so
 /usr/bin/ld: cannot find -lmysqlclient_r
 collect2: ld 返回 1
-error: command 'gcc' failed with exit status 1
-</pre>
-
+error: command &lsquo;gcc&rsquo; failed with exit status 1
+```</p>
 
 <p>也不算什么解决方法吧，就是缺失一些组件，安装了mysql-devel就好了：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">yum install mysql-devel.x86_64</pre>
-
+<p><code>yum install mysql-devel.x86_64</code></p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: c | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/c/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T17:02:32+08:00</updated>
+  <updated>2013-12-07T21:00:11+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -20,7 +20,7 @@
     <id>http://www.youth2009.org/blog/2012/05/30/simple-c-language-program</id>
     <content type="html"><![CDATA[<p>嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（</p>
 
-<p>```</p>
+<p>```c</p>
 
 <h1>include &lt;stdio.h></h1>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T17:02:32+08:00</updated>
+  <updated>2013-12-07T21:00:11+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -20,14 +20,16 @@
     <id>http://www.youth2009.org/blog/2012/06/11/lib-javahl-for-svn-on-mac</id>
     <content type="html"><![CDATA[<p>今天基本完成了LoveSMS，想checkout一下jdrcom来看看，所以就安装上了svn for eclipse，然后在导入的时候提示缺少javahl库，去了官方查看了一下，说是对于Mac用户，只需要下载他们的bin文件就能解决，我一看才给到1.6.5的版本，而我自己用brew都装到了1.7.5，而且svn插件用的是1.8.x，需要1.7+的svn支持才行，所以就自己重新安装了svn：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">brew install subversion --universal --java</pre>
-
+<p><code>bash
+brew install subversion --universal --java
+</code></p>
 
 <p>这句是关键哦，当然你得先uninstall已经安装的svn才行。加了java开关就可以告诉svn需要java IDE的库，编译的完成后会继续编译javahl～</p>
 
 <p>会有这样的提示哦：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">To use Java bindings with various Java IDEs, you might need a universal build:
+<p><code>bash
+To use Java bindings with various Java IDEs, you might need a universal build:
  brew install subversion --universal --java
 ==&gt; ./configure --disable-debug --prefix=/usr/local/Cellar/subversion/1.7.5 --with-ssl --with-zlib=/usr --with-sqlite=/usr/local --disable-neon-version-chec
 ==&gt; make
@@ -37,8 +39,8 @@
 ==&gt; Caveats
 You may need to link the Java bindings into the Java Extensions folder:
  sudo mkdir -p /Library/Java/Extensions
- sudo ln -s /usr/local/lib/libsvnjavahl-1.dylib /Library/Java/Extensions/libsvnjavahl-1.dylib</pre>
-
+ sudo ln -s /usr/local/lib/libsvnjavahl-1.dylib /Library/Java/Extensions/libsvnjavahl-1.dylib
+</code></p>
 
 <p>自己加入后面的链接就ok了！</p>
 ]]></content>
@@ -53,48 +55,54 @@ You may need to link the Java bindings into the Java Extensions folder:
 
 <p>我写的测试是每秒输出现在的时间而已。</p>
 
-<pre class="prettyprint linenums bush:java" lang="java">import java.awt.Toolkit;
+<p>```java
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
+import java.util.Date;</p>
 
+<p>public class TimePrint implements ActionListener
+{</p>
 
-public class TimePrint implements ActionListener
-{
-
-   @Override
+<p>   @Override
    public void actionPerformed(ActionEvent e)
-   {
-       // TODO Auto-generated method stub
-       System.out.println("date is: " + (new Date()));
-       Toolkit.getDefaultToolkit().beep();
-   }
-}
-</pre>
+   {</p>
 
+<pre><code>   // TODO Auto-generated method stub
+   System.out.println("date is: " + (new Date()));
+   Toolkit.getDefaultToolkit().beep();
+</code></pre>
+
+<p>   }
+}</p>
+
+<p>```</p>
 
 <p>在调用的时候如果忘记写Thread.sleep(xxx)这行就不会看到效果，具体原因不太清楚，可能这个swing中的Timer只是用来在GUI中做些什么工作的，而我用终端输出内容就不太合适了，于是就牵扯出来很多线程的问题。</p>
 
 <p>这是main方法中的内容：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">import java.awt.event.ActionListener;
+<p>```bash
+import java.awt.event.ActionListener;</p>
 
-import javax.swing.Timer;
+<p>import javax.swing.Timer;</p>
 
-
-public class TimerPrintTest
+<p>public class TimerPrintTest
 {
    public static void main(String[] argStrings) throws InterruptedException
-   {
-       System.out.println("Running...");
-       ActionListener listener = new TimePrint();
-       Timer timer = new Timer(1000, listener);
-       timer.start();
-       Thread.sleep(4000);
-   }
-}
-</pre>
+   {</p>
 
+<pre><code>   System.out.println("Running...");
+   ActionListener listener = new TimePrint();
+   Timer timer = new Timer(1000, listener);
+   timer.start();
+   Thread.sleep(4000);
+</code></pre>
+
+<p>   }
+}</p>
+
+<p>```</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sql | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/sql/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T17:02:32+08:00</updated>
+  <updated>2013-12-07T21:00:11+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -22,28 +22,31 @@
 
 <p>左外连接查询比两次select快10～20%左右。</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-# coding: utf-8
+<p>```python</p>
 
-import sqlite3
+<h1>! /usr/bin/env python</h1>
+
+<h1>coding: utf-8</h1>
+
+<p>import sqlite3
 import os
 import time
-import random
+import random</p>
 
-def connect():
-return sqlite3.connect('./test.db')
+<p>def connect():
+return sqlite3.connect(&lsquo;./test.db&rsquo;)</p>
 
+<p>def insertProgress(conn, user_id):
+cur = conn.execute(&lsquo;INSERT INTO todo(title, date) VALUES(?,?)&rsquo;, [&lsquo;just test!!!&rsquo;, time.strftime(&ldquo;%Y-%m-%d %H:%M:%S&rdquo;, time.localtime())])
+conn.execute(&lsquo;INSERT INTO todo_meta(todo_id, user_id) VALUES(?,?)&rsquo;, [cur.lastrowid, user_id])</p>
 
-def insertProgress(conn, user_id):
-cur = conn.execute('INSERT INTO todo(title, date) VALUES(?,?)', ['just test!!!', time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())])
-conn.execute('INSERT INTO todo_meta(todo_id, user_id) VALUES(?,?)', [cur.lastrowid, user_id])
+<p>def insertManyData(conn):</p>
 
+<h1>reset database</h1>
 
-def insertManyData(conn):
-#reset database
-os.system('sqlite3 test.db &lt; schema.sql')
+<p>os.system(&lsquo;sqlite3 test.db &lt; schema.sql&rsquo;)</p>
 
-conn.cursor()
+<p>conn.cursor()
 counts = [0,0,0,0,0,0]
 for i in xrange(100000):
 userid = random.choice([0, 1, 2, 3, 4, 5])
@@ -51,37 +54,38 @@ counts[userid] += 1
 insertProgress(conn, userid)
 conn.commit()
 conn.close()
-print counts
+print counts</p>
 
-def selectUsingLeftOuterJoin(conn, user_id):
+<p>def selectUsingLeftOuterJoin(conn, user_id):
 conn.cursor()
-cur = conn.execute('SELECT t.title, t.date \
+cur = conn.execute(&lsquo;SELECT t.title, t.date \
 FROM todo t LEFT OUTER JOIN todo_meta tm \
-ON tm.todo_id = t.id\WHERE tm.user_id = ?', [user_id])
+ON tm.todo_id = t.id\WHERE tm.user_id = ?&rsquo;, [user_id])
 def selectTwoTimes(conn, user_id):
 conn.cursor()
-cur = conn.execute('SELECT todo_id FROM todo_meta WHERE user_id = ?', [user_id])
+cur = conn.execute(&lsquo;SELECT todo_id FROM todo_meta WHERE user_id = ?&rsquo;, [user_id])
 for tid in [row[0] for row in cur.fetchall()]:
-cur = conn.execute('SELECT title, date FROM todo WHERE id = ?', [tid])
+cur = conn.execute(&lsquo;SELECT title, date FROM todo WHERE id = ?&rsquo;, [tid])</p>
 
-if __name__ == "__main__":
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:
 uids = [0, 1, 2, 3, 4, 5]
 insert_time_start = time.time()
 insertManyData(connect())
-print "Insert Time: %f" % (time.time() - insert_time_start)
+print &ldquo;Insert Time: %f&rdquo; % (time.time() &ndash; insert_time_start)
 select_ULOJ_start = time.time()
 for uid in uids:
 selectUsingLeftOuterJoin(connect(), uid)
-print "Select Using Left Outer Join time: %f" % (time.time() - select_ULOJ_start)
+print &ldquo;Select Using Left Outer Join time: %f&rdquo; % (time.time() &ndash; select_ULOJ_start)
 select_two_times = time.time()
 for uid in uids:
 selectTwoTimes(connect(), uid)
-print "Select Two Times time: %f" % (time.time() - select_two_times)</pre>
-
+print &ldquo;Select Two Times time: %f&rdquo; % (time.time() &ndash; select_two_times)
+```</p>
 
 <p>schema：</p>
 
-<pre class="prettyprint linenums bush:sql" lang="sql">drop table if exists todo;
+<p><code>sql
+drop table if exists todo;
 drop table if exists user;
 drop table if exists todo_meta;
 create table todo (
@@ -101,8 +105,8 @@ todo_id integer,
 user_id integer,
 foreign key(todo_id) references todo(id),
 foreign key(user_id) references user(id)
-);</pre>
-
+);
+</code></p>
 
 <p>启动脚本就会创建数据库并开始测试。</p>
 ]]></content>
@@ -119,7 +123,7 @@ foreign key(user_id) references user(id)
 
 <p>只好cursor.fetchone()先，然后判断得到的内容是不是None。</p>
 
-<p>从<a href="http://stackoverflow.com/questions/839069/cursor-rowcount-always-1-in-sqlite3-in-python3k" target="_blank">这里</a>得到的答案。</p>
+<p>从<a href="http://stackoverflow.com/questions/839069/cursor-rowcount-always-1-in-sqlite3-in-python3k">这里</a>得到的答案。</p>
 ]]></content>
   </entry>
   

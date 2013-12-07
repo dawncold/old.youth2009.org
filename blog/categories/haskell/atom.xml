@@ -4,7 +4,7 @@
   <title><![CDATA[Category: haskell | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/haskell/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T17:02:32+08:00</updated>
+  <updated>2013-12-07T21:00:11+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -36,8 +36,9 @@
 
 <p>在shell中能够看到命令提示标志是一个叫“Prelude”的东西，书上讲这是haskell默认加载的一个模块，就是个基础模块吧，如果不喜欢这个名字可以这样更改掉：  </p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">:set prompt "ghci &gt;"</pre>
-
+<p><code>bash
+:set prompt "ghci &gt;"
+</code></p>
 
 <p>现在的提示符标志就变成ghci >了。</p>
 
@@ -59,7 +60,7 @@
 
 <h1>运算符</h1>
 
-<p>说说不等号的表示方法──“/=”，像是其他语言中的x = x/y这样的，但这里看起来更象是不等号。 感叹号表示对一个变量的反，这里用not单词表示──“not True”  =&gt; False（=&gt;是我自己为了好看而打上的符号） 乘方运算符：**或者^</p>
+<p>说说不等号的表示方法──“/=”，像是其他语言中的x = x/y这样的，但这里看起来更象是不等号。 感叹号表示对一个变量的反，这里用not单词表示──“not True”  => False（=>是我自己为了好看而打上的符号） 乘方运算符：**或者^</p>
 
 <h2>优先级</h2>
 
@@ -72,8 +73,8 @@
 分别查看加号、乘号的优先级，返回的结果类似这样：  </p>
 
 <p><code>
-class (Eq a, Show a) =&amp;gt; Num a where
- (+) :: a -&amp;gt; a -&amp;gt; a
+class (Eq a, Show a) =&gt; Num a where
+ (+) :: a -&gt; a -&gt; a
  ...
  -- Defined in GHC.Num
 infixl 6 +

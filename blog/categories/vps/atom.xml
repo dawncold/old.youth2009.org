@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vps | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/vps/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T17:02:32+08:00</updated>
+  <updated>2013-12-07T21:00:11+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -60,29 +60,32 @@
 
 <p>总的来说就是用virtualenv来创建各个app的目录，在里面安装需要的环境（flask、mysql-python、beautifulsoup4等等吧），nginx的配置大概如下：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">server {
-     listen       80;
-     server_name  todo.wodeyitian.com;
-     location / {
-               include uwsgi_params;
-               uwsgi_pass 127.0.0.1:9090;
-               uwsgi_param UWSGI_PYHOME /home/wwwroot/python_app_todo;
-               uwsgi_param UWSGI_CHDIR /home/wwwroot/python_app_todo/app_dir;
-               uwsgi_param UWSGI_SCRIPT todoApp:app;
-     }
-}</pre>
+<p>```bash
+server {</p>
 
+<pre><code> listen       80;
+ server_name  todo.wodeyitian.com;
+ location / {
+           include uwsgi_params;
+           uwsgi_pass 127.0.0.1:9090;
+           uwsgi_param UWSGI_PYHOME /home/wwwroot/python_app_todo;
+           uwsgi_param UWSGI_CHDIR /home/wwwroot/python_app_todo/app_dir;
+           uwsgi_param UWSGI_SCRIPT todoApp:app;
+ }
+</code></pre>
+
+<p>}
+```</p>
 
 <p>UWSGI_PYHOME是app的主目录，下面的CHDIR是app中py文件所在的目录，这个可以自己设置，下面的SCRIPT是入口脚本模块名和变量名，模块就是文件名喽，变量一般在flask都是用app作为整个网站的入口变量，写过python基本都能明白这个。</p>
 
 <p>安装好uwsgi后可以配置开启：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost</pre>
+<p><code>bash
+uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost
+</code></p>
 
-
-
-
-<p><p style="text-align: left;">使用9090端口监听，-M开启主控线程，-p 4是开启4个线程，-t 30是超过30秒不响应丢弃，limit-as 128是限制128Mb的内存占用，-R 10000是超过10000的请求就自动<span style="font-family: Verdana, sans-serif, 宋体;"><span style="line-height: 24px;">respawn（似乎是自动复制？重启？之类的），-d是日志，&mdash;vhost这个可以让多个app共用一个uwsgi，很好用的！</span></span></p>
+<p>使用9090端口监听，-M开启主控线程，-p 4是开启4个线程，-t 30是超过30秒不响应丢弃，limit-as 128是限制128Mb的内存占用，-R 10000是超过10000的请求就自动respawn（似乎是自动复制？重启？之类的），-d是日志，&mdash;vhost这个可以让多个app共用一个uwsgi，很好用的！</p>
 ]]></content>
   </entry>
   
@@ -95,7 +98,7 @@
 
 <p>新的VPS比以前贵，大约是每月10刀（原来的512Mb的YardVPS是7.59刀），但新的vps性能很好，网络也很好很快，希望能一直用下去，贵点就贵点呗，比起神器Linode便宜了不少。</p>
 
-<p>这个技术blog是最后迁移过来的了，原先有几个php写得东西光是把数据库保存下来了，就不再挂出来让大家访问了吧，我猜也没几个用得，留着数据库做个纪念<img title="微笑" src="http://www.youth2009.org/usr/plugins/TinyMCE/tiny_mce/plugins/emotions/img/smiley-smile.gif" alt="微笑" border="0"></p>
+<p>这个技术blog是最后迁移过来的了，原先有几个php写得东西光是把数据库保存下来了，就不再挂出来让大家访问了吧，我猜也没几个用得，留着数据库做个纪念</p>
 ]]></content>
   </entry>
   
@@ -106,13 +109,15 @@
     <id>http://www.youth2009.org/blog/2012/06/08/solved-sudo-unable-to-resolve-host</id>
     <content type="html"><![CDATA[<p>执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">sudo ：unable to resolve host HOSTNAME</pre>
-
+<p><code>bash
+sudo ：unable to resolve host HOSTNAME
+</code></p>
 
 <p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">127.0.0.1               localhost.localdomain localhost HOSTNAME</pre>
-
+<p><code>bash
+127.0.0.1               localhost.localdomain localhost HOSTNAME
+</code></p>
 
 <p>希望vpsee的admin能在iso中修复这个问题</p>
 ]]></content>

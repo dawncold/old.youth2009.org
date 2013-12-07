@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iphone-dev | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/iphone-dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T17:02:32+08:00</updated>
+  <updated>2013-12-07T21:00:11+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -53,11 +53,9 @@ git submodule update --init
 cp -f ./ldid $THEOS/bin/ldid
 </code></p>
 
-<p>有篇教程说在iOS上也安装perl和theos，我实在不清楚有什么用，不过我也安装了，蛋疼，具体方法看
-<a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started" target="_blank">这里</a></p>
+<p>有篇教程说在iOS上也安装perl和theos，我实在不清楚有什么用，不过我也安装了，蛋疼，具体方法看<a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">这里</a></p>
 
-<p>headers用这里的：<a href="https://github.com/rpetrich/iphoneheaders" target="_blank"><a href="https://github.com/rpetrich/iphoneheaders">https://github.com/rpetrich/iphoneheaders</a></a>
-需要注意一点的是IOSurface这个framework，你需要增加一个新的头文件，在Mac系统中，可能还得注释掉两行，这取决于你是不是10.7版本的Mac系统。命令是：<code>cp /System/Library/Frameworks/IOSurface.framework/Headers/IOSurfaceAPI.h .</code>，在251和255行（我编译错误时候提示的就这两行），注释掉</p>
+<p>headers用这里的：<a href="https://github.com/rpetrich/iphoneheaders">https://github.com/rpetrich/iphoneheaders</a>需要注意一点的是IOSurface这个framework，你需要增加一个新的头文件，在Mac系统中，可能还得注释掉两行，这取决于你是不是10.7版本的Mac系统。命令是：<code>cp /System/Library/Frameworks/IOSurface.framework/Headers/IOSurfaceAPI.h .</code>，在251和255行（我编译错误时候提示的就这两行），注释掉</p>
 
 <p>```objective-c
 /<em> This call lets you get an xpc_object_t that holds a reference to the IOSurface.

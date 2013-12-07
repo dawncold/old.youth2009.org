@@ -4,7 +4,7 @@
   <title><![CDATA[Category: wodeyitian | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/wodeyitian/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T17:02:32+08:00</updated>
+  <updated>2013-12-07T21:00:11+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -34,7 +34,7 @@ useradd -m -s /bin/bash -d /home/git git
 passwd git #给git用户加上密码
 su - git
 cd ~
-gitosis-init &amp;lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径
+gitosis-init &lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径
 </code></p>
 
 <p>４.修改一些权限，据说很重要，为了安全：  </p>
