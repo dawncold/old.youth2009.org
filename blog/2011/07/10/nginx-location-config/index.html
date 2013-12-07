@@ -7,7 +7,11 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="原来的location只是处理了“/”的情况，结果访问一个目录，即使此目录下有index.html也不会成功显示，于是改成了这样： location ~.*\.(php|php5)?$
+	<meta name="description" content="原来的location只是处理了“/”的情况，结果访问一个目录，即使此目录下有index.html也不会成功显示，于是改成了这样： 1
+2
+3
+4
+location ~.*\.(php|php5)?$
 { 处理php
 } 这样之后，发现直接访问目录或者域名的时候不能正常显示了，必须跟上index. &hellip;">
 	
@@ -79,23 +83,34 @@
 	<h2 class="title">Nginx下的location配置</h2>
 	<div class="entry-content"><p>原来的location只是处理了“/”的情况，结果访问一个目录，即使此目录下有index.html也不会成功显示，于是改成了这样：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">location ~.*\.(php|php5)?$
-{
-    处理php
-}</pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>location ~.*\.(php|php5)?$
+</span><span class='line'>{
+</span><span class='line'>    处理php
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
 <p>这样之后，发现直接访问目录或者域名的时候不能正常显示了，必须跟上index.php这样的才可以。</p>
 
 <p>最终改成这样，解决了问题：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">location / {
-               root html;
-               index index.html index.php;
-}
-location ~.*\.(php|php5)?$ {
-处理php
-}</pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>location / {
+</span><span class='line'>               root html;
+</span><span class='line'>               index index.html index.php;
+</span><span class='line'>}
+</span><span class='line'>location ~.*\.(php|php5)?$ {
+</span><span class='line'>处理php
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -117,7 +132,7 @@ location ~.*\.(php|php5)?$ {
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/nginx/'>nginx</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/nginx/'>nginx</a>
 
 
 </div>

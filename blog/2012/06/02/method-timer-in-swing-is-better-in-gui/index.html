@@ -7,8 +7,23 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="刚刚翻了翻《Java核心技术》这本书，里面提到了swing中的Timer的用法，我就实践一下，结果发现根本没有反映，于是网上搜索答案，在stackoverflow中找到。 我写的测试是每秒输出现在的时间而已。 import java.awt.Toolkit;
-import java.awt. &hellip;">
+	<meta name="description" content="刚刚翻了翻《Java核心技术》这本书，里面提到了swing中的Timer的用法，我就实践一下，结果发现根本没有反映，于是网上搜索答案，在stackoverflow中找到。 我写的测试是每秒输出现在的时间而已。 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -80,47 +95,80 @@ import java.awt. &hellip;">
 
 <p>我写的测试是每秒输出现在的时间而已。</p>
 
-<pre class="prettyprint linenums bush:java" lang="java">import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;
-
-
-public class TimePrint implements ActionListener
-{
-
-   @Override
-   public void actionPerformed(ActionEvent e)
-   {
-       // TODO Auto-generated method stub
-       System.out.println("date is: " + (new Date()));
-       Toolkit.getDefaultToolkit().beep();
-   }
-}
-</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.awt.Toolkit</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TimePrint</span> <span class="kd">implements</span> <span class="n">ActionListener</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="nd">@Override</span>
+</span><span class='line'>   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span>
+</span><span class='line'>   <span class="o">{</span>
+</span><span class='line'>       <span class="c1">// TODO Auto-generated method stub</span>
+</span><span class='line'>       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;date is: &quot;</span> <span class="o">+</span> <span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">()));</span>
+</span><span class='line'>       <span class="n">Toolkit</span><span class="o">.</span><span class="na">getDefaultToolkit</span><span class="o">().</span><span class="na">beep</span><span class="o">();</span>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>在调用的时候如果忘记写Thread.sleep(xxx)这行就不会看到效果，具体原因不太清楚，可能这个swing中的Timer只是用来在GUI中做些什么工作的，而我用终端输出内容就不太合适了，于是就牵扯出来很多线程的问题。</p>
 
 <p>这是main方法中的内容：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
-
-
-public class TimerPrintTest
-{
-   public static void main(String[] argStrings) throws InterruptedException
-   {
-       System.out.println("Running...");
-       ActionListener listener = new TimePrint();
-       Timer timer = new Timer(1000, listener);
-       timer.start();
-       Thread.sleep(4000);
-   }
-}
-</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>import java.awt.event.ActionListener;
+</span><span class='line'>
+</span><span class='line'>import javax.swing.Timer;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>public class TimerPrintTest
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>   public static void main<span class="o">(</span>String<span class="o">[]</span> argStrings<span class="o">)</span> throws InterruptedException
+</span><span class='line'>   <span class="o">{</span>
+</span><span class='line'>       System.out.println<span class="o">(</span><span class="s2">&quot;Running...&quot;</span><span class="o">)</span>;
+</span><span class='line'>       ActionListener <span class="nv">listener</span> <span class="o">=</span> new TimePrint<span class="o">()</span>;
+</span><span class='line'>       Timer <span class="nv">timer</span> <span class="o">=</span> new Timer<span class="o">(</span>1000, listener<span class="o">)</span>;
+</span><span class='line'>       timer.start<span class="o">()</span>;
+</span><span class='line'>       Thread.sleep<span class="o">(</span>4000<span class="o">)</span>;
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -142,7 +190,7 @@ public class TimerPrintTest
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>

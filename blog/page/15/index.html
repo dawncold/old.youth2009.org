@@ -7,7 +7,8 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！ 修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/ &hellip;">
+	<meta name="description" content="前几天在Mac系统下装了MySQL，装完后是默认没有给root用户带密码的，于是出于安全考虑我就加上了密码，加密码的方式如下： 1
+mysqladmin -u root password &quot;mysqlpassword&quot; 很明显引号内的是root用户的新密码。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,50 +80,39 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/05/update-ruby-on-mac/">
+		<a href="/blog/2011/12/07/reset-the-password-of-mysql/">
 		
-			更新Mac下的ruby</a>
+			重置MySQL密码</a>
 	</h2>
 	<div class="entry-content">
-		<p>刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！</p>
+		<p>前几天在Mac系统下装了MySQL，装完后是默认没有给root用户带密码的，于是出于安全考虑我就加上了密码，加密码的方式如下：</p>
 
-<p>修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/bin中的情况，如果不能自动创建链接过去的话，麻烦是一个方面，关键是后面做的一些工作基本都白费了，可能你运行的一个软件是在/usr/bin中存在的，那样就不会自动搜索到你用brew安装的那个了。详情找找brew的工作原理吧：)</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">sudo chown -R `whoami` /usr/local</pre>
-
-
-<p>首先我用了大家推荐的Homwbrew管理工具，这里安装完homebrew后需要在自己的bash配置文件中加入新的path：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">export PATH=/usr/local/bin:$PATH</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mysqladmin -u root password <span class="s2">&quot;mysqlpassword&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>把这行加入到bash_profile中吧，这样就能让homebrew发挥作用了，你首先就能用上更新了的程序而不是从默认路径查找。（如果以前用了MacPorts的话你也会和我一样看到MacPorts的export命令，要去掉他们，或者你把Homebrew的export命令写在下面，这样能覆盖掉，既然我已经删除了MacPorts，所以干脆删除掉！）</p>
+<p>很明显引号内的是root用户的新密码。</p>
 
-<p>关闭terminal，重新加载刚才的bash_profile，这样就能用Homebrew了。</p>
+<p>但在使用的时候我一时想不起来密码了，于是搜索到了官方的Reset the password of MySQL，但看着好麻烦，没有尝试，在<a href="http://huoding.com/2011/06/12/85">这里</a>找到了方法，贴出来主要代码：</p>
 
-<p>首先安装git，自己和Homwbrew都用得到：</p>
+<p>先停止mysql的服务，用下面这句启动mysql：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">brew install git</pre>
-
-
-<p>接着更新一下Homebrew的源：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">brew update</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysqld_safe</span> <span class="c1">--skip-grant-tables --skip-networking &amp;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>然后安装了ruby后就能用gem来更新系统了：</p>
+<p>用SQL语句修改root的密码：</p>
 
-<p>安装ruby：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">brew install ruby</pre>
-
-
-<p>更新系统：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">gem update --system</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">UPDATE</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span> <span class="k">SET</span> <span class="n">Password</span><span class="o">=</span><span class="n">PASSWORD</span><span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">)</span> <span class="k">WHERE</span> <span class="k">User</span><span class="o">=</span><span class="s1">&#39;...&#39;</span> <span class="k">AND</span> <span class="k">Host</span><span class="o">=</span> <span class="s1">&#39;...&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="n">FLUSH</span> <span class="k">PRIVILEGES</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>后面的安装rails等操作就可以用gem来做了，看看自己的ruby版本，已经是1.9.3p0(2011-10-30)</p>
+<p>单引号内的东西自己补充吧，第一个是新密码，第二个写root，第三个用localhost就可以了。</p>
 
 		
 		
@@ -142,11 +132,11 @@
   
 
 
-<time datetime="2012-02-05T00:00:00+08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2012</time></div>
+<time datetime="2011-12-07T17:46:00+08:00" pubdate data-updated="true">Dec 7<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/homebrew/'>homebrew</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mysql/'>mysql</a>
 
 
 </div>
@@ -158,16 +148,12 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/04/sorry-to-me-help-my-ruby/">
+		<a href="/blog/2011/12/01/struts-xml-assistant/">
 		
-			Sorry to Me</a>
+			Struts2的eclipse提示</a>
 	</h2>
 	<div class="entry-content">
-		<p>我记得自己好像说过要在python上坚持一段时间，现在发现有些不可能了，我要转向ruby了，因为自学了好久的python，只是觉得很酷，有时候也解决了不少问题，的确是一种高效的开发语言，但开发了一段时间的web app后并不像我当初预想的那样，python的相关框架在做开放的时候挺复杂的，即便是web.py这样号称simple的框架也让人用起来不舒服，可能用习惯了的话没什么，但我毕竟是一个新手，就算是php也只是才写了几K行的垃圾代码。</p>
-
-<p>就为了ruby的宗旨吧——code for fun，虽然现在没有感觉到fun到底来自何处，我也不管了，因为最近实在没什么让我happy的事情，了解我的人可能都知道这段时间我怎么了。</p>
-
-<p>ruby，救救我吧！</p>
+		<p>写struts2的配置文件时如果有提示那最好了，添加方法比较简单，从框架的jar包中找到sruts-2.1.7.dtd文件，在preference搜索xml找到xml catalog，然后add一个，文件就是刚刚找到的dtd文件，Key type选URI，我用过publicID但没有提示效果，相应的，key中写：<a href="http://struts.apache.org/dtds/struts-2.0.dtd%E5%8D%B3%E5%8F%AF%E3%80%82">http://struts.apache.org/dtds/struts-2.0.dtd%E5%8D%B3%E5%8F%AF%E3%80%82</a></p>
 
 		
 		
@@ -187,11 +173,11 @@
   
 
 
-<time datetime="2012-02-04T22:04:00+08:00" pubdate data-updated="true">Feb 4<span>th</span>, 2012</time></div>
+<time datetime="2011-12-01T14:32:00+08:00" pubdate data-updated="true">Dec 1<span>st</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/fun/'>fun</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/xi-wang-wo-huan-neng-ji-qi/'>希望我还能记起</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/s2sh/'>S2SH</a>
 
 
 </div>
@@ -203,155 +189,14 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/04/uninstall-macports/">
+		<a href="/blog/2011/11/20/also-helloworld-with-webpy/">
 		
-			删除MacPorts</a>
+			又是helloworld</a>
 	</h2>
 	<div class="entry-content">
-		<pre class="prettyprint linenums bush:bash" lang="bash">sudo port -f uninstall installed
+		<p>学计算机编程语言的人都有helloworld情节，不管学成什么样，他们写helloworld的能力都很强。</p>
 
-sudo rm -rf \
-/opt/local \
-/Applications/DarwinPorts \
-/Applications/MacPorts \
-/Library/LaunchDaemons/org.macports.* \
-/Library/Receipts/DarwinPorts*.pkg \
-/Library/Receipts/MacPorts*.pkg \
-/Library/StartupItems/DarwinPortsStartup \
-/Library/Tcl/darwinports1.0 \
-/Library/Tcl/macports1.0 \
-~/.macports</pre>
-
-
-<p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
-
-<p>我删除了MacPorts后就开始用Homebrew了。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-04T21:53:00+08:00" pubdate data-updated="true">Feb 4<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/homebrew/'>homebrew</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/macports/'>macports</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/02/03/get-inorder-pair-in-python/">
-		
-			找逆序对（Python）</a>
-	</h2>
-	<div class="entry-content">
-		<p>其实和昨天的归并排序基本内容一样，就多加了几行输出来帮助理解，找逆序对就是多了一个统计变量而已。</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-# coding: utf-8
-
-def merge(arraylist, first, middle, last):
-   temp = []
-   i = first
-   j = middle + 1
-   while i &lt;= middle and j &lt;= last:
-       if arraylist[i] &lt;= arraylist[j]:
-           temp.append(arraylist[i])
-           i += 1
-       else:
-           global inv
-           inv += middle - i + 1
-           temp.append(arraylist[j])
-           j += 1
-   while i &lt;= middle:
-       temp.append(arraylist[i])
-       i += 1
-   while j &lt;= last:
-       temp.append(arraylist[j])
-       j += 1
-   print temp
-   for i in range(0, last - first + 1):
-       arraylist[first + i] = temp[i]
-
-def merge_sort(arraylist, first, last):
-   if first &lt; last:
-       middle = (first + last) / 2
-       print "first = %d, middle = %d, last = %d" % (first, middle, last)
-       merge_sort(arraylist, first, middle)  
-       merge_sort(arraylist, middle + 1, last)
-       merge(arraylist, first, middle, last)
-
-if __name__ == "__main__":
-   inv = 0
-   arr = [2,3,8,6,1]
-   print "orign: ", arr
-   merge_sort(arr, 0, len(arr) - 1)
-   print "final: ", arr
-   print "inv = %d" % inv
-</pre>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-03T11:56:00+08:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/inorder-pair/'>inorder pair</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/02/02/merge-sort-in-python/">
-		
-			合并排序（Python）</a>
-	</h2>
-	<div class="entry-content">
-		<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -362,71 +207,29 @@ if __name__ == "__main__":
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
-</span><span class='line'><span class="c"># coding: utf-8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">web</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
-</span><span class='line'>   <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>   <span class="n">i</span> <span class="o">=</span> <span class="n">first</span>
-</span><span class='line'>   <span class="n">j</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span>
-</span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">middle</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">last</span><span class="p">:</span>
-</span><span class='line'>       <span class="k">if</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
-</span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>           <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>       <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-</span><span class='line'>           <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">middle</span><span class="p">:</span>
-</span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>       <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>   <span class="k">while</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="n">last</span><span class="p">:</span>
-</span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-</span><span class='line'>       <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">last</span> <span class="o">-</span> <span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>       <span class="n">arraylist</span><span class="p">[</span><span class="n">first</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'><span class="n">urls</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;/hello&quot;</span><span class="p">,</span> <span class="s">&quot;hello&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">application</span><span class="p">(</span><span class="n">urls</span><span class="p">,</span> <span class="nb">globals</span><span class="p">())</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
-</span><span class='line'>   <span class="k">if</span> <span class="n">first</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">last</span><span class="p">:</span>
-</span><span class='line'>       <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">first</span> <span class="o">+</span> <span class="n">last</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-</span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">)</span>
-</span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
-</span><span class='line'>       <span class="n">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">hello</span><span class="p">:</span>
+</span><span class='line'>   <span class="k">def</span> <span class="nf">GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>       <span class="k">return</span> <span class="s">&quot;hello, world&quot;</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class='line'>   <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">425</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
-</span><span class='line'>   <span class="k">print</span> <span class="n">arr</span>
-</span><span class='line'>   <span class="n">merge_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>   <span class="k">print</span> <span class="n">arr</span>
-</span><span class='line'>
+</span><span class='line'>   <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>谢谢<a href="http://www.codecho.com/merge-sort-and-quick-sort-in-python">这里</a>的帮助，我自己照着《算法导论》写了好久都出错，哎，自己在这类问题上有点笨。</p>
+<p>今晚已经开始了Web.py的学习阶段。</p>
+
+<p>看官方介绍的在Mac系统下安装webpy有点特别，于是我直接使用了easy_install的安装方法，不知道自己以前安装过easy_install这个软件管理工具，直接使用就好了，不过最好加上sudo，否则会提示无法创建什么目录，权限不够吧。</p>
+
+<p>安装完web.py后就能使用框架来写东西了，上面的helloworld就算是。</p>
+
+<p>通过这个简单的helloworld能够学到一点框架的知识——在urls中一个url字符串对应一个处理的类对象，如果需要为这个app配置多个url和对应的处理类，就需要使用add_mapping方法，这些内容请参考<a href="http://webpy.org/docs/0.3/api#web.application">官方的api</a>，很是简单，具体不在此赘述。</p>
+
+<p>第一天就学到这里，以后就要变学习变开发了。</p>
 
 		
 		
@@ -446,11 +249,11 @@ if __name__ == "__main__":
   
 
 
-<time datetime="2012-02-02T15:11:00+08:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2012</time></div>
+<time datetime="2011-11-20T23:58:00+08:00" pubdate data-updated="true">Nov 20<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/mergesort/'>mergesort</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>
@@ -462,14 +265,18 @@ if __name__ == "__main__":
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/01/26/git-study-branch-rebase/">
+		<a href="/blog/2011/11/19/also-back-to-drcom-for-mac/">
 		
-			Git使用重新学习（分支rebase）</a>
+			又回到了drcom上</a>
 	</h2>
 	<div class="entry-content">
-		<p>rebase被人翻译成衍合，是和merge功能差不多的一种操作，但提醒一点，进行rebase的内容一定不可以是提交到公共服务器上的内容，简单讲就是rebase操作你在本地自己玩就好了。</p>
+		<p>如果在mac系统下没有可用的drcom客户端真是很难受的一件事情，虽然现在有了web登陆的账号，但还是有限制的——流量总数、速度，特别是速度限制，真是拿生锈的刀杀人的感觉。</p>
 
-<p>详细点的说明去这里看吧：<a href="http://progit.org/book/zh/ch3-6.html"><a href="http://progit.org/book/zh/ch3-6.html">http://progit.org/book/zh/ch3-6.html</a></a></p>
+<p>曾经两次打开了xcode来调试drcom4mac的源代码，但每次都感觉怎么这么复杂，我怎么能看得懂？里面的drcom库是用C写的，我个人一直对于C语言有好感，但就是不想接触。现在高级语言有的是，虽说从学术划分上来讲C也算是高级语言，但从语言上比较，C算是很底层的了。就这样拖延着，我想还是动力不够，如果有什么强大动力支持着我来做这个，可能会更好。</p>
+
+<p>再来一次吧，现在同时也在学着python，前段时间面试豆瓣的时候被问到是不是C的代码写得少，我只能正确回答是的，最终也没面试上，许是和这个有关，既然如此也算是给自己找了个理由——为了未来，还有广大生活在drcom阴影下的使用mac系统的人们。</p>
+
+<p>我来了！</p>
 
 		
 		
@@ -489,11 +296,11 @@ if __name__ == "__main__":
   
 
 
-<time datetime="2012-01-26T20:41:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
+<time datetime="2011-11-19T14:33:00+08:00" pubdate data-updated="true">Nov 19<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/branch/'>branch</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mac/'>mac</a>
 
 
 </div>
@@ -505,24 +312,18 @@ if __name__ == "__main__":
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/01/26/git-study-branch-manage/">
+		<a href="/blog/2011/11/13/software-exam-is-finished/">
 		
-			Git使用重新学习（分支管理）</a>
+			软考结束了</a>
 	</h2>
 	<div class="entry-content">
-		<p>分支的使用比较繁杂，前面光说了一些皮毛，现在记录一下分支的管理部分。</p>
+		<p>经过昨天一天的努力，软考终于结束了，不知为何昨晚没有写这些，可能是因为晚上给同学过生日玩得很好，也很累，回来没有静下来写这些。</p>
 
-<p>查看分支的详细信息：git branch -v，列出分支最后提交的内容，带星号表示当前分支。</p>
+<p>一共复习了2个月，算是挺长的了，很多同学都复习几天就去参加了，不知道他做得怎么样。我感觉这次考试是我做得最难的一套题了，当然有不少成分是紧张，本来不算太难的题目只要有了紧张就会变得不知从哪里下手。开始做的时候有种在蒙答案的感觉，由于后来做完不能提前上交，我只能又做了一遍，修改了几个题目的答案（虽然知道越改越错的原则），再次做的时候感觉没有那么多题目拿不准，就是只有几个。</p>
 
-<p>查看哪些分支已经被并入当前分支：git branch &mdash;merged，也就是说除了那个带星号的分支都是可以删除（-d）的，因为都合并进来了嘛！查看没合并进来的就是&mdash;no-merged开关。删除那些没有合并进来的分支会提示错误，但强制删除就可以了，强制删除用-D开关。</p>
+<p>下午的考试和上午一样，本来不担心下午考试的，不过一发下试卷来我看看题目，有些害怕——最担心的题目出现了，01背包，我忽略了那个题目直接做了后面的，不过后面那个题目我也有些摸不着头脑——没做过State模式的程序题，但后来又做了一遍后，最后那个题目的意思大致清楚了，按照我的想法写上了答案。回到前面看那个01背包，似乎没有我想得那么难，比较快得做出了答案，还是有些担心的，因为这么重要的一个题怎么会如此简短的答案呢，再仔细看过，没什么大问题，就先这样写上吧。</p>
 
-<p><strong>不得不说的远程分支</strong></p>
-
-<p>在github创建了一个项目，在项目管理中开启了github Pages服务，这是个给项目做介绍页面的服务，开启后出现了一个远程分支gh-pages，但本地根本访问不到。首先我们应该明确，这个分支暂时不在我们本地，除非你是在这个服务开启后clone了项目，这样肯定有，否则和我一样的话（从本地push过去的），需要先fetch过来这些远程分支：git fetch origin gh-pages:gh-pages。后面两个由冒号分隔的意思是获取origin中的gh-pages分支，放到本地，在本地也叫gh-pages（冒号右侧），当然你可以根据需要更改冒号右侧的本地分支名字。现在查看一下本地分支就能发现出现两个分支了，切换过去后就能看到github给我们生成的index.html文件，你可以编辑了：）</p>
-
-<p>推送本地分支到远程分支的时候可以像上面这样写:git push origin xxx1:xxx2，意思就是推送本地叫xxx1的分支到origin中，推过去叫xxx2，但此处一般简写，光写本地分支名，这样远程分支中的名字也是和本地一样的。</p>
-
-<p>删除远程分支的命令挺好玩的：git push origin  :xxx，在xxx左边冒号左侧有一个空格，意思是把本地的空分支推到远程的xxx分支上，就是删除xxx分支的意思。</p>
+<p>总的来说时间是很充足的，如果第一遍不大会，那再做一遍或许就会有思路了，希望大家都能考过，明年就能参加高级的试试了！</p>
 
 		
 		
@@ -542,11 +343,11 @@ if __name__ == "__main__":
   
 
 
-<time datetime="2012-01-26T20:10:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
+<time datetime="2011-11-13T07:58:00+08:00" pubdate data-updated="true">Nov 13<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/branch/'>branch</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/dev/'>dev</a>
 
 
 </div>
@@ -558,28 +359,12 @@ if __name__ == "__main__":
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/01/26/git-study-branch/">
+		<a href="/blog/2011/11/06/print-exam-id-tomorrow/">
 		
-			Git使用重新学习（分支）</a>
+			明天打印准考证</a>
 	</h2>
 	<div class="entry-content">
-		<p>在git中分支是一个变态技能！</p>
-
-<p>创建分支：git branch [branch-name]即可。</p>
-
-<p><a title="18333fig0305-tn.png" href="http://www.youth2009.org/attachment/135279/"><img src="http://www.youth2009.org/usr/uploads/2012/01/528893353.png" alt="18333fig0305-tn.png"></a></p>
-
-<p>git中有个叫master的分支，这是默认的，刚刚创建了一个testing分支，所以这两个指向是一样的，因为刚刚就在master分支下。但是git为何知道我在master呢？因为还有个叫HEAD的默认指针指向了当前正在使用的分支，所以当你切换分支的时候HEAD就会指向新的地方。</p>
-
-<p>切换分支：git checkout [branch-name]（git checkout -b [branch-name]可以实现新建并切换到此分支）切换分支时最好保持暂存区清洁，否则有可能产生冲突阻止你切换。</p>
-
-<p>当我们切换到了testing分支后，再做一些提交，我们的testing分支会继续往下走，但master分支还停留在刚才离开的地方，如果我们需要回去，只需要再切换回master分支即可屏蔽刚才所作的提交，保持文件的原始性。</p>
-
-<p>合并分支：git merge [branch-name]，把分支合并到你现在所在的那个分支中，可别合并反喽，当然我感觉反了也没关系，就是个名字的问题吧？</p>
-
-<p>分支删除用-d开关，git branch -d [branch-name]即可。</p>
-
-<p>合并分支的时候遇到冲突是不可避免的，有些冲突能够自动解决，但还有不少是需要我们手动解决的，此时git会在status中告诉我们，我们打开后就能看到由“=====”分割开的两部分，就是让我们选择，等手动修改好后需要再add进暂存区，此时就能提交了。 </p>
+		<p>前天下午和Yz谈论了一下软考内容，他很不屑于这次考试了，发现了不少问题，而我同样也遇到了类似的问题——出题不规范、答案不清楚等等，让这次考试变得不正式。但我们都已经报名，如果不好好对待就会感觉有些亏了。</p>
 
 		
 		
@@ -599,11 +384,11 @@ if __name__ == "__main__":
   
 
 
-<time datetime="2012-01-26T19:36:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
+<time datetime="2011-11-06T11:07:00+08:00" pubdate data-updated="true">Nov 6<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/branch/'>branch</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/dev/'>dev</a>
 
 
 </div>
@@ -615,37 +400,14 @@ if __name__ == "__main__":
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/01/26/git-study-tag/">
+		<a href="/blog/2011/10/28/software-exam-is-comming-soon/">
 		
-			Git使用重新学习（标签）</a>
+			马上就要软考了</a>
 	</h2>
 	<div class="entry-content">
-		<p>打标签，挺有用的一个功能，一般是加版本号吧。v1.0，v2.0，vN.0</p>
+		<p>我充满了信心，但自己感觉准备周期有些长，每天都用准备软考的理由在上课的时候看软考的资料，导致很多门课现在还是比较陌生的，不过大学中这样并不是大问题，即便是都不怎么学，到了年底要是肯努力几天的话，成绩还是会很给面子的。但我并不喜欢这样突击，我更喜欢轻松自在一点。</p>
 
-<p>git tag是看标签</p>
-
-<p>git tag -a 是加带附注的标签，（还有轻量级标签不用加-a，直接给出标签名字完事），接下来一个参数是标签名字，再者需要-m引出附注内容，完整就像这样：git tag -a v1.0 -m &lsquo;first version&rsquo;</p>
-
-<p>加完后可以show一下：git show v1.0，所谓附注就是包含了很多提交者的信息，以后可以慢慢查证使用。</p>
-
-<p>如果你有GPG的话还可以签署标签，把前面的-a改成-s即可，-s是signed的意思，-a是annotated的意思。（刚刚尝试了一下-s，可惜Mac系统上没装gpg软件，签署失败，但大多linux系统都会有的吧，Mac系统的用户请从<a href="http://www.gpgtools.org/">这里</a>下载GPGTools）</p>
-
-<p>刚才用GPG签名了，现在验证一下：git tag -v xxx，-v就是verify的意思，比如我得到了如下的提示信息：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">object a20e6b9c2433e88a9da63abd8d74ddede9bccde6
-type commit
-tag v_2012-01-26-s
-tagger dawncold &lt;loooseleaves@gmail.com&gt; 1327569076 +0800
-
-signed this tag
-gpg: 于 四  1/26 17:11:24 2012 CST 创建的签名，使用 RSA，钥匙号 1B1ECF39
-gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
-</pre>
-
-
-<p>很可惜，默认tag是不被push到远程仓库中的，如果要分享你的tags，在push的时候要显示地写明：git push origin [tag-name]，推送所有tags可以直接用&mdash;tags来代替tag-name参数</p>
-
-<p>删除tag需要用-d完成：git tag -d [tag-name]</p>
+<p>软考结束后本以为能够把丢下的知识拾起来，但国庆和光瑞都找我做些东西，我也想继续搞一些开发，一是能增加些经验，二是能够做一些真正的商业产品，产品和参赛作品毕竟有不少差别，参赛作品做了几个了，就那样放着，产品的话，目前还没有能拿得出手的：（</p>
 
 		
 		
@@ -665,11 +427,11 @@ gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
   
 
 
-<time datetime="2012-01-26T17:29:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
+<time datetime="2011-10-28T22:31:00+08:00" pubdate data-updated="true">Oct 28<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/tag/'>tag</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/dev/'>dev</a>
 
 
 </div>
@@ -681,24 +443,16 @@ gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/01/26/git-study-remote-repo/">
+		<a href="/blog/2011/10/22/i-am-writting-an-os-recently/">
 		
-			Git使用重新学习（远程仓库）</a>
+			最近在写OS</a>
 	</h2>
 	<div class="entry-content">
-		<p>查看当前远程仓库：git remote  -v，加上-v属性能看得内容详细一些。</p>
+		<p>其实没有像标题中说的那么宏伟，只是需要写一个软件工程用的文档，就是一系列的需求分析、设计、开发、测试、维护文档，主题自定，我觉着看了很多国内的软件作品，动不动就是XXX系统，好象任何东西加上“系统”两个字之后都会变得无比金光闪闪，那我也来一个吧——“操作系统”。</p>
 
-<p>添加远程仓库：git remote add [shortname] [url]</p>
+<p>虽然不需要实际编码，但还是需要参考很多资料，不可能一句代码都不出现，主要参考的是《Orange&#8217;s一个操作系统的实现》（《自己动手写操作系统》的第二版），里面最大的难点就是过多的汇编语言，其实C的程序我还是没大有问题的，只要不让我设计什么深奥算法就好：）</p>
 
-<p>有了shortname，就相对于给仓库了一个别名，以后可以用别名操作，git fetch xx即可</p>
-
-<p>get fetch xx是获取远程仓库中有而本地没有的数据</p>
-
-<p>提送数据到远程仓库用：git push remote-name branch-name，推送的时候要注意必须没有他人在推送，且没有其他更新才行，如果他人推送了不少更新，你需要先得到更新，合并后再推送。（这里并不是说和svn一样了，只是你可以自己先在本地提交，但推送到远程服务器上时，需要按照先来后到的原则，保证每个人的提交是不冲突的，是最新的。这是我个人的理解）</p>
-
-<p>远程仓库重命名、删除：git remote rename short-name new-name，git remote rm xx</p>
-
-<p>另外git remote show repo-name能够得到不少信息，有哪些要合并啦，哪些已经删除啦，哪些新仓库出现啦等等，这个是需要连接服务器获取的。</p>
+<p>学期末交上这个文档，已经分给了几个人去做，但他们可能感觉时间还早吧，到现在也没有动手，我不能等他们，我需要写好设计部分，现在就得深入阅读资料了。</p>
 
 		
 		
@@ -718,11 +472,97 @@ gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
   
 
 
-<time datetime="2012-01-26T16:08:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
+<time datetime="2011-10-22T08:10:00+08:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/remote-repo/'>remote repo</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/os/'>os</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/10/06/steve-jobs/">
+		
+			希望你依然能够领导我们的创新</a>
+	</h2>
+	<div class="entry-content">
+		<p><img src="http://pic.yupoo.com/dawncold0/BqdQPzJM/medish.jpg" alt="" /></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-06T17:19:00+08:00" pubdate data-updated="true">Oct 6<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/09/12/3days-15hrs/">
+		
+			三天睡了十几个小时</a>
+	</h2>
+	<div class="entry-content">
+		<p>为了这个数学建模啊，奋斗了3天，第一天是1点睡的，第二天4点睡的，第三天也是4点睡的，每天都是早上8点左右起来。稍微有点短，快要接近高中的生活，长时间没熬夜，突然一熬还真受不了，第二天我的两个同学可能要比我辛苦一些，我是感觉很累就去睡了，还是她们叫我起来。</p>
+
+<p>哎，计算机系的同学搞数学建模真得很痛苦，痛苦的主要来源是很多东西根本不了解，而且短时间根本学不会，是一种无奈，看着时间一点点过去自己却什么都做不了，就这样不断打击自己的信心，人们就这样被击垮了：（</p>
+
+<p>加了两个建模的讨论群，里面大多数（超过99%）人在要答案，很少有人是讨论的，而且即便是这样，我记得参赛时有个比赛注意事项——比赛期间不得与他人探讨，包括指导老师——这简直是不可能，我看到后都感觉新鲜，暂且不说和他人讨论，不能和指导老师讨论，都让我感觉不可思议，我反复读了几遍《承诺书》，确定了有这样一句——“<strong>我们完全明白，在竞赛开始后参赛队员不能以任何方式（包括电话、电子邮件、网上咨询等）与队外的任何人（包括指导教师）研究、讨论与赛题有关的问题。</strong>”有指导老师的一般都是指导老师在奋斗呢，怎么不能够讨论呢？！反正承诺书就这么写的，而且还是第一条。还好我们没有指导老师，只能全靠自己来做，可能做得不如别人的好，但至少不会感觉胆怯，我们也不会太敬佩夺得一二等奖的队伍，因为我们都明白这其中有多少代表了你们自己的能力，如果是你们自己完成的，那我们会佩服，可惜这样的队伍很少见，我只好当作没有了：（</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-12T18:17:00+08:00" pubdate data-updated="true">Sep 12<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mm/'>mm</a>
 
 
 </div>

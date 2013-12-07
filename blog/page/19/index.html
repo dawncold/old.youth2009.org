@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="这不已经8月下旬了，眼看就要开学了，游戏做得还算顺利，只是最后会比较紧张，往往在最后的效率才是最高的。前两天看过很多中期报告，发现和我们用相同平台的不是很多，不到10个队伍，但看到了有个队伍做了一个3D的游戏，从图片上来看很是不错，竞争又会是相当大了，当然了，其他平台只是没有去关注， &hellip;">
+	<meta name="description" content="用了不少时间PHP，也有些喜欢这种开发语言，但我仍然对Python有强烈的热情，但支持Python的主机服务还不算多，很想体验GAE，但由于在国内嘛，只能这样忍受了。 原本想在Emacs中配置Python的环境，但……有些过于复杂了。安装了很久的emacs，到头来不知道该怎么用，打算卸载掉算了， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,14 +79,21 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/21/always-tired-in-the-end-of-project/">
+		<a href="/blog/2011/06/04/eclipse-gae-on-mac/">
 		
-			最后总是这么累</a>
+			Mac系统下的Eclipse中GAE配置</a>
 	</h2>
 	<div class="entry-content">
-		<p>这不已经8月下旬了，眼看就要开学了，游戏做得还算顺利，只是最后会比较紧张，往往在最后的效率才是最高的。前两天看过很多中期报告，发现和我们用相同平台的不是很多，不到10个队伍，但看到了有个队伍做了一个3D的游戏，从图片上来看很是不错，竞争又会是相当大了，当然了，其他平台只是没有去关注，其中肯定不乏有很优秀的作品。</p>
+		<p>用了不少时间PHP，也有些喜欢这种开发语言，但我仍然对Python有强烈的热情，但支持Python的主机服务还不算多，很想体验GAE，但由于在国内嘛，只能这样忍受了。</p>
 
-<p>在家开发的效率问题，等结束了会说，感觉这个有很多内容值得说呢！</p>
+<p>原本想在Emacs中配置Python的环境，但……有些过于复杂了。安装了很久的emacs，到头来不知道该怎么用，打算卸载掉算了，自己不需要的东西，不管它多么优秀，对于我来说，目前都没有价值！所以我还是选择了Eclipse环境。</p>
+
+<p>在安装PyDev插件的时候遇到点问题：安装时候有3个项目可安装，我第一次是都安装的，但中途出现错误停止了，于是我第二次只安装了第一个，就是主要的PyDev程序，没有问题。</p>
+
+<p>在创建一个GAE项目后，需要填写GAE的location，在Mac系统下，装了Google提供的SDK For Mac就找不到GAE的相关文件了，因为都在那个app包中，只是在/usr/local/bin中有几个相关的py文件，在/usr/local/中有个链接，链接到app包中的一个地方，主要就是用这个链接，不过你会发现这样用之后还有点问题，插件需要找到lib目录下的django，如果你看看目录的话会发现根本没有django目录，只有另一个叫django_0_96这样的目录，于是建立一个软连接到django过去即可。</p>
+
+<p>以上方法来自国外一技术博客：
+<a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac">http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac</a></p>
 
 		
 		
@@ -106,11 +113,11 @@
   
 
 
-<time datetime="2011-08-21T23:03:00+08:00" pubdate data-updated="true">Aug 21<span>st</span>, 2011</time></div>
+<time datetime="2011-06-04T18:43:00+08:00" pubdate data-updated="true">Jun 4<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/pi-lao/'>疲劳</a>
+	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>
@@ -122,94 +129,16 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/13/config-vpn-on-centos5-use-ppp-and-pptpd/">
+		<a href="/blog/2011/06/01/mapapp-approaches-end/">
 		
-			centos5上ppp、pptpd配置VPN</a>
+			项目要收工了</a>
 	</h2>
 	<div class="entry-content">
-		<p>安装ppp：</p>
+		<p>虽然最后的几个功能还没有完成，但总归目前已经能用了。如果说端午过后还有机会继续提交的话，可能最终就是完成这几个功能吧。不过最大的问题是现在已经到了考试前夕，如果不想承受考前突击带来的痛苦和自责，那必须得提前准备，何况今年还要考英语四级。按照Fnln的说法，按照正常退步速度就能通过，但我已经不清楚现在是不是正常退步速度了，应该还没有吧，仅仅是最近大家都在复习的时候我在做网站而已：）</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">yum install ppp</pre>
+<p>刚刚用phpDocumentor把文档生成出来了，还遇到了可恶的乱码问题，最终用了强大的替换工具，硬生生把字符集换成了utf8，总算是解决了吧，虽然解决方法不太好，但这是个看结果的事情：）</p>
 
-
-<p>下载pptpd：</p>
-
-<p> </p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">wget -c http://poptop.sourceforge.net/yum/stable/packages/pptpd-1.3.4-1.rhel5.1.x86_64.rpm</pre>
-
-
-<p>安装pptpd：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">rpm -ivh pptpd-1.3.4-1.rhel5.1.x86_64.rpm</pre>
-
-
-<p>修改参数：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">vi /etc/ppp/options.pptpd</pre>
-
-
-<p>ms-dns 8.8.8.8和ms-dns 8.8.4.4(这里用了Google的dns，你可以用别的)</p>
-
-<p>加入分配IP等信息：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">vi /etc/pptpd.conf</pre>
-
-
-<p>localip 192.168.0.1</p>
-
-<p>remoteip 192.168.0.2-30(意思是连接上分配一个2～30的地址)</p>
-
-<p>加入账号密码：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">vi /etc/ppp/chap-secrets</pre>
-
-
-<p>用空格分开：USERNAME pptpd PASSWORD *   (最后的这个星号意思是不指定IP，自动分给你一个，pptpd是在配置文件中写的一个服务名称，默认就是这个，不用再修改了，你需要更改的就是大写的两组值)</p>
-
-<p>修改转发参数：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">vi /etc/sysctl.conf</pre>
-
-
-<p>把net.ipv4.ip_forward = 0改正1保存退出</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">/sbin/sysctl -p
-使刚才配置的转发参数生效，你能够看到系统打印出的参数列表，应该能够看到ip_forward = 1了</pre>
-
-
-<p>启动pptpd：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">/sbin/services pptpd start
-</pre>
-
-
-<p>配置iptables内容：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">/sbin/iptables -A INPUT -p tcp --dport 1723 -j ACCEPT
-/sbin/iptables -A INPUT -p tcp --dport 47 -j ACCEPT
-/sbin/iptables -A INPUT -p gre -j ACCEPT
-/sbin/iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o eth0 -j MASQUERADE</pre>
-
-
-<p>解释一下，前两行是开启1723和47端口，第三行是允许GRE协议，最后一行是设置转发到eth0轮询。至于这个轮询的概念我就不太清楚了。转发到eth0也就是说把请求发送到了网卡eth0，这个可以在/sbin/ifconfig看到网卡的名字。</p>
-
-<p>保存iptables规则，重启iptables：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">/etc/init.d/iptables save
-/etc/init.d/iptables restart
-如果原有iptables内容可能会和现有的冲突，所以发现问题后先检查一下这里，毕竟iptables是控制连接的所有出口</pre>
-
-
-<p>下面这两条根据需要执行吧：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">/sbin/chkconfig pptpd on
-/sbin/chkconfig iptables on</pre>
-
-
-<p>分别是让pptpd和iptables机器再次重启后也能运行。</p>
-
-<p>工作都完成了，连接上试试吧，用pptp方式连接哦，别的方式没用过，应该是不行的。有时候连接上不能访问网页建议断开几次再连接上试试，我曾更改了mtu，发现没什么作用，应该不出问题默认的都能用，服务器一般建立的ppp0、1、2……这些的mtu都是1496，本机对应的是1444，具体算法不想深究。</p>
+<p>不知道Yfan那边的css工作怎么样了，要是进展顺利，明天全线停止，开始写写计划书什么的文字材料，在最后一个工作日交上去。当然这算是理想的情况。</p>
 
 		
 		
@@ -229,11 +158,11 @@
   
 
 
-<time datetime="2011-08-13T17:53:00+08:00" pubdate data-updated="true">Aug 13<span>th</span>, 2011</time></div>
+<time datetime="2011-06-01T18:04:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/vpn/'>vpn</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mapapp/'>mapapp</a>
 
 
 </div>
@@ -245,59 +174,24 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/13/batch-handly-files-use-python/">
+		<a href="/blog/2011/05/30/js-data-object-in-four-browers/">
 		
-			Python批量处理文件</a>
+			四种浏览器下的JS日期对象</a>
 	</h2>
 	<div class="entry-content">
-		<p>从某网站上下载了几个压缩包，里面全是目录，每个目录下都有一个doc文件，但可恶的是这些doc文件被换了扩展名，原本是xxx.doc现在变成xxx.doc.resx，我得用python批量处理一下：</p>
+		<p>测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
-# -*- coding:utf-8 -*-
-# 遍历所有目录，把resx文件扩展名删掉
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var da = '2000-01-01 00:00:00';
+</span><span class='line'>var da_array = da.split(' ');
+</span><span class='line'>var da_1 = da_array[0].split('-');
+</span><span class='line'>var da_2 = da_array[1].split(':');
+</span><span class='line'>alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</span></code></pre></td></tr></table></div></figure>
 
-import os
-
-current_path = os.getcwd()
-allsubdir = os.listdir(current_path)
-
-for subdir in allsubdir:
-   subdir_path = './' + subdir
-   if os.path.isdir(subdir_path):
-       files = os.listdir(subdir_path)
-       for _file in files:
-           basename = os.path.basename(_file)
-           allname = os.path.splitext(basename)
-           if '.resx' in allname:
-               print 'resx file %s' % basename
-               without_resx = allname[0]
-               os.rename(subdir_path+'/'+_file,without_resx)
-           else:
-               print 'not resx file'
-               continue</pre>
-
-
-<p>还用了一个删除空目录的脚本：</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
-# -*- coding:utf-8 -*-
-#删除空目录
-
-import os
-
-alldir = os.listdir(os.getcwd())
-for _dir in alldir:
-   if os.path.isdir('./'+_dir):
-       print 'dir: %s' % _dir
-       if os.listdir('./'+_dir):
-           print 'have something %s' % os.listdir('./'+_dir)
-       else:
-           os.rmdir('./'+_dir)
-   else:
-       print 'file or others'</pre>
-
-
-<p>用python，很快乐！</p>
 
 		
 		
@@ -317,11 +211,11 @@ for _dir in alldir:
   
 
 
-<time datetime="2011-08-13T15:30:00+08:00" pubdate data-updated="true">Aug 13<span>th</span>, 2011</time></div>
+<time datetime="2011-05-30T22:20:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/file/'>file</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/js/'>js</a>
 
 
 </div>
@@ -333,20 +227,14 @@ for _dir in alldir:
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/12/separate-youth-and-tech/">
+		<a href="/blog/2011/05/30/getyear-in-js/">
 		
-			把技术和青春分开</a>
+			js的Year</a>
 	</h2>
 	<div class="entry-content">
-		<p>其实原本打算写上四年的青春，但青春的表现形式多种多样，谁说青春中就不能掺杂技术、娱乐、愤懑呢？谁的青春里全都是感情、刺激？其实活过大半的人反映，青春大都被平淡填充，我们看到的那些紧张、刺激，也许都是浓缩的青春。那么我呢，我喜欢记录一个完整的青春过程，所以我记录平淡、技术、无奈、感情、刺激等等。</p>
+		<p>js中有个获取当前年的函数，叫getYear()，但我测试的时候没有单独让它显示出来看看，只是当成一个最大值限制使用，测试了一个值发现正确，就不再管它了，后来测试的时候总是不对，再一看，那个值竟然是111，怪不得我输入一个年份都显示对了呢，现在都是2xxx年，随便一个就比111大不少了……</p>
 
-<p>不过现在看起来如果把这些方面写到一起，很是冗杂，于是我把它们分开：</p>
-
-<p><a href="http://www.youth2009.org%E6%9A%82%E6%97%B6%E4%BF%9D%E7%95%99%E4%BA%86%E6%8A%80%E6%9C%AF%E6%96%B9%E9%9D%A2%E7%9A%84%E8%AE%B0%E5%BD%95%EF%BC%9B">http://www.youth2009.org%E6%9A%82%E6%97%B6%E4%BF%9D%E7%95%99%E4%BA%86%E6%8A%80%E6%9C%AF%E6%96%B9%E9%9D%A2%E7%9A%84%E8%AE%B0%E5%BD%95%EF%BC%9B</a></p>
-
-<p><a href="http://y.youth2009.org%E5%88%99%E5%AE%8C%E5%85%A8%E6%98%AF%E5%8F%A6%E4%B8%80%E9%9D%A2%E3%80%82">http://y.youth2009.org%E5%88%99%E5%AE%8C%E5%85%A8%E6%98%AF%E5%8F%A6%E4%B8%80%E9%9D%A2%E3%80%82</a></p>
-
-<p>迁移工作将在未来几天内完工。（本来打算迁移技术内容，发觉太多，还是反迁移吧）</p>
+<p>目前那个函数已经被废弃了，取而代之的是getFullYear()，这次就正常了：）</p>
 
 		
 		
@@ -366,11 +254,11 @@ for _dir in alldir:
   
 
 
-<time datetime="2011-08-12T22:34:00+08:00" pubdate data-updated="true">Aug 12<span>th</span>, 2011</time></div>
+<time datetime="2011-05-30T13:56:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/qing-chun/'>青春</a>
+	<a class='category' href='/blog/categories/js/'>js</a>
 
 
 </div>
@@ -382,12 +270,16 @@ for _dir in alldir:
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/11/bad-result-of-google-map/">
+		<a href="/blog/2011/05/29/project-is-rushing/">
 		
-			Google地图越来越不靠谱了</a>
+			项目在冲刺</a>
 	</h2>
 	<div class="entry-content">
-		<p>今天同学聚会，我早早用Google地图查询好了路线，又和组织者核实了一番，今天坐公交车去了，结果到了目的地，下车后什么都没找到。问了路边的出租车司机，我要去的地方正好在现在地方相反的方向。恨着Google，打车过去了。</p>
+		<p>看着日期就要到最后提交的日子了，这几天一直都在写最后的几个功能，昨天写的是活动功能，基本上完工了吧，只是没有一个很好的展示效果。今天主要做做基础通知功能，这个功能完成后就能把以前的很多模块产生的消息应用起来，首页也有一个不断抓取消息的语句。其实还是接口抓取啦，不知道那些大型网站，比如新浪微博是如何做这个的，可能也是如此吧。</p>
+
+<p>其实这样想来，做一个即使聊天的东西也就是这样吧，不断从一个接口抓取消息，不断向一个地方发送消息即可，只是若这样实现，会不会对数据库的压力非常大呢？也许还有更好的办法处理即时消息，比如NoSQL？</p>
+
+<p>这两天睡眠质量很不好，早上都是5点多起来，晚上差不多11点睡下，时长和高中的日子差不多了，不过白天竟然没有困意，只是偶尔感觉很饿，不知道该买些什么样的吃得放在身边：）</p>
 
 		
 		
@@ -407,11 +299,11 @@ for _dir in alldir:
   
 
 
-<time datetime="2011-08-11T17:20:00+08:00" pubdate data-updated="true">Aug 11<span>th</span>, 2011</time></div>
+<time datetime="2011-05-29T06:48:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/google/'>Google</a>, <a class='category' href='/blog/categories/xi-wang-wo-huan-neng-ji-qi/'>希望我还能记起</a>, <a class='category' href='/blog/categories/gao-zhong-ju-hui/'>高中聚会</a>
+	<a class='category' href='/blog/categories/mapapp/'>mapapp</a>
 
 
 </div>
@@ -423,143 +315,12 @@ for _dir in alldir:
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/09/fast-travel-in-sae/">
+		<a href="/blog/2011/05/17/no421-error-in-ftp/">
 		
-			SAE快速之旅</a>
+			Ftp出现421错误</a>
 	</h2>
 	<div class="entry-content">
-		<p>GoogleAppEngine基本在国内没什么前途了，主要原因大家很清楚，但也算是给我们开了一个好头，至少我们已经能够体验到云的魅力所在了，通过现有为数不多的国内云计算服务。sina的测试了许久，相信比较成熟，但我依然钟情于Python，PHP也只是开发过几个小网站，经验有限。写点SAE入门教程吧！</p>
-
-<p>0。注册SAE账号：</p>
-
-<p>登陆<a href="http://sae.sina.com.cn%E6%B3%A8%E5%86%8C%EF%BC%8C%E6%88%96%E8%80%85%E7%82%B9%E6%88%91%E7%9A%84%E9%82%80%E8%AF%B7%E9%93%BE%E6%8E%A5%EF%BC%8C%E8%B5%9A%E7%82%B9%E9%82%80%E8%AF%B7%E8%B4%B9%E7%94%A8%E8%80%8C%E5%B7%B2%EF%BC%9A">http://sae.sina.com.cn%E6%B3%A8%E5%86%8C%EF%BC%8C%E6%88%96%E8%80%85%E7%82%B9%E6%88%91%E7%9A%84%E9%82%80%E8%AF%B7%E9%93%BE%E6%8E%A5%EF%BC%8C%E8%B5%9A%E7%82%B9%E9%82%80%E8%AF%B7%E8%B4%B9%E7%94%A8%E8%80%8C%E5%B7%B2%EF%BC%9A</a><a href="http://sae.sina.com.cn/activity/invite/23335/weibo"><a href="http://sae.sina.com.cn/activity/invite/23335/weibo">http://sae.sina.com.cn/activity/invite/23335/weibo</a></a></p>
-
-<p>1。创建一个应用：（点击最上面的应用Application即可出现如下页面）</p>
-
-<p><a title="Screen Shot 2011-08-09 at 下午4.25.38.png" href="http://www.youth2009.org/attachment/135230/"><img src="http://www.youth2009.org/usr/uploads/2011/08/1024291968.png" alt="Screen Shot 2011-08-09 at 下午4.25.38.png"></a></p>
-
-<p>点击创建新应用（0/10),看来一个账号只能创建10个。</p>
-
-<p><a title="Screen Shot 2011-08-09 at 下午4.26.20.png" href="http://www.youth2009.org/attachment/135231/"><img src="http://www.youth2009.org/usr/uploads/2011/08/3964469045.png" alt="Screen Shot 2011-08-09 at 下午4.26.20.png"></a></p>
-
-<p>填入相应的信息后点击“创建应用”</p>
-
-<p><a title="Screen Shot 2011-08-09 at 下午4.26.29.png" href="http://www.youth2009.org/attachment/135232/"><img src="http://www.youth2009.org/usr/uploads/2011/08/383403573.png" alt="Screen Shot 2011-08-09 at 下午4.26.29.png"></a></p>
-
-<p>此时有个安全认证，填写刚刚的登陆密码即可。</p>
-
-<p><a title="Screen Shot 2011-08-09 at 下午4.26.40.png" href="http://www.youth2009.org/attachment/135233/"><img src="http://www.youth2009.org/usr/uploads/2011/08/1845837408.png" alt="Screen Shot 2011-08-09 at 下午4.26.40.png"></a></p>
-
-<p>看，新的应用已经创建好了，点击应用名称即可查看详情：</p>
-
-<p><a title="Screen Shot 2011-08-09 at 下午4.27.15.png" href="http://www.youth2009.org/attachment/135234/"><img src="http://www.youth2009.org/usr/uploads/2011/08/1927393632.png" alt="Screen Shot 2011-08-09 at 下午4.27.15.png"></a></p>
-
-<p>点击左侧的“代码管理”即可看到我们的SVN部署地址。通过查看sina的文档得知，SVN的部署账号和密码分别是SAE安全邮箱和SAE安全密码。这些信息点击页面右上角的“XX的账号”即可查看。</p>
-
-<p>2。准备一个非常简单的PHP文件，内容如下，保存成index.php即可：</p>
-
-<pre class="prettyprint linenums bush:php" lang="php">&lt;?php echo 'Hello,PHP'; ?&gt;</pre>
-
-
-<p>3。SVN部署文件：</p>
-
-<p>我们要不要用一种高级的方式来访问svn呢——Terminal（命令行）：</p>
-
-<p>首先我们找一个干净的目录来存放我们建立的project：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">cd ~/Documents
-mkdir Projects
-cd Projects
-svn checkout https://svn.sinaapp.com/demoproject/
-验证“https://svn.sinaapp.com:443”的服务器证书时出错: 
-- 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
-证书信息: 
-- 主机名称: *.sinaapp.com
-- 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
-- 发行者: Equifax Secure Certificate Authority, Equifax, US
-- 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
-(R)拒绝，(t)暂时接受，或(p)永远接受？t
-认证领域: &lt;https://svn.sinaapp.com:443&gt; SAE User Auth for SVN
-“dawncold”的密码: 
-认证领域: &lt;https://svn.sinaapp.com:443&gt; SAE User Auth for SVN
-用户名: loooseleaves@gmail.com
-“loooseleaves@gmail.com”的密码: 
-取出版本 0。</pre>
-
-
-<p>总之按照用户名写安全邮箱，密码写安全密码的方式写即可。这样就得到了第一个版本——0号版本。</p>
-
-<p>我们进入这个目录看看有什么：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">cd demoproject
-ls
-ls -al
-
-drwxr-xr-x   4 dawncold  staff  136  8  9 16:46 .
-drwxr-xr-x@ 21 dawncold  staff  714  8  9 16:40 ..
-drwxr-xr-x   8 dawncold  staff  272  8  9 16:40 .svn
-</pre>
-
-
-<p>用ls查看是什么都没有的，那么我们用ls -al查看，看到了隐藏的svn目录，这里存着svn的相关配置信息。我们用vi来写刚刚的那个index.php吧：</p>
-
-<p>一般是vi index.php，然后输入刚刚的代码，再按Esc，输入“冒号”，再输入“wq！”（注意有个感叹号），回车。</p>
-
-<p>下面把文件添加到svn：（有一个错误的演示）</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">svn add index.php</pre>
-
-
-<p>再提交（commit）到服务器：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">svn commit -m 'add index.php for show a demo'</pre>
-
-
-<p>但我遇到了错误，返回的信息告诉我不能提交文件进入版本库，查看sian的文档才知道这个版本库只能存放版本目录，i就是我需要再建立一个目录，而且名字是数字，表示这是几号版本，文件可以放入那些目录中。那就新建一个1号版本吧：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro demoproject$ mkdir 1
-dawncold@tianzhenmatoMacBook-Pro demoproject$ mv index.php 1/
-dawncold@tianzhenmatoMacBook-Pro demoproject$ svn add 1/
-A         1
-A         1/index.php
-dawncold@tianzhenmatoMacBook-Pro demoproject$ svn commit -m 'add ver_1 and index file index.php'
-svn: 提交失败(细节如下): 
-svn: 丢失了预定增加的“/Users/dawncold/Documents/Project/demoproject/index.php”
-dawncold@tianzhenmatoMacBook-Pro demoproject$ ls
-1
-dawncold@tianzhenmatoMacBook-Pro demoproject$ svn add *
-svn:  警告: “1”已纳入版本控制
-dawncold@tianzhenmatoMacBook-Pro demoproject$ cd 1/
-dawncold@tianzhenmatoMacBook-Pro 1$ ls
-index.php
-dawncold@tianzhenmatoMacBook-Pro 1$ svn add *
-svn:  警告: “index.php”已纳入版本控制
-dawncold@tianzhenmatoMacBook-Pro 1$ svn commit
-svn: 提交失败(细节如下): 
-svn: 无法使用外部编辑器获得日志信息；考虑设置环境变量 $SVN_EDITOR，或者使用 --message (-m) 或 --file (-F) 选项
-svn: 没有设置 SVN_EDITOR，VISUAL 或 EDITOR 环境变量，运行时的配置参数中也没有 “editor-cmd” 选项
-dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
-验证“https://svn.sinaapp.com:443”的服务器证书时出错: 
-- 此证书并不是由信任的权威机权颁发。请使用此指纹手工验证其有效性！
-证书信息: 
-- 主机名称: *.sinaapp.com
-- 有效时间: 自 Sat, 31 Jul 2010 15:22:26 GMT 至 Fri, 02 Aug 2013 19:37:39 GMT
-- 发行者: Equifax Secure Certificate Authority, Equifax, US
-- 指纹: 0c:7a:2c:17:1f:ea:57:19:65:d3:0f:d3:9c:a8:cb:85:af:02:72:e7
-(R)拒绝，(t)暂时接受，或(p)永远接受？t
-增加           1
-增加           1/index.php
-传输文件数据.
-提交后的版本为 1。</pre>
-
-
-<p>4。查看效果：</p>
-
-<p>部署完成后就能查看效果了，由于我们只有一个版本，这就是默认版本了，查看地址为：<a href="http://demoproject.sinaapp.com/"><a href="http://demoproject.sinaapp.com/">http://demoproject.sinaapp.com/</a></a></p>
-
-<p> </p>
-
-<p>总结一下，这是SAE的快速之旅，代码的部署方式使用的SVN命令行，你也许不喜欢这样，喜欢GUI的SVN部署方式，这当然也没有问题，sina的文档还是比较全面的。刚刚也看到了helloworld这样的例子，看来我白写了呢。希望等SAE出现Python的版本后我再去体验！</p>
+		<p>由于编码问题，只能看清楚反馈回来的错误号是421，查询之后了解到这是因为ftp服务器限制同一个ip的连接数导致，于是在ftp的配置文件中找到最大连接数这个设置，由原来的5改成了500，重启ftp，没问题了。实际上我猜重启一下ftp也能解决问题的，5个最大连接数对于我自己来说也许就够用了吧。</p>
 
 		
 		
@@ -579,11 +340,11 @@ dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
   
 
 
-<time datetime="2011-08-09T17:01:00+08:00" pubdate data-updated="true">Aug 9<span>th</span>, 2011</time></div>
+<time datetime="2011-05-17T13:09:00+08:00" pubdate data-updated="true">May 17<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/cloud/'>cloud</a>, <a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/sae/'>sae</a>, <a class='category' href='/blog/categories/svn/'>svn</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/ftp/'>ftp</a>
 
 
 </div>
@@ -595,50 +356,26 @@ dawncold@tianzhenmatoMacBook-Pro 1$ svn commit -m 'init'
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/08/mysqldb-have_wcscoll-redefined/">
+		<a href="/blog/2011/05/14/i-am-tired-to-create-blog/">
 		
-			安装MySQLdb出现HAVE_WCSCOLL重定义问题的解决方法</a>
+			懒得写博客了</a>
 	</h2>
 	<div class="entry-content">
-		<p>问题就是这样了：</p>
+		<p>最近一直还在忙活学校的那个项目，还有自己要做的同学录，看着日子越来越紧张，我也变得越来越紧张：）</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">[root@wodeyitian MySQL-python-1.2.3]# python setup.py install
-running install
-running bdist_egg
-running egg_info
-writing MySQL_python.egg-info/PKG-INFO
-writing top-level names to MySQL_python.egg-info/top_level.txt
-writing dependency_links to MySQL_python.egg-info/dependency_links.txt
-reading manifest file 'MySQL_python.egg-info/SOURCES.txt'
-reading manifest template 'MANIFEST.in'
-warning: no files found matching 'MANIFEST'
-warning: no files found matching 'ChangeLog'
-warning: no files found matching 'GPL'
-writing manifest file 'MySQL_python.egg-info/SOURCES.txt'
-installing library code to build/bdist.linux-x86_64/egg
-running install_lib
-running build_py
-copying MySQLdb/release.py -&gt; build/lib.linux-x86_64-2.7/MySQLdb
-running build_ext
-building '_mysql' extension
-gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info=(1,2,3,'final',0) -D__version__=1.2.3 -I/usr/include/mysql -I/usr/local/include/python2.7 -c _mysql.c -o build/temp.linux-x86_64-2.7/_mysql.o -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv
-在包含自 _mysql.c：36 的文件中:
-/usr/include/mysql/my_config.h:1062:1: 警告：“HAVE_WCSCOLL”重定义
-在包含自 /usr/local/include/python2.7/Python.h：8 的文件中，
-                从 pymemcompat.h：10，
-                从 _mysql.c：29:
-/usr/local/include/python2.7/pyconfig.h:887:1: 警告：这是先前定义的位置
-gcc -pthread -shared build/temp.linux-x86_64-2.7/_mysql.o -L/usr/lib64/mysql -L/usr/lib64 -lmysqlclient_r -lz -lpthread -lcrypt -lnsl -lm -lpthread -lssl -lcrypto -o build/lib.linux-x86_64-2.7/_mysql.so
-/usr/bin/ld: cannot find -lmysqlclient_r
-collect2: ld 返回 1
-error: command 'gcc' failed with exit status 1
-</pre>
+<p>学校的项目还有不多的工作了，我赶紧忙活一下，最后的几个功能也差不多没问题了，琐碎的工作交给另一个人了，这几天我没管，希望他做了些什么吧。同学录的工作写了不少代码，没去统计，外部引用的js库太多了，一统计都是别人的工作：（</p>
 
+<p>今天下午用了下jquery的表单验证插件，调试了好久的remote方法，现在分享点经验：</p>
 
-<p>也不算什么解决方法吧，就是缺失一些组件，安装了mysql-devel就好了：</p>
+<p>1.远程的查询方法我接受了post的提交方法，不过我感觉get也是没问题的，只是没去测试，修改这个是在remote中传入type:&lsquo;post&#8217;即可。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">yum install mysql-devel.x86_64</pre>
+<p>2.remote要提交上去的data用这样的方法：function(){return xxx;}</p>
 
+<p>3.remote对应的messages直接写remote即可，注意这里处理的是得到false结果显示的提示信息，所以查询数据库并返回值的那个页面要注意别写反了结果，当然要只能返回true或者false。我用php写的结果就是直接echo一个字符串，只有这样简单写才能让这个傻傻的remote认出来。一开始我还包装了一个json返回，现在想想根本就是奢望，根本不可能知道你的json是个什么东西！因为根本就没有告诉它去检查哪个元素的值：）</p>
+
+<p>如果按照这个速度做下去，可能到6月6日能够交上去作品：）希望其他人做得不太好吧，那样我就有机会去深圳旅游（答辩）啦：）</p>
+
+<p>最后在这里说一下QQMap的API，除了单一只能玩js的以外没什么太大的失误，用起来比较顺手，只是和Google的想比，还差很远，如果不是为了参赛，我可能会去用Google的，但那个相对用起来会很麻烦的：─（</p>
 
 		
 		
@@ -658,11 +395,11 @@ error: command 'gcc' failed with exit status 1
   
 
 
-<time datetime="2011-08-08T14:35:00+08:00" pubdate data-updated="true">Aug 8<span>th</span>, 2011</time></div>
+<time datetime="2011-05-14T18:13:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/mysqldb/'>MySQLdb</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/mapapp/'>mapapp</a>
 
 
 </div>
@@ -674,16 +411,63 @@ error: command 'gcc' failed with exit status 1
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/08/python-uwsgi-nginx/">
+		<a href="/blog/2011/04/23/algo-circle-count-quit/">
 		
-			基本配置好了python+nginx</a>
+			约瑟夫问题算法</a>
 	</h2>
 	<div class="entry-content">
-		<p>没想到配置过程有这么复杂，不过在按照Linode官方的指导做过之后发现一切又是那么简单，果然还是Linode的服务一流，同样的操作肯在所有发行版上都做一次教程，很少有VPS provider能够做到这些吧？看来贵还是有道理的。</p>
+		<p>昨晚还在忙碌网站，一个同学发来短信问了这样一个算法问题：一些人手拉手围成一个圈，从一个人开始报数，数到3的人退出，然后下一个人再开始报数，依然是数到3者退出，问最后剩下2个人是哪两个？</p>
 
-<p>不多赘述了，centos5的教程可以看这里（其他版本的在这里找：<a href="http://library.linode.com/web-servers/nginx/python-uwsgi"><a href="http://library.linode.com/web-servers/nginx/python-uwsgi">http://library.linode.com/web-servers/nginx/python-uwsgi</a></a>）</p>
+<p>这题目看起来不算难，但这要是不靠一个语言的特性来解决，还是有些麻烦的。我说的语言特性就是一个bt数组方法，比如说移除元素啊这样的方法，用纯粹的C语言来写最好了。不过我那位同学是在雪VB.net不知道那里有没有语言特性。我手头上正在写PHP网页，就干脆用PHP写一个出来试试吧：）  </p>
 
-<p><a href="http://library.linode.com/web-servers/nginx/python-uwsgi/centos-5"><a href="http://library.linode.com/web-servers/nginx/python-uwsgi/centos-5">http://library.linode.com/web-servers/nginx/python-uwsgi/centos-5</a></a></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="nv">$circle</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+</span><span class='line'><span class="nv">$out</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$num</span><span class="p">;</span><span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="nv">$circle</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$i</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="nv">$count</span> <span class="o">%=</span> <span class="nv">$num</span><span class="p">;</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="nv">$circle</span><span class="p">[</span><span class="nv">$count</span><span class="p">]</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="k">if</span><span class="p">((</span><span class="nv">$n</span> <span class="o">%</span> <span class="nv">$diff</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="nv">$diff</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'><span class="nv">$circle</span><span class="p">[</span><span class="nv">$count</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$out</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="nv">$out</span> <span class="o">===</span> <span class="nv">$num</span> <span class="o">-</span> <span class="nv">$sur</span><span class="p">)</span>
+</span><span class='line'><span class="k">break</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nv">$n</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nv">$count</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这就是主要代码了，还算是简单吧？去Google了一下，看到有些人的解法都用了好麻烦的链表来抽象，用链表确实更符合客观事实，不过那样写起来，是不是给别人看的呢？！</p>
+
+<p>算法的负责度显然是线性的，感觉还可以吧。</p>
 
 		
 		
@@ -703,11 +487,11 @@ error: command 'gcc' failed with exit status 1
   
 
 
-<time datetime="2011-08-08T11:12:00+08:00" pubdate data-updated="true">Aug 8<span>th</span>, 2011</time></div>
+<time datetime="2011-04-23T09:54:00+08:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/nginx/'>nginx</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/uwsgi/'>uwsgi</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/algorithm/'>algorithm</a>, <a class='category' href='/blog/categories/php/'>php</a>
 
 
 </div>
@@ -719,18 +503,73 @@ error: command 'gcc' failed with exit status 1
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/08/the-difference-between-iphone-simulator-and-device/">
+		<a href="/blog/2011/04/20/rework-study-final/">
 		
-			Iphone模拟器和设备的差异</a>
+			《REWORK》学习笔记之完结篇</a>
 	</h2>
 	<div class="entry-content">
-		<p>昨天1ST告诉我代码到了设备上有些地方不正常，我一直没用设备调试过，只是用模拟器，这次就用设备试试，没想到果然有些问题。</p>
+		<h1>「亲力亲为」中提到：</h1>
 
-<p>1.模拟器编译没有任何问题，但编译到设备就出现了8个错误，是因为继承后访问不到某些属性的问题。由于我在基类中用了property，在子类中直接引用，这样看来不行，于是在子类中但凡是从基类中继承过来的成员，都使用了self来引用。</p>
+<p>在你亲自尝试做这份工作之前，永远不要雇人去做。只有这样，你才能了解这项工作的本质。你才会懂得如何判断工作完成的好坏，才会知道怎样写出符合实际的岗位招聘要求，也才会清除在面试中该问什么问题。你才能之道该雇佣全职职员还是兼职职员，是将工作直接外包还是坚持自己搞定（强烈推荐后者，如果可能的话. 。</p>
 
-<p>2.在Organzer的设备console中查看输出的时候，发现有个地方应该输出东西了反而不输出，最终能够确认这个操作已经执行了，但就是不输出内容。也不知道怎么回事，我把原先的printf输出改成了nslog，竟然好了。由于使用的一个类是用c++写的，就没有使用nslog，这竟然在后来调试变成了大问题。</p>
+<p>你也会成为以为更加优秀的经理人，因为你是在指导人们完成你已经做过的工作，你知道何时该批评，何时该鼓励。</p>
 
-<p>哎，以后有什么调试工作还是连接设备进行吧，虽然启动比模拟器慢一点，但能够暴露出问题啊！</p>
+<p>有时候你可能觉得力有不逮，甚至可能觉得精疲力尽。这很正常。你可以通过招人来摆脱这种感受，也可以通过学习正确的处理方法来解决问题。先试着学习吧。在最初的运营中付出的所有努力，都会变成无数倍的管理只会，最终回报给你。</p>
+
+<p>另外，你应该让自己密切融入业务的方方面面。否则你就会陷入一片茫然，把自己的命运交到别人的手上，这是非常危险的。</p>
+
+<h1>「受不了时再招人」中提到：</h1>
+
+<p>当你在很长一段时间内都被超负荷的工作所困扰，这才是招人的正确时机。此时出现了一些你无法再亲力亲为的事情，你发现工作质量有所下滑，令你感到受不了了，这时才是招人的最佳时机，不要提前招人。</p>
+
+<h1>「放弃牛人」中提到：</h1>
+
+<p>放弃那些你并不需要的牛人，即使你觉得这是个人才。把有能力的人招进来，却让其无所事事，这对公司来说是有害无益的。</p>
+
+<p>牛与不牛没有任何意义，不需要就是不需要。</p>
+
+<h1>「鸡尾酒会上的陌生人」中提到：</h1>
+
+<p>短期内大批招人的后果就如同陷入“全市陌生人的鸡尾酒会”一样。你身边充斥着新面孔，美国儿呢都彬彬有礼，每个人都努力避免矛盾或冲突，没有人说：“这点子真烂。”人们一团和气，互不攻击。</p>
+
+<p>这种一团和气的氛围就是公司陷入麻烦的根源。当有人把事情弄得一团糟时，总得有人直言不讳地说出来。否则，你就是在经营一个既不惹人恨、又不招人爱的公司。</p>
+
+<p>要营造一个能让人直言不讳并且有安全感的环境。你得清楚自己能把别人推多远，你得知道人们话里的真正含义。</p>
+
+<h1>「可笑的求职简历」中提到：</h1>
+
+<p>一个具有6个月工作经验的应聘者和一个具有6年工作经验的应聘者相比，其差别小得令人吃惊。真正的差别来自于个人的努力程度、性格差异以及智力水平。</p>
+
+<p>现在已经不是以时间长短论英雄的时候了，真正重要的是他们到底做得有多好。</p>
+
+<h1>「人人都得干活」中提到：</h1>
+
+<p>在一个小团队里，你需要的是干活的人，而不是监工。每个人都得做事，没有人可以袖手旁观。</p>
+
+<p>救灾篇</p>
+
+<h1>「主动掌控负面新闻」中提到：</h1>
+
+<p>如果你够坦荡，够诚实，够公开，危机应变速度够快，人们就会更加尊重你。不要把头缩回去，也不要苦苦压制坏消息，应该让你的顾客尽可能地拥有知情权。</p>
+
+<p>掌控负面新闻的小贴士：</p>
+
+<ol>
+<li><p>要由公司高层来发布消息，而且要由公司内职位最高的人来强有力地控制局面。</p></li>
+<li><p>消息要广为传播，想尽一切办法将消息传递出去，别尝试隐瞒事实真相。</p></li>
+<li><p>千万别说“无可奉告”。</p></li>
+<li><p>要真情实意地表达歉意，要尽量详细地说明情况。</p></li>
+<li><p>要真切地关心客户的遭遇──然后要证明自己真的在为客户负责。</p></li>
+</ol>
+
+
+<h1>「文化不是由谁创造的」中提到：</h1>
+
+<p>不要过多担心企业文化的事情，不要去强求，你无法给企业安装一种文化。企业文化就像上好的苏格兰威士忌一样，你得给它时间去酝酿。</p>
+
+<h1>「灵感稍纵即逝」中提到：</h1>
+
+<p>灵感是个奇妙的东西，是效率放大器，是推进器。但是它不会停下来等你。灵感转瞬即逝，当它来找你时，要立即把它捕捉住，将其投入工作中去。</p>
 
 		
 		
@@ -750,11 +589,11 @@ error: command 'gcc' failed with exit status 1
   
 
 
-<time datetime="2011-08-08T07:27:00+08:00" pubdate data-updated="true">Aug 8<span>th</span>, 2011</time></div>
+<time datetime="2011-04-20T23:02:00+08:00" pubdate data-updated="true">Apr 20<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/device/'>device</a>, <a class='category' href='/blog/categories/iphone/'>iphone</a>, <a class='category' href='/blog/categories/nslog/'>nslog</a>, <a class='category' href='/blog/categories/printf/'>printf</a>, <a class='category' href='/blog/categories/simulator/'>simulator</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/rework/'>rework</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -766,14 +605,52 @@ error: command 'gcc' failed with exit status 1
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/08/06/have-read-learn-python-in-hard-way/">
+		<a href="/blog/2011/04/19/rework-study-part5/">
 		
-			看完了《learn Python in Hard Way》</a>
+			《REWORK》学习笔记之推广篇</a>
 	</h2>
 	<div class="entry-content">
-		<p>这本书不算长，从考试期间就开始看了，一共有50多页，每一页都是一个使用python的例子，就是这样不断用例子来讲述python的基础用法，当然还不算全面，刚刚入门也勉强可以吧。最后有个old programmer&rsquo;s advice写得不错，大概的意思是帮助你建立一种自信。</p>
+		<h1>「甘于低微」中提到：</h1>
 
-<p>最后几页里提到了djangobook，我学习python的主要目的之一就是用来开发web，而django是主流的web framework。新的阅读时代又要到来了！</p>
+<p>要牢牢记住，一旦你把事业做大、深入人心之后，就不可避免地要走稳健路线。当你成为传奇人物，你就必须保持预见性、建立相容性，你将变得更为保守、更难去冒险。这就是僵化的起点、变革的终点。</p>
+
+<h1>「培养自己的拥趸」中提到：</h1>
+
+<p>所有的公司都有顾客，幸运的公司有粉丝，而最幸运的公司则有一帮观众。观众能成为你的秘密武器。</p>
+
+<h1>「普及知识，赢得竞争」中提到：</h1>
+
+<p>不要在消费、销售或者赞助上和竞争对手去攀比。也许你的竞争对手根本还没考虑去传授别人些什么呢。绝大多数公司都在关注销售或服务，但是从未想过传授知识。</p>
+
+<p>个人和小企业适合去传授知识，而大公司不适合。大公司支付得起巨额广告费，而你不能。你能在传授知识方面大力投入，而大公司不能。因为大公司受制于保密政策，公司里的每一款条文都得经由律师过目，并且再经层层严格审查。传授客户只是是专属于你的绝佳制胜机会。</p>
+
+<h1>「效仿大厨」中提到：</h1>
+
+<p>作为一家公司的老板，你也应该分享自己之道的一切。这一点在商业世界中尚属禁区。商业活动总是带有偏执和隐秘的性质。人们认为自己在这方面拥有专利或在那方面又有竞争优势。也许这样想的只是少部分人，不是大部分人。大度的人不应该继续模仿小气者的行为，不要惧怕分享。</p>
+
+<h1>「转到幕后看看」中提到：</h1>
+
+<p>让人们走入幕后，能改善你和他们之间的关系。他们会感到与你亲近起来，将你视为一个常人，而不是一个面目模糊的公司。他们将在你的产品中看到你在后台淌下的汗水和付出的努力。他们会对你的工作产生更深刻的理解和更诚挚的感激。</p>
+
+<h1>「没人喜欢塑料花」中提到：</h1>
+
+<p>不要害怕你的缺点，不完美才真实，真实才能激起人们的共鸣。因此我们喜欢会凋零的真花，而不是那些用不变色的完美的塑料花。不要担心自己应该如何说、如何做。向世界展示你本来的面目、你的缺点、你的全部。</p>
+
+<p>Leonard Koren在他的《侘寂》一书中说道：削减到本质，但不要剥离它的韵；保持干净纯洁，但不要剥夺它的生命力。</p>
+
+<p>所以，你大可直言不讳，畅谈那些别人不愿意讨论的东西。直面你的弱点，向人们展示你最近的工作状况，即使你还没完全搞定它。不完美没关系，也许你看起来不专业，但你却更真实。</p>
+
+<h1>「药贩子最精明」中提到：</h1>
+
+<p>只要你东西可卖，就不要怕给人一点点让其试用。要对自己的产品抱有信心。你应该知道人们会回来购买更多，如果你连这样的信心都没有，只能说明你的产品做得不够好。</p>
+
+<h1>「一夜成名只是传说」中提到：</h1>
+
+<p>你了解那些道听途说来的“一夜成名”的故事吗？往里深挖一点，你就能发现这些成功人士在到达引爆点之前，都已经在这个方向苦熬了很长时间。也有凤毛麟角的几家突然成功的公司，但这种公司往往不能持久──没有牢固的基础去支撑。</p>
+
+<p>把一夜成名的迷梦换成一步一个脚印的成长行动吧。道路很艰难，但你必须充满耐心。你得用功去做，在遇到伯乐之前，你得努力很长时间。</p>
+
+<p>今天就开始培养你的观众，开始聚集那些对你有兴趣的人，然后一直保持下去。多年后，你也回在人们谈论你的“一夜成名”的故事时付之一笑。</p>
 
 		
 		
@@ -793,11 +670,11 @@ error: command 'gcc' failed with exit status 1
   
 
 
-<time datetime="2011-08-06T17:30:00+08:00" pubdate data-updated="true">Aug 6<span>th</span>, 2011</time></div>
+<time datetime="2011-04-19T18:54:00+08:00" pubdate data-updated="true">Apr 19<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/django/'>django</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/rework/'>rework</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>

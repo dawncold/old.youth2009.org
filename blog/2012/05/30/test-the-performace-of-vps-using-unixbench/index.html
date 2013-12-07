@@ -89,37 +89,69 @@
 
 <p>UPDATE:</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">Benchmark Run: 三  5月 30 2012 11:38:34 - 12:06:53
-1 CPU in system; running 1 parallel copy of tests
-
-Dhrystone 2 using register variables       12579232.4 lps   (10.0 s, 7 samples)
-Double-Precision Whetstone                     2268.2 MWIPS (10.3 s, 7 samples)
-Execl Throughput                               1140.1 lps   (29.6 s, 2 samples)
-File Copy 1024 bufsize 2000 maxblocks        270525.4 KBps  (30.0 s, 2 samples)
-File Copy 256 bufsize 500 maxblocks           77911.8 KBps  (30.1 s, 2 samples)
-File Copy 4096 bufsize 8000 maxblocks        709368.9 KBps  (30.0 s, 2 samples)
-Pipe Throughput                              394585.6 lps   (10.0 s, 7 samples)
-Pipe-based Context Switching                  40293.3 lps   (10.0 s, 7 samples)
-Process Creation                               1908.7 lps   (30.0 s, 2 samples)
-Shell Scripts (1 concurrent)                   1539.5 lpm   (60.0 s, 2 samples)
-Shell Scripts (8 concurrent)                    204.1 lpm   (60.1 s, 2 samples)
-System Call Overhead                         525047.2 lps   (10.0 s, 7 samples)
-
-System Benchmarks Index Values               BASELINE       RESULT    INDEX
-Dhrystone 2 using register variables         116700.0   12579232.4   1077.9
-Double-Precision Whetstone                       55.0       2268.2    412.4
-Execl Throughput                                 43.0       1140.1    265.1
-File Copy 1024 bufsize 2000 maxblocks          3960.0     270525.4    683.1
-File Copy 256 bufsize 500 maxblocks            1655.0      77911.8    470.8
-File Copy 4096 bufsize 8000 maxblocks          5800.0     709368.9   1223.0
-Pipe Throughput                               12440.0     394585.6    317.2
-Pipe-based Context Switching                   4000.0      40293.3    100.7
-Process Creation                                126.0       1908.7    151.5
-Shell Scripts (1 concurrent)                     42.4       1539.5    363.1
-Shell Scripts (8 concurrent)                      6.0        204.1    340.2
-System Call Overhead                          15000.0     525047.2    350.0
-                                                                  ========
-System Benchmarks Index Score                                         382.2</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Benchmark Run: 三  5月 30 2012 11:38:34 - 12:06:53
+</span><span class='line'>1 CPU in system; running 1 parallel copy of tests
+</span><span class='line'>
+</span><span class='line'>Dhrystone 2 using register variables       12579232.4 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
+</span><span class='line'>Double-Precision Whetstone                     2268.2 MWIPS <span class="o">(</span>10.3 s, 7 samples<span class="o">)</span>
+</span><span class='line'>Execl Throughput                               1140.1 lps   <span class="o">(</span>29.6 s, 2 samples<span class="o">)</span>
+</span><span class='line'>File Copy 1024 bufsize 2000 maxblocks        270525.4 KBps  <span class="o">(</span>30.0 s, 2 samples<span class="o">)</span>
+</span><span class='line'>File Copy 256 bufsize 500 maxblocks           77911.8 KBps  <span class="o">(</span>30.1 s, 2 samples<span class="o">)</span>
+</span><span class='line'>File Copy 4096 bufsize 8000 maxblocks        709368.9 KBps  <span class="o">(</span>30.0 s, 2 samples<span class="o">)</span>
+</span><span class='line'>Pipe Throughput                              394585.6 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
+</span><span class='line'>Pipe-based Context Switching                  40293.3 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
+</span><span class='line'>Process Creation                               1908.7 lps   <span class="o">(</span>30.0 s, 2 samples<span class="o">)</span>
+</span><span class='line'>Shell Scripts <span class="o">(</span>1 concurrent<span class="o">)</span>                   1539.5 lpm   <span class="o">(</span>60.0 s, 2 samples<span class="o">)</span>
+</span><span class='line'>Shell Scripts <span class="o">(</span>8 concurrent<span class="o">)</span>                    204.1 lpm   <span class="o">(</span>60.1 s, 2 samples<span class="o">)</span>
+</span><span class='line'>System Call Overhead                         525047.2 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>System Benchmarks Index Values               BASELINE       RESULT    INDEX
+</span><span class='line'>Dhrystone 2 using register variables         116700.0   12579232.4   1077.9
+</span><span class='line'>Double-Precision Whetstone                       55.0       2268.2    412.4
+</span><span class='line'>Execl Throughput                                 43.0       1140.1    265.1
+</span><span class='line'>File Copy 1024 bufsize 2000 maxblocks          3960.0     270525.4    683.1
+</span><span class='line'>File Copy 256 bufsize 500 maxblocks            1655.0      77911.8    470.8
+</span><span class='line'>File Copy 4096 bufsize 8000 maxblocks          5800.0     709368.9   1223.0
+</span><span class='line'>Pipe Throughput                               12440.0     394585.6    317.2
+</span><span class='line'>Pipe-based Context Switching                   4000.0      40293.3    100.7
+</span><span class='line'>Process Creation                                126.0       1908.7    151.5
+</span><span class='line'>Shell Scripts <span class="o">(</span>1 concurrent<span class="o">)</span>                     42.4       1539.5    363.1
+</span><span class='line'>Shell Scripts <span class="o">(</span>8 concurrent<span class="o">)</span>                      6.0        204.1    340.2
+</span><span class='line'>System Call Overhead                          15000.0     525047.2    350.0
+</span><span class='line'>                                                                  <span class="o">========</span>
+</span><span class='line'>System Benchmarks Index Score                                         382.2
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -141,7 +173,7 @@ System Benchmarks Index Score                                         382.2</pre
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/unixbench/'>UnixBench</a>, <a class='category' href='/blog/categories/perl/'>perl</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/vps/'>vps</a>
 
 
 </div>

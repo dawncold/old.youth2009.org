@@ -7,11 +7,37 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="问题就是这样了： [root@wodeyitian MySQL-python-1.2.3]# python setup.py install
-running install
-running bdist_egg
-running egg_info
-writing MySQL_python.egg- &hellip;">
+	<meta name="description" content="问题就是这样了： 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+[root@wodeyitian MySQL-python-1.2.3]# python setup.py &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -81,42 +107,74 @@ writing MySQL_python.egg- &hellip;">
 	<h2 class="title">安装MySQLdb出现HAVE_WCSCOLL重定义问题的解决方法</h2>
 	<div class="entry-content"><p>问题就是这样了：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">[root@wodeyitian MySQL-python-1.2.3]# python setup.py install
-running install
-running bdist_egg
-running egg_info
-writing MySQL_python.egg-info/PKG-INFO
-writing top-level names to MySQL_python.egg-info/top_level.txt
-writing dependency_links to MySQL_python.egg-info/dependency_links.txt
-reading manifest file 'MySQL_python.egg-info/SOURCES.txt'
-reading manifest template 'MANIFEST.in'
-warning: no files found matching 'MANIFEST'
-warning: no files found matching 'ChangeLog'
-warning: no files found matching 'GPL'
-writing manifest file 'MySQL_python.egg-info/SOURCES.txt'
-installing library code to build/bdist.linux-x86_64/egg
-running install_lib
-running build_py
-copying MySQLdb/release.py -&gt; build/lib.linux-x86_64-2.7/MySQLdb
-running build_ext
-building '_mysql' extension
-gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info=(1,2,3,'final',0) -D__version__=1.2.3 -I/usr/include/mysql -I/usr/local/include/python2.7 -c _mysql.c -o build/temp.linux-x86_64-2.7/_mysql.o -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv
-在包含自 _mysql.c：36 的文件中:
-/usr/include/mysql/my_config.h:1062:1: 警告：“HAVE_WCSCOLL”重定义
-在包含自 /usr/local/include/python2.7/Python.h：8 的文件中，
-                从 pymemcompat.h：10，
-                从 _mysql.c：29:
-/usr/local/include/python2.7/pyconfig.h:887:1: 警告：这是先前定义的位置
-gcc -pthread -shared build/temp.linux-x86_64-2.7/_mysql.o -L/usr/lib64/mysql -L/usr/lib64 -lmysqlclient_r -lz -lpthread -lcrypt -lnsl -lm -lpthread -lssl -lcrypto -o build/lib.linux-x86_64-2.7/_mysql.so
-/usr/bin/ld: cannot find -lmysqlclient_r
-collect2: ld 返回 1
-error: command 'gcc' failed with exit status 1
-</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@wodeyitian MySQL-python-1.2.3<span class="o">]</span><span class="c"># python setup.py install</span>
+</span><span class='line'>running install
+</span><span class='line'>running bdist_egg
+</span><span class='line'>running egg_info
+</span><span class='line'>writing MySQL_python.egg-info/PKG-INFO
+</span><span class='line'>writing top-level names to MySQL_python.egg-info/top_level.txt
+</span><span class='line'>writing dependency_links to MySQL_python.egg-info/dependency_links.txt
+</span><span class='line'>reading manifest file <span class="s1">&#39;MySQL_python.egg-info/SOURCES.txt&#39;</span>
+</span><span class='line'>reading manifest template <span class="s1">&#39;MANIFEST.in&#39;</span>
+</span><span class='line'>warning: no files found matching <span class="s1">&#39;MANIFEST&#39;</span>
+</span><span class='line'>warning: no files found matching <span class="s1">&#39;ChangeLog&#39;</span>
+</span><span class='line'>warning: no files found matching <span class="s1">&#39;GPL&#39;</span>
+</span><span class='line'>writing manifest file <span class="s1">&#39;MySQL_python.egg-info/SOURCES.txt&#39;</span>
+</span><span class='line'>installing library code to build/bdist.linux-x86_64/egg
+</span><span class='line'>running install_lib
+</span><span class='line'>running build_py
+</span><span class='line'>copying MySQLdb/release.py -&gt; build/lib.linux-x86_64-2.7/MySQLdb
+</span><span class='line'>running build_ext
+</span><span class='line'>building <span class="s1">&#39;_mysql&#39;</span> extension
+</span><span class='line'>gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info<span class="o">=(</span>1,2,3,<span class="s1">&#39;final&#39;</span>,0<span class="o">)</span> -D__version__<span class="o">=</span>1.2.3 -I/usr/include/mysql -I/usr/local/include/python2.7 -c _mysql.c -o build/temp.linux-x86_64-2.7/_mysql.o -g -pipe -Wp,-D_FORTIFY_SOURCE<span class="o">=</span>2 -fexceptions -fstack-protector --param<span class="o">=</span>ssp-buffer-size<span class="o">=</span>4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS<span class="o">=</span>64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv
+</span><span class='line'>在包含自 _mysql.c：36 的文件中:
+</span><span class='line'>/usr/include/mysql/my_config.h:1062:1: 警告：“HAVE_WCSCOLL”重定义
+</span><span class='line'>在包含自 /usr/local/include/python2.7/Python.h：8 的文件中，
+</span><span class='line'>                从 pymemcompat.h：10，
+</span><span class='line'>                从 _mysql.c：29:
+</span><span class='line'>/usr/local/include/python2.7/pyconfig.h:887:1: 警告：这是先前定义的位置
+</span><span class='line'>gcc -pthread -shared build/temp.linux-x86_64-2.7/_mysql.o -L/usr/lib64/mysql -L/usr/lib64 -lmysqlclient_r -lz -lpthread -lcrypt -lnsl -lm -lpthread -lssl -lcrypto -o build/lib.linux-x86_64-2.7/_mysql.so
+</span><span class='line'>/usr/bin/ld: cannot find -lmysqlclient_r
+</span><span class='line'>collect2: ld 返回 1
+</span><span class='line'>error: <span class="nb">command</span> <span class="s1">&#39;gcc&#39;</span> failed with <span class="nb">exit </span>status 1
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>也不算什么解决方法吧，就是缺失一些组件，安装了mysql-devel就好了：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">yum install mysql-devel.x86_64</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>yum install mysql-devel.x86_64
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -138,7 +196,7 @@ error: command 'gcc' failed with exit status 1
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/mysqldb/'>MySQLdb</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mysql/'>mysql</a>
 
 
 </div>

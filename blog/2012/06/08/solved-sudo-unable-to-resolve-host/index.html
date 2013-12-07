@@ -7,7 +7,9 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了） sudo ：unable to resolve host HOSTNAME 这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可) 127.0.0.1 &hellip;">
+	<meta name="description" content="执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了） 1
+sudo ：unable to resolve host HOSTNAME 这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可) 1
+127.0.0.1 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -77,12 +79,16 @@
 	<h2 class="title">Sudo 出现unable to Resolve Host 解决方法</h2>
 	<div class="entry-content"><p>执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">sudo ：unable to resolve host HOSTNAME</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo ：unable to resolve host HOSTNAME
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">127.0.0.1               localhost.localdomain localhost HOSTNAME</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>127.0.0.1               localhost.localdomain localhost HOSTNAME
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>希望vpsee的admin能在iso中修复这个问题</p>
@@ -106,7 +112,7 @@
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/sudo/'>sudo</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/vps/'>vps</a>
 
 
 </div>

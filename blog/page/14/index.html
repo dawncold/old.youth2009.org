@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。 没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1 config. &hellip;">
+	<meta name="description" content="打标签，挺有用的一个功能，一般是加版本号吧。v1.0，v2.0，vN.0 git tag是看标签 git tag -a 是加带附注的标签，（还有轻量级标签不用加-a，直接给出标签名字完事），接下来一个参数是标签名字，再者需要-m引出附注内容，完整就像这样：git tag -a v1.0 -m & &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,32 +79,45 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/15/set-timezone-in-rails/">
+		<a href="/blog/2012/01/26/git-study-tag/">
 		
-			设置Rails中的timezone</a>
+			Git使用重新学习（标签）</a>
 	</h2>
 	<div class="entry-content">
-		<p>Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。</p>
+		<p>打标签，挺有用的一个功能，一般是加版本号吧。v1.0，v2.0，vN.0</p>
 
-<p>没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1</p>
+<p>git tag是看标签</p>
 
-<pre class="prettyprint linenums bush:ruby" lang="ruby">config.active_record.default_timezone = :local  
-config.time_zone = 'Beijing'  </pre>
+<p>git tag -a 是加带附注的标签，（还有轻量级标签不用加-a，直接给出标签名字完事），接下来一个参数是标签名字，再者需要-m引出附注内容，完整就像这样：git tag -a v1.0 -m &lsquo;first version&rsquo;</p>
+
+<p>加完后可以show一下：git show v1.0，所谓附注就是包含了很多提交者的信息，以后可以慢慢查证使用。</p>
+
+<p>如果你有GPG的话还可以签署标签，把前面的-a改成-s即可，-s是signed的意思，-a是annotated的意思。（刚刚尝试了一下-s，可惜Mac系统上没装gpg软件，签署失败，但大多linux系统都会有的吧，Mac系统的用户请从<a href="http://www.gpgtools.org">这里</a>下载GPGTools）</p>
+
+<p>刚才用GPG签名了，现在验证一下：git tag -v xxx，-v就是verify的意思，比如我得到了如下的提示信息：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>object a20e6b9c2433e88a9da63abd8d74ddede9bccde6
+</span><span class='line'><span class="nb">type </span>commit
+</span><span class='line'>tag v_2012-01-26-s
+</span><span class='line'>tagger dawncold &lt;loooseleaves@gmail.com&gt; 1327569076 +0800
+</span><span class='line'>
+</span><span class='line'>signed this tag
+</span><span class='line'>gpg: 于 四  1/26 17:11:24 2012 CST 创建的签名，使用 RSA，钥匙号 1B1ECF39
+</span><span class='line'>gpg: 完好的签名，来自于“dawncold &lt;loooseleaves@gmail.com&gt;”
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>为何我说差不多呢，原因如下：</p>
+<p>很可惜，默认tag是不被push到远程仓库中的，如果要分享你的tags，在push的时候要显示地写明：git push origin [tag-name]，推送所有tags可以直接用&mdash;tags来代替tag-name参数</p>
 
-<pre class="prettyprint linenums bush:ruby" lang="ruby">irb(main):001:0&gt; Fpwd.store(1)
- Fpwd Load (0.2ms)  SELECT "fpwds".* FROM "fpwds" WHERE "fpwds"."user_id" = 1 LIMIT 1
- SQL (2.7ms)  DELETE FROM "fpwds" WHERE "fpwds"."user_id" = 1
-  (0.1ms)  begin transaction
-Binary data inserted for `string` type on column `randstring`
- SQL (429.6ms)  INSERT INTO "fpwds" ("created_at", "randstring", "updated_at", "user_id") VALUES (?, ?, ?, ?)  [["created_at", Wed, 15 Feb 2012 14:29:35 CST +08:00], ["randstring", "87e685e0d2ab37143fae248083822ffea600f577"], ["updated_at", Wed, 15 Feb 2012 14:29:35 CST +08:00], ["user_id", 1]]
-  (1.4ms)  commit transaction
-=&gt; #&lt;Fpwd user_id: 1, randstring: "87e685e0d2ab37143fae248083822ffea600f577", created_at: "2012-02-15 06:29:35", updated_at: "2012-02-15 06:29:35"&gt;</pre>
-
-
-<p>最后的返回值那里还是晚了8小时，我用sqlite3查看的时候时间是正常的，所以这里怀疑是ruby的时间问题了，好在app中已经正常！</p>
+<p>删除tag需要用-d完成：git tag -d [tag-name]</p>
 
 		
 		
@@ -124,11 +137,11 @@ Binary data inserted for `string` type on column `randstring`
   
 
 
-<time datetime="2012-02-15T14:37:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2012</time></div>
+<time datetime="2012-01-26T17:29:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/timezone/'>timezone</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -140,16 +153,24 @@ Binary data inserted for `string` type on column `randstring`
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/14/differentiate-form-for-and-form-tag/">
+		<a href="/blog/2012/01/26/git-study-remote-repo/">
 		
-			分清form_for和form_tag</a>
+			Git使用重新学习（远程仓库）</a>
 	</h2>
 	<div class="entry-content">
-		<p>两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][:username]，前面的:user是我给form_for的第一个参数，这个form的所有信息都得加[:user]这样的前缀才能得到了，让我十分痛苦（又加上是个2.14）</p>
+		<p>查看当前远程仓库：git remote  -v，加上-v属性能看得内容详细一些。</p>
 
-<p>使用form_tag后对于它的action不太会控制，所幸不写参数了，正好action指向本地址，省事儿！</p>
+<p>添加远程仓库：git remote add [shortname] [url]</p>
 
-<p>感谢<a href="http://blog.csdn.net/babylon_0049/article/details/4730763">这里</a>写的内容</p>
+<p>有了shortname，就相对于给仓库了一个别名，以后可以用别名操作，git fetch xx即可</p>
+
+<p>get fetch xx是获取远程仓库中有而本地没有的数据</p>
+
+<p>提送数据到远程仓库用：git push remote-name branch-name，推送的时候要注意必须没有他人在推送，且没有其他更新才行，如果他人推送了不少更新，你需要先得到更新，合并后再推送。（这里并不是说和svn一样了，只是你可以自己先在本地提交，但推送到远程服务器上时，需要按照先来后到的原则，保证每个人的提交是不冲突的，是最新的。这是我个人的理解）</p>
+
+<p>远程仓库重命名、删除：git remote rename short-name new-name，git remote rm xx</p>
+
+<p>另外git remote show repo-name能够得到不少信息，有哪些要合并啦，哪些已经删除啦，哪些新仓库出现啦等等，这个是需要连接服务器获取的。</p>
 
 		
 		
@@ -169,11 +190,11 @@ Binary data inserted for `string` type on column `randstring`
   
 
 
-<time datetime="2012-02-14T19:34:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2012</time></div>
+<time datetime="2012-01-26T16:08:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/form-for/'>form for</a>, <a class='category' href='/blog/categories/form-tag/'>form tag</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -185,27 +206,20 @@ Binary data inserted for `string` type on column `randstring`
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/14/write-attribute-in-ruby/">
+		<a href="/blog/2012/01/26/git-study-mend-file-part/">
 		
-			Ruby中的write_attribute</a>
+			Git使用重新学习（撤销操作）</a>
 	</h2>
 	<div class="entry-content">
-		<p>有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误：</p>
+		<p><strong>修改最后一次提交</strong>：git commit &mdash;amend</p>
 
-<pre class="prettyprint linenums bush:ruby" lang="ruby">  def password=(pwd)
-   @password = pwd
-   return if @password.blank?
-   create_new_salt
-   self.password = xxx
- end</pre>
+<p>如果只是提交信息写错了，运行后会让你重新写提交信息，但如果你忘记了加文件进入，可以这样做，先commit，再add忘记的文件，最后来一句git commit &mdash;amend，这看似两次提交，实际只是一次，后面的提交修正了前面的。</p>
 
+<p><strong>取消已暂存的文件</strong>：看status的时候有提示，git reset HEAD <file>，执行后可以把一个已修改的文件从暂存区拉回到“changed but not update”里，前面日志说过，在这里面的文件需要add后才能进入暂存区被提交。</p>
 
-<p>最后那行使用了self.password= xxx，你有没有注意到我们这个方法就是password=，你在自己调用自己，如果有条件停止的话，那这叫递归，如果没有的话，这就是死循环喽，ruby可能会抛出一个stack too deep的错误（rails至少会这样说），此时需要一个magic！</p>
+<p><strong>取消修改</strong>：如果感觉刚才的修改没有必要，需要取消修改，那么用git checkout &mdash; <file>，在1.6.1以上的版本才会有这样的功能，我刚刚看了下git的版本（git &mdash;version）是1.7.5.4，看来暂时不用升级就能体验了。使用后就会发现文件的修改已经被撤销，此命令很危险，如果只是想回退版本可以用stashing和分支来处理，后面再说。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">write_attribute(:password, User.encrypted_password(self.password, self.salt))</pre>
-
-
-<p>使用write_attribute(xxx,jjj)即可，意思就是把jjj赋值给xxx了，因为此时正好在定义xxx，所以不能用xxx = 这样的方法赋值。</p>
+<p>最后说一句，任何被提交的数据都能被恢复，即便是在已经删除的分支中提交的等等，但没有提交的丢了就丢了！！！</p>
 
 		
 		
@@ -225,11 +239,11 @@ Binary data inserted for `string` type on column `randstring`
   
 
 
-<time datetime="2012-02-14T16:06:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2012</time></div>
+<time datetime="2012-01-26T15:05:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/write-attribute/'>write attribute</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -241,16 +255,28 @@ Binary data inserted for `string` type on column `randstring`
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/12/pain-rails/">
+		<a href="/blog/2012/01/26/git-study-filestatus-part/">
 		
-			痛苦的rails</a>
+			Git使用重新学习（文件状态）</a>
 	</h2>
 	<div class="entry-content">
-		<p>由于rails给我带来的痛苦，让我对ruby这门写着code for fun的语言产生了怀疑，真得有fun么？一开始就没有感觉，现在来看更是如此。</p>
+		<p>就几个简单的git命令记录一下自己的学习过程，我发现如果自己不随时记录自己学到的东西就会遗忘。</p>
 
-<p>rails是一个正在成长的框架，每一个小版本号的变动都可能会引入和废弃不少特性，而我又傻傻地在使用最新的rails（3.2.1），书上讲的都是rails2.2.2的内容，乍一看变动不应该太大啊，实际上并不是如此！！！</p>
+<p>对于一个文件，如果没有被git跟踪，那必然是untracked状态，只有已经是tracked状态后才会有后面的三种状态（unmodified、modified、staged（暂存状态））。</p>
 
-<p>对于一个新手来说，学习一个正在成长的框架是痛苦的：（</p>
+<p>此时你如果add了一个文件进入git，那么git就会开始跟踪，那么此时这个文件是tracked状态，但没有修改，查看状态（git status）会现实new file：xxx，此时提交（commit）就会把文件快照放入历史记录中了。这里的add意思是放入暂存区，后面的add还有不同的意思。</p>
+
+<p>对于已经跟踪的文件，我们修改后再查看状态，就会发现刚刚的文件被放入了一个modified那行中，样子大概是这样的：modified：xxx，同时观察一下上面几行，有这样的提示“Changed but not updated:”，意思就是修改了，但没有放入暂存区，此时需要add的另一层意思——把已修改但没放入暂存区的文件放入暂存区。</p>
+
+<p>git commit -a 选项可以跳过暂存过程，直接把已经跟踪的文件放入历史记录中。</p>
+
+<p>总之就是及时看status，并且要看里面的提示，只有changes to be committed后面的文件才会在commit的时候加入到历史记录中。</p>
+
+<p>删除和移动文件：git rm，git mv。</p>
+
+<p>改名操作与linux下的mv命令用法一样。</p>
+
+<p>删除时如果仅仅希望在git中删除，实际仍然保存文件那么加上&mdash;cached选项即可。</p>
 
 		
 		
@@ -270,11 +296,11 @@ Binary data inserted for `string` type on column `randstring`
   
 
 
-<time datetime="2012-02-12T22:03:00+08:00" pubdate data-updated="true">Feb 12<span>th</span>, 2012</time></div>
+<time datetime="2012-01-26T14:47:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -286,18 +312,26 @@ Binary data inserted for `string` type on column `randstring`
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/09/egg-ache-no-route-matches-say-hello/">
+		<a href="/blog/2012/01/26/turn-off-dashboard-on-mac/">
 		
-			蛋疼的No Route Matches “/say/hello”</a>
+			Mac系统关闭dashboard</a>
 	</h2>
 	<div class="entry-content">
-		<p>现在有些后悔买的那本书了，《web开发敏捷之道第三版》，那本书的代码使用的是rails2.2.2，真够2的，现在用的是3.2.1，作者说有不少代码已经更改了，但没想到会差得连我都能看出来，我只是个初学者啊！好在我还能稍稍应付自如，后面可能就会更加累了！</p>
+		<p>一开始感觉dashboard这个东西挺好的，加上了好几个小插件玩，但现在发现使用频率超低，所以干脆想办法关闭吧，听说还能节约部分内存和提升开机速度，对这些倒是不太关心，只能有种不用就关闭的态度驱使着我。</p>
 
-<p>一开始在helloworld部分就遇到一个问题，用rails generate controller say后根本不能自动添加一条routes，找了原作者的wiki更新发现这里已经需要自己修改routes的内容了，不过也好，消去一行注释即可：）</p>
+<p>关闭命令：</p>
 
-<p>感谢<a href="http://www.xiaoyangsheng.com/2011/02/routing-error-no-route-matches-sayhello/">这里</a></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>defaults write com.apple.dashboard mcx-disabled -boolean YES;killall dock
+</span></code></pre></td></tr></table></div></figure>
 
-<p>如果还有谁遇到类似不兼容问题，请看<a href="http://pragprog.com/wikis/wiki/ChangesToRails">作者的wiki更新</a>吧，希望有帮助！</p>
+
+<p>如果需要重新开启，请使用这条命令，包括了killall Dock：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>defaults write com.apple.dashboard mcx-disabled -boolean NO;killall Dock
+</span></code></pre></td></tr></table></div></figure>
+
 
 		
 		
@@ -317,11 +351,11 @@ Binary data inserted for `string` type on column `randstring`
   
 
 
-<time datetime="2012-02-09T23:01:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time></div>
+<time datetime="2012-01-26T00:49:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/routes/'>routes</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mac/'>mac</a>
 
 
 </div>
@@ -333,16 +367,14 @@ Binary data inserted for `string` type on column `randstring`
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/09/arguments-issue-in-auto-complete-plugin/">
+		<a href="/blog/2012/01/13/open-the-stack-function-of-dock/">
 		
-			Emacs中auto-complete插件问题</a>
+			开启Dock的堆栈功能</a>
 	</h2>
 	<div class="entry-content">
-		<p>一般都是直接打开emacs使用，偶尔在terminal中用emacs发现出现错误：Wrong number of arguments: called-interactively-p, 1</p>
+		<p>打开Terminal，输入：<code>defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock</code></p>
 
-<p>看了看是auto-complete的某些错误，通过Google得到了相关问题的解决，删除auto-complete的elc文件，似乎这些文件是可以加速插件的运行编译出来的，现在删除后在terminal中使用就没问题了！</p>
-
-<p>感谢<a href="http://www.lichaozheng.info/2011/10/19/%E8%A7%A3%E5%86%B3emacs-%E5%87%BA%E7%8E%B0wrong-number-of-arguments-called-interactively-p-1/">这里</a>的帮助</p>
+<p>然后回车（return），等Dock再次出现后，在已打开程序图标上滚动鼠标滚轮或者手势模拟滚轮，就能看到这个程序打开的子窗口或者子程序，很过瘾好用。</p>
 
 		
 		
@@ -362,11 +394,11 @@ Binary data inserted for `string` type on column `randstring`
   
 
 
-<time datetime="2012-02-09T22:21:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time></div>
+<time datetime="2012-01-13T21:56:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/autocomplete/'>autocomplete</a>, <a class='category' href='/blog/categories/emacs/'>emacs</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mac/'>mac</a>
 
 
 </div>
@@ -378,90 +410,20 @@ Binary data inserted for `string` type on column `randstring`
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/">
+		<a href="/blog/2011/12/16/back-to-free-time/">
 		
-			安装mysql的Ruby驱动遇到的问题</a>
+			终于回到自由的时候</a>
 	</h2>
 	<div class="entry-content">
-		<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql
-Fetching: mysql-2.8.1.gem (100%)
-Building native extensions.  This could take a while...
-ERROR:  Error installing mysql:
-ERROR: Failed to build gem native extension.
+		<p>自从前段时间学校封杀了研究生web端自由登陆drcom以来，我就只能找网络中心的老师开了本科生的web登陆，速度很慢，还有流量限制。</p>
 
-       /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lm... yes
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lz... yes
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lsocket... no
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lnsl... no
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lmygcc... no
-checking for mysql_query() in -lmysqlclient... no
-*** extconf.rb failed ***
-Could not create Makefile due to some reason, probably lack of
-necessary libraries and/or headers.  Check the mkmf.log file for more
-details.  You may need configuration options.
+<p>又加上Lion系统中的原drcom客户端不能用，我就攒了攒勇气下载了drcom4mac的源代码回来自己编译，本以为就是平台的微弱差异，没想到一大堆根本看不懂的错误出现，也没那么平静的心来阅读一个个C函数，就这样搁置了。</p>
 
-Provided configuration options:
---with-opt-dir
---without-opt-dir
---with-opt-include
---without-opt-include=${opt-dir}/include
---with-opt-lib
---without-opt-lib=${opt-dir}/lib
---with-make-prog
---without-make-prog
---srcdir=.
---curdir
---ruby=/usr/local/Cellar/ruby/1.9.3-p0/bin/ruby
---with-mysql-config
---without-mysql-config
---with-mysql-dir
---without-mysql-dir
---with-mysql-include
---without-mysql-include=${mysql-dir}/include
---with-mysql-lib
---without-mysql-lib=${mysql-dir}/lib
---with-mysqlclientlib
---without-mysqlclientlib
---with-mlib
---without-mlib
---with-mysqlclientlib
---without-mysqlclientlib
---with-zlib
---without-zlib
---with-mysqlclientlib
---without-mysqlclientlib
---with-socketlib
---without-socketlib
---with-mysqlclientlib
---without-mysqlclientlib
---with-nsllib
---without-nsllib
---with-mysqlclientlib
---without-mysqlclientlib
---with-mygcclib
---without-mygcclib
---with-mysqlclientlib
---without-mysqlclientlib
+<p>昨晚Drcom的GoogleGroups中有人发来邮件，说是写了个java的drcom客户端欢迎测试，我今天早晨配置好了libpcap库和jpcap库，然后使用了这个客户端，打开GUI后输入账号密码，登陆没反应。于是告诉了作者，中午收到作者来信，说暂时还只能用命令行方式，这我当然能够接受，可惜在Mac的terminal中显示的中文提示都是乱码，于是svn到了原代码到eclipse中看看吧，按照提示组合了命令行，成功登陆了！</p>
 
+<p>从此又自由了。</p>
 
-Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 for inspection.
-Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out</pre>
-
-
-<p>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">gem install mysql -- --with-mysql-dir=/usr/local/mysql</pre>
-
-
-<p>一开始的那两个“&mdash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
-
-<p>我已经解决问题了，成功安装mysql的ruby驱动，如果仍然遇到问题，可以试试参考<a href="http://blog.bmn.name/2008/02/rails-gem-install-mysql-throws-error-extconfrb-failed/">这里</a>（同样感谢这里）。</p>
+<p>项目地址：<a href="code.google.com/p/jdrcom/">code.google.com/p/jdrcom/</a></p>
 
 		
 		
@@ -481,11 +443,11 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
   
 
 
-<time datetime="2012-02-09T20:08:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time></div>
+<time datetime="2011-12-16T21:27:00+08:00" pubdate data-updated="true">Dec 16<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mac/'>mac</a>
 
 
 </div>
@@ -497,28 +459,26 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/07/some-issue-when-saving-rules-in-iptables/">
+		<a href="/blog/2011/12/11/update-gem-on-mac/">
 		
-			保存iptables规则遇到的问题</a>
+			更新mac下的gem</a>
 	</h2>
 	<div class="entry-content">
-		<p>开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。</p>
+		<p>要不是弄github的pages我也不会接触到gem。</p>
 
-<p>在保存iptables规则的时候遇到这样的问题：</p>
+<p>lion的gem是1.3.6这个超低版本，现在最新是1.8.12，我下载了update_rubygem1.8.12.gem，用gem安装上了：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">iptables: Saving firewall rules to /etc/sysconfig/iptables: /etc/init.d/iptables: line 268: restorecon: command not found</pre>
-
-
-<p>当然你可能会看到中文的提示（我的就是），意思是一样的。从<a href="http://www.live-in.org/archives/1112.html">这里</a>得到了解决方案：</p>
-
-<p>安装一个包包：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">yum install policycoreutils</pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo gem install update_rubygem-1.8.12.gem</span></code></pre></td></tr></table></div></figure>
 
 
-<p>行了，剩下就没遇到问题了：）</p>
+<p>然后不知道怎么用了，于是用gem开启来一个server玩：</p>
 
-<p>稍稍广告一下吧：欢迎使用Yardvps的VPS哦，我就在使用，现在很稳定，现在有了中文界面，支持支付宝，挺好吧？可以点击<a href="http://www.yardvps.com/billing/aff.php?aff=399">这里</a>购买，这样我也许能得到一点推广费用：）</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem server</span></code></pre></td></tr></table></div></figure>
+
+
+<p>不小心看到已经安装了两个gem，执行命令分别是gem和update_rubygem，于是我执行了后面那个，就更新到了1.8.12</p>
 
 		
 		
@@ -538,11 +498,11 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
   
 
 
-<time datetime="2012-02-07T18:03:00+08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2012</time></div>
+<time datetime="2011-12-11T19:49:00+08:00" pubdate data-updated="true">Dec 11<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/iptables/'>iptables</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mac/'>mac</a>
 
 
 </div>
@@ -554,16 +514,47 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/06/wired-grammar-in-ruby/">
+		<a href="/blog/2011/12/11/mysql-python-mac/">
 		
-			奇怪的Ruby语法</a>
+			mac下的MySQL-python问题</a>
 	</h2>
 	<div class="entry-content">
-		<p>今天断断续续把昨天提到的那个Ruby编程入门看完了，原本打算按照教程中的例子做一遍，不过看得时候感觉这样做的话有些浪费时间，对于有一定编程经验的人来说按照例子做一遍没多大意义，很多内容看看就过了。</p>
+		<p>刚刚在学习web.py这个框架，找了一个不错的例子准备自己运行起来看看，结果一调试出现了MySQLdb没找到的情况，于是从官方（<a href="http://sourceforge.net/projects/mysql-python/">http://sourceforge.net/projects/mysql-python/</a>）下载源码准备编译安装，最好不要用easy_install安装了，因为还得修改几个地方才能正常编译安装。</p>
 
-<p>但很可惜，在Ruby这里，看看还不一定就能理解，要不然今天也不会单独写一篇日志了，真得有不少特性和其他编程语言不一样，概念上倒是还能理解，语法符号上就要重新接受了，想等过两天买的Ruby编程书来到后细细重头看。</p>
+<p>由于是mac系统，MySQL是使用的官方提供的dmg安装包装的，但不知为何MySQLdb的安装脚本找不到位置，于是修改MySQLdb的setup_posix.py，26行有个mysql_config.path = &hellip;，修改成你本机中mysql_config所在的地址，比如我的是/usr/local/mysql/bin/mysql_config，保存后分别执行：</p>
 
-<p>还有20天了，真不知道当初设想的几个小理念能够实现多少，但也别失望，我还成功转型了呢，这个寒假收获将会颇丰！</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo python setup.py build
+</span><span class='line'>sudo python setup.py install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>安装后最好用python的shell加载一下MySQLdb看看能否正常使用，通常是不行的，因为我就遇到这么个情况，提示缺少image，具体是这样提示的：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>File <span class="s2">&quot;/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/MySQLdb/__init__.py&quot;</span>, line 19, in &lt;module&gt;
+</span><span class='line'>   import _mysql
+</span><span class='line'>ImportError: dlopen<span class="o">(</span>/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/_mysql.so, 2<span class="o">)</span>: Library not loaded: libmysqlclient.18.dylib
+</span><span class='line'> Referenced from: /Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/_mysql.so
+</span><span class='line'> Reason: image not found
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>于是用Google搜索问题，从<a href="http://alexbraunstein.com/2011/08/12/library-loaded-libmysqlclient-18-dylib/">这里</a>找到了解决方案：</p>
+
+<p>在~/.bash_profile中加入这样的一句：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">DYLD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/mysql/lib:<span class="nv">$DYLD_LIBRARY_PATH</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后quit掉terminal再进入一次让这个环境变量更新一下，再次使用MySQLdb就没问题了。</p>
 
 		
 		
@@ -583,11 +574,11 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
   
 
 
-<time datetime="2012-02-06T22:19:00+08:00" pubdate data-updated="true">Feb 6<span>th</span>, 2012</time></div>
+<time datetime="2011-12-11T14:19:00+08:00" pubdate data-updated="true">Dec 11<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/zhuan-xing/'>转型</a>
+	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>
@@ -599,20 +590,22 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/06/firstly-study-ruby/">
+		<a href="/blog/2011/12/10/spring-framework/">
 		
-			开学Ruby</a>
+			Spring</a>
 	</h2>
 	<div class="entry-content">
-		<p>先从官方文档那里找各种资料学习，已经在amazon上买书了，买了本rails应用的书，还买了两本考系统架构师的书，再就是想买一本讲ruby语言的书，很可惜amazon上没货，要是从非amazon商家买的话需要支付高昂的快递费，于是从淘宝上找了家靠谱的商家，还有满49包邮（幸亏这本书是51，包邮了）</p>
+		<p>这不是代表春天或者温泉的意思，实际上是我正在学习期末考试课程S2SH中的一个框架——Spring。</p>
 
-<p>对了，今天在amazon上买书是因为收到了amazon前段时间送的满100送20优惠券，对于我这种很喜欢在amazon上买技术书籍的书虫来说这类活动太好了，以后多多参加！</p>
+<p>就一变态框架啊，Ioc、AOP这些都是令业界震撼的思想级产物。特别是AOP，就是和OOP同层次的东西，怪不得学习起来很慢很艰难，不过我清楚，期末考试肯定考得超简单，现在我基本是学到哪里忘到哪里。</p>
 
-<p>说废话太多了，今天断断续续看了这里的教程，基本想要按照讲得做，看完一半了，明天把剩下弄完！</p>
+<p>顺便说下，用Spring做一个简单的AOP测试实例的话，光用自带的jar包根本不行，还需要自己添加下面这几个：</p>
 
-<p>教程地址：<a href="http://pine.fm/LearnToProgram/"><a href="http://pine.fm/LearnToProgram/">http://pine.fm/LearnToProgram/</a></a>  </p>
+<p>1.aopalliance-1.0.jar（在struts2的lib目录中找到的）</p>
 
-<p>ruby的中文参考文档页：<a href="http://www.ruby-lang.org/zh_cn/documentation/"><a href="http://www.ruby-lang.org/zh_cn/documentation/">http://www.ruby-lang.org/zh_cn/documentation/</a></a></p>
+<p>2.aspcetjweaver-1.5.3.jar（aspcetj的官网怎么上都上不去：<a href="http://www.aspectj.org">http://www.aspectj.org</a>，于是在这里下载的：<a href="http://www.jar114.com/j/982">http://www.jar114.com/j/982</a>）</p>
+
+<p>3.cglib-nodep-2.2.2.jar（本来用cglib-2.2.2.jar的，但提示缺少asm就下载了这个集成asm的nodep版本，我以为asm就是Spring中的那个asm包呢。官方网站：<a href="http://cglib.sourceforge.net">http://cglib.sourceforge.net</a>）</p>
 
 		
 		
@@ -632,11 +625,11 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
   
 
 
-<time datetime="2012-02-06T00:40:00+08:00" pubdate data-updated="true">Feb 6<span>th</span>, 2012</time></div>
+<time datetime="2011-12-10T16:48:00+08:00" pubdate data-updated="true">Dec 10<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/amazon/'>amazon</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/taobao/'>taobao</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/s2sh/'>S2SH</a>
 
 
 </div>

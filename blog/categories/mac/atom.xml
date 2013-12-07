@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/mac/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:00:11+08:00</updated>
+  <updated>2013-12-07T21:59:15+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -33,7 +33,7 @@
     <id>http://www.youth2009.org/blog/2012/10/01/optimzation-for-m4</id>
     <content type="html"><![CDATA[<p>1.关闭紧急运动传感器</p>
 
-<p>mac系统没有把这些传感器的设置、界面什么的体现到UI里，让我一度以为mbp没有这种设备，实际这也算是mac系统的设计理念吧，把普通用户无须知晓的东西屏蔽掉，让用户看起来、用起来异常简单，不像thinkpad那样，直接把硬盘活动保护啥的做成一个功能给用户展示。。。你看，你看，我们（thinkpad）有保护您硬盘的设备。。。</p>
+<p>mac系统没有把这些传感器的设置、界面什么的体现到UI里，让我一度以为mbp没有这种设备，实际这也算是mac系统的设计理念吧，把普通用户无须知晓的东西屏蔽掉，让用户看起来、用起来异常简单，不像thinkpad那样，直接把硬盘活动保护啥的做成一个功能给用户展示。。。你看，你看，我们（thinkpad）有保护您硬盘的设备。</p>
 
 <p>这些不让用户看到的功能大多需要相关工具或者命令行来设置：
 <code>bash
@@ -44,19 +44,27 @@ sudo pmset -a sms 0
 
 <p>2.备份驱动</p>
 
-<p><code>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original</code></p>
+<p><code>bash
+sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original
+</code></p>
 
 <p>3.更新驱动</p>
 
-<p><code>sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x54)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</code></p>
+<p><code>bash
+sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x54)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</code></p>
 
 <p>4.开启Trim</p>
 
-<p><code>sudo kextcache -system-prelinked-kernel</code></p>
+<p><code>bash
+sudo kextcache -system-prelinked-kernel
+</code></p>
 
 <p>5.清除系统内核扩展缓存</p>
 
-<p><code>sudo kextcache -system-caches</code></p>
+<p><code>bash
+sudo kextcache -system-caches
+</code></p>
 
 <p>6.重启</p>
 

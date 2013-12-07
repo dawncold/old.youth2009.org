@@ -7,9 +7,26 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="从某网站上下载了几个压缩包，里面全是目录，每个目录下都有一个doc文件，但可恶的是这些doc文件被换了扩展名，原本是xxx.doc现在变成xxx.doc.resx，我得用python批量处理一下： #! /usr/bin/python
-# -*- coding:utf-8 -*-
-# 遍历所有目录 &hellip;">
+	<meta name="description" content="从某网站上下载了几个压缩包，里面全是目录，每个目录下都有一个doc文件，但可恶的是这些doc文件被换了扩展名，原本是xxx.doc现在变成xxx.doc.resx，我得用python批量处理一下： 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,49 +96,90 @@
 	<h2 class="title">Python批量处理文件</h2>
 	<div class="entry-content"><p>从某网站上下载了几个压缩包，里面全是目录，每个目录下都有一个doc文件，但可恶的是这些doc文件被换了扩展名，原本是xxx.doc现在变成xxx.doc.resx，我得用python批量处理一下：</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
-# -*- coding:utf-8 -*-
-# 遍历所有目录，把resx文件扩展名删掉
-
-import os
-
-current_path = os.getcwd()
-allsubdir = os.listdir(current_path)
-
-for subdir in allsubdir:
-   subdir_path = './' + subdir
-   if os.path.isdir(subdir_path):
-       files = os.listdir(subdir_path)
-       for _file in files:
-           basename = os.path.basename(_file)
-           allname = os.path.splitext(basename)
-           if '.resx' in allname:
-               print 'resx file %s' % basename
-               without_resx = allname[0]
-               os.rename(subdir_path+'/'+_file,without_resx)
-           else:
-               print 'not resx file'
-               continue</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/python</span>
+</span><span class='line'><span class="c"># -*- coding:utf-8 -*-</span>
+</span><span class='line'><span class="c"># 遍历所有目录，把resx文件扩展名删掉</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">current_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+</span><span class='line'><span class="n">allsubdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">current_path</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">subdir</span> <span class="ow">in</span> <span class="n">allsubdir</span><span class="p">:</span>
+</span><span class='line'>   <span class="n">subdir_path</span> <span class="o">=</span> <span class="s">&#39;./&#39;</span> <span class="o">+</span> <span class="n">subdir</span>
+</span><span class='line'>   <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">subdir_path</span><span class="p">):</span>
+</span><span class='line'>       <span class="n">files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">subdir_path</span><span class="p">)</span>
+</span><span class='line'>       <span class="k">for</span> <span class="n">_file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+</span><span class='line'>           <span class="n">basename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">_file</span><span class="p">)</span>
+</span><span class='line'>           <span class="n">allname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">basename</span><span class="p">)</span>
+</span><span class='line'>           <span class="k">if</span> <span class="s">&#39;.resx&#39;</span> <span class="ow">in</span> <span class="n">allname</span><span class="p">:</span>
+</span><span class='line'>               <span class="k">print</span> <span class="s">&#39;resx file </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">basename</span>
+</span><span class='line'>               <span class="n">without_resx</span> <span class="o">=</span> <span class="n">allname</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'>               <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">subdir_path</span><span class="o">+</span><span class="s">&#39;/&#39;</span><span class="o">+</span><span class="n">_file</span><span class="p">,</span><span class="n">without_resx</span><span class="p">)</span>
+</span><span class='line'>           <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>               <span class="k">print</span> <span class="s">&#39;not resx file&#39;</span>
+</span><span class='line'>               <span class="k">continue</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>还用了一个删除空目录的脚本：</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/python
-# -*- coding:utf-8 -*-
-#删除空目录
-
-import os
-
-alldir = os.listdir(os.getcwd())
-for _dir in alldir:
-   if os.path.isdir('./'+_dir):
-       print 'dir: %s' % _dir
-       if os.listdir('./'+_dir):
-           print 'have something %s' % os.listdir('./'+_dir)
-       else:
-           os.rmdir('./'+_dir)
-   else:
-       print 'file or others'</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/python</span>
+</span><span class='line'><span class="c"># -*- coding:utf-8 -*-</span>
+</span><span class='line'><span class="c">#删除空目录</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">alldir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+</span><span class='line'><span class="k">for</span> <span class="n">_dir</span> <span class="ow">in</span> <span class="n">alldir</span><span class="p">:</span>
+</span><span class='line'>   <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="s">&#39;./&#39;</span><span class="o">+</span><span class="n">_dir</span><span class="p">):</span>
+</span><span class='line'>       <span class="k">print</span> <span class="s">&#39;dir: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">_dir</span>
+</span><span class='line'>       <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">&#39;./&#39;</span><span class="o">+</span><span class="n">_dir</span><span class="p">):</span>
+</span><span class='line'>           <span class="k">print</span> <span class="s">&#39;have something </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">&#39;./&#39;</span><span class="o">+</span><span class="n">_dir</span><span class="p">)</span>
+</span><span class='line'>       <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>           <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="s">&#39;./&#39;</span><span class="o">+</span><span class="n">_dir</span><span class="p">)</span>
+</span><span class='line'>   <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>       <span class="k">print</span> <span class="s">&#39;file or others&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>用python，很快乐！</p>
@@ -145,7 +203,7 @@ for _dir in alldir:
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/file/'>file</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>

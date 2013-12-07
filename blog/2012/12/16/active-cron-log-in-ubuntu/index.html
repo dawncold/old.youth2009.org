@@ -83,15 +83,14 @@ vi /etc/rsyslog.d/50-default.conf &hellip;">
 
 <p>在ubuntu下默认没有cron的日志，需要这样开启：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>vi /etc/rsyslog.d/50-default.conf
+</pre></td><td class='code'><pre><code class=''><span class='line'>vi /etc/rsyslog.d/50-default.conf
 </span><span class='line'>解除cron的注释
 </span><span class='line'>service rsyslog restart
-</span><span class='line'>service cron restart
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>service cron restart</span></code></pre></td></tr></table></div></figure>
 
 
 <p>这样就可以在/var/log/下找到cron.log查看了。</p>
@@ -115,7 +114,7 @@ vi /etc/rsyslog.d/50-default.conf &hellip;">
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+	<a class='category' href='/blog/categories/bnly/'>bnly</a>
 
 
 </div>

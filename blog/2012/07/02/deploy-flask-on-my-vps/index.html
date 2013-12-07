@@ -81,29 +81,41 @@
 
 <p>总的来说就是用virtualenv来创建各个app的目录，在里面安装需要的环境（flask、mysql-python、beautifulsoup4等等吧），nginx的配置大概如下：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">server {
-     listen       80;
-     server_name  todo.wodeyitian.com;
-     location / {
-               include uwsgi_params;
-               uwsgi_pass 127.0.0.1:9090;
-               uwsgi_param UWSGI_PYHOME /home/wwwroot/python_app_todo;
-               uwsgi_param UWSGI_CHDIR /home/wwwroot/python_app_todo/app_dir;
-               uwsgi_param UWSGI_SCRIPT todoApp:app;
-     }
-}</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>server <span class="o">{</span>
+</span><span class='line'>     listen       80;
+</span><span class='line'>     server_name  todo.wodeyitian.com;
+</span><span class='line'>     location / <span class="o">{</span>
+</span><span class='line'>               include uwsgi_params;
+</span><span class='line'>               uwsgi_pass 127.0.0.1:9090;
+</span><span class='line'>               uwsgi_param UWSGI_PYHOME /home/wwwroot/python_app_todo;
+</span><span class='line'>               uwsgi_param UWSGI_CHDIR /home/wwwroot/python_app_todo/app_dir;
+</span><span class='line'>               uwsgi_param UWSGI_SCRIPT todoApp:app;
+</span><span class='line'>     <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>UWSGI_PYHOME是app的主目录，下面的CHDIR是app中py文件所在的目录，这个可以自己设置，下面的SCRIPT是入口脚本模块名和变量名，模块就是文件名喽，变量一般在flask都是用app作为整个网站的入口变量，写过python基本都能明白这个。</p>
 
 <p>安装好uwsgi后可以配置开启：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost
+</span></code></pre></td></tr></table></div></figure>
 
 
-
-
-<p><p style="text-align: left;">使用9090端口监听，-M开启主控线程，-p 4是开启4个线程，-t 30是超过30秒不响应丢弃，limit-as 128是限制128Mb的内存占用，-R 10000是超过10000的请求就自动<span style="font-family: Verdana, sans-serif, 宋体;"><span style="line-height: 24px;">respawn（似乎是自动复制？重启？之类的），-d是日志，&mdash;vhost这个可以让多个app共用一个uwsgi，很好用的！</span></span></p>
+<p>使用9090端口监听，-M开启主控线程，-p 4是开启4个线程，-t 30是超过30秒不响应丢弃，limit-as 128是限制128Mb的内存占用，-R 10000是超过10000的请求就自动respawn（似乎是自动复制？重启？之类的），-d是日志，&mdash;vhost这个可以让多个app共用一个uwsgi，很好用的！</p>
 </div>
 
 
@@ -124,7 +136,7 @@
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/flask/'>flask</a>, <a class='category' href='/blog/categories/nginx/'>nginx</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/uwsgi/'>uwsgi</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/vps/'>vps</a>
 
 
 </div>

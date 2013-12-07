@@ -7,7 +7,16 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="有这么一个小游戏，按照顺序输入字母表的26个英文字母，看看你输入的总时间是多少。有个变态的人竟然在2s内就输入了26个字母，而且不允许有任何错误，真心佩服！！！ 我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊…… tell application "Google &hellip;">
+	<meta name="description" content="有这么一个小游戏，按照顺序输入字母表的26个英文字母，看看你输入的总时间是多少。有个变态的人竟然在2s内就输入了26个字母，而且不允许有任何错误，真心佩服！！！ 我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊…… 1
+2
+3
+4
+5
+6
+7
+8
+9
+tell &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,15 +88,25 @@
 
 <p>我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊……</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">tell application "Google Chrome"
-activate
-repeat with i from 0 to 25
-delay 0.04
-tell application "System Events"
-keystroke (ASCII character of (97 + i))
-end tell
-end repeat
-end tell</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>tell application <span class="s2">&quot;Google Chrome&quot;</span>
+</span><span class='line'>activate
+</span><span class='line'>repeat with i from 0 to 25
+</span><span class='line'>delay 0.04
+</span><span class='line'>tell application <span class="s2">&quot;System Events&quot;</span>
+</span><span class='line'>keystroke <span class="o">(</span>ASCII character of <span class="o">(</span>97 + i<span class="o">))</span>
+</span><span class='line'>end tell
+</span><span class='line'>end repeat
+</span><span class='line'>end tell
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>不减速的话系统根本无法记录，所以还是减速了，这个速度正好拿到第一名的位置，OK，剩下的让人去羡慕吧！！！</p>
@@ -113,7 +132,7 @@ end tell</pre>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/applescript/'>applescript</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mac/'>mac</a>
 
 
 </div>

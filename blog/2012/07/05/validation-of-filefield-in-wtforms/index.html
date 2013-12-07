@@ -79,12 +79,19 @@
 
 <p>比如我是这样验证没有选择图片的：</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">form = xxxForm(request.form)
-f = request.files["image"]
-if len(f.filename) == 0:
- form.image.errors = ValidationError(u"need a pic file!!!")
- return render_template("xxx", form = form)
-......</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">form</span> <span class="o">=</span> <span class="n">xxxForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
+</span><span class='line'><span class="n">f</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="p">[</span><span class="s">&quot;image&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'> <span class="n">form</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">errors</span> <span class="o">=</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s">u&quot;need a pic file!!!&quot;</span><span class="p">)</span>
+</span><span class='line'> <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&quot;xxx&quot;</span><span class="p">,</span> <span class="n">form</span> <span class="o">=</span> <span class="n">form</span><span class="p">)</span>
+</span><span class='line'><span class="o">......</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>如果有不同的见解请告诉我哦！</p>
@@ -108,7 +115,7 @@ if len(f.filename) == 0:
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/filefield/'>filefield</a>, <a class='category' href='/blog/categories/flask/'>flask</a>, <a class='category' href='/blog/categories/wtforms/'>wtforms</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>

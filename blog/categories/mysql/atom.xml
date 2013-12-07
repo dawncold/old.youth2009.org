@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mysql | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:00:11+08:00</updated>
+  <updated>2013-12-07T21:59:15+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -179,7 +179,9 @@ error: command &lsquo;gcc&rsquo; failed with exit status 1
 
 <p>也不算什么解决方法吧，就是缺失一些组件，安装了mysql-devel就好了：</p>
 
-<p><code>yum install mysql-devel.x86_64</code></p>
+<p><code>bash
+yum install mysql-devel.x86_64
+</code></p>
 ]]></content>
   </entry>
   

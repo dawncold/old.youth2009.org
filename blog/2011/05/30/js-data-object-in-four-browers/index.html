@@ -7,9 +7,14 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的： var da = '2000-01-01 00:00:00';
+	<meta name="description" content="测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的： 1
+2
+3
+4
+5
+var da = '2000-01-01 00:00:00';
 var da_array = da.split(' ');
-var da_1 = &hellip;">
+var da_1 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,11 +84,16 @@ var da_1 = &hellip;">
 	<h2 class="title">四种浏览器下的JS日期对象</h2>
 	<div class="entry-content"><p>测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：</p>
 
-<pre class="prettyprint linenums bush:jscript" lang="jscript">var da = '2000-01-01 00:00:00';
-var da_array = da.split(' ');
-var da_1 = da_array[0].split('-');
-var da_2 = da_array[1].split(':');
-alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var da = '2000-01-01 00:00:00';
+</span><span class='line'>var da_array = da.split(' ');
+</span><span class='line'>var da_1 = da_array[0].split('-');
+</span><span class='line'>var da_2 = da_array[1].split(':');
+</span><span class='line'>alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -105,7 +115,7 @@ alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</pre>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/date/'>date</a>, <a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/js/'>js</a>
 
 
 </div>

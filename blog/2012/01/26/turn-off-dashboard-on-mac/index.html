@@ -7,7 +7,8 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="一开始感觉dashboard这个东西挺好的，加上了好几个小插件玩，但现在发现使用频率超低，所以干脆想办法关闭吧，听说还能节约部分内存和提升开机速度，对这些倒是不太关心，只能有种不用就关闭的态度驱使着我。 关闭命令： defaults write com.apple.dashboard mcx- &hellip;">
+	<meta name="description" content="一开始感觉dashboard这个东西挺好的，加上了好几个小插件玩，但现在发现使用频率超低，所以干脆想办法关闭吧，听说还能节约部分内存和提升开机速度，对这些倒是不太关心，只能有种不用就关闭的态度驱使着我。 关闭命令： 1
+defaults write com.apple.dashboard mcx- &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,20 +80,16 @@
 
 <p>关闭命令：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean YES</pre>
-
-
-<p> </p>
-
-<p>运行后最好再执行一下这个生效：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">killall Dock</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>defaults write com.apple.dashboard mcx-disabled -boolean YES;killall dock
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>如果需要重新开启，请使用这条命令，包括了killall Dock：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean NO
-killall Dock</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>defaults write com.apple.dashboard mcx-disabled -boolean NO;killall Dock
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -114,7 +111,7 @@ killall Dock</pre>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/dashboard/'>dashboard</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mac/'>mac</a>
 
 
 </div>

@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="从mysql中返回的内容如果是中文的，而页面用了utf-8的编码，那么会出现一些“问号”，就是乱码了！应该将mysql中表的编码改为utf8_unicode_ci，各字段改为utf8_unicode_ci   在PHP中执行SQL查询前执行 SQLCONNECT.query(SET NAMES &hellip;">
+	<meta name="description" content="从mysql中返回的内容如果是中文的，而页面用了utf-8的编码，那么会出现一些“问号”，就是乱码了！应该将mysql中表的编码改为utf8_unicode_ci，各字段改为utf8_unicode_ci。在PHP中执行SQL查询前执行SQLCONNECT.query(SET NAMES utf8 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -75,16 +75,7 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">Mysql中的中文乱码</h2>
-	<div class="entry-content"><p>从mysql中返回的内容如果是中文的，而页面用了utf-8的编码，那么会出现一些“问号”，就是乱码了！应该将mysql中表的编码改为utf8_unicode_ci，各字段改为utf8_unicode_ci</p>
-
-<p> </p>
-
-<p>在PHP中执行SQL查询前执行</p>
-
-<pre class="prettyprint linenums bush:php" lang="php">SQLCONNECT.query(SET NAMES utf8);</pre>
-
-
-<p>这条SQL语句。</p>
+	<div class="entry-content"><p>从mysql中返回的内容如果是中文的，而页面用了utf-8的编码，那么会出现一些“问号”，就是乱码了！应该将mysql中表的编码改为utf8_unicode_ci，各字段改为utf8_unicode_ci。在PHP中执行SQL查询前执行<code>SQLCONNECT.query(SET NAMES utf8);</code>这条SQL语句。</p>
 </div>
 
 
@@ -105,7 +96,7 @@
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/zi-fu-bian-ma/'>字符编码</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mysql/'>mysql</a>
 
 
 </div>

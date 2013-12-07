@@ -79,12 +79,16 @@
 
 <p>今天update进去信息，总是没发现数据库更新，怀疑是忘记commit，查看一下FMDB的使用方法，确实有commit一说，而我在看国内某博客写的使用教程时发现他就是随意的update和insert，殊不知这些都需要commit呀！在update和insert代码前后需要加入</p>
 
-<pre class="prettyprint linenums bush:cpp" lang="cpp">[db beginTransaction];
-和
-[db commit];</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="p">[</span><span class="n">db</span> <span class="n">beginTransaction</span><span class="p">];</span>
+</span><span class='line'><span class="err">和</span>
+</span><span class='line'><span class="p">[</span><span class="n">db</span> <span class="n">commit</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p> 我用的Objective-C。</p>
+<p>我用的Objective-C。</p>
 
 <p>然而即便是这样，更新了数据库后再查询，确实数据被更改了，但我重新在模拟器中运行程序时候又恢复成了以前的值。偶然在模拟器中打开了程序而不是用xcode运行程序，数据竟然被永久更新了。</p>
 
@@ -109,7 +113,7 @@
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/iphone/'>iphone</a>, <a class='category' href='/blog/categories/sqlite/'>sqlite</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
 
 
 </div>

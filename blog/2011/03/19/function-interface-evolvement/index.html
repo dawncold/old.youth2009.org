@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="那天下午打算做个推荐饭菜的应用出来，上机课期间把雏形做好了，现在除了不能自由添加数据以外别的我还都满意，当然不谈UI设计。参观地址：http://food.wodeyitian.com 介绍一下其中有一个地方的函数接口，就是用来显示“已经有的主食和菜”的两列列表，数据库中分成两个表，一个是主食， &hellip;">
+	<meta name="description" content="那天下午打算做个推荐饭菜的应用出来，上机课期间把雏形做好了，现在除了不能自由添加数据以外别的我还都满意，当然不谈UI设计。 介绍一下其中有一个地方的函数接口，就是用来显示“已经有的主食和菜”的两列列表，数据库中分成两个表，一个是主食，一个是菜，相关字段都是一样的──id,name, &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -75,7 +75,7 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">一个函数的接口演化</h2>
-	<div class="entry-content"><p>那天下午打算做个推荐饭菜的应用出来，上机课期间把雏形做好了，现在除了不能自由添加数据以外别的我还都满意，当然不谈UI设计。参观地址：<a href="http://food.wodeyitian.com"><a href="http://food.wodeyitian.com">http://food.wodeyitian.com</a></a></p>
+	<div class="entry-content"><p>那天下午打算做个推荐饭菜的应用出来，上机课期间把雏形做好了，现在除了不能自由添加数据以外别的我还都满意，当然不谈UI设计。</p>
 
 <p>介绍一下其中有一个地方的函数接口，就是用来显示“已经有的主食和菜”的两列列表，数据库中分成两个表，一个是主食，一个是菜，相关字段都是一样的──id,name,price加入price是为了提前设计下一个版本，似乎稍微有点过度设计？一开始这样设计没什么问题，相应的PHP函数是available($foodtype,&amp;$array_xx)；这样传递的数组进入后把数据push到数组中，再利用数组显示到网页上，这个函数本来并不负责echo，foodtype分别是数据库中的表名，这样传递进mainfood或者dish就能分别抓取相应表的数据。</p>
 
@@ -104,7 +104,7 @@
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/jie-kou/'>接口</a>
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/food/'>food</a>
 
 
 </div>

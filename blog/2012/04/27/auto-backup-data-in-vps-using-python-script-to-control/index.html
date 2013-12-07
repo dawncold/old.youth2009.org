@@ -7,7 +7,8 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="在这里看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。 安装linux下的dropbox（我的是32为系统，如果是64位在下面地址末尾加上“_64”即可）： wget -O dropbox.tar.gz http://www.dropbox.com/download?plat &hellip;">
+	<meta name="description" content="在这里看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。 安装linux下的dropbox（我的是32为系统，如果是64位在下面地址末尾加上“_64”即可）： 1
+wget -O dropbox.tar.gz http://www.dropbox.com/download? &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -75,75 +76,122 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">dropbox自动备份VPS</h2>
-	<div class="entry-content"><p>在<a href="http://www.deepvps.com/dropbox-backup.html" target="_blank">这里</a>看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。</p>
+	<div class="entry-content"><p>在<a href="http://www.deepvps.com/dropbox-backup.html" target="_blank">这里看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。</p>
 
 <p>安装linux下的dropbox（我的是32为系统，如果是64位在下面地址末尾加上“_64”即可）：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">wget -O dropbox.tar.gz http://www.dropbox.com/download?plat=lnx.x86</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget -O dropbox.tar.gz http://www.dropbox.com/download?plat<span class="o">=</span>lnx.x86
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>解压后在.dropbox-dist目录中有dropboxd可执行文件，让其在后台执行（就是在执行文件后面加“&amp;”符号）</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">~/.dropbox-dist/dropboxd &amp;</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>~/.dropbox-dist/dropboxd &amp;
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>此后会出现一个地址，你得复制出来然后在浏览器中打开，之后就是注册或者登陆dropbox，这样就激活了在这台机器上的dropbox，就可以同步文件了。</p>
 
 <p>把需要同步备份的文件软连接到Dropbox这个目录中：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">cd ~/Dropbox
-ln -s /home/wwwroot/
-。。。</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~/Dropbox
+</span><span class='line'>ln -s /home/wwwroot/
+</span><span class='line'>。。。
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>此时dropbox已经在帮你同步了，你可以通过web端观察。</p>
 
 <p>我看到的文章中带着一个自动运行的脚本，用sh写的，我发现在主机上运行没反应，不会sh，会点python，于是我改写了一下，也是可用的：</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-# coding: utf-8
-
-import sys
-import os
-
-def start():
-print "Starting Dropbox..."
-os.system("~/.dropbox-dist/dropboxd &amp;")
-
-
-def stop():
-print "Stoping Dropbox..."
-os.system("pkill dropbox")
-
-
-def restart():
-stop()
-start()
-
-
-if __name__ == "__main__":
-action = sys.argv[1]
-print "now action: %s" % action
-if action == 'start':
-start()
-elif action == "stop":
-stop()
-elif action == "restart":
-restart()
-else:
-print "Bad arguments!"</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="c"># coding: utf-8</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">start</span><span class="p">():</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Starting Dropbox...&quot;</span>
+</span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;~/.dropbox-dist/dropboxd &amp;&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">stop</span><span class="p">():</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Stoping Dropbox...&quot;</span>
+</span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;pkill dropbox&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">restart</span><span class="p">():</span>
+</span><span class='line'><span class="n">stop</span><span class="p">()</span>
+</span><span class='line'><span class="n">start</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class='line'><span class="n">action</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;now action: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">action</span>
+</span><span class='line'><span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s">&#39;start&#39;</span><span class="p">:</span>
+</span><span class='line'><span class="n">start</span><span class="p">()</span>
+</span><span class='line'><span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s">&quot;stop&quot;</span><span class="p">:</span>
+</span><span class='line'><span class="n">stop</span><span class="p">()</span>
+</span><span class='line'><span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s">&quot;restart&quot;</span><span class="p">:</span>
+</span><span class='line'><span class="n">restart</span><span class="p">()</span>
+</span><span class='line'><span class="k">else</span><span class="p">:</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Bad arguments!&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>相应的crontab配置文件中这样写就好了：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">#auto dropbox
-0 4 * * * python /root/dropbox.py restart
-0 5 * * * python /root/dropbox.py stop</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#auto dropbox</span>
+</span><span class='line'>0 4 * * * python /root/dropbox.py restart
+</span><span class='line'>0 5 * * * python /root/dropbox.py stop
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>如果没装crontab（极少情况），这样(也许你用apt-get来做这件事，我的是centos系统，用yum了)：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">yum -y install crontab</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>yum -y install crontab
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>python让我很快乐：）</p>
@@ -169,7 +217,7 @@ print "Bad arguments!"</pre>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/dropbox/'>dropbox</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>

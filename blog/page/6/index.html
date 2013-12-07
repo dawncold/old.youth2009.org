@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="这几天都卡在ie6的兼容问题上了，都要上线了才想到要去用ie来看下效果，前一次看的时候没什么问题，还很欣慰，怎么会这么安全？最近用ie6、360、搜狗一看，直接无法接受了，但原网站的最大用户群就是360，现在搞不清楚360用的是不是ie6的内核，虽然它自称是ie8的内核了， &hellip;">
+	<meta name="description" content="惭愧，第一次给开源项目做贡献竟然是现在，其实早就想帮着做点啥了，无奈技术能力不足，终于发现一个机会，给progit的README文档添加MacOS用户的使用方式，可惜噩梦也是这样开始的。 一开始添加了usage for macos users，commit然后push，作者和我说少一个blank &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,47 +79,6 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/12/20/ie6/">
-		
-			Ie6</a>
-	</h2>
-	<div class="entry-content">
-		<p>这几天都卡在ie6的兼容问题上了，都要上线了才想到要去用ie来看下效果，前一次看的时候没什么问题，还很欣慰，怎么会这么安全？最近用ie6、360、搜狗一看，直接无法接受了，但原网站的最大用户群就是360，现在搞不清楚360用的是不是ie6的内核，虽然它自称是ie8的内核了，但我今天下载了用仍然是ie6，然后他又会提示你可以升级到ie8内核，真是流氓啊。我们现在如果能够把网站调整到ie6下也正常显示，就基本不怕ie7、8、9了，相信不管一款软件多么垃圾，随着版本的提升，也会越来越好，要不然根本都不可能升级，也违背社会的发展啊。。。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-20T23:26:00+08:00" pubdate data-updated="true">Dec 20<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
 		<a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">
 		
 			给开源项目做贡献了</a>
@@ -153,7 +112,7 @@
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/open-source/'>open-source</a>
+	<a class='category' href='/blog/categories/dev/'>dev</a>
 
 
 </div>
@@ -174,15 +133,14 @@
 
 <p>在ubuntu下默认没有cron的日志，需要这样开启：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>vi /etc/rsyslog.d/50-default.conf
+</pre></td><td class='code'><pre><code class=''><span class='line'>vi /etc/rsyslog.d/50-default.conf
 </span><span class='line'>解除cron的注释
 </span><span class='line'>service rsyslog restart
-</span><span class='line'>service cron restart
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>service cron restart</span></code></pre></td></tr></table></div></figure>
 
 
 <p>这样就可以在/var/log/下找到cron.log查看了。</p>
@@ -209,7 +167,7 @@
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+	<a class='category' href='/blog/categories/bnly/'>bnly</a>
 
 
 </div>
@@ -237,7 +195,7 @@
 
 <p>这是替换html编码用的一个语句，find出当前目录下的html文件名字，然后传给sed，当然这里用到了xrags中转，其实没有的话也ok（除非你不用-i模式），sed用了-i模式，可以编辑文件内容保存，并且存一个备份，当然你得传入一个扩展名字才能保存，没有的话就不存和没有-i效果一样。后面的一个字符串，s表示用正则匹配，s后面的是一个分隔符，可以用斜杠，可以换你喜欢的，但后面都要统一起来，上面的意思是iso-8859-1这个替换成utf-8，最后的加的/g是表示global替换，全部替换，否则就替换一次。</p>
 
-<p>后来看起别的书来了。。。</p>
+<p>后来看起别的书来了。</p>
 
 		
 		
@@ -261,7 +219,7 @@
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -308,50 +266,7 @@
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/25/thinking-convert-to-octopress-blog-system/">
-		
-			我在考虑迁移到octopress上</a>
-	</h2>
-	<div class="entry-content">
-		<p>最近的work@honovation博客一直是用octopress写的，就是直接写markdown内容即可，github负责转换并提供托管服务，而且可以自己绑定域名，比如现在的<a href="http://workathonovation.youth2009.org%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%BC%84%E5%BE%97%EF%BC%8C%E9%9D%9E%E5%B8%B8%E7%AE%80%E6%B4%81%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E8%80%8C%E4%B8%94%E6%9C%89%E7%A7%8D%E5%9B%9E%E5%BD%92%E6%9C%AC%E7%9C%9F%E7%9A%84%E6%84%9F%E8%A7%89%E3%80%82">http://workathonovation.youth2009.org%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%BC%84%E5%BE%97%EF%BC%8C%E9%9D%9E%E5%B8%B8%E7%AE%80%E6%B4%81%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E8%80%8C%E4%B8%94%E6%9C%89%E7%A7%8D%E5%9B%9E%E5%BD%92%E6%9C%AC%E7%9C%9F%E7%9A%84%E6%84%9F%E8%A7%89%E3%80%82</a></p>
-
-<p>迟迟没有动作是因为我付了30刀个这个VPS，也就是到2月才过期，如果全部转到了octopress那么空着这个VPS干嘛？翻墙玩？呵呵，那真是无聊死了吧。。。说实在的，vps除了放个blog和自己做出来的小站外，好像就没什么用处了，但现在自己连小站都没有了，悉数关闭。。。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-25T21:51:00+08:00" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/blog/'>blog</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
@@ -425,7 +340,7 @@ foster:                 培养
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/the-pragmatic-programmer/'>the-pragmatic-programmer</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+	<a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -483,7 +398,7 @@ foster:                 培养
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -568,7 +483,7 @@ foster:                 培养
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -632,7 +547,165 @@ foster:                 培养
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/11/pragmatic-programmer-log/">
+		
+			Pragmatic Programmer Log</a>
+	</h2>
+	<div class="entry-content">
+		<p>昨晚看完了第一章，顿时感觉十分充实，因为在过去的一个星期里每晚都在看书而不是把时间花在weibo上。Your Knowledge Protfolio讲的是为自己的知识不断投资，你现在钟爱的或者正在使用的技术可能只是当前这个时期火热的，他们会随着时间的推演发生巨变，如果你不不断为自己的知识投资，那很难适应社会的发展需要。我们搞编程的感受应该非常丰富，可以说每天都有新技术出现老技术衰亡，应对这种挑战就应该定期学习新技术，更多的掌握技术从而面对一个问题你能有很多种解决方案。</p>
+
+<p>后面讲了要批判性思维，海量信息涌入的时候不要乱了阵脚，思考哪些是真的哪些是假的，对于信息社会这点已经很平常了。</p>
+
+<p>交流。我们不能闭门造车，人与人之间的交流永远大于人与机器间的交流。作者介绍了一些交流方面的技巧，其实不必太在乎这么多，只要合理处理好人际关系，跟着感觉走就不会有问题。</p>
+
+<p>补充很多单词：</p>
+
+<pre><code>interest:           投资
+pithy:              简称的
+homily:             训诫
+irrlelvant:         不恰当的、不想干的
+obsolete:           过时的
+regularly:          定期的，有规律的
+diversification:    多元化
+spectrum:           范围
+potentially:        潜在的
+high-reward:        高回报
+conservatively:     保守地
+miss out:           错过机会
+emerging:           正在浮现的
+payoff:             收益
+intellectual:       智力的
+capital:            资本
+rut:                常规
+equation:           相等、均衡
+vice:               代替
+versa:              反
+cross-pollination:  交叉授粉
+voraciously:        贪婪地
+faintest:           模糊的
+guru:               专家
+thumbing:           翻阅
+vendor:             小贩
+beware:             小心
+unswayed:           不受影响的
+zealot:             狂热者
+underestimate:      低估
+commercialism:      商业主义
+dogma:              教条
+insist:             坚持
+torrent:            激流
+sterile:            无结果的
+proposal:           提议
+advocate:           主张
+justify:            证明
+convey:             表达
+</code></pre>
+
+<p>“出来混总是要还的”，这句话已经被很多人认定是亘古不变的真理了，呵呵。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-11T14:19:00+08:00" pubdate data-updated="true">Nov 11<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/09/pragmatic-programmer-log/">
+		
+			Pragmatic Programmer Log</a>
+	</h2>
+	<div class="entry-content">
+		<p>比较喜欢的一章，讲软件的足够完美性。世间几乎所有东西都不是完美的，当然有完美的——“不完美”就是完美的，就像“永远不变的只有变化”一样。</p>
+
+<p>似乎和昨天的有些关联，要先给用户们一个不够完美的东西用，他们就会给出意见，你再逐渐完美这个软件，当然这也不可能达到完美的标准，只是更接近用户的需求了，其实这已经足够了，你为了用户制定出软件，满足了他们的需求不就是完美的了么？那些什么良好的UI、UE，如果end user根本都没能感到你的用心良苦，那只能算是你的蛋疼设计了（为用户创造出需求的除外）。</p>
+
+<p>质量算是需求的一部分么？</p>
+
+<p>我们的需求文档会包含质量的规约么？乍一看似乎有不同声音，需求文档只要满足需求，需求又是什么呢？人们在描述自己需求的时候会加入质量这个衡量标准么？还是找大牛们交流去吧。</p>
+
+<p>何时stop。这个问题在我这里常常出现，似乎coder都免不了带点完美主义，做一个feature会不断refine it，最终overrefinement，make a solution becomes academic research。作者没明确说when，只是说for a while，然后慢慢完善就好了。。。不负责的作者。</p>
+
+<p>补充几个单词：</p>
+
+<pre><code>overembellishment:      过于美化
+sketch out:             拟订
+preferable:             更好的
+tight:                  紧的
+polish up:              改善
+advocate:               提倡
+stringent:              紧迫的
+pacemaker:              心脏起搏器
+space shuttle:          航天飞机
+disseminate:            公开的
+shorter incubation:     短潜伏期
+conspire:               阴谋
+oft:                    常常
+mar:                    破坏
+strive:                 努力
+</code></pre>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-09T00:05:00+08:00" pubdate data-updated="true">Nov 9<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>

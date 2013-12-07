@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:00:11+08:00</updated>
+  <updated>2013-12-07T21:59:15+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -142,7 +142,9 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
 
 <p>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：</p>
 
-<p><code>gem install mysql -- --with-mysql-dir=/usr/local/mysql</code></p>
+<p><code>bash
+gem install mysql -- --with-mysql-dir=/usr/local/mysql
+</code></p>
 
 <p>一开始的那两个“&mdash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/blog/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:00:11+08:00</updated>
+  <updated>2013-12-07T21:59:15+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -35,12 +35,10 @@
 
 <p>于是开始怀疑网页编码，改成了：</p>
 
-<p><code>
+<p><code>html
 &lt;meta content="text/html;charset = utf-8" http-equiv="Content-Type"&gt;
 </code>
 （第一次我写成了mate！！！）这下已经正常了！</p>
-
-<p> </p>
 
 <p>参考资料：<a href="http://www.cnblogs.com/RChen/archive/2007/08/27/871427.html">http://www.cnblogs.com/RChen/archive/2007/08/27/871427.html</a></p>
 

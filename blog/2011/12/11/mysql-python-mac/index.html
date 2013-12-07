@@ -75,28 +75,39 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">mac下的MySQL-python问题</h2>
-	<div class="entry-content"><p>刚刚在学习web.py这个框架，找了一个不错的例子准备自己运行起来看看，结果一调试出现了MySQLdb没找到的情况，于是从官方（<a href="http://sourceforge.net/projects/mysql-python/"><a href="http://sourceforge.net/projects/mysql-python/">http://sourceforge.net/projects/mysql-python/</a></a>）下载源码准备编译安装，最好不要用easy_install安装了，因为还得修改几个地方才能正常编译安装。</p>
+	<div class="entry-content"><p>刚刚在学习web.py这个框架，找了一个不错的例子准备自己运行起来看看，结果一调试出现了MySQLdb没找到的情况，于是从官方（<a href="http://sourceforge.net/projects/mysql-python/">http://sourceforge.net/projects/mysql-python/</a>）下载源码准备编译安装，最好不要用easy_install安装了，因为还得修改几个地方才能正常编译安装。</p>
 
 <p>由于是mac系统，MySQL是使用的官方提供的dmg安装包装的，但不知为何MySQLdb的安装脚本找不到位置，于是修改MySQLdb的setup_posix.py，26行有个mysql_config.path = &hellip;，修改成你本机中mysql_config所在的地址，比如我的是/usr/local/mysql/bin/mysql_config，保存后分别执行：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">sudo python setup.py build
-sudo python setup.py install</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo python setup.py build
+</span><span class='line'>sudo python setup.py install
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>安装后最好用python的shell加载一下MySQLdb看看能否正常使用，通常是不行的，因为我就遇到这么个情况，提示缺少image，具体是这样提示的：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash"> File "/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/MySQLdb/__init__.py", line 19, in &lt;module&gt;
-   import _mysql
-ImportError: dlopen(/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/_mysql.so, 2): Library not loaded: libmysqlclient.18.dylib
- Referenced from: /Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/_mysql.so
- Reason: image not found</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>File <span class="s2">&quot;/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/MySQLdb/__init__.py&quot;</span>, line 19, in &lt;module&gt;
+</span><span class='line'>   import _mysql
+</span><span class='line'>ImportError: dlopen<span class="o">(</span>/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/_mysql.so, 2<span class="o">)</span>: Library not loaded: libmysqlclient.18.dylib
+</span><span class='line'> Referenced from: /Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/_mysql.so
+</span><span class='line'> Reason: image not found
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>于是用Google搜索问题，从<a href="http://alexbraunstein.com/2011/08/12/library-loaded-libmysqlclient-18-dylib/" target="_blank">这里</a>找到了解决方案：</p>
+<p>于是用Google搜索问题，从<a href="http://alexbraunstein.com/2011/08/12/library-loaded-libmysqlclient-18-dylib/">这里</a>找到了解决方案：</p>
 
 <p>在~/.bash_profile中加入这样的一句：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">DYLD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/mysql/lib:<span class="nv">$DYLD_LIBRARY_PATH</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>然后quit掉terminal再进入一次让这个环境变量更新一下，再次使用MySQLdb就没问题了。</p>
@@ -120,7 +131,7 @@ ImportError: dlopen(/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-m
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>

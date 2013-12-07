@@ -4,7 +4,7 @@
   <title><![CDATA[Category: wodeyitian | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/wodeyitian/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:00:11+08:00</updated>
+  <updated>2013-12-07T21:59:15+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -39,7 +39,7 @@ gitosis-init &lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径
 
 <p>４.修改一些权限，据说很重要，为了安全：  </p>
 
-<p><code>
+<p><code>bash
 chmod 755 /home/git
 chmod 700 /home/git/.ssh
 chmod 644 /home/git/.ssh/authorized_keys
@@ -48,7 +48,7 @@ chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update
 
 <p>５.在本地用git做最后的工作，修改gitosis的配置文件并上传：  </p>
 
-<p>```
+<p>```bash
 git clone ssh://git@DOMAIN:8888/gitosis-admin.git
 cd gitosis-admin
 vi gitosis.conf</p>
@@ -64,7 +64,7 @@ members = dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员�
 
 <p>6.完成这里后提交一下再push到远程服务器上即可完成：  </p>
 
-<p><code>
+<p><code>bash
 git commit -a -m '建立了新的项目'
 git push
 </code></p>

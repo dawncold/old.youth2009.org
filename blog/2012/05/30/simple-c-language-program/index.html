@@ -7,9 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（ #include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-#include &lt;stdlib.h&gt; void strcp( &hellip;">
+	<meta name="description" content="嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（ &#8220;`c include &lt;stdio.h> include &lt;string.h> include &lt;stdlib.h> void strcp(char &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,27 +77,30 @@
 	<h2 class="title">一个简单的C程序</h2>
 	<div class="entry-content"><p>嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（</p>
 
-<pre class="prettyprint linenums bush:c" lang="c">#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-#include &lt;stdlib.h&gt;
+<p>&#8220;`c</p>
 
-void strcp(char*, char*);
+<h1>include &lt;stdio.h></h1>
+
+<h1>include &lt;string.h></h1>
+
+<h1>include &lt;stdlib.h></h1>
+
+<p>void strcp(char<em>, char</em>);
 int main()
 {
-char* s = "test string...";
-char* t = malloc(strlen(s));
+char<em> s = &ldquo;test string&hellip;&rdquo;;
+char</em> t = malloc(strlen(s));
 strcp(t, s);
-printf("%s\n", t);
-free(t);
+printf(&ldquo;%s\n&rdquo;, t);
+free(t);</p>
 
-return 0;
-}
+<p>return 0;
+}</p>
 
-void strcp(char *s,char *t)  
-{  
-while(*s++ = *t++);  
-}</pre>
-
+<p>void strcp(char <em>s,char </em>t)<br/>
+{<br/>
+while(<em>s++ = </em>t++);<br/>
+}&#8220;`</p>
 
 <p>最漂亮的就是那句strcp的函数了，非常简洁好用：）</p>
 </div>
@@ -122,7 +123,7 @@ while(*s++ = *t++);
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/c/'>c</a>
 
 
 </div>

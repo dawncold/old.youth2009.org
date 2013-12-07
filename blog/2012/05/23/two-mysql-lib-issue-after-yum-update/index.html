@@ -7,7 +7,10 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="刚刚用yum升级了系统，发现日志中有很多这样的提示： ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a symbolic &hellip;">
+	<meta name="description" content="刚刚用yum升级了系统，发现日志中有很多这样的提示： 1
+2
+ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link
+ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -77,16 +80,22 @@
 	<h2 class="title">Ldconfig: /usr/lib/libmysqlclient.so.16 Is Not a Symbolic Link的问题</h2>
 	<div class="entry-content"><p>刚刚用yum升级了系统，发现日志中有很多这样的提示：</p>
 
-<p><span style="color: #111111; font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; text-align: left;">ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link</span></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link
+</span><span class='line'>ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a symbolic link
+</span></code></pre></td></tr></table></div></figure>
 
-<p><span style="color: #111111; font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; text-align: left;">ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a symbolic link</span></p>
 
-<p>于是Google了一下，找到一个解决方法，在<a href="http://tiger.im/286.html" target="_blank">这里</a>.</p>
+<p>于是Google了一下，找到一个解决方法，在<a href="http://tiger.im/286.html">这里</a>.</p>
 
 <p>就是重建了两条连接过去即可：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">ln -sf /usr/local/mysql/lib/mysql/libmysqlclient.so.16 /usr/lib/mysqlclient.so.16
-ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient_r.so.16</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -sf /usr/local/mysql/lib/mysql/libmysqlclient.so.16 /usr/lib/mysqlclient.so.16
+</span><span class='line'>ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient_r.so.16
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -108,7 +117,7 @@ ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/yum/'>yum</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mysql/'>mysql</a>
 
 
 </div>

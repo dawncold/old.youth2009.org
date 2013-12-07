@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="看到vpsee上的vi打开网页啥的都能自动高亮，原本一直用着纯文本方式vi的我动心了，搜索了一点点配置，加入这些配置到~/vimrc这样的文件中后，打开vi就能自动加载配置。 下面的分别是：显示行号、自动缩进、开启语法高亮、编辑背景为暗色调、开启粘贴（传说复制过来的代码不会乱掉） set &hellip;">
+	<meta name="description" content="本来就想测试一下性能的，不过中途遇到点问题。 UnixBench用了perl，但不知道为何我的VPS对perl似乎不太友好，提示有几个关键的moudle找不到，于是无法测试了，根据提示我需要安装Time::HiRes这个module。 听说perl5之后有了一个module管理器，叫CPAN（ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,23 +79,89 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/13/config-vi-simply/">
+		<a href="/blog/2012/05/30/test-the-performace-of-vps-using-unixbench/">
 		
-			简单配置一下vi</a>
+			用UnixBench测试VPS性能</a>
 	</h2>
 	<div class="entry-content">
-		<p>看到vpsee上的vi打开网页啥的都能自动高亮，原本一直用着纯文本方式vi的我动心了，搜索了一点点配置，加入这些配置到~/vimrc这样的文件中后，打开vi就能自动加载配置。</p>
+		<p>本来就想测试一下性能的，不过中途遇到点问题。</p>
 
-<p>下面的分别是：显示行号、自动缩进、开启语法高亮、编辑背景为暗色调、开启粘贴（传说复制过来的代码不会乱掉）</p>
+<p>UnixBench用了perl，但不知道为何我的VPS对perl似乎不太友好，提示有几个关键的moudle找不到，于是无法测试了，根据提示我需要安装Time::HiRes这个module。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">set number
-set autoindent
-syntax enable
-set background=dark
-set paste</pre>
+<p>听说perl5之后有了一个module管理器，叫CPAN（C盘？），就和yum这样的工具一样可以随意安装module，确实方便，可以和python的pip啊easy_install这样的工具媲美。</p>
 
+<p>但我在使用CPAN的时候发现连这个module都没有…………于是去CPAN.org这里搜索下载这个基础module，但在makefile的时候（用perl做makefile），发现又缺少一个module，看来这个更加底层。从网上找到方法说用yum进行安装，于是用yum -y install perl-CPAN，这样就能用了：）</p>
 
-<p>vim是和emace同样重量级的编辑器，如果你是一个Linux控你肯定明白那句话，vi是vim的前身（允许我这样描述吧），所以配置都是这些编辑器的看家本领，这几条简单配置仅仅是个入门，还可以根据自己的需要添加修改<img title="微笑" src="http://www.youth2009.org/usr/plugins/TinyMCE/tiny_mce/plugins/emotions/img/smiley-smile.gif" alt="微笑" border="0"></p>
+<p>在安装Time::HiRes的时候发现找不到install工具………………天啊，又去了CPAN.org下载了这个module的源码，自己编译安装上了，这样就没问题了：）</p>
+
+<p>VPS的得分稍后更新：）</p>
+
+<p>UPDATE:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Benchmark Run: 三  5月 30 2012 11:38:34 - 12:06:53
+</span><span class='line'>1 CPU in system; running 1 parallel copy of tests
+</span><span class='line'>
+</span><span class='line'>Dhrystone 2 using register variables       12579232.4 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
+</span><span class='line'>Double-Precision Whetstone                     2268.2 MWIPS <span class="o">(</span>10.3 s, 7 samples<span class="o">)</span>
+</span><span class='line'>Execl Throughput                               1140.1 lps   <span class="o">(</span>29.6 s, 2 samples<span class="o">)</span>
+</span><span class='line'>File Copy 1024 bufsize 2000 maxblocks        270525.4 KBps  <span class="o">(</span>30.0 s, 2 samples<span class="o">)</span>
+</span><span class='line'>File Copy 256 bufsize 500 maxblocks           77911.8 KBps  <span class="o">(</span>30.1 s, 2 samples<span class="o">)</span>
+</span><span class='line'>File Copy 4096 bufsize 8000 maxblocks        709368.9 KBps  <span class="o">(</span>30.0 s, 2 samples<span class="o">)</span>
+</span><span class='line'>Pipe Throughput                              394585.6 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
+</span><span class='line'>Pipe-based Context Switching                  40293.3 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
+</span><span class='line'>Process Creation                               1908.7 lps   <span class="o">(</span>30.0 s, 2 samples<span class="o">)</span>
+</span><span class='line'>Shell Scripts <span class="o">(</span>1 concurrent<span class="o">)</span>                   1539.5 lpm   <span class="o">(</span>60.0 s, 2 samples<span class="o">)</span>
+</span><span class='line'>Shell Scripts <span class="o">(</span>8 concurrent<span class="o">)</span>                    204.1 lpm   <span class="o">(</span>60.1 s, 2 samples<span class="o">)</span>
+</span><span class='line'>System Call Overhead                         525047.2 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>System Benchmarks Index Values               BASELINE       RESULT    INDEX
+</span><span class='line'>Dhrystone 2 using register variables         116700.0   12579232.4   1077.9
+</span><span class='line'>Double-Precision Whetstone                       55.0       2268.2    412.4
+</span><span class='line'>Execl Throughput                                 43.0       1140.1    265.1
+</span><span class='line'>File Copy 1024 bufsize 2000 maxblocks          3960.0     270525.4    683.1
+</span><span class='line'>File Copy 256 bufsize 500 maxblocks            1655.0      77911.8    470.8
+</span><span class='line'>File Copy 4096 bufsize 8000 maxblocks          5800.0     709368.9   1223.0
+</span><span class='line'>Pipe Throughput                               12440.0     394585.6    317.2
+</span><span class='line'>Pipe-based Context Switching                   4000.0      40293.3    100.7
+</span><span class='line'>Process Creation                                126.0       1908.7    151.5
+</span><span class='line'>Shell Scripts <span class="o">(</span>1 concurrent<span class="o">)</span>                     42.4       1539.5    363.1
+</span><span class='line'>Shell Scripts <span class="o">(</span>8 concurrent<span class="o">)</span>                      6.0        204.1    340.2
+</span><span class='line'>System Call Overhead                          15000.0     525047.2    350.0
+</span><span class='line'>                                                                  <span class="o">========</span>
+</span><span class='line'>System Benchmarks Index Score                                         382.2
+</span></code></pre></td></tr></table></div></figure>
+
 
 		
 		
@@ -115,11 +181,11 @@ set paste</pre>
   
 
 
-<time datetime="2012-06-13T22:26:00+08:00" pubdate data-updated="true">Jun 13<span>th</span>, 2012</time></div>
+<time datetime="2012-05-30T12:02:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/vi/'>vi</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/vps/'>vps</a>
 
 
 </div>
@@ -131,16 +197,30 @@ set paste</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/13/migrate-to-new-vps/">
+		<a href="/blog/2012/05/23/two-mysql-lib-issue-after-yum-update/">
 		
-			迁移到了新VPS上</a>
+			Ldconfig: /usr/lib/libmysqlclient.so.16 Is Not a Symbolic Link的问题</a>
 	</h2>
 	<div class="entry-content">
-		<p>前面几篇log中有提及，实在无法忍受yardvps的服务了，一开始真的不错，但现在越来越不行了，可能这就是标志着一个vps提供商由正规经营到超卖的转变。上次停机超过了24个小时，发了ticket过去问，结果是说我被ddos了，就自动把我从网络中断开了，真有意思的说法，反正已经无法考证其真实性了，我只好选择离开。</p>
+		<p>刚刚用yum升级了系统，发现日志中有很多这样的提示：</p>
 
-<p>新的VPS比以前贵，大约是每月10刀（原来的512Mb的YardVPS是7.59刀），但新的vps性能很好，网络也很好很快，希望能一直用下去，贵点就贵点呗，比起神器Linode便宜了不少。</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link
+</span><span class='line'>ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a symbolic link
+</span></code></pre></td></tr></table></div></figure>
 
-<p>这个技术blog是最后迁移过来的了，原先有几个php写得东西光是把数据库保存下来了，就不再挂出来让大家访问了吧，我猜也没几个用得，留着数据库做个纪念<img title="微笑" src="http://www.youth2009.org/usr/plugins/TinyMCE/tiny_mce/plugins/emotions/img/smiley-smile.gif" alt="微笑" border="0"></p>
+
+<p>于是Google了一下，找到一个解决方法，在<a href="http://tiger.im/286.html">这里</a>.</p>
+
+<p>就是重建了两条连接过去即可：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -sf /usr/local/mysql/lib/mysql/libmysqlclient.so.16 /usr/lib/mysqlclient.so.16
+</span><span class='line'>ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient_r.so.16
+</span></code></pre></td></tr></table></div></figure>
+
 
 		
 		
@@ -160,11 +240,11 @@ set paste</pre>
   
 
 
-<time datetime="2012-06-13T16:22:00+08:00" pubdate data-updated="true">Jun 13<span>th</span>, 2012</time></div>
+<time datetime="2012-05-23T19:50:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mysql/'>mysql</a>
 
 
 </div>
@@ -176,34 +256,39 @@ set paste</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/11/lib-javahl-for-svn-on-mac/">
+		<a href="/blog/2012/05/22/little-cheat-for-game/">
 		
-			Svn的javahl库</a>
+			小作弊玩游戏</a>
 	</h2>
 	<div class="entry-content">
-		<p>今天基本完成了LoveSMS，想checkout一下jdrcom来看看，所以就安装上了svn for eclipse，然后在导入的时候提示缺少javahl库，去了官方查看了一下，说是对于Mac用户，只需要下载他们的bin文件就能解决，我一看才给到1.6.5的版本，而我自己用brew都装到了1.7.5，而且svn插件用的是1.8.x，需要1.7+的svn支持才行，所以就自己重新安装了svn：</p>
+		<p>有这么一个小游戏，按照顺序输入字母表的26个英文字母，看看你输入的总时间是多少。有个变态的人竟然在2s内就输入了26个字母，而且不允许有任何错误，真心佩服！！！</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">brew install subversion --universal --java</pre>
+<p>我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊……</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>tell application <span class="s2">&quot;Google Chrome&quot;</span>
+</span><span class='line'>activate
+</span><span class='line'>repeat with i from 0 to 25
+</span><span class='line'>delay 0.04
+</span><span class='line'>tell application <span class="s2">&quot;System Events&quot;</span>
+</span><span class='line'>keystroke <span class="o">(</span>ASCII character of <span class="o">(</span>97 + i<span class="o">))</span>
+</span><span class='line'>end tell
+</span><span class='line'>end repeat
+</span><span class='line'>end tell
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>这句是关键哦，当然你得先uninstall已经安装的svn才行。加了java开关就可以告诉svn需要java IDE的库，编译的完成后会继续编译javahl～</p>
+<p>不减速的话系统根本无法记录，所以还是减速了，这个速度正好拿到第一名的位置，OK，剩下的让人去羡慕吧！！！</p>
 
-<p>会有这样的提示哦：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">To use Java bindings with various Java IDEs, you might need a universal build:
- brew install subversion --universal --java
-==&gt; ./configure --disable-debug --prefix=/usr/local/Cellar/subversion/1.7.5 --with-ssl --with-zlib=/usr --with-sqlite=/usr/local --disable-neon-version-chec
-==&gt; make
-==&gt; make install
-==&gt; make javahl
-==&gt; make install-javahl
-==&gt; Caveats
-You may need to link the Java bindings into the Java Extensions folder:
- sudo mkdir -p /Library/Java/Extensions
- sudo ln -s /usr/local/lib/libsvnjavahl-1.dylib /Library/Java/Extensions/libsvnjavahl-1.dylib</pre>
-
-
-<p>自己加入后面的链接就ok了！</p>
+<p>感谢Apple提供的AppleScript这样优秀的脚本工具～</p>
 
 		
 		
@@ -223,11 +308,11 @@ You may need to link the Java bindings into the Java Extensions folder:
   
 
 
-<time datetime="2012-06-11T10:17:00+08:00" pubdate data-updated="true">Jun 11<span>th</span>, 2012</time></div>
+<time datetime="2012-05-22T23:31:00+08:00" pubdate data-updated="true">May 22<span>nd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/javahl/'>javahl</a>, <a class='category' href='/blog/categories/svn/'>svn</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mac/'>mac</a>
 
 
 </div>
@@ -239,22 +324,176 @@ You may need to link the Java bindings into the Java Extensions folder:
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/08/solved-sudo-unable-to-resolve-host/">
+		<a href="/blog/2012/05/14/left-outer-join-and-multiply-select-in-sqlite3/">
 		
-			Sudo 出现unable to Resolve Host 解决方法</a>
+			Sqlite3连接查询和多次select的对比</a>
 	</h2>
 	<div class="entry-content">
-		<p>执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）</p>
+		<p>通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">sudo ：unable to resolve host HOSTNAME</pre>
+<p>左外连接查询比两次select快10～20%左右。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="c"># coding: utf-8</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sqlite3</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">time</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">connect</span><span class="p">():</span>
+</span><span class='line'><span class="k">return</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;./test.db&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">insertProgress</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+</span><span class='line'><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;INSERT INTO todo(title, date) VALUES(?,?)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;just test!!!&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">())])</span>
+</span><span class='line'><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;INSERT INTO todo_meta(todo_id, user_id) VALUES(?,?)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">cur</span><span class="o">.</span><span class="n">lastrowid</span><span class="p">,</span> <span class="n">user_id</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">insertManyData</span><span class="p">(</span><span class="n">conn</span><span class="p">):</span>
+</span><span class='line'><span class="c">#reset database</span>
+</span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&#39;sqlite3 test.db &lt; schema.sql&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</span><span class='line'><span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">):</span>
+</span><span class='line'><span class="n">userid</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</span><span class='line'><span class="n">counts</span><span class="p">[</span><span class="n">userid</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">insertProgress</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">userid</span><span class="p">)</span>
+</span><span class='line'><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</span><span class='line'><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span class='line'><span class="k">print</span> <span class="n">counts</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">selectUsingLeftOuterJoin</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+</span><span class='line'><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</span><span class='line'><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;SELECT t.title, t.date </span><span class="se">\</span>
+</span><span class='line'><span class="s">FROM todo t LEFT OUTER JOIN todo_meta tm </span><span class="se">\</span>
+</span><span class='line'><span class="s">ON tm.todo_id = t.id\WHERE tm.user_id = ?&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">user_id</span><span class="p">])</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">selectTwoTimes</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+</span><span class='line'><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</span><span class='line'><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;SELECT todo_id FROM todo_meta WHERE user_id = ?&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">user_id</span><span class="p">])</span>
+</span><span class='line'><span class="k">for</span> <span class="n">tid</span> <span class="ow">in</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()]:</span>
+</span><span class='line'><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;SELECT title, date FROM todo WHERE id = ?&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">tid</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class='line'><span class="n">uids</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</span><span class='line'><span class="n">insert_time_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span><span class='line'><span class="n">insertManyData</span><span class="p">(</span><span class="n">connect</span><span class="p">())</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Insert Time: </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">insert_time_start</span><span class="p">)</span>
+</span><span class='line'><span class="n">select_ULOJ_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span><span class='line'><span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">uids</span><span class="p">:</span>
+</span><span class='line'><span class="n">selectUsingLeftOuterJoin</span><span class="p">(</span><span class="n">connect</span><span class="p">(),</span> <span class="n">uid</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Select Using Left Outer Join time: </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">select_ULOJ_start</span><span class="p">)</span>
+</span><span class='line'><span class="n">select_two_times</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span><span class='line'><span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">uids</span><span class="p">:</span>
+</span><span class='line'><span class="n">selectTwoTimes</span><span class="p">(</span><span class="n">connect</span><span class="p">(),</span> <span class="n">uid</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Select Two Times time: </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">select_two_times</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
+<p>schema：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">127.0.0.1               localhost.localdomain localhost HOSTNAME</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">todo</span><span class="p">;</span>
+</span><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="k">user</span><span class="p">;</span>
+</span><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">todo_meta</span><span class="p">;</span>
+</span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="n">todo</span> <span class="p">(</span>
+</span><span class='line'><span class="n">id</span> <span class="nb">integer</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">autoincrement</span><span class="p">,</span>
+</span><span class='line'><span class="n">title</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="nb">date</span> <span class="n">datetime</span> <span class="k">not</span> <span class="k">null</span>
+</span><span class='line'><span class="p">);</span>
+</span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="k">user</span> <span class="p">(</span>
+</span><span class='line'><span class="n">id</span> <span class="nb">integer</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">autoincrement</span><span class="p">,</span>
+</span><span class='line'><span class="n">email</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="n">password</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="n">nickname</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="n">salt</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span>
+</span><span class='line'><span class="p">);</span>
+</span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="n">todo_meta</span> <span class="p">(</span>
+</span><span class='line'><span class="n">todo_id</span> <span class="nb">integer</span><span class="p">,</span>
+</span><span class='line'><span class="n">user_id</span> <span class="nb">integer</span><span class="p">,</span>
+</span><span class='line'><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">todo_id</span><span class="p">)</span> <span class="k">references</span> <span class="n">todo</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+</span><span class='line'><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span> <span class="k">references</span> <span class="k">user</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>希望vpsee的admin能在iso中修复这个问题</p>
+<p>启动脚本就会创建数据库并开始测试。</p>
 
 		
 		
@@ -274,11 +513,11 @@ You may need to link the Java bindings into the Java Extensions folder:
   
 
 
-<time datetime="2012-06-08T16:23:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time></div>
+<time datetime="2012-05-14T23:23:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/sudo/'>sudo</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/sql/'>sql</a>
 
 
 </div>
@@ -290,33 +529,18 @@ You may need to link the Java bindings into the Java Extensions folder:
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/08/solved-set-lc_ctype-to-default-locale-no-such-file-or-directory/">
+		<a href="/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3/">
 		
-			解决Cannot Set LC_CTYPE to Default Locale: No Such File or Directory问题</a>
+			Sqlite3的rowcount</a>
 	</h2>
 	<div class="entry-content">
-		<p>刚拿到vps，打算更新一些软件，发现有些warning挺讨厌的，于是就想根除他们！！他们一般是这样的：</p>
+		<p>最近写了一个todo的webapp，在用户登陆的时候是select数据库中的内容进行对比判断，当然如果select的内容是0那就表示用户登陆失败了，可能账号或者密码写错了，数据库用的sqlite3，在python的api中发现有cursor.rowcount可用，于是就这么判断一下是不是有数据被select出来了，没想到这样判断是错误的。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">locale: Cannot set LC_CTYPE to default locale: No such file or directory
-locale: Cannot set LC_MESSAGES to default locale: No such file or directory
-locale: Cannot set LC_ALL to default locale: No such file or directory</pre>
+<p>select的rowcount永远为-1，哎，这里着实坑了我一番啊～</p>
 
+<p>只好cursor.fetchone()先，然后判断得到的内容是不是None。</p>
 
-<p>我看到我的LANG被设定为zh_CN.utf8，虽然我们是国人，但这个语言习惯不能代表我们的爱国情怀吧，我就改为en_US.utf8了：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">sudo touch /etc/default/locale
-vi /etc/default/locale</pre>
-
-
-<p>加入：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">LANG="en_US.UTF-8"
-LANGUAGE="en_US:en"</pre>
-
-
-<p>再执行一下locale就发现问题不见了。</p>
-
-<p>希望vpsee的admin能在iso中修正这个事儿～</p>
+<p>从<a href="http://stackoverflow.com/questions/839069/cursor-rowcount-always-1-in-sqlite3-in-python3k">这里</a>得到的答案。</p>
 
 		
 		
@@ -336,11 +560,11 @@ LANGUAGE="en_US:en"</pre>
   
 
 
-<time datetime="2012-06-08T16:20:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time></div>
+<time datetime="2012-05-14T17:00:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/locale/'>locale</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/sql/'>sql</a>
 
 
 </div>
@@ -352,49 +576,112 @@ LANGUAGE="en_US:en"</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/08/security-of-ssh/">
+		<a href="/blog/2012/05/07/solve-inversion-by-using-merge/">
 		
-			Ssh的安全配置</a>
+			逆序对的求解</a>
 	</h2>
 	<div class="entry-content">
-		<p>今天刚刚换了vps，ssh的安全早就该配置好，没想到竟然是现在了……</p>
+		<p>今天看到算法导论上关于求解一个序列的逆序对的问题，以前自己在这个地方写着解答方法，不过今天怎么看都不懂了，从网上找了找，大都说得很模糊，不过自己突然有种领悟了的感觉，找了个简单的例子，实验了一下，自己的结论是正确的：）</p>
 
-<p>首先这些基本需要做：<a href="http://www.deepvps.com/improve-ssh-security.html"><a href="http://www.deepvps.com/improve-ssh-security.html">http://www.deepvps.com/improve-ssh-security.html</a></a></p>
+<p>例子是（2，3，8，6，1）这个序列，找出所有的5个逆序对。最好的方法是nlogn复杂度的利用归并排序的副产品——merge部分统计，统计比较左右列表时，左侧大于右侧时“左侧”列表中剩余数目。</p>
 
-<p>再就是禁止root后需要创建一个马甲账号：</p>
+<p>归并的划分应该是这样的，（2，3，8）为左侧，（6，1）为右侧，继续划分为（2，3）和8，右边是6和1。下面就开始合并了，（2，3）和8这边还是（2，3，8），右侧出现一个逆序对，在合并6，1的时候因为作为“左侧”的6要大于1，所以这里有1个逆序对，这里的1就是此时“左侧”序列中的元素个数。</p>
 
-<p> </p>
+<p>在往下走，要合并（2，3，8）和（1，6），马上就出现了2>1这样的情况，此时会出现（2，1）、（3，1）、（8，1）这几个逆序对，后面还会出现（8，6）这个逆序对，一共就这么5个。</p>
 
-<p>0.增加ubuntu的admin组，我的vps默认没有，所以就创建了，sudoer文件中写明了admin组可以用sudo，所以我省略了这一步</p>
+<p>因为原始序列是（2，3，8，6，1），我们需要用到这个原始序列的顺序来判断顺序排在前面的值却大于后面的，这样的机会在每次merge的时候是非常合适的。</p>
 
-<p> </p>
+<p>这是修改后输出逆序对的归并排序算法，有点可惜哈，这么长的排序算法只让副产品在台前显露了一把！</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">groupadd admin</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="c"># coding: utf-8</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
+</span><span class='line'>   <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>   <span class="n">i</span> <span class="o">=</span> <span class="n">first</span>
+</span><span class='line'>   <span class="n">j</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">middle</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">last</span><span class="p">:</span>
+</span><span class='line'>       <span class="k">if</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+</span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>           <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>       <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>           <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+</span><span class='line'>               <span class="k">print</span> <span class="s">&quot;(</span><span class="si">%d</span><span class="s">,</span><span class="si">%d</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span><span class='line'>           <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">middle</span><span class="p">:</span>
+</span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>       <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">last</span><span class="p">:</span>
+</span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span><span class='line'>       <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">last</span> <span class="o">-</span> <span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>       <span class="n">arraylist</span><span class="p">[</span><span class="n">first</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
+</span><span class='line'>   <span class="k">if</span> <span class="n">first</span> <span class="o">&lt;</span> <span class="n">last</span><span class="p">:</span>
+</span><span class='line'>       <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">first</span> <span class="o">+</span> <span class="n">last</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">)</span>
+</span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>       <span class="n">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class='line'><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'><span class="n">merge_sort</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>1.增加马甲账号(-m表示创建home目录，-s表示后面跟着的是terminal，-G表示加入后面的那个组，最后的USERNAME各位自己发挥)</p>
+<p>运行结果：</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">useradd -m -s /bin/bash -G admin USERNAME</pre>
-
-
-<p>2.修改刚刚马甲的密码：(输入两次新密码就ok了)</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">passwd USERNAME</pre>
-
-
-<p>＃＃＃＃＃＃＃＃＃＃＃禁止root登陆＃＃＃＃＃＃＃＃＃＃＃</p>
-
-<p>下面禁止root登陆，直接修改/etc/ssh/sshd_config中的PermitRootLogin为no即可，然后重启ssh：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">service ssh restart
-</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">(</span>6,1<span class="o">)</span>
+</span><span class='line'><span class="o">(</span>2,1<span class="o">)</span>
+</span><span class='line'><span class="o">(</span>3,1<span class="o">)</span>
+</span><span class='line'><span class="o">(</span>8,1<span class="o">)</span>
+</span><span class='line'><span class="o">(</span>8,6<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>不放心的可以断开ssh连接用root和刚刚的马甲账号登陆试试看，肯定root不能用了，而且用马甲登陆上去之后你可以“su -”一下，输入root的密码后就切换到了root的环境下了（不要忘记su后面的短横杠哦，那样才切换环境）。</p>
-
-<p> </p>
-
-<p> </p>
+<p>（我的代码缩进似乎出了点问题，本身这段归并排序也是从网上找来的，所以混合了不少tab和whitespace，弄了好久都是error indent，最后我无奈用whitespace来做缩进，好歹调试通过了！）</p>
 
 		
 		
@@ -414,11 +701,11 @@ LANGUAGE="en_US:en"</pre>
   
 
 
-<time datetime="2012-06-08T16:11:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time></div>
+<time datetime="2012-05-07T17:08:00+08:00" pubdate data-updated="true">May 7<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ssh/'>ssh</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/algorithm/'>algorithm</a>, <a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>
@@ -430,18 +717,18 @@ LANGUAGE="en_US:en"</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/08/very-long-offline-of-my-vps-in-yardvps/">
+		<a href="/blog/2012/05/06/miserable-code-jam-2012/">
 		
-			超长宕机</a>
+			悲惨的CodeJam2012</a>
 	</h2>
 	<div class="entry-content">
-		<p>这次宕机持续了1天零13小时，具体什么原因不清楚，yardvps那边说ip自动归零，这是什么原因？！反正我是不清楚怎么回事了，而且买了vpsee的vps，正考虑着是依然延续lnmp的架构还是自己整一套lnmp+python的架构，这样方便以后自己用python做webapp，嗯，先睡觉，起来再搞新的vps吧！！！</p>
+		<p>资格赛晋级之后还稍稍得到了点自信，起码原来只能远观CodeJam的我现在也能继续走进看看了，不过家下来的Round1三场比赛直接被虐杀了，每一场都是最后，每个题都做不出来，说出来也是很惭愧的，但得承认自己这点能力，有人不到5分钟就能做对一个大题，而我5分钟可能都没读完题，更别说写代码了。</p>
 
-<p>UPDATE:我没有睡觉……</p>
+<p>但最重要的是理解题目，能够理解了也就完成了90%，剩下的工作就是coding的过程，参加比赛的人基本都是有备而来，各种模版、脚本都准备好了，写起来非常快。对于非英语系国家的选手来说，读题似乎是很大的障碍，起码会比别人慢好多倍，这点只能多多看英文的资料来弥补了！</p>
 
-<p>yardvps给我的回复是这样的——“It&rsquo;s nulled by PPS (Packet Per Second) Once it exceeds the thresholds and simulates a DDOS attack our system automatically nulls your IP within seconds.”</p>
+<p>今天的Round1第三场出现了两个动态规划的题，感觉知道了怎么做可就是不会写，我也就是停留在知道有动态规划这种变态方法的层面上，真让我写出来可不行，抱着《算法导论》看了半天也是毫无头绪……</p>
 
-<p>看来是我被攻击了？！好奇怪！！！反正我用着vpsee的vps很爽，不出问题就不再用yardvps了！</p>
+<p>毕竟不是Acmer，咱也就只能止步于此啦！希望进入下一轮的国人们继续加油！</p>
 
 		
 		
@@ -461,11 +748,11 @@ LANGUAGE="en_US:en"</pre>
   
 
 
-<time datetime="2012-06-08T13:51:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time></div>
+<time datetime="2012-05-06T21:49:00+08:00" pubdate data-updated="true">May 6<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/dang-ji/'>宕机</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/google/'>google</a>
 
 
 </div>
@@ -477,18 +764,14 @@ LANGUAGE="en_US:en"</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/05/solved-mysql-refuse-localhost-connection/">
+		<a href="/blog/2012/05/06/webpy-frameworks-is-not-convinent-to-use/">
 		
-			mysql只允许127.0.0.1连接的解决方法</a>
+			web.py真不好用</a>
 	</h2>
 	<div class="entry-content">
-		<p>我上次记录过一次这样的情况，突然间所有的php应用无法连接数据库了，但可惜我忘记是为何导致了这样的结果，总是有很多奇怪的地方在这个vps上发生，比如有次突然在某个app中出现了嵌入的广告，这个app可是我写的呀，怎么会有广告？！还有就是那次mysql突然无法连接了，最后用127.0.0.1代替了localhost。</p>
+		<p>本来做了个一个todo的app感觉python写web app真得好快啊，于是想加入一个user的功能，这样注册的用户就可以写自己的todo了，不过这么一加才感觉到web.py真不好用了，特别是session，还有templates也不怎么好用，官方的文档不知道为何也不给个完整版的，api只是写出来了，但基本都不说是什么作用，想清楚知道运行机制那就得看源代码了，还好不“那么”长！</p>
 
-<p>昨晚国庆安装了织梦的后台，但提示无法使用数据库，由于昨天太晚了没有深入研究，早晨起来看了一下，有人说去查看data/common.inc.php文件中的信息，我去看了一下，突然想起来localhost不能用了，于是改为127.0.0.1就可以了，但这也只是缓兵之计，于是想办法解决！</p>
-
-<p>解决方法也不尽相同，就是在php.ini中的三处添加“/tmp/mysql.sock”，那三处就是：mysql.default_socket、mysqli.default_socket、pdo_mysql.default_socket，看名字就是php连接mysql的三种方法的默认socket路径，原来我就修改了两处，漏掉了mysqli这种，结果现在不少程序都是用这种方式连接，比如phpmyadmin和织梦，所以呢，修改了这三处就ok了（当然你得确定你用socket这种方式连接）</p>
-
-<p>至此我的phpmyadmin也可以用socket登录了，织梦也能访问数据库了，再也不用127.0.0.1啦~</p>
+<p>哎，暂时就放一下web.py吧！到头来过度依赖框架绝对不是什么好事，嗯，不是什么好兆头现在的我！</p>
 
 		
 		
@@ -508,11 +791,11 @@ LANGUAGE="en_US:en"</pre>
   
 
 
-<time datetime="2012-06-05T10:30:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time></div>
+<time datetime="2012-05-06T16:31:00+08:00" pubdate data-updated="true">May 6<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/127-dot-0-0-dot-1/'>127.0.0.1</a>, <a class='category' href='/blog/categories/localhost/'>localhost</a>, <a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/socket/'>socket</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>
@@ -524,57 +807,75 @@ LANGUAGE="en_US:en"</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/06/02/method-timer-in-swing-is-better-in-gui/">
+		<a href="/blog/2012/04/27/backup-mysql-databases-using-python/">
 		
-			swing中的Timer还是用在GUI中的好</a>
+			用python备份mysql</a>
 	</h2>
 	<div class="entry-content">
-		<p>刚刚翻了翻《Java核心技术》这本书，里面提到了swing中的Timer的用法，我就实践一下，结果发现根本没有反映，于是网上搜索答案，在stackoverflow中找到。</p>
+		<p>备份数据库的重要性不想多说了。</p>
 
-<p>我写的测试是每秒输出现在的时间而已。</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="c"># coding: utf-8</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="o">*</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">time</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#mysql&#39;s path</span>
+</span><span class='line'><span class="n">mysql_path</span> <span class="o">=</span> <span class="s">&#39;/usr/local/mysql/bin/&#39;</span>
+</span><span class='line'><span class="c">#edit this if your mysql username and password is not like this:</span>
+</span><span class='line'><span class="n">mysql_username</span> <span class="o">=</span> <span class="s">&#39;root&#39;</span>
+</span><span class='line'><span class="n">mysql_password</span> <span class="o">=</span> <span class="s">&#39;xxxxxx&#39;</span>
+</span><span class='line'><span class="c">#backup path</span>
+</span><span class='line'><span class="n">backup_path</span> <span class="o">=</span> <span class="s">&#39;mysqlbackup/&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">validate_backup_path</span><span class="p">():</span>
+</span><span class='line'><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">backup_path</span><span class="p">)</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;I create a directory here: </span><span class="si">%s</span><span class="s"> &quot;</span> <span class="o">%</span> <span class="n">backup_path</span>
+</span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">backup_path</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">backup_all_databases</span><span class="p">():</span>
+</span><span class='line'><span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;all_</span><span class="si">%s</span><span class="s">.sql&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()))</span>
+</span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">mysqldump -u</span><span class="si">%s</span><span class="s"> -p</span><span class="si">%s</span><span class="s"> --all-databases &gt; &#39;</span><span class="si">%s%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mysql_path</span><span class="p">,</span> <span class="n">mysql_username</span><span class="p">,</span> <span class="n">mysql_password</span><span class="p">,</span> <span class="n">backup_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class='line'><span class="n">validate_backup_path</span><span class="p">()</span>
+</span><span class='line'><span class="n">backup_all_databases</span><span class="p">()</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;finish!!!&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre class="prettyprint linenums bush:java" lang="java">import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;
 
-
-public class TimePrint implements ActionListener
-{
-
-   @Override
-   public void actionPerformed(ActionEvent e)
-   {
-       // TODO Auto-generated method stub
-       System.out.println("date is: " + (new Date()));
-       Toolkit.getDefaultToolkit().beep();
-   }
-}
-</pre>
-
-
-<p>在调用的时候如果忘记写Thread.sleep(xxx)这行就不会看到效果，具体原因不太清楚，可能这个swing中的Timer只是用来在GUI中做些什么工作的，而我用终端输出内容就不太合适了，于是就牵扯出来很多线程的问题。</p>
-
-<p>这是main方法中的内容：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
-
-
-public class TimerPrintTest
-{
-   public static void main(String[] argStrings) throws InterruptedException
-   {
-       System.out.println("Running...");
-       ActionListener listener = new TimePrint();
-       Timer timer = new Timer(1000, listener);
-       timer.start();
-       Thread.sleep(4000);
-   }
-}
-</pre>
-
+<p>这个是修改了一次的备份脚本，本来是分数据库备份的，无奈制定了分数据库备份需要输入密码，这就不容易加入cron来自动完成了，不过听说在my.cnf中加入mysqldump的设置可以避免输入账号密码，这也算是一个办法吧，不过还是本着简化的思想，只导出所有数据库出来就好，配合着上一篇的dropbox自动备份，这样VPS的灾备就稍稍好些了：）</p>
 
 		
 		
@@ -594,11 +895,11 @@ public class TimerPrintTest
   
 
 
-<time datetime="2012-06-02T09:23:00+08:00" pubdate data-updated="true">Jun 2<span>nd</span>, 2012</time></div>
+<time datetime="2012-04-27T20:44:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>
@@ -610,36 +911,132 @@ public class TimerPrintTest
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/30/simple-c-language-program/">
+		<a href="/blog/2012/04/27/auto-backup-data-in-vps-using-python-script-to-control/">
 		
-			一个简单的C程序</a>
+			dropbox自动备份VPS</a>
 	</h2>
 	<div class="entry-content">
-		<p>嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（</p>
+		<p>在<a href="http://www.deepvps.com/dropbox-backup.html" target="_blank">这里看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。</p>
 
-<pre class="prettyprint linenums bush:c" lang="c">#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-#include &lt;stdlib.h&gt;
+<p>安装linux下的dropbox（我的是32为系统，如果是64位在下面地址末尾加上“_64”即可）：</p>
 
-void strcp(char*, char*);
-int main()
-{
-char* s = "test string...";
-char* t = malloc(strlen(s));
-strcp(t, s);
-printf("%s\n", t);
-free(t);
-
-return 0;
-}
-
-void strcp(char *s,char *t)  
-{  
-while(*s++ = *t++);  
-}</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget -O dropbox.tar.gz http://www.dropbox.com/download?plat<span class="o">=</span>lnx.x86
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>最漂亮的就是那句strcp的函数了，非常简洁好用：）</p>
+<p>解压后在.dropbox-dist目录中有dropboxd可执行文件，让其在后台执行（就是在执行文件后面加“&amp;”符号）</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>~/.dropbox-dist/dropboxd &amp;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>此后会出现一个地址，你得复制出来然后在浏览器中打开，之后就是注册或者登陆dropbox，这样就激活了在这台机器上的dropbox，就可以同步文件了。</p>
+
+<p>把需要同步备份的文件软连接到Dropbox这个目录中：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~/Dropbox
+</span><span class='line'>ln -s /home/wwwroot/
+</span><span class='line'>。。。
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>此时dropbox已经在帮你同步了，你可以通过web端观察。</p>
+
+<p>我看到的文章中带着一个自动运行的脚本，用sh写的，我发现在主机上运行没反应，不会sh，会点python，于是我改写了一下，也是可用的：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="c"># coding: utf-8</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">start</span><span class="p">():</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Starting Dropbox...&quot;</span>
+</span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;~/.dropbox-dist/dropboxd &amp;&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">stop</span><span class="p">():</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Stoping Dropbox...&quot;</span>
+</span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;pkill dropbox&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">restart</span><span class="p">():</span>
+</span><span class='line'><span class="n">stop</span><span class="p">()</span>
+</span><span class='line'><span class="n">start</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class='line'><span class="n">action</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;now action: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">action</span>
+</span><span class='line'><span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s">&#39;start&#39;</span><span class="p">:</span>
+</span><span class='line'><span class="n">start</span><span class="p">()</span>
+</span><span class='line'><span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s">&quot;stop&quot;</span><span class="p">:</span>
+</span><span class='line'><span class="n">stop</span><span class="p">()</span>
+</span><span class='line'><span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s">&quot;restart&quot;</span><span class="p">:</span>
+</span><span class='line'><span class="n">restart</span><span class="p">()</span>
+</span><span class='line'><span class="k">else</span><span class="p">:</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Bad arguments!&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>相应的crontab配置文件中这样写就好了：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#auto dropbox</span>
+</span><span class='line'>0 4 * * * python /root/dropbox.py restart
+</span><span class='line'>0 5 * * * python /root/dropbox.py stop
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果没装crontab（极少情况），这样(也许你用apt-get来做这件事，我的是centos系统，用yum了)：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>yum -y install crontab
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>python让我很快乐：）</p>
+
+<p>一开始在python用的是exec来执行命令发现不可用，于是用了os.system，查看pydoc才发现exec是执行python code用的……惭愧！</p>
 
 		
 		
@@ -659,11 +1056,11 @@ while(*s++ = *t++);
   
 
 
-<time datetime="2012-05-30T19:39:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2012</time></div>
+<time datetime="2012-04-27T17:51:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>

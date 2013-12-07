@@ -8,7 +8,7 @@
 
 	
 	<meta name="description" content="默认less使用production的env，但有时候出现语法错误不能正常编译下去很难调试，所以一般使用development的env开发。 在引用less之前加入： 1
-&lt;script&gt;var less={env: &quot;development&quot;};&lt;/ &hellip;">
+var less={env: "development"}; 这样就让less成为development环境了。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -80,9 +80,8 @@
 
 <p>在引用less之前加入：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script&gt;</span><span class="kd">var</span> <span class="nx">less</span><span class="o">=</span><span class="p">{</span><span class="nx">env</span><span class="o">:</span> <span class="s2">&quot;development&quot;</span><span class="p">};</span><span class="nt">&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var less={env: "development"};</span></code></pre></td></tr></table></div></figure>
 
 
 <p>这样就让less成为development环境了。如果不行的话可以使用Chrome的console，直接给less.env赋值，这只是针对上面方法不能用的时候。赋值好后调用<code>less.refresh()</code>，可以让less做一次刷新，如果有错误就会在页面顶部出现。</p>
@@ -106,7 +105,7 @@
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>

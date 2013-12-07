@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="对于一个file，调用tell能够知道现在的文件位置。seek是改变文件位置。 比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完tell我又使用了seek(0), &hellip;">
+	<meta name="description" content="一般来说现在的注册、登录的表单验证都是在浏览器这一级先做一个合法性验证，这样能够缓解服务器的压力，否则这些合法性验证都要移到服务器上，无论从性能和表现力都不及在浏览器用一些很炫的效果来验证。我使用了jQuery这个javascript库完成了表单的动态验证，核心不算难。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,50 +79,26 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/09/seek-and-tell-in-python/">
+		<a href="/blog/2011/02/05/dynamic-form-authentication/">
 		
-			简要写写python的file中的tell和seek</a>
+			动态验证表单也不难</a>
 	</h2>
 	<div class="entry-content">
-		<p>对于一个<a title="file" href="http://www.youth2009.org/tag/file/">file</a>，调用<a title="tell" href="http://www.youth2009.org/tag/tell/">tell</a>能够知道现在的文件位置。<a title="seek" href="http://www.youth2009.org/tag/seek/">seek</a>是改变文件位置。  比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完<a title="tell" href="http://www.youth2009.org/tag/tell/">tell</a>我又使用了<a title="seek" href="http://www.youth2009.org/tag/seek/">seek</a>(0),这样文件位置就回到开头了，下次再调用readline就会输出原来第一行的内容了，这应该是很容易理解的。不明白可以亲自试试。</p>
+		<p>一般来说现在的注册、登录的表单验证都是在浏览器这一级先做一个合法性验证，这样能够缓解服务器的压力，否则这些合法性验证都要移到服务器上，无论从性能和表现力都不及在浏览器用一些很炫的效果来验证。我使用了jQuery这个javascript库完成了表单的动态验证，核心不算难。一开始我都是参考豆瓣的注册页面，他们现在用的也是jQuery来做这块，代码看起来超长，还分了好几个js文件来组织，不是他们的前端工程师谁也看不懂（我真怀疑他们的前端工程师是不是能看懂）。 我做得很简单，不过看起来也能用： 一般有个空的div显示提醒文字，假设input的id是xxx，我们这样</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">from sys import argv
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input#xxx).focus(function(){$(&quot;</span><span class="nx">suggestion</span><span class="err">&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="err">插入提示文字</span><span class="p">);});</span>
+</span></code></pre></td></tr></table></div></figure>
 
-script, input_file = argv
 
-def print_all(f):
-   print f.read()
+<p>就能够在焦点进入input的时候提示一些文字了，然后在  </p>
 
-def rewind(f):
-   f.seek(0)
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">focusout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">xxxxxx</span><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
 
-def print_a_line(line_count, f):
-   print line_count, f.readline()
 
-current_file = open(input_file)
-
-print "First let's print the while file:\n"
-print_all(current_file)
-
-print "Now let's rewind, kind of like a tape."
-rewind(current_file)
-
-print "Let's print three lines:"
-
-current_line = 1
-print_a_line(current_line, current_file)
-print "current_pos:%d" % current_file.tell()
-rewind(current_file)
-
-current_line += 1
-print_a_line(current_line, current_file)
-print "current_pos:%d" % current_file.tell()
-
-current_line += 1
-print_a_line(current_line, current_file)
-print "current_pos:%d" % current_file.tell()
-</pre>
-
+<p>中先remove插入的文字，再添加新的文字。 一般在focusout中进行一次查询，然后进行更改文字，是能够注册还是已经被占用，在查询的时候我使用的是$.getJSON函数，用GET方式提交查询看起来比较帅，当然最好做简单的提交，因为用了getJSON的方式，返回值一定是要json，我的服务器端脚本使用的是php，看到jQuery官方例子中提及了json_encode函数，接收array，正好能够返回我的查询结果，SQL查询返回结果用fetch_assoc放进一个array了。getJSON第三个参数是个callback函数，是结果成功返回时调用的函数，更改相应提示文字就在这里面进行，这个callback有个参数data，应该就是包含json的数据吧，用点运算符取到响应结果进行操作。</p>
 
 		
 		
@@ -142,11 +118,11 @@ print "current_pos:%d" % current_file.tell()
   
 
 
-<time datetime="2011-07-09T15:12:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
+<time datetime="2011-02-05T23:06:00+08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/file/'>file</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/seek/'>seek</a>, <a class='category' href='/blog/categories/tell/'>tell</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/js/'>js</a>
 
 
 </div>
@@ -158,19 +134,12 @@ print "current_pos:%d" % current_file.tell()
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/09/python-one-star-and-two-star/">
+		<a href="/blog/2011/01/27/mysql-bad-encoding-for-chinese/">
 		
-			Python中的*和**</a>
+			Mysql中的中文乱码</a>
 	</h2>
 	<div class="entry-content">
-		<p>在<a title="python" href="http://www.youth2009.org/tag/python/">python</a>的函数参数中，可以在变量名称前面加一个或者两个星号代表不一样的变量类型：</p>
-
-<p>在stack overflow上看到有人问这两个的区别了，就转载过来答案吧：</p>
-
-<blockquote>If the form *identifier is present, it is initialized to a tuple receiving any excess positional parameters, defaulting to the empty tuple. If the form **identifier is present, it is initialized to a new dictionary receiving any excess keyword arguments, defaulting to a new empty dictionary.</blockquote>
-
-
-<p><span style="font-family: Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif;"><span style="border-collapse: collapse;">加一个星号代表这个参数是一个tuple类型；加两个则是一个dictionary类型，很好用。</span></span></p>
+		<p>从mysql中返回的内容如果是中文的，而页面用了utf-8的编码，那么会出现一些“问号”，就是乱码了！应该将mysql中表的编码改为utf8_unicode_ci，各字段改为utf8_unicode_ci。在PHP中执行SQL查询前执行<code>SQLCONNECT.query(SET NAMES utf8);</code>这条SQL语句。</p>
 
 		
 		
@@ -190,11 +159,11 @@ print "current_pos:%d" % current_file.tell()
   
 
 
-<time datetime="2011-07-09T14:44:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
+<time datetime="2011-01-27T23:20:00+08:00" pubdate data-updated="true">Jan 27<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/star/'>star</a>, <a class='category' href='/blog/categories/two-star/'>two star</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mysql/'>mysql</a>
 
 
 </div>
@@ -206,16 +175,27 @@ print "current_pos:%d" % current_file.tell()
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/09/python-%25r-and-%25s/">
+		<a href="/blog/2011/01/18/charset-issue/">
 		
-			Python中的%r和%s</a>
+			字符编码的问题</a>
 	</h2>
 	<div class="entry-content">
-		<p>我并不想完整地比较这两个替换符号的用处，只是发现了一点，可能以后也会这样用。</p>
+		<p>昨日写完hello,world之后，发现里面的中文显示出来都是乱码，于是找了几处资料，先是怀疑emacs作怪，M-x describe-coding-system查看后挺正常，于是开始怀疑apache和php的输出编码，再次查询后也发现是正常的：httpd.conf中根本没有AddDefaultCharset” 内容，php.ini中的default_charset已经被注释掉了：（</p>
 
-<p>%r是原始的输入，如果输入了中文，在输出的时候会出现一些类似unicode的代码；其他的会输出带单引号的内容。</p>
+<p>于是开始怀疑网页编码，改成了：</p>
 
-<p>%s就是字符串了，输出就是字符串，如果原始输入是中文，那这里也会输出中文。其他的会输出不带单引号的字符串内容。</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;meta</span> <span class="na">content=</span><span class="s">&quot;text/html;charset = utf-8&quot;</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>（第一次我写成了mate！！！）这下已经正常了！</p>
+
+<p>参考资料：<a href="http://www.cnblogs.com/RChen/archive/2007/08/27/871427.html">http://www.cnblogs.com/RChen/archive/2007/08/27/871427.html</a></p>
+
+<p>在调节emacs和ibus的时候参考了<a href="http://www.sciencenet.cn/m/user_content.aspx?id=325692">这里</a>，不过到现在我的ibus也不能在emacs中打开，除非用<code>LC_CTYPE=zh_CN.utf8 emacs</code>这样启动emacs。</p>
+
+<p>感谢<a href="http://www.yzznl.cn/archives/242.html">这里</a>下载了修改后的编辑界面和学习到了WP-Syntax的使用方法。</p>
 
 		
 		
@@ -235,11 +215,11 @@ print "current_pos:%d" % current_file.tell()
   
 
 
-<time datetime="2011-07-09T13:30:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
+<time datetime="2011-01-18T08:36:00+08:00" pubdate data-updated="true">Jan 18<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/raw/'>raw</a>, <a class='category' href='/blog/categories/string/'>string</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/blog/'>blog</a>
 
 
 </div>
@@ -251,14 +231,20 @@ print "current_pos:%d" % current_file.tell()
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/08/little-fault-in-most-perfect/">
+		<a href="/blog/2011/01/04/i-am-not-in-whitelist-this-turn/">
 		
-			美中不足</a>
+			我这次没跻身白名单</a>
 	</h2>
 	<div class="entry-content">
-		<p>今天下午考完了OS，有个地方没有复习到，蒙上了，还有个计算题最后检查的时候，自己感觉不对，正在强力修改，不料到点了，就留下了这点美中不足吧。当然其他的题目不能这么简单地认为是美了，只是比这两个稍微有点把握而已，基本能够得到相应的分数吧。</p>
+		<p>如果你是我的读者，当然是这里的读者（youth2009.org)就会发现现在已经无法访问了，经过我和服务商的交涉，发现我这次没有跻身白名单，所以国家就把我封掉了。在国内就得这样天天活在被封掉还是随机被封掉的日子里，再也不是以前那个轻松愉快的时代了，一方面能够证明我国的信息产业正一天天发展壮大，正式因为这样，国家才把重点放到这方面了。当然咱还是希望能够通过其他更有效的方式来取代这种白名单制度，把每个人都看成坏人的这种方式，实在是有点对人格不尊重了：（</p>
 
-<p>周末两天可以安心复习下面要考的内容了，下星期才是恶战——日语、离散数学！这两门要是都安全通过，再剩下的VB.net和Java Web我就得冲击满分试试啦！哈哈哈……独自狂妄中。</p>
+<p>今天我一气之下打算换到国外的服务器上，不过已经有了一次hostmonster的经历，不想再浪费一些资源，当时自己不知道做什么，花了600多买了一年的主机，守着诺大的空间和限制资源，无事可做，当时要是有个博客也好啊！所以我希望能够充分利用服务器的资源，自己是很难用光的，和几个人一起合租一份空间，自己不用去管服务器的配置，只要能够正常使用WP和FTP等就够了，其实大多数人都是这样的，管理者只是少数。</p>
+
+<p>对于国外的空间，现在看来仍然十分昂贵，当然我已经不再看那种低质量的了，如果彻底走向国外，我只会选择MediaTemple（Hosting）和Linode（VPS）。其实我更加倾向于使用VPS，倒不是我熟悉这个，恰恰相反，VPS是自己配置服务器，我跟本没接触过，只是想利用这个机会练习一下这方面。其实，回家用那台旧的台式机当服务器也挺好的，配置和Linode512差不多（至少是内存差不多）。</p>
+
+<p>各种事情总是不断的发生，今天英语考试十分不顺利，是我考得最糟糕的一次英语，我都想会不会因此挂掉呢？希望不会吧。但这应该不会以人的意志为转移……（明天考马克思的内容）</p>
+
+<p>自从在这儿架设了博客，就喜欢上了Python，自学过两三次，都没大有成果，不过Python能够用在网站的开发上让我感到很神奇，原本打算寒假用PHP完成那个项目的，而且都买好了一本书，现在看来这个想法正不断受到冲击，说不定我会把那本Python书也一并带回去，因为用Google的服务能够省下很多硬件配置，或者亚马逊的云服务，又或者新浪的云。唉，怎么又回到国内了？！</p>
 
 		
 		
@@ -278,11 +264,11 @@ print "current_pos:%d" % current_file.tell()
   
 
 
-<time datetime="2011-07-08T21:28:00+08:00" pubdate data-updated="true">Jul 8<span>th</span>, 2011</time></div>
+<time datetime="2011-01-04T13:49:00+08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/kao-shi/'>考试</a>, <a class='category' href='/blog/categories/qing-chun/'>青春</a>
+	<a class='category' href='/blog/categories/blog/'>blog</a>
 
 
 </div>
@@ -294,135 +280,18 @@ print "current_pos:%d" % current_file.tell()
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/06/cut-flac-file-on-macos/">
+		<a href="/blog/2010/12/21/some-days-email-life/">
 		
-			Mac下分割flac文件</a>
+			好几天的邮件生活</a>
 	</h2>
 	<div class="entry-content">
-		<p>原来我有很多ape和flac音乐的，在windows时代用foobar软件播放音乐很快乐，但在mac下，就有点儿别扭了，cog可以打开cue文件，并且播放也没问题，就是不能分割，这让人很头疼啊！ 从<a href="http://broadeno.wordpress.com/2009/06/16/%E5%A6%82%E4%BD%95%E5%9C%A8mac%E7%B3%BB%E7%BB%9F%E9%87%8C%E5%88%86%E5%89%B2flac%E9%9F%B3%E4%B9%90%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E8%BD%AC%E6%8D%A2%E4%B8%BAwav/">这里</a>找了些办法，应该可以！ 安装macports这个软件，希望用源代码的方式安装，否则如果用官方的dmg文件安装，到最后一步运行安装脚本的时候你会发现进度条总是停留在最后不动，打开install的日志一看，有很多记录，听其他人说最后在下载一些包的信息文件，就像是一个索引镜像吧，断了网还好。1423s过后，安装完了。 以下是终端的内容：</p>
+		<p>目前来看我花在邮件上的时间要远远大于其他交流工具上了，可能我天生就是喜欢邮件、书信的人，总是感觉那样的交流是值得收藏的，也想在远远的地方找个人写写信。</p>
 
-<p> </p>
+<p>前几天为了申请MSP，给微软发了很多邮件，隔几天能够收到回复，那时候感觉有种获得了什么宝贝似的，电子邮件仅仅是比普通书信快了一些，带给我的那种喜悦还是一样的！</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatomacBook-Pro ~$ sudo port install cuetools
+<p>对于不能整天守在IM旁的人来说，邮件确实是他们生活的一部分，而在大企业中工作的白领们可能更加能够领会收发邮件的艺术，面对每天几百封邮件来来去去，自己穿梭于它们之中，多么惬意呀！</p>
 
-Password:
----&gt;  Fetching cuetools
----&gt;  Attempting to fetch cuetools-1.3.1.tar.gz from http://distfiles.macports.org/cuetools
----&gt;  Verifying checksum(s) for cuetools
----&gt;  Extracting cuetools
----&gt;  Configuring cuetools
----&gt;  Building cuetools
----&gt;  Staging cuetools into destroot
----&gt;  Installing cuetools @1.3.1_0
----&gt;  Activating cuetools @1.3.1_0
----&gt;  Cleaning cuetools
-dawncold@tianzhenmatoMacBook-Pro ~$ sudo port install shntool
----&gt;  Computing dependencies for shntool
----&gt;  Dependencies to be installed: expat gettext libiconv gperf ncurses ncursesw shorten
----&gt;  Fetching expat
----&gt;  Attempting to fetch expat-2.0.1.tar.gz from http://nchc.dl.sourceforge.net/project/expat/expat/2.0.1
----&gt;  Verifying checksum(s) for expat
----&gt;  Extracting expat
----&gt;  Configuring expat
----&gt;  Building expat
----&gt;  Staging expat into destroot
----&gt;  Installing expat @2.0.1_1
----&gt;  Activating expat @2.0.1_1
----&gt;  Cleaning expat
----&gt;  Fetching gperf
----&gt;  Attempting to fetch gperf-3.0.4.tar.gz from ftp://ftp.dti.ad.jp/pub/GNU/gperf
----&gt;  Verifying checksum(s) for gperf
----&gt;  Extracting gperf
----&gt;  Applying patches to gperf
----&gt;  Configuring gperf
----&gt;  Building gperf
----&gt;  Staging gperf into destroot
----&gt;  Installing gperf @3.0.4_2
----&gt;  Activating gperf @3.0.4_2
----&gt;  Cleaning gperf
----&gt;  Fetching libiconv
----&gt;  Attempting to fetch libiconv-1.13.1.tar.gz from ftp://ftp.dti.ad.jp/pub/GNU/libiconv
----&gt;  Verifying checksum(s) for libiconv
----&gt;  Extracting libiconv
----&gt;  Applying patches to libiconv
----&gt;  Configuring libiconv
----&gt;  Building libiconv
----&gt;  Staging libiconv into destroot
----&gt;  Installing libiconv @1.13.1_0
----&gt;  Activating libiconv @1.13.1_0
----&gt;  Cleaning libiconv
----&gt;  Fetching ncursesw
----&gt;  Verifying checksum(s) for ncursesw
----&gt;  Extracting ncursesw
----&gt;  Configuring ncursesw
----&gt;  Building ncursesw
----&gt;  Staging ncursesw into destroot
----&gt;  Installing ncursesw @5.8_0
----&gt;  Activating ncursesw @5.8_0
----&gt;  Cleaning ncursesw
----&gt;  Fetching ncurses
----&gt;  Attempting to fetch ncurses-5.9.tar.gz from ftp://ftp.dti.ad.jp/pub/GNU/ncurses
----&gt;  Attempting to fetch ncurses-5.9.tar.gz from http://mirrors.ibiblio.org/pub/mirrors/gnu/ftp/gnu/ncurses
----&gt;  Verifying checksum(s) for ncurses
----&gt;  Extracting ncurses
----&gt;  Applying patches to ncurses
----&gt;  Configuring ncurses
----&gt;  Building ncurses
----&gt;  Staging ncurses into destroot
----&gt;  Installing ncurses @5.9_0
----&gt;  Activating ncurses @5.9_0
----&gt;  Cleaning ncurses
----&gt;  Fetching gettext
----&gt;  Attempting to fetch gettext-0.18.1.1.tar.gz from ftp://ftp.dti.ad.jp/pub/GNU/gettext
----&gt;  Verifying checksum(s) for gettext
----&gt;  Extracting gettext
----&gt;  Applying patches to gettext
----&gt;  Configuring gettext
----&gt;  Building gettext
----&gt;  Staging gettext into destroot
----&gt;  Installing gettext @0.18.1.1_2
----&gt;  Activating gettext @0.18.1.1_2
----&gt;  Cleaning gettext
----&gt;  Fetching shorten
----&gt;  Attempting to fetch shorten-3.6.1.tar.gz from http://distfiles.macports.org/shorten
----&gt;  Verifying checksum(s) for shorten
----&gt;  Extracting shorten
----&gt;  Configuring shorten
----&gt;  Building shorten
----&gt;  Staging shorten into destroot
----&gt;  Installing shorten @3.6.1_0
----&gt;  Activating shorten @3.6.1_0
----&gt;  Cleaning shorten
----&gt;  Fetching shntool
----&gt;  Attempting to fetct shntool-3.0.10.tar.gz from http://distfiles.macports.org/shntool
----&gt;  Verifying checksum(s) for shntool
----&gt;  Extracting shntool
----&gt;  Configuring shntool
----&gt;  Building shntool
----&gt;  Staging shntool into destroot
----&gt;  Installing shntool @3.0.10_0
----&gt;  Activating shntool @3.0.10_0
----&gt;  Cleaning shntool</pre>
-
-
-<p>这样就安装好了cuetools和shntool这两个软件，其中缺失的依赖软件也被macports自动安装上了，只是在下载的时候没有进度，很可恶，如果又兴趣可以看这里学着改改macports的fetch部分，至少能看看下载了多少，心里也有个数！ 下面进行分割：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro Music$ cuebreakpoints 手嶌葵\(Teshima.Aoi\).-.\[The.Rose～I.Love.Cinemas～\].专辑.\(FLAC\).cue | shnsplit -o flac 手嶌葵\(Teshima.Aoi\).-.\[The.Rose～I.Love.Cinemas～\].专辑.\(FLAC\).flac 
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track01.flac] (3:56.27) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track02.flac] (3:21.71) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track03.flac] (5:36.65) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track04.flac] (2:56.00) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track05.flac] (2:57.12) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track06.flac] (4:31.59) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track07.flac] (4:03.01) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track08.flac] (3:14.16) : 100% OK
-Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC).flac] (34:12.18) --&gt; [split-track09.flac] (3:34.67) : 100% OK</pre>
-
-
-
-
-<div>文件名有点差劲，也许可以配合cueprint和shnsplit的o参数可以实现完美的转换。</div>
-
+<p>有时候邮件也能带来一些灾祸，比如To写错了，或者Cc写的不好等。前几天我想申请学校的域名邮箱，直接给校长发了邮件，导致第二天就被传唤到辅导员办公室质问我为何要越级上报……惨痛的教训呀！</p>
 
 		
 		
@@ -442,11 +311,11 @@ Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC)
   
 
 
-<time datetime="2011-07-06T13:59:00+08:00" pubdate data-updated="true">Jul 6<span>th</span>, 2011</time></div>
+<time datetime="2010-12-21T23:01:00+08:00" pubdate data-updated="true">Dec 21<span>st</span>, 2010</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/flac/'>flac</a>, <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/life/'>life</a>
 
 
 </div>
@@ -458,20 +327,16 @@ Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC)
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/05/techologist-always-want-to-buy-books/">
+		<a href="/blog/2010/12/01/website-can-not-found-in-my-country/">
 		
-			是不是技术人员都喜欢买书？</a>
+			国内不能待了</a>
 	</h2>
 	<div class="entry-content">
-		<p>自认为我也算是一个追求技术的人了，现在更加喜欢技术的世界了，那里没有一些弹性的东西，不像官场那样可以商量，严格地执行着计算机的语言——0、1。</p>
+		<p>也许是我购买的这个主机比较差吧，时不时出现宕机的情况，悔恨当初没有去买个好的主机，不过好的主机毕竟很贵，比如易联的入门主机要600一年，机房在上海外高架桥，是个电信机房，在全国口碑似乎还不错，本来打算买，就是价格很难接受，现在他们竟然送Win7旗舰版的序列号，随便买个主机就可以，我有点后悔，因为已经买了Win7专业版！</p>
 
-<p>作为一个技术人员，我发现自己很喜欢买书，当然买的最多的可能就是技术方面的书籍，包括一些被称为计算机编程名著一类的书，当然这些书太多了，在网上混迹时间一长，经不住别人的鼓动、诱惑，终于也走上了收集名著的行列之中，买书之前总是希望自己能够通过这本书学到什么高深的技术，在职场、创业中屹立于不败之地。但买回来之后，并不像我期待的那样，终归还是有些好处的，只是要打些折扣了：）但总归还是比不看书荒废了那段时间好吧。</p>
+<p>对于现在市面上普遍见到的好几片云彩，倒是很喜欢，想把博客迁移过去，那样起码能够保证三个九的网站在线时间（99.9%），好像新浪的云彩是保证三个九的，记不清楚了。不过现在只有新浪的云彩是用php+mysql架构；Google的现在应该是Python、Java；Amazon那个我还没怎么研究，微软的能够运行php程序，但数据库肯定是mssql了。难道要让我放弃使用已久的WordPress么？</p>
 
-<p>除了买一些技术性的书籍之外，我还喜欢买一些哲学、心理学、散文等方面的书来看，这和个人的爱好有点关系，但哲学、心理学这类书买得很少，自己只是停留在喜欢的角度，不是非得去研究，所以就不太深入。</p>
-
-<p>不知怎么我又喜欢上了经济学的东西，原因很复杂，简单地说是事物之间那种千丝万缕的联系，而且我发现计算机系和经济系有着无法分割的联系，所以我还是喜欢点经济吧。</p>
-
-<p>今天稍微有点冲动买下了张小娴的一本新作——《想念》。首先声明一下，我不是因为这个名字才去买的，是我本身就喜欢张小娴写的一些文章，虽然自己没看过几篇，但有些耳熟能详的还是听过，比如“世上最远的距离不是⋯⋯而是⋯⋯”。一个计算机人士光是看技术书籍只能提高技术能力，而光靠技术，在这个社会中还是很难过上好日子的，如果你只是希望饿不着那就算啦。</p>
+<p>自从微软把Spaces送给了Wordpress后，我就打算直接迁移过去的，但有时候要修改点WP的文件，比如昨天我就把默认的两个链接改掉了……总之还是有自己的控制权比较好！</p>
 
 		
 		
@@ -491,11 +356,11 @@ Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC)
   
 
 
-<time datetime="2011-07-05T21:50:00+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2011</time></div>
+<time datetime="2010-12-01T13:30:00+08:00" pubdate data-updated="true">Dec 1<span>st</span>, 2010</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/shu/'>书</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/zhang-xiao-xian/'>张小娴</a>
+	<a class='category' href='/blog/categories/blog/'>blog</a>, <a class='category' href='/blog/categories/host/'>host</a>
 
 
 </div>
@@ -507,18 +372,20 @@ Splitting [手嶌葵(Teshima.Aoi).-.[The.Rose～I.Love.Cinemas～].专辑.(FLAC)
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/03/comma-in-print-func-in-python/">
+		<a href="/blog/2010/10/26/go-home-during-class-is-great/">
 		
-			Python中print中的逗号</a>
+			中途回家真是好啊</a>
 	</h2>
 	<div class="entry-content">
-		<p>以往可能会写这样的代码：</p>
+		<p>借着去济南答辩的名义，我们团队和学校请了三天假——星期三到星期五，再加上周末，一共五天。在济南挥霍了2天，结束了答辩就匆匆坐上动车回家了。唉，这还是我第一次做动车，去的时候也是我人生中的二次坐火车，真是有不少的经历值得说一说了。</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">print x 
-print y</pre>
+<p>本次答辩应该算是很成功吧，由于我们在去之前就知道了我们的对手们做出了什么样的作品，在我们看过他们的作品后，感觉我们队伍做得更好一些，虽然免不了维护自己东西的嫌疑，但无论是从美观性还是从复杂度上来说，我们的作品都可以算得上不错。</p>
 
+<p>我们提前到达了答辩会场，组委会热情地帮我们解决了住宿问题，给我们省下了一小笔钱，和他们公司的一个学员吃了顿饭。随后就是我们的准备第二天答辩环节，把我们每人都紧张得不得了，但终究还是睡下了。第二天发现我们是在下午进行的答辩的，上午的每场答辩我们都看过了，本来所有让我们紧张的地方都不存在了，中午又回到了昨晚吃饭的饭馆，吃了一顿，下午就让我们尽情发挥去吧！</p>
 
-<p> 当然，x、y在前面都是定义过的变量，此时，如果在x后面加一个逗号，再看输出结果，print就不会再换行了，只会在输出完x后加一个空格接着就输出y了，这点不错！</p>
+<p>结束了后，以为评委告诉我们，我们还是有机会来的，唉，这意图已经很明显了，看来我们获奖的希望比较大。回去后就开始准备论文，期待发奖。</p>
+
+<p>答辩结束后我和其他的成员们告别了，他们要在济南多玩一会，我则是恋家的人，匆匆打车去了车站，买票，回家。（打车45，车票才33……）</p>
 
 		
 		
@@ -538,11 +405,11 @@ print y</pre>
   
 
 
-<time datetime="2011-07-03T20:11:00+08:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2011</time></div>
+<time datetime="2010-10-26T13:09:00+08:00" pubdate data-updated="true">Oct 26<span>th</span>, 2010</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
 
 
 </div>
@@ -554,18 +421,18 @@ print y</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/03/i-will-take-part-in-mathematical-modeling/">
+		<a href="/blog/2010/08/10/all-are-here/">
 		
-			我要参加数学建模了</a>
+			人到齐了</a>
 	</h2>
 	<div class="entry-content">
-		<p>这已经是很久之前的事情了，目前早就结束了报名。刚刚看到要买的书中有这样一本书－－《数学建模》，这才想起来还有这样一件重要的事情。</p>
+		<p>经过几天休假，团队的成员们又到齐了。可惜进度问题仍然十分严峻——内核还没有开始写。我这个两边救火的人一时都不知道干什么了，很多东西需要和内核进行连接，然后再决定下一步的计划。</p>
 
-<p>由于是第一次参加这样的专业性比赛，无经验、无指导让我无所畏惧，也无所担心。因为本来就不喜欢别人帮忙得来的成绩，所以我们没有选择指导老师，其实指导老师被抢走也是一个原因，又加上报名手册上鼓励学生不找指导老师，于是我们就大胆地抛弃了指导老师。</p>
+<p>主界面已经完成大半，下面就是我要把几个坐标系转化使用，已经稍微有些眉目，只是对于多种情况的对战，要求做出不同的回应。</p>
 
-<p>无经验，确实没参与过这类比赛，只是听过有这样的比赛，姑且用来试试数学的思维吧，虽然考试成绩还能凑合，但实际应用一定会让我们捉襟见肘。</p>
+<p>只是cocos2d这个框架对于国内开发者还是显得太新颖，教程太少，仅凭手上这点资源多半只能依照现有代码进行整合，自己难以加入一些有创意的东西。这让我十分郁闷，难道现阶段的“跟随”战略是必须的？一开始就是要模仿嘛，等长大了自然懂得一些东西，然后才是创新。这就像是现在社会上总是在呼喊的追求创新，没有足够的模仿很难创新。</p>
 
-<p>也不是完全没有好处－－有两个美女和我一起参加，这算是动力了吧！</p>
+<p>明天尝试完成通过网络下载一个zip包的功能，接着解压到资源文件夹中，这样就基本完成了切换皮肤的大部分要求，剩下的就是开始游戏之前提示切换即可。听起来不复杂？光是网络这方面就让我很头疼了！</p>
 
 		
 		
@@ -585,11 +452,11 @@ print y</pre>
   
 
 
-<time datetime="2011-07-03T12:47:00+08:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2011</time></div>
+<time datetime="2010-08-10T22:01:00+08:00" pubdate data-updated="true">Aug 10<span>th</span>, 2010</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/shu-xue-jian-mo/'>数学建模</a>, <a class='category' href='/blog/categories/ji-lu-wo-can-jia-shu-xue-jian-mo-de-shi-qing/'>记录我参加数学建模的事情</a>
+	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
 
 
 </div>
@@ -601,12 +468,24 @@ print y</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/07/02/mail-problem/">
+		<a href="/blog/2010/08/07/also-begin-to-work/">
 		
-			发邮件的时候遇到的问题</a>
+			又开始工作了</a>
 	</h2>
 	<div class="entry-content">
-		<p>不知道是不是邮件客户端的问题，我从已发邮件中找了一封，然后回复这封邮件，接着我就收到了我刚刚回复的内容，并且作为了一封新邮件收到的，但对方收不到什么，而我只有在收件箱中选择邮件回复的时候对方才能正常收到邮件。怎么给我发出去的邮件继续追加内容的时候就是给自己发内容呢？！</p>
+		<p>今天我又如期地到了网络中心，由于昨晚下雨很凉快，也没怎么用风扇，就这样睡过去了，只是很晚才睡着。希望能把白天安排得满一些，让白天的我累一点，这样回来就很容易睡着了。</p>
+
+<p>没想到她还在QD，说是丢了手机后就很少上网，整日就是玩穿插学习，这样听起来挺好的，但我当然还是希望能和她在网上聊天。守着QD全城覆盖的CMCC却不用，真是可惜啊，但好处也是不言而喻的，比如不用面对电脑辐射，不用担心长时间看电脑屏幕而损害视力等。那个计时器，看来暑假中比较难实现了。</p>
+
+<p>由于下午网络中心开门比较晚，我就没有过去，倒是去了图书馆的机房。M帆在那里捣鼓他的WebServices应用，他们早晨去，晚上机房关门再回来，真是有点考研的精神。考研辅导班似乎就在图书馆的报告厅中，下午回来吃饭的时候，那些人也下课了，一并出来那么多人，有种开学的味道。</p>
+
+<p>在机房中看到了学校的部分服务器，机柜就那么敞开着，安全做得好差，热插拔硬盘也没有上锁，真想拿掉啊，SAS硬盘哦！人们几乎把这个地方填满了，大部分好像是在写代码，毕竟这是软件工程上课用的机房。来的人大部分应该是懂点怎么写hello,world的，不像旁边那个只用来上网使用的公共机房，那里的人几乎都是看电影、聊QQ、玩农场、上RR。虽然这边显得专业一点，可仔细盯着一个人看，总感觉有些浮躁。</p>
+
+<p>我想编程，很少会用到网络的，可能在大项目中，会频繁使用SVN，但学校里这种小项目，连SVN都不知道的人，怎么会想到使用呢？就算知道，也会感觉很麻烦而放弃使用，仅仅一个人的项目，用个SVN？大材小用了吧？！在前期找好了教材，最好是实体书，不仅看起来有味道，而且可以自如的勾画，即使pdf这种软件做得再好，我都更想在实体书上写写。选好了书定好了计划就可以开始编码了，如果不熟悉语言，只好从头学起，我们这次选了iphone，自然要从头做起，很艰辛，但结果相对会好一点，至少没大有人会和我们竞争，不像是java，太“廉价”，但也正是因为这种“廉价”，它发展得很快。中间这个过程是枯燥的，甚至你用“极其枯燥”都不为过，在这段时间中很容易松懈，又加上电脑连接了网络，不由自主地会去网上转悠，特别是自己被某个未知bug缠身的时候。不说下去了，这种情况很多对不？</p>
+
+<p>相信不少团队的骨干们就是这样沉沦了吧？很可惜，你没有完成当初的目标，不仅仅如此，你丢失了那种信心，以后很可能还会走这条路，如果你能克服困难完成项目，相信我国会多几个大师出现。</p>
+
+<p>我不是大师，我也会在编程中走神，只是我时常总结一下自己，经常回头看看。</p>
 
 		
 		
@@ -626,11 +505,11 @@ print y</pre>
   
 
 
-<time datetime="2011-07-02T08:01:00+08:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2011</time></div>
+<time datetime="2010-08-07T22:13:00+08:00" pubdate data-updated="true">Aug 7<span>th</span>, 2010</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/you-jian/'>邮件</a>
+	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
 
 
 </div>
@@ -642,22 +521,20 @@ print y</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2011/06/29/everything-need-persistence/">
+		<a href="/blog/2010/07/20/wet-after-rain/">
 		
-			万事唯有坚持</a>
+			雨后的潮湿</a>
 	</h2>
 	<div class="entry-content">
-		<p>本以为这个话题我以前似乎说到过，翻了一会日志却没找到。</p>
+		<p>昨晚的雨声可能很大吧，我开着风扇睡得还不错，什么也没有听到。今早快要五点起来了，首先打蚊子，惨不忍睹。</p>
 
-<p>这是刚刚看Mac下的FIT输入法主页的时候想起来的，主页上有个广告：“5年20万果粉的选择”。20W这个用户量相当大了呢，暂且不说有没有统计问题，这么大的用户量绝非一日之功，再看前面，5年啊！输入法是一个基础性的软件，每天都会用很多次，坚持开发维护了5年的这样一个软件，不断积累了这么庞大的用户，的确是不一般。真想采访一下他们在这5年来的所感所想。</p>
+<p>我只要在床上任何一个地方待一小会儿，就会感觉床变得很潮湿。太阳城本来就潮湿，现在下过雨，更加难受了。</p>
 
-<p>再看Facebook，2004年2月4日上线，到现在有7年多的时间，稳居世界社交网站第一的宝座；Twitter也是经历过这样的历程。</p>
+<p>我喜欢雨，喜欢下雨的过程，喜欢听雨，喜欢陪人看雨，就是不喜欢雨后的潮湿，哪怕雨后刮风呢，也比太阳出来蒸发让空气潮湿好！</p>
 
-<p>iphone上的应用，愤怒的小鸟，也是在做了很多产品之后继续坚持下去才获得今天的成功；植物大战僵尸的公司，在制作这款游戏时竟然优化了3年，这等坚持，不是一般的！</p>
+<p>可能早晨起来得太早了，在床上躺着躺着就睡过去了，这样重复了几次，换了个比较舒服的姿势，一睡到11：58。一起来感觉好可怕，匆匆买了中午饭回来看半截的《新闻三十分》。</p>
 
-<p>还有恋爱过程中的各种坚持…</p>
-
-<p>总结一下，一个人能否坚持下去其实和这个人是否能够说服自己坚持下去的动力有一定关系，还有一点就是在坚持的过程中由于未来的不可预知性，容易中途放弃。</p>
+<p>不知道现在她怎么了，整日不上QQ，或者隐身，即使在线也不和我说话，当然我也不和她说话。前几日发了最后一条彩信，也不回我。晚上本想在她下线之前就关QQ，让她有种“失去”的感觉，没想到我刚打算更新博客就发现她走了。唉，都11点多了，哪个女生还会熬夜？</p>
 
 		
 		
@@ -677,11 +554,11 @@ print y</pre>
   
 
 
-<time datetime="2011-06-29T21:52:00+08:00" pubdate data-updated="true">Jun 29<span>th</span>, 2011</time></div>
+<time datetime="2010-07-20T23:36:00+08:00" pubdate data-updated="true">Jul 20<span>th</span>, 2010</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/zhe-si/'>哲思</a>, <a class='category' href='/blog/categories/jian-chi/'>坚持</a>
+	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
 
 
 </div>

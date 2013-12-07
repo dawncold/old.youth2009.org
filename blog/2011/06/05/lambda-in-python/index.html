@@ -7,8 +7,18 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="又是一个bt功能：创建一种函数规则 #!/usr/bin/python
-# Filename: lambda.py def make_repeater(n): return lambda s: s*n twice = make_repeater(2) print twice('word') &hellip;">
+	<meta name="description" content="又是一个bt功能：创建一种函数规则 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+#!/usr/bin/python
+# Filename: lambda.py def make_repeater(n): return lambda s: s*n twice = make_repeater(2) &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -78,19 +88,30 @@
 	<h2 class="title">用lambda创建函数</h2>
 	<div class="entry-content"><p>又是一个bt功能：创建一种函数规则</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">#!/usr/bin/python
-# Filename: lambda.py
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/python</span>
+</span><span class='line'><span class="c"># Filename: lambda.py</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">make_repeater</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>   <span class="k">return</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">*</span><span class="n">n</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">twice</span> <span class="o">=</span> <span class="n">make_repeater</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">print</span> <span class="n">twice</span><span class="p">(</span><span class="s">&#39;word&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="n">twice</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
-def make_repeater(n):
-   return lambda s: s*n
 
-twice = make_repeater(2)
-
-print twice('word')
-print twice(5)</pre>
-
-
-<p>  twice就是创建出来的函数规则，参数2传进入构建了lambda表达式中的n，s值需要再指定，于是后面的word字符串和数字5就算是这个s了吧。了解到这种bt方法很有用，不过对于我这样的初学者来说，暂时还看不到前景：）</p>
+<p>twice就是创建出来的函数规则，参数2传进入构建了lambda表达式中的n，s值需要再指定，于是后面的word字符串和数字5就算是这个s了吧。了解到这种bt方法很有用，不过对于我这样的初学者来说，暂时还看不到前景：）</p>
 </div>
 
 
@@ -111,7 +132,7 @@ print twice(5)</pre>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/lambda/'>lambda</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>

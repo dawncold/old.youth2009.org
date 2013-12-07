@@ -7,10 +7,59 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql
-Fetching: mysql-2.8.1.gem (100%)
-Building native extensions. This could take a while...
-ERROR: &hellip;">
+	<meta name="description" content="1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -78,81 +127,155 @@ ERROR: &hellip;">
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">安装mysql的Ruby驱动遇到的问题</h2>
-	<div class="entry-content"><pre class="prettyprint linenums bush:bash" lang="bash">dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql
-Fetching: mysql-2.8.1.gem (100%)
-Building native extensions.  This could take a while...
-ERROR:  Error installing mysql:
-ERROR: Failed to build gem native extension.
+	<div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold@tianzhenmatoMacBook-Pro ~<span class="nv">$ </span>gem install mysql
+</span><span class='line'>Fetching: mysql-2.8.1.gem <span class="o">(</span>100%<span class="o">)</span>
+</span><span class='line'>Building native extensions.  This could take a <span class="k">while</span>...
+</span><span class='line'>ERROR:  Error installing mysql:
+</span><span class='line'>ERROR: Failed to build gem native extension.
+</span><span class='line'>
+</span><span class='line'>       /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lm... yes
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lz... yes
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lsocket... no
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lnsl... no
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lmygcc... no
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>*** extconf.rb failed ***
+</span><span class='line'>Could not create Makefile due to some reason, probably lack of
+</span><span class='line'>necessary libraries and/or headers.  Check the mkmf.log file <span class="k">for </span>more
+</span><span class='line'>details.  You may need configuration options.
+</span><span class='line'>
+</span><span class='line'>Provided configuration options:
+</span><span class='line'>--with-opt-dir
+</span><span class='line'>--without-opt-dir
+</span><span class='line'>--with-opt-include
+</span><span class='line'>--without-opt-include<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/include
+</span><span class='line'>--with-opt-lib
+</span><span class='line'>--without-opt-lib<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/lib
+</span><span class='line'>--with-make-prog
+</span><span class='line'>--without-make-prog
+</span><span class='line'>--srcdir<span class="o">=</span>.
+</span><span class='line'>--curdir
+</span><span class='line'>--ruby<span class="o">=</span>/usr/local/Cellar/ruby/1.9.3-p0/bin/ruby
+</span><span class='line'>--with-mysql-config
+</span><span class='line'>--without-mysql-config
+</span><span class='line'>--with-mysql-dir
+</span><span class='line'>--without-mysql-dir
+</span><span class='line'>--with-mysql-include
+</span><span class='line'>--without-mysql-include<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/include
+</span><span class='line'>--with-mysql-lib
+</span><span class='line'>--without-mysql-lib<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/lib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-mlib
+</span><span class='line'>--without-mlib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-zlib
+</span><span class='line'>--without-zlib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-socketlib
+</span><span class='line'>--without-socketlib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-nsllib
+</span><span class='line'>--without-nsllib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-mygcclib
+</span><span class='line'>--without-mygcclib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 <span class="k">for </span>inspection.
+</span><span class='line'>Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out
+</span></code></pre></td></tr></table></div></figure>
 
-       /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lm... yes
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lz... yes
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lsocket... no
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lnsl... no
-checking for mysql_query() in -lmysqlclient... no
-checking for main() in -lmygcc... no
-checking for mysql_query() in -lmysqlclient... no
-*** extconf.rb failed ***
-Could not create Makefile due to some reason, probably lack of
-necessary libraries and/or headers.  Check the mkmf.log file for more
-details.  You may need configuration options.
 
-Provided configuration options:
---with-opt-dir
---without-opt-dir
---with-opt-include
---without-opt-include=${opt-dir}/include
---with-opt-lib
---without-opt-lib=${opt-dir}/lib
---with-make-prog
---without-make-prog
---srcdir=.
---curdir
---ruby=/usr/local/Cellar/ruby/1.9.3-p0/bin/ruby
---with-mysql-config
---without-mysql-config
---with-mysql-dir
---without-mysql-dir
---with-mysql-include
---without-mysql-include=${mysql-dir}/include
---with-mysql-lib
---without-mysql-lib=${mysql-dir}/lib
---with-mysqlclientlib
---without-mysqlclientlib
---with-mlib
---without-mlib
---with-mysqlclientlib
---without-mysqlclientlib
---with-zlib
---without-zlib
---with-mysqlclientlib
---without-mysqlclientlib
---with-socketlib
---without-socketlib
---with-mysqlclientlib
---without-mysqlclientlib
---with-nsllib
---without-nsllib
---with-mysqlclientlib
---without-mysqlclientlib
---with-mygcclib
---without-mygcclib
---with-mysqlclientlib
---without-mysqlclientlib
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：
+</span></code></pre></td></tr></table></div></figure>
 
 
-Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 for inspection.
-Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out</pre>
-
-
-<p>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">gem install mysql -- --with-mysql-dir=/usr/local/mysql</pre>
-
+<p>bash
+gem install mysql &mdash; &mdash;with-mysql-dir=/usr/local/mysql
+&#8220;`</p>
 
 <p>一开始的那两个“&mdash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
 
@@ -177,7 +300,7 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>

