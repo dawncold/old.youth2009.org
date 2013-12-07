@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: book | Trade Off]]></title>
-  <link href="http://www.youth2009.org/blog/categories/book/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:59:15+08:00</updated>
-  <id>http://www.youth2009.org/</id>
+  <link href="http://www.youth2009.org/www/blog/categories/book/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www/"/>
+  <updated>2013-12-07T22:21:46+08:00</updated>
+  <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[是不是技术人员都喜欢买书？]]></title>
-    <link href="http://www.youth2009.org/blog/2011/07/05/techologist-always-want-to-buy-books/"/>
+    <link href="http://www.youth2009.org/www/blog/2011/07/05/techologist-always-want-to-buy-books/"/>
     <updated>2011-07-05T21:50:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2011/07/05/techologist-always-want-to-buy-books</id>
+    <id>http://www.youth2009.org/www/blog/2011/07/05/techologist-always-want-to-buy-books</id>
     <content type="html"><![CDATA[<p>自认为我也算是一个追求技术的人了，现在更加喜欢技术的世界了，那里没有一些弹性的东西，不像官场那样可以商量，严格地执行着计算机的语言——0、1。</p>
 
 <p>作为一个技术人员，我发现自己很喜欢买书，当然买的最多的可能就是技术方面的书籍，包括一些被称为计算机编程名著一类的书，当然这些书太多了，在网上混迹时间一长，经不住别人的鼓动、诱惑，终于也走上了收集名著的行列之中，买书之前总是希望自己能够通过这本书学到什么高深的技术，在职场、创业中屹立于不败之地。但买回来之后，并不像我期待的那样，终归还是有些好处的，只是要打些折扣了：）但总归还是比不看书荒废了那段时间好吧。</p>
@@ -32,9 +32,9 @@
   
   <entry>
     <title type="html"><![CDATA[含恨放弃了这本书]]></title>
-    <link href="http://www.youth2009.org/blog/2011/02/22/give-up-csapp/"/>
+    <link href="http://www.youth2009.org/www/blog/2011/02/22/give-up-csapp/"/>
     <updated>2011-02-22T13:53:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2011/02/22/give-up-csapp</id>
+    <id>http://www.youth2009.org/www/blog/2011/02/22/give-up-csapp</id>
     <content type="html"><![CDATA[<p>《深入理解计算机系统》这本书是我从《程序员》上看来的，记得有位高超的架构师吧，推荐了这本书，我就买了下来，现在放弃阅读这本书。看起来我还是能够放弃一些东西的，我并不是一个如同我描述得那样──“一个学不会放弃的人。”</p>
 
 <p>我之所以放弃这本书是因为这本书前半部分讲得都是硬件相关的知识，就象是去年学习的《计算机组成原理》一样，还好比《数字逻辑电路》强了不少，因为这些知识都和计算机相关，数字逻辑简直就是在讲单纯的硬件。不过两者却都不是我所希望阅读的！以为这本书的后半部分能够提供一些编程优化相关的知识，因为看这本书的介绍是帮助程序员理解程序如何运行并且还讲解了一些实用的编程技巧，谁知根本不是这样。</p>

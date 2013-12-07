@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: mac | Trade Off]]></title>
-  <link href="http://www.youth2009.org/blog/categories/mac/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:59:15+08:00</updated>
-  <id>http://www.youth2009.org/</id>
+  <link href="http://www.youth2009.org/www/blog/categories/mac/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www/"/>
+  <updated>2013-12-07T22:21:46+08:00</updated>
+  <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[merge partition got Couldn’t modify partition map because file system verification failed error]]></title>
-    <link href="http://www.youth2009.org/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error/"/>
     <updated>2013-01-20T19:36:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error</id>
+    <id>http://www.youth2009.org/www/blog/2013/01/20/merge-partition-got-couldnt-modify-partition-map-because-file-system-verification-failed-error</id>
     <content type="html"><![CDATA[<p>前几天需要把本机的VMware虚拟机文件拷到工作机器上用，但文件比较大，有30G，U盘不行，无线共享太慢，网线直连无奈工作机器百兆网卡不给力还是慢，分割了我的TimeMachine备份盘，但用完后再合并划分出去的分区就出问题了，提示：</p>
 
 <p>Couldn’t modify partition map because file system verification failed error</p>
@@ -28,9 +28,9 @@
   
   <entry>
     <title type="html"><![CDATA[M4的一点优化(MacOS 10.9)]]></title>
-    <link href="http://www.youth2009.org/blog/2012/10/01/optimzation-for-m4/"/>
+    <link href="http://www.youth2009.org/www/blog/2012/10/01/optimzation-for-m4/"/>
     <updated>2012-10-01T17:05:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/10/01/optimzation-for-m4</id>
+    <id>http://www.youth2009.org/www/blog/2012/10/01/optimzation-for-m4</id>
     <content type="html"><![CDATA[<p>1.关闭紧急运动传感器</p>
 
 <p>mac系统没有把这些传感器的设置、界面什么的体现到UI里，让我一度以为mbp没有这种设备，实际这也算是mac系统的设计理念吧，把普通用户无须知晓的东西屏蔽掉，让用户看起来、用起来异常简单，不像thinkpad那样，直接把硬盘活动保护啥的做成一个功能给用户展示。。。你看，你看，我们（thinkpad）有保护您硬盘的设备。</p>
@@ -121,9 +121,9 @@ mount | grep " / "
   
   <entry>
     <title type="html"><![CDATA[买了个叫M4的硬盘]]></title>
-    <link href="http://www.youth2009.org/blog/2012/10/01/bought-a-ssd-called-m4/"/>
+    <link href="http://www.youth2009.org/www/blog/2012/10/01/bought-a-ssd-called-m4/"/>
     <updated>2012-10-01T14:05:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/10/01/bought-a-ssd-called-m4</id>
+    <id>http://www.youth2009.org/www/blog/2012/10/01/bought-a-ssd-called-m4</id>
     <content type="html"><![CDATA[<p>256Gb，1200块。</p>
 
 <p>速度还不错，读取260Mb/s，写入206Mb/s。</p>
@@ -134,9 +134,9 @@ mount | grep " / "
   
   <entry>
     <title type="html"><![CDATA[小作弊玩游戏]]></title>
-    <link href="http://www.youth2009.org/blog/2012/05/22/little-cheat-for-game/"/>
+    <link href="http://www.youth2009.org/www/blog/2012/05/22/little-cheat-for-game/"/>
     <updated>2012-05-22T23:31:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/05/22/little-cheat-for-game</id>
+    <id>http://www.youth2009.org/www/blog/2012/05/22/little-cheat-for-game</id>
     <content type="html"><![CDATA[<p>有这么一个小游戏，按照顺序输入字母表的26个英文字母，看看你输入的总时间是多少。有个变态的人竟然在2s内就输入了26个字母，而且不允许有任何错误，真心佩服！！！</p>
 
 <p>我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊……</p>
@@ -161,9 +161,9 @@ end tell
   
   <entry>
     <title type="html"><![CDATA[买了textmate]]></title>
-    <link href="http://www.youth2009.org/blog/2012/02/23/have-bought-textmate/"/>
+    <link href="http://www.youth2009.org/www/blog/2012/02/23/have-bought-textmate/"/>
     <updated>2012-02-23T19:29:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/02/23/have-bought-textmate</id>
+    <id>http://www.youth2009.org/www/blog/2012/02/23/have-bought-textmate</id>
     <content type="html"><![CDATA[<p>截至目前，这是我买得最贵的一款软件了——39欧元（327RMB）</p>
 
 <p>一直在豆瓣Textmate小组中等人家团购，自己也从没在官网试过购买，一看是用的paypal做中转，感觉不靠谱，以前也没试过paypal的支付，没想到这次成功了，先用了张信用卡支付，发现不行，结果换普通银行卡，直接跳转到了银联，然后我又用的信用卡透支……</p>

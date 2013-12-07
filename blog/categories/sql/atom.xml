@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: sql | Trade Off]]></title>
-  <link href="http://www.youth2009.org/blog/categories/sql/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:59:15+08:00</updated>
-  <id>http://www.youth2009.org/</id>
+  <link href="http://www.youth2009.org/www/blog/categories/sql/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www/"/>
+  <updated>2013-12-07T22:21:46+08:00</updated>
+  <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[sqlite3连接查询和多次select的对比]]></title>
-    <link href="http://www.youth2009.org/blog/2012/05/14/left-outer-join-and-multiply-select-in-sqlite3/"/>
+    <link href="http://www.youth2009.org/www/blog/2012/05/14/left-outer-join-and-multiply-select-in-sqlite3/"/>
     <updated>2012-05-14T23:23:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/05/14/left-outer-join-and-multiply-select-in-sqlite3</id>
+    <id>http://www.youth2009.org/www/blog/2012/05/14/left-outer-join-and-multiply-select-in-sqlite3</id>
     <content type="html"><![CDATA[<p>通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。</p>
 
 <p>左外连接查询比两次select快10～20%左右。</p>
@@ -114,9 +114,9 @@ foreign key(user_id) references user(id)
   
   <entry>
     <title type="html"><![CDATA[sqlite3的rowcount]]></title>
-    <link href="http://www.youth2009.org/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3/"/>
+    <link href="http://www.youth2009.org/www/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3/"/>
     <updated>2012-05-14T17:00:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3</id>
+    <id>http://www.youth2009.org/www/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3</id>
     <content type="html"><![CDATA[<p>最近写了一个todo的webapp，在用户登陆的时候是select数据库中的内容进行对比判断，当然如果select的内容是0那就表示用户登陆失败了，可能账号或者密码写错了，数据库用的sqlite3，在python的api中发现有cursor.rowcount可用，于是就这么判断一下是不是有数据被select出来了，没想到这样判断是错误的。</p>
 
 <p>select的rowcount永远为-1，哎，这里着实坑了我一番啊～</p>

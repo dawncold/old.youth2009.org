@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: vi | Trade Off]]></title>
-  <link href="http://www.youth2009.org/blog/categories/vi/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:59:15+08:00</updated>
-  <id>http://www.youth2009.org/</id>
+  <link href="http://www.youth2009.org/www/blog/categories/vi/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www/"/>
+  <updated>2013-12-07T22:21:46+08:00</updated>
+  <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[简单配置一下vi]]></title>
-    <link href="http://www.youth2009.org/blog/2012/06/13/config-vi-simply/"/>
+    <link href="http://www.youth2009.org/www/blog/2012/06/13/config-vi-simply/"/>
     <updated>2012-06-13T22:26:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/06/13/config-vi-simply</id>
+    <id>http://www.youth2009.org/www/blog/2012/06/13/config-vi-simply</id>
     <content type="html"><![CDATA[<p>看到vpsee上的vi打开网页啥的都能自动高亮，原本一直用着纯文本方式vi的我动心了，搜索了一点点配置，加入这些配置到~/vimrc这样的文件中后，打开vi就能自动加载配置。</p>
 
 <p>下面的分别是：显示行号、自动缩进、开启语法高亮、编辑背景为暗色调、开启粘贴（传说复制过来的代码不会乱掉）</p>

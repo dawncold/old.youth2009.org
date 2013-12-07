@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: dev | Trade Off]]></title>
-  <link href="http://www.youth2009.org/blog/categories/dev/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:59:15+08:00</updated>
-  <id>http://www.youth2009.org/</id>
+  <link href="http://www.youth2009.org/www/blog/categories/dev/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www/"/>
+  <updated>2013-12-07T22:21:46+08:00</updated>
+  <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[nginx-upload-file-without-backend]]></title>
-    <link href="http://www.youth2009.org/blog/2013/06/25/nginx-upload-file-without-backend/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/06/25/nginx-upload-file-without-backend/"/>
     <updated>2013-06-25T23:09:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/06/25/nginx-upload-file-without-backend</id>
+    <id>http://www.youth2009.org/www/blog/2013/06/25/nginx-upload-file-without-backend</id>
     <content type="html"><![CDATA[<p>以前用了nginx-upload-module，不过这个module的作者不打算继续更新了，导致nginx版本高于1.3.9就无法使用这个module来处理上传文件。本着不引入更多依赖并且使用一个比较成熟方法的前提，只有client_body_in_file_only，这是nginx buildin方法。</p>
 
 <p>原本用upload-module的时候在location / 中有个if，如果发现有multipart就会处理一下，再pass回去。处理完后会多出两个参数，比如image.name和image.path，其中image是file input的name。然后back-end就直接那path和name来处理文件了，临时文件会放在一个固定的地方。</p>
@@ -48,9 +48,9 @@ location ^~ /upload/ {
   
   <entry>
     <title type="html"><![CDATA[dog-pile-effect]]></title>
-    <link href="http://www.youth2009.org/blog/2013/05/18/dog-pile-effect/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/05/18/dog-pile-effect/"/>
     <updated>2013-05-18T22:48:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/05/18/dog-pile-effect</id>
+    <id>http://www.youth2009.org/www/blog/2013/05/18/dog-pile-effect</id>
     <content type="html"><![CDATA[<p>如果你的网站该去解决dog pile effect了，那应该有不小的PV了。今天看暴走漫画的架构设计，那是应对1000W PV的一个设计，当然架构这东西每家都不一样，可能这个就他们自己用着适合。里面提到了dog pile effect，这个的意思是：在多request去cache中拿数据的时候，如果发现自己拿的数据是过期了的，那么就要去db中拿新的来。这么看好像没问题，但有前提的——request很多，真的很多，而且确实用cache了（反正我不相信request很多的时候某些数据你不用cache，那得是个多么bt的db才能支撑啊？！）本来用cache的作用就是降低对某些slow query的执行次数，缓解db压力。但过期了，再去db中取这就和没有cache一样了，db会死的。</p>
 
 <p>解决方法有这样的：</p>
@@ -67,9 +67,9 @@ location ^~ /upload/ {
   
   <entry>
     <title type="html"><![CDATA[hhkb]]></title>
-    <link href="http://www.youth2009.org/blog/2013/04/02/hhkb/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/04/02/hhkb/"/>
     <updated>2013-04-02T23:01:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/04/02/hhkb</id>
+    <id>http://www.youth2009.org/www/blog/2013/04/02/hhkb</id>
     <content type="html"><![CDATA[<p>终于，它来了。</p>
 
 <p><img src="http://pic.yupoo.com/dawncold0/CL0AxKWr/medish.jpg" alt="HHKB" /></p>
@@ -78,9 +78,9 @@ location ^~ /upload/ {
   
   <entry>
     <title type="html"><![CDATA[do something using refactor]]></title>
-    <link href="http://www.youth2009.org/blog/2013/02/03/do-something-using-refactor/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/02/03/do-something-using-refactor/"/>
     <updated>2013-02-03T11:22:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/02/03/do-something-using-refactor</id>
+    <id>http://www.youth2009.org/www/blog/2013/02/03/do-something-using-refactor</id>
     <content type="html"><![CDATA[<p>最近在做发送短信的时候犯了个错误——修改配置文件没有使用重构方式。dev环境和pro环境中有相同名字的配置，只是值不一样，再修改了dev中的配置name做开发，但pro环境中的name还是原来的，导致上线后拿不到配置，发不出短信去。。。</p>
 
 <p>以后为了防止遗忘，还是用重构吧！！！</p>
@@ -89,9 +89,9 @@ location ^~ /upload/ {
   
   <entry>
     <title type="html"><![CDATA[在MacOS上配置dnsmasq]]></title>
-    <link href="http://www.youth2009.org/blog/2013/01/22/config-dnsmasq-on-macos/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/01/22/config-dnsmasq-on-macos/"/>
     <updated>2013-01-22T22:26:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/01/22/config-dnsmasq-on-macos</id>
+    <id>http://www.youth2009.org/www/blog/2013/01/22/config-dnsmasq-on-macos</id>
     <content type="html"><![CDATA[<p>最近那个伟大的墙把我们敬爱的git大神封锁了，无奈很多代码都托管在上面，其中也不乏很多商业项目。自己的几个blog也都放在上面，倒不是因为在那里免费，而是这已然已经成为程序员们的一种生活style。</p>
 
 <p>ubuntu下有个dnsmasq可以连接别的dns，这样能够避免dns污染导致上不了github的问题。相关配置不算难，下面记录一下在MacOS下的dnsmasq配置方法。</p>

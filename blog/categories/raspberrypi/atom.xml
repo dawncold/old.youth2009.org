@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: raspberrypi | Trade Off]]></title>
-  <link href="http://www.youth2009.org/blog/categories/raspberrypi/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:59:15+08:00</updated>
-  <id>http://www.youth2009.org/</id>
+  <link href="http://www.youth2009.org/www/blog/categories/raspberrypi/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www/"/>
+  <updated>2013-12-07T22:21:46+08:00</updated>
+  <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[manage-rasp-pi-in-internal-network]]></title>
-    <link href="http://www.youth2009.org/blog/2013/08/08/manage-rasp-pi-in-internal-network/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/08/08/manage-rasp-pi-in-internal-network/"/>
     <updated>2013-08-08T22:16:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/08/08/manage-rasp-pi-in-internal-network</id>
+    <id>http://www.youth2009.org/www/blog/2013/08/08/manage-rasp-pi-in-internal-network</id>
     <content type="html"><![CDATA[<p>今天早晨去公司后一开邮箱发现好多树莓派发来的警告信，如果是一封信可能是误报，但这么多，难道是真的有人闯入？不过看了大部分的图片都是空空的房间，但仍然有新的邮件过来，看来是红外探测器出问题了。</p>
 
 <p>想了半天以为是昨天加的DHT11在读取数据的时候是不是改变了GPIO的布局，导致探测器的数据口得到数据，激活了它？后来证明不是。猜测啊：探测器放到了无线网卡下方，无线网卡有个工作指示灯一直闪烁，会不会触发了探测器，因为我换了个地方后探测器就正常工作了。</p>
@@ -40,9 +40,9 @@
   
   <entry>
     <title type="html"><![CDATA[opencv-with-pi]]></title>
-    <link href="http://www.youth2009.org/blog/2013/08/03/opencv-with-pi/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/08/03/opencv-with-pi/"/>
     <updated>2013-08-03T17:44:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/08/03/opencv-with-pi</id>
+    <id>http://www.youth2009.org/www/blog/2013/08/03/opencv-with-pi</id>
     <content type="html"><![CDATA[<p>想了好久都觉得连续拍照片做监控实在是没什么效率，默认情况应该是什么都不做，如果发现有人来了才拍下来或者录下来，但用标配的摄像头录像实在是会录出非常大的文件，保存文件又是问题。在<a href="http://www.raspberrypi.org/archives/4207">官网的博客</a>中看到了一个用opencv做的人脸识别，可以这样干嘛。于是紧随那片文章开始干。</p>
 
 <p>由于标配摄像头模块不是usb设备，所以需要重新编译使用的几个程序，比如raspistill和raspivid等等。</p>
@@ -57,9 +57,9 @@
   
   <entry>
     <title type="html"><![CDATA[got-raspberry]]></title>
-    <link href="http://www.youth2009.org/blog/2013/08/02/got-raspberry/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/08/02/got-raspberry/"/>
     <updated>2013-08-02T21:40:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/08/02/got-raspberry</id>
+    <id>http://www.youth2009.org/www/blog/2013/08/02/got-raspberry</id>
     <content type="html"><![CDATA[<p>工资一发就买了块表。。。并且还狠心买了这个玩具——raspberry。</p>
 
 <p>默认用了新手的那个镜像，叫NOOBS，就是里面装好了不少东西，系统也有好几个，默认用了推荐的Raspbian，是Debian的一个变种啦，开发用的Ubuntu都是一个家族的。</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: tuby | Trade Off]]></title>
-  <link href="http://www.youth2009.org/blog/categories/tuby/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:59:15+08:00</updated>
-  <id>http://www.youth2009.org/</id>
+  <link href="http://www.youth2009.org/www/blog/categories/tuby/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www/"/>
+  <updated>2013-12-07T22:21:46+08:00</updated>
+  <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Ruby学习记录]]></title>
-    <link href="http://www.youth2009.org/blog/2013/01/01/some-ruby-study-log/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/01/01/some-ruby-study-log/"/>
     <updated>2013-01-01T08:22:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/01/01/some-ruby-study-log</id>
+    <id>http://www.youth2009.org/www/blog/2013/01/01/some-ruby-study-log</id>
     <content type="html"><![CDATA[<p>在wanglei的鼓动下，我开始了探寻Ruby这款被他成为做产品的语言，同时，Ruby对我来说也是上天的安排——我的生日石就是Ruby～虽然如此，其实我早就开始了Ruby的探索，曾经买过《松本行弘的程序世界》、《Ruby变成语言》这两本很好的书，无奈当时怎么看也看不进去，就暂且放弃了，相反，更喜欢了Python。</p>
 
 <p>最近的工作语言一直是Python，感觉很好，不过Ruby对我来说更显得优美一点，主要是喜欢他们的文档，非常全面，但不喜欢TA的快速变更，特别是ROR，当时买的书和网上的版本很难契合，我又不那么喜欢用低版本的ROR，学起来就痛苦一点，最终还是放弃了。</p>

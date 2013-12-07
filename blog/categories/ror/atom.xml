@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: ror | Trade Off]]></title>
-  <link href="http://www.youth2009.org/blog/categories/ror/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:59:15+08:00</updated>
-  <id>http://www.youth2009.org/</id>
+  <link href="http://www.youth2009.org/www/blog/categories/ror/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www/"/>
+  <updated>2013-12-07T22:21:46+08:00</updated>
+  <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[设置Rails中的timezone]]></title>
-    <link href="http://www.youth2009.org/blog/2012/02/15/set-timezone-in-rails/"/>
+    <link href="http://www.youth2009.org/www/blog/2012/02/15/set-timezone-in-rails/"/>
     <updated>2012-02-15T14:37:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/02/15/set-timezone-in-rails</id>
+    <id>http://www.youth2009.org/www/blog/2012/02/15/set-timezone-in-rails</id>
     <content type="html"><![CDATA[<p>Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。</p>
 
 <p>没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1</p>
@@ -45,9 +45,9 @@ Binary data inserted for</code>string<code>type on column</code>randstring`
   
   <entry>
     <title type="html"><![CDATA[分清form_for和form_tag]]></title>
-    <link href="http://www.youth2009.org/blog/2012/02/14/differentiate-form-for-and-form-tag/"/>
+    <link href="http://www.youth2009.org/www/blog/2012/02/14/differentiate-form-for-and-form-tag/"/>
     <updated>2012-02-14T19:34:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/02/14/differentiate-form-for-and-form-tag</id>
+    <id>http://www.youth2009.org/www/blog/2012/02/14/differentiate-form-for-and-form-tag</id>
     <content type="html"><![CDATA[<p>两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][:username]，前面的:user是我给form_for的第一个参数，这个form的所有信息都得加[:user]这样的前缀才能得到了，让我十分痛苦（又加上是个2.14）</p>
 
 <p>使用form_tag后对于它的action不太会控制，所幸不写参数了，正好action指向本地址，省事儿！</p>
@@ -58,9 +58,9 @@ Binary data inserted for</code>string<code>type on column</code>randstring`
   
   <entry>
     <title type="html"><![CDATA[痛苦的rails]]></title>
-    <link href="http://www.youth2009.org/blog/2012/02/12/pain-rails/"/>
+    <link href="http://www.youth2009.org/www/blog/2012/02/12/pain-rails/"/>
     <updated>2012-02-12T22:03:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/02/12/pain-rails</id>
+    <id>http://www.youth2009.org/www/blog/2012/02/12/pain-rails</id>
     <content type="html"><![CDATA[<p>由于rails给我带来的痛苦，让我对ruby这门写着code for fun的语言产生了怀疑，真得有fun么？一开始就没有感觉，现在来看更是如此。</p>
 
 <p>rails是一个正在成长的框架，每一个小版本号的变动都可能会引入和废弃不少特性，而我又傻傻地在使用最新的rails（3.2.1），书上讲的都是rails2.2.2的内容，乍一看变动不应该太大啊，实际上并不是如此！！！</p>
@@ -71,9 +71,9 @@ Binary data inserted for</code>string<code>type on column</code>randstring`
   
   <entry>
     <title type="html"><![CDATA[蛋疼的No route matches “/say/hello”]]></title>
-    <link href="http://www.youth2009.org/blog/2012/02/09/egg-ache-no-route-matches-say-hello/"/>
+    <link href="http://www.youth2009.org/www/blog/2012/02/09/egg-ache-no-route-matches-say-hello/"/>
     <updated>2012-02-09T23:01:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/02/09/egg-ache-no-route-matches-say-hello</id>
+    <id>http://www.youth2009.org/www/blog/2012/02/09/egg-ache-no-route-matches-say-hello</id>
     <content type="html"><![CDATA[<p>现在有些后悔买的那本书了，《web开发敏捷之道第三版》，那本书的代码使用的是rails2.2.2，真够2的，现在用的是3.2.1，作者说有不少代码已经更改了，但没想到会差得连我都能看出来，我只是个初学者啊！好在我还能稍稍应付自如，后面可能就会更加累了！</p>
 
 <p>一开始在helloworld部分就遇到一个问题，用rails generate controller say后根本不能自动添加一条routes，找了原作者的wiki更新发现这里已经需要自己修改routes的内容了，不过也好，消去一行注释即可：）</p>

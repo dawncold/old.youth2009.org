@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: credit-card | Trade Off]]></title>
-  <link href="http://www.youth2009.org/blog/categories/credit-card/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:59:15+08:00</updated>
-  <id>http://www.youth2009.org/</id>
+  <link href="http://www.youth2009.org/www/blog/categories/credit-card/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www/"/>
+  <updated>2013-12-07T22:21:46+08:00</updated>
+  <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[正在验证paypal]]></title>
-    <link href="http://www.youth2009.org/blog/2011/02/22/validating-paypal/"/>
+    <link href="http://www.youth2009.org/www/blog/2011/02/22/validating-paypal/"/>
     <updated>2011-02-22T18:30:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2011/02/22/validating-paypal</id>
+    <id>http://www.youth2009.org/www/blog/2011/02/22/validating-paypal</id>
     <content type="html"><![CDATA[<p>能够使用paypal最好了，因为那样可以隐藏自己的信用卡信息，总之支持paypal支付的国外商家还是非常多的。要开通这个功能需要在paypal上添加一张信用卡，我已经添加过一张银联卡了，验证方式是paypal给我打了两笔小额资金，真是很小，不到1毛钱！而验证信用卡就不一样了，需要扣除不到2美元的现金，而paypal这次很实在，不到2美元，扣了1.9x！！！接着就是等对账单，paypal会显示一个4位数的编号，等你看到后填写到paypal那里就算是验证成功了！但这个过程还是有点艰辛。</p>
 
 <p>昨天我进行了3次添加信用卡操作，全都是失败，还被银行的客服问候了一下，今天看到美元帐户里能够支付5美元了，再尝试一下，还是失败！Google原因，了解了还需要开通境外无卡支付业务才行，我从网银的设置中看到了这个业务，但后面的开通链接处是一个灰色的！只有柜面注册卡才能在线开通关闭！我这不是柜面注册么？！好象是自己在网银的后台添加进去的～于是电话让客服MM开通，顺利完成了paypal的添加卡业务。（我在网银中还自助开通了一个VISA验证服务，这个应该不影响吧）。再等几天验证完paypal就没事了。那时候再把境外无法支付关闭，要不然危险。</p>

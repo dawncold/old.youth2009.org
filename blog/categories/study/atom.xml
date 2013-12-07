@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: study | Trade Off]]></title>
-  <link href="http://www.youth2009.org/blog/categories/study/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:59:15+08:00</updated>
-  <id>http://www.youth2009.org/</id>
+  <link href="http://www.youth2009.org/www/blog/categories/study/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www/"/>
+  <updated>2013-12-07T22:21:46+08:00</updated>
+  <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[rarp]]></title>
-    <link href="http://www.youth2009.org/blog/2013/08/25/rarp/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/08/25/rarp/"/>
     <updated>2013-08-25T12:01:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/08/25/rarp</id>
+    <id>http://www.youth2009.org/www/blog/2013/08/25/rarp</id>
     <content type="html"><![CDATA[<h2>Packet Format</h2>
 
 <p>RARP packet is identical to ARP packet, differences: RARP &lsquo;type&rsquo; field is 0x8035 for request and reply and &lsquo;op&rsquo; field is 3 for RARP request and 4 for RARP reply.</p>
@@ -30,9 +30,9 @@
   
   <entry>
     <title type="html"><![CDATA[conceptual-models]]></title>
-    <link href="http://www.youth2009.org/blog/2013/08/19/conceptual-models/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/08/19/conceptual-models/"/>
     <updated>2013-08-19T22:12:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/08/19/conceptual-models</id>
+    <id>http://www.youth2009.org/www/blog/2013/08/19/conceptual-models</id>
     <content type="html"><![CDATA[<h2>Conceptual Models</h2>
 
 <p>Designing software so that its structure reflects that of the problem.</p>
@@ -57,9 +57,9 @@
   
   <entry>
     <title type="html"><![CDATA[arp]]></title>
-    <link href="http://www.youth2009.org/blog/2013/08/18/arp/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/08/18/arp/"/>
     <updated>2013-08-18T20:38:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/08/18/arp</id>
+    <id>http://www.youth2009.org/www/blog/2013/08/18/arp</id>
     <content type="html"><![CDATA[<pre><code>32 bits Internet address
 |                   /|
 |ARP                 |RARP
@@ -79,9 +79,9 @@
   
   <entry>
     <title type="html"><![CDATA[internet protocol]]></title>
-    <link href="http://www.youth2009.org/blog/2013/07/27/internet-protocol/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/07/27/internet-protocol/"/>
     <updated>2013-07-27T23:02:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/07/27/internet-protocol</id>
+    <id>http://www.youth2009.org/www/blog/2013/07/27/internet-protocol</id>
     <content type="html"><![CDATA[<p>TCP, UDP, ICMP, IGMP need IP datagrams as data transmitting method.</p>
 
 <p>IP is a unrealiable and connectionless delivery service.</p>
@@ -124,9 +124,9 @@
   
   <entry>
     <title type="html"><![CDATA[link-layer]]></title>
-    <link href="http://www.youth2009.org/blog/2013/07/27/link-layer/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/07/27/link-layer/"/>
     <updated>2013-07-27T00:03:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/07/27/link-layer</id>
+    <id>http://www.youth2009.org/www/blog/2013/07/27/link-layer</id>
     <content type="html"><![CDATA[<h2>link layer</h2>
 
 <h3>link layer&rsquo;s usage</h3>

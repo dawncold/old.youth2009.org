@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: gfw | Trade Off]]></title>
-  <link href="http://www.youth2009.org/blog/categories/gfw/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:59:15+08:00</updated>
-  <id>http://www.youth2009.org/</id>
+  <link href="http://www.youth2009.org/www/blog/categories/gfw/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www/"/>
+  <updated>2013-12-07T22:21:46+08:00</updated>
+  <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[ssh-proxy-with-autossh-in-mac]]></title>
-    <link href="http://www.youth2009.org/blog/2013/05/11/ssh-proxy-with-autossh/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/05/11/ssh-proxy-with-autossh/"/>
     <updated>2013-05-11T13:10:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/05/11/ssh-proxy-with-autossh</id>
+    <id>http://www.youth2009.org/www/blog/2013/05/11/ssh-proxy-with-autossh</id>
     <content type="html"><![CDATA[<p>在Mac下原来一直用iSSH，好处是简单，功能够用，但有个缺点很致命，ssh有时候会断开，谁知道最终是什么原因导致的，但iSSH不会自动重连，只是提示你。在忍受了很久之后换成了autossh，它没有GUI，但可以在ssh断开后自动重连。</p>
 
 <p>1.使用brew安装autossh，或者用其他工具安装autossh，包括手。</p>
@@ -74,9 +74,9 @@
   
   <entry>
     <title type="html"><![CDATA[be-blocked-by-GFW]]></title>
-    <link href="http://www.youth2009.org/blog/2013/03/20/be-blocked-by-gfw/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/03/20/be-blocked-by-gfw/"/>
     <updated>2013-03-20T21:04:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/03/20/be-blocked-by-gfw</id>
+    <id>http://www.youth2009.org/www/blog/2013/03/20/be-blocked-by-gfw</id>
     <content type="html"><![CDATA[<p>不知什么原因，我的VPS进入了全国路由监视节点。。。现实只要是谁打算ssh过去，就会被封锁一段时间。根据某人告知，这是进入短名单后的action，可以探测我换端口什么的操作，相信离IP被封已经不远了！</p>
 
 <p>VPS啊，先提前和你说R.I.P.吧</p>

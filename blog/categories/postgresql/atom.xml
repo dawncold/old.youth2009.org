@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: postgresql | Trade Off]]></title>
-  <link href="http://www.youth2009.org/blog/categories/postgresql/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-07T21:59:15+08:00</updated>
-  <id>http://www.youth2009.org/</id>
+  <link href="http://www.youth2009.org/www/blog/categories/postgresql/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www/"/>
+  <updated>2013-12-07T22:21:46+08:00</updated>
+  <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[drop not null in postgresql]]></title>
-    <link href="http://www.youth2009.org/blog/2013/02/17/drop-not-null-in-postgresql/"/>
+    <link href="http://www.youth2009.org/www/blog/2013/02/17/drop-not-null-in-postgresql/"/>
     <updated>2013-02-17T23:31:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/02/17/drop-not-null-in-postgresql</id>
+    <id>http://www.youth2009.org/www/blog/2013/02/17/drop-not-null-in-postgresql</id>
     <content type="html"><![CDATA[<p>要修改带有NOT NULL约束的某列为NULLABLE该如何写SQL呢？</p>
 
 <p><code>ALTER TABLE xxx ALTER COLUMN xxx DROP NOT NULL</code></p>
