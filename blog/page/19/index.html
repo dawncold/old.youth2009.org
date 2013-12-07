@@ -7,7 +7,35 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="用了不少时间PHP，也有些喜欢这种开发语言，但我仍然对Python有强烈的热情，但支持Python的主机服务还不算多，很想体验GAE，但由于在国内嘛，只能这样忍受了。 原本想在Emacs中配置Python的环境，但……有些过于复杂了。安装了很久的emacs，到头来不知道该怎么用，打算卸载掉算了， &hellip;">
+	<meta name="description" content="python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+#! /usr/bin/ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +102,106 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/05/inherit-in-python/">
+		
+			Python的继承</a>
+	</h2>
+	<div class="entry-content">
+		<p>python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/python</span>
+</span><span class='line'><span class="c"># -*- coding:utf-8 -*-</span>
+</span><span class='line'><span class="c"># Filename : inherit.py</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+</span><span class='line'>   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">):</span>
+</span><span class='line'>       <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</span><span class='line'>       <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+</span><span class='line'>       <span class="k">print</span> <span class="s">&quot;init for </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">def</span> <span class="nf">tell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>       <span class="k">print</span> <span class="s">&quot;name:</span><span class="si">%s</span><span class="s"> age:</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Teacher</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+</span><span class='line'>   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">salary</span><span class="p">):</span>
+</span><span class='line'>       <span class="n">Person</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">)</span>
+</span><span class='line'>       <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
+</span><span class='line'>       <span class="k">print</span> <span class="s">&quot;init for teacher </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">def</span> <span class="nf">tell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>       <span class="n">Person</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span><span class='line'>       <span class="k">print</span> <span class="s">&quot;salary:</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">salary</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">p</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&#39;tianzhen&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+</span><span class='line'><span class="n">p</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">tea_p</span> <span class="o">=</span> <span class="n">Teacher</span><span class="p">(</span><span class="s">&#39;zhenzhen&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1010000000</span><span class="p">)</span>
+</span><span class='line'><span class="n">tea_p</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-05T18:41:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -590,87 +718,6 @@
 
 
 <time datetime="2011-04-20T23:02:00+08:00" pubdate data-updated="true">Apr 20<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/rework/'>rework</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/04/19/rework-study-part5/">
-		
-			《REWORK》学习笔记之推广篇</a>
-	</h2>
-	<div class="entry-content">
-		<h1>「甘于低微」中提到：</h1>
-
-<p>要牢牢记住，一旦你把事业做大、深入人心之后，就不可避免地要走稳健路线。当你成为传奇人物，你就必须保持预见性、建立相容性，你将变得更为保守、更难去冒险。这就是僵化的起点、变革的终点。</p>
-
-<h1>「培养自己的拥趸」中提到：</h1>
-
-<p>所有的公司都有顾客，幸运的公司有粉丝，而最幸运的公司则有一帮观众。观众能成为你的秘密武器。</p>
-
-<h1>「普及知识，赢得竞争」中提到：</h1>
-
-<p>不要在消费、销售或者赞助上和竞争对手去攀比。也许你的竞争对手根本还没考虑去传授别人些什么呢。绝大多数公司都在关注销售或服务，但是从未想过传授知识。</p>
-
-<p>个人和小企业适合去传授知识，而大公司不适合。大公司支付得起巨额广告费，而你不能。你能在传授知识方面大力投入，而大公司不能。因为大公司受制于保密政策，公司里的每一款条文都得经由律师过目，并且再经层层严格审查。传授客户只是是专属于你的绝佳制胜机会。</p>
-
-<h1>「效仿大厨」中提到：</h1>
-
-<p>作为一家公司的老板，你也应该分享自己之道的一切。这一点在商业世界中尚属禁区。商业活动总是带有偏执和隐秘的性质。人们认为自己在这方面拥有专利或在那方面又有竞争优势。也许这样想的只是少部分人，不是大部分人。大度的人不应该继续模仿小气者的行为，不要惧怕分享。</p>
-
-<h1>「转到幕后看看」中提到：</h1>
-
-<p>让人们走入幕后，能改善你和他们之间的关系。他们会感到与你亲近起来，将你视为一个常人，而不是一个面目模糊的公司。他们将在你的产品中看到你在后台淌下的汗水和付出的努力。他们会对你的工作产生更深刻的理解和更诚挚的感激。</p>
-
-<h1>「没人喜欢塑料花」中提到：</h1>
-
-<p>不要害怕你的缺点，不完美才真实，真实才能激起人们的共鸣。因此我们喜欢会凋零的真花，而不是那些用不变色的完美的塑料花。不要担心自己应该如何说、如何做。向世界展示你本来的面目、你的缺点、你的全部。</p>
-
-<p>Leonard Koren在他的《侘寂》一书中说道：削减到本质，但不要剥离它的韵；保持干净纯洁，但不要剥夺它的生命力。</p>
-
-<p>所以，你大可直言不讳，畅谈那些别人不愿意讨论的东西。直面你的弱点，向人们展示你最近的工作状况，即使你还没完全搞定它。不完美没关系，也许你看起来不专业，但你却更真实。</p>
-
-<h1>「药贩子最精明」中提到：</h1>
-
-<p>只要你东西可卖，就不要怕给人一点点让其试用。要对自己的产品抱有信心。你应该知道人们会回来购买更多，如果你连这样的信心都没有，只能说明你的产品做得不够好。</p>
-
-<h1>「一夜成名只是传说」中提到：</h1>
-
-<p>你了解那些道听途说来的“一夜成名”的故事吗？往里深挖一点，你就能发现这些成功人士在到达引爆点之前，都已经在这个方向苦熬了很长时间。也有凤毛麟角的几家突然成功的公司，但这种公司往往不能持久──没有牢固的基础去支撑。</p>
-
-<p>把一夜成名的迷梦换成一步一个脚印的成长行动吧。道路很艰难，但你必须充满耐心。你得用功去做，在遇到伯乐之前，你得努力很长时间。</p>
-
-<p>今天就开始培养你的观众，开始聚集那些对你有兴趣的人，然后一直保持下去。多年后，你也回在人们谈论你的“一夜成名”的故事时付之一笑。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-19T18:54:00+08:00" pubdate data-updated="true">Apr 19<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 

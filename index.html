@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="上个月买了linode的vps，不知道干什么用，光翻墙了，月底干脆就关了，觉得这样翻墙的成本太高了，完全可以租个便宜的vps来用，后来觉得还是linode好。 在用linode之前用过digitalocean，那时候DO刚刚起步，速度不错，主要是华人不多，而且价格一如既往的便宜， &hellip;">
+	<meta name="description" content=" 找到size为0的文件，并删除：find -type f -size 0 | xargs rm 替换Linux的换行成windows的：ls | xargs perl -i -pe 's/\n/\r\n/g' Dec 7th, 2013 dev, shell ">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,49 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/12/07/useful-shell-command/">
+		
+			Useful-shell-command</a>
+	</h2>
+	<div class="entry-content">
+		<p>找到size为0的文件，并删除：<code>find -type f -size 0 | xargs rm</code></p>
+
+<p>替换Linux的换行成windows的：<code>ls | xargs perl -i -pe 's/\n/\r\n/g'</code></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-07T22:28:53+08:00" pubdate data-updated="true">Dec 7<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/shell/'>shell</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -555,83 +598,6 @@
 
 
 	<a class='category' href='/blog/categories/life/'>life</a>, <a class='category' href='/blog/categories/raspberrypi/'>raspberrypi</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/27/internet-protocol/">
-		
-			Internet Protocol</a>
-	</h2>
-	<div class="entry-content">
-		<p>TCP, UDP, ICMP, IGMP need IP datagrams as data transmitting method.</p>
-
-<p>IP is a unrealiable and connectionless delivery service.</p>
-
-<ul>
-<li>unrealiable: no guarantee that an IP datagram successfully get to its destination.</li>
-<li>connectionless: IP doesn&rsquo;t maintain any state of successive datagrams, it means there is no order in IP datagrams, latter sent IP datagram may arrived before former sent.</li>
-</ul>
-
-
-<h2>Header</h2>
-
-<p>TOS: 3 bits precedence field(ignored today), 4 bits TOS(mini delay, max throughput, max relability, mini monetary cost), 1 bit always 0. TOS maynot supported by most TCP/IP implementations today, but some routing protocol such as OSPF and IS-IS are capable of making routing decisions based on this field.</p>
-
-<p>Furthermore, a host isn&rsquo;t required to receive a datagram larger than 576 bytes. TCP and UDP will divide user data into small pieces, so one IP datagram will below that limit.</p>
-
-<p>Some small IP datagram will be padded up to the mini length of frame, which maybe 46 or 38 bytes, so total length field is required when you want to know how long the IP datagram&rsquo;s length on earth.</p>
-
-<p>TTL: set by sender, if this datagram pass a router, it will decrease 1, when it reaches 0, this datagram will thrown away, and sender will received an ICMP message. prevent routing loop.</p>
-
-<p>Checksum: TCP, UDP, ICMP, IGMP use same algorithm to computing checksum. Since a router often cheages only TTL value, a router can incrementally update the checksum when it forwards a datagram, instead of calculating the checksum over the entire IP header again.</p>
-
-<h2>IP routing</h2>
-
-<p>The fundamental difference is that a host never forward a datagram from one of its interface to another, while a router forwards datagram.</p>
-
-<p>Router may reach a local optimum result, because every search route table, the router will get a closer next-hop router address, but it may not global optimum.</p>
-
-<p>Frame&rsquo;s destination address(MAC address) may not the really destination address, it may the next-hop router&rsquo;s MAC address, because when it is routing, it can&rsquo;t be found in the current network, it must be routed to a next-hop router, so the destination address is the next-hop router&rsquo;s.</p>
-
-<h2>Subnet addressing</h2>
-
-<p>Don&rsquo;t forget subtract 2, because all 0 bits and all 1 bits address for host address is invalid.</p>
-
-<p>The advantage to using s single class B address with 30 subnets, compared to 30 class C addresses, is that subnetting reduces the size of the Internet&rsquo;s routing tables entry.</p>
-
-<p>A special address: 127.x.x.x means loopback address, not only 127.0.0.1 can be loopback address!</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-27T23:02:00+08:00" pubdate data-updated="true">Jul 27<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/tcpip/'>tcpip</a>
 
 
 </div>

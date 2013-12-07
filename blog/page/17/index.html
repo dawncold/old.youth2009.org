@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="经过近1天的实践才摸清了这两个控件的搭配使用方法，网上介绍的不算多，我就把自己的经验说说： 首先这两个的搭配是这样的，基础是UITabBarController，你完全可以在Xcode中选一个以Tabbar为基础的工程，用Tabbar来划分程序的大功能，每个功能中再用Navigation来做导航 &hellip;">
+	<meta name="description" content="都是关于cell的，不知道值得写出来么： 1。在定义cell样式的时候，如果你用UITableViewCellStyleSubtitle来初始化cell，那么设置cell的detailTextLabel的text属性就能看到详细的内容，在textLable的下一行显示着。 2。设定cell：[ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,51 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/29/some-config-about-uitableview-cell/">
+		
+			关于UITableView中的cell配置</a>
+	</h2>
+	<div class="entry-content">
+		<p>都是关于cell的，不知道值得写出来么：</p>
+
+<p>1。在定义cell样式的时候，如果你用UITableViewCellStyleSubtitle来初始化cell，那么设置cell的detailTextLabel的text属性就能看到详细的内容，在textLable的下一行显示着。</p>
+
+<p>2。设定cell：<code>[cell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];</code>这样在每个cell右侧会有小箭头提示，很漂亮。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-29T13:28:00+08:00" pubdate data-updated="true">Jul 29<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -597,53 +642,6 @@
 
 
 <time datetime="2011-07-09T15:12:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/09/python-one-star-and-two-star/">
-		
-			Python中的*和**</a>
-	</h2>
-	<div class="entry-content">
-		<p>在python的函数参数中，可以在变量名称前面加一个或者两个星号代表不一样的变量类型：</p>
-
-<p>在stack overflow上看到有人问这两个的区别了，就转载过来答案吧：</p>
-
-<blockquote><p>If the form *identifier is present, it is initialized to a tuple receiving any excess positional parameters, defaulting to the empty tuple. If the form **identifier is present, it is initialized to a new dictionary receiving any excess keyword arguments, defaulting to a new empty dictionary.</p></blockquote>
-
-<p>加一个星号代表这个参数是一个tuple类型；加两个则是一个dictionary类型，很好用。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-09T14:44:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 

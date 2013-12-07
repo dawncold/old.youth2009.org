@@ -7,13 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="找到了一篇教程，开始构建jailbreaken app的环境。 基本需要的工具 1
-2
-3
-4
-export THEOS=/opt/theos
-svn co http://svn.howett.net/svn/theos/trunk $THEOS
-curl -s https://dl. &hellip;">
+	<meta name="description" content="发现一个问题，使用theos这个makefile工具做app有很大困难，就是headers不好管理，真希望能集成到xcode中开发tweak，结果发现了一个神器&mdash;&mdash;iOSOpenDev。 安装好之后就能发现xcode中已经有很多可用的template了，对于tweak来说 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -80,6 +74,53 @@ curl -s https://dl. &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/03/16/open-development-env-for-xcode/">
+		
+			Open-development-env-for-xcode</a>
+	</h2>
+	<div class="entry-content">
+		<p>发现一个问题，使用theos这个makefile工具做app有很大困难，就是headers不好管理，真希望能集成到xcode中开发tweak，结果发现了一个神器&mdash;&mdash;iOSOpenDev。</p>
+
+<p>安装好之后就能发现xcode中已经有很多可用的template了，对于tweak来说，有logos和CaptaionHook。logos就是theos，captainhook是另一个hook框架。</p>
+
+<p>不过很可惜，可能是sdk6.1的问题，结合上springboard和uialertview后就从来没build success，总说armv7中的springboard link error或者uialertview linker error，是在不知道怎么办了，仔细又看了别人的做法，发现他们还在用sdk5.1，估计就是这点差异吧？</p>
+
+<p>彻夜下载sdk5.1.。。。。。。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-16T20:40:00+08:00" pubdate data-updated="true">Mar 16<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>, <a class='category' href='/blog/categories/sortedapp/'>sortedapp</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -683,49 +724,6 @@ curl -s https://dl. &hellip;">
 
 
 	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/02/02/incrby-in-redis/">
-		
-			Incrby in Redis</a>
-	</h2>
-	<div class="entry-content">
-		<p>redis中的incrby可以让value+1，用这个的好处是：当你用setex给一个key设置了timeout之后，如果要再改变里面的值，比如加1，你再set回去的话就会丢掉timeout，这时用incrby就可以喽。</p>
-
-<p>再没用incrby的时候我用了ttl先取出timeout的值，再用一遍setex附带上ttl，显得好傻。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-02T13:26:00+08:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/redis/'>redis</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>

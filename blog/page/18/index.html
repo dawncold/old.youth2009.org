@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="我并不想完整地比较这两个替换符号的用处，只是发现了一点，可能以后也会这样用。 %r是原始的输入，如果输入了中文，在输出的时候会出现一些类似unicode的代码；其他的会输出带单引号的内容。 %s就是字符串了，输出就是字符串，如果原始输入是中文，那这里也会输出中文。 &hellip;">
+	<meta name="description" content="在python的函数参数中，可以在变量名称前面加一个或者两个星号代表不一样的变量类型： 在stack overflow上看到有人问这两个的区别了，就转载过来答案吧： If the form *identifier is present, it is initialized to a tuple &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,53 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/09/python-one-star-and-two-star/">
+		
+			Python中的*和**</a>
+	</h2>
+	<div class="entry-content">
+		<p>在python的函数参数中，可以在变量名称前面加一个或者两个星号代表不一样的变量类型：</p>
+
+<p>在stack overflow上看到有人问这两个的区别了，就转载过来答案吧：</p>
+
+<blockquote><p>If the form *identifier is present, it is initialized to a tuple receiving any excess positional parameters, defaulting to the empty tuple. If the form **identifier is present, it is initialized to a new dictionary receiving any excess keyword arguments, defaulting to a new empty dictionary.</p></blockquote>
+
+<p>加一个星号代表这个参数是一个tuple类型；加两个则是一个dictionary类型，很好用。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-09T14:44:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -568,106 +615,6 @@
 
 
 <time datetime="2011-06-05T18:59:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/06/05/inherit-in-python/">
-		
-			Python的继承</a>
-	</h2>
-	<div class="entry-content">
-		<p>python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/python</span>
-</span><span class='line'><span class="c"># -*- coding:utf-8 -*-</span>
-</span><span class='line'><span class="c"># Filename : inherit.py</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-</span><span class='line'>   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">):</span>
-</span><span class='line'>       <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-</span><span class='line'>       <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
-</span><span class='line'>       <span class="k">print</span> <span class="s">&quot;init for </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
-</span><span class='line'>
-</span><span class='line'>   <span class="k">def</span> <span class="nf">tell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>       <span class="k">print</span> <span class="s">&quot;name:</span><span class="si">%s</span><span class="s"> age:</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Teacher</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
-</span><span class='line'>   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">salary</span><span class="p">):</span>
-</span><span class='line'>       <span class="n">Person</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">)</span>
-</span><span class='line'>       <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
-</span><span class='line'>       <span class="k">print</span> <span class="s">&quot;init for teacher </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
-</span><span class='line'>
-</span><span class='line'>   <span class="k">def</span> <span class="nf">tell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>       <span class="n">Person</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-</span><span class='line'>       <span class="k">print</span> <span class="s">&quot;salary:</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">salary</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">p</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&#39;tianzhen&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
-</span><span class='line'><span class="n">p</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">tea_p</span> <span class="o">=</span> <span class="n">Teacher</span><span class="p">(</span><span class="s">&#39;zhenzhen&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1010000000</span><span class="p">)</span>
-</span><span class='line'><span class="n">tea_p</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-05T18:41:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 

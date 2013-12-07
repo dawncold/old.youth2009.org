@@ -3,11 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Category: shell - Trade Off</title>
+	<title>useful-shell-command - Trade Off</title>
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="Category: shell">
+	<meta name="description" content="找到size为0的文件，并删除：find -type f -size 0 | xargs rm 替换Linux的换行成windows的：ls | xargs perl -i -pe 's/\n/\r\n/g' Dec 7th, 2013 dev, shell ">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -73,171 +73,56 @@
 	
 		
 	
-	<div id="content" class="inner">
-	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Useful-shell-command</h2>
+	<div class="entry-content"><p>找到size为0的文件，并删除：<code>find -type f -size 0 | xargs rm</code></p>
+
+<p>替换Linux的换行成windows的：<code>ls | xargs perl -i -pe 's/\n/\r\n/g'</code></p>
+</div>
 
 
-	
-	
-	<section class="archives"><h1 class="year">2013</h1>
+<div class="meta">
+	<div class="date">
 
-<article>
-	<h2 class="title"><a href="/blog/2013/12/07/useful-shell-command/">useful-shell-command</a></h2>
-	<div class="meta">
-		<div class="date">Dec  7</div>
-		<div class="tags">
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-07T22:28:53+08:00" pubdate data-updated="true">Dec 7<span>th</span>, 2013</time></div>
+	<div class="tags">
 
 
 	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/shell/'>shell</a>
 
 
 </div>
-	    
-	</div>
-</article>
 	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/06/15/some-sed-work/">some-sed-work</a></h2>
-	<div class="meta">
-		<div class="date">Jun 15</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
 </div>
-	    
-	</div>
 </article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
 	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2013/06/13/pushd-and-popd/">pushd-and-popd</a></h2>
-	<div class="meta">
-		<div class="date">Jun 13</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
 </div>
-	    
-	</div>
-</article>
-	
-
-	
 
 
-	
-	
-		</section>
-	
-	<section class="archives"><h1 class="year">2012</h1>
 
-<article>
-	<h2 class="title"><a href="/blog/2012/12/01/shell-study/">shell study</a></h2>
-	<div class="meta">
-		<div class="date">Dec  1</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2012/11/25/shell-study-2/">shell study 2</a></h2>
-	<div class="meta">
-		<div class="date">Nov 25</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2012/11/25/shell-study/">shell study</a></h2>
-	<div class="meta">
-		<div class="date">Nov 25</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2012/11/21/shell-study/">shell study</a></h2>
-	<div class="meta">
-		<div class="date">Nov 21</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2012/11/07/beautiful-ps1/">beautiful PS1</a></h2>
-	<div class="meta">
-		<div class="date">Nov  7</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/shell/'>shell</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-	</section>
-	
-
+</section>
 </div>
 	<footer id="footer" class="inner">Copyright &copy; 2013
 
@@ -257,7 +142,10 @@
       var disqus_shortname = 'dawncoldtechblog';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/www/blog/2013/12/07/useful-shell-command/';
+        var disqus_url = 'http://www.youth2009.org/www/blog/2013/12/07/useful-shell-command/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

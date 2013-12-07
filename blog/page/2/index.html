@@ -7,9 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="link layer link layer&rsquo;s usage send and receive IP datagram
-ARP request and reply
-RARP request and reply many different link layers, depending &hellip;">
+	<meta name="description" content="TCP, UDP, ICMP, IGMP need IP datagrams as data transmitting method. IP is a unrealiable and connectionless delivery service. unrealiable: no &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +74,83 @@ RARP request and reply many different link layers, depending &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/07/27/internet-protocol/">
+		
+			Internet Protocol</a>
+	</h2>
+	<div class="entry-content">
+		<p>TCP, UDP, ICMP, IGMP need IP datagrams as data transmitting method.</p>
+
+<p>IP is a unrealiable and connectionless delivery service.</p>
+
+<ul>
+<li>unrealiable: no guarantee that an IP datagram successfully get to its destination.</li>
+<li>connectionless: IP doesn&rsquo;t maintain any state of successive datagrams, it means there is no order in IP datagrams, latter sent IP datagram may arrived before former sent.</li>
+</ul>
+
+
+<h2>Header</h2>
+
+<p>TOS: 3 bits precedence field(ignored today), 4 bits TOS(mini delay, max throughput, max relability, mini monetary cost), 1 bit always 0. TOS maynot supported by most TCP/IP implementations today, but some routing protocol such as OSPF and IS-IS are capable of making routing decisions based on this field.</p>
+
+<p>Furthermore, a host isn&rsquo;t required to receive a datagram larger than 576 bytes. TCP and UDP will divide user data into small pieces, so one IP datagram will below that limit.</p>
+
+<p>Some small IP datagram will be padded up to the mini length of frame, which maybe 46 or 38 bytes, so total length field is required when you want to know how long the IP datagram&rsquo;s length on earth.</p>
+
+<p>TTL: set by sender, if this datagram pass a router, it will decrease 1, when it reaches 0, this datagram will thrown away, and sender will received an ICMP message. prevent routing loop.</p>
+
+<p>Checksum: TCP, UDP, ICMP, IGMP use same algorithm to computing checksum. Since a router often cheages only TTL value, a router can incrementally update the checksum when it forwards a datagram, instead of calculating the checksum over the entire IP header again.</p>
+
+<h2>IP routing</h2>
+
+<p>The fundamental difference is that a host never forward a datagram from one of its interface to another, while a router forwards datagram.</p>
+
+<p>Router may reach a local optimum result, because every search route table, the router will get a closer next-hop router address, but it may not global optimum.</p>
+
+<p>Frame&rsquo;s destination address(MAC address) may not the really destination address, it may the next-hop router&rsquo;s MAC address, because when it is routing, it can&rsquo;t be found in the current network, it must be routed to a next-hop router, so the destination address is the next-hop router&rsquo;s.</p>
+
+<h2>Subnet addressing</h2>
+
+<p>Don&rsquo;t forget subtract 2, because all 0 bits and all 1 bits address for host address is invalid.</p>
+
+<p>The advantage to using s single class B address with 30 subnets, compared to 30 class C addresses, is that subnetting reduces the size of the Internet&rsquo;s routing tables entry.</p>
+
+<p>A special address: 127.x.x.x means loopback address, not only 127.0.0.1 can be loopback address!</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-27T23:02:00+08:00" pubdate data-updated="true">Jul 27<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/tcpip/'>tcpip</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -618,57 +693,6 @@ RARP request and reply many different link layers, depending &hellip;">
 
 
 	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/nginx/'>nginx</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/06/15/some-sed-work/">
-		
-			Some-sed-work</a>
-	</h2>
-	<div class="entry-content">
-		<p>博客内容是从wordpress转过来的，不可避免有很多地方没转换好，当时懒得弄，今天得空学习Shell编程，讲到了sed，就又搞了一下，基本满意了。</p>
-
-<p>以前用sed替换过分类等简单的文字错误，今天主要是把一些html给替换掉了。</p>
-
-<p>把<code>&lt;p&gt;</code>删掉，在删掉<code>&lt;/p&gt;以及&lt;br /&gt;</code>后面加换行等：</p>
-
-<p><code>sed -i "" -e 's;&lt;/p&gt;;\'$'\n;g' *.markdown</code></p>
-
-<p><code>sed -i "" -e 's;&lt;br /&gt;;\'$'\n;g' *.markdown</code></p>
-
-<p>需要注意的是Mac OS中的sed和我看到的很不一样，所以这个替换都是特殊的，来自<a href="http://cafenate.wordpress.com/2010/12/05/newlines-in-sed-on-mac/">这里</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-15T16:34:00+08:00" pubdate data-updated="true">Jun 15<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
