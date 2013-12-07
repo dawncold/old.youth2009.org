@@ -4,7 +4,7 @@
   <title><![CDATA[Category: life | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/life/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-03T23:37:03+08:00</updated>
+  <updated>2013-12-07T17:02:32+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,48 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[manage-rasp-pi-in-internal-network]]></title>
-    <link href="http://www.youth2009.org/blog/2013/08/08/manage-rasp-pi-in-internal-network/"/>
-    <updated>2013-08-08T22:16:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/08/08/manage-rasp-pi-in-internal-network</id>
-    <content type="html"><![CDATA[<p>今天早晨去公司后一开邮箱发现好多树莓派发来的警告信，如果是一封信可能是误报，但这么多，难道是真的有人闯入？不过看了大部分的图片都是空空的房间，但仍然有新的邮件过来，看来是红外探测器出问题了。</p>
-
-<p>想了半天以为是昨天加的DHT11在读取数据的时候是不是改变了GPIO的布局，导致探测器的数据口得到数据，激活了它？后来证明不是。猜测啊：探测器放到了无线网卡下方，无线网卡有个工作指示灯一直闪烁，会不会触发了探测器，因为我换了个地方后探测器就正常工作了。</p>
-
-<p>在没有远程管理的前提下，解决的方法是去七牛把bucket先删掉，这样就不能再上传图片了，然后去sendgrid修改密码，这样就不能发送邮件了。其实我期待能引发一个异常，这样程序就退出了，但很可惜，七牛的lib似乎做了些处理，删掉bucket或者修改API KEY这样的方法也就是给个提示出来，他们处理了异常，不过好在sendgrid的lib没有处理异常，密码错误后引发的异常终止了程序！GREAT！我还担心了一天摄像头不断拍照会不会坏掉。</p>
-
-<p>上面都是背景吧，主题是一个远程管理的重要性，特别是出现这种突发情况而你又不在边上。</p>
-
-<p>受限于当地的网络环境，树莓派在一个很深的网络中——有家庭的路由器，再往上是小区的路由器，也许再往上就是公网IP了，和在原来的家不同，直接能拿到公网IP，这样基本可以让树莓派暴露在公网上，管理起来当然方便了。穿透这么多层网络，感觉好麻烦，虽然毕业论文是NAT穿透的应用。。。</p>
-
-<p>简单的做法就是利用第三方，我有一个VPS，当然在海外，除了速度上不如国内快之外，别的没啥了。</p>
-
-<p>于是在树莓派上建立一个反向SSH：<code>ssh -p VPS_PORT -fNR 2222:127.0.0.1:22 USER@VPS_HOST</code>，其中VPS_PORT如果你没修改默认的22的话，可以不写<code>-p VPS_PORT</code>，其他的，比如<code>fN</code>，你可以先不写，测试成功后再写上，只做端口转发而不执行命令。后面的R表示反向连接：就是127.0.0.1的22端口在后面远程主机中映射到2222端口。这样，登陆了远程主机的人，访问2222端口就可以访问到树莓派的22端口了。</p>
-
-<p>再临时生成几个rsa key加到authorized_keys中就可以不输密码登陆了，虽然速度稍慢一点，但至少是可用的！</p>
-
-<p>测试通过后使用autossh建立连接，这样即便是中断也会重连上：）</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[opencv-with-pi]]></title>
-    <link href="http://www.youth2009.org/blog/2013/08/03/opencv-with-pi/"/>
-    <updated>2013-08-03T17:44:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/08/03/opencv-with-pi</id>
-    <content type="html"><![CDATA[<p>想了好久都觉得连续拍照片做监控实在是没什么效率，默认情况应该是什么都不做，如果发现有人来了才拍下来或者录下来，但用标配的摄像头录像实在是会录出非常大的文件，保存文件又是问题。在<a href="http://www.raspberrypi.org/archives/4207">官网的博客</a>中看到了一个用opencv做的人脸识别，可以这样干嘛。于是紧随那片文章开始干。</p>
-
-<p>由于标配摄像头模块不是usb设备，所以需要重新编译使用的几个程序，比如raspistill和raspivid等等。</p>
-
-<p>另外，如果直接在raspberrypi上编译，需要安装一些软件：<a href="http://thinkrpi.wordpress.com/2013/04/05/step-3-install-softwares-for-webcam-and-computer-vision/">http://thinkrpi.wordpress.com/2013/04/05/step-3-install-softwares-for-webcam-and-computer-vision/</a></p>
-
-<p>具体的操作请参照：<a href="http://thinkrpi.wordpress.com/2013/05/22/opencv-and-camera-board-csi/">http://thinkrpi.wordpress.com/2013/05/22/opencv-and-camera-board-csi/</a></p>
-
-<p>替换arm-linux.cmake的命令:<code>sed -i 's/if (DEFINED CMAKE_TOOLCHAIN_FILE)/if (NOT DEFINED CMAKE_TOOLCHAIN_FILE)/g' arm-linux.cmake</code>，看准了arm-linux.cmake的路径，我运行命令的时候已经到了和arm-linux.cmake一个目录下了。</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[got-raspberry]]></title>
@@ -75,31 +33,97 @@
 
 <p>如果想用camera捕捉视频，然后传到你这里看的话，需要在raspberry上先装netcat，我是用的Mac系统，系统本身有nc了，再用brew多装一个mplayer。</p>
 
-<p>raspberrry上捕捉视频用：<code>raspivid -t 1000000 -vs -w 800 -h 600 -o -| nc 172.19.1.124 5001</code>，其中t参数指定了捕捉多少毫秒的视频，后面的vs是防抖，w和h控制宽高，这样就得到一个800x600的画面。</p>
+<p>raspberrrypi上捕捉视频用：<code>raspivid -t 1000000 -vs -w 800 -h 600 -o -| nc 172.19.1.124 5001</code>，其中t参数指定了捕捉多少毫秒的视频，后面的vs是防抖，w和h控制宽高，这样就得到一个800x600的画面。</p>
 
 <p>Mac上用nc把发来的stream转到mplayer上：<code>nc -lp 5001 | mplayer -fps 31 -cache 512 -</code>，很无语的是<code>man nc</code>得到一句解释，l和p参数在一起用是个错误，但不加p就绝对在我这里不work！</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[hhkb]]></title>
-    <link href="http://www.youth2009.org/blog/2013/04/02/hhkb/"/>
-    <updated>2013-04-02T23:01:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/04/02/hhkb</id>
-    <content type="html"><![CDATA[<p>终于，它来了。</p>
+    <title type="html"><![CDATA[first snow]]></title>
+    <link href="http://www.youth2009.org/blog/2012/11/04/first-snow/"/>
+    <updated>2012-11-04T20:24:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/11/04/first-snow</id>
+    <content type="html"><![CDATA[<p>昨晚竟然下了第一场雪，看着不怎么大，但确实是第一场。</p>
 
-<p><img src="http://pic.yupoo.com/dawncold0/CL0AxKWr/medish.jpg" alt="HHKB" /></p>
+<p><img src="http://pic.yupoo.com/dawncold0/Cok3e7iE/medish.jpg" alt="first snow" /></p>
+
+<p>这种天本来就是吃火锅的时候。</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/Cok38geE/medish.jpg" alt="meal" /></p>
+
+<p>这篇日志几乎和y.youth2009.org上的发重复了，以后我也在想，这种重复该怎么办呢？</p>
+
+<p>大晚上的将要睡下，不料看了《饮食男女2012》，真的很好，而且我也感动的哭，心情大为激动，起来coding了，把taowen说的product link block和product list block问题都fix了。由于白天我把添加额外展示的小类功能给做完了，现在手上没工作了，下星期有我要做的特辑，可能要去忙那边了。taowen让我找本git书看看，想了半天也没买《Git权威指南》，估计暂时用不到那么深入的技巧，只要小心点在master上修改，到prod分支合并就好了都是fast-forward，没问题的，但最主要的不买的原因是，我怕买了后和那本《Shell编程指南》一样，躺在那里不知道干嘛。</p>
+
+<p>转眼望去，床头一堆没怎么翻看的《程序员》杂志，《设计模式》、《重构》、《极限编程》、《Clean code》这样足够好的书都没怎么被我青睐，现在主要看《1Q84》，比较有吸引力。不怎么看技术书的原因我仍然不知道：（</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[be-blocked-by-GFW]]></title>
-    <link href="http://www.youth2009.org/blog/2013/03/20/be-blocked-by-gfw/"/>
-    <updated>2013-03-20T21:04:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2013/03/20/be-blocked-by-gfw</id>
-    <content type="html"><![CDATA[<p>不知什么原因，我的VPS进入了全国路由监视节点。。。现实只要是谁打算ssh过去，就会被封锁一段时间。根据某人告知，这是进入短名单后的action，可以探测我换端口什么的操作，相信离IP被封已经不远了！</p>
+    <title type="html"><![CDATA[online]]></title>
+    <link href="http://www.youth2009.org/blog/2012/11/02/online/"/>
+    <updated>2012-11-02T20:17:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/11/02/online</id>
+    <content type="html"><![CDATA[<p>我们今天终于上线了，给编辑们用了一下，我还不知道他们的反馈如何，应该还不错吧，但很可惜由于公司内部网络的问题，我们的服务器不是所有人都能访问到，好像听说有个部门访问不到，具体问了一下工程部说改个gateway就能行了，当时正在抓图，就没动，下周再修改一下试试吧。</p>
 
-<p>VPS啊，先提前和你说R.I.P.吧</p>
+<p>据说下周要开始主攻特辑这部分了，eric说我可能会很忙了，因为一直是我再搞特辑，哎，说特辑真别扭，原来我们一直在用topic，现在竟然换一个说法。</p>
+
+<p>明天打算吃火锅，早晨早去买点菜，晚上happy一把。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[erp]]></title>
+    <link href="http://www.youth2009.org/blog/2012/10/27/erp/"/>
+    <updated>2012-10-27T21:57:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/10/27/erp</id>
+    <content type="html"><![CDATA[<p>终于把erp的所有接口测试完了，其中仍然不乏几个要命错误，只好记录下来发给开发方，又将是漫长的等待。</p>
+
+<p>王总终于还是看不惯我们专业人士用的一些词汇和设计出来的使用流程，他似乎希望身边即便是初中毕业的员工都能自由使用我们开发的系统，这点有些像Jobs不是么，很可惜我们在做的产品不是面向广大用户，而是他的人数有限的编辑们，有时候我就怀疑需不需要这么人性化的设计。</p>
+
+<p>taowen又把网站的架构修正了一番，这次改动似乎稍大，我更新了代码发现数据库帐号密码不对，经过邮件咨询，说删掉var重新install一遍能搞定，我又试了一次，这次直接提示数据库找不到，看来真陷入困境了。</p>
+
+<p>今天上午姐姐请我去吃饭，我也没法fix这边的问题，下午回来又和豪猪碰面，帮他洗了几件衣服后出去海吃了一顿，羊蝎子，这个星期的油水满了，明天如果能把热水器fix了我就很满足了，要不然又要无休止的拖下去。我讨厌任何的拖延，并且认识到拖延和蝴蝶效应是伴生关系，一拖延影响的事情会逐渐影响后来的很多事，让你抓狂。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[orange has been sweet]]></title>
+    <link href="http://www.youth2009.org/blog/2012/10/25/orange-has-been-sweet/"/>
+    <updated>2012-10-25T21:04:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/10/25/orange-has-been-sweet</id>
+    <content type="html"><![CDATA[<p>今天早晨买了一些水果，也买了几个橙子，虽然不便宜，但今晚上吃起来感觉还不错，挺甜的。</p>
+
+<p>怎么总感觉今天有点儿不稳呢，听说ERP的接口搞定了就要去测试了，测试过程不怎么顺利，让别人做事情，而且相隔很远，再加上对方不怎么关心这个有点陈旧的系统，工作就会很难同步，我们一测试就出问题，报告过去后好久才给我改改，再测试，又出问题。目前来看虽然没有完全测试好，但已经暴露出几个问题了，还是比较重要的。</p>
+
+<p>明天需要继续测试剩下的接口，并且要总结问题，发给郑工处理处理，又是漫长的等待，这是必然的，不仅仅是一个周末，估计这块在上线前都会是很紧张的。</p>
+
+<p>这篇文章发表得不容易，generate的时候总出现一个错误:
+<code>`` bash
+/Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:203:in</code>parse': (<unknown>): control characters are not allowed at line 1 column 1 (Psych::SyntaxError)</p>
+
+<pre><code>from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:203:in `parse_stream'
+from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:151:in `parse'
+from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:127:in `load'
+from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/convertible.rb:33:in `read_yaml'
+from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/post.rb:39:in `initialize'
+from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:23:in `new'
+from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:23:in `block in read_posts'
+from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:21:in `each'
+from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:21:in `read_posts'
+from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/site.rb:128:in `read_directories'
+from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/site.rb:98:in `read'
+from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/site.rb:38:in `process'
+from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/bin/jekyll:250:in `&lt;top (required)&gt;'
+from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin/jekyll:23:in `load'
+from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin/jekyll:23:in `&lt;main&gt;'
+</code></pre>
+
+<p>```
+这种错误找起来真是蛋疼，最终是在dev这个字符开始的地方找到的，有个奇怪的字符出现了，看不到，也不占空，但确实有个字符在那里占着地方，或许是输入法在切换的时候遗留到那里的吧。。。可恶！</p>
+
+<p>明天还有新工作，测试完ERP后继续做CMS，王总提出了不少新的东西要改进。</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vps | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/vps/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-03T23:37:03+08:00</updated>
+  <updated>2013-12-07T17:02:32+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -39,13 +39,13 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[我在考虑迁移到octopress上]]></title>
-    <link href="http://www.youth2009.org/blog/2012/11/25/thinking-convert-to-octopress-blog-system/"/>
-    <updated>2012-11-25T21:51:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/11/25/thinking-convert-to-octopress-blog-system</id>
-    <content type="html"><![CDATA[<p>最近的work@honovation博客一直是用octopress写的，就是直接写markdown内容即可，github负责转换并提供托管服务，而且可以自己绑定域名，比如现在的<a href="http://workathonovation.youth2009.org%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%BC%84%E5%BE%97%EF%BC%8C%E9%9D%9E%E5%B8%B8%E7%AE%80%E6%B4%81%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E8%80%8C%E4%B8%94%E6%9C%89%E7%A7%8D%E5%9B%9E%E5%BD%92%E6%9C%AC%E7%9C%9F%E7%9A%84%E6%84%9F%E8%A7%89%E3%80%82">http://workathonovation.youth2009.org%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B9%88%E5%BC%84%E5%BE%97%EF%BC%8C%E9%9D%9E%E5%B8%B8%E7%AE%80%E6%B4%81%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E8%80%8C%E4%B8%94%E6%9C%89%E7%A7%8D%E5%9B%9E%E5%BD%92%E6%9C%AC%E7%9C%9F%E7%9A%84%E6%84%9F%E8%A7%89%E3%80%82</a></p>
+    <title type="html"><![CDATA[be-blocked-by-GFW]]></title>
+    <link href="http://www.youth2009.org/blog/2013/03/20/be-blocked-by-gfw/"/>
+    <updated>2013-03-20T21:04:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/03/20/be-blocked-by-gfw</id>
+    <content type="html"><![CDATA[<p>不知什么原因，我的VPS进入了全国路由监视节点。。。现实只要是谁打算ssh过去，就会被封锁一段时间。根据某人告知，这是进入短名单后的action，可以探测我换端口什么的操作，相信离IP被封已经不远了！</p>
 
-<p>迟迟没有动作是因为我付了30刀个这个VPS，也就是到2月才过期，如果全部转到了octopress那么空着这个VPS干嘛？翻墙玩？呵呵，那真是无聊死了吧。。。说实在的，vps除了放个blog和自己做出来的小站外，好像就没什么用处了，但现在自己连小站都没有了，悉数关闭。。。</p>
+<p>VPS啊，先提前和你说R.I.P.吧</p>
 ]]></content>
   </entry>
   
@@ -87,26 +87,6 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[简单配置一下vi]]></title>
-    <link href="http://www.youth2009.org/blog/2012/06/13/config-vi-simply/"/>
-    <updated>2012-06-13T22:26:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/06/13/config-vi-simply</id>
-    <content type="html"><![CDATA[<p>看到vpsee上的vi打开网页啥的都能自动高亮，原本一直用着纯文本方式vi的我动心了，搜索了一点点配置，加入这些配置到~/vimrc这样的文件中后，打开vi就能自动加载配置。</p>
-
-<p>下面的分别是：显示行号、自动缩进、开启语法高亮、编辑背景为暗色调、开启粘贴（传说复制过来的代码不会乱掉）</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">set number
-set autoindent
-syntax enable
-set background=dark
-set paste</pre>
-
-
-<p>vim是和emace同样重量级的编辑器，如果你是一个Linux控你肯定明白那句话，vi是vim的前身（允许我这样描述吧），所以配置都是这些编辑器的看家本领，这几条简单配置仅仅是个入门，还可以根据自己的需要添加修改<img title="微笑" src="http://www.youth2009.org/usr/plugins/TinyMCE/tiny_mce/plugins/emotions/img/smiley-smile.gif" alt="微笑" border="0"></p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[迁移到了新VPS上]]></title>
     <link href="http://www.youth2009.org/blog/2012/06/13/migrate-to-new-vps/"/>
     <updated>2012-06-13T16:22:00+08:00</updated>
@@ -116,6 +96,25 @@ set paste</pre>
 <p>新的VPS比以前贵，大约是每月10刀（原来的512Mb的YardVPS是7.59刀），但新的vps性能很好，网络也很好很快，希望能一直用下去，贵点就贵点呗，比起神器Linode便宜了不少。</p>
 
 <p>这个技术blog是最后迁移过来的了，原先有几个php写得东西光是把数据库保存下来了，就不再挂出来让大家访问了吧，我猜也没几个用得，留着数据库做个纪念<img title="微笑" src="http://www.youth2009.org/usr/plugins/TinyMCE/tiny_mce/plugins/emotions/img/smiley-smile.gif" alt="微笑" border="0"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[sudo 出现unable to resolve host 解决方法]]></title>
+    <link href="http://www.youth2009.org/blog/2012/06/08/solved-sudo-unable-to-resolve-host/"/>
+    <updated>2012-06-08T16:23:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/06/08/solved-sudo-unable-to-resolve-host</id>
+    <content type="html"><![CDATA[<p>执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">sudo ：unable to resolve host HOSTNAME</pre>
+
+
+<p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">127.0.0.1               localhost.localdomain localhost HOSTNAME</pre>
+
+
+<p>希望vpsee的admin能在iso中修复这个问题</p>
 ]]></content>
   </entry>
   

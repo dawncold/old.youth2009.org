@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Google | Trade Off]]></title>
+  <title><![CDATA[Category: google | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/google/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-03T23:37:03+08:00</updated>
+  <updated>2013-12-07T17:02:32+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -14,24 +14,30 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Google地图越来越不靠谱了]]></title>
-    <link href="http://www.youth2009.org/blog/2011/08/11/bad-result-of-google-map/"/>
-    <updated>2011-08-11T17:20:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2011/08/11/bad-result-of-google-map</id>
-    <content type="html"><![CDATA[<p>今天同学聚会，我早早用Google地图查询好了路线，又和组织者核实了一番，今天坐公交车去了，结果到了目的地，下车后什么都没找到。问了路边的出租车司机，我要去的地方正好在现在地方相反的方向。恨着Google，打车过去了。</p>
+    <title type="html"><![CDATA[悲惨的CodeJam2012]]></title>
+    <link href="http://www.youth2009.org/blog/2012/05/06/miserable-code-jam-2012/"/>
+    <updated>2012-05-06T21:49:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/05/06/miserable-code-jam-2012</id>
+    <content type="html"><![CDATA[<p>资格赛晋级之后还稍稍得到了点自信，起码原来只能远观CodeJam的我现在也能继续走进看看了，不过家下来的Round1三场比赛直接被虐杀了，每一场都是最后，每个题都做不出来，说出来也是很惭愧的，但得承认自己这点能力，有人不到5分钟就能做对一个大题，而我5分钟可能都没读完题，更别说写代码了。</p>
+
+<p>但最重要的是理解题目，能够理解了也就完成了90%，剩下的工作就是coding的过程，参加比赛的人基本都是有备而来，各种模版、脚本都准备好了，写起来非常快。对于非英语系国家的选手来说，读题似乎是很大的障碍，起码会比别人慢好多倍，这点只能多多看英文的资料来弥补了！</p>
+
+<p>今天的Round1第三场出现了两个动态规划的题，感觉知道了怎么做可就是不会写，我也就是停留在知道有动态规划这种变态方法的层面上，真让我写出来可不行，抱着《算法导论》看了半天也是毫无头绪……</p>
+
+<p>毕竟不是Acmer，咱也就只能止步于此啦！希望进入下一轮的国人们继续加油！</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[iCal4.0.4与GoogleCalendar同步设置]]></title>
-    <link href="http://www.youth2009.org/blog/2011/06/11/ical-and-googlecalendar-sync-settings/"/>
-    <updated>2011-06-11T13:54:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2011/06/11/ical-and-googlecalendar-sync-settings</id>
-    <content type="html"><![CDATA[<p>用iCal的时候突然想起来这个早就可以与GoogleCalendar同步了，于是我就设置一下看看效果，但怎么设置都提示有问题。月光博客上有个解决方法，说是服务器地址写的是<a href="https://www.google.com/calendar/dav/EMAILADDRESS/user%E8%BF%99%E6%A0%B7%E5%B0%B1%E5%8F%AF%E4%BB%A5%EF%BC%8C%E4%BD%86%E6%88%91%E8%BF%99%E6%A0%B7%E5%86%99%E4%BA%86%EF%BC%8C%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%9B%E4%BB%8EAccountType%E9%87%8C%E9%80%89%E6%8B%A9Google%E4%B9%9F%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%8C%E6%9C%80%E5%90%8E%E6%97%A0%E6%84%8F%E4%B8%AD%E5%B0%9D%E8%AF%95%E5%87%BA%E4%BA%86%E5%A6%82%E4%BD%95%E5%86%99%E8%83%BD%E5%A4%9F%E5%90%8C%E6%AD%A5%E3%80%82">https://www.google.com/calendar/dav/EMAILADDRESS/user%E8%BF%99%E6%A0%B7%E5%B0%B1%E5%8F%AF%E4%BB%A5%EF%BC%8C%E4%BD%86%E6%88%91%E8%BF%99%E6%A0%B7%E5%86%99%E4%BA%86%EF%BC%8C%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%9B%E4%BB%8EAccountType%E9%87%8C%E9%80%89%E6%8B%A9Google%E4%B9%9F%E6%B2%A1%E5%8F%8D%E5%BA%94%EF%BC%8C%E6%9C%80%E5%90%8E%E6%97%A0%E6%84%8F%E4%B8%AD%E5%B0%9D%E8%AF%95%E5%87%BA%E4%BA%86%E5%A6%82%E4%BD%95%E5%86%99%E8%83%BD%E5%A4%9F%E5%90%8C%E6%AD%A5%E3%80%82</a></p>
+    <title type="html"><![CDATA[Code Jam 2012]]></title>
+    <link href="http://www.youth2009.org/blog/2012/04/16/google-code-jam-2012/"/>
+    <updated>2012-04-16T13:20:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/04/16/google-code-jam-2012</id>
+    <content type="html"><![CDATA[<p>资格赛已经结束了，还好做出来几个题，现在来看这些题目都不算是特别有难度，最主要的还是在理解题目的要求，这当然对于我们非英语系国家的人来说是有些困难的，可能我们需要多读几遍题目才能开始编码，这确实有些不利，但最主要的还是理解错了题目，这样才可怕。</p>
 
-<p>1.AccountType中选CalDav。</p>
+<p>第二个题我就理解有些问题，考虑得太多了，看优秀选手的代码，才十几行结束，真是羡慕死我了！！！</p>
 
-<p>2.username和password就写Google的，username应该是写邮箱的全部地址，server address写calendar.google.com就OK了，设置好后去看了详细的服务器地址信息，就是上面的那串很长的地址。以前的iCal也许是可以先建立一个账号再填写这些详细信息，但现在不能了。或许是想让用户写更少的信息就能得到服务吧，初衷是好的，但也应该设定一些应急措施…</p>
+<p>下一轮比赛可能就要在家做了吧？毕竟到了我跑回家的日子：）</p>
 ]]></content>
   </entry>
   

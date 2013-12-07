@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-03T23:37:03+08:00</updated>
+  <updated>2013-12-07T17:02:32+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,54 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[basestring-and-str-in-python2x]]></title>
+    <link href="http://www.youth2009.org/blog/2013/08/08/basestring-and-str-in-python2x/"/>
+    <updated>2013-08-08T21:39:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/08/08/basestring-and-str-in-python2x</id>
+    <content type="html"><![CDATA[<p>今天在代码中发现原本过滤str的一个func被写成了过滤basestring，于是查了下basestring和str的区别：(在3.0之前)</p>
+
+<p>```</p>
+
+<pre><code>       object
+         |
+         |
+     basestring
+        / \
+       /   \
+     str  unicode
+</code></pre>
+
+<p>```</p>
+
+<p>3.0之前python中有plain string和unicode string，前者是ascii中的那些字符，后者就是所有字符了，因为historical legacy。。。python出现的时候还木有unicode，所以很多python的lib是需要慢慢转换的，当然到了3.0就会不复存在了，全是unicode。</p>
+
+<p>这样的话就清楚了，str代表了那些ascii字符，unicode就是全部的字符，他们都继承自basestring。basestring是从python2.3开始引入的。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[crontab a python script]]></title>
+    <link href="http://www.youth2009.org/blog/2013/07/21/crontab-a-python-script/"/>
+    <updated>2013-07-21T22:28:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/07/21/crontab-a-python-script</id>
+    <content type="html"><![CDATA[<p>今天用python写了个<a href="https://github.com/dawncold/stuff/blob/master/ping_test.py">小程序</a>检测网络是否通断，如果断了就弹出一个Notification，当然是Mac上的，并且弹出一个terminal，带着执行ping www.baidu.com。</p>
+
+<p>一开始用Lingon加入到启动项中并且打算2分钟执行一次，几经折腾终于失败，弃之。打算用crontab弄。</p>
+
+<p>好歹算是可用了吧，注意的是：script的开头写/usr/bin/python，crontab中写PATH没用，得写PYTHONPATH才管用，而且我还写了MAILTO（现在不知道管什么用）。由于在script中用了popen，可能这个需要依赖一些环境或者是tty（这是从stackoverflow上看来的，具体可以搜popen crontab），现在想来launchd是不是也因为如此没能成功启动呢？（总提示255退出代码）</p>
+
+<p>crontab:</p>
+
+<p><code>bash
+MAILTO="dawncold@me.com"
+PATH=/Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin:/Users/dawncold/.rvm/gems/ruby-1.9.3-p286@global/bin:/Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/bin:/Users/dawncold/.rvm/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin
+PYTHONPATH=/usr/bin
+* * * * * /Users/dawncold/ping_test.py &gt; /Users/dawncold/pt
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[generator-in-python]]></title>
@@ -91,15 +139,13 @@ return: 499999500000   use 0.290716 ms[s: 1363182552.52, e: 1363182552.81]
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[统计词频方法]]></title>
-    <link href="http://www.youth2009.org/blog/2012/10/04/print-words-count/"/>
-    <updated>2012-10-04T18:32:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/10/04/print-words-count</id>
-    <content type="html"><![CDATA[<p>记得上次参加美味书签电面的时候被问到如何统计一个语料库中的词频，当时有点傻，刚刚在复习Python的dict也遇到了这样的问题，一下子认识到，原来可以做得这么简单。虽然不知道有没有更爽的办法，但我觉得我这种方法也算是能用了，能够保证一定效率的情况下，可理解性也很强。</p>
+    <title type="html"><![CDATA[pytz的6分钟时差]]></title>
+    <link href="http://www.youth2009.org/blog/2012/10/20/6-minutes-offset-in-pytz/"/>
+    <updated>2012-10-20T16:13:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/10/20/6-minutes-offset-in-pytz</id>
+    <content type="html"><![CDATA[<p>项目中有使用pytz这个第三方库来处理datetiem相关的东西。不过最近测试的时候发现，创建了一个时间点后，最终得到的时间点和预想的时间点有6分钟的误差，从网上搜到的资料是这样解决的：详情看<a href="http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1">http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1</a></p>
 
-<p>读取一行行的word，存入dict，word作为key，value就是出现次数了，这样都是linear的事件复杂度，如果在字典就把value加1，要是不在就把value设为1即可。dict的查找复杂度很低，是hash查找。</p>
-
-<p>唉，会不会就是这样我才被拒掉了呢？！</p>
+<p>创建datetime的时候，特别是带timezone，需要localize一下，否则在使用pytz的时候就会出现这6分钟的差异。代码中首先创建了datetime，然后localize后再replace了timezone为pytz的，最终还astimezone为pytz.utc。我们是使用utc的，你的代码也许不需要：）</p>
 ]]></content>
   </entry>
   
@@ -115,41 +161,6 @@ db().execute('SELECT * FROM xxx WHERE id = %(id)s', id=get_id())
 </code></p>
 
 <p>今天细看Google提供的Python课程发现一个叫DictFormatting的部分，里面就有类似这样的语法，现在才明白。以前用过Python的格式化输出，其实这个dict的格式化和字符串的类似，就是在字符串格式化的基础之上加入了dict的key，%s是表示这里有字符串，而%(xxx)s是表示字符串，而且是以xxx为key的字符串，这个value就是从字典中给出。一半会在这样一个字符串后加“% dictname”表示值从dictname这个字典中给出，这不就是和字符串格式化一样么。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[python中的sort方法]]></title>
-    <link href="http://www.youth2009.org/blog/2012/10/04/sort-method-in-python/"/>
-    <updated>2012-10-04T14:58:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/10/04/sort-method-in-python</id>
-    <content type="html"><![CDATA[<p>打算从今天开始自习再学学Python的基础，选了Google提供的Python课程，学到list部分，有个练习题目要求针对一组tuples排序，根据tuples的最后一个元素排序，有个hint，可以用key=function这种方法，于是搜索了一番，在Python的wiki中找到这个key方法的描述：</p>
-
-<p>从Python2.4以后list.sort()和sorted()方法都提供了一个key可选参数，传入一个function用来决定排序需要的key。这个key就是所排序元素的权值，最终就是根据权值来排序了。你也可以自己写一个方法，就是那种用def来定义的方法，不过要求接受一个参数，返回一个值，接受的参数就是这个集合（list、dict、tuple）中的某个元素。我是这样写的，it works：</p>
-
-<p><code>python
-def sort_last(tuples):
- # +++your code here+++
- tuples.sort(key = lambda t: t[-1])
- return tuples
-</code></p>
-
-<p>根据tuple中最后一个排序。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[终于又回到了开发一线]]></title>
-    <link href="http://www.youth2009.org/blog/2012/08/09/return-to-develop/"/>
-    <updated>2012-08-09T10:45:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/08/09/return-to-develop</id>
-    <content type="html"><![CDATA[<p>前两天把系统从Lion升级到了MountainLion，这一升级不要紧，很多开发环境都需要重装，比如Java又得重新下载，Python的类库又消失了，XCode过期了。。。</p>
-
-<p>听说了一个好消息，从XCode4.4.1开始，以后的XCode都会采用增量更新，但这次除外，1.56Gb的XCode，在这种破网速中用了两天才搞定。</p>
-
-<p>Python的一个类库MySQL-python需要gcc-4.2才能编译，于是还需要下载CommandLineTool，又是155Mb。。。（但装好XCode后可以从XCode.app中找到llvm-gcc-4.2，我是用这个编译的，也能用）。</p>
-
-<p>还有几个小的python类库，装好后就能继续用了。这次系统升级后MySQL竟然没有问题，值得表扬一下！</p>
 ]]></content>
   </entry>
   

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: raspberrypi | Trade Off]]></title>
+  <link href="http://www.youth2009.org/blog/categories/raspberrypi/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-12-07T17:02:32+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[manage-rasp-pi-in-internal-network]]></title>
+    <link href="http://www.youth2009.org/blog/2013/08/08/manage-rasp-pi-in-internal-network/"/>
+    <updated>2013-08-08T22:16:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/08/08/manage-rasp-pi-in-internal-network</id>
+    <content type="html"><![CDATA[<p>今天早晨去公司后一开邮箱发现好多树莓派发来的警告信，如果是一封信可能是误报，但这么多，难道是真的有人闯入？不过看了大部分的图片都是空空的房间，但仍然有新的邮件过来，看来是红外探测器出问题了。</p>
+
+<p>想了半天以为是昨天加的DHT11在读取数据的时候是不是改变了GPIO的布局，导致探测器的数据口得到数据，激活了它？后来证明不是。猜测啊：探测器放到了无线网卡下方，无线网卡有个工作指示灯一直闪烁，会不会触发了探测器，因为我换了个地方后探测器就正常工作了。</p>
+
+<p>在没有远程管理的前提下，解决的方法是去七牛把bucket先删掉，这样就不能再上传图片了，然后去sendgrid修改密码，这样就不能发送邮件了。其实我期待能引发一个异常，这样程序就退出了，但很可惜，七牛的lib似乎做了些处理，删掉bucket或者修改API KEY这样的方法也就是给个提示出来，他们处理了异常，不过好在sendgrid的lib没有处理异常，密码错误后引发的异常终止了程序！GREAT！我还担心了一天摄像头不断拍照会不会坏掉。</p>
+
+<p>上面都是背景吧，主题是一个远程管理的重要性，特别是出现这种突发情况而你又不在边上。</p>
+
+<p>受限于当地的网络环境，树莓派在一个很深的网络中——有家庭的路由器，再往上是小区的路由器，也许再往上就是公网IP了，和在原来的家不同，直接能拿到公网IP，这样基本可以让树莓派暴露在公网上，管理起来当然方便了。穿透这么多层网络，感觉好麻烦，虽然毕业论文是NAT穿透的应用。。。</p>
+
+<p>简单的做法就是利用第三方，我有一个VPS，当然在海外，除了速度上不如国内快之外，别的没啥了。</p>
+
+<p>于是在树莓派上建立一个反向SSH：<code>ssh -p VPS_PORT -fNR 2222:127.0.0.1:22 USER@VPS_HOST</code>，其中VPS_PORT如果你没修改默认的22的话，可以不写<code>-p VPS_PORT</code>，其他的，比如<code>fN</code>，你可以先不写，测试成功后再写上，只做端口转发而不执行命令。后面的R表示反向连接：就是127.0.0.1的22端口在后面远程主机中映射到2222端口。这样，登陆了远程主机的人，访问2222端口就可以访问到树莓派的22端口了。</p>
+
+<p>再临时生成几个rsa key加到authorized_keys中就可以不输密码登陆了，虽然速度稍慢一点，但至少是可用的！</p>
+
+<p>测试通过后使用autossh建立连接，这样即便是中断也会重连上：）</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[opencv-with-pi]]></title>
+    <link href="http://www.youth2009.org/blog/2013/08/03/opencv-with-pi/"/>
+    <updated>2013-08-03T17:44:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/08/03/opencv-with-pi</id>
+    <content type="html"><![CDATA[<p>想了好久都觉得连续拍照片做监控实在是没什么效率，默认情况应该是什么都不做，如果发现有人来了才拍下来或者录下来，但用标配的摄像头录像实在是会录出非常大的文件，保存文件又是问题。在<a href="http://www.raspberrypi.org/archives/4207">官网的博客</a>中看到了一个用opencv做的人脸识别，可以这样干嘛。于是紧随那片文章开始干。</p>
+
+<p>由于标配摄像头模块不是usb设备，所以需要重新编译使用的几个程序，比如raspistill和raspivid等等。</p>
+
+<p>另外，如果直接在raspberrypi上编译，需要安装一些软件：<a href="http://thinkrpi.wordpress.com/2013/04/05/step-3-install-softwares-for-webcam-and-computer-vision/">http://thinkrpi.wordpress.com/2013/04/05/step-3-install-softwares-for-webcam-and-computer-vision/</a></p>
+
+<p>具体的操作请参照：<a href="http://thinkrpi.wordpress.com/2013/05/22/opencv-and-camera-board-csi/">http://thinkrpi.wordpress.com/2013/05/22/opencv-and-camera-board-csi/</a></p>
+
+<p>替换arm-linux.cmake的命令:<code>sed -i 's/if (DEFINED CMAKE_TOOLCHAIN_FILE)/if (NOT DEFINED CMAKE_TOOLCHAIN_FILE)/g' arm-linux.cmake</code>，看准了arm-linux.cmake的路径，我运行命令的时候已经到了和arm-linux.cmake一个目录下了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[got-raspberry]]></title>
+    <link href="http://www.youth2009.org/blog/2013/08/02/got-raspberry/"/>
+    <updated>2013-08-02T21:40:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/08/02/got-raspberry</id>
+    <content type="html"><![CDATA[<p>工资一发就买了块表。。。并且还狠心买了这个玩具——raspberry。</p>
+
+<p>默认用了新手的那个镜像，叫NOOBS，就是里面装好了不少东西，系统也有好几个，默认用了推荐的Raspbian，是Debian的一个变种啦，开发用的Ubuntu都是一个家族的。</p>
+
+<p>配置的话，没啥可说的，就是把显卡占用的内存改成了16Mb，默认似乎分配了128M过去，对于我这种总看命令行的人足够了。如果你和我一样买了官方的摄像头模块，那就可以把camera给enable了。再就是在adcanced options中把SSH打开，否则你还得连上键盘鼠标去操作。。。</p>
+
+<p>不喜欢插网线，但很可惜办公室的Cisco双频无线网卡AE2500装不上，貌似是驱动问题，不想折腾，还好买了个免驱的小网卡叫EOUP。我的无线路由是hidden SSID了，所以在连接的时候还有点问题。在配置文件<code>/etc/wpa_supp/wpa_supp.conf</code>中多加了一行：
+<code>scan_ssid=1</code></p>
+
+<p>apt的source也改到了ustc.edu.cn的：<code>http://mirrors.ustc.edu.cn/raspbian/raspbian/</code>，具体就是把<code>/etc/apt/source.list</code>中第一行的URL改成上面那个即可。</p>
+
+<p>camera的官方使用教程：<a href="http://www.raspberrypi.org/archives/3890">http://www.raspberrypi.org/archives/3890</a></p>
+
+<p>如果想用camera捕捉视频，然后传到你这里看的话，需要在raspberry上先装netcat，我是用的Mac系统，系统本身有nc了，再用brew多装一个mplayer。</p>
+
+<p>raspberrrypi上捕捉视频用：<code>raspivid -t 1000000 -vs -w 800 -h 600 -o -| nc 172.19.1.124 5001</code>，其中t参数指定了捕捉多少毫秒的视频，后面的vs是防抖，w和h控制宽高，这样就得到一个800x600的画面。</p>
+
+<p>Mac上用nc把发来的stream转到mplayer上：<code>nc -lp 5001 | mplayer -fps 31 -cache 512 -</code>，很无语的是<code>man nc</code>得到一句解释，l和p参数在一起用是个错误，但不加p就绝对在我这里不work！</p>
+]]></content>
+  </entry>
+  
+</feed>

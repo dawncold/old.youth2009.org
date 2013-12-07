@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/mac/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-03T23:37:03+08:00</updated>
+  <updated>2013-12-07T17:02:32+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -27,127 +27,151 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[beautiful PS1]]></title>
-    <link href="http://www.youth2009.org/blog/2012/11/07/beautiful-ps1/"/>
-    <updated>2012-11-07T21:12:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/11/07/beautiful-ps1</id>
-    <content type="html"><![CDATA[<p>今天又加了不少红绿颜色的字在各种输出上，看起来更加顺眼了，无奈server的网关被人修改了，我们也不敢轻易改动，因为编辑们正在使用，怕改了他们不能访问了。。。那个负责人到我们下班都没回来，真不知道干嘛去了。</p>
+    <title type="html"><![CDATA[M4的一点优化(MacOS 10.9)]]></title>
+    <link href="http://www.youth2009.org/blog/2012/10/01/optimzation-for-m4/"/>
+    <updated>2012-10-01T17:05:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/10/01/optimzation-for-m4</id>
+    <content type="html"><![CDATA[<p>1.关闭紧急运动传感器</p>
 
-<p>研究了一下这种颜色是怎么回事，原来是在一个字符串前后加上颜色标记，就和html的标记一样，只不过颜色标记更加让人难以理解。临下班我想研究一下如何做一个autocomplete的veil出来，可惜都搜不到什么资料，可能这不是什么很值得人们写的东西吧，竟是些讲按Tab可以complete，但不说你怎么写code可以实现这种，猜想是有什么hook可以监听tab事件吧：）后来在<a href="http://hi.baidu.com/widebright/item/5f92a4cf65c79709c710b2ac" target="_blank">这里</a>找到一篇文章，介绍了一点原理和写法，准备翻翻我那本《Shell脚本学习指南》看看有没有帮助。</p>
+<p>mac系统没有把这些传感器的设置、界面什么的体现到UI里，让我一度以为mbp没有这种设备，实际这也算是mac系统的设计理念吧，把普通用户无须知晓的东西屏蔽掉，让用户看起来、用起来异常简单，不像thinkpad那样，直接把硬盘活动保护啥的做成一个功能给用户展示。。。你看，你看，我们（thinkpad）有保护您硬盘的设备。。。</p>
 
-<p>研究这个的副产品就是看到了PS1的介绍，可以搭配出漂亮而功能强大的PS1。</p>
-
-<p>其实PS1就是一个字符串，Ta规定了提示符的那一行会怎么显示出来以及显示什么，这里面你可以写一些函数调用、配色什么的，terminal会自动帮你调用，然后就是显示出来。给你看个展示效果：</p>
-
-<p><img src="http://pic.yupoo.com/dawncold0/CoN0yCPa/medish.jpg" alt="PS1 pic" /></p>
-
-<p>是不是很好看呢？再看看让Ta显示成这个样的PS1字符串长什么样吧：</p>
-
-<p><code>bash
-export PS1='\[$(tput bold)\]\[$(tput setaf 3)\]\u\[$(tput setaf 2)\] [\t] \[$(tput setaf 1)\]\W=&gt;\\$\[$(tput sgr0)\] '
+<p>这些不让用户看到的功能大多需要相关工具或者命令行来设置：
+<code>bash
+sudo pmset -a sms 0
 </code></p>
 
-<p>相关颜色可不是那么好记忆的如果你用\033、\032这样标记的话，推荐个网站，你可以直接设置好效果，然后复制过来就可以了：<a href="http://www.kirsle.net/wizards/ps1.html" target="_blank"><a href="http://www.kirsle.net/wizards/ps1.html">http://www.kirsle.net/wizards/ps1.html</a></a></p>
+<p>对于替换了原来硬盘的这种方案就可以关闭紧急运动传感器了，如果加了SSD在光驱位，那就甭管了，继续保护硬盘吧！</p>
+
+<p>2.备份驱动</p>
+
+<p><code>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original</code></p>
+
+<p>3.更新驱动</p>
+
+<p><code>sudo perl -pi -e 's|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x54)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg' /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage</code></p>
+
+<p>4.开启Trim</p>
+
+<p><code>sudo kextcache -system-prelinked-kernel</code></p>
+
+<p>5.清除系统内核扩展缓存</p>
+
+<p><code>sudo kextcache -system-caches</code></p>
+
+<p>6.重启</p>
+
+<p>如果出错就恢复刚刚的备份</p>
+
+<p><code>bash
+sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
+</code></p>
+
+<p>3.用noatime方式挂载硬盘，就是少加载一个文件属性参数而已，对于日常使用没啥影响，在/Library/LaunchDaemons里面创建一个noatime.plist，内容如下：</p>
+
+<p><code>xml
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+&lt;key&gt;Label&lt;/key&gt;
+&lt;string&gt;noatime&lt;/string&gt;
+&lt;key&gt;ProgramArguments&lt;/key&gt;
+&lt;array&gt;
+&lt;string&gt;mount&lt;/string&gt;
+&lt;string&gt;-vuwo&lt;/string&gt;
+&lt;string&gt;noatime&lt;/string&gt;
+&lt;string&gt;/&lt;/string&gt;
+&lt;/array&gt;
+&lt;key&gt;RunAtLoad&lt;/key&gt;
+&lt;true/&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></p>
+
+<p>修改刚刚创建的文件权限</p>
+
+<p><code>bash
+sudo chown root:wheel /Library/LaunchDaemons/noatime.plist
+</code></p>
+
+<p>重启</p>
+
+<p>检测结果</p>
+
+<p><code>bash
+mount | grep " / "
+</code></p>
+
+<p>如果结果里有类似这样的内容（最后的noatime）就表示可以了</p>
+
+<p><code>bash
+/dev/disk0s2 on / (hfs, local, journaled, noatime)
+</code></p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[更新Mac下的ruby]]></title>
-    <link href="http://www.youth2009.org/blog/2012/02/05/update-ruby-on-mac/"/>
-    <updated>2012-02-05T00:00:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/02/05/update-ruby-on-mac</id>
-    <content type="html"><![CDATA[<p>刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！</p>
+    <title type="html"><![CDATA[买了个叫M4的硬盘]]></title>
+    <link href="http://www.youth2009.org/blog/2012/10/01/bought-a-ssd-called-m4/"/>
+    <updated>2012-10-01T14:05:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/10/01/bought-a-ssd-called-m4</id>
+    <content type="html"><![CDATA[<p>256Gb，1200块。</p>
 
-<p>修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/bin中的情况，如果不能自动创建链接过去的话，麻烦是一个方面，关键是后面做的一些工作基本都白费了，可能你运行的一个软件是在/usr/bin中存在的，那样就不会自动搜索到你用brew安装的那个了。详情找找brew的工作原理吧：)</p>
+<p>速度还不错，读取260Mb/s，写入206Mb/s。</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">sudo chown -R `whoami` /usr/local</pre>
-
-
-<p>首先我用了大家推荐的Homwbrew管理工具，这里安装完homebrew后需要在自己的bash配置文件中加入新的path：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">export PATH=/usr/local/bin:$PATH</pre>
-
-
-<p>把这行加入到bash_profile中吧，这样就能让homebrew发挥作用了，你首先就能用上更新了的程序而不是从默认路径查找。（如果以前用了MacPorts的话你也会和我一样看到MacPorts的export命令，要去掉他们，或者你把Homebrew的export命令写在下面，这样能覆盖掉，既然我已经删除了MacPorts，所以干脆删除掉！）</p>
-
-<p>关闭terminal，重新加载刚才的bash_profile，这样就能用Homebrew了。</p>
-
-<p>首先安装git，自己和Homwbrew都用得到：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">brew install git</pre>
-
-
-<p>接着更新一下Homebrew的源：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">brew update</pre>
-
-
-<p>然后安装了ruby后就能用gem来更新系统了：</p>
-
-<p>安装ruby：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">brew install ruby</pre>
-
-
-<p>更新系统：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">gem update --system</pre>
-
-
-<p>后面的安装rails等操作就可以用gem来做了，看看自己的ruby版本，已经是1.9.3p0(2011-10-30)</p>
+<p>至此，MC374能升级的部分都升级到位了。</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[删除MacPorts]]></title>
-    <link href="http://www.youth2009.org/blog/2012/02/04/uninstall-macports/"/>
-    <updated>2012-02-04T21:53:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/02/04/uninstall-macports</id>
-    <content type="html"><![CDATA[<pre class="prettyprint linenums bush:bash" lang="bash">sudo port -f uninstall installed
+    <title type="html"><![CDATA[小作弊玩游戏]]></title>
+    <link href="http://www.youth2009.org/blog/2012/05/22/little-cheat-for-game/"/>
+    <updated>2012-05-22T23:31:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/05/22/little-cheat-for-game</id>
+    <content type="html"><![CDATA[<p>有这么一个小游戏，按照顺序输入字母表的26个英文字母，看看你输入的总时间是多少。有个变态的人竟然在2s内就输入了26个字母，而且不允许有任何错误，真心佩服！！！</p>
 
-sudo rm -rf \
-/opt/local \
-/Applications/DarwinPorts \
-/Applications/MacPorts \
-/Library/LaunchDaemons/org.macports.* \
-/Library/Receipts/DarwinPorts*.pkg \
-/Library/Receipts/MacPorts*.pkg \
-/Library/StartupItems/DarwinPortsStartup \
-/Library/Tcl/darwinports1.0 \
-/Library/Tcl/macports1.0 \
-~/.macports</pre>
+<p>我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊……</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">tell application "Google Chrome"
+activate
+repeat with i from 0 to 25
+delay 0.04
+tell application "System Events"
+keystroke (ASCII character of (97 + i))
+end tell
+end repeat
+end tell</pre>
 
 
-<p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
+<p>不减速的话系统根本无法记录，所以还是减速了，这个速度正好拿到第一名的位置，OK，剩下的让人去羡慕吧！！！</p>
 
-<p>我删除了MacPorts后就开始用Homebrew了。</p>
+<p>感谢Apple提供的AppleScript这样优秀的脚本工具～</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Mac系统关闭dashboard]]></title>
-    <link href="http://www.youth2009.org/blog/2012/01/26/turn-off-dashboard-on-mac/"/>
-    <updated>2012-01-26T00:49:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/01/26/turn-off-dashboard-on-mac</id>
-    <content type="html"><![CDATA[<p>一开始感觉dashboard这个东西挺好的，加上了好几个小插件玩，但现在发现使用频率超低，所以干脆想办法关闭吧，听说还能节约部分内存和提升开机速度，对这些倒是不太关心，只能有种不用就关闭的态度驱使着我。</p>
+    <title type="html"><![CDATA[买了textmate]]></title>
+    <link href="http://www.youth2009.org/blog/2012/02/23/have-bought-textmate/"/>
+    <updated>2012-02-23T19:29:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/02/23/have-bought-textmate</id>
+    <content type="html"><![CDATA[<p>截至目前，这是我买得最贵的一款软件了——39欧元（327RMB）</p>
 
-<p>关闭命令：</p>
+<p>一直在豆瓣Textmate小组中等人家团购，自己也从没在官网试过购买，一看是用的paypal做中转，感觉不靠谱，以前也没试过paypal的支付，没想到这次成功了，先用了张信用卡支付，发现不行，结果换普通银行卡，直接跳转到了银联，然后我又用的信用卡透支……</p>
 
-<pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean YES</pre>
+<p>稍微配置了一下textmate，按照<a href="http://www.lixiaolai.com/archives/10895.html">这里</a>的方法，其中1.5版本的中文字体那里，建议不要尝试了，不完美，还是等2.0正式发布了吧，听说2.0对于中文字体支持得很好，但我懒得下载测试版来用：）</p>
+
+<p>加入GetBundles：</p>
+
+<pre class="prettyprint linenums bush:bash" lang="bash">mkdir -p ~/Library/Application\ Support/TextMate/Bundles
+cd !$
+svn co http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/
+osascript -e 'tell app "TextMate" to reload bundles'</pre>
 
 
-<p> </p>
+<p>第一次见cd还能这样用，这样简直太方便了！还有最后那句script，多么优美的句子：）</p>
 
-<p>运行后最好再执行一下这个生效：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">killall Dock</pre>
-
-
-<p>如果需要重新开启，请使用这条命令，包括了killall Dock：</p>
-
-<pre class="prettyprint linenums bush:bash" lang="bash">defaults write com.apple.dashboard mcx-disabled -boolean NO
-killall Dock</pre>
-
+<p>以后就要多用textmate了，先放弃emacs。</p>
 ]]></content>
   </entry>
   

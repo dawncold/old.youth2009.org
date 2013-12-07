@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2013-12-03T23:37:03+08:00</updated>
+  <updated>2013-12-07T17:02:32+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[give up ruby]]></title>
+    <link href="http://www.youth2009.org/blog/2013/01/27/give-up-ruby/"/>
+    <updated>2013-01-27T18:39:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/01/27/give-up-ruby</id>
+    <content type="html"><![CDATA[<p>感觉中间隔了好久，最终还是把study ruby给放弃了，顺便找了个充足的理由——在没学好当下这门语言之前，不要再尝试其他的。</p>
+
+<p>虽然一个coder要保持技术的敏感性与前瞻性，但频繁换编程语言实在不是一件好事，我现在仍然对于自己涉猎太多编程语言而感到烦躁，主要就是会的太多而不精，一旦用上了还真拿不出手，那种感觉很不爽！所以，暂且不要跟着《Pragmatic Programmer》中说得那样来了。</p>
+
+<p>暂且这样吧。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[gets method in ruby]]></title>
+    <link href="http://www.youth2009.org/blog/2013/01/03/gets-method-in-ruby/"/>
+    <updated>2013-01-03T20:40:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/01/03/gets-method-in-ruby</id>
+    <content type="html"><![CDATA[<p><strong>Important</strong>: Also notice that we&rsquo;re using STDIN.gets instead of plain &lsquo;ol gets. That is because if there is stuff in ARGV, the default gets method tries to treat the first one as a file and read from that. To read from the user&rsquo;s input (i.e., stdin) in such a situation, you have to use it STDIN.gets explicitly.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby中的write_attribute]]></title>
@@ -34,19 +56,6 @@
 
 
 <p>使用write_attribute(xxx,jjj)即可，意思就是把jjj赋值给xxx了，因为此时正好在定义xxx，所以不能用xxx = 这样的方法赋值。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[痛苦的rails]]></title>
-    <link href="http://www.youth2009.org/blog/2012/02/12/pain-rails/"/>
-    <updated>2012-02-12T22:03:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/02/12/pain-rails</id>
-    <content type="html"><![CDATA[<p>由于rails给我带来的痛苦，让我对ruby这门写着code for fun的语言产生了怀疑，真得有fun么？一开始就没有感觉，现在来看更是如此。</p>
-
-<p>rails是一个正在成长的框架，每一个小版本号的变动都可能会引入和废弃不少特性，而我又傻傻地在使用最新的rails（3.2.1），书上讲的都是rails2.2.2的内容，乍一看变动不应该太大啊，实际上并不是如此！！！</p>
-
-<p>对于一个新手来说，学习一个正在成长的框架是痛苦的：（</p>
 ]]></content>
   </entry>
   
@@ -147,23 +156,6 @@ Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql
 <p>但很可惜，在Ruby这里，看看还不一定就能理解，要不然今天也不会单独写一篇日志了，真得有不少特性和其他编程语言不一样，概念上倒是还能理解，语法符号上就要重新接受了，想等过两天买的Ruby编程书来到后细细重头看。</p>
 
 <p>还有20天了，真不知道当初设想的几个小理念能够实现多少，但也别失望，我还成功转型了呢，这个寒假收获将会颇丰！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[开学Ruby]]></title>
-    <link href="http://www.youth2009.org/blog/2012/02/06/firstly-study-ruby/"/>
-    <updated>2012-02-06T00:40:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2012/02/06/firstly-study-ruby</id>
-    <content type="html"><![CDATA[<p>先从官方文档那里找各种资料学习，已经在amazon上买书了，买了本rails应用的书，还买了两本考系统架构师的书，再就是想买一本讲ruby语言的书，很可惜amazon上没货，要是从非amazon商家买的话需要支付高昂的快递费，于是从淘宝上找了家靠谱的商家，还有满49包邮（幸亏这本书是51，包邮了）</p>
-
-<p>对了，今天在amazon上买书是因为收到了amazon前段时间送的满100送20优惠券，对于我这种很喜欢在amazon上买技术书籍的书虫来说这类活动太好了，以后多多参加！</p>
-
-<p>说废话太多了，今天断断续续看了这里的教程，基本想要按照讲得做，看完一半了，明天把剩下弄完！</p>
-
-<p>教程地址：<a href="http://pine.fm/LearnToProgram/"><a href="http://pine.fm/LearnToProgram/">http://pine.fm/LearnToProgram/</a></a>  </p>
-
-<p>ruby的中文参考文档页：<a href="http://www.ruby-lang.org/zh_cn/documentation/"><a href="http://www.ruby-lang.org/zh_cn/documentation/">http://www.ruby-lang.org/zh_cn/documentation/</a></a></p>
 ]]></content>
   </entry>
   

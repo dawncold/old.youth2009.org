@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: css | Trade Off]]></title>
+  <link href="http://www.youth2009.org/blog/categories/css/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2013-12-07T17:02:32+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[lazy-load-if-image-in-background]]></title>
+    <link href="http://www.youth2009.org/blog/2013/07/01/lazy-load-if-image-in-background/"/>
+    <updated>2013-07-01T23:21:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/07/01/lazy-load-if-image-in-background</id>
+    <content type="html"><![CDATA[<p>自从发现background-position在各个浏览器下表现良好之后就在网站首页几个地方用了，可惜有个问题也出现了，只要是在background中的图一般会等到页面所有img中的图片加载完之后才会被加载，无论这个image是在html中的什么位置。在一般的网站首页可能还好，没那么多img，放在background中的image慢一点加载可能看不出异常，不过在我们网站，那个首页超多images的网站，就真的能看到差别（只要没有cache）。</p>
+
+<p>现在的做法要效仿twitter，它的首页是一张巨大背景图，是用img加载进来后css调整得像是background。</p>
+
+<p>还有个图片上传的功能需要改改，原先让编辑们把两张图拼在一起，现在我竟然要用PIL把它们再分开，为了不让他们察觉到和以前不一样，并且要让他们传两张图当然还不如让他们传一张来得简单。</p>
+]]></content>
+  </entry>
+  
+</feed>
