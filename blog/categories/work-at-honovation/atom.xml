@@ -4,7 +4,7 @@
   <title><![CDATA[Category: work@honovation | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/work-at-honovation/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2013-12-07T22:30:41+08:00</updated>
+  <updated>2013-12-08T15:00:02+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Object.keys-and-JSON-in-IE6]]></title>
+    <link href="http://www.youth2009.org/www/blog/2013/12/08/object-dot-keys-and-json-in-ie6/"/>
+    <updated>2013-12-08T14:52:12+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2013/12/08/object-dot-keys-and-json-in-ie6</id>
+    <content type="html"><![CDATA[<p>下单页面用到了js中的JSON和Object.keys，都是坑。</p>
+
+<p>JSON虽然是build-in的JSON parser和stringify方法，但IE6，7，8(Q)都是无法使用的，如果用jQuery的话，可以用jQuery的parseJSON来解析，但stringify的话需要依赖第三方库或者自己实现，我用了JSON3.js这个库。首选build-in的parse和stringify方法，如果没有就实现。github地址：<a href="https://github.com/bestiejs/json3">https://github.com/bestiejs/json3</a></p>
+
+<p>同样的Object.keys()因为不能在IE9下使用，因为要取一个Object的keys数量，有的时候是用Object的keys列表，所以以后为了兼容，就只能：</p>
+
+<p>```js
+for(var p in obj) {</p>
+
+<pre><code>if(obj.hasOwnProperty(p)) {
+    count++;
+    keys.push(p);
+}
+</code></pre>
+
+<p>}
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[timestamp]]></title>
@@ -73,17 +98,6 @@
     <content type="html"><![CDATA[<p>SAP的接口就是和别人给的不一样，style为literal，最明显的地方就是operation中的参数是literal，原先的参数是一个object，按照原先的方法调用时发现传递过去的值都被放在了第一个参数中，很是不解。后来才知道这样的operation需要用keywords的那种传值方法——<code>**suds_client.dict(object)</code>，用suds的client的dict方法把构造的对象变成dict，再用<code>**</code>。</p>
 
 <p>又被坑了一下。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[without-nginx-upload-module]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/07/01/without-nginx-upload-module/"/>
-    <updated>2013-07-01T23:28:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/07/01/without-nginx-upload-module</id>
-    <content type="html"><![CDATA[<p>前些天把nginx-upload-module这个依赖去掉了，用了nginx builtin的方法，感觉更好了，其实深层原因是这个module的作者不玩了。。。只有感受到了这种切肤之痛才有变革的动力！！！</p>
-
-<p>主要内容记录在了这里：<a href="http://www.youth2009.org/blog/2013/06/25/nginx-upload-file-without-backend/">http://www.youth2009.org/blog/2013/06/25/nginx-upload-file-without-backend/</a></p>
 ]]></content>
   </entry>
   

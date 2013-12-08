@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/www/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2013-12-07T22:30:41+08:00</updated>
+  <updated>2013-12-08T15:00:02+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Object.keys-and-JSON-in-IE6]]></title>
+    <link href="http://www.youth2009.org/www/blog/2013/12/08/object-dot-keys-and-json-in-ie6/"/>
+    <updated>2013-12-08T14:52:12+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2013/12/08/object-dot-keys-and-json-in-ie6</id>
+    <content type="html"><![CDATA[<p>下单页面用到了js中的JSON和Object.keys，都是坑。</p>
+
+<p>JSON虽然是build-in的JSON parser和stringify方法，但IE6，7，8(Q)都是无法使用的，如果用jQuery的话，可以用jQuery的parseJSON来解析，但stringify的话需要依赖第三方库或者自己实现，我用了JSON3.js这个库。首选build-in的parse和stringify方法，如果没有就实现。github地址：<a href="https://github.com/bestiejs/json3">https://github.com/bestiejs/json3</a></p>
+
+<p>同样的Object.keys()因为不能在IE9下使用，因为要取一个Object的keys数量，有的时候是用Object的keys列表，所以以后为了兼容，就只能：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">p</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">p</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>      <span class="nx">keys</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[useful-shell-command]]></title>
@@ -480,51 +508,6 @@
 <p>现在的做法要效仿twitter，它的首页是一张巨大背景图，是用img加载进来后css调整得像是background。</p>
 
 <p>还有个图片上传的功能需要改改，原先让编辑们把两张图拼在一起，现在我竟然要用PIL把它们再分开，为了不让他们察觉到和以前不一样，并且要让他们传两张图当然还不如让他们传一张来得简单。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[nginx-upload-file-without-backend]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/06/25/nginx-upload-file-without-backend/"/>
-    <updated>2013-06-25T23:09:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/06/25/nginx-upload-file-without-backend</id>
-    <content type="html"><![CDATA[<p>以前用了nginx-upload-module，不过这个module的作者不打算继续更新了，导致nginx版本高于1.3.9就无法使用这个module来处理上传文件。本着不引入更多依赖并且使用一个比较成熟方法的前提，只有client_body_in_file_only，这是nginx buildin方法。</p>
-
-<p>原本用upload-module的时候在location / 中有个if，如果发现有multipart就会处理一下，再pass回去。处理完后会多出两个参数，比如image.name和image.path，其中image是file input的name。然后back-end就直接那path和name来处理文件了，临时文件会放在一个固定的地方。</p>
-
-<p>由于client_body_in_file_only只能放在server、http、location中，得专门建立一个location而不能放在if中。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>location ^~ /upload/ {
-</span><span class='line'>  client_body_temp_path      /tmp/;
-</span><span class='line'>  client_body_in_file_only   on;
-</span><span class='line'>  client_body_buffer_size    128K;
-</span><span class='line'>  client_max_body_size       1000M;
-</span><span class='line'>
-</span><span class='line'>  proxy_pass_request_headers on;
-</span><span class='line'>  proxy_set_header           X-FILE $request_body_file; 
-</span><span class='line'>  proxy_set_body             off;
-</span><span class='line'>  proxy_redirect             off;
-</span><span class='line'>  proxy_pass                 http://backend/
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样以upload开头的就会做这样处理，上传的文件path会放在header中，至于name该怎么办，我是把name的值作为query string拼在了form的action中，在上传开始前得到文件名，然后拼上去。</p>
-
-<p>需要注意的是，client_body_in_file_only不支持RFC2388，也就是说multipart不管用，你可以考虑用ajax上传插件来做上传，注意插件里的multipart设为false。上传插件推荐JQuery-File-Upload。</p>
-
-<p>依赖，越少越好。</p>
 ]]></content>
   </entry>
   

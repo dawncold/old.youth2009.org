@@ -4,7 +4,7 @@
   <title><![CDATA[Category: js | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/js/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2013-12-07T22:30:41+08:00</updated>
+  <updated>2013-12-08T15:00:02+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Object.keys-and-JSON-in-IE6]]></title>
+    <link href="http://www.youth2009.org/www/blog/2013/12/08/object-dot-keys-and-json-in-ie6/"/>
+    <updated>2013-12-08T14:52:12+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2013/12/08/object-dot-keys-and-json-in-ie6</id>
+    <content type="html"><![CDATA[<p>下单页面用到了js中的JSON和Object.keys，都是坑。</p>
+
+<p>JSON虽然是build-in的JSON parser和stringify方法，但IE6，7，8(Q)都是无法使用的，如果用jQuery的话，可以用jQuery的parseJSON来解析，但stringify的话需要依赖第三方库或者自己实现，我用了JSON3.js这个库。首选build-in的parse和stringify方法，如果没有就实现。github地址：<a href="https://github.com/bestiejs/json3">https://github.com/bestiejs/json3</a></p>
+
+<p>同样的Object.keys()因为不能在IE9下使用，因为要取一个Object的keys数量，有的时候是用Object的keys列表，所以以后为了兼容，就只能：</p>
+
+<p>```js
+for(var p in obj) {</p>
+
+<pre><code>if(obj.hasOwnProperty(p)) {
+    count++;
+    keys.push(p);
+}
+</code></pre>
+
+<p>}
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[use-change-event-on-checkbox]]></title>
@@ -74,23 +99,6 @@ CKEDITOR.replace(&lsquo;description&rsquo;)</p>
     <content type="html"><![CDATA[<p>最近有个网站需要一个简单的功能——全选一些checkbox，但用attr的方法总是出问题，主要问题如下：第一次全选没问题，如果此时取消选择一些checkbox，再用全选就不管用了，主要原因就是第一次全选的时候自动加入了checked属性，以后再强制attr(&ldquo;checked&rdquo;,true)就会没反应。在<a href="http://blog.csdn.net/yaerfeng/article/details/7792832">这里</a>看到一篇文章，里面提到了prop方法，是1.6以后才加入的，就是部分替换了attr的功能，用了prop就可以及时对操作做出反应（这里我不太理解），总之本来用attr的操作现在需要用prop才有效果，当然了，如果你用纯js肯定是没问题喽。</p>
 
 <p>换用prop之后，问题解决！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[四种浏览器下的JS日期对象]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/05/30/js-data-object-in-four-browers/"/>
-    <updated>2011-05-30T22:20:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/05/30/js-data-object-in-four-browers</id>
-    <content type="html"><![CDATA[<p>测试浏览器为：IE8、Chrome、Firefox、Safari，除了IE，都是最新版本，不多说了，都兼容的创建Data的方式是这样的：</p>
-
-<p><code>
-var da = '2000-01-01 00:00:00';
-var da_array = da.split(' ');
-var da_1 = da_array[0].split('-');
-var da_2 = da_array[1].split(':');
-alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));
-</code></p>
 ]]></content>
   </entry>
   
