@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/www/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2013-12-08T15:00:02+08:00</updated>
+  <updated>2013-12-08T20:45:01+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -49,6 +49,8 @@
     <content type="html"><![CDATA[<p>找到size为0的文件，并删除：<code>find -type f -size 0 | xargs rm</code></p>
 
 <p>替换Linux的换行成windows的：<code>ls | xargs perl -i -pe 's/\n/\r\n/g'</code></p>
+
+<p>批量改名哦（把<em>.md改为</em>.markdown）：<code>for i in</code>ls *.md<code>;do mv $i</code>echo $i | sed &rsquo;s/.md/.markdown/&lsquo;<code>;done</code></p>
 ]]></content>
   </entry>
   
