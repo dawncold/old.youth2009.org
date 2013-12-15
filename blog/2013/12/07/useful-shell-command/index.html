@@ -7,7 +7,8 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="找到size为0的文件，并删除：find -type f -size 0 | xargs rm 替换Linux的换行成windows的：ls | xargs perl -i -pe 's/\n/\r\n/g' 批量改名哦（把.md改为.markdown）：for i inls *.md;do mv &hellip;">
+	<meta name="description" content="找到size为0的文件，并删除：find -type f -size 0 | xargs rm 替换Linux的换行成windows的：ls | xargs perl -i -pe 's/\n/\r\n/g' 批量改名哦（把.md改为.markdown）： 1
+for i in `ls *.md &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,7 +80,12 @@
 
 <p>替换Linux的换行成windows的：<code>ls | xargs perl -i -pe 's/\n/\r\n/g'</code></p>
 
-<p>批量改名哦（把<em>.md改为</em>.markdown）：<code>for i in</code>ls *.md<code>;do mv $i</code>echo $i | sed &rsquo;s/.md/.markdown/&lsquo;<code>;done</code></p>
+<p>批量改名哦（把<em>.md改为</em>.markdown）：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">for </span>i in <span class="sb">`</span>ls *.md<span class="sb">`</span>;<span class="k">do </span>mv <span class="nv">$i</span> <span class="sb">`</span><span class="nb">echo</span> <span class="nv">$i</span> | sed <span class="s1">&#39;s/.md/.markdown/&#39;</span><span class="sb">`</span>;<span class="k">done</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 
