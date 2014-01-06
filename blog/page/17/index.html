@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="如果你用了Subtitle的Style，那么设置textAlignment为center就没用了，当然设置textAlignment目前只能针对textLabel来设置，听说在3.0以后的版本对于cell的textAlignment的设置方法废弃了。 &hellip;">
+	<meta name="description" content="最近在用Box2d开发小游戏，不可避免用到多边形物体，当然有的形状还好描述，但大多数是那种难以描述的物体，所以这个VertexHelper就是不可或缺的武器了，它能够让你把需要的物体边界描出来，自动生成Box2d需要的边界代码。 没想到作者把软件放到app store上卖，但还提供源代码， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,53 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/08/04/use-vertexhelper/">
+		
+			VertexHelper的使用</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近在用Box2d开发小游戏，不可避免用到多边形物体，当然有的形状还好描述，但大多数是那种难以描述的物体，所以这个VertexHelper就是不可或缺的武器了，它能够让你把需要的物体边界描出来，自动生成Box2d需要的边界代码。</p>
+
+<p>没想到作者把软件放到app store上卖，但还提供源代码，不知道他们之间是什么不一样……</p>
+
+<p>从GitHub那里得到源代码，打开xcode编译一下就能用了。</p>
+
+<p>有一点需要说明，得到的源代码中Project的Base SDK是10.5，在我编译的时候提示了一个警告，现在找不到了。只需要把Target中VertexHelper的BaseSDK改为10.7就可以了，当然如果你没有10.7就只能用10.6了。可能是因为我没有10.5SDK才出现的错误吧。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-04T23:02:00+08:00" pubdate data-updated="true">Aug 4<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/gameapp/'>gameapp</a>, <a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -542,51 +589,6 @@ A style for a cell with a left-aligned label across the top and a left-aligned l
 </div>
 </article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/09/best-content-in-include_path/">
-		
-			最好在include_path中加上根</a>
-	</h2>
-	<div class="entry-content">
-		<p>刚刚用了下typecho博客插件——友情链接来添加一个友情链接，但发现很多php文件找不到了，很奇怪，以前是可以的，看到warning中的信息，有个include_path的相关东西，看看里面提到的路径是不是有需要的文件，结果没有，而在其中路径的下一级目录下有，这就怪了。</p>
-
-<p>Google说最好把include_path写成&#8221;./&ldquo;。是不是这样就是自动便利所有的内容了？我猜是的！当前的include_path中又pear的路径，我就先不删除了，linux系统下用冒号分隔各个路径，在前面加上一个点即可。</p>
-
-<p>重启php，再次访问，恢复正常！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-09T16:54:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/php/'>php</a>
-
-
-</div>
-	
-</div>
-</article>
-
 <nav id="pagenavi">
     
         <a href="/blog/page/16/" class="prev">Prev</a>
@@ -596,7 +598,7 @@ A style for a cell with a left-aligned label across the top and a left-aligned l
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2013
+	<footer id="footer" class="inner">Copyright &copy; 2014
 
     dawncold
 

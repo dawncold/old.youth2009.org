@@ -7,7 +7,18 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="刚刚得知pickle的意思是泡菜，而这篇文章可不打算讲解泡菜的制作方法，只是说明一下python语言中的pickle模块。 这个模块说是能够存储任何python对象，而且还能取出来再使用，有pickle和cPickle两个模块，功能是一样的，只是后者用C语言实现，据说速度比前者快1000倍。 &hellip;">
+	<meta name="description" content="又是一个bt功能：创建一种函数规则 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+#!/usr/bin/python
+# Filename: lambda.py def make_repeater(n): return lambda s: s*n twice = make_repeater(2) &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +85,72 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/05/lambda-in-python/">
+		
+			用lambda创建函数</a>
+	</h2>
+	<div class="entry-content">
+		<p>又是一个bt功能：创建一种函数规则</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/python</span>
+</span><span class='line'><span class="c"># Filename: lambda.py</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">make_repeater</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>   <span class="k">return</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">*</span><span class="n">n</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">twice</span> <span class="o">=</span> <span class="n">make_repeater</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">print</span> <span class="n">twice</span><span class="p">(</span><span class="s">&#39;word&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="n">twice</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>twice就是创建出来的函数规则，参数2传进入构建了lambda表达式中的n，s值需要再指定，于是后面的word字符串和数字5就算是这个s了吧。了解到这种bt方法很有用，不过对于我这样的初学者来说，暂时还看不到前景：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-05T19:51:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -591,98 +668,6 @@
 </div>
 </article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/04/23/algo-circle-count-quit/">
-		
-			约瑟夫问题算法</a>
-	</h2>
-	<div class="entry-content">
-		<p>昨晚还在忙碌网站，一个同学发来短信问了这样一个算法问题：一些人手拉手围成一个圈，从一个人开始报数，数到3的人退出，然后下一个人再开始报数，依然是数到3者退出，问最后剩下2个人是哪两个？</p>
-
-<p>这题目看起来不算难，但这要是不靠一个语言的特性来解决，还是有些麻烦的。我说的语言特性就是一个bt数组方法，比如说移除元素啊这样的方法，用纯粹的C语言来写最好了。不过我那位同学是在雪VB.net不知道那里有没有语言特性。我手头上正在写PHP网页，就干脆用PHP写一个出来试试吧：）  </p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="nv">$circle</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
-</span><span class='line'><span class="nv">$out</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="nv">$count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="nv">$n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$num</span><span class="p">;</span><span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'><span class="nv">$circle</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$i</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'><span class="nv">$count</span> <span class="o">%=</span> <span class="nv">$num</span><span class="p">;</span>
-</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="nv">$circle</span><span class="p">[</span><span class="nv">$count</span><span class="p">]</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'><span class="k">if</span><span class="p">((</span><span class="nv">$n</span> <span class="o">%</span> <span class="nv">$diff</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="nv">$diff</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
-</span><span class='line'><span class="nv">$circle</span><span class="p">[</span><span class="nv">$count</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'><span class="nv">$out</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="nv">$out</span> <span class="o">===</span> <span class="nv">$num</span> <span class="o">-</span> <span class="nv">$sur</span><span class="p">)</span>
-</span><span class='line'><span class="k">break</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nv">$n</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nv">$count</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这就是主要代码了，还算是简单吧？去Google了一下，看到有些人的解法都用了好麻烦的链表来抽象，用链表确实更符合客观事实，不过那样写起来，是不是给别人看的呢？！</p>
-
-<p>算法的负责度显然是线性的，感觉还可以吧。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-23T09:54:00+08:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/algorithm/'>algorithm</a>, <a class='category' href='/blog/categories/php/'>php</a>
-
-
-</div>
-	
-</div>
-</article>
-
 <nav id="pagenavi">
     
         <a href="/blog/page/18/" class="prev">Prev</a>
@@ -692,7 +677,7 @@
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2013
+	<footer id="footer" class="inner">Copyright &copy; 2014
 
     dawncold
 

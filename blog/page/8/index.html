@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="原本以为今天能上线给编辑们使用，结果只是找了编辑部的几个人来现场的开发环境中玩了玩，提了提意见，明天下午1点我们正式开始用生产环境。 今天我又部署了好几次，期间也出现过一些问题，但都一一修复了，比较大的就是我把Git搞乱了，让周围几个人突然陷入困境。其实是我在生产分支上做了改动， &hellip;">
+	<meta name="description" content="我们今天终于上线了，给编辑们用了一下，我还不知道他们的反馈如何，应该还不错吧，但很可惜由于公司内部网络的问题，我们的服务器不是所有人都能访问到，好像听说有个部门访问不到，具体问了一下工程部说改个gateway就能行了，当时正在抓图，就没动，下周再修改一下试试吧。 据说下周要开始主攻特辑这部分了， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,51 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/02/online/">
+		
+			Online</a>
+	</h2>
+	<div class="entry-content">
+		<p>我们今天终于上线了，给编辑们用了一下，我还不知道他们的反馈如何，应该还不错吧，但很可惜由于公司内部网络的问题，我们的服务器不是所有人都能访问到，好像听说有个部门访问不到，具体问了一下工程部说改个gateway就能行了，当时正在抓图，就没动，下周再修改一下试试吧。</p>
+
+<p>据说下周要开始主攻特辑这部分了，eric说我可能会很忙了，因为一直是我再搞特辑，哎，说特辑真别扭，原来我们一直在用topic，现在竟然换一个说法。</p>
+
+<p>明天打算吃火锅，早晨早去买点菜，晚上happy一把。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-02T20:17:00+08:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/life/'>life</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -572,77 +617,6 @@
 </div>
 </article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/08/lvm-and-raid1/">
-		
-			LVM+RAID实践</a>
-	</h2>
-	<div class="entry-content">
-		<p>两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。</p>
-
-<p>0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>fdisk /dev/sda
-</span><span class='line'>fdisk /dev/sdb
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>1.创建PV</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pvcreate /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2.创建VG</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vgcreate -s 16M vg0 /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3.创建LV</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m 1 -lxxxx --corelog
-</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-08T14:09:00+08:00" pubdate data-updated="true">Oct 8<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/lvm/'>lvm</a>
-
-
-</div>
-	
-</div>
-</article>
-
 <nav id="pagenavi">
     
         <a href="/blog/page/7/" class="prev">Prev</a>
@@ -652,7 +626,7 @@
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2013
+	<footer id="footer" class="inner">Copyright &copy; 2014
 
     dawncold
 
