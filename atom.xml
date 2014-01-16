@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/www/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-01-06T22:16:41+08:00</updated>
+  <updated>2014-01-16T22:27:40+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[nginx-and-dependences]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/01/16/nginx-and-dependences/"/>
+    <updated>2014-01-16T18:46:33+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/01/16/nginx-and-dependences</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.34.tar.gz
+</span><span class='line'>wget http://www.openssl.org/source/openssl-1.0.1f.tar.gz
+</span><span class='line'>wget http://nginx.org/download/nginx-1.5.8.tar.gz
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>default install pcre and openssl</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>nginx configure
+</span><span class='line'>+gzip
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Configuration summary
+</span><span class='line'>  + using system PCRE library
+</span><span class='line'>  + OpenSSL library is not used
+</span><span class='line'>  + md5: using system crypto library
+</span><span class='line'>  + sha1: using system crypto library
+</span><span class='line'>  + using system zlib library
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[lxml-and-dependences]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/01/16/lxml-and-dependences/"/>
+    <updated>2014-01-16T18:31:09+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/01/16/lxml-and-dependences</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install libxml2-dev
+</span><span class='line'>sudo apt-get install libxslt1-dev
+</span><span class='line'>sudo apt-get install python-dev  （if Python.h: No file or dir..）
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[daemon-in-nginx]]></title>
@@ -459,66 +516,6 @@
     <content type="html"><![CDATA[<p>SAP的接口就是和别人给的不一样，style为literal，最明显的地方就是operation中的参数是literal，原先的参数是一个object，按照原先的方法调用时发现传递过去的值都被放在了第一个参数中，很是不解。后来才知道这样的operation需要用keywords的那种传值方法——<code>**suds_client.dict(object)</code>，用suds的client的dict方法把构造的对象变成dict，再用<code>**</code>。</p>
 
 <p>又被坑了一下。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[搭建4pm.la的数据库服务器]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/07/04/build-4pm-env/"/>
-    <updated>2013-07-04T21:54:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/07/04/build-4pm-env</id>
-    <content type="html"><![CDATA[<p>原来用MySQL比较多，现在工作上主要用PostgreSQL，对于低级的应用来说，选什么数据库都差不多，但也要为以后发展做准备，不过我暂时看不到那么远，PG作为一个开源的数据库来说，还算是比MySQL有优势一点，所以就用这个了。</p>
-
-<p>在Mac上安装的时候有个locale的选择，我选了这个：</p>
-
-<p><img src="http://pic.yupoo.com/dawncold0/CZ9bpp9U/medish.jpg" alt="locale select" /></p>
-
-<p>然后下载了pgAdmin作为GUI工具，结合PG的CLI一起使用比较好。使用psql登陆数据库可以用：<code>psql -h localhost -U postgres -W</code></p>
-
-<pre><code>其中
--h db host
--U db user
--W use password
-</code></pre>
-
-<p>pgAdmin用起来感觉超差，目测是java写的，有点小卡，远不如在Ubuntu上的体验。</p>
-
-<p>创建一个网站用的用户，可以用createuser这条命令，或者连上PG后写CREATE USER这种SQL，官方文档介绍两者没什么差别。createuser只是包装了一下SQL而已。（<a href="http://www.postgresql.org/docs/current/static/app-createuser.html">官方文档</a>）</p>
-
-<p><code>createuser -dEeP -h localhost -U postgres -W xxx</code></p>
-
-<pre><code>其中
--d can create db
--E encrypted user's password
--e echo SQL command
--P can not create role
-</code></pre>
-
-<p>创建一个数据库，同样可以用包装了CREATE DATABASE的createdb。(<a href="http://www.postgresql.org/docs/9.2/static/app-createdb.html">官方文档</a>）</p>
-
-<p><code>createdb -e -E UTF8 -l zh_CN.UTF-8 -O OWNER -h localhost -U postgres -W DBNAME</code></p>
-
-<pre><code>其中
--e echo SQL command
--E use encoding
--l set locale, included LC_COLLATE and LC_CTYPE
--O db's owner
-</code></pre>
-
-<p>看到篇不错的文章，介绍PG的ROLE、USER、SCHEMA、TABLESPACE、DATABASE等概念的关系：<a href="http://blog.csdn.net/kanon_lgt/article/details/5931522">这里</a></p>
-
-<p>生产环境用的Ubuntu12.04.2，在创建数据库的时候制定locale，但没有zh_CN这个locale，于是需要安装：<code>/usr/shard/locales/install-language-pack zh_CN</code>，安装完了最好能重启机器，不然的话好像createdb一直会报错说zh_CN.UTF-8这个locale不正确。重启了之后再创建db就ok了，但告诉你说collection你选了zh_CN的，和默认模板template1的en_US冲突，提示是换成template0模板，于是加了参数<code>-T</code>:<code>createdb -e -E UTF8 -l "zh_CN.UTF-8" -O :OWNER -T template0 -h localhost -U postgres -W :DBNAME</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[without-nginx-upload-module]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/07/01/without-nginx-upload-module/"/>
-    <updated>2013-07-01T23:28:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/07/01/without-nginx-upload-module</id>
-    <content type="html"><![CDATA[<p>前些天把nginx-upload-module这个依赖去掉了，用了nginx builtin的方法，感觉更好了，其实深层原因是这个module的作者不玩了。。。只有感受到了这种切肤之痛才有变革的动力！！！</p>
-
-<p>主要内容记录在了这里：<a href="http://www.youth2009.org/blog/2013/06/25/nginx-upload-file-without-backend/">http://www.youth2009.org/blog/2013/06/25/nginx-upload-file-without-backend/</a></p>
 ]]></content>
   </entry>
   

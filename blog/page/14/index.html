@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="rebase被人翻译成衍合，是和merge功能差不多的一种操作，但提醒一点，进行rebase的内容一定不可以是提交到公共服务器上的内容，简单讲就是rebase操作你在本地自己玩就好了。 详细点的说明去这里看吧：http://progit.org/book/zh/ch3-6.html Jan &hellip;">
+	<meta name="description" content="刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！ 修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,169 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/02/05/update-ruby-on-mac/">
+		
+			更新Mac下的ruby</a>
+	</h2>
+	<div class="entry-content">
+		<p>刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！</p>
+
+<p>修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/bin中的情况，如果不能自动创建链接过去的话，麻烦是一个方面，关键是后面做的一些工作基本都白费了，可能你运行的一个软件是在/usr/bin中存在的，那样就不会自动搜索到你用brew安装的那个了。详情找找brew的工作原理吧：)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chown -R <span class="sb">`</span>whoami<span class="sb">`</span> /usr/local
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>首先我用了大家推荐的Homwbrew管理工具，这里安装完homebrew后需要在自己的bash配置文件中加入新的path：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/usr/local/bin:<span class="nv">$PATH</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>把这行加入到bash_profile中吧，这样就能让homebrew发挥作用了，你首先就能用上更新了的程序而不是从默认路径查找。（如果以前用了MacPorts的话你也会和我一样看到MacPorts的export命令，要去掉他们，或者你把Homebrew的export命令写在下面，这样能覆盖掉，既然我已经删除了MacPorts，所以干脆删除掉！）</p>
+
+<p>关闭terminal，重新加载刚才的bash_profile，这样就能用Homebrew了。</p>
+
+<p>首先安装git，自己和Homwbrew都用得到：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install git
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>接着更新一下Homebrew的源：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew update
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后安装了ruby后就能用gem来更新系统了：</p>
+
+<p>安装ruby：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install ruby
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>更新系统：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem update --system
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>后面的安装rails等操作就可以用gem来做了，看看自己的ruby版本，已经是1.9.3p0(2011-10-30)</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-05T00:00:00+08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/02/04/uninstall-macports/">
+		
+			删除MacPorts</a>
+	</h2>
+	<div class="entry-content">
+		<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo port -f uninstall installed
+</span><span class='line'>
+</span><span class='line'>sudo rm -rf <span class="se">\</span>
+</span><span class='line'>/opt/local <span class="se">\</span>
+</span><span class='line'>/Applications/DarwinPorts <span class="se">\</span>
+</span><span class='line'>/Applications/MacPorts <span class="se">\</span>
+</span><span class='line'>/Library/LaunchDaemons/org.macports.* <span class="se">\</span>
+</span><span class='line'>/Library/Receipts/DarwinPorts*.pkg <span class="se">\</span>
+</span><span class='line'>/Library/Receipts/MacPorts*.pkg <span class="se">\</span>
+</span><span class='line'>/Library/StartupItems/DarwinPortsStartup <span class="se">\</span>
+</span><span class='line'>/Library/Tcl/darwinports1.0 <span class="se">\</span>
+</span><span class='line'>/Library/Tcl/macports1.0 <span class="se">\</span>
+</span><span class='line'>~/.macports
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
+
+<p>我删除了MacPorts后就开始用Homebrew了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-04T21:53:00+08:00" pubdate data-updated="true">Feb 4<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mac/'>mac</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -503,98 +666,6 @@
 
 
 <time datetime="2012-01-26T00:49:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mac/'>mac</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/01/13/open-the-stack-function-of-dock/">
-		
-			开启Dock的堆栈功能</a>
-	</h2>
-	<div class="entry-content">
-		<p>打开Terminal，输入：<code>defaults write com.apple.dock scroll-to-open -bool TRUE;killall Dock</code></p>
-
-<p>然后回车（return），等Dock再次出现后，在已打开程序图标上滚动鼠标滚轮或者手势模拟滚轮，就能看到这个程序打开的子窗口或者子程序，很过瘾好用。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-13T21:56:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mac/'>mac</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/12/16/back-to-free-time/">
-		
-			终于回到自由的时候</a>
-	</h2>
-	<div class="entry-content">
-		<p>自从前段时间学校封杀了研究生web端自由登陆drcom以来，我就只能找网络中心的老师开了本科生的web登陆，速度很慢，还有流量限制。</p>
-
-<p>又加上Lion系统中的原drcom客户端不能用，我就攒了攒勇气下载了drcom4mac的源代码回来自己编译，本以为就是平台的微弱差异，没想到一大堆根本看不懂的错误出现，也没那么平静的心来阅读一个个C函数，就这样搁置了。</p>
-
-<p>昨晚Drcom的GoogleGroups中有人发来邮件，说是写了个java的drcom客户端欢迎测试，我今天早晨配置好了libpcap库和jpcap库，然后使用了这个客户端，打开GUI后输入账号密码，登陆没反应。于是告诉了作者，中午收到作者来信，说暂时还只能用命令行方式，这我当然能够接受，可惜在Mac的terminal中显示的中文提示都是乱码，于是svn到了原代码到eclipse中看看吧，按照提示组合了命令行，成功登陆了！</p>
-
-<p>从此又自由了。</p>
-
-<p>项目地址：<a href="code.google.com/p/jdrcom/">code.google.com/p/jdrcom/</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-16T21:27:00+08:00" pubdate data-updated="true">Dec 16<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 

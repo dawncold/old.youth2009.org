@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="想了好久都觉得连续拍照片做监控实在是没什么效率，默认情况应该是什么都不做，如果发现有人来了才拍下来或者录下来，但用标配的摄像头录像实在是会录出非常大的文件，保存文件又是问题。在官网的博客中看到了一个用opencv做的人脸识别，可以这样干嘛。于是紧随那片文章开始干。 &hellip;">
+	<meta name="description" content="今天早晨去公司后一开邮箱发现好多树莓派发来的警告信，如果是一封信可能是误报，但这么多，难道是真的有人闯入？不过看了大部分的图片都是空空的房间，但仍然有新的邮件过来，看来是红外探测器出问题了。 想了半天以为是昨天加的DHT11在读取数据的时候是不是改变了GPIO的布局，导致探测器的数据口得到数据， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,124 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/08/08/manage-rasp-pi-in-internal-network/">
+		
+			Manage-rasp-pi-in-internal-network</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天早晨去公司后一开邮箱发现好多树莓派发来的警告信，如果是一封信可能是误报，但这么多，难道是真的有人闯入？不过看了大部分的图片都是空空的房间，但仍然有新的邮件过来，看来是红外探测器出问题了。</p>
+
+<p>想了半天以为是昨天加的DHT11在读取数据的时候是不是改变了GPIO的布局，导致探测器的数据口得到数据，激活了它？后来证明不是。猜测啊：探测器放到了无线网卡下方，无线网卡有个工作指示灯一直闪烁，会不会触发了探测器，因为我换了个地方后探测器就正常工作了。</p>
+
+<p>在没有远程管理的前提下，解决的方法是去七牛把bucket先删掉，这样就不能再上传图片了，然后去sendgrid修改密码，这样就不能发送邮件了。其实我期待能引发一个异常，这样程序就退出了，但很可惜，七牛的lib似乎做了些处理，删掉bucket或者修改API KEY这样的方法也就是给个提示出来，他们处理了异常，不过好在sendgrid的lib没有处理异常，密码错误后引发的异常终止了程序！GREAT！我还担心了一天摄像头不断拍照会不会坏掉。</p>
+
+<p>上面都是背景吧，主题是一个远程管理的重要性，特别是出现这种突发情况而你又不在边上。</p>
+
+<p>受限于当地的网络环境，树莓派在一个很深的网络中——有家庭的路由器，再往上是小区的路由器，也许再往上就是公网IP了，和在原来的家不同，直接能拿到公网IP，这样基本可以让树莓派暴露在公网上，管理起来当然方便了。穿透这么多层网络，感觉好麻烦，虽然毕业论文是NAT穿透的应用。。。</p>
+
+<p>简单的做法就是利用第三方，我有一个VPS，当然在海外，除了速度上不如国内快之外，别的没啥了。</p>
+
+<p>于是在树莓派上建立一个反向SSH：<code>ssh -p VPS_PORT -fNR 2222:127.0.0.1:22 USER@VPS_HOST</code>，其中VPS_PORT如果你没修改默认的22的话，可以不写<code>-p VPS_PORT</code>，其他的，比如<code>fN</code>，你可以先不写，测试成功后再写上，只做端口转发而不执行命令。后面的R表示反向连接：就是127.0.0.1的22端口在后面远程主机中映射到2222端口。这样，登陆了远程主机的人，访问2222端口就可以访问到树莓派的22端口了。</p>
+
+<p>再临时生成几个rsa key加到authorized_keys中就可以不输密码登陆了，虽然速度稍慢一点，但至少是可用的！</p>
+
+<p>测试通过后使用autossh建立连接，这样即便是中断也会重连上：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-08T22:16:00+08:00" pubdate data-updated="true">Aug 8<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/raspberrypi/'>raspberrypi</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/08/08/basestring-and-str-in-python2x/">
+		
+			Basestring-and-str-in-python2x</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天在代码中发现原本过滤str的一个func被写成了过滤basestring，于是查了下basestring和str的区别：(在3.0之前)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>    object
+</span><span class='line'>         |
+</span><span class='line'>         |
+</span><span class='line'>     basestring
+</span><span class='line'>        / \
+</span><span class='line'>       /   \
+</span><span class='line'>     str  unicode</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.0之前python中有plain string和unicode string，前者是ascii中的那些字符，后者就是所有字符了，因为historical legacy。。。python出现的时候还木有unicode，所以很多python的lib是需要慢慢转换的，当然到了3.0就会不复存在了，全是unicode。</p>
+
+<p>这样的话就清楚了，str代表了那些ascii字符，unicode就是全部的字符，他们都继承自basestring。basestring是从python2.3开始引入的。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-08T21:39:00+08:00" pubdate data-updated="true">Aug 8<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -554,130 +672,6 @@
 
 
 	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/04/build-4pm-env/">
-		
-			搭建4pm.la的数据库服务器</a>
-	</h2>
-	<div class="entry-content">
-		<p>原来用MySQL比较多，现在工作上主要用PostgreSQL，对于低级的应用来说，选什么数据库都差不多，但也要为以后发展做准备，不过我暂时看不到那么远，PG作为一个开源的数据库来说，还算是比MySQL有优势一点，所以就用这个了。</p>
-
-<p>在Mac上安装的时候有个locale的选择，我选了这个：</p>
-
-<p><img src="http://pic.yupoo.com/dawncold0/CZ9bpp9U/medish.jpg" alt="locale select" /></p>
-
-<p>然后下载了pgAdmin作为GUI工具，结合PG的CLI一起使用比较好。使用psql登陆数据库可以用：<code>psql -h localhost -U postgres -W</code></p>
-
-<pre><code>其中
--h db host
--U db user
--W use password
-</code></pre>
-
-<p>pgAdmin用起来感觉超差，目测是java写的，有点小卡，远不如在Ubuntu上的体验。</p>
-
-<p>创建一个网站用的用户，可以用createuser这条命令，或者连上PG后写CREATE USER这种SQL，官方文档介绍两者没什么差别。createuser只是包装了一下SQL而已。（<a href="http://www.postgresql.org/docs/current/static/app-createuser.html">官方文档</a>）</p>
-
-<p><code>createuser -dEeP -h localhost -U postgres -W xxx</code></p>
-
-<pre><code>其中
--d can create db
--E encrypted user's password
--e echo SQL command
--P can not create role
-</code></pre>
-
-<p>创建一个数据库，同样可以用包装了CREATE DATABASE的createdb。(<a href="http://www.postgresql.org/docs/9.2/static/app-createdb.html">官方文档</a>）</p>
-
-<p><code>createdb -e -E UTF8 -l zh_CN.UTF-8 -O OWNER -h localhost -U postgres -W DBNAME</code></p>
-
-<pre><code>其中
--e echo SQL command
--E use encoding
--l set locale, included LC_COLLATE and LC_CTYPE
--O db's owner
-</code></pre>
-
-<p>看到篇不错的文章，介绍PG的ROLE、USER、SCHEMA、TABLESPACE、DATABASE等概念的关系：<a href="http://blog.csdn.net/kanon_lgt/article/details/5931522">这里</a></p>
-
-<p>生产环境用的Ubuntu12.04.2，在创建数据库的时候制定locale，但没有zh_CN这个locale，于是需要安装：<code>/usr/shard/locales/install-language-pack zh_CN</code>，安装完了最好能重启机器，不然的话好像createdb一直会报错说zh_CN.UTF-8这个locale不正确。重启了之后再创建db就ok了，但告诉你说collection你选了zh_CN的，和默认模板template1的en_US冲突，提示是换成template0模板，于是加了参数<code>-T</code>:<code>createdb -e -E UTF8 -l "zh_CN.UTF-8" -O :OWNER -T template0 -h localhost -U postgres -W :DBNAME</code></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-04T21:54:00+08:00" pubdate data-updated="true">Jul 4<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/4pm-dot-la/'>4pm.la</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/01/without-nginx-upload-module/">
-		
-			Without-nginx-upload-module</a>
-	</h2>
-	<div class="entry-content">
-		<p>前些天把nginx-upload-module这个依赖去掉了，用了nginx builtin的方法，感觉更好了，其实深层原因是这个module的作者不玩了。。。只有感受到了这种切肤之痛才有变革的动力！！！</p>
-
-<p>主要内容记录在了这里：<a href="http://www.youth2009.org/blog/2013/06/25/nginx-upload-file-without-backend/">http://www.youth2009.org/blog/2013/06/25/nginx-upload-file-without-backend/</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-01T23:28:00+08:00" pubdate data-updated="true">Jul 1<span>st</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/nginx/'>nginx</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>

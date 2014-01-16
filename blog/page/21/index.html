@@ -7,7 +7,8 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="OS的重要性不想再赘述，不过对于一个物理硬件，好的OS能够更大程度发挥其性能，这其中绝对不能缺乏好的设计模式以及优秀的各种调度算法。这里的一切几乎都是编程的理想学习材料，不过对于这样庞大的材料需要好好解读，否则可能根本领悟不到其中的真谛。 时间管理是我个人一直推崇的一种必备技能， &hellip;">
+	<meta name="description" content="第一章 一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤：
+源文件&mdash;&mdash;>经过预处理器（cpp）成为.i文件&mdash;&mdash;>经过编译器（cc1）成为.s文件&mdash;&mdash;>经过汇编器（as）成为.o文件，所有函数调用都成为. &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +75,172 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/04/10/csapp-study-part1/">
+		
+			CSAPP学习笔记第一辑</a>
+	</h2>
+	<div class="entry-content">
+		<h1>第一章</h1>
+
+<p>一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤：
+源文件&mdash;&mdash;>经过预处理器（cpp）成为.i文件&mdash;&mdash;>经过编译器（cc1）成为.s文件&mdash;&mdash;>经过汇编器（as）成为.o文件，所有函数调用都成为.o这样可重定向的目标程序&mdash;&mdash;>最后由连接器（ld）链接成成为可执行文件。cc1这名字真好听：）</p>
+
+<p>系统设计者的主要目标就是让信息在各种设备之间“拷贝速度”尽量快。显示一行“hello，world”的过程主要是从磁盘&mdash;&mdash;>主存&mdash;&mdash;>显示设备传递。</p>
+
+<p>文件是对I/O设备的抽象表示，虚拟内存主要是对贮存和磁盘I/O设备的抽象表示，进程则是对处理器、主存和I/O设备的抽象表示。</p>
+
+<p>一个进程下的多个线程共享这个进程的代码和全局数据，多线程之间比多进程之间更容易共享数据，因此线程一般比进程高效。</p>
+
+<p>虚拟地址空间由多个区（area）构成：程序代码和数据、堆、共享库、栈、内核虚拟存储器（占有1/4/）。</p>
+
+<h1>第二章</h1>
+
+<p>计算机使用二进制对所有数据进行编码。（这就是为什么学计算机的同学们能够用两只手数到1024而非计算机专业的同学们只能数到10：）</p>
+
+<p>这里有三种最重要的数字编码：无符号（unsigned）、二进制补码（two’s-complement）、浮点数（floating-point）。</p>
+
+<p>大多数计算机采用8位的块（或者叫字节）作为最小的可寻址存储器单位。存储器就象是一个很大的数组，每一个元素就是一个字节。</p>
+
+<p>十六进制的转化：把每个十六进制数分别转化为二进制即可。例如：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>0x173A4C
+</span><span class='line'>1：0001
+</span><span class='line'>7：0111
+</span><span class='line'>3：0011
+</span><span class='line'>A：1010
+</span><span class='line'>4：0100
+</span><span class='line'>C：1100</span></code></pre></td></tr></table></div></figure>
+
+
+<p>开头的0x是十六进制的标示，无需翻译。二进制转化到十六进制是要从右侧开始，每4位二进制数换成一个十六进制，因为取的是4位二进制数，所以不可能超过15，就能够换算成十六进制的0～F。</p>
+
+<p>用一个数除以2或者16取出余数就能得到相应的二进制或者十六进制编码，不过要倒序书写余数！！！</p>
+
+<p>对于一个字长为n位的机器而言，虚拟地址范围是0～（2的n次方）减1，一共是2的n次方字节。所以32位计算机的内存最大是2的32次方，即4GB。</p>
+
+<p>C语言中的指针使用机器的全字长，即可能是32位长度，占用4个字节（32位计算机）。</p>
+
+<p>可移植性的一个方面就是使程序对不同数据类型的确切大小不敏感。</p>
+
+<p>不同的计算机对于字节的存放顺序不同，分为大端法（big endian）、小端法（little endian），不同的处理器可能选择不同，还有一些处理器用哪种取决于CPU加电启动时确定的字节顺序，随机的：）比如0x01234567这个数字，大端法机器会这样存放：01、23、45、67。而小端法机器会这样存放：67、45、23、01（每一组数据还是正常的读法，只是要从右边开始读不同的组：）</p>
+
+<p>~a不是a在|运算下的逆元（相信学完离散数学就知道什么意思了：）</p>
+
+<p>是不是很……？！</p>
+
+<p>交换两个数的值（技巧性炫耀，没有性能上提升）:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>void swap(int x , int y)
+</span><span class='line'>{
+</span><span class='line'>   x = x ^ y;
+</span><span class='line'>   y = x ^ y;
+</span><span class='line'>   x = x ^ *y;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>`
+移位运算要注意结核性，x&lt;&lt;j&lt;&lt;k的结核性是（x&lt;&lt;j）&lt;&lt;k，而且还要注意优先级，1&lt;&lt;5-1应该是这样计算的：1&lt;&lt;(5-1)！！！所以只要不确定就加上括号，这样肯定安全，而且可读性也是比较好的。</p>
+
+<p>右移运算分两种：算术右移和逻辑右移。算术右移在左边补充n个最高有效位的拷贝，逻辑右移是在左边补充n个0.对于无符号数的右移必须是逻辑的（补0），而几乎所有的编译器/机器组合都对有符号数据使用算术右移（拷贝最高有效位）</p>
+
+<p>（此处略去xxx行，实在不想学习各种数字的定义和表示方法，承认不愿意钻研数学。不过虽然数学很难懂，但数学是死的，今天学一点明天就会少一点：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-10T21:19:00+08:00" pubdate data-updated="true">Apr 10<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/csapp/'>csapp</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/03/27/my-technology-is-bad/">
+		
+			自己的技术还差得远</a>
+	</h2>
+	<div class="entry-content">
+		<p>虽然别人感觉我的技术水平挺高的，不过我自身却一直都没这样想，有时候也是喜欢说得多做得少，毕竟说一件事是很简单的，要是真的要自己去做，我可能就很难完成了，不过凭借自己的责任感也会弄出点结果，只是过程是艰辛、痛苦的，不想回忆自己的那些过程，虽然不少人认为这是美好的回忆。</p>
+
+<p>看过几个Google的面试、实习生题目，原本的打算全部破灭，真得是很有难度，虽然想暑假去瞻仰一下Google的风采，不过先看也得看看现实的东西──你是不是匹配Google的标准？你是不是能够受得了Google那种技术生活？捎带着点感伤的我可能还差得远呢！</p>
+
+<p>前天去参观了大学里的招聘会，虽然周围都是些大四的同学，我也想试试自己是否基本达到企业的要求。其中有四五家面向计算机专业学生招聘的单位，其中大多数是做网站的。我和一个招收软件开发的单位聊了几句，他们可能打算找我，不过了解到我不是毕业生后就没办法了。我还是有几个能拿得出手的能力，只是在这种小范围还行，到了Google那里，直接清零：（</p>
+
+<p>情况就是这么严峻，既然自己想从事技术路线，那就不要再执迷不悟了！！！从头开始学起吧，汇编、C、C++、数据结构，暑假里用Java做点东西防止遗忘，没有扎实的功底，即使去了某些单位实习也很难积累到什么经验──现在面对的问题基本上是从未涉及的，只是边看前人的经验边研发，这似乎已经成了我们公认的事实，这样搭建出来的作品是能短期交付，但对于自己没什么益处，对于“客户”，长远看来也不是什么好事，还有其中的那种痛苦感……</p>
+
+<p>希望这些话，我能听进去吧：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-27T19:28:00+08:00" pubdate data-updated="true">Mar 27<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/google/'>google</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -660,94 +827,6 @@
 
 
 	<a class='category' href='/blog/categories/credit-card/'>credit-card</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/02/22/give-up-csapp/">
-		
-			含恨放弃了这本书</a>
-	</h2>
-	<div class="entry-content">
-		<p>《深入理解计算机系统》这本书是我从《程序员》上看来的，记得有位高超的架构师吧，推荐了这本书，我就买了下来，现在放弃阅读这本书。看起来我还是能够放弃一些东西的，我并不是一个如同我描述得那样──“一个学不会放弃的人。”</p>
-
-<p>我之所以放弃这本书是因为这本书前半部分讲得都是硬件相关的知识，就象是去年学习的《计算机组成原理》一样，还好比《数字逻辑电路》强了不少，因为这些知识都和计算机相关，数字逻辑简直就是在讲单纯的硬件。不过两者却都不是我所希望阅读的！以为这本书的后半部分能够提供一些编程优化相关的知识，因为看这本书的介绍是帮助程序员理解程序如何运行并且还讲解了一些实用的编程技巧，谁知根本不是这样。</p>
-
-<p>在大二的上学期我们也发了一本讲解汇编的教材，只是我们班的课程与其他计算机科班不太一样，就没有讲这门课，曾经的我想一度利用空闲时间来学习汇编，并且在大一的时候我从图书馆借来了一般汇编书，自学了一小部分，但现在看来，那一切都显得过于理想化了！刚才从床底下拿出来了汇编的书，看了两眼就放回去了。我之道如果我学会了汇编一定能看完这本《深入理解计算机系统》的，可惜我没学会：（</p>
-
-<p>还有不少书在手边，学会了任何一本都足以让我受益好几年，但我从未感受到这些益处，肯定是因为我没有学好，即便是这样，我竟然也能在班里排名比较靠前。似乎一切都反过来了！！！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-22T13:53:00+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/book/'>book</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/02/19/pause-website-development/">
-		
-			网站开发告一段落</a>
-	</h2>
-	<div class="entry-content">
-		<p>刚刚把一个比较大的功能完成了——日历。还有一个星期就要回去了，我这次回家拿回来的几本书还没有看完，PHP的那本书看得差不多了，还没有回头细看，可能还需要再带回去。《深入理解计算机系统》那本书没有看，打算剩下的这一个星期全看那本书，能看多少是多少，不能总和PHP为伍，毕竟回去了有不少人还是能帮我继续做网站的！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-19T13:26:00+08:00" pubdate data-updated="true">Feb 19<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/wodeyitian/'>wodeyitian</a>
 
 
 </div>

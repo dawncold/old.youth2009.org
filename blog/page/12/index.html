@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="本来做了个一个todo的app感觉python写web app真得好快啊，于是想加入一个user的功能，这样注册的用户就可以写自己的todo了，不过这么一加才感觉到web.py真不好用了，特别是session，还有templates也不怎么好用，官方的文档不知道为何也不给个完整版的， &hellip;">
+	<meta name="description" content="今天看到算法导论上关于求解一个序列的逆序对的问题，以前自己在这个地方写着解答方法，不过今天怎么看都不懂了，从网上找了找，大都说得很模糊，不过自己突然有种领悟了的感觉，找了个简单的例子，实验了一下，自己的结论是正确的：） 例子是（2，3，8，6，1）这个序列，找出所有的5个逆序对。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,194 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/05/07/solve-inversion-by-using-merge/">
+		
+			逆序对的求解</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天看到算法导论上关于求解一个序列的逆序对的问题，以前自己在这个地方写着解答方法，不过今天怎么看都不懂了，从网上找了找，大都说得很模糊，不过自己突然有种领悟了的感觉，找了个简单的例子，实验了一下，自己的结论是正确的：）</p>
+
+<p>例子是（2，3，8，6，1）这个序列，找出所有的5个逆序对。最好的方法是nlogn复杂度的利用归并排序的副产品——merge部分统计，统计比较左右列表时，左侧大于右侧时“左侧”列表中剩余数目。</p>
+
+<p>归并的划分应该是这样的，（2，3，8）为左侧，（6，1）为右侧，继续划分为（2，3）和8，右边是6和1。下面就开始合并了，（2，3）和8这边还是（2，3，8），右侧出现一个逆序对，在合并6，1的时候因为作为“左侧”的6要大于1，所以这里有1个逆序对，这里的1就是此时“左侧”序列中的元素个数。</p>
+
+<p>在往下走，要合并（2，3，8）和（1，6），马上就出现了2>1这样的情况，此时会出现（2，1）、（3，1）、（8，1）这几个逆序对，后面还会出现（8，6）这个逆序对，一共就这么5个。</p>
+
+<p>因为原始序列是（2，3，8，6，1），我们需要用到这个原始序列的顺序来判断顺序排在前面的值却大于后面的，这样的机会在每次merge的时候是非常合适的。</p>
+
+<p>这是修改后输出逆序对的归并排序算法，有点可惜哈，这么长的排序算法只让副产品在台前显露了一把！</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="c"># coding: utf-8</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
+</span><span class='line'>   <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>   <span class="n">i</span> <span class="o">=</span> <span class="n">first</span>
+</span><span class='line'>   <span class="n">j</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">middle</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">last</span><span class="p">:</span>
+</span><span class='line'>       <span class="k">if</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+</span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>           <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>       <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>           <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+</span><span class='line'>               <span class="k">print</span> <span class="s">&quot;(</span><span class="si">%d</span><span class="s">,</span><span class="si">%d</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span><span class='line'>           <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">middle</span><span class="p">:</span>
+</span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>       <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">last</span><span class="p">:</span>
+</span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</span><span class='line'>       <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">last</span> <span class="o">-</span> <span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>       <span class="n">arraylist</span><span class="p">[</span><span class="n">first</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
+</span><span class='line'>   <span class="k">if</span> <span class="n">first</span> <span class="o">&lt;</span> <span class="n">last</span><span class="p">:</span>
+</span><span class='line'>       <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">first</span> <span class="o">+</span> <span class="n">last</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">)</span>
+</span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>       <span class="n">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class='line'><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'><span class="n">merge_sort</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行结果：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">(</span>6,1<span class="o">)</span>
+</span><span class='line'><span class="o">(</span>2,1<span class="o">)</span>
+</span><span class='line'><span class="o">(</span>3,1<span class="o">)</span>
+</span><span class='line'><span class="o">(</span>8,1<span class="o">)</span>
+</span><span class='line'><span class="o">(</span>8,6<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>（我的代码缩进似乎出了点问题，本身这段归并排序也是从网上找来的，所以混合了不少tab和whitespace，弄了好久都是error indent，最后我无奈用whitespace来做缩进，好歹调试通过了！）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-07T17:08:00+08:00" pubdate data-updated="true">May 7<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/algorithm/'>algorithm</a>, <a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/05/06/miserable-code-jam-2012/">
+		
+			悲惨的CodeJam2012</a>
+	</h2>
+	<div class="entry-content">
+		<p>资格赛晋级之后还稍稍得到了点自信，起码原来只能远观CodeJam的我现在也能继续走进看看了，不过家下来的Round1三场比赛直接被虐杀了，每一场都是最后，每个题都做不出来，说出来也是很惭愧的，但得承认自己这点能力，有人不到5分钟就能做对一个大题，而我5分钟可能都没读完题，更别说写代码了。</p>
+
+<p>但最重要的是理解题目，能够理解了也就完成了90%，剩下的工作就是coding的过程，参加比赛的人基本都是有备而来，各种模版、脚本都准备好了，写起来非常快。对于非英语系国家的选手来说，读题似乎是很大的障碍，起码会比别人慢好多倍，这点只能多多看英文的资料来弥补了！</p>
+
+<p>今天的Round1第三场出现了两个动态规划的题，感觉知道了怎么做可就是不会写，我也就是停留在知道有动态规划这种变态方法的层面上，真让我写出来可不行，抱着《算法导论》看了半天也是毫无头绪……</p>
+
+<p>毕竟不是Acmer，咱也就只能止步于此啦！希望进入下一轮的国人们继续加油！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-06T21:49:00+08:00" pubdate data-updated="true">May 6<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/google/'>google</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -1113,132 +1301,6 @@
 
 
 	<a class='category' href='/blog/categories/dev/'>dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/02/23/have-bought-textmate/">
-		
-			买了textmate</a>
-	</h2>
-	<div class="entry-content">
-		<p>截至目前，这是我买得最贵的一款软件了——39欧元（327RMB）</p>
-
-<p>一直在豆瓣Textmate小组中等人家团购，自己也从没在官网试过购买，一看是用的paypal做中转，感觉不靠谱，以前也没试过paypal的支付，没想到这次成功了，先用了张信用卡支付，发现不行，结果换普通银行卡，直接跳转到了银联，然后我又用的信用卡透支……</p>
-
-<p>稍微配置了一下textmate，按照<a href="http://www.lixiaolai.com/archives/10895.html">这里</a>的方法，其中1.5版本的中文字体那里，建议不要尝试了，不完美，还是等2.0正式发布了吧，听说2.0对于中文字体支持得很好，但我懒得下载测试版来用：）</p>
-
-<p>加入GetBundles：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir -p ~/Library/Application<span class="se">\ </span>Support/TextMate/Bundles
-</span><span class='line'><span class="nb">cd</span> !<span class="err">$</span>
-</span><span class='line'>svn co http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/
-</span><span class='line'>osascript -e <span class="s1">&#39;tell app &quot;TextMate&quot; to reload bundles&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>第一次见cd还能这样用，这样简直太方便了！还有最后那句script，多么优美的句子：）</p>
-
-<p>以后就要多用textmate了，先放弃emacs。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-23T19:29:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mac/'>mac</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/02/15/set-timezone-in-rails/">
-		
-			设置Rails中的timezone</a>
-	</h2>
-	<div class="entry-content">
-		<p>Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。</p>
-
-<p>没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">active_record</span><span class="o">.</span><span class="n">default_timezone</span> <span class="o">=</span> <span class="ss">:local</span>
-</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">time_zone</span> <span class="o">=</span> <span class="s1">&#39;Beijing&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>为何我说差不多呢，原因如下：</p>
-
-<p><code>``ruby
-irb(main):001:0&gt; Fpwd.store(1)
- Fpwd Load (0.2ms)  SELECT "fpwds".* FROM "fpwds" WHERE "fpwds"."user_id" = 1 LIMIT 1
- SQL (2.7ms)  DELETE FROM "fpwds" WHERE "fpwds"."user_id" = 1
-  (0.1ms)  begin transaction
-Binary data inserted for</code>string<code>type on column</code>randstring`
- SQL (429.6ms)  INSERT INTO &ldquo;fpwds&rdquo; (&ldquo;created_at&rdquo;, &ldquo;randstring&rdquo;, &ldquo;updated_at&rdquo;, &ldquo;user_id&rdquo;) VALUES (?, ?, ?, ?)  [[&ldquo;created_at&rdquo;, Wed, 15 Feb 2012 14:29:35 CST +08:00], [&ldquo;randstring&rdquo;, &ldquo;87e685e0d2ab37143fae248083822ffea600f577&rdquo;], [&ldquo;updated_at&rdquo;, Wed, 15 Feb 2012 14:29:35 CST +08:00], [&ldquo;user_id&rdquo;, 1]]
-  (1.4ms)  commit transaction
-=<Fpwd user_id: 1, randstring: "87e685e0d2ab37143fae248083822ffea600f577", created_at: "2012-02-15 06:29:35", updated_at: "2012-02-15 06:29:35"></p>
-
-<p>最后的返回值那里还是晚了8小时，我用sqlite3查看的时候时间是正常的，所以这里怀疑是ruby的时间问题了，好在app中已经正常！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-15T14:37:00+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ror/'>ror</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>

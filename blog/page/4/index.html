@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="暂时终止sorted的开发，经历了两天痛苦的、没白没黑的、浑浑噩噩的探索后，还是没能搞定iPhone上一个icon的移动过程。实在不行我都打算直接去修改iconstate.plist文件了。。。但就是修改了不能马上响应，需要respring这点受不了！ 网上这方面的资料依然少的可怜， &hellip;">
+	<meta name="description" content="问题表现：IE6下，$.ajax()出现error，内容：No Transport 大约花了3天修复了一个不存在的问题。 第一天发现问题感觉这是一个大bug，可能因为它的表现真的很大，一下子就开始着手修复。很快发现这个bug没有正常在Log中找到记录，客户端还没有发送数据到服务器上， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,102 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/03/26/nonexistence/">
+		
+			Nonexistent Bug</a>
+	</h2>
+	<div class="entry-content">
+		<p>问题表现：IE6下，$.ajax()出现error，内容：No Transport</p>
+
+<p>大约花了3天修复了一个不存在的问题。</p>
+
+<p>第一天发现问题感觉这是一个大bug，可能因为它的表现真的很大，一下子就开始着手修复。很快发现这个bug没有正常在Log中找到记录，客户端还没有发送数据到服务器上，所以更难定位问题，因为在IE6下没有可用的js调试工具。</p>
+
+<p>我委托了一个用户测试，她反馈说没问题，不过我没在意，以为她用错了浏览器或者其他问题导致的她可以“正常”使用。</p>
+
+<p>第二天继续修复，Google前几页所有相关的页面都看了一遍，和这个问题的表现相同，不过根本不是一回事儿，为此去了jquery的IRC@freenode，还去了官方论坛发帖，在几个blog中留言反馈，均没有得到有效的帮助。</p>
+
+<p>第三天，开始回退版本，无奈这个过程比较麻烦，主要是一些配置文件和改动不可能完全无错的回退。我又找用户测试了一遍，发现没什么问题，已经开始怀疑当初的判断。另找了一批用户机器，发现果真是没问题的。</p>
+
+<p>重装了一台XP SP3，用里面的IE6测试，果然也没问题。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-26T21:57:00+08:00" pubdate data-updated="true">Mar 26<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/03/20/be-blocked-by-gfw/">
+		
+			be-blocked-by-GFW</a>
+	</h2>
+	<div class="entry-content">
+		<p>不知什么原因，我的VPS进入了全国路由监视节点。。。现实只要是谁打算ssh过去，就会被封锁一段时间。根据某人告知，这是进入短名单后的action，可以探测我换端口什么的操作，相信离IP被封已经不远了！</p>
+
+<p>VPS啊，先提前和你说R.I.P.吧</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-20T21:04:00+08:00" pubdate data-updated="true">Mar 20<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/gfw/'>gfw</a>, <a class='category' href='/blog/categories/vps/'>vps</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -661,112 +757,6 @@
 
 
 	<a class='category' href='/blog/categories/kindle/'>kindle</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/02/17/drop-not-null-in-postgresql/">
-		
-			Drop Not Null in Postgresql</a>
-	</h2>
-	<div class="entry-content">
-		<p>要修改带有NOT NULL约束的某列为NULLABLE该如何写SQL呢？</p>
-
-<p><code>ALTER TABLE xxx ALTER COLUMN xxx DROP NOT NULL</code></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-17T23:31:00+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/postgresql/'>postgresql</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/02/17/encoder-error-2-when-writing-image-file-error/">
-		
-			Encoder Error -2 When Writing Image File Error</a>
-	</h2>
-	<div class="entry-content">
-		<p>今天编辑们在上传一张图的时候出了500错误，他们觉得是图片太大了，传给我看了下果然很大，高度13000+，大约7Mb，本地调试确实是在save的时候出问题，具体错误就是<code>Encoder error -2 when writing image file Error</code>，github上的pilkit中有这个issue，是因为默认的maxblock不够大了，其实PIL中还有个SAFEMAXBLOCK，但那也只是1024*1024，对于这张图仍然不够大。具体的方法就是取出图片width和height的最大值，再来个平方。。。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>try:
-</span><span class='line'>  save porcess
-</span><span class='line'>except IOError:
-</span><span class='line'>  old_block = PIL.ImageFile.MAXBLOCK
-</span><span class='line'>  PIL.ImageFile.MAXBLOCK = max(image.size) ** 2
-</span><span class='line'>  try:
-</span><span class='line'>      save process
-</span><span class='line'>  finally:
-</span><span class='line'>      PIL.ImageFile.MAXBLOCK = old_block</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样试过后就好了。。。真要命啊这个max block</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-17T23:25:00+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
