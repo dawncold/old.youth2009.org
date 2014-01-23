@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="截至目前，这是我买得最贵的一款软件了——39欧元（327RMB） 一直在豆瓣Textmate小组中等人家团购，自己也从没在官网试过购买，一看是用的paypal做中转，感觉不靠谱，以前也没试过paypal的支付，没想到这次成功了，先用了张信用卡支付，发现不行，结果换普通银行卡，直接跳转到了银联， &hellip;">
+	<meta name="description" content="着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。 不过在用的时候发现查看带有中文字符的文件会出现乱码，在这里得到了解决方案： 打开putty主程序， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,58 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/03/02/bad-chinese-encoding-in-putty/">
+		
+			Putty的中文乱码</a>
+	</h2>
+	<div class="entry-content">
+		<p>着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。</p>
+
+<p>不过在用的时候发现查看带有中文字符的文件会出现乱码，在这里得到了解决方案：</p>
+
+<ol>
+<li><p>打开putty主程序，选择window-〉Appearance-〉Font settings-〉Change…,选择Fixedsys字体,字符集选择CHINESEGB2312。</p></li>
+<li><p>在window-〉Appearance -〉Translation中，Received data assumed to be in which character set 中,把Use font encoding改为UTF-8如果经常使用,把这些设置保存在session里面.</p></li>
+<li><p>现在打开putty,登录成功后,在shell中输入:export LCALL=’zh_CN.utf8’</p></li>
+</ol>
+
+
+<p>然后再打开文件就没问题了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-02T12:08:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -693,55 +745,6 @@ gem install mysql &mdash; &mdash;with-mysql-dir=/usr/local/mysql
 
 
 <time datetime="2012-02-06T22:19:00+08:00" pubdate data-updated="true">Feb 6<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/02/06/firstly-study-ruby/">
-		
-			开学Ruby</a>
-	</h2>
-	<div class="entry-content">
-		<p>先从官方文档那里找各种资料学习，已经在amazon上买书了，买了本rails应用的书，还买了两本考系统架构师的书，再就是想买一本讲ruby语言的书，很可惜amazon上没货，要是从非amazon商家买的话需要支付高昂的快递费，于是从淘宝上找了家靠谱的商家，还有满49包邮（幸亏这本书是51，包邮了）</p>
-
-<p>对了，今天在amazon上买书是因为收到了amazon前段时间送的满100送20优惠券，对于我这种很喜欢在amazon上买技术书籍的书虫来说这类活动太好了，以后多多参加！</p>
-
-<p>说废话太多了，今天断断续续看了这里的教程，基本想要按照讲得做，看完一半了，明天把剩下弄完！</p>
-
-<p>教程地址：<a href="http://pine.fm/LearnToProgram/">http://pine.fm/LearnToProgram/</a></p>
-
-<p>ruby的中文参考文档页：<a href="http://www.ruby-lang.org/zh_cn/documentation/">http://www.ruby-lang.org/zh_cn/documentation/</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-06T00:40:00+08:00" pubdate data-updated="true">Feb 6<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 

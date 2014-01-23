@@ -7,13 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="原来的location只是处理了“/”的情况，结果访问一个目录，即使此目录下有index.html也不会成功显示，于是改成了这样： 1
-2
-3
-4
-location ~.*\.(php|php5)?$
-{ 处理php
-} 这样之后，发现直接访问目录或者域名的时候不能正常显示了，必须跟上index &hellip;">
+	<meta name="description" content="要整理一些词汇，并且还要给每个词汇编码，我把所有的词汇分割称了独立的汉字，再把这些汉字压缩，去掉重复的汉字，最后把这些汉字导入数据库，得到了每个汉字的id，把这些id组合起来作为词的编码，这样还算是好用吧。 用python写了7个脚本来做这些工作，最后得到了近7万条记录，包括单独的字和一些词。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -80,6 +74,53 @@ location ~.*\.(php|php5)?$
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/19/process-cis-and-zis-with-python/">
+		
+			用python处理词汇</a>
+	</h2>
+	<div class="entry-content">
+		<p>要整理一些词汇，并且还要给每个词汇编码，我把所有的词汇分割称了独立的汉字，再把这些汉字压缩，去掉重复的汉字，最后把这些汉字导入数据库，得到了每个汉字的id，把这些id组合起来作为词的编码，这样还算是好用吧。</p>
+
+<p>用python写了7个脚本来做这些工作，最后得到了近7万条记录，包括单独的字和一些词。因为要用来做iphone应用，所以数据库用的是sqlite，大约4MB的数据，看来这些数据已经很够用了吧。</p>
+
+<p>代码实在不太美观，所幸就不粘贴了吧。</p>
+
+<p>哦，对了，在收集资料过程中，找到了一个用mdb包装的成语数据库，可惜mac下没有很好的浏览工具，就找找看有没有转换工具，在GoogleCode上找到了一个mdb转sqlite的工具，用java写的，下载下来后用了一下，出了一个warning，不过没有影响使用。很不错，感谢一下：<a href="http://code.google.com/p/mdb-sqlite/">http://code.google.com/p/mdb-sqlite/</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-19T14:06:00+08:00" pubdate data-updated="true">Jul 19<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/gameapp/'>gameapp</a>, <a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -611,53 +652,6 @@ location ~.*\.(php|php5)?$
 
 
 	<a class='category' href='/blog/categories/mm/'>mm</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/06/18/m555b-in-windows7-and-mac-os-x/">
-		
-			M555b鼠标在Windows7下的使用</a>
-	</h2>
-	<div class="entry-content">
-		<p>为了减少一个USB接口的占用买了个蓝牙鼠标，当然这是因为我的电脑（mbp13）只有两个USB。但M555b这款鼠标在Mac系统下工作非常好，不过到了windows7下就异常了，根本连不上，刚刚在百度知道中看到一个方法可用，分享一下！</p>
-
-<p>1.在mac系统下删除m555b这个设备。</p>
-
-<p>2.到widnows7下用系统的蓝牙服务扫描到鼠标，然后用触摸板右键点扫描到的鼠标，选属性，在蓝牙服务中勾选“鼠标、键盘驱动HID”这个选项。然后你会发现已经匹配完成了，此时鼠标就能用了。</p>
-
-<p>3.再回到mac下重新加上m555b这个设备就可以了：）</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-18T13:04:00+08:00" pubdate data-updated="true">Jun 18<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mac/'>mac</a>
 
 
 </div>

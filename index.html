@@ -7,12 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="1
-2
-3
-wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.34.tar.gz
-wget http://www.openssl.org/source/openssl-1.0.1f.tar.gz
-wget http &hellip;">
+	<meta name="description" content="向api server发送请求做一件事的时候，比如修改密码，server做完后没有返回值，response code是200。这在原来的时候没问题，“原来”是指ajax的dataType未指定的时候，jQuery会自己猜测用什么，但这次指定了server的response是json，所以， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,6 +74,47 @@ wget http &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/01/23/return-value-in-jquery-json-datatype/">
+		
+			Return-value-in-jquery-json-datatype</a>
+	</h2>
+	<div class="entry-content">
+		<p>向api server发送请求做一件事的时候，比如修改密码，server做完后没有返回值，response code是200。这在原来的时候没问题，“原来”是指ajax的dataType未指定的时候，jQuery会自己猜测用什么，但这次指定了server的response是json，所以，即便是看到200 code也未能调用OnSuccess，空返回值对于json是不合法的，于是返回一个什么东西就好，当然要先to_json再返回。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-23T18:57:21+08:00" pubdate data-updated="true">Jan 23<span>rd</span>, 2014</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -561,60 +597,6 @@ wget http &hellip;">
 
 
 	<a class='category' href='/blog/categories/analysis-pattern/'>analysis-pattern</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/08/18/arp/">
-		
-			Arp</a>
-	</h2>
-	<div class="entry-content">
-		<pre><code>32 bits Internet address
-|                   /|
-|ARP                 |RARP
-|/                   |
-48 bits Ethernet address
-</code></pre>
-
-<h1>Gratuitous ARP</h1>
-
-<ol>
-<li>send its own IP to verify whether someone has used this.</li>
-<li>update old MAC address in ARP cache</li>
-</ol>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-18T20:38:00+08:00" pubdate data-updated="true">Aug 18<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/tcpip/'>tcpip</a>
 
 
 </div>

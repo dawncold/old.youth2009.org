@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="今天看到算法导论上关于求解一个序列的逆序对的问题，以前自己在这个地方写着解答方法，不过今天怎么看都不懂了，从网上找了找，大都说得很模糊，不过自己突然有种领悟了的感觉，找了个简单的例子，实验了一下，自己的结论是正确的：） 例子是（2，3，8，6，1）这个序列，找出所有的5个逆序对。 &hellip;">
+	<meta name="description" content="最近写了一个todo的webapp，在用户登陆的时候是select数据库中的内容进行对比判断，当然如果select的内容是0那就表示用户登陆失败了，可能账号或者密码写错了，数据库用的sqlite3，在python的api中发现有cursor.rowcount可用， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,53 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3/">
+		
+			Sqlite3的rowcount</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近写了一个todo的webapp，在用户登陆的时候是select数据库中的内容进行对比判断，当然如果select的内容是0那就表示用户登陆失败了，可能账号或者密码写错了，数据库用的sqlite3，在python的api中发现有cursor.rowcount可用，于是就这么判断一下是不是有数据被select出来了，没想到这样判断是错误的。</p>
+
+<p>select的rowcount永远为-1，哎，这里着实坑了我一番啊～</p>
+
+<p>只好cursor.fetchone()先，然后判断得到的内容是不是None。</p>
+
+<p>从<a href="http://stackoverflow.com/questions/839069/cursor-rowcount-always-1-in-sqlite3-in-python3k">这里</a>得到的答案。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-14T17:00:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/sql/'>sql</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -1249,58 +1296,6 @@
 
 
 	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/03/02/bad-chinese-encoding-in-putty/">
-		
-			Putty的中文乱码</a>
-	</h2>
-	<div class="entry-content">
-		<p>着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。</p>
-
-<p>不过在用的时候发现查看带有中文字符的文件会出现乱码，在这里得到了解决方案：</p>
-
-<ol>
-<li><p>打开putty主程序，选择window-〉Appearance-〉Font settings-〉Change…,选择Fixedsys字体,字符集选择CHINESEGB2312。</p></li>
-<li><p>在window-〉Appearance -〉Translation中，Received data assumed to be in which character set 中,把Use font encoding改为UTF-8如果经常使用,把这些设置保存在session里面.</p></li>
-<li><p>现在打开putty,登录成功后,在shell中输入:export LCALL=’zh_CN.utf8’</p></li>
-</ol>
-
-
-<p>然后再打开文件就没问题了。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-02T12:08:00+08:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>
 
 
 </div>

@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3. &hellip;">
+	<meta name="description" content="项目中有使用pytz这个第三方库来处理datetiem相关的东西。不过最近测试的时候发现，创建了一个时间点后，最终得到的时间点和预想的时间点有6分钟的误差，从网上搜到的资料是这样解决的：详情看http://hi.baidu.com/limodou/item/ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,49 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">
+		
+			Pytz的6分钟时差</a>
+	</h2>
+	<div class="entry-content">
+		<p>项目中有使用pytz这个第三方库来处理datetiem相关的东西。不过最近测试的时候发现，创建了一个时间点后，最终得到的时间点和预想的时间点有6分钟的误差，从网上搜到的资料是这样解决的：详情看<a href="http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1">http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1</a></p>
+
+<p>创建datetime的时候，特别是带timezone，需要localize一下，否则在使用pytz的时候就会出现这6分钟的差异。代码中首先创建了datetime，然后localize后再replace了timezone为pytz的，最终还astimezone为pytz.utc。我们是使用utc的，你的代码也许不需要：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-20T16:13:00+08:00" pubdate data-updated="true">Oct 20<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -661,63 +704,6 @@
 
 
 <time datetime="2012-07-17T09:36:00+08:00" pubdate data-updated="true">Jul 17<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/07/14/bad-encoding-in-sqlalchemy/">
-		
-			SQLAlchemy中的乱码</a>
-	</h2>
-	<div class="entry-content">
-		<p>一开始没怎么关心这个问题，连接数据库的时候我直接这样用的：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">mysql</span><span class="p">:</span><span class="o">//</span><span class="n">root</span><span class="p">:</span><span class="nd">@localhost</span><span class="o">/</span><span class="n">haolesong</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在插入数据的时候看到数据库中的内容是乱码，但网页中显示的时候正常，于是我就没怎么关心，不过前天在修改一个值的时候，就是用一段中文替换原先的值，提交数据后网页打不开了，提示unicode编码的xxx问题，相信用Python写网站的人应该会遇得到。</p>
-
-<p>后来在<a href="http://meizhini.iteye.com/blog/294691">这里</a>发现了解决方法，还有一段长长的分析。我很喜欢这样的文章，对于想直接知道问题答案的人来说一目了然，想知道原理的人也可以直接看下去。</p>
-
-<p>最终就是这样即可：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">mysql</span><span class="p">:</span><span class="o">//</span><span class="n">root</span><span class="p">:</span><span class="nd">@localhost</span><span class="o">/</span><span class="n">haolesong</span><span class="err">?</span><span class="n">charset</span><span class="o">=</span><span class="n">utf8</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-14T09:47:00+08:00" pubdate data-updated="true">Jul 14<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 

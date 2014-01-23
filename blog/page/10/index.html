@@ -7,7 +7,8 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="代码中我把jinja2的语法改成了这样的，{##}，因为这样就不会和blog生成html冲突了，大家改回来就可以。 在Flask中接触到了jinja2，由于某个简单的需要——在模板系统中计算某些订单项的总价格，必须打开Jinja2的“do”扩展，用一种hack的方法来计算，十分不喜欢这样，但能用 &hellip;">
+	<meta name="description" content="一开始没怎么关心这个问题，连接数据库的时候我直接这样用的： 1
+mysql://root:@localhost/haolesong 在插入数据的时候看到数据库中的内容是乱码，但网页中显示的时候正常，于是我就没怎么关心，不过前天在修改一个值的时候，就是用一段中文替换原先的值，提交数据后网页打不开了 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +75,63 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/07/14/bad-encoding-in-sqlalchemy/">
+		
+			SQLAlchemy中的乱码</a>
+	</h2>
+	<div class="entry-content">
+		<p>一开始没怎么关心这个问题，连接数据库的时候我直接这样用的：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">mysql</span><span class="p">:</span><span class="o">//</span><span class="n">root</span><span class="p">:</span><span class="nd">@localhost</span><span class="o">/</span><span class="n">haolesong</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在插入数据的时候看到数据库中的内容是乱码，但网页中显示的时候正常，于是我就没怎么关心，不过前天在修改一个值的时候，就是用一段中文替换原先的值，提交数据后网页打不开了，提示unicode编码的xxx问题，相信用Python写网站的人应该会遇得到。</p>
+
+<p>后来在<a href="http://meizhini.iteye.com/blog/294691">这里</a>发现了解决方法，还有一段长长的分析。我很喜欢这样的文章，对于想直接知道问题答案的人来说一目了然，想知道原理的人也可以直接看下去。</p>
+
+<p>最终就是这样即可：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">mysql</span><span class="p">:</span><span class="o">//</span><span class="n">root</span><span class="p">:</span><span class="nd">@localhost</span><span class="o">/</span><span class="n">haolesong</span><span class="err">?</span><span class="n">charset</span><span class="o">=</span><span class="n">utf8</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-14T09:47:00+08:00" pubdate data-updated="true">Jul 14<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -640,61 +698,6 @@
 
 
 	<a class='category' href='/blog/categories/java/'>java</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/06/08/solved-sudo-unable-to-resolve-host/">
-		
-			Sudo 出现unable to Resolve Host 解决方法</a>
-	</h2>
-	<div class="entry-content">
-		<p>执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo ：unable to resolve host HOSTNAME
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>127.0.0.1               localhost.localdomain localhost HOSTNAME
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>希望vpsee的admin能在iso中修复这个问题</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-08T16:23:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/vps/'>vps</a>
 
 
 </div>

@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="前几天需要把本机的VMware虚拟机文件拷到工作机器上用，但文件比较大，有30G，U盘不行，无线共享太慢，网线直连无奈工作机器百兆网卡不给力还是慢，分割了我的TimeMachine备份盘，但用完后再合并划分出去的分区就出问题了，提示： Couldn’t modify partition map &hellip;">
+	<meta name="description" content="最近那个伟大的墙把我们敬爱的git大神封锁了，无奈很多代码都托管在上面，其中也不乏很多商业项目。自己的几个blog也都放在上面，倒不是因为在那里免费，而是这已然已经成为程序员们的一种生活style。 ubuntu下有个dnsmasq可以连接别的dns， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,81 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/22/config-dnsmasq-on-macos/">
+		
+			在MacOS上配置dnsmasq</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近那个伟大的墙把我们敬爱的git大神封锁了，无奈很多代码都托管在上面，其中也不乏很多商业项目。自己的几个blog也都放在上面，倒不是因为在那里免费，而是这已然已经成为程序员们的一种生活style。</p>
+
+<p>ubuntu下有个dnsmasq可以连接别的dns，这样能够避免dns污染导致上不了github的问题。相关配置不算难，下面记录一下在MacOS下的dnsmasq配置方法。</p>
+
+<p>1.使用brew安装dnsmasq</p>
+
+<p>brew install dnsmasq</p>
+
+<p>2.修改一下dnsmasq的配置文件名字</p>
+
+<p>cp /usr/local/opt/dnsmasq/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf</p>
+
+<p>3.加入MacOS的启动项中</p>
+
+<p>sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons</p>
+
+<p>4.加载并启动dnsmasq，如果没有出现什么错误就开始配置dnsmasq</p>
+
+<p>sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist</p>
+
+<p>5.配置dnsmasq，把no-resolve的注释去掉，加入<code>server=xxx.xxx.xxx.xxx#nnnn</code></p>
+
+<p>mate /usr/local/etc/dnsmasq.conf</p>
+
+<p>server的值可以从dns.v2ex.com中找到，“#”后面的是端口号，比如v2ex那个用3389</p>
+
+<p>6.重启dnsmasq</p>
+
+<p>sudo launchctl stop homebrew.mxcl.dnsmasq</p>
+
+<p>其实无需再执行<code>sudo launchctl start homebrew.mxcl.dnsmasq</code>这句了，因为你load了plist进去就已经启动了，如果此时stop的话会再自动start，所以没必要再start。要想关闭请使用unload（就修改上面的4即可）</p>
+
+<p>7.把网络的dns设置成127.0.0.1，这样你才能用自己的dns服务</p>
+
+<p>至此，我们的git大神就回归了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-22T22:26:00+08:00" pubdate data-updated="true">Jan 22<span>nd</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -490,80 +565,6 @@
 
 
 	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/25/the-pragmatic-programmer/">
-		
-			Pragmatic Programmer Log</a>
-	</h2>
-	<div class="entry-content">
-		<p>Bad code requires lots of comments!</p>
-
-<p>head file 也是一种重复，这属于language的重复，一般只能妥协。</p>
-
-<p>“出来混迟早要还的”，这句话又出现了！！！</p>
-
-<p>deal with interdeveloper duplication的方法就是多多交流。。。每天的站立会议是不错的！</p>
-
-<p>依然补充几个单词：</p>
-
-<pre><code>contradictory:          矛盾的
-marauding:              恶意的
-harness:                管理，控制
-enhacing:               增强
-constantly:             不断地
-discrete:               不连续的
-entire:                 全部的
-representation:         陈述
-nightmare:              噩梦
-authoritative:          权威性的
-inadvertent:            不注意的
-imposed:                强制的
-honoring:               尊敬
-ingenuity:              精巧
-metadata:               元数据
-one-time:               一次的
-inevitably:             不可避免地
-defer:                  推迟
-reveal:                 显示
-illustrate:             说明
-violate:                违犯
-insidious:              暗中危害的
-foster:                 培养
-</code></pre>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-25T20:43:00+08:00" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>

@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/www/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-01-16T22:27:40+08:00</updated>
+  <updated>2014-01-23T19:03:44+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[return-value-in-jquery-json-datatype]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/01/23/return-value-in-jquery-json-datatype/"/>
+    <updated>2014-01-23T18:57:21+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/01/23/return-value-in-jquery-json-datatype</id>
+    <content type="html"><![CDATA[<p>向api server发送请求做一件事的时候，比如修改密码，server做完后没有返回值，response code是200。这在原来的时候没问题，“原来”是指ajax的dataType未指定的时候，jQuery会自己猜测用什么，但这次指定了server的response是json，所以，即便是看到200 code也未能调用OnSuccess，空返回值对于json是不合法的，于是返回一个什么东西就好，当然要先to_json再返回。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[nginx-and-dependences]]></title>
@@ -505,17 +514,6 @@
 </span><span class='line'>* * * * * /Users/dawncold/ping_test.py &gt; /Users/dawncold/pt
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[suds-literal-soap]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/07/08/suds-literal-soap/"/>
-    <updated>2013-07-08T22:16:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/07/08/suds-literal-soap</id>
-    <content type="html"><![CDATA[<p>SAP的接口就是和别人给的不一样，style为literal，最明显的地方就是operation中的参数是literal，原先的参数是一个object，按照原先的方法调用时发现传递过去的值都被放在了第一个参数中，很是不解。后来才知道这样的operation需要用keywords的那种传值方法——<code>**suds_client.dict(object)</code>，用suds的client的dict方法把构造的对象变成dict，再用<code>**</code>。</p>
-
-<p>又被坑了一下。</p>
 ]]></content>
   </entry>
   

@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="原来用MySQL比较多，现在工作上主要用PostgreSQL，对于低级的应用来说，选什么数据库都差不多，但也要为以后发展做准备，不过我暂时看不到那么远，PG作为一个开源的数据库来说，还算是比MySQL有优势一点，所以就用这个了。 在Mac上安装的时候有个locale的选择，我选了这个： &hellip;">
+	<meta name="description" content="SAP的接口就是和别人给的不一样，style为literal，最明显的地方就是operation中的参数是literal，原先的参数是一个object，按照原先的方法调用时发现传递过去的值都被放在了第一个参数中，很是不解。后来才知道这样的operation需要用keywords的那种传值方法 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,49 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/07/08/suds-literal-soap/">
+		
+			Suds-literal-soap</a>
+	</h2>
+	<div class="entry-content">
+		<p>SAP的接口就是和别人给的不一样，style为literal，最明显的地方就是operation中的参数是literal，原先的参数是一个object，按照原先的方法调用时发现传递过去的值都被放在了第一个参数中，很是不解。后来才知道这样的operation需要用keywords的那种传值方法——<code>**suds_client.dict(object)</code>，用suds的client的dict方法把构造的对象变成dict，再用<code>**</code>。</p>
+
+<p>又被坑了一下。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-08T22:16:00+08:00" pubdate data-updated="true">Jul 8<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -619,49 +662,6 @@
 
 
 	<a class='category' href='/blog/categories/gfw/'>gfw</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/04/02/hhkb/">
-		
-			Hhkb</a>
-	</h2>
-	<div class="entry-content">
-		<p>终于，它来了。</p>
-
-<p><img src="http://pic.yupoo.com/dawncold0/CL0AxKWr/medish.jpg" alt="HHKB" /></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-02T23:01:00+08:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>
 
 
 </div>

@@ -7,11 +7,9 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="刚拿到vps，打算更新一些软件，发现有些warning挺讨厌的，于是就想根除他们！！他们一般是这样的： 1
-2
-3
-locale: Cannot set LC_CTYPE to default locale: No such file or directory
-locale: Cannot &hellip;">
+	<meta name="description" content="执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了） 1
+sudo ：unable to resolve host HOSTNAME 这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可) 1
+127.0.0.1 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -78,6 +76,61 @@ locale: Cannot &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/06/08/solved-sudo-unable-to-resolve-host/">
+		
+			Sudo 出现unable to Resolve Host 解决方法</a>
+	</h2>
+	<div class="entry-content">
+		<p>执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo ：unable to resolve host HOSTNAME
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>127.0.0.1               localhost.localdomain localhost HOSTNAME
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>希望vpsee的admin能在iso中修复这个问题</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-08T16:23:00+08:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/vps/'>vps</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -909,53 +962,6 @@ while(<em>s++ = </em>t++);<br/>
 
 
 	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/sql/'>sql</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3/">
-		
-			Sqlite3的rowcount</a>
-	</h2>
-	<div class="entry-content">
-		<p>最近写了一个todo的webapp，在用户登陆的时候是select数据库中的内容进行对比判断，当然如果select的内容是0那就表示用户登陆失败了，可能账号或者密码写错了，数据库用的sqlite3，在python的api中发现有cursor.rowcount可用，于是就这么判断一下是不是有数据被select出来了，没想到这样判断是错误的。</p>
-
-<p>select的rowcount永远为-1，哎，这里着实坑了我一番啊～</p>
-
-<p>只好cursor.fetchone()先，然后判断得到的内容是不是None。</p>
-
-<p>从<a href="http://stackoverflow.com/questions/839069/cursor-rowcount-always-1-in-sqlite3-in-python3k">这里</a>得到的答案。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-14T17:00:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/sql/'>sql</a>
 
 
 </div>
