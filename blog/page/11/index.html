@@ -7,9 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了） 1
-sudo ：unable to resolve host HOSTNAME 这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可) 1
-127.0.0.1 &hellip;">
+	<meta name="description" content="今天基本完成了LoveSMS，想checkout一下jdrcom来看看，所以就安装上了svn for eclipse，然后在导入的时候提示缺少javahl库，去了官方查看了一下，说是对于Mac用户，只需要下载他们的bin文件就能解决，我一看才给到1.6.5的版本，而我自己用brew都装到了1.7 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +74,83 @@ sudo ：unable to resolve host HOSTNAME 这样修复：(编辑/etc/hosts，修�
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/06/11/lib-javahl-for-svn-on-mac/">
+		
+			Svn的javahl库</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天基本完成了LoveSMS，想checkout一下jdrcom来看看，所以就安装上了svn for eclipse，然后在导入的时候提示缺少javahl库，去了官方查看了一下，说是对于Mac用户，只需要下载他们的bin文件就能解决，我一看才给到1.6.5的版本，而我自己用brew都装到了1.7.5，而且svn插件用的是1.8.x，需要1.7+的svn支持才行，所以就自己重新安装了svn：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install subversion --universal --java
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这句是关键哦，当然你得先uninstall已经安装的svn才行。加了java开关就可以告诉svn需要java IDE的库，编译的完成后会继续编译javahl～</p>
+
+<p>会有这样的提示哦：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>To use Java bindings with various Java IDEs, you might need a universal build:
+</span><span class='line'> brew install subversion --universal --java
+</span><span class='line'><span class="o">==</span>&gt; ./configure --disable-debug --prefix<span class="o">=</span>/usr/local/Cellar/subversion/1.7.5 --with-ssl --with-zlib<span class="o">=</span>/usr --with-sqlite<span class="o">=</span>/usr/local --disable-neon-version-chec
+</span><span class='line'><span class="o">==</span>&gt; <span class="nv">make</span>
+</span><span class='line'><span class="o">==</span>&gt; make <span class="nv">install</span>
+</span><span class='line'><span class="o">==</span>&gt; make <span class="nv">javahl</span>
+</span><span class='line'><span class="o">==</span>&gt; make install-javahl
+</span><span class='line'><span class="o">==</span>&gt; Caveats
+</span><span class='line'>You may need to link the Java bindings into the Java Extensions folder:
+</span><span class='line'> sudo mkdir -p /Library/Java/Extensions
+</span><span class='line'> sudo ln -s /usr/local/lib/libsvnjavahl-1.dylib /Library/Java/Extensions/libsvnjavahl-1.dylib
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>自己加入后面的链接就ok了！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-11T10:17:00+08:00" pubdate data-updated="true">Jun 11<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/java/'>java</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -757,211 +832,6 @@ while(<em>s++ = </em>t++);<br/>
 
 
 	<a class='category' href='/blog/categories/mac/'>mac</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/05/14/left-outer-join-and-multiply-select-in-sqlite3/">
-		
-			Sqlite3连接查询和多次select的对比</a>
-	</h2>
-	<div class="entry-content">
-		<p>通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。</p>
-
-<p>左外连接查询比两次select快10～20%左右。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
-</span><span class='line'><span class="c"># coding: utf-8</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sqlite3</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">time</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">connect</span><span class="p">():</span>
-</span><span class='line'><span class="k">return</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;./test.db&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">insertProgress</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
-</span><span class='line'><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;INSERT INTO todo(title, date) VALUES(?,?)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;just test!!!&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">())])</span>
-</span><span class='line'><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;INSERT INTO todo_meta(todo_id, user_id) VALUES(?,?)&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">cur</span><span class="o">.</span><span class="n">lastrowid</span><span class="p">,</span> <span class="n">user_id</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">insertManyData</span><span class="p">(</span><span class="n">conn</span><span class="p">):</span>
-</span><span class='line'><span class="c">#reset database</span>
-</span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&#39;sqlite3 test.db &lt; schema.sql&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-</span><span class='line'><span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">):</span>
-</span><span class='line'><span class="n">userid</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
-</span><span class='line'><span class="n">counts</span><span class="p">[</span><span class="n">userid</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'><span class="n">insertProgress</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">userid</span><span class="p">)</span>
-</span><span class='line'><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</span><span class='line'><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span class='line'><span class="k">print</span> <span class="n">counts</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">selectUsingLeftOuterJoin</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
-</span><span class='line'><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-</span><span class='line'><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;SELECT t.title, t.date </span><span class="se">\</span>
-</span><span class='line'><span class="s">FROM todo t LEFT OUTER JOIN todo_meta tm </span><span class="se">\</span>
-</span><span class='line'><span class="s">ON tm.todo_id = t.id\WHERE tm.user_id = ?&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">user_id</span><span class="p">])</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">selectTwoTimes</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
-</span><span class='line'><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-</span><span class='line'><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;SELECT todo_id FROM todo_meta WHERE user_id = ?&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">user_id</span><span class="p">])</span>
-</span><span class='line'><span class="k">for</span> <span class="n">tid</span> <span class="ow">in</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()]:</span>
-</span><span class='line'><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;SELECT title, date FROM todo WHERE id = ?&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">tid</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class='line'><span class="n">uids</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-</span><span class='line'><span class="n">insert_time_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-</span><span class='line'><span class="n">insertManyData</span><span class="p">(</span><span class="n">connect</span><span class="p">())</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Insert Time: </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">insert_time_start</span><span class="p">)</span>
-</span><span class='line'><span class="n">select_ULOJ_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-</span><span class='line'><span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">uids</span><span class="p">:</span>
-</span><span class='line'><span class="n">selectUsingLeftOuterJoin</span><span class="p">(</span><span class="n">connect</span><span class="p">(),</span> <span class="n">uid</span><span class="p">)</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Select Using Left Outer Join time: </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">select_ULOJ_start</span><span class="p">)</span>
-</span><span class='line'><span class="n">select_two_times</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-</span><span class='line'><span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">uids</span><span class="p">:</span>
-</span><span class='line'><span class="n">selectTwoTimes</span><span class="p">(</span><span class="n">connect</span><span class="p">(),</span> <span class="n">uid</span><span class="p">)</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Select Two Times time: </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">select_two_times</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>schema：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">todo</span><span class="p">;</span>
-</span><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="k">user</span><span class="p">;</span>
-</span><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">todo_meta</span><span class="p">;</span>
-</span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="n">todo</span> <span class="p">(</span>
-</span><span class='line'><span class="n">id</span> <span class="nb">integer</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">autoincrement</span><span class="p">,</span>
-</span><span class='line'><span class="n">title</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
-</span><span class='line'><span class="nb">date</span> <span class="n">datetime</span> <span class="k">not</span> <span class="k">null</span>
-</span><span class='line'><span class="p">);</span>
-</span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="k">user</span> <span class="p">(</span>
-</span><span class='line'><span class="n">id</span> <span class="nb">integer</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">autoincrement</span><span class="p">,</span>
-</span><span class='line'><span class="n">email</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
-</span><span class='line'><span class="n">password</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
-</span><span class='line'><span class="n">nickname</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
-</span><span class='line'><span class="n">salt</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span>
-</span><span class='line'><span class="p">);</span>
-</span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="n">todo_meta</span> <span class="p">(</span>
-</span><span class='line'><span class="n">todo_id</span> <span class="nb">integer</span><span class="p">,</span>
-</span><span class='line'><span class="n">user_id</span> <span class="nb">integer</span><span class="p">,</span>
-</span><span class='line'><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">todo_id</span><span class="p">)</span> <span class="k">references</span> <span class="n">todo</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
-</span><span class='line'><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span> <span class="k">references</span> <span class="k">user</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
-</span><span class='line'><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>启动脚本就会创建数据库并开始测试。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-14T23:23:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/sql/'>sql</a>
 
 
 </div>

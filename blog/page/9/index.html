@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="项目中有使用pytz这个第三方库来处理datetiem相关的东西。不过最近测试的时候发现，创建了一个时间点后，最终得到的时间点和预想的时间点有6分钟的误差，从网上搜到的资料是这样解决的：详情看http://hi.baidu.com/limodou/item/ &hellip;">
+	<meta name="description" content="昨天就开始做user center这样一个功能，说简单也简单，至少是从表现上来看很简单，不过也挺重要的，几乎每个电商网站都有一个说得过去的user center，至少要让用户能在这里查询订单什么的。我们这个user center同样参考了不少网站的产品原型，但由于是上线初期，很多功能无法完善， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,51 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/10/23/new-task/">
+		
+			New Task</a>
+	</h2>
+	<div class="entry-content">
+		<p>昨天就开始做user center这样一个功能，说简单也简单，至少是从表现上来看很简单，不过也挺重要的，几乎每个电商网站都有一个说得过去的user center，至少要让用户能在这里查询订单什么的。我们这个user center同样参考了不少网站的产品原型，但由于是上线初期，很多功能无法完善，最终呈现给用户的就三四个功能（还有一个是纯粹展示一段文字用的……）</p>
+
+<p>但很可惜，犹豫center的功能性，需要和订单、用户地址、用户信息等功能衔接，有位同事正在搞下单功能，我看到有些地方需要修改，改好后push过去，一会又和那位同事冲突了，这样就很难推进下去了，如果同事在身边还好，可惜不在。</p>
+
+<p>余下一点时间讨论了large category、medium category、small category的效果，明天会先解决ERP下单问题，接着就是按照今天讨论的效果来实现category。大致看了一下diapers.com的实现代码，不那么难，但做到兼容IE的话我还是没底，需要强大前端支持。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-23T20:47:00+08:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -656,58 +701,6 @@
 
 
 	<a class='category' href='/blog/categories/js/'>js</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/07/17/flask-debug-in-production-environment-with-uwsgi/">
-		
-			生产环境下的flask调试</a>
-	</h2>
-	<div class="entry-content">
-		<p>生产环境是：nginx+uwsgi+flask+sqlalchemy等等等</p>
-
-<p>自带的调试功能比较好用，也能很方便的查看各种变量的值，不过在生产环境中调试并不是那么容易。需要在uwsgi开启的时候传入“&mdash;catch exceptions”：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost --catch-exceptions
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在flask的app中要设置config中的PROPAGATE_EXCEPTIONS = True才可以在遇到错误的时候直接输出到页面上。</p>
-
-<p>昨晚部署到服务器中，发现好多地方是500号错误，根本不知道在哪里出的错误，今天打开了这些才发现是jinja2模板中的do方法不识别，原来我把这个加载do操作放在了比较靠后的地方，在生产环境下不会去调用app了，所以原本写在<code>if __name__ == "__main__"</code>里面的东西就不会再调用了：）</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-17T09:36:00+08:00" pubdate data-updated="true">Jul 17<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>

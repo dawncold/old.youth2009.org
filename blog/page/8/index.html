@@ -7,10 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="为了强制自己学习，每天晚上都要读书，如果时间允许就多读几种。今晚开始重读《The Pragmatic Programmer》（其实自己本来也没看多少） 强化几个英语单词吧： picture: 描述
-neglect: 忽视
-responsible: 负责任的
-inertia: 惯性 &hellip;">
+	<meta name="description" content="加了一台staging server，这个就相当于有了生产环境后的测试环境，先在这里测试完毕后才会部署到真正的生产环境，本来我们是有测试环境的，但现在给了编辑们使用后那个环境就变成生产环境了，不能轻易改动，但还有不少部署相关的东西需要开发、测试，比如我要完善备份过程，还有灾难恢复什么的。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -77,6 +74,55 @@ inertia: 惯性 &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/06/staging-server/">
+		
+			Staging Server</a>
+	</h2>
+	<div class="entry-content">
+		<p>加了一台staging server，这个就相当于有了生产环境后的测试环境，先在这里测试完毕后才会部署到真正的生产环境，本来我们是有测试环境的，但现在给了编辑们使用后那个环境就变成生产环境了，不能轻易改动，但还有不少部署相关的东西需要开发、测试，比如我要完善备份过程，还有灾难恢复什么的。今天把原来的两个不用的lxc容器开起来了当staging环境来用。</p>
+
+<p>部署staging的时候出现了不少奇怪问题，taowen说installer过程很脆弱，要重写，有些东西就收工fix掉，能正常使用就好了。没想到部署staging花去了很长时间，差不多三四点才正常使用。</p>
+
+<p>明天就要加固backup过程了，相信不会特别容易。还有一些小问题需要fix，虽然不影响使用，但积少成多会很难对付。</p>
+
+<p>wanglei爆了一个autocomplete的插件的漏洞——先隐藏autocomplete后显示出来，输入要查询的内容时候提示div会跑到（0，0）这个位置，加我去pair了一段时间一下子没思路，让他push了代码我回到自己座位上凭着猜测加测试，发现问题——隐藏后再显示出来没有重新获取DOM的positon，这样可能取到空，然后默认放到了（0，0），幸好liufan把autocomplete写得够模块化，在适当位置调用一下initUI()即可解决问题。但。。。在我push代码的时候发现branch出乱子了，真是奇怪。照这个情况看下去，很有必要买本Git书看看了！</p>
+
+<p>临下班的时候eric部署了代码到最新的生产环境，同时也能测试一下长数据库连接问题有没有被真正修复，早晨一去应该就有答案了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-06T22:05:00+08:00" pubdate data-updated="true">Nov 6<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -578,51 +624,6 @@ cornerstone:    奠基石
 
 
 <time datetime="2012-10-25T06:52:00+08:00" pubdate data-updated="true">Oct 25<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/23/new-task/">
-		
-			New Task</a>
-	</h2>
-	<div class="entry-content">
-		<p>昨天就开始做user center这样一个功能，说简单也简单，至少是从表现上来看很简单，不过也挺重要的，几乎每个电商网站都有一个说得过去的user center，至少要让用户能在这里查询订单什么的。我们这个user center同样参考了不少网站的产品原型，但由于是上线初期，很多功能无法完善，最终呈现给用户的就三四个功能（还有一个是纯粹展示一段文字用的……）</p>
-
-<p>但很可惜，犹豫center的功能性，需要和订单、用户地址、用户信息等功能衔接，有位同事正在搞下单功能，我看到有些地方需要修改，改好后push过去，一会又和那位同事冲突了，这样就很难推进下去了，如果同事在身边还好，可惜不在。</p>
-
-<p>余下一点时间讨论了large category、medium category、small category的效果，明天会先解决ERP下单问题，接着就是按照今天讨论的效果来实现category。大致看了一下diapers.com的实现代码，不那么难，但做到兼容IE的话我还是没底，需要强大前端支持。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-23T20:47:00+08:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2012</time></div>
 	<div class="tags">
 
 

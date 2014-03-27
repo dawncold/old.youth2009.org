@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="要整理一些词汇，并且还要给每个词汇编码，我把所有的词汇分割称了独立的汉字，再把这些汉字压缩，去掉重复的汉字，最后把这些汉字导入数据库，得到了每个汉字的id，把这些id组合起来作为词的编码，这样还算是好用吧。 用python写了7个脚本来做这些工作，最后得到了近7万条记录，包括单独的字和一些词。 &hellip;">
+	<meta name="description" content="真不太想写，因为写这篇日志应该比写一个程序都要复杂。 我介绍的是box2d引擎在iphone上的使用方法，网上也有不少介绍的，我再简单啰嗦一番： 首先我们需要一个物理世界：b2world *world;在世界中创造各种各样的body，当然这些body都是刚体，如同经济学中的刚性需求那样， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,59 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/20/simple-intro-to-box2d/">
+		
+			Box2d的简单使用</a>
+	</h2>
+	<div class="entry-content">
+		<p>真不太想写，因为写这篇日志应该比写一个程序都要复杂。</p>
+
+<p>我介绍的是box2d引擎在iphone上的使用方法，网上也有不少介绍的，我再简单啰嗦一番：</p>
+
+<p>首先我们需要一个物理世界：b2world *world;在世界中创造各种各样的body，当然这些body都是刚体，如同经济学中的刚性需求那样，这里值得是形状不会被压扁的坚固物体。这些body默认在实例化后是静态的，除非你明显得把他们的type参数改成b2_dynamicBody，他们就能参与物理运动了。你可以给他们加入密度、弹性、摩擦等参数。这些都是每个body的属性，而这些body是需要刚刚的world创建的，而创建的函数需要一个配置单，就是一个结构体而已。</p>
+
+<p>body出现之后你还不能看到，因为还需要另外的两个重要性质：fixture和shape，这里的shape有两种，一个是多边形，一个是圆形；创建shape后定义一些参数，然后把这个对象传递给fixture的对象，fixture被我叫做材质，刚才介绍的密度、弹性、摩擦等属性就是在这里定义的。当然，fixture有个shape属性，把刚刚实例化的shape对象给他即可。最后用body对象的CreateFixture函数生成fixture。这样应该就能看到你创建的物理实体了。</p>
+
+<p>下面介绍一些刚刚遗漏的概念，在这个物理世界中，我们需要定义一个重要的量——重力，我们所有创建的物理实体都将按照这个重力的方向移动，而这里的重力实际上指的是一个向量，比如说是（0，-10），这样就会向着y轴-10的方向移动，而负坐标是y轴向下的，刚刚实验过，如果用（0，-100）的话，物体下移的速度会比（0，-10）的快很多，这也很明显。</p>
+
+<p>另一个有意义的概念就是休眠了，其实这是创建“世界”的又一个参数，意思是如果有物体到达了无法移动的地方，比如边界，或者说出去了边界，引擎应该就不再计算它的一些数据了，这理所应当，怎么还需要解释呢？我们当然希望引擎能够把主要的计算力量给予需要的物理实体。</p>
+
+<p>上面提到了一个区域的概念，是的，我们应该划定一个区域，在这个区域中的物体参与物理运算，外面的就不再参与了，但这里定义一个区域也是用了向量的方法，而且这个区域也算作一个body，有些难以理解。目前掌握得不好，就不再详述了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-20T13:49:00+08:00" pubdate data-updated="true">Jul 20<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/gameapp/'>gameapp</a>, <a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -605,53 +658,6 @@
 
 
 	<a class='category' href='/blog/categories/book/'>book</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/03/i-will-take-part-in-mathematical-modeling/">
-		
-			我要参加数学建模了</a>
-	</h2>
-	<div class="entry-content">
-		<p>这已经是很久之前的事情了，目前早就结束了报名。刚刚看到要买的书中有这样一本书－－《数学建模》，这才想起来还有这样一件重要的事情。</p>
-
-<p>由于是第一次参加这样的专业性比赛，无经验、无指导让我无所畏惧，也无所担心。因为本来就不喜欢别人帮忙得来的成绩，所以我们没有选择指导老师，其实指导老师被抢走也是一个原因，又加上报名手册上鼓励学生不找指导老师，于是我们就大胆地抛弃了指导老师。</p>
-
-<p>无经验，确实没参与过这类比赛，只是听过有这样的比赛，姑且用来试试数学的思维吧，虽然考试成绩还能凑合，但实际应用一定会让我们捉襟见肘。</p>
-
-<p>也不是完全没有好处－－有两个美女和我一起参加，这算是动力了吧！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-03T12:47:00+08:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mm/'>mm</a>
 
 
 </div>

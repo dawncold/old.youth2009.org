@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="经过昨天一天的努力，软考终于结束了，不知为何昨晚没有写这些，可能是因为晚上给同学过生日玩得很好，也很累，回来没有静下来写这些。 一共复习了2个月，算是挺长的了，很多同学都复习几天就去参加了，不知道他做得怎么样。我感觉这次考试是我做得最难的一套题了，当然有不少成分是紧张， &hellip;">
+	<meta name="description" content="如果在mac系统下没有可用的drcom客户端真是很难受的一件事情，虽然现在有了web登陆的账号，但还是有限制的——流量总数、速度，特别是速度限制，真是拿生锈的刀杀人的感觉。 曾经两次打开了xcode来调试drcom4mac的源代码，但每次都感觉怎么这么复杂，我怎么能看得懂？ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,53 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/11/19/also-back-to-drcom-for-mac/">
+		
+			又回到了drcom上</a>
+	</h2>
+	<div class="entry-content">
+		<p>如果在mac系统下没有可用的drcom客户端真是很难受的一件事情，虽然现在有了web登陆的账号，但还是有限制的——流量总数、速度，特别是速度限制，真是拿生锈的刀杀人的感觉。</p>
+
+<p>曾经两次打开了xcode来调试drcom4mac的源代码，但每次都感觉怎么这么复杂，我怎么能看得懂？里面的drcom库是用C写的，我个人一直对于C语言有好感，但就是不想接触。现在高级语言有的是，虽说从学术划分上来讲C也算是高级语言，但从语言上比较，C算是很底层的了。就这样拖延着，我想还是动力不够，如果有什么强大动力支持着我来做这个，可能会更好。</p>
+
+<p>再来一次吧，现在同时也在学着python，前段时间面试豆瓣的时候被问到是不是C的代码写得少，我只能正确回答是的，最终也没面试上，许是和这个有关，既然如此也算是给自己找了个理由——为了未来，还有广大生活在drcom阴影下的使用mac系统的人们。</p>
+
+<p>我来了！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-19T14:33:00+08:00" pubdate data-updated="true">Nov 19<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mac/'>mac</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -569,135 +616,6 @@
 
 
 	<a class='category' href='/blog/categories/vps/'>vps</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/08/13/batch-handly-files-use-python/">
-		
-			Python批量处理文件</a>
-	</h2>
-	<div class="entry-content">
-		<p>从某网站上下载了几个压缩包，里面全是目录，每个目录下都有一个doc文件，但可恶的是这些doc文件被换了扩展名，原本是xxx.doc现在变成xxx.doc.resx，我得用python批量处理一下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/python</span>
-</span><span class='line'><span class="c"># -*- coding:utf-8 -*-</span>
-</span><span class='line'><span class="c"># 遍历所有目录，把resx文件扩展名删掉</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">current_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-</span><span class='line'><span class="n">allsubdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">current_path</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">subdir</span> <span class="ow">in</span> <span class="n">allsubdir</span><span class="p">:</span>
-</span><span class='line'>   <span class="n">subdir_path</span> <span class="o">=</span> <span class="s">&#39;./&#39;</span> <span class="o">+</span> <span class="n">subdir</span>
-</span><span class='line'>   <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">subdir_path</span><span class="p">):</span>
-</span><span class='line'>       <span class="n">files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">subdir_path</span><span class="p">)</span>
-</span><span class='line'>       <span class="k">for</span> <span class="n">_file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-</span><span class='line'>           <span class="n">basename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">_file</span><span class="p">)</span>
-</span><span class='line'>           <span class="n">allname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">basename</span><span class="p">)</span>
-</span><span class='line'>           <span class="k">if</span> <span class="s">&#39;.resx&#39;</span> <span class="ow">in</span> <span class="n">allname</span><span class="p">:</span>
-</span><span class='line'>               <span class="k">print</span> <span class="s">&#39;resx file </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">basename</span>
-</span><span class='line'>               <span class="n">without_resx</span> <span class="o">=</span> <span class="n">allname</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'>               <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">subdir_path</span><span class="o">+</span><span class="s">&#39;/&#39;</span><span class="o">+</span><span class="n">_file</span><span class="p">,</span><span class="n">without_resx</span><span class="p">)</span>
-</span><span class='line'>           <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>               <span class="k">print</span> <span class="s">&#39;not resx file&#39;</span>
-</span><span class='line'>               <span class="k">continue</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>还用了一个删除空目录的脚本：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/python</span>
-</span><span class='line'><span class="c"># -*- coding:utf-8 -*-</span>
-</span><span class='line'><span class="c">#删除空目录</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">alldir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
-</span><span class='line'><span class="k">for</span> <span class="n">_dir</span> <span class="ow">in</span> <span class="n">alldir</span><span class="p">:</span>
-</span><span class='line'>   <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="s">&#39;./&#39;</span><span class="o">+</span><span class="n">_dir</span><span class="p">):</span>
-</span><span class='line'>       <span class="k">print</span> <span class="s">&#39;dir: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">_dir</span>
-</span><span class='line'>       <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">&#39;./&#39;</span><span class="o">+</span><span class="n">_dir</span><span class="p">):</span>
-</span><span class='line'>           <span class="k">print</span> <span class="s">&#39;have something </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">&#39;./&#39;</span><span class="o">+</span><span class="n">_dir</span><span class="p">)</span>
-</span><span class='line'>       <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>           <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="s">&#39;./&#39;</span><span class="o">+</span><span class="n">_dir</span><span class="p">)</span>
-</span><span class='line'>   <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>       <span class="k">print</span> <span class="s">&#39;file or others&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>用python，很快乐！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-13T15:30:00+08:00" pubdate data-updated="true">Aug 13<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>

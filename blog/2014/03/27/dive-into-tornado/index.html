@@ -1,0 +1,180 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>dive-into-tornado - Trade Off</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="早就有这样的计划，要深入了解自己在用的工具，veil算一个，tornado算一个，flask算一个……当然还有好多，总得一个个看一番，好在这些库都写得足够简单，不至于一下子看不懂，而且借助pycharm这样优秀的工具，一步步跟踪代码也给深入理解框架极大的帮助，所以，开始吧。（ &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Dive-into-tornado</h2>
+	<div class="entry-content"><p>早就有这样的计划，要深入了解自己在用的工具，veil算一个，tornado算一个，flask算一个……当然还有好多，总得一个个看一番，好在这些库都写得足够简单，不至于一下子看不懂，而且借助pycharm这样优秀的工具，一步步跟踪代码也给深入理解框架极大的帮助，所以，开始吧。（也好久都没更新过技术博客的内容了）</p>
+
+<p>终于可以再让Mac发挥发挥余热了，pycharm用的社区版，估计对于学习够用了。tornado升级到了稳定的3.2版，也是目前的最新版，先慢慢研读官方的文档，再慢慢看完api。</p>
+
+<p>keymap是个问题，平时用键盘的时候，用的是default键位，现在改用MacOS10.5+的键位，还算是熟悉，但最基本的几个（查找文件、查找符号、搜索、重构等重新熟悉了，再高级的用法估计社区版不支持）</p>
+
+<p>在写hello，world例子的时候，处理GET我直接就下意识返回了想要的字符串，没想到运行起来是500 error，仔细一看原来官方的例子中处理GET是要调用<code>self.write('xxx')</code>，然后我就看了下self.write做了什么，self是我定义的class，但这个class继承自tornado.web.RequestHandler, 于是看tornado.web.RequestHandler的write做什么，write的参数叫chunk，并不是简单的叫str之类的东西，也就是说不限于str，有可能是些别的东西，比如注释中说如果你write了一个dict，tornado会转换成JSON，并且把Content-Type给你设置好，现在的veil也支持了这个优秀特性。还提到了list不会被转换成JSON格式，因为一个漏洞（坑），具体看<a href="http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx/">这里</a>，简单讲，就是用script的src指向一个网站需要登陆后才能访问的地址，因为你如果登陆过的话，cookie信息会随之发送到这个地址，此时如果你去了一个邪恶的网站，他里面有些脚本，引用刚刚提到的你需要登陆的网址，你浏览器会把你的一些信息带上，请求这个地址，这个地址会返回一些你的个人资料，比如是用JSON的array回给你，但邪恶网站把javascript array的constructor改写了，你拿到JSON的array会被自动转成js array，这样邪恶网站会收集到你的信息，然后再发送回自己一个接受数据的接口就可以了。避免方法就是：返回JSON的时候用对象方式；这种关键信息用POST提交，script标签只会发送GET请求；现代高级浏览器都不会有问题，大可放心。转换成了byte string（就是str）放入chunk_buffer，一起写到output。</p>
+
+<p>我们的handler很简单，实现了get方法，然后write了一个字符串，但后来呢？或许应该从另一条路看起——从url被映射到handler看起。</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-27T21:22:58+08:00" pubdate data-updated="true">Mar 27<span>th</span>, 2014</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    dawncold
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/www/blog/2014/03/27/dive-into-tornado/';
+        var disqus_url = 'http://www.youth2009.org/www/blog/2014/03/27/dive-into-tornado/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-8650400-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

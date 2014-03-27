@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="Bad code requires lots of comments! head file 也是一种重复，这属于language的重复，一般只能妥协。 “出来混迟早要还的”，这句话又出现了！！！ deal with interdeveloper duplication的方法就是多多交流。。。 &hellip;">
+	<meta name="description" content="今天taowen给我们show了一个很fancy的日志处理过程，当然是in the future的，深度打动了wanglei，由于是刚刚吃过饭，站着听久了难免会发困，主要听来的意思就是app的log会自己在local记录，然后发送json给syslog，后面接上logstash做一个处理， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,53 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/28/change-shopping-cart/">
+		
+			Change Shopping Cart</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天taowen给我们show了一个很fancy的日志处理过程，当然是in the future的，深度打动了wanglei，由于是刚刚吃过饭，站着听久了难免会发困，主要听来的意思就是app的log会自己在local记录，然后发送json给syslog，后面接上logstash做一个处理，再往后就是接入各种图表啊、search啊这样的终端app，如果能完全跑起来应该是足够玄的。不知道成形的互联网电商们会不会也是这样做的。</p>
+
+<p>我主要在修改shopping cart，临下班eric过来和我做了一点东西，后来taowen觉得shopping cart有redis和db两种不同实现很不爽，我倒是没那么强烈，不过如果要改全db对我的工作量会加大。回家后吃了饭感觉身体还好，就修改成全db吧，看看是什么效果。</p>
+
+<p>好在都过了测试，但我删掉了一个功能，所以测试文件也进行了修改，没问题：）</p>
+
+<p>明天应该会把手上的issue全部弄好，哦对了，今天花了挺长时间在Set-Cookie，弄了半天发现就只有几行增加，真是不全局看的话，工作量就会无形的被自己放大。。。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-28T23:21:00+08:00" pubdate data-updated="true">Nov 28<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -702,55 +749,6 @@ pristinely:     未受损的
 
 
 	<a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/06/staging-server/">
-		
-			Staging Server</a>
-	</h2>
-	<div class="entry-content">
-		<p>加了一台staging server，这个就相当于有了生产环境后的测试环境，先在这里测试完毕后才会部署到真正的生产环境，本来我们是有测试环境的，但现在给了编辑们使用后那个环境就变成生产环境了，不能轻易改动，但还有不少部署相关的东西需要开发、测试，比如我要完善备份过程，还有灾难恢复什么的。今天把原来的两个不用的lxc容器开起来了当staging环境来用。</p>
-
-<p>部署staging的时候出现了不少奇怪问题，taowen说installer过程很脆弱，要重写，有些东西就收工fix掉，能正常使用就好了。没想到部署staging花去了很长时间，差不多三四点才正常使用。</p>
-
-<p>明天就要加固backup过程了，相信不会特别容易。还有一些小问题需要fix，虽然不影响使用，但积少成多会很难对付。</p>
-
-<p>wanglei爆了一个autocomplete的插件的漏洞——先隐藏autocomplete后显示出来，输入要查询的内容时候提示div会跑到（0，0）这个位置，加我去pair了一段时间一下子没思路，让他push了代码我回到自己座位上凭着猜测加测试，发现问题——隐藏后再显示出来没有重新获取DOM的positon，这样可能取到空，然后默认放到了（0，0），幸好liufan把autocomplete写得够模块化，在适当位置调用一下initUI()即可解决问题。但。。。在我push代码的时候发现branch出乱子了，真是奇怪。照这个情况看下去，很有必要买本Git书看看了！</p>
-
-<p>临下班的时候eric部署了代码到最新的生产环境，同时也能测试一下长数据库连接问题有没有被真正修复，早晨一去应该就有答案了。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-06T22:05:00+08:00" pubdate data-updated="true">Nov 6<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
