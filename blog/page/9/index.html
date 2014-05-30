@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="昨天就开始做user center这样一个功能，说简单也简单，至少是从表现上来看很简单，不过也挺重要的，几乎每个电商网站都有一个说得过去的user center，至少要让用户能在这里查询订单什么的。我们这个user center同样参考了不少网站的产品原型，但由于是上线初期，很多功能无法完善， &hellip;">
+	<meta name="description" content="也不知道怎么的，明天竟然就要内部测试了，首先是让编辑们录入商品，然后逐渐开始上一些主题、促销什么的东西，后者还没有时间表，不过从星期一就知道了星期四开始正式录入商品，也就是说我们的数据库从星期四就不能再drop了，只能migrate。 今天我们每个人都开始了带生产环境下的开发， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,237 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/10/31/tomorrow-internal-test/">
+		
+			Tomorrow Internal Test</a>
+	</h2>
+	<div class="entry-content">
+		<p>也不知道怎么的，明天竟然就要内部测试了，首先是让编辑们录入商品，然后逐渐开始上一些主题、促销什么的东西，后者还没有时间表，不过从星期一就知道了星期四开始正式录入商品，也就是说我们的数据库从星期四就不能再drop了，只能migrate。</p>
+
+<p>今天我们每个人都开始了带生产环境下的开发，一切操作都和上线了一样，包括提交之前必须有测试跑过才可以提交，这里被taowen监视着安装了一个hook，如果不跑一遍测试，根本没办法commit。还有数据库的baseline无法再被修改，这里也有一个licked文件管理着，如果需要修改只能migrate到baseline才可以。</p>
+
+<p>部署方面今天我做了几个脚本方便使用——backup、restore、restore-from-baseline，分别是备份、恢复、远程恢复，备份既可以是server来做，也可以自己来做，只是自己做这个似乎没什么必要，server会自动在4点的时候备份一下var目录，远程恢复就是回复一个server的备份到本地开发使用。</p>
+
+<p>今天还熟悉了一下tar的使用，现在是用tar打包，顺便压缩成了gz，所以打包需要czf参数，之所以这样排序是因为f参数后面是要跟着tar.gz文件名作为参数的，以前我以为随便排序，现在想想好傻啊。今天还遇到一个小问题，tar打包的时候如果你给出的路径是绝对的，那么打包也会从头开始帮你打包，比如你给了一个从根分区到你要打包目录的路径，那么打包完了，也是从根分区开始，恢复起来比较讨厌，此时需要一个C参数，大写C，Ta可以让你的工作目录Change到一个地方去，这样你就能在打包的时候把工作目录移动到需要的地方，这样就能不带那么长的路径了，当然解包的时候同样需要C参数指定好位置。</p>
+
+<p>restore-from-baseline那里还有点问题，没有做测试找出漏洞，只能明天再去试试了，还有就是在部署的时候supervisor的配置文件有错误，导致web部署出问题，我看了看改起来比较费劲，让taowen干掉吧明天。</p>
+
+<p>明天，可能会很紧张吧：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-31T21:35:00+08:00" pubdate data-updated="true">Oct 31<span>st</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/10/27/erp/">
+		
+			Erp</a>
+	</h2>
+	<div class="entry-content">
+		<p>终于把erp的所有接口测试完了，其中仍然不乏几个要命错误，只好记录下来发给开发方，又将是漫长的等待。</p>
+
+<p>王总终于还是看不惯我们专业人士用的一些词汇和设计出来的使用流程，他似乎希望身边即便是初中毕业的员工都能自由使用我们开发的系统，这点有些像Jobs不是么，很可惜我们在做的产品不是面向广大用户，而是他的人数有限的编辑们，有时候我就怀疑需不需要这么人性化的设计。</p>
+
+<p>taowen又把网站的架构修正了一番，这次改动似乎稍大，我更新了代码发现数据库帐号密码不对，经过邮件咨询，说删掉var重新install一遍能搞定，我又试了一次，这次直接提示数据库找不到，看来真陷入困境了。</p>
+
+<p>今天上午姐姐请我去吃饭，我也没法fix这边的问题，下午回来又和豪猪碰面，帮他洗了几件衣服后出去海吃了一顿，羊蝎子，这个星期的油水满了，明天如果能把热水器fix了我就很满足了，要不然又要无休止的拖下去。我讨厌任何的拖延，并且认识到拖延和蝴蝶效应是伴生关系，一拖延影响的事情会逐渐影响后来的很多事，让你抓狂。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-27T21:57:00+08:00" pubdate data-updated="true">Oct 27<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/life/'>life</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/10/25/orange-has-been-sweet/">
+		
+			Orange Has Been Sweet</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天早晨买了一些水果，也买了几个橙子，虽然不便宜，但今晚上吃起来感觉还不错，挺甜的。</p>
+
+<p>怎么总感觉今天有点儿不稳呢，听说ERP的接口搞定了就要去测试了，测试过程不怎么顺利，让别人做事情，而且相隔很远，再加上对方不怎么关心这个有点陈旧的系统，工作就会很难同步，我们一测试就出问题，报告过去后好久才给我改改，再测试，又出问题。目前来看虽然没有完全测试好，但已经暴露出几个问题了，还是比较重要的。</p>
+
+<p>明天需要继续测试剩下的接口，并且要总结问题，发给郑工处理处理，又是漫长的等待，这是必然的，不仅仅是一个周末，估计这块在上线前都会是很紧张的。</p>
+
+<p>这篇文章发表得不容易，generate的时候总出现一个错误:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:203:in <span class="sb">`</span>parse<span class="s1">&#39;: (&lt;unknown&gt;): control characters are not allowed at line 1 column 1 (Psych::SyntaxError)</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:203:in `parse_stream&#39;</span>
+</span><span class='line'>  from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:151:in <span class="sb">`</span>parse<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:127:in `load&#39;</span>
+</span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/convertible.rb:33:in <span class="sb">`</span>read_yaml<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/post.rb:39:in `initialize&#39;</span>
+</span><span class='line'>  from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:23:in <span class="sb">`</span>new<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:23:in `block in read_posts&#39;</span>
+</span><span class='line'>  from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:21:in <span class="sb">`</span>each<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:21:in `read_posts&#39;</span>
+</span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/site.rb:128:in <span class="sb">`</span>read_directories<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/site.rb:98:in `read&#39;</span>
+</span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/site.rb:38:in <span class="sb">`</span>process<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/bin/jekyll:250:in `&lt;top (required)&gt;&#39;</span>
+</span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin/jekyll:23:in <span class="sb">`</span>load<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin/jekyll:23:in `&lt;main&gt;&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这种错误找起来真是蛋疼，最终是在dev这个字符开始的地方找到的，有个奇怪的字符出现了，看不到，也不占空，但确实有个字符在那里占着地方，或许是输入法在切换的时候遗留到那里的吧。。。可恶！</p>
+
+<p>明天还有新工作，测试完ERP后继续做CMS，王总提出了不少新的东西要改进。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-25T21:04:00+08:00" pubdate data-updated="true">Oct 25<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/life/'>life</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/10/25/almost-fullfil/">
+		
+			Almost Fullfil</a>
+	</h2>
+	<div class="entry-content">
+		<p>昨晚洗完澡后想继续把白天没做完的tag list block做完，没想到阿敏跳出来让我看她最近的摄影作品，看着真不像她拍得东西，整个画面已经不是全都清楚了，该清楚的地方清楚，其余地方模糊。我早就这样和她说过，她还总不相信，现在上了摄影课才知道。</p>
+
+<p>渐渐发现我已经做完tag list的功能了，只是现在给了一个固定的宽高，所以没有匹配到product list这个block，可以加图片或者幻灯片进去，好吧，现在工作似乎简单了不少，马上push了代码准备记录一下，一看已经过了10点。还是想养成早睡早起而不是晚睡早起的习惯，那就睡了吧。</p>
+
+<p>估计今天会和taowen先把昨天没做好的block隐藏功能做好，然后就能继续向着medium、small category开进。</p>
+
+<p>昨天中午看了一个视频，全英文，还是Domain Design，讲了一些在旧系统重构到新系统的技巧，并且如何使用Domain Design，大概能看懂20~30%，英语继续练习吧，实在不行我就把blog改成英文版！！！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-25T06:52:00+08:00" pubdate data-updated="true">Oct 25<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -404,303 +635,6 @@
 
 
 	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/04/sort-method-in-python/">
-		
-			Python中的sort方法</a>
-	</h2>
-	<div class="entry-content">
-		<p>打算从今天开始自习再学学Python的基础，选了Google提供的Python课程，学到list部分，有个练习题目要求针对一组tuples排序，根据tuples的最后一个元素排序，有个hint，可以用key=function这种方法，于是搜索了一番，在Python的wiki中找到这个key方法的描述：</p>
-
-<p>从Python2.4以后list.sort()和sorted()方法都提供了一个key可选参数，传入一个function用来决定排序需要的key。这个key就是所排序元素的权值，最终就是根据权值来排序了。你也可以自己写一个方法，就是那种用def来定义的方法，不过要求接受一个参数，返回一个值，接受的参数就是这个集合（list、dict、tuple）中的某个元素。我是这样写的，it works：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">sort_last</span><span class="p">(</span><span class="n">tuples</span><span class="p">):</span>
-</span><span class='line'> <span class="c"># +++your code here+++</span>
-</span><span class='line'> <span class="n">tuples</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-</span><span class='line'> <span class="k">return</span> <span class="n">tuples</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>根据tuple中最后一个排序。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-04T14:58:00+08:00" pubdate data-updated="true">Oct 4<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/01/optimzation-for-m4/">
-		
-			M4的一点优化(MacOS 10.9)</a>
-	</h2>
-	<div class="entry-content">
-		<p>1.关闭紧急运动传感器</p>
-
-<p>mac系统没有把这些传感器的设置、界面什么的体现到UI里，让我一度以为mbp没有这种设备，实际这也算是mac系统的设计理念吧，把普通用户无须知晓的东西屏蔽掉，让用户看起来、用起来异常简单，不像thinkpad那样，直接把硬盘活动保护啥的做成一个功能给用户展示。。。你看，你看，我们（thinkpad）有保护您硬盘的设备。</p>
-
-<p>这些不让用户看到的功能大多需要相关工具或者命令行来设置：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pmset -a sms 0
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>对于替换了原来硬盘的这种方案就可以关闭紧急运动传感器了，如果加了SSD在光驱位，那就甭管了，继续保护硬盘吧！</p>
-
-<p>2.备份驱动</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3.更新驱动</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo perl -pi -e <span class="s1">&#39;s|(\x52\x6F\x74\x61\x74\x69\x6F\x6E\x61\x6C\x00{1,20})[^\x00]{9}(\x00{1,20}\x54)|$1\x00\x00\x00\x00\x00\x00\x00\x00\x00$2|sg&#39;</span> /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>4.开启Trim</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo kextcache -system-prelinked-kernel
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>5.清除系统内核扩展缓存</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo kextcache -system-caches
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>6.重启</p>
-
-<p>如果出错就恢复刚刚的备份</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo cp /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage.original /System/Library/Extensions/IOAHCIFamily.kext/Contents/PlugIns/IOAHCIBlockStorage.kext/Contents/MacOS/IOAHCIBlockStorage
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3.用noatime方式挂载硬盘，就是少加载一个文件属性参数而已，对于日常使用没啥影响，在/Library/LaunchDaemons里面创建一个noatime.plist，内容如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-</span><span class='line'><span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot;</span>
-</span><span class='line'><span class="cp">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
-</span><span class='line'><span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;dict&gt;</span>
-</span><span class='line'><span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'><span class="nt">&lt;string&gt;</span>noatime<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'><span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'><span class="nt">&lt;array&gt;</span>
-</span><span class='line'><span class="nt">&lt;string&gt;</span>mount<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'><span class="nt">&lt;string&gt;</span>-vuwo<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'><span class="nt">&lt;string&gt;</span>noatime<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'><span class="nt">&lt;string&gt;</span>/<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'><span class="nt">&lt;/array&gt;</span>
-</span><span class='line'><span class="nt">&lt;key&gt;</span>RunAtLoad<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'><span class="nt">&lt;true/&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dict&gt;</span>
-</span><span class='line'><span class="nt">&lt;/plist&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>修改刚刚创建的文件权限</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chown root:wheel /Library/LaunchDaemons/noatime.plist
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>重启</p>
-
-<p>检测结果</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mount | grep <span class="s2">&quot; / &quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果结果里有类似这样的内容（最后的noatime）就表示可以了</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/dev/disk0s2 on / <span class="o">(</span>hfs, <span class="nb">local</span>, journaled, noatime<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-01T17:05:00+08:00" pubdate data-updated="true">Oct 1<span>st</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ssd/'>ssd</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/01/bought-a-ssd-called-m4/">
-		
-			买了个叫M4的硬盘</a>
-	</h2>
-	<div class="entry-content">
-		<p>256Gb，1200块。</p>
-
-<p>速度还不错，读取260Mb/s，写入206Mb/s。</p>
-
-<p>至此，MC374能升级的部分都升级到位了。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-01T14:05:00+08:00" pubdate data-updated="true">Oct 1<span>st</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ssd/'>ssd</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/08/18/prop-method-in-jquery1-6-or-later/">
-		
-			jquery1.6+中的prop方法</a>
-	</h2>
-	<div class="entry-content">
-		<p>最近有个网站需要一个简单的功能——全选一些checkbox，但用attr的方法总是出问题，主要问题如下：第一次全选没问题，如果此时取消选择一些checkbox，再用全选就不管用了，主要原因就是第一次全选的时候自动加入了checked属性，以后再强制attr(&ldquo;checked&rdquo;,true)就会没反应。在<a href="http://blog.csdn.net/yaerfeng/article/details/7792832">这里</a>看到一篇文章，里面提到了prop方法，是1.6以后才加入的，就是部分替换了attr的功能，用了prop就可以及时对操作做出反应（这里我不太理解），总之本来用attr的操作现在需要用prop才有效果，当然了，如果你用纯js肯定是没问题喽。</p>
-
-<p>换用prop之后，问题解决！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-18T19:27:00+08:00" pubdate data-updated="true">Aug 18<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/js/'>js</a>
 
 
 </div>

@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １. &hellip;">
+	<meta name="description" content="软件工程的设计是一种抽象概念，设计的最终体现是源代码。 软件需求总在变化，本来一个简单的程序，经过几次需求变化就需要添加上很多额外的参数来控制流程，这时根本不可能期望修改接口，因为这时很多模块可能已经在使用你，如果你进行了更改，依赖你的所有代码都需要重新编译，这在一个庞大的项目中简直就是灾难！ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,347 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/03/05/agile-develop-simple-bad-smell-analytics/">
+		
+			坏味的简单分析</a>
+	</h2>
+	<div class="entry-content">
+		<p>软件工程的设计是一种抽象概念，设计的最终体现是源代码。</p>
+
+<p>软件需求总在变化，本来一个简单的程序，经过几次需求变化就需要添加上很多额外的参数来控制流程，这时根本不可能期望修改接口，因为这时很多模块可能已经在使用你，如果你进行了更改，依赖你的所有代码都需要重新编译，这在一个庞大的项目中简直就是灾难！</p>
+
+<p>所以，出现坏味的根本原因就是一开始的轻视设计，又加上不断的需求变化，项目中不可避免的一些依赖，导致需要利用hacks这类方法来躲避灾难，而越是hacks，越是在让项目腐烂！！！</p>
+
+<p>那么敏捷开发者这帮神人是如何做的呢？他们遵循原则、模式等等。敏捷设计是一个过程，而不是事件。在不断变化中，他们能够利用变化，而其他人却被变化弄得不知所措。那么我们期待以后的敏捷原则介绍吧！我总感觉这和Unix里面的KISS有相同的意思。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-05T22:10:00+08:00" pubdate data-updated="true">Mar 5<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/agile/'>agile</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/03/04/change-ssh-login/">
+		
+			修改ssh登录方式</a>
+	</h2>
+	<div class="entry-content">
+		<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>PasswordAuthentication yes
+</span><span class='line'>ChallengeResponseAuthentication no
+</span><span class='line'>GSSAPIAuthentication yes
+</span><span class='line'>UsePAM no</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就能有的用rsa登录有的用密码登陆了！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-04T22:29:00+08:00" pubdate data-updated="true">Mar 4<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/vps/'>vps</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/03/03/start-haskell-study/">
+		
+			Haskell的学习开始了</a>
+	</h2>
+	<div class="entry-content">
+		<p>总算是这本新书仍旧躺在图书馆的新书架上，上次看到后感觉没时间来学习，自己总是拼命追赶技术的前沿，而在这里是有难度的，虽然网络让我们和世界保持同步，但知识的追赶总还是需要时间来加冕。不知道这还算不算是技术前沿了，不过总是比其他的那些新了不少，函数式编程。</p>
+
+<p>这也是我第一次阅读全英文的技术书籍，以前也曾阅读过带注释的《程序员修炼之道》，可惜没有看完，现在图书馆中也见不到了，以后有机会再找回来看看。 Haskell的不少语法规则都和已经学过的编程语言差不多，如果一种新的语言推出了极其怪异的语法而它又不能自圆其说的话，那这门语言很快就将泯灭，原因不用多讲。这样的话学习起来就能稍微简单些了。 使用的书籍叫《Real World Haskell》。</p>
+
+<p>首先接触到了GHC的概念，这是个缩写，包括了三个组件：ghc、ghci、runghc。 ghc是编译器；ghci是个交互模式的命令行，类似python的那个；runghc是可以作为脚本运行haskell的东西，不用编译就可以运行了，感觉这就是个脚本解释器吧。</p>
+
+<h1>安装GHC平台</h1>
+
+<p>在<a href="http://www.haskell.org">这里</a>能够下载到各个系统上的haskell平台，具体的下载地址还是看这里：<a href="http://hackage.haskell.org/platform/">http://hackage.haskell.org/platform/</a>我使用的是Mac版本的平台，下载后即可安装，但mac平台下需要先安装xcode，接着就能安装GHC了。安装过程可以参考相关文档，mac下的安装就是2步，第一是安装GHC，第二个是安装叫Haskell平台的东西，都在下载的dmg中。</p>
+
+<h1>帮助</h1>
+
+<p>在命令行中输入ghci即可使用交互式来学习haskell。 输入“：？”即可看到一串帮助信息。</p>
+
+<h1>基础模块</h1>
+
+<p>在shell中能够看到命令提示标志是一个叫“Prelude”的东西，书上讲这是haskell默认加载的一个模块，就是个基础模块吧，如果不喜欢这个名字可以这样更改掉：  </p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:set prompt <span class="s2">&quot;ghci &gt;&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>现在的提示符标志就变成ghci >了。</p>
+
+<h2>加载其他模块</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:module + Data.Ratio
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就加载了Data.Ratio这个模块，这个模块似乎是使用浮点数之类的东西吧，我还没有细看。具体可以参考文档。</p>
+
+<h1>进行一些简单计算</h1>
+
+<p>输入2+2啦，3+3啦这样的表达式，haskell都能计算出来，这点和python的解释器一样。书中提及了关于负号应该注意的地方：如果输入2+-3这样的表达式就不对了，加入想要得到正确结果需要这样2+（-3）；再者，haskell中的函数调用没有括号，func -3这样的表达式到底是传递参数-3进去呢，还是func这个变量减去3呢？所以要多多注意！</p>
+
+<h1>Bool的注意</h1>
+
+<p>haskell中有True和False这两个(注意大小写），但和其它语言中不同的是这里的数字0、1不能和bool类型相互转化，如果输入表达式True&amp;&amp;1是不正确的！</p>
+
+<h1>运算符</h1>
+
+<p>说说不等号的表示方法──“/=”，像是其他语言中的x = x/y这样的，但这里看起来更象是不等号。 感叹号表示对一个变量的反，这里用not单词表示──“not True”  => False（=>是我自己为了好看而打上的符号） 乘方运算符：**或者^</p>
+
+<h2>优先级</h2>
+
+<p>使用info查看运算符的优先级：  </p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:info <span class="o">(</span>+<span class="o">)</span>
+</span><span class='line'>:info <span class="o">(</span>*<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>分别查看加号、乘号的优先级，返回的结果类似这样：  </p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>class <span class="o">(</span>Eq a, Show a<span class="o">)</span> <span class="o">=</span>&gt; Num a where
+</span><span class='line'> <span class="o">(</span>+<span class="o">)</span> :: a -&gt; a -&gt; a
+</span><span class='line'> ...
+</span><span class='line'> -- Defined in GHC.Num
+</span><span class='line'>infixl 6 +
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后一样的6表示加号的优先级是6，在haskell中优先级是1～9不等，最高的是9.从这个结果中我们还能看出来如果相同的加号连接表达式的处理方法，是从左到右（在第二行中的三个a，顺次向右箭头）</p>
+
+<h1>几个常量</h1>
+
+<p>说来惭愧，我就知道一个──pi，连e都没有定义！书上教了这样定义临时常量的方法：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">let </span><span class="nv">e</span> <span class="o">=</span> exp 1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里我们就使用了exp函数，传递参数1进去。</p>
+
+<h1>List</h1>
+
+<p>list是haskell中的一种数据结构吧，好像和python中的一样，干脆叫列表好了。定义方法很简单，就是把元素放入两个中括号中，而且药注意的是中括号中的必须是同样的类型，不能放进去整形又放进去字符串这样的混合。在书写上，[1,2,3]这样是正确的，而[1,2,]这样多余了一个逗号，虽然在其他的语言中可能正确，但在这里不行！</p>
+
+<h2>枚举填充列表</h2>
+
+<p>可以使用枚举符号来快速把一个序列填充到列表中： <code>[1..10]</code></p>
+
+<p>这样的列表就变成[1，2，3，4，5，6，7，8，9，10]了，最好别尝试[1..]，因为书上说这样做了就必须kill掉解释器，否则会一直循环下去。</p>
+
+<h3>数列填充</h3>
+
+<p>类似枚举填充，只是多输入几个数字，让haskell知道其中的规律，然后就能构造出各种数列填充了：<code>[10,9..1]</code>这是一个从10到1的递减数列</p>
+
+<h2>注意</h2>
+
+<p><code>[1.0..1.8]</code>这样的结果会出现：<code>[1.0,2.0]</code>，不要感到奇怪，这是浮点数的四舍五入吧，总之使用浮点数填充的时候要多多注意这种细节。</p>
+
+<h2>列表的运算</h2>
+
+
+<p><code>[1,2,3] ++ [4,5]</code>会得到一个[1,2,3,4,5]的列表，就是加起来而已，重复的元素也不会覆盖。  </p>
+
+<p><code>1:[2,3]</code>
+这样会把1放入后面的列表最前面。此处需要注意的是：冒号前面必须是列表中同类的元素，而冒号后面必须是列表，所以反过来就不行了。（遵循原则，前面是个列表，后面是包含列表的列表，这样都对）</p>
+
+<h1>字符串</h1>
+
+<p>这里没什么体别，字符串就是用引号引起来的内容。在字符串中可以使用转义字符，类似\n、\t这类。 字符串就是把每一个字符一个个放入列表中实现的，所以一个空字符串──“”与一个空列表──[]是等价的。   就先到这儿吧，英文版书籍看起来也不算快，边看变查字典呢！haskell的前言中说过这是一个比较奇特的语言，会引发对软件设计的新方法，当然是因为函数式编程吧。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-03T23:44:00+08:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/haskell/'>haskell</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/02/24/i-know-why-the-other-bookmarks-can-not-be-delete-on-bookmark-toolbar/">
+		
+			终于知道为何chrome浏览器中的“其他书签”为何无法去掉了</a>
+	</h2>
+	<div class="entry-content">
+		<p><img src="http://pic.yupoo.com/loose_v/ASbtBMXR/TI9ji.png" alt="" /></p>
+
+<p>早就看着这个文件夹不顺眼，但就是无法删除，打开chrome的书签管理器发现它和“书签栏”是同级的，刚刚去研究了一番chrome的扩展程序，本以为通过chrome本身能够操控自己，但经过实践后发现这根本行不通。 建立一个chrome的扩展程序是这样的：</p>
+
+<p>1.建立一个目录，随便在什么地方。</p>
+
+<p>2.进入这个目录，建立一个叫manifest.json的文件，从文件名就能看出这是个json，用vi、vim、emacs等写入如下内容：  </p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">{</span>
+</span><span class='line'> <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;hide-other-bookmark-button&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;I want to hide the &#39;other bookmark&#39; button in Chrome&#39;s bookmark toolbar!&quot;</span><span class="p">,</span>
+</span><span class='line'> <span class="s2">&quot;browser_action&quot;</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>   <span class="s2">&quot;default_icon&quot;</span><span class="o">:</span> <span class="s2">&quot;icon.ico&quot;</span>
+</span><span class='line'> <span class="p">},</span>
+</span><span class='line'> <span class="s2">&quot;permissions&quot;</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>    <span class="s2">&quot;bookmarks&quot;</span>
+</span><span class='line'>  <span class="p">],</span>
+</span><span class='line'> <span class="s2">&quot;background_page&quot;</span><span class="o">:</span><span class="s2">&quot;index.html&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后找个ico文件，命名成上面提到的icon.ico，只要和json文件中对应即可，png也行。现在这个扩展的配置文件就基本完成了，因为这是要操控bookmarks的扩展程序，所以在permissions那里药写上bookmarks以表示这个扩展要使用chrome的bookmarks的API来做一些东西。具体的API可以参考Google的文档。</p>
+
+<p>3.建立上面提到的一个index.html文件，这是此扩展程序的主页面，就是一个标准的html页面。我曾经一度以为chrome的这些API到底是该怎么调用啊？用html能行么？于是我找到了一个不错的应用程序，看了它的代码，简单说，chrome的那些API就是一个JS库，和jQuery一样用，只不过chrome内置了这个库，你直接用就可以了，不用再明显声明（除了json里面的那句），我们的index中只有很简单的一句代码：（为了让人们看清楚，我完整给出index的内容）</p>
+
+<p>4.那么多出来的那句代码是做什么的呢？其实我是用了上面那句，才能确定“其他书签”这个的id是2而不是别的。</p>
+
+<p><img src="http://pic.yupoo.com/loose_v/ASbtC0ec/lNALS.png" alt="" /></p>
+
+<p>从chrome自带的JavaScript控制台程序能够看到bookTree是一个Object，还能继续看它的属性，这是一个array，下面的1号object也是个array，我们能够看到他的id是2，而title就是我们渴望的“其他书签”。下面那句就是删除id为2的那个object，很可惜，返回了error，对于这个我也没办法了：</p>
+
+<p><img src="http://pic.yupoo.com/loose_v/ASbvzoiM/kjvjq.png" alt="" /></p>
+
+<p>到了这里，这篇文章也就基本结束了，虽然我们没有成功，但这个过程是值得的，能够在chrome这样的大型软件中体验扩展程序也是很不错的
+！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-24T22:51:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/chrome/'>chrome</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -401,201 +742,6 @@
 
 
 	<a class='category' href='/blog/categories/dev/'>dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/02/13/compromise-choose/">
-		
-			折衷的选择</a>
-	</h2>
-	<div class="entry-content">
-		<p>新的VPS上绝对能够承受我所有的站点，不过就是访问的时候速度不理想，在我不知到该怎么办的时候遇到了Typecho这个精简的博客程序，而且在他们的论坛上遇到了一个赞助新加坡主机的朋友，我顺利申请了他的新加坡主机，当时ping值相当高，大约到了400多，怎么比我的VPS还慢？过后再试试，只有100ms了，果断把youth2009.org搬过去吧。其实，我不买这个VPS也就可以了，只是现在能够学到一些linux下的小知识，花些钱也就能说得过去了（还是要把自己说服）。再者说了，自己的VPS毕竟能够掌握所有控制，也相对安全一些。</p>
-
-<p>折衷的选择就是把原来国内的那个空间迁移到这里，看看ningxin.org还要不要动，这样就空出来了国内的垃圾空间，如果能够退款就更好了，不能的话，我也没办法了，我会一直相信一分钱一分货的！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-13T21:47:00+08:00" pubdate data-updated="true">Feb 13<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/vps/'>vps</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/02/05/dynamic-form-authentication/">
-		
-			动态验证表单也不难</a>
-	</h2>
-	<div class="entry-content">
-		<p>一般来说现在的注册、登录的表单验证都是在浏览器这一级先做一个合法性验证，这样能够缓解服务器的压力，否则这些合法性验证都要移到服务器上，无论从性能和表现力都不及在浏览器用一些很炫的效果来验证。我使用了jQuery这个javascript库完成了表单的动态验证，核心不算难。一开始我都是参考豆瓣的注册页面，他们现在用的也是jQuery来做这块，代码看起来超长，还分了好几个js文件来组织，不是他们的前端工程师谁也看不懂（我真怀疑他们的前端工程师是不是能看懂）。 我做得很简单，不过看起来也能用： 一般有个空的div显示提醒文字，假设input的id是xxx，我们这样</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input#xxx).focus(function(){$(&quot;</span><span class="nx">suggestion</span><span class="err">&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="err">插入提示文字</span><span class="p">);});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>就能够在焦点进入input的时候提示一些文字了，然后在  </p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">focusout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">xxxxxx</span><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>中先remove插入的文字，再添加新的文字。 一般在focusout中进行一次查询，然后进行更改文字，是能够注册还是已经被占用，在查询的时候我使用的是$.getJSON函数，用GET方式提交查询看起来比较帅，当然最好做简单的提交，因为用了getJSON的方式，返回值一定是要json，我的服务器端脚本使用的是php，看到jQuery官方例子中提及了json_encode函数，接收array，正好能够返回我的查询结果，SQL查询返回结果用fetch_assoc放进一个array了。getJSON第三个参数是个callback函数，是结果成功返回时调用的函数，更改相应提示文字就在这里面进行，这个callback有个参数data，应该就是包含json的数据吧，用点运算符取到响应结果进行操作。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-05T23:06:00+08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/js/'>js</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/01/27/mysql-bad-encoding-for-chinese/">
-		
-			Mysql中的中文乱码</a>
-	</h2>
-	<div class="entry-content">
-		<p>从mysql中返回的内容如果是中文的，而页面用了utf-8的编码，那么会出现一些“问号”，就是乱码了！应该将mysql中表的编码改为utf8_unicode_ci，各字段改为utf8_unicode_ci。在PHP中执行SQL查询前执行<code>SQLCONNECT.query(SET NAMES utf8);</code>这条SQL语句。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-27T23:20:00+08:00" pubdate data-updated="true">Jan 27<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mysql/'>mysql</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/01/18/charset-issue/">
-		
-			字符编码的问题</a>
-	</h2>
-	<div class="entry-content">
-		<p>昨日写完hello,world之后，发现里面的中文显示出来都是乱码，于是找了几处资料，先是怀疑emacs作怪，M-x describe-coding-system查看后挺正常，于是开始怀疑apache和php的输出编码，再次查询后也发现是正常的：httpd.conf中根本没有AddDefaultCharset” 内容，php.ini中的default_charset已经被注释掉了：（</p>
-
-<p>于是开始怀疑网页编码，改成了：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;meta</span> <span class="na">content=</span><span class="s">&quot;text/html;charset = utf-8&quot;</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span><span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>（第一次我写成了mate！！！）这下已经正常了！</p>
-
-<p>参考资料：<a href="http://www.cnblogs.com/RChen/archive/2007/08/27/871427.html">http://www.cnblogs.com/RChen/archive/2007/08/27/871427.html</a></p>
-
-<p>在调节emacs和ibus的时候参考了<a href="http://www.sciencenet.cn/m/user_content.aspx?id=325692">这里</a>，不过到现在我的ibus也不能在emacs中打开，除非用<code>LC_CTYPE=zh_CN.utf8 emacs</code>这样启动emacs。</p>
-
-<p>感谢<a href="http://www.yzznl.cn/archives/242.html">这里</a>下载了修改后的编辑界面和学习到了WP-Syntax的使用方法。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-18T08:36:00+08:00" pubdate data-updated="true">Jan 18<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/blog/'>blog</a>
 
 
 </div>

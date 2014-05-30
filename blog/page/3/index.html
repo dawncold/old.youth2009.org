@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="今天用python写了个小程序检测网络是否通断，如果断了就弹出一个Notification，当然是Mac上的，并且弹出一个terminal，带着执行ping www.baidu.com。 一开始用Lingon加入到启动项中并且打算2分钟执行一次，几经折腾终于失败，弃之。打算用crontab弄。 &hellip;">
+	<meta name="description" content="TCP, UDP, ICMP, IGMP need IP datagrams as data transmitting method. IP is a unrealiable and connectionless delivery service. unrealiable: no &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,284 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/07/27/internet-protocol/">
+		
+			Internet Protocol</a>
+	</h2>
+	<div class="entry-content">
+		<p>TCP, UDP, ICMP, IGMP need IP datagrams as data transmitting method.</p>
+
+<p>IP is a unrealiable and connectionless delivery service.</p>
+
+<ul>
+<li>unrealiable: no guarantee that an IP datagram successfully get to its destination.</li>
+<li>connectionless: IP doesn&rsquo;t maintain any state of successive datagrams, it means there is no order in IP datagrams, latter sent IP datagram may arrived before former sent.</li>
+</ul>
+
+
+<h2>Header</h2>
+
+<p>TOS: 3 bits precedence field(ignored today), 4 bits TOS(mini delay, max throughput, max relability, mini monetary cost), 1 bit always 0. TOS maynot supported by most TCP/IP implementations today, but some routing protocol such as OSPF and IS-IS are capable of making routing decisions based on this field.</p>
+
+<p>Furthermore, a host isn&rsquo;t required to receive a datagram larger than 576 bytes. TCP and UDP will divide user data into small pieces, so one IP datagram will below that limit.</p>
+
+<p>Some small IP datagram will be padded up to the mini length of frame, which maybe 46 or 38 bytes, so total length field is required when you want to know how long the IP datagram&rsquo;s length on earth.</p>
+
+<p>TTL: set by sender, if this datagram pass a router, it will decrease 1, when it reaches 0, this datagram will thrown away, and sender will received an ICMP message. prevent routing loop.</p>
+
+<p>Checksum: TCP, UDP, ICMP, IGMP use same algorithm to computing checksum. Since a router often cheages only TTL value, a router can incrementally update the checksum when it forwards a datagram, instead of calculating the checksum over the entire IP header again.</p>
+
+<h2>IP routing</h2>
+
+<p>The fundamental difference is that a host never forward a datagram from one of its interface to another, while a router forwards datagram.</p>
+
+<p>Router may reach a local optimum result, because every search route table, the router will get a closer next-hop router address, but it may not global optimum.</p>
+
+<p>Frame&rsquo;s destination address(MAC address) may not the really destination address, it may the next-hop router&rsquo;s MAC address, because when it is routing, it can&rsquo;t be found in the current network, it must be routed to a next-hop router, so the destination address is the next-hop router&rsquo;s.</p>
+
+<h2>Subnet addressing</h2>
+
+<p>Don&rsquo;t forget subtract 2, because all 0 bits and all 1 bits address for host address is invalid.</p>
+
+<p>The advantage to using s single class B address with 30 subnets, compared to 30 class C addresses, is that subnetting reduces the size of the Internet&rsquo;s routing tables entry.</p>
+
+<p>A special address: 127.x.x.x means loopback address, not only 127.0.0.1 can be loopback address!</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-27T23:02:00+08:00" pubdate data-updated="true">Jul 27<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/tcpip/'>tcpip</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/07/27/link-layer/">
+		
+			Link-layer</a>
+	</h2>
+	<div class="entry-content">
+		<h2>link layer</h2>
+
+<h3>link layer&rsquo;s usage</h3>
+
+<ol>
+<li>send and receive IP datagram</li>
+<li>ARP request and reply</li>
+<li>RARP request and reply</li>
+</ol>
+
+
+<p>many different link layers, depending on the type of networking: ethernet, token ring, FDDI, RS232 serial lines, etc.</p>
+
+<p>IEEE 802.2/3 format and Ethernet format</p>
+
+<p>in 802 format, after 2 bytes length field, there are 3 bytes LLC and 5 bytes SNAP and data field(38~1492) but in Ethernet format, there will be data field(46~1500), the end field is 4 bytes CRC.</p>
+
+<p>frame formats use 48-bits destination and source address</p>
+
+<h2>SLIP: Serial Line IP</h2>
+
+<p>END &mdash; 0xc0</p>
+
+<p>SLIP ESC &mdash; 0xdb</p>
+
+<p>IP datagram will be terminated by a special character called END(0xc0), most implementations transmit an END at the beginning of the datagram.</p>
+
+<p>if a byte of IP datagram equals:</p>
+
+<p>0xc0 &mdash;> 0xdb, 0xdc</p>
+
+<p>0xdb&mdash;>0xdb, 0xdd</p>
+
+<h2>PPP</h2>
+
+<ol>
+<li>async link with 8bits of data and no parity(no checksum)</li>
+<li>bit-oriented sync links</li>
+</ol>
+
+
+<p>start and end with a flag byte whose value is 0x7e, and if a byte value appears in information field, it should be escaped.</p>
+
+<p>batter than SLIP:(pay for 3 bytes addition)</p>
+
+<ol>
+<li>multiple protocols on a serial line</li>
+<li>CRC</li>
+<li>IP network control protocol negotiate IP address for each end</li>
+<li>header compress like CSLIP</li>
+<li>link control protocol negotiate many data-link options</li>
+</ol>
+
+
+<h2>Loopback</h2>
+
+<p>127.0.0.1 or localhost is the loopback interface, an IP datagram sent to this must not appear on any network.</p>
+
+<p>datagrams sent to broadcast and multicast addtess are copied to the loopback interface and sent out on the Ethernet.</p>
+
+<p>anything sent to one of the host&rsquo;s own IP addresses is ent to the loopback interface!</p>
+
+<h2>MTU</h2>
+
+<p>if the length of data field in IP datagram is larger than MTU(1500 or 1492 in Ethernet and 802 format), it will be fragmented.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-27T00:03:00+08:00" pubdate data-updated="true">Jul 27<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/tcpip/'>tcpip</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/07/26/ocp-talks/">
+		
+			OCP-talks</a>
+	</h2>
+	<div class="entry-content">
+		<p>Good design should be open for extension and closed for modification. You can extend the module instead of modifying some working code.</p>
+
+<p>Abstraction is the Key: for example, a Client should use an Server object that implemented some interfaces instead of a concrete Server object.</p>
+
+<p>Interface&rsquo;s name should be named more closely associated to the dependent side instead of the implement side.</p>
+
+<p>A function that is closed for modification: if we add some changes for this function, it must be modified for working right, it may unconform OCP. For example, a function that draw all shapes in a shape list, it should be draw shapes one by one, and don&rsquo;t care this shape should draw in this way, another shape should draw in that way, etc.</p>
+
+<p>No matter how &ldquo;closed&rdquo; a module is, there will always be some kind of change against which it is not closed.</p>
+
+<p>Abstraction may gain &ldquo;closed&rdquo; software entity(func, module, class, etc), but it also need trade off.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-26T22:27:00+08:00" pubdate data-updated="true">Jul 26<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/07/26/use-change-event-on-checkbox/">
+		
+			Use-change-event-on-checkbox</a>
+	</h2>
+	<div class="entry-content">
+		<p>昨天在一个table的第一行放了一个checkbox, 想做一个效果：一开始这个table的每一行都是冻结状态，点击这一行就激活了，顺便会把checkbox选中，当然直接点checkbox也会激活这一行。可惜在bind event的时候，分别给tr和checkbox加了click事件，tr的click会trigger到checkbox上，这样导致的结果就是点tr会触发checkbox的click handler，但同时又触发了tr的click handler，循环导致最后js崩溃。</p>
+
+<p>后来发现在tr的click handler中检查event.target可以不触发这种死循环，但在checkbox click handler中使用prop判断checked状态不准，在stackoverflow中找到解答：jquery1.8中的 click()和真实的click是不一样的，应该在checkbox上用change event，然后一切ok。</p>
+
+<p>解答：<a href="http://stackoverflow.com/questions/7668826/jquery-triggerclick-not-firing-click-event-on-checkbox">http://stackoverflow.com/questions/7668826/jquery-triggerclick-not-firing-click-event-on-checkbox</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-26T09:07:00+08:00" pubdate data-updated="true">Jul 26<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -415,198 +693,6 @@
 
 
 	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/nginx/'>nginx</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/06/15/some-sed-work/">
-		
-			Some-sed-work</a>
-	</h2>
-	<div class="entry-content">
-		<p>博客内容是从wordpress转过来的，不可避免有很多地方没转换好，当时懒得弄，今天得空学习Shell编程，讲到了sed，就又搞了一下，基本满意了。</p>
-
-<p>以前用sed替换过分类等简单的文字错误，今天主要是把一些html给替换掉了。</p>
-
-<p>把<code>&lt;p&gt;</code>删掉，在删掉<code>&lt;/p&gt;以及&lt;br /&gt;</code>后面加换行等：</p>
-
-<p><code>sed -i "" -e 's;&lt;/p&gt;;\'$'\n;g' *.markdown</code></p>
-
-<p><code>sed -i "" -e 's;&lt;br /&gt;;\'$'\n;g' *.markdown</code></p>
-
-<p>需要注意的是Mac OS中的sed和我看到的很不一样，所以这个替换都是特殊的，来自<a href="http://cafenate.wordpress.com/2010/12/05/newlines-in-sed-on-mac/">这里</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-15T16:34:00+08:00" pubdate data-updated="true">Jun 15<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/06/13/pushd-and-popd/">
-		
-			Pushd-and-popd</a>
-	</h2>
-	<div class="entry-content">
-		<p>amazoing的两个命令，pushd和popd</p>
-
-<p>相关介绍：<a href="http://en.wikipedia.org/wiki/Pushd_and_popd">pushd &amp; popd</a></p>
-
-<p><code>pushd /etc</code>可以到etc目录下，工作完了后再用<code>popd</code>就回到了刚刚离开的目录。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-13T19:50:00+08:00" pubdate data-updated="true">Jun 13<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/05/18/dog-pile-effect/">
-		
-			Dog-pile-effect</a>
-	</h2>
-	<div class="entry-content">
-		<p>如果你的网站该去解决dog pile effect了，那应该有不小的PV了。今天看暴走漫画的架构设计，那是应对1000W PV的一个设计，当然架构这东西每家都不一样，可能这个就他们自己用着适合。里面提到了dog pile effect，这个的意思是：在多request去cache中拿数据的时候，如果发现自己拿的数据是过期了的，那么就要去db中拿新的来。这么看好像没问题，但有前提的——request很多，真的很多，而且确实用cache了（反正我不相信request很多的时候某些数据你不用cache，那得是个多么bt的db才能支撑啊？！）本来用cache的作用就是降低对某些slow query的执行次数，缓解db压力。但过期了，再去db中取这就和没有cache一样了，db会死的。</p>
-
-<p>解决方法有这样的：</p>
-
-<ul>
-<li>有专门的job（比如crontab）来更新cache，这样request总是去cache取，不用管过不过期。好处就是简单；坏处是可能做一些没必要的重复计算，没有request你也更新了cache，而且你得确保这个job的执行时间要小于job的间隔，否则会积压很多job。</li>
-<li>request取到数据发现过期，再请求一个update lock，成功拿到锁就可以更新cache，此时其他request也会请求这把锁，但就是请求不到，那就继续返回过期的数据。这是不容忍延迟的情况，如果对数据准确性要求高，那在updating的时候其他request会等，等数据更新了再返回。怎么用取决于environment。</li>
-</ul>
-
-
-<p>引用自：<a href="http://hype-free.blogspot.jp/2008/05/avoiding-dogpile-effect.html">http://hype-free.blogspot.jp/2008/05/avoiding-dogpile-effect.html</a>，注意blogspot。。。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-18T22:48:00+08:00" pubdate data-updated="true">May 18<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/05/15/new-dev-env/">
-		
-			New-dev-env</a>
-	</h2>
-	<div class="entry-content">
-		<p>终于把windows开发环境给换成Ubuntu了，顺便也去掉了虚拟机，原生开发的性能真好，一点都没有IO延迟的感觉，只能说Linux更加低碳。</p>
-
-<p>很久没装过Ubuntu了，现在的安装过程越来越简单，而且体验也很好。需要注意的是，在安装时最好去掉下载更新这个选项，耽误时间不说，最后有个步骤，貌似是测试，超慢，我都睡着了。换成不下载更新，半小时内结束。</p>
-
-<p>系统关机的效率比win7简直快了好几光年。。。至少几十倍的速度提升，有在使用SSD的感觉，顺便说一句，在使用SSD的Mac下也没得到那样的关机速度。不过发现合上休眠功能不管用，风扇仍然在转，发热量很大，可能缺什么驱动？以前关机慢，所以就不关了，现在可以考虑关机带走。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-15T22:58:00+08:00" pubdate data-updated="true">May 15<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>

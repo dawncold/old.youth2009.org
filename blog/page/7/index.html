@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="今天taowen给我们show了一个很fancy的日志处理过程，当然是in the future的，深度打动了wanglei，由于是刚刚吃过饭，站着听久了难免会发困，主要听来的意思就是app的log会自己在local记录，然后发送json给syslog，后面接上logstash做一个处理， &hellip;">
+	<meta name="description" content="这几天都卡在ie6的兼容问题上了，都要上线了才想到要去用ie来看下效果，前一次看的时候没什么问题，还很欣慰，怎么会这么安全？最近用ie6、360、搜狗一看，直接无法接受了，但原网站的最大用户群就是360，现在搞不清楚360用的是不是ie6的内核，虽然它自称是ie8的内核了， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,199 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/12/20/ie6/">
+		
+			Ie6</a>
+	</h2>
+	<div class="entry-content">
+		<p>这几天都卡在ie6的兼容问题上了，都要上线了才想到要去用ie来看下效果，前一次看的时候没什么问题，还很欣慰，怎么会这么安全？最近用ie6、360、搜狗一看，直接无法接受了，但原网站的最大用户群就是360，现在搞不清楚360用的是不是ie6的内核，虽然它自称是ie8的内核了，但我今天下载了用仍然是ie6，然后他又会提示你可以升级到ie8内核，真是流氓啊。我们现在如果能够把网站调整到ie6下也正常显示，就基本不怕ie7、8、9了，相信不管一款软件多么垃圾，随着版本的提升，也会越来越好，要不然根本都不可能升级，也违背社会的发展啊。。。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-20T23:26:00+08:00" pubdate data-updated="true">Dec 20<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">
+		
+			给开源项目做贡献了</a>
+	</h2>
+	<div class="entry-content">
+		<p>惭愧，第一次给开源项目做贡献竟然是现在，其实早就想帮着做点啥了，无奈技术能力不足，终于发现一个机会，给progit的README文档添加MacOS用户的使用方式，可惜噩梦也是这样开始的。</p>
+
+<p>一开始添加了usage for macos users，commit然后push，作者和我说少一个blank line，我加了再commit和push，另一个开发者和我说你不应该多次commit，需要说清楚commit的工作而不是一味用commit修改，我改好了发现remote的版本和本地不一样，因为我是在上一个版本的基础上amend后再提交的，无奈之下我merge了remote然后commit又push，这时候作者跳出来一对一教我怎么做了，有不少细节地方需要注意，比如完全的command line可以在markdown中用tab的indent，而list的indent和tab是完全不一样的。。。又给我罗列了markdown的语法。我让他写一个正确的给我看一下，他真的就给我写了一遍，但是他给希望让别人来做这部分工作而不是自己来做，并不是自己能力不足什么的，光是在我这里付出的时间就远超编辑好几个版本的README了。这点在国内开发者的身上很难发现吧？！</p>
+
+<p>最后当然是pull request被接受了：）这次经历很难得！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-19T21:18:00+08:00" pubdate data-updated="true">Dec 19<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/12/16/active-cron-log-in-ubuntu/">
+		
+			Active Cron Log in Ubuntu</a>
+	</h2>
+	<div class="entry-content">
+		<p>bnly.org使用crontab来不断fetch和send，这看起来很傻，不过挺容易搭建。目前send过程每分钟一次，fetch过程10分钟一次。</p>
+
+<p>在ubuntu下默认没有cron的日志，需要这样开启：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vi /etc/rsyslog.d/50-default.conf
+</span><span class='line'>解除cron的注释
+</span><span class='line'>service rsyslog restart
+</span><span class='line'>service cron restart</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就可以在/var/log/下找到cron.log查看了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-16T15:41:00+08:00" pubdate data-updated="true">Dec 16<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/bnly/'>bnly</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/12/01/shell-study/">
+		
+			Shell Study</a>
+	</h2>
+	<div class="entry-content">
+		<p>sed是个极其强大的东西，今天开始学习一点点：）</p>
+
+<p>以前的一个sed的命令终于明白了：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>find ./ -name <span class="s1">&#39;*.html&#39;</span> | xargs sed -i <span class="s1">&#39;s/iso-8859-1/utf-8/g&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这是替换html编码用的一个语句，find出当前目录下的html文件名字，然后传给sed，当然这里用到了xrags中转，其实没有的话也ok（除非你不用-i模式），sed用了-i模式，可以编辑文件内容保存，并且存一个备份，当然你得传入一个扩展名字才能保存，没有的话就不存和没有-i效果一样。后面的一个字符串，s表示用正则匹配，s后面的是一个分隔符，可以用斜杠，可以换你喜欢的，但后面都要统一起来，上面的意思是iso-8859-1这个替换成utf-8，最后的加的/g是表示global替换，全部替换，否则就替换一次。</p>
+
+<p>后来看起别的书来了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-01T11:52:00+08:00" pubdate data-updated="true">Dec 1<span>st</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -482,269 +675,6 @@ convey:             表达
 
 
 <time datetime="2012-11-11T14:19:00+08:00" pubdate data-updated="true">Nov 11<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/09/pragmatic-programmer-log/">
-		
-			Pragmatic Programmer Log</a>
-	</h2>
-	<div class="entry-content">
-		<p>比较喜欢的一章，讲软件的足够完美性。世间几乎所有东西都不是完美的，当然有完美的——“不完美”就是完美的，就像“永远不变的只有变化”一样。</p>
-
-<p>似乎和昨天的有些关联，要先给用户们一个不够完美的东西用，他们就会给出意见，你再逐渐完美这个软件，当然这也不可能达到完美的标准，只是更接近用户的需求了，其实这已经足够了，你为了用户制定出软件，满足了他们的需求不就是完美的了么？那些什么良好的UI、UE，如果end user根本都没能感到你的用心良苦，那只能算是你的蛋疼设计了（为用户创造出需求的除外）。</p>
-
-<p>质量算是需求的一部分么？</p>
-
-<p>我们的需求文档会包含质量的规约么？乍一看似乎有不同声音，需求文档只要满足需求，需求又是什么呢？人们在描述自己需求的时候会加入质量这个衡量标准么？还是找大牛们交流去吧。</p>
-
-<p>何时stop。这个问题在我这里常常出现，似乎coder都免不了带点完美主义，做一个feature会不断refine it，最终overrefinement，make a solution becomes academic research。作者没明确说when，只是说for a while，然后慢慢完善就好了。。。不负责的作者。</p>
-
-<p>补充几个单词：</p>
-
-<pre><code>overembellishment:      过于美化
-sketch out:             拟订
-preferable:             更好的
-tight:                  紧的
-polish up:              改善
-advocate:               提倡
-stringent:              紧迫的
-pacemaker:              心脏起搏器
-space shuttle:          航天飞机
-disseminate:            公开的
-shorter incubation:     短潜伏期
-conspire:               阴谋
-oft:                    常常
-mar:                    破坏
-strive:                 努力
-</code></pre>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-09T00:05:00+08:00" pubdate data-updated="true">Nov 9<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/07/pragmatic-programmer-log/">
-		
-			Pragmatic Programmer Log</a>
-	</h2>
-	<div class="entry-content">
-		<p>stone soup 和 boiled forgs是两种不同的引导，一种是良性的，一种是”恶性”的。恶性的意思是，你对forg有伤害，最后被你煮死了。而stone soup只是借助其他人的力量达到自己的愿望，所以，boiled forgs主要还是提醒我们要有一个big picture的概念，时刻拥有，感知周围的changes，否则你只有被cook了。</p>
-
-<p>我们似乎正处在stone soup这个环境里，做出的产品正在给编辑们用，还有一些别的部门后期也会参与进来，让他们使用这个并不完善的系统，然后得到那种“如果加上xxx就会更好用”了的建议，我们再改进，最终能够做一个让用户满意的系统，那也是我们的愿望。</p>
-
-<p>来几个单词：</p>
-
-<pre><code>hoard:          贮存
-undeterred:     未受损的
-ingredient:     作料
-moral:          道德
-trick:          戏弄
-catalyst:       催化剂
-synergistic:    协同的
-tackle:         处理
-stare:          凝视
-fatigue:        疲劳
-reasonably:     适当地
-marvel:         惊异
-glimpse:        一瞥
-gradual:        逐渐
-progressively:  逐渐地
-deception:      骗局
-tightly:        紧紧地
-creep up on:    爬向
-inexorably:     不可阻挡地
-disaster:       灾难
-morale:         斗志
-perceive:       注意到
-will:           决心，意志
-</code></pre>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-07T23:38:00+08:00" pubdate data-updated="true">Nov 7<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/07/beautiful-ps1/">
-		
-			Beautiful PS1</a>
-	</h2>
-	<div class="entry-content">
-		<p>今天又加了不少红绿颜色的字在各种输出上，看起来更加顺眼了，无奈server的网关被人修改了，我们也不敢轻易改动，因为编辑们正在使用，怕改了他们不能访问了。。。那个负责人到我们下班都没回来，真不知道干嘛去了。</p>
-
-<p>研究了一下这种颜色是怎么回事，原来是在一个字符串前后加上颜色标记，就和html的标记一样，只不过颜色标记更加让人难以理解。临下班我想研究一下如何做一个autocomplete的veil出来，可惜都搜不到什么资料，可能这不是什么很值得人们写的东西吧，竟是些讲按Tab可以complete，但不说你怎么写code可以实现这种，猜想是有什么hook可以监听tab事件吧：）后来在<a href="http://hi.baidu.com/widebright/item/5f92a4cf65c79709c710b2ac">这里</a>找到一篇文章，介绍了一点原理和写法，准备翻翻我那本《Shell脚本学习指南》看看有没有帮助。</p>
-
-<p>研究这个的副产品就是看到了PS1的介绍，可以搭配出漂亮而功能强大的PS1。</p>
-
-<p>其实PS1就是一个字符串，Ta规定了提示符的那一行会怎么显示出来以及显示什么，这里面你可以写一些函数调用、配色什么的，terminal会自动帮你调用，然后就是显示出来。给你看个展示效果：</p>
-
-<p><img src="http://pic.yupoo.com/dawncold0/CoN0yCPa/medish.jpg" alt="PS1 pic" /></p>
-
-<p>是不是很好看呢？再看看让Ta显示成这个样的PS1字符串长什么样吧：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;\[$(tput bold)\]\[$(tput setaf 3)\]\u\[$(tput setaf 2)\] [\t] \[$(tput setaf 1)\]\W=&gt;\\$\[$(tput sgr0)\] &#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>相关颜色可不是那么好记忆的如果你用\033、\032这样标记的话，推荐个网站，你可以直接设置好效果，然后复制过来就可以了：<a href="http://www.kirsle.net/wizards/ps1.html">http://www.kirsle.net/wizards/ps1.html</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-07T21:12:00+08:00" pubdate data-updated="true">Nov 7<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/shell/'>shell</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/06/pragmatic-programmer-log2/">
-		
-			Pragmatic Programmer Log2</a>
-	</h2>
-	<div class="entry-content">
-		<p>Software Entropy主要讲了软件遵循物理中的熵增大原理，软件会逐渐变得rot，而这里面还存在一个broken window的问题，一旦开始rot了，到了一定程度，可以说是有了broken window，然后会有越来越多的broken window，因为人们已经不觉得clean code在现在有多么重要，一旦这样的想法形成，就会有跟多这样的想法，最终积累起来就把软件毁掉了。其实这看起来很想是马太效应不是么？</p>
-
-<p>补充几个新单词：</p>
-
-<pre><code>immune:         免疫
-delicate:       微妙的
-decay:          腐化
-hulk:           笨重的东西
-crime:          犯罪
-substantial:    大量的
-graffiti:       涂鸦
-infraction:     违法
-offending:      冒犯的，违法的
-substitite:     用…代替
-deteriorate:    恶化
-dumpster:       大型垃圾箱
-obscenely:      猥亵的，淫秽的
-acquaintance:   熟人
-tapestry:       挂毯
-antique:        古董
-hoses:          水管
-slip into:      陷入
-crap:           粪便
-pristinely:     未受损的
-</code></pre>
-
-<p>The most important factor that can contribute to software rot seems to be the psychology, or culture, at work on a project</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-06T22:58:00+08:00" pubdate data-updated="true">Nov 6<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 

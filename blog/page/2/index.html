@@ -7,7 +7,8 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="Conceptual Models Designing software so that its structure reflects that of the problem. Analysis is not only listing requirments, but also looking &hellip;">
+	<meta name="description" content="找到size为0的文件，并删除：find -type f -size 0 | xargs rm 替换Linux的换行成windows的：ls | xargs perl -i -pe 's/\n/\r\n/g' 批量改名哦（把.md改为.markdown）： 1
+for i in `ls *.md &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +75,205 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/12/07/useful-shell-command/">
+		
+			Useful-shell-command</a>
+	</h2>
+	<div class="entry-content">
+		<p>找到size为0的文件，并删除：<code>find -type f -size 0 | xargs rm</code></p>
+
+<p>替换Linux的换行成windows的：<code>ls | xargs perl -i -pe 's/\n/\r\n/g'</code></p>
+
+<p>批量改名哦（把<em>.md改为</em>.markdown）：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">for </span>i in <span class="sb">`</span>ls *.md<span class="sb">`</span>;<span class="k">do </span>mv <span class="nv">$i</span> <span class="sb">`</span><span class="nb">echo</span> <span class="nv">$i</span> | sed <span class="s1">&#39;s/.md/.markdown/&#39;</span><span class="sb">`</span>;<span class="k">done</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-07T22:28:53+08:00" pubdate data-updated="true">Dec 7<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/shell/'>shell</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/12/03/upgrade-to-linode-for-not-waiting/">
+		
+			Upgrade-to-linode-for-not-waiting</a>
+	</h2>
+	<div class="entry-content">
+		<p>上个月买了linode的vps，不知道干什么用，光翻墙了，月底干脆就关了，觉得这样翻墙的成本太高了，完全可以租个便宜的vps来用，后来觉得还是linode好。</p>
+
+<p>在用linode之前用过digitalocean，那时候DO刚刚起步，速度不错，主要是华人不多，而且价格一如既往的便宜，公司决定买这个翻墙用，但后来速度一天天慢下来了，看到最近DO的推广力度增大，可能这就是为啥速度不理想的原因。</p>
+
+<p>prgmr.com是个不错的vps，技术感超强，但很可惜在公司速度很好，160ms的ping延迟，不过回到家发现延迟到了400+，真不明白网络就能差这么多。好处是能不交费先用一段时间体验，support很好。</p>
+
+<p>ramhost.us据说也不错，不会超售，在家wget一个文件速度上了400+，可惜就那么一次，也不知道是不是那一次把所有RP全用光了，后来怎么都是个位数的速度。同样技术感很强，缺点就是support靠人，站长貌似也不总是盯着这个，没拿到trial来试试。</p>
+
+<p>其实vpsee这个也能考虑试试，linuxtoy.org放在上面，感觉访问速度挺好，价格10刀，不算是便宜，但和linode比便宜一半了。以前用过几个月的vps，很稳定，被GFW过IP，站长免费给换，总之一切都好。</p>
+
+<p>最后是linode，又回来了，很早很早的时候，大约是初中那会，对建站很感兴趣，那时候还没有流行vps，都是shared hosting，当时买过hostmonster的一年服务，没做啥东西，算是浪费了吧。后来过了挺长时间逐渐接触到vps，用过yardvps，amazon的也试过，那时候没法买linode，因为信用卡，就想着哪天能有信用卡了就可以自由买这个了，现在确实能买了，也不知道买了干嘛了，以为能做个app，但终究没想出来做什么。好在能解决访问Google等网站时候的延迟，有时候大脑在想一件事，google一下结果，此时慢了，可能又跳跃到别的事情上了。或许人和人不太一样。</p>
+
+<p>Linode Referral URL：<a href="https://www.linode.com/?r=84379f19216416e48085518afcde3beb02aee9c8">https://www.linode.com/?r=84379f19216416e48085518afcde3beb02aee9c8</a></p>
+
+<p>Linode Referral Code：84379f19216416e48085518afcde3beb02aee9c8</p>
+
+<p>如果用这个code注册linode，在你用满3个月的时候我们彼此能够得到20刀的奖励：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-03T22:32:58+08:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/vps/'>vps</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/08/25/rarp/">
+		
+			Rarp</a>
+	</h2>
+	<div class="entry-content">
+		<h2>Packet Format</h2>
+
+<p>RARP packet is identical to ARP packet, differences: RARP &lsquo;type&rsquo; field is 0x8035 for request and reply and &lsquo;op&rsquo; field is 3 for RARP request and 4 for RARP reply.</p>
+
+<p>RARP&rsquo;s reply is unicast.</p>
+
+<p>The implementation of RARP server is complex&hellip;</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-25T12:01:00+08:00" pubdate data-updated="true">Aug 25<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/tcpip/'>tcpip</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/08/20/timestamp/">
+		
+			Timestamp</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天在做批量导入图片功能的时候，发现一个问题，原先save image过程用timestamp当文件名，这样在一般使用的时候倒是没什么问题了，但让程序去做的时候，timestamp就显得不好用了，程序跑的很快，可能三四张图都在1s内处理完上传，这样就很难保证文件名不重复。</p>
+
+<p>传一张停1秒呢？问题不大，但看着还是不保险，而且变慢了，因为要等。。。</p>
+
+<p>纯粹uuid倒是问题不大，但日后管理起来确实就不爽了——看uuid根本不知道谁先谁后，所以就把tiemstamp和uuid4连起来当新文件名，这样程序批量传也不会有问题（其实概率已经低到这个时代可接受的程度吧），又在trade off了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-20T21:56:00+08:00" pubdate data-updated="true">Aug 20<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -406,284 +606,6 @@
 
 
 	<a class='category' href='/blog/categories/life/'>life</a>, <a class='category' href='/blog/categories/raspberrypi/'>raspberrypi</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/27/internet-protocol/">
-		
-			Internet Protocol</a>
-	</h2>
-	<div class="entry-content">
-		<p>TCP, UDP, ICMP, IGMP need IP datagrams as data transmitting method.</p>
-
-<p>IP is a unrealiable and connectionless delivery service.</p>
-
-<ul>
-<li>unrealiable: no guarantee that an IP datagram successfully get to its destination.</li>
-<li>connectionless: IP doesn&rsquo;t maintain any state of successive datagrams, it means there is no order in IP datagrams, latter sent IP datagram may arrived before former sent.</li>
-</ul>
-
-
-<h2>Header</h2>
-
-<p>TOS: 3 bits precedence field(ignored today), 4 bits TOS(mini delay, max throughput, max relability, mini monetary cost), 1 bit always 0. TOS maynot supported by most TCP/IP implementations today, but some routing protocol such as OSPF and IS-IS are capable of making routing decisions based on this field.</p>
-
-<p>Furthermore, a host isn&rsquo;t required to receive a datagram larger than 576 bytes. TCP and UDP will divide user data into small pieces, so one IP datagram will below that limit.</p>
-
-<p>Some small IP datagram will be padded up to the mini length of frame, which maybe 46 or 38 bytes, so total length field is required when you want to know how long the IP datagram&rsquo;s length on earth.</p>
-
-<p>TTL: set by sender, if this datagram pass a router, it will decrease 1, when it reaches 0, this datagram will thrown away, and sender will received an ICMP message. prevent routing loop.</p>
-
-<p>Checksum: TCP, UDP, ICMP, IGMP use same algorithm to computing checksum. Since a router often cheages only TTL value, a router can incrementally update the checksum when it forwards a datagram, instead of calculating the checksum over the entire IP header again.</p>
-
-<h2>IP routing</h2>
-
-<p>The fundamental difference is that a host never forward a datagram from one of its interface to another, while a router forwards datagram.</p>
-
-<p>Router may reach a local optimum result, because every search route table, the router will get a closer next-hop router address, but it may not global optimum.</p>
-
-<p>Frame&rsquo;s destination address(MAC address) may not the really destination address, it may the next-hop router&rsquo;s MAC address, because when it is routing, it can&rsquo;t be found in the current network, it must be routed to a next-hop router, so the destination address is the next-hop router&rsquo;s.</p>
-
-<h2>Subnet addressing</h2>
-
-<p>Don&rsquo;t forget subtract 2, because all 0 bits and all 1 bits address for host address is invalid.</p>
-
-<p>The advantage to using s single class B address with 30 subnets, compared to 30 class C addresses, is that subnetting reduces the size of the Internet&rsquo;s routing tables entry.</p>
-
-<p>A special address: 127.x.x.x means loopback address, not only 127.0.0.1 can be loopback address!</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-27T23:02:00+08:00" pubdate data-updated="true">Jul 27<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/tcpip/'>tcpip</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/27/link-layer/">
-		
-			Link-layer</a>
-	</h2>
-	<div class="entry-content">
-		<h2>link layer</h2>
-
-<h3>link layer&rsquo;s usage</h3>
-
-<ol>
-<li>send and receive IP datagram</li>
-<li>ARP request and reply</li>
-<li>RARP request and reply</li>
-</ol>
-
-
-<p>many different link layers, depending on the type of networking: ethernet, token ring, FDDI, RS232 serial lines, etc.</p>
-
-<p>IEEE 802.2/3 format and Ethernet format</p>
-
-<p>in 802 format, after 2 bytes length field, there are 3 bytes LLC and 5 bytes SNAP and data field(38~1492) but in Ethernet format, there will be data field(46~1500), the end field is 4 bytes CRC.</p>
-
-<p>frame formats use 48-bits destination and source address</p>
-
-<h2>SLIP: Serial Line IP</h2>
-
-<p>END &mdash; 0xc0</p>
-
-<p>SLIP ESC &mdash; 0xdb</p>
-
-<p>IP datagram will be terminated by a special character called END(0xc0), most implementations transmit an END at the beginning of the datagram.</p>
-
-<p>if a byte of IP datagram equals:</p>
-
-<p>0xc0 &mdash;> 0xdb, 0xdc</p>
-
-<p>0xdb&mdash;>0xdb, 0xdd</p>
-
-<h2>PPP</h2>
-
-<ol>
-<li>async link with 8bits of data and no parity(no checksum)</li>
-<li>bit-oriented sync links</li>
-</ol>
-
-
-<p>start and end with a flag byte whose value is 0x7e, and if a byte value appears in information field, it should be escaped.</p>
-
-<p>batter than SLIP:(pay for 3 bytes addition)</p>
-
-<ol>
-<li>multiple protocols on a serial line</li>
-<li>CRC</li>
-<li>IP network control protocol negotiate IP address for each end</li>
-<li>header compress like CSLIP</li>
-<li>link control protocol negotiate many data-link options</li>
-</ol>
-
-
-<h2>Loopback</h2>
-
-<p>127.0.0.1 or localhost is the loopback interface, an IP datagram sent to this must not appear on any network.</p>
-
-<p>datagrams sent to broadcast and multicast addtess are copied to the loopback interface and sent out on the Ethernet.</p>
-
-<p>anything sent to one of the host&rsquo;s own IP addresses is ent to the loopback interface!</p>
-
-<h2>MTU</h2>
-
-<p>if the length of data field in IP datagram is larger than MTU(1500 or 1492 in Ethernet and 802 format), it will be fragmented.</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-27T00:03:00+08:00" pubdate data-updated="true">Jul 27<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/tcpip/'>tcpip</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/26/ocp-talks/">
-		
-			OCP-talks</a>
-	</h2>
-	<div class="entry-content">
-		<p>Good design should be open for extension and closed for modification. You can extend the module instead of modifying some working code.</p>
-
-<p>Abstraction is the Key: for example, a Client should use an Server object that implemented some interfaces instead of a concrete Server object.</p>
-
-<p>Interface&rsquo;s name should be named more closely associated to the dependent side instead of the implement side.</p>
-
-<p>A function that is closed for modification: if we add some changes for this function, it must be modified for working right, it may unconform OCP. For example, a function that draw all shapes in a shape list, it should be draw shapes one by one, and don&rsquo;t care this shape should draw in this way, another shape should draw in that way, etc.</p>
-
-<p>No matter how &ldquo;closed&rdquo; a module is, there will always be some kind of change against which it is not closed.</p>
-
-<p>Abstraction may gain &ldquo;closed&rdquo; software entity(func, module, class, etc), but it also need trade off.</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-26T22:27:00+08:00" pubdate data-updated="true">Jul 26<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/26/use-change-event-on-checkbox/">
-		
-			Use-change-event-on-checkbox</a>
-	</h2>
-	<div class="entry-content">
-		<p>昨天在一个table的第一行放了一个checkbox, 想做一个效果：一开始这个table的每一行都是冻结状态，点击这一行就激活了，顺便会把checkbox选中，当然直接点checkbox也会激活这一行。可惜在bind event的时候，分别给tr和checkbox加了click事件，tr的click会trigger到checkbox上，这样导致的结果就是点tr会触发checkbox的click handler，但同时又触发了tr的click handler，循环导致最后js崩溃。</p>
-
-<p>后来发现在tr的click handler中检查event.target可以不触发这种死循环，但在checkbox click handler中使用prop判断checked状态不准，在stackoverflow中找到解答：jquery1.8中的 click()和真实的click是不一样的，应该在checkbox上用change event，然后一切ok。</p>
-
-<p>解答：<a href="http://stackoverflow.com/questions/7668826/jquery-triggerclick-not-firing-click-event-on-checkbox">http://stackoverflow.com/questions/7668826/jquery-triggerclick-not-firing-click-event-on-checkbox</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-26T09:07:00+08:00" pubdate data-updated="true">Jul 26<span>th</span>, 2013</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>

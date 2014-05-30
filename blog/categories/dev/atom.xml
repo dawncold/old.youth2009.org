@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dev | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-05-30T20:27:02+08:00</updated>
+  <updated>2014-05-30T21:08:44+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,58 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[python-main-py]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/05/30/python-main-py/"/>
+    <updated>2014-05-30T21:05:20+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/05/30/python-main-py</id>
+    <content type="html"><![CDATA[<p>python的<code>__main__.py</code>文件，通常，一个package下有一个<code>__init__.py</code>文件标识这是package，同样可以有一个<code>__main__.py</code>文件，有了后你就可以这样运行一个脚本：<code>python script_dir</code>或者把这个dir打包成zip，可以使用<code>python zipball.zip</code>来执行，python会执行<code>__main__.py</code>中的语句。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[disable-keyboard-on-ubuntu]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/05/30/disable-keyboard-on-ubuntu/"/>
+    <updated>2014-05-30T20:54:45+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/05/30/disable-keyboard-on-ubuntu</id>
+    <content type="html"><![CDATA[<p>有时候不接外置显示器的时候，喜欢把键盘压在笔记本键盘上方使用，但如果不禁用内置键盘的话就会有误操作的风险，所以这样做，利用ubuntu中的xinput</p>
+
+<p>查看设备使用<code>xinput list</code></p>
+
+<p>```bash
+⎡ Virtual core pointer                      id=2    [master pointer  (3)]
+⎜   ↳ Virtual core XTEST pointer                id=4    [slave  pointer  (2)]
+⎜   ↳ SynPS/2 Synaptics TouchPad                id=11   [slave  pointer  (2)]
+⎜   ↳ Logitech USB-PS/2 Optical Mouse           id=12   [slave  pointer  (2)]
+⎜   ↳ Logitech Unifying Device. Wireless PID:4004   id=13   [slave  pointer  (2)]
+⎣ Virtual core keyboard                     id=3    [master keyboard (2)]</p>
+
+<pre><code>↳ Virtual core XTEST keyboard               id=5    [slave  keyboard (3)]
+↳ Power Button                              id=6    [slave  keyboard (3)]
+↳ Video Bus                                 id=7    [slave  keyboard (3)]
+↳ Sleep Button                              id=8    [slave  keyboard (3)]
+↳ Acer CrystalEye webcam                    id=9    [slave  keyboard (3)]
+↳ AT Translated Set 2 keyboard              id=10   [slave  keyboard (3)]
+</code></pre>
+
+<p><code>``
+找到内置键盘，我这里是那个叫"AT Translated Set 2 keyboard"的，id是10，禁用使用：</code>xinput float 10`</p>
+
+<p>如果再启用使用<code>xinput reattach 10 3</code>，3标识这个设备的master的id，从list的结果很容易看到从属关系。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[md5 digest]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/05/30/md5-digest/"/>
+    <updated>2014-05-30T20:29:58+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/05/30/md5-digest</id>
+    <content type="html"><![CDATA[<p>对于一个字符串做md5，例如："<order></order>123456"做完md5后，比较常见的结果是：<code>2e08539049ac0f6b5b4377ec20145c06</code>，即十六进制的表示形式，长度一般是32位，有人也用16位的表示，就是把32位的字符串前后各去掉8位后的结果，但不多见。还有就是用md5的digest值，这是一个16字节的字符串，不容易看，但可以转换成ascii后观察，比如上面的digest就是：<code>[46, 8, 83, 144, 73, 172, 15, 107, 91, 67, 119, 236, 32, 20, 92, 6]</code>， 如果你还看不清的话，可以考虑把这些ascii转成十六进制再看看：<code>['2e', '08', '53', '90', '49', 'ac', '0f', '6b', '5b', '43', '77', 'ec', '20', '14', '5c', '06']</code>，是不是很熟悉了，对就是一开始那个32位长的字符串。</p>
+
+<p>在对某通的接口开发中遇到对发送数据校验，文档中说的是对数据进行md5再做base64，通常就是把那个32位长的字符串做base64，但怎么也对不上，后来再研究发现其实是用digest的结果做base64，太坑人了是吧，文档这个东西，能写详细就写详细点，没坏处。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[dive-into-tornado]]></title>
@@ -36,63 +88,6 @@
     <updated>2014-01-23T18:57:21+08:00</updated>
     <id>http://www.youth2009.org/www/blog/2014/01/23/return-value-in-jquery-json-datatype</id>
     <content type="html"><![CDATA[<p>向api server发送请求做一件事的时候，比如修改密码，server做完后没有返回值，response code是200。这在原来的时候没问题，“原来”是指ajax的dataType未指定的时候，jQuery会自己猜测用什么，但这次指定了server的response是json，所以，即便是看到200 code也未能调用OnSuccess，空返回值对于json是不合法的，于是返回一个什么东西就好，当然要先to_json再返回。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[nginx-and-dependences]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/01/16/nginx-and-dependences/"/>
-    <updated>2014-01-16T18:46:33+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/01/16/nginx-and-dependences</id>
-    <content type="html"><![CDATA[<p><code>bash
-wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.34.tar.gz
-wget http://www.openssl.org/source/openssl-1.0.1f.tar.gz
-wget http://nginx.org/download/nginx-1.5.8.tar.gz
-</code></p>
-
-<p>default install pcre and openssl</p>
-
-<p>```
-nginx configure
-+gzip</p>
-
-<p>Configuration summary
-  + using system PCRE library
-  + OpenSSL library is not used
-  + md5: using system crypto library
-  + sha1: using system crypto library
-  + using system zlib library
-```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[lxml-and-dependences]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/01/16/lxml-and-dependences/"/>
-    <updated>2014-01-16T18:31:09+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/01/16/lxml-and-dependences</id>
-    <content type="html"><![CDATA[<p><code>bash
-sudo apt-get install libxml2-dev
-sudo apt-get install libxslt1-dev
-sudo apt-get install python-dev  （if Python.h: No file or dir..）
-</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[useful-shell-command]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/12/07/useful-shell-command/"/>
-    <updated>2013-12-07T22:28:53+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/12/07/useful-shell-command</id>
-    <content type="html"><![CDATA[<p>找到size为0的文件，并删除：<code>find -type f -size 0 | xargs rm</code></p>
-
-<p>替换Linux的换行成windows的：<code>ls | xargs perl -i -pe 's/\n/\r\n/g'</code></p>
-
-<p>批量改名哦（把<em>.md改为</em>.markdown）：</p>
-
-<p><code>bash
-for i in `ls *.md`;do mv $i `echo $i | sed 's/.md/.markdown/'`;done
-</code></p>
 ]]></content>
   </entry>
   

@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="真不太想写，因为写这篇日志应该比写一个程序都要复杂。 我介绍的是box2d引擎在iphone上的使用方法，网上也有不少介绍的，我再简单啰嗦一番： 首先我们需要一个物理世界：b2world *world;在世界中创造各种各样的body，当然这些body都是刚体，如同经济学中的刚性需求那样， &hellip;">
+	<meta name="description" content="都是关于cell的，不知道值得写出来么： 1。在定义cell样式的时候，如果你用UITableViewCellStyleSubtitle来初始化cell，那么设置cell的detailTextLabel的text属性就能看到详细的内容，在textLable的下一行显示着。 2。设定cell：[ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -74,6 +74,205 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/29/some-config-about-uitableview-cell/">
+		
+			关于UITableView中的cell配置</a>
+	</h2>
+	<div class="entry-content">
+		<p>都是关于cell的，不知道值得写出来么：</p>
+
+<p>1。在定义cell样式的时候，如果你用UITableViewCellStyleSubtitle来初始化cell，那么设置cell的detailTextLabel的text属性就能看到详细的内容，在textLable的下一行显示着。</p>
+
+<p>2。设定cell：<code>[cell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];</code>这样在每个cell右侧会有小箭头提示，很漂亮。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-29T13:28:00+08:00" pubdate data-updated="true">Jul 29<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/28/use-uinavigationcontroller-in-uitabbarcontroller/">
+		
+			UINavigationController和UITabBarController的搭配</a>
+	</h2>
+	<div class="entry-content">
+		<p>经过近1天的实践才摸清了这两个控件的搭配使用方法，网上介绍的不算多，我就把自己的经验说说：</p>
+
+<p>首先这两个的搭配是这样的，基础是UITabBarController，你完全可以在Xcode中选一个以Tabbar为基础的工程，用Tabbar来划分程序的大功能，每个功能中再用Navigation来做导航。我想大家应该都会这样做，当然如果反过来也不是不行，就是感觉有点别扭。</p>
+
+<p>在AppDelegate的初始化过程中用几个UINavigationController包裹UIViewController或者其子类（比如UITableViewController）放入UITabBarController中，这样的设置应该都会。我一开始这样写后，到了每个功能中，需要用到Navigation了，又自己写了一个UINavigationController，但不管用。然后我猜想是不是要自己模拟类似的功能，就自己加上了UINavigationBar，样子是对了，可惜这个bar不带popViewController的功能，完全让navigation成了摆设。无意中看到apple官方的例子中在UIViewController中用到了self.navigationController，我这才意识到UIViewController自己就带着UINavigationController。代码又改回以前的，几个UInavigationController包裹UIViewController初始化，然后在每个功能中大胆用self的navigationController来导航，达到了效果。</p>
+
+<p>还有，如果要做TableView，最好在UIViewController的子类中加入一个UITableView而不是UITableViewController，前者是一个控件，而后者是一套处理（当然还包括控件）。我一开始想在某个功能中用表格，加了一个表格的controller，总是看到表格开头多了一大块灰色的区域，硬生生地把一个表格给隔开了，具体问题在网上没有搜索到相关结果。但后来用了UITableView就好了。</p>
+
+<p>啰嗦了这么多，其实写的是我的探索过程，并不是直接给出的结果。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-28T06:01:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/26/iphone-simulator-and-sqlite/">
+		
+			Iphone模拟器和sqlite的问题</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。</p>
+
+<p>今天update进去信息，总是没发现数据库更新，怀疑是忘记commit，查看一下FMDB的使用方法，确实有commit一说，而我在看国内某博客写的使用教程时发现他就是随意的update和insert，殊不知这些都需要commit呀！在update和insert代码前后需要加入</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="p">[</span><span class="n">db</span> <span class="n">beginTransaction</span><span class="p">];</span>
+</span><span class='line'><span class="err">和</span>
+</span><span class='line'><span class="p">[</span><span class="n">db</span> <span class="n">commit</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我用的Objective-C。</p>
+
+<p>然而即便是这样，更新了数据库后再查询，确实数据被更改了，但我重新在模拟器中运行程序时候又恢复成了以前的值。偶然在模拟器中打开了程序而不是用xcode运行程序，数据竟然被永久更新了。</p>
+
+<p>所以，以后测试update的时候，前后对比应该只在模拟器中看，如果再用xcode启动，会把原来的数据传入模拟器，这样你就看不到效果了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-26T09:19:00+08:00" pubdate data-updated="true">Jul 26<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/23/sadly-box2d-expreiences/">
+		
+			惨痛的Box2d经验</a>
+	</h2>
+	<div class="entry-content">
+		<p>说来也可笑，Box2d中有各种各样的Shape，有多边形，矩形，圆形。我就是在用圆形的时候遇到的这样的问题：需要设置圆形的半径，我就用了这样的表达式：26 / PTM_RADIO，后面的是一个宏定义，表示拿多少像素和box2d中的米作为兑换。我这样设置后总看着圆形很不正常，半径不对，而且落到底边也不弹起来，为此还查找了API、Google等地方，看着别人的代码都没问题，就是自己的不正常。</p>
+
+<p>最终还是解决了这样的问题，真羞愧，原来半径需要一个float的值，但我的表达式算出来的应该是int，不过我也曾经写过 float radius = 26 / PTM_RADIO这样的，再把radius给半径，依然无果，感觉即便是类型不对也应该自动转换过去吧，没想到这里还就是不行了。</p>
+
+<p>可恶的！</p>
+
+<p><code>26.0 / PTM_RADIO</code></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-23T11:30:00+08:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/gameapp/'>gameapp</a>, <a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -447,217 +646,6 @@
 
 
 	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/09/python-one-star-and-two-star/">
-		
-			Python中的*和**</a>
-	</h2>
-	<div class="entry-content">
-		<p>在python的函数参数中，可以在变量名称前面加一个或者两个星号代表不一样的变量类型：</p>
-
-<p>在stack overflow上看到有人问这两个的区别了，就转载过来答案吧：</p>
-
-<blockquote><p>If the form *identifier is present, it is initialized to a tuple receiving any excess positional parameters, defaulting to the empty tuple. If the form **identifier is present, it is initialized to a new dictionary receiving any excess keyword arguments, defaulting to a new empty dictionary.</p></blockquote>
-
-<p>加一个星号代表这个参数是一个tuple类型；加两个则是一个dictionary类型，很好用。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-09T14:44:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/09/python-%25r-and-%25s/">
-		
-			Python中的%r和%s</a>
-	</h2>
-	<div class="entry-content">
-		<p>我并不想完整地比较这两个替换符号的用处，只是发现了一点，可能以后也会这样用。</p>
-
-<p>%r是原始的输入，如果输入了中文，在输出的时候会出现一些类似unicode的代码；其他的会输出带单引号的内容。</p>
-
-<p>%s就是字符串了，输出就是字符串，如果原始输入是中文，那这里也会输出中文。其他的会输出不带单引号的字符串内容。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-09T13:30:00+08:00" pubdate data-updated="true">Jul 9<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/06/cut-flac-file-on-macos/">
-		
-			Mac下分割flac文件</a>
-	</h2>
-	<div class="entry-content">
-		<p>原来我有很多ape和flac音乐的，在windows时代用foobar软件播放音乐很快乐，但在mac下，就有点儿别扭了，cog可以打开cue文件，并且播放也没问题，就是不能分割，这让人很头疼啊！ 从<a href="http://broadeno.wordpress.com/2009/06/16/%E5%A6%82%E4%BD%95%E5%9C%A8mac%E7%B3%BB%E7%BB%9F%E9%87%8C%E5%88%86%E5%89%B2flac%E9%9F%B3%E4%B9%90%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E8%BD%AC%E6%8D%A2%E4%B8%BAwav">这里</a>找了些办法，应该可以！ 安装macports这个软件，希望用源代码的方式安装，否则如果用官方的dmg文件安装，到最后一步运行安装脚本的时候你会发现进度条总是停留在最后不动，打开install的日志一看，有很多记录，听其他人说最后在下载一些包的信息文件，就像是一个索引镜像吧，断了网还好。1423s过后，安装完了。</p>
-
-<p><code>sudo port install cuetools</code></p>
-
-<p>这样就安装好了cuetools和shntool这两个软件，其中缺失的依赖软件也被macports自动安装上了，只是在下载的时候没有进度，很可恶，如果又兴趣可以看这里学着改改macports的fetch部分，至少能看看下载了多少，心里也有个数！ 下面进行分割：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold@tianzhenmatoMacBook-Pro Music<span class="nv">$ </span>cuebreakpoints 手嶌葵<span class="se">\(</span>Teshima.Aoi<span class="se">\)</span>.-.<span class="se">\[</span>The.Rose～I.Love.Cinemas～<span class="se">\]</span>.专辑.<span class="se">\(</span>FLAC<span class="se">\)</span>.cue | shnsplit -o flac 手嶌葵<span class="se">\(</span>Teshima.Aoi<span class="se">\)</span>.-.<span class="se">\[</span>The.Rose～I.Love.Cinemas～<span class="se">\]</span>.专辑.<span class="se">\(</span>FLAC<span class="se">\)</span>.flac
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track01.flac<span class="o">]</span> <span class="o">(</span>3:56.27<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track02.flac<span class="o">]</span> <span class="o">(</span>3:21.71<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track03.flac<span class="o">]</span> <span class="o">(</span>5:36.65<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track04.flac<span class="o">]</span> <span class="o">(</span>2:56.00<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track05.flac<span class="o">]</span> <span class="o">(</span>2:57.12<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track06.flac<span class="o">]</span> <span class="o">(</span>4:31.59<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track07.flac<span class="o">]</span> <span class="o">(</span>4:03.01<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track08.flac<span class="o">]</span> <span class="o">(</span>3:14.16<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track09.flac<span class="o">]</span> <span class="o">(</span>3:34.67<span class="o">)</span> : 100% OK
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>文件名有点差劲，也许可以配合cueprint和shnsplit的o参数可以实现完美的转换。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-06T13:59:00+08:00" pubdate data-updated="true">Jul 6<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mac/'>mac</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/05/techologist-always-want-to-buy-books/">
-		
-			是不是技术人员都喜欢买书？</a>
-	</h2>
-	<div class="entry-content">
-		<p>自认为我也算是一个追求技术的人了，现在更加喜欢技术的世界了，那里没有一些弹性的东西，不像官场那样可以商量，严格地执行着计算机的语言——0、1。</p>
-
-<p>作为一个技术人员，我发现自己很喜欢买书，当然买的最多的可能就是技术方面的书籍，包括一些被称为计算机编程名著一类的书，当然这些书太多了，在网上混迹时间一长，经不住别人的鼓动、诱惑，终于也走上了收集名著的行列之中，买书之前总是希望自己能够通过这本书学到什么高深的技术，在职场、创业中屹立于不败之地。但买回来之后，并不像我期待的那样，终归还是有些好处的，只是要打些折扣了：）但总归还是比不看书荒废了那段时间好吧。</p>
-
-<p>除了买一些技术性的书籍之外，我还喜欢买一些哲学、心理学、散文等方面的书来看，这和个人的爱好有点关系，但哲学、心理学这类书买得很少，自己只是停留在喜欢的角度，不是非得去研究，所以就不太深入。</p>
-
-<p>不知怎么我又喜欢上了经济学的东西，原因很复杂，简单地说是事物之间那种千丝万缕的联系，而且我发现计算机系和经济系有着无法分割的联系，所以我还是喜欢点经济吧。</p>
-
-<p>今天稍微有点冲动买下了张小娴的一本新作——《想念》。首先声明一下，我不是因为这个名字才去买的，是我本身就喜欢张小娴写的一些文章，虽然自己没看过几篇，但有些耳熟能详的还是听过，比如“世上最远的距离不是⋯⋯而是⋯⋯”。一个计算机人士光是看技术书籍只能提高技术能力，而光靠技术，在这个社会中还是很难过上好日子的，如果你只是希望饿不着那就算啦。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-05T21:50:00+08:00" pubdate data-updated="true">Jul 5<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/book/'>book</a>
 
 
 </div>
