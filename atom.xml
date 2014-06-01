@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/www/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-05-30T21:08:44+08:00</updated>
+  <updated>2014-06-01T10:55:22+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[postgresql indexes]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/06/01/postgresql-indexes/"/>
+    <updated>2014-06-01T10:18:27+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/06/01/postgresql-indexes</id>
+    <content type="html"><![CDATA[<h1>Introduction</h1>
+
+<p>Indexes will speed up your read(SELECT) and write(INSERT, UPDATE, DELETE) operation on a table, but they should by removed when a query seldom or never used. Create a bit table&rsquo;s index will spend lot of time. By default, PostgreSQL allows reads (SELECT statements) to occur on the table in parallel with index creation, but writes (INSERT, UPDATE, DELETE) are blocked until the index build is finished. In production environments this is often unacceptable. It is possible to allow writes to occur in parallel with index creation, but there are several caveats to be aware of — for more information see <a href="http://www.postgresql.org/docs/9.3/static/sql-createindex.html#SQL-CREATEINDEX-CONCURRENTLY">Building Indexes Concurrently</a>.</p>
+
+<h1>Index Types</h1>
+
+<p>PostgreSQL provides several index types: B-tree, Hash, GiST, SP-GiST and GIN. By default, the CREATE INDEX command creates B-tree indexes, which fit the most common situations.</p>
+
+<h1>Multicolumn index</h1>
+
+<p>Currently, only the B-tree, GiST and GIN index types support multicolumn indexes. Up to 32 columns can be specified. (This limit can be altered when building PostgreSQL; see the file pg_config_manual.h.)</p>
+
+<p>if your frequently query is like this: <code>SELECT name FROM test2 WHERE major = constant AND minor = constant;</code>, your need create an index on table test2 with <code>major</code>, <code>minor</code> columns: <code>CREATE INDEX test2_mm_idx ON test2 (major, minor);</code></p>
+
+<p>The order is important in multicolumn index:</p>
+
+<pre><code>A multicolumn B-tree index can be used with query conditions that involve any subset of the index's columns, but the index is most efficient when there are constraints on the leading (leftmost) columns. The exact rule is that equality constraints on leading columns, plus any inequality constraints on the first column that does not have an equality constraint, will be used to limit the portion of the index that is scanned. Constraints on columns to the right of these columns are checked in the index, so they save visits to the table proper, but they do not reduce the portion of the index that has to be scanned. For example, given an index on (a, b, c) and a query condition WHERE a = 5 AND b &gt;= 42 AND c &lt; 77, the index would have to be scanned from the first entry with a = 5 and b = 42 up through the last entry with a = 5. Index entries with c &gt;= 77 would be skipped, but they'd still have to be scanned through. This index could in principle be used for queries that have constraints on b and/or c with no constraint on a — but the entire index would have to be scanned, so in most cases the planner would prefer a sequential table scan over using the index.
+</code></pre>
+
+<h1>Order By</h1>
+
+<p>By default, B-tree indexes store their entries in ascending order with nulls last.</p>
+
+<h1>Combining Multiple Indexes</h1>
+
+<p>little difficult just trade off to decide which indexes to provide. Sometimes multicolumn indexes are best, but sometimes it&rsquo;s better to create separate indexes and rely on the index-combination feature.</p>
+
+<h1>Index on Expressions</h1>
+
+<p>This kind of index, not a specific column, it&rsquo;s an expression: <code>CREATE INDEX people_names ON people ((first_name || ' ' || last_name));</code></p>
+
+<h1>Partial Index</h1>
+
+<p><code>CREATE INDEX idx_xxx ON table(name) WHERE NOT deleted</code> this index only enables to rows which deleted is <code>TRUE</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[python-main-py]]></title>
@@ -402,32 +444,6 @@
 <p>具体的操作请参照：<a href="http://thinkrpi.wordpress.com/2013/05/22/opencv-and-camera-board-csi/">http://thinkrpi.wordpress.com/2013/05/22/opencv-and-camera-board-csi/</a></p>
 
 <p>替换arm-linux.cmake的命令:<code>sed -i 's/if (DEFINED CMAKE_TOOLCHAIN_FILE)/if (NOT DEFINED CMAKE_TOOLCHAIN_FILE)/g' arm-linux.cmake</code>，看准了arm-linux.cmake的路径，我运行命令的时候已经到了和arm-linux.cmake一个目录下了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[got-raspberry]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/08/02/got-raspberry/"/>
-    <updated>2013-08-02T21:40:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/08/02/got-raspberry</id>
-    <content type="html"><![CDATA[<p>工资一发就买了块表。。。并且还狠心买了这个玩具——raspberry。</p>
-
-<p>默认用了新手的那个镜像，叫NOOBS，就是里面装好了不少东西，系统也有好几个，默认用了推荐的Raspbian，是Debian的一个变种啦，开发用的Ubuntu都是一个家族的。</p>
-
-<p>配置的话，没啥可说的，就是把显卡占用的内存改成了16Mb，默认似乎分配了128M过去，对于我这种总看命令行的人足够了。如果你和我一样买了官方的摄像头模块，那就可以把camera给enable了。再就是在adcanced options中把SSH打开，否则你还得连上键盘鼠标去操作。。。</p>
-
-<p>不喜欢插网线，但很可惜办公室的Cisco双频无线网卡AE2500装不上，貌似是驱动问题，不想折腾，还好买了个免驱的小网卡叫EOUP。我的无线路由是hidden SSID了，所以在连接的时候还有点问题。在配置文件<code>/etc/wpa_supp/wpa_supp.conf</code>中多加了一行：
-<code>scan_ssid=1</code></p>
-
-<p>apt的source也改到了ustc.edu.cn的：<code>http://mirrors.ustc.edu.cn/raspbian/raspbian/</code>，具体就是把<code>/etc/apt/source.list</code>中第一行的URL改成上面那个即可。</p>
-
-<p>camera的官方使用教程：<a href="http://www.raspberrypi.org/archives/3890">http://www.raspberrypi.org/archives/3890</a></p>
-
-<p>如果想用camera捕捉视频，然后传到你这里看的话，需要在raspberry上先装netcat，我是用的Mac系统，系统本身有nc了，再用brew多装一个mplayer。</p>
-
-<p>raspberrrypi上捕捉视频用：<code>raspivid -t 1000000 -vs -w 800 -h 600 -o -| nc 172.19.1.124 5001</code>，其中t参数指定了捕捉多少毫秒的视频，后面的vs是防抖，w和h控制宽高，这样就得到一个800x600的画面。</p>
-
-<p>Mac上用nc把发来的stream转到mplayer上：<code>nc -lp 5001 | mplayer -fps 31 -cache 512 -</code>，很无语的是<code>man nc</code>得到一句解释，l和p参数在一起用是个错误，但不加p就绝对在我这里不work！</p>
 ]]></content>
   </entry>
   
