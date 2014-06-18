@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/www/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-01T20:50:58+08:00</updated>
+  <updated>2014-06-18T22:03:38+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iptables MASQUERADE]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/06/13/iptables-MASQUERADE/"/>
+    <updated>2014-06-13T20:50:30+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/06/13/iptables-MASQUERADE</id>
+    <content type="html"><![CDATA[<p>If you need private hosts communicate with external network, maybe some LXC contaners want to using apt-get, you need add a iptables rule like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>iptables -t nat -A POSTROUTING -s 10.24.1.0/24 ! -d 10.24.1.0/24 -j MASQUERADE</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This rule allows network traffic from 10.24.1.x, and destination is not 10.24.1.x, maybe it wants to communicating with 10.24.2.x, but that doesn&rsquo;t cover in this post, we assumed it want to communicating with Google, the host has an external ip like 200.200.200.200, iptables can convert IP from 10.24.1.x to IP from 200.200.200.200, like the host request Google.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[postgresql indexes]]></title>
@@ -424,23 +439,6 @@
 <p>3.0之前python中有plain string和unicode string，前者是ascii中的那些字符，后者就是所有字符了，因为historical legacy。。。python出现的时候还木有unicode，所以很多python的lib是需要慢慢转换的，当然到了3.0就会不复存在了，全是unicode。</p>
 
 <p>这样的话就清楚了，str代表了那些ascii字符，unicode就是全部的字符，他们都继承自basestring。basestring是从python2.3开始引入的。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[opencv-with-pi]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/08/03/opencv-with-pi/"/>
-    <updated>2013-08-03T17:44:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/08/03/opencv-with-pi</id>
-    <content type="html"><![CDATA[<p>想了好久都觉得连续拍照片做监控实在是没什么效率，默认情况应该是什么都不做，如果发现有人来了才拍下来或者录下来，但用标配的摄像头录像实在是会录出非常大的文件，保存文件又是问题。在<a href="http://www.raspberrypi.org/archives/4207">官网的博客</a>中看到了一个用opencv做的人脸识别，可以这样干嘛。于是紧随那片文章开始干。</p>
-
-<p>由于标配摄像头模块不是usb设备，所以需要重新编译使用的几个程序，比如raspistill和raspivid等等。</p>
-
-<p>另外，如果直接在raspberrypi上编译，需要安装一些软件：<a href="http://thinkrpi.wordpress.com/2013/04/05/step-3-install-softwares-for-webcam-and-computer-vision/">http://thinkrpi.wordpress.com/2013/04/05/step-3-install-softwares-for-webcam-and-computer-vision/</a></p>
-
-<p>具体的操作请参照：<a href="http://thinkrpi.wordpress.com/2013/05/22/opencv-and-camera-board-csi/">http://thinkrpi.wordpress.com/2013/05/22/opencv-and-camera-board-csi/</a></p>
-
-<p>替换arm-linux.cmake的命令:<code>sed -i 's/if (DEFINED CMAKE_TOOLCHAIN_FILE)/if (NOT DEFINED CMAKE_TOOLCHAIN_FILE)/g' arm-linux.cmake</code>，看准了arm-linux.cmake的路径，我运行命令的时候已经到了和arm-linux.cmake一个目录下了。</p>
 ]]></content>
   </entry>
   

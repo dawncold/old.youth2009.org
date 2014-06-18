@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dev | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-01T20:50:58+08:00</updated>
+  <updated>2014-06-18T22:03:38+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iptables MASQUERADE]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/06/13/iptables-MASQUERADE/"/>
+    <updated>2014-06-13T20:50:30+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/06/13/iptables-MASQUERADE</id>
+    <content type="html"><![CDATA[<p>If you need private hosts communicate with external network, maybe some LXC contaners want to using apt-get, you need add a iptables rule like this:</p>
+
+<p><code>
+iptables -t nat -A POSTROUTING -s 10.24.1.0/24 ! -d 10.24.1.0/24 -j MASQUERADE
+</code></p>
+
+<p>This rule allows network traffic from 10.24.1.x, and destination is not 10.24.1.x, maybe it wants to communicating with 10.24.2.x, but that doesn&rsquo;t cover in this post, we assumed it want to communicating with Google, the host has an external ip like 200.200.200.200, iptables can convert IP from 10.24.1.x to IP from 200.200.200.200, like the host request Google.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[python-main-py]]></title>
@@ -77,15 +92,6 @@
 <p>在写hello，world例子的时候，处理GET我直接就下意识返回了想要的字符串，没想到运行起来是500 error，仔细一看原来官方的例子中处理GET是要调用<code>self.write('xxx')</code>，然后我就看了下self.write做了什么，self是我定义的class，但这个class继承自tornado.web.RequestHandler, 于是看tornado.web.RequestHandler的write做什么，write的参数叫chunk，并不是简单的叫str之类的东西，也就是说不限于str，有可能是些别的东西，比如注释中说如果你write了一个dict，tornado会转换成JSON，并且把Content-Type给你设置好，现在的veil也支持了这个优秀特性。还提到了list不会被转换成JSON格式，因为一个漏洞（坑），具体看<a href="http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx/">这里</a>，简单讲，就是用script的src指向一个网站需要登陆后才能访问的地址，因为你如果登陆过的话，cookie信息会随之发送到这个地址，此时如果你去了一个邪恶的网站，他里面有些脚本，引用刚刚提到的你需要登陆的网址，你浏览器会把你的一些信息带上，请求这个地址，这个地址会返回一些你的个人资料，比如是用JSON的array回给你，但邪恶网站把javascript array的constructor改写了，你拿到JSON的array会被自动转成js array，这样邪恶网站会收集到你的信息，然后再发送回自己一个接受数据的接口就可以了。避免方法就是：返回JSON的时候用对象方式；这种关键信息用POST提交，script标签只会发送GET请求；现代高级浏览器都不会有问题，大可放心。转换成了byte string（就是str）放入chunk_buffer，一起写到output。</p>
 
 <p>我们的handler很简单，实现了get方法，然后write了一个字符串，但后来呢？或许应该从另一条路看起——从url被映射到handler看起。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[return-value-in-jquery-json-datatype]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/01/23/return-value-in-jquery-json-datatype/"/>
-    <updated>2014-01-23T18:57:21+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/01/23/return-value-in-jquery-json-datatype</id>
-    <content type="html"><![CDATA[<p>向api server发送请求做一件事的时候，比如修改密码，server做完后没有返回值，response code是200。这在原来的时候没问题，“原来”是指ajax的dataType未指定的时候，jQuery会自己猜测用什么，但这次指定了server的response是json，所以，即便是看到200 code也未能调用OnSuccess，空返回值对于json是不合法的，于是返回一个什么东西就好，当然要先to_json再返回。</p>
 ]]></content>
   </entry>
   
