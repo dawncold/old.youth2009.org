@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dev | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-08-14T22:09:08+08:00</updated>
+  <updated>2014-08-14T22:11:20+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -49,7 +49,8 @@ GRANT wheel TO admin;</p>
     <id>http://www.youth2009.org/www/blog/2014/08/14/else-clause-in-python-loop</id>
     <content type="html"><![CDATA[<p>both in while and for loop, if in loop body, no break, no return, no exception is raised, statements in else block will be executed.</p>
 
-<p>for x in []:</p>
+<p>&#8220;`python
+for x in []:</p>
 
 <pre><code> print x
 </code></pre>
@@ -59,7 +60,8 @@ GRANT wheel TO admin;</p>
 <pre><code> print ‘xxx’
 </code></pre>
 
-<p>this example will print ‘xxx’, even nothing in list and this loop is not executed.</p>
+<p>&#8220;`
+this example will print ‘xxx’, even nothing in list and this loop is not executed.</p>
 ]]></content>
   </entry>
   
