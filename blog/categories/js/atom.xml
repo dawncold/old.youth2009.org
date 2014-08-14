@@ -4,7 +4,7 @@
   <title><![CDATA[Category: js | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/js/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -24,7 +24,7 @@
 
 <p>同样的Object.keys()因为不能在IE9下使用，因为要取一个Object的keys数量，有的时候是用Object的keys列表，所以以后为了兼容，就只能：</p>
 
-<p>```js
+<p>&#8220;`js
 for(var p in obj) {</p>
 
 <pre><code>if(obj.hasOwnProperty(p)) {
@@ -34,7 +34,7 @@ for(var p in obj) {</p>
 </code></pre>
 
 <p>}
-```</p>
+&#8220;`</p>
 ]]></content>
   </entry>
   
@@ -60,7 +60,7 @@ for(var p in obj) {</p>
 
 <p>此时需要检测一下是否已经存在，如果存在就remove掉：</p>
 
-<p>```javascript
+<p>&#8220;`javascript
 if(CKEDITOR.instances[&lsquo;description&rsquo;]) {</p>
 
 <pre><code>CKEDITOR.remove(CKEDITOR.instances['description']);
@@ -70,7 +70,7 @@ if(CKEDITOR.instances[&lsquo;description&rsquo;]) {</p>
 CKEDITOR.replace(&lsquo;description&rsquo;)</p>
 
 <p>其中description是一个textarea的name。
-```</p>
+&#8220;`</p>
 ]]></content>
   </entry>
   

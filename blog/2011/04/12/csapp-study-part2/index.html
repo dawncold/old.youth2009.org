@@ -119,7 +119,7 @@
 
 <p>movsbl、movzbl的区别：    </p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -130,7 +130,7 @@
 </span><span class='line'>movb %dh,%al    //%eax = 9876548D     
 </span><span class='line'>movsbl %dh,%eax    //%eax = FFFFFF8D     
 </span><span class='line'>movzbl %dh,%eax    //%eax = 0000008D movzbl用0填充eax的高24位；
-</span><span class='line'>movsbl用dh中的最高位填充eax的高24位。</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>movsbl用dh中的最高位填充eax的高24位。</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>至于为何是填充eax的高24位，原因是movsbl、movzbl的源操作数是字节长度（就是这里的dh），而这条指令会执行扩展32位，就是把目的操作数的高24位进行相应的扩展操作。</p>
@@ -158,7 +158,7 @@
   
 
 
-<time datetime="2011-04-12T22:00:00+08:00" pubdate data-updated="true">Apr 12<span>th</span>, 2011</time></div>
+<time datetime="2011-04-12T22:00:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

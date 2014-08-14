@@ -103,7 +103,7 @@
 
 <p>左外连接查询比两次select快10～20%左右。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -213,12 +213,12 @@
 </span><span class='line'><span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">uids</span><span class="p">:</span>
 </span><span class='line'><span class="n">selectTwoTimes</span><span class="p">(</span><span class="n">connect</span><span class="p">(),</span> <span class="n">uid</span><span class="p">)</span>
 </span><span class='line'><span class="k">print</span> <span class="s">&quot;Select Two Times time: </span><span class="si">%f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">select_two_times</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>schema：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -260,7 +260,7 @@
 </span><span class='line'><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">todo_id</span><span class="p">)</span> <span class="k">references</span> <span class="n">todo</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
 </span><span class='line'><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span> <span class="k">references</span> <span class="k">user</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
 </span><span class='line'><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>启动脚本就会创建数据库并开始测试。</p>
@@ -280,7 +280,7 @@
   
 
 
-<time datetime="2012-05-14T23:23:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2012</time></div>
+<time datetime="2012-05-14T23:23:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

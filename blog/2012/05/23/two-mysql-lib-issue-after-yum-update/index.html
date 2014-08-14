@@ -82,22 +82,22 @@ ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a &hellip;">
 	<h2 class="title">Ldconfig: /usr/lib/libmysqlclient.so.16 Is Not a Symbolic Link的问题</h2>
 	<div class="entry-content"><p>刚刚用yum升级了系统，发现日志中有很多这样的提示：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link
 </span><span class='line'>ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a symbolic link
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>于是Google了一下，找到一个解决方法，在<a href="http://tiger.im/286.html">这里</a>.</p>
 
 <p>就是重建了两条连接过去即可：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -sf /usr/local/mysql/lib/mysql/libmysqlclient.so.16 /usr/lib/mysqlclient.so.16
 </span><span class='line'>ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient_r.so.16
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 </div>
 
@@ -115,7 +115,7 @@ ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a &hellip;">
   
 
 
-<time datetime="2012-05-23T19:50:00+08:00" pubdate data-updated="true">May 23<span>rd</span>, 2012</time></div>
+<time datetime="2012-05-23T19:50:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

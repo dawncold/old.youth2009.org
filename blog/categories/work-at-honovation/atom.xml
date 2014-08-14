@@ -4,7 +4,7 @@
   <title><![CDATA[Category: work@honovation | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/work-at-honovation/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -24,7 +24,7 @@
 
 <p>同样的Object.keys()因为不能在IE9下使用，因为要取一个Object的keys数量，有的时候是用Object的keys列表，所以以后为了兼容，就只能：</p>
 
-<p>```js
+<p>&#8220;`js
 for(var p in obj) {</p>
 
 <pre><code>if(obj.hasOwnProperty(p)) {
@@ -34,7 +34,7 @@ for(var p in obj) {</p>
 </code></pre>
 
 <p>}
-```</p>
+&#8220;`</p>
 ]]></content>
   </entry>
   
@@ -58,7 +58,7 @@ for(var p in obj) {</p>
     <id>http://www.youth2009.org/www/blog/2013/08/08/basestring-and-str-in-python2x</id>
     <content type="html"><![CDATA[<p>今天在代码中发现原本过滤str的一个func被写成了过滤basestring，于是查了下basestring和str的区别：(在3.0之前)</p>
 
-<p>```</p>
+<p>&#8220;`</p>
 
 <pre><code>       object
          |
@@ -69,7 +69,7 @@ for(var p in obj) {</p>
      str  unicode
 </code></pre>
 
-<p>```</p>
+<p>&#8220;`</p>
 
 <p>3.0之前python中有plain string和unicode string，前者是ascii中的那些字符，后者就是所有字符了，因为historical legacy。。。python出现的时候还木有unicode，所以很多python的lib是需要慢慢转换的，当然到了3.0就会不复存在了，全是unicode。</p>
 

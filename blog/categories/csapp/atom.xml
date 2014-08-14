@@ -4,7 +4,7 @@
   <title><![CDATA[Category: csapp | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/csapp/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -136,14 +136,14 @@ C：1100
 
 <p>交换两个数的值（技巧性炫耀，没有性能上提升）:</p>
 
-<p>```
+<p>&#8220;`
 void swap(int x , int y)
 {
    x = x ^ y;
    y = x ^ y;
    x = x ^ *y;
 }
-````
+&#8220;&#8220;
 移位运算要注意结核性，x&lt;&lt;j&lt;&lt;k的结核性是（x&lt;&lt;j）&lt;&lt;k，而且还要注意优先级，1&lt;&lt;5-1应该是这样计算的：1&lt;&lt;(5-1)！！！所以只要不确定就加上括号，这样肯定安全，而且可读性也是比较好的。</p>
 
 <p>右移运算分两种：算术右移和逻辑右移。算术右移在左边补充n个最高有效位的拷贝，逻辑右移是在左边补充n个0.对于无符号数的右移必须是逻辑的（补0），而几乎所有的编译器/机器组合都对有符号数据使用算术右移（拷贝最高有效位）</p>

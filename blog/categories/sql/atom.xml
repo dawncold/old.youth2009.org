@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sql | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/sql/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -22,7 +22,7 @@
 
 <p>左外连接查询比两次select快10～20%左右。</p>
 
-<p>```python</p>
+<p>&#8220;`python</p>
 
 <h1>! /usr/bin/env python</h1>
 
@@ -80,7 +80,7 @@ select_two_times = time.time()
 for uid in uids:
 selectTwoTimes(connect(), uid)
 print &ldquo;Select Two Times time: %f&rdquo; % (time.time() &ndash; select_two_times)
-```</p>
+&#8220;`</p>
 
 <p>schema：</p>
 

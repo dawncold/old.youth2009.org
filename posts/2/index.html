@@ -1,0 +1,650 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Trade Off</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="早就有这样的计划，要深入了解自己在用的工具，veil算一个，tornado算一个，flask算一个……当然还有好多，总得一个个看一番，好在这些库都写得足够简单，不至于一下子看不懂，而且借助pycharm这样优秀的工具，一步步跟踪代码也给深入理解框架极大的帮助，所以，开始吧。（ &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/03/27/dive-into-tornado/">
+		
+			Dive-into-tornado</a>
+	</h2>
+	<div class="entry-content">
+		<p>早就有这样的计划，要深入了解自己在用的工具，veil算一个，tornado算一个，flask算一个……当然还有好多，总得一个个看一番，好在这些库都写得足够简单，不至于一下子看不懂，而且借助pycharm这样优秀的工具，一步步跟踪代码也给深入理解框架极大的帮助，所以，开始吧。（也好久都没更新过技术博客的内容了）</p>
+
+<p>终于可以再让Mac发挥发挥余热了，pycharm用的社区版，估计对于学习够用了。tornado升级到了稳定的3.2版，也是目前的最新版，先慢慢研读官方的文档，再慢慢看完api。</p>
+
+<p>在写hello，world例子的时候，处理GET我直接就下意识返回了想要的字符串，没想到运行起来是500 error，仔细一看原来官方的例子中处理GET是要调用<code>self.write('xxx')</code>，然后我就看了下self.write做了什么，self是我定义的class，但这个class继承自tornado.web.RequestHandler, 于是看tornado.web.RequestHandler的write做什么，write的参数叫chunk，并不是简单的叫str之类的东西，也就是说不限于str，有可能是些别的东西，比如注释中说如果你write了一个dict，tornado会转换成JSON，并且把Content-Type给你设置好，现在的veil也支持了这个优秀特性。还提到了list不会被转换成JSON格式，因为一个漏洞（坑），具体看<a href="http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx/">这里</a>，简单讲，就是用script的src指向一个网站需要登陆后才能访问的地址，因为你如果登陆过的话，cookie信息会随之发送到这个地址，此时如果你去了一个邪恶的网站，他里面有些脚本，引用刚刚提到的你需要登陆的网址，你浏览器会把你的一些信息带上，请求这个地址，这个地址会返回一些你的个人资料，比如是用JSON的array回给你，但邪恶网站把javascript array的constructor改写了，你拿到JSON的array会被自动转成js array，这样邪恶网站会收集到你的信息，然后再发送回自己一个接受数据的接口就可以了。避免方法就是：返回JSON的时候用对象方式；这种关键信息用POST提交，script标签只会发送GET请求；现代高级浏览器都不会有问题，大可放心。转换成了byte string（就是str）放入chunk_buffer，一起写到output。</p>
+
+<p>我们的handler很简单，实现了get方法，然后write了一个字符串，但后来呢？或许应该从另一条路看起——从url被映射到handler看起。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-27T21:22:58+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/01/23/return-value-in-jquery-json-datatype/">
+		
+			Return-value-in-jquery-json-datatype</a>
+	</h2>
+	<div class="entry-content">
+		<p>向api server发送请求做一件事的时候，比如修改密码，server做完后没有返回值，response code是200。这在原来的时候没问题，“原来”是指ajax的dataType未指定的时候，jQuery会自己猜测用什么，但这次指定了server的response是json，所以，即便是看到200 code也未能调用OnSuccess，空返回值对于json是不合法的，于是返回一个什么东西就好，当然要先to_json再返回。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-23T18:57:21+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/01/16/nginx-and-dependences/">
+		
+			Nginx-and-dependences</a>
+	</h2>
+	<div class="entry-content">
+		<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.34.tar.gz
+</span><span class='line'>wget http://www.openssl.org/source/openssl-1.0.1f.tar.gz
+</span><span class='line'>wget http://nginx.org/download/nginx-1.5.8.tar.gz
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>default install pcre and openssl</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>nginx configure
+</span><span class='line'>+gzip
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Configuration summary
+</span><span class='line'>  + using system PCRE library
+</span><span class='line'>  + OpenSSL library is not used
+</span><span class='line'>  + md5: using system crypto library
+</span><span class='line'>  + sha1: using system crypto library
+</span><span class='line'>  + using system zlib library
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-16T18:46:33+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/01/16/lxml-and-dependences/">
+		
+			Lxml-and-dependences</a>
+	</h2>
+	<div class="entry-content">
+		<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install libxml2-dev
+</span><span class='line'>sudo apt-get install libxslt1-dev
+</span><span class='line'>sudo apt-get install python-dev  （if Python.h: No file or dir..）
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-16T18:31:09+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/01/06/daemon-in-nginx/">
+		
+			Daemon-in-nginx</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近要把bnly重新运行起来，前两天整理了cli版本的程序，放到<a href="GitHub">https://github.com/dawncold/bnly-cli</a>，另一个web版的放到了bitbucket上的私有仓库，准备做部署的时候用，没想到bitbucket最近没有被kill，难道放开了？</p>
+
+<p>用supervisor做进程管理的时候被nginx坑了，由于nginx的配置很强大，现在还处在搭建环境的初期，很多配置写不完整，导致了nginx总是在频繁启动，log中看到的是80端口已经被占用。。。找了半天只有nginx占着80，而且又不会开多个nginx（supervisor的配置中没有明确说开多个程序，默认一个），搜了挺长时间都没有结果。</p>
+
+<p>突然想到了daemon。</p>
+
+<p>nginx的文档建议生产环境应该off，但这个和我遇到的问题无关。默认daemon开了，supervisor运行后会认为nginx退出了，再启动一个，其实上一个已经启动成功，所以就总看到80端口被占用，于是在nginx的配置上加<code>deamon off</code>即可。</p>
+
+<p>是不是很坑？</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-06T21:57:39+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/bnly/'>bnly</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/12/08/object-dot-keys-and-json-in-ie6/">
+		
+			Object.keys-and-JSON-in-IE6</a>
+	</h2>
+	<div class="entry-content">
+		<p>下单页面用到了js中的JSON和Object.keys，都是坑。</p>
+
+<p>JSON虽然是build-in的JSON parser和stringify方法，但IE6，7，8(Q)都是无法使用的，如果用jQuery的话，可以用jQuery的parseJSON来解析，但stringify的话需要依赖第三方库或者自己实现，我用了JSON3.js这个库。首选build-in的parse和stringify方法，如果没有就实现。github地址：<a href="https://github.com/bestiejs/json3">https://github.com/bestiejs/json3</a></p>
+
+<p>同样的Object.keys()因为不能在IE9下使用，因为要取一个Object的keys数量，有的时候是用Object的keys列表，所以以后为了兼容，就只能：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">p</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">p</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>      <span class="nx">keys</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-08T14:52:12+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/12/07/useful-shell-command/">
+		
+			Useful-shell-command</a>
+	</h2>
+	<div class="entry-content">
+		<p>找到size为0的文件，并删除：<code>find -type f -size 0 | xargs rm</code></p>
+
+<p>替换Linux的换行成windows的：<code>ls | xargs perl -i -pe 's/\n/\r\n/g'</code></p>
+
+<p>批量改名哦（把<em>.md改为</em>.markdown）：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">for </span>i in <span class="sb">`</span>ls *.md<span class="sb">`</span>;<span class="k">do </span>mv <span class="nv">$i</span> <span class="sb">`</span><span class="nb">echo</span> <span class="nv">$i</span> | sed <span class="s1">&#39;s/.md/.markdown/&#39;</span><span class="sb">`</span>;<span class="k">done</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-07T22:28:53+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/shell/'>shell</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/12/03/upgrade-to-linode-for-not-waiting/">
+		
+			Upgrade-to-linode-for-not-waiting</a>
+	</h2>
+	<div class="entry-content">
+		<p>上个月买了linode的vps，不知道干什么用，光翻墙了，月底干脆就关了，觉得这样翻墙的成本太高了，完全可以租个便宜的vps来用，后来觉得还是linode好。</p>
+
+<p>在用linode之前用过digitalocean，那时候DO刚刚起步，速度不错，主要是华人不多，而且价格一如既往的便宜，公司决定买这个翻墙用，但后来速度一天天慢下来了，看到最近DO的推广力度增大，可能这就是为啥速度不理想的原因。</p>
+
+<p>prgmr.com是个不错的vps，技术感超强，但很可惜在公司速度很好，160ms的ping延迟，不过回到家发现延迟到了400+，真不明白网络就能差这么多。好处是能不交费先用一段时间体验，support很好。</p>
+
+<p>ramhost.us据说也不错，不会超售，在家wget一个文件速度上了400+，可惜就那么一次，也不知道是不是那一次把所有RP全用光了，后来怎么都是个位数的速度。同样技术感很强，缺点就是support靠人，站长貌似也不总是盯着这个，没拿到trial来试试。</p>
+
+<p>其实vpsee这个也能考虑试试，linuxtoy.org放在上面，感觉访问速度挺好，价格10刀，不算是便宜，但和linode比便宜一半了。以前用过几个月的vps，很稳定，被GFW过IP，站长免费给换，总之一切都好。</p>
+
+<p>最后是linode，又回来了，很早很早的时候，大约是初中那会，对建站很感兴趣，那时候还没有流行vps，都是shared hosting，当时买过hostmonster的一年服务，没做啥东西，算是浪费了吧。后来过了挺长时间逐渐接触到vps，用过yardvps，amazon的也试过，那时候没法买linode，因为信用卡，就想着哪天能有信用卡了就可以自由买这个了，现在确实能买了，也不知道买了干嘛了，以为能做个app，但终究没想出来做什么。好在能解决访问Google等网站时候的延迟，有时候大脑在想一件事，google一下结果，此时慢了，可能又跳跃到别的事情上了。或许人和人不太一样。</p>
+
+<p>Linode Referral URL：<a href="https://www.linode.com/?r=84379f19216416e48085518afcde3beb02aee9c8">https://www.linode.com/?r=84379f19216416e48085518afcde3beb02aee9c8</a></p>
+
+<p>Linode Referral Code：84379f19216416e48085518afcde3beb02aee9c8</p>
+
+<p>如果用这个code注册linode，在你用满3个月的时候我们彼此能够得到20刀的奖励：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-03T22:32:58+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/vps/'>vps</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/08/25/rarp/">
+		
+			Rarp</a>
+	</h2>
+	<div class="entry-content">
+		<h2>Packet Format</h2>
+
+<p>RARP packet is identical to ARP packet, differences: RARP &lsquo;type&rsquo; field is 0x8035 for request and reply and &lsquo;op&rsquo; field is 3 for RARP request and 4 for RARP reply.</p>
+
+<p>RARP&rsquo;s reply is unicast.</p>
+
+<p>The implementation of RARP server is complex&hellip;</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-25T12:01:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/tcpip/'>tcpip</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/08/20/timestamp/">
+		
+			Timestamp</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天在做批量导入图片功能的时候，发现一个问题，原先save image过程用timestamp当文件名，这样在一般使用的时候倒是没什么问题了，但让程序去做的时候，timestamp就显得不好用了，程序跑的很快，可能三四张图都在1s内处理完上传，这样就很难保证文件名不重复。</p>
+
+<p>传一张停1秒呢？问题不大，但看着还是不保险，而且变慢了，因为要等。。。</p>
+
+<p>纯粹uuid倒是问题不大，但日后管理起来确实就不爽了——看uuid根本不知道谁先谁后，所以就把tiemstamp和uuid4连起来当新文件名，这样程序批量传也不会有问题（其实概率已经低到这个时代可接受的程度吧），又在trade off了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-20T21:56:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+<nav id="pagenavi">
+    
+        <a href="1" class="prev">Prev</a>
+    
+    
+        <a href="3" class="next">Next</a>
+    
+    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
+</nav></div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    dawncold
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-8650400-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

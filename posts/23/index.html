@@ -1,0 +1,661 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Trade Off</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １. &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/02/24/git-for-project/">
+		
+			为项目搭建git版本控制</a>
+	</h2>
+	<div class="entry-content">
+		<p>这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １.安装git就不再多说了，我似乎把redhat中的一个仓库加入了rpm，直接yum install -y git安装了，不如下载源代码安装的git版本高，我这里似乎只有１.５的版本。 ２.我使用了gitosis来管理所有的项目，所以：  </p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>yum install python-setuptools
+</span><span class='line'>git clone git://eagain.net/gitosis.git
+</span><span class='line'>cd gitosis
+</span><span class='line'>python setup.py install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>３.安装好了就可以初始化gitosis，还得先建立一个git的用户来做一些工作：  </p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>useradd -m -s /bin/bash -d /home/git git
+</span><span class='line'>passwd git #给git用户加上密码
+</span><span class='line'>su - git
+</span><span class='line'>cd ~
+</span><span class='line'>gitosis-init &lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径</span></code></pre></td></tr></table></div></figure>
+
+
+<p>４.修改一些权限，据说很重要，为了安全：  </p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod 755 /home/git
+</span><span class='line'>chmod 700 /home/git/.ssh
+</span><span class='line'>chmod 644 /home/git/.ssh/authorized_keys
+</span><span class='line'>chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>５.在本地用git做最后的工作，修改gitosis的配置文件并上传：  </p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone ssh://git@DOMAIN:8888/gitosis-admin.git
+</span><span class='line'><span class="nb">cd </span>gitosis-admin
+</span><span class='line'>vi gitosis.conf
+</span><span class='line'><span class="c">#增加新的项目名字和相关配置</span>
+</span><span class='line'><span class="o">[</span>group AWAD<span class="o">]</span><span class="c">#ＡＷＡＤ组</span>
+</span><span class='line'><span class="nv">writable</span> <span class="o">=</span> wodeyitian_web　　　#仓库中的名字
+</span><span class='line'><span class="nv">members</span> <span class="o">=</span> dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员名字就是rsa共钥中最后的成员名字
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>好像和那个pub文件的名字要一样，那样的pub文件放在和这个conf文件在一起的keydir文件夹下.</p>
+
+<p>6.完成这里后提交一下再push到远程服务器上即可完成：  </p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git commit -a -m <span class="s1">&#39;建立了新的项目&#39;</span>
+</span><span class='line'>git push
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>7.已经全部完成，在本地已经可以用了，不过还想说一下，如果做开源项目，还是放到github上比较好玩！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-24T17:37:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/wodeyitian/'>wodeyitian</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/02/22/validating-paypal/">
+		
+			正在验证paypal</a>
+	</h2>
+	<div class="entry-content">
+		<p>能够使用paypal最好了，因为那样可以隐藏自己的信用卡信息，总之支持paypal支付的国外商家还是非常多的。要开通这个功能需要在paypal上添加一张信用卡，我已经添加过一张银联卡了，验证方式是paypal给我打了两笔小额资金，真是很小，不到1毛钱！而验证信用卡就不一样了，需要扣除不到2美元的现金，而paypal这次很实在，不到2美元，扣了1.9x！！！接着就是等对账单，paypal会显示一个4位数的编号，等你看到后填写到paypal那里就算是验证成功了！但这个过程还是有点艰辛。</p>
+
+<p>昨天我进行了3次添加信用卡操作，全都是失败，还被银行的客服问候了一下，今天看到美元帐户里能够支付5美元了，再尝试一下，还是失败！Google原因，了解了还需要开通境外无卡支付业务才行，我从网银的设置中看到了这个业务，但后面的开通链接处是一个灰色的！只有柜面注册卡才能在线开通关闭！我这不是柜面注册么？！好象是自己在网银的后台添加进去的～于是电话让客服MM开通，顺利完成了paypal的添加卡业务。（我在网银中还自助开通了一个VISA验证服务，这个应该不影响吧）。再等几天验证完paypal就没事了。那时候再把境外无法支付关闭，要不然危险。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-22T18:30:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/credit-card/'>credit-card</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/02/22/give-up-csapp/">
+		
+			含恨放弃了这本书</a>
+	</h2>
+	<div class="entry-content">
+		<p>《深入理解计算机系统》这本书是我从《程序员》上看来的，记得有位高超的架构师吧，推荐了这本书，我就买了下来，现在放弃阅读这本书。看起来我还是能够放弃一些东西的，我并不是一个如同我描述得那样──“一个学不会放弃的人。”</p>
+
+<p>我之所以放弃这本书是因为这本书前半部分讲得都是硬件相关的知识，就象是去年学习的《计算机组成原理》一样，还好比《数字逻辑电路》强了不少，因为这些知识都和计算机相关，数字逻辑简直就是在讲单纯的硬件。不过两者却都不是我所希望阅读的！以为这本书的后半部分能够提供一些编程优化相关的知识，因为看这本书的介绍是帮助程序员理解程序如何运行并且还讲解了一些实用的编程技巧，谁知根本不是这样。</p>
+
+<p>在大二的上学期我们也发了一本讲解汇编的教材，只是我们班的课程与其他计算机科班不太一样，就没有讲这门课，曾经的我想一度利用空闲时间来学习汇编，并且在大一的时候我从图书馆借来了一般汇编书，自学了一小部分，但现在看来，那一切都显得过于理想化了！刚才从床底下拿出来了汇编的书，看了两眼就放回去了。我之道如果我学会了汇编一定能看完这本《深入理解计算机系统》的，可惜我没学会：（</p>
+
+<p>还有不少书在手边，学会了任何一本都足以让我受益好几年，但我从未感受到这些益处，肯定是因为我没有学好，即便是这样，我竟然也能在班里排名比较靠前。似乎一切都反过来了！！！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-22T13:53:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/book/'>book</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/02/19/pause-website-development/">
+		
+			网站开发告一段落</a>
+	</h2>
+	<div class="entry-content">
+		<p>刚刚把一个比较大的功能完成了——日历。还有一个星期就要回去了，我这次回家拿回来的几本书还没有看完，PHP的那本书看得差不多了，还没有回头细看，可能还需要再带回去。《深入理解计算机系统》那本书没有看，打算剩下的这一个星期全看那本书，能看多少是多少，不能总和PHP为伍，毕竟回去了有不少人还是能帮我继续做网站的！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-19T13:26:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/wodeyitian/'>wodeyitian</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/02/16/after-app-approved/">
+		
+			应用通过审核之后</a>
+	</h2>
+	<div class="entry-content">
+		<p>这是第二次进行人人网的应用审核了，第一次只是把网站于人人网连接起来就草草申请审核，很快被打了回来，前天刚刚实现了发表新鲜事到人人网的功能，这次就有理由来申请了。今天下午我打开人人网，看到站内信中有开放平台发来的信件，告诉我已经上线了，至此，我的一天网站又一大功能实现了。</p>
+
+<p>其实我不是很想实现与这些网站的连接，只是因为开放API的方式已经渐渐成了国内网站的主流，相信这点在国外同类网站已经做得相当成熟了，在国内，就连Tencent都喊着要开放了。实现与这些网站得对接能够利用他们已经建立的用户资源，也就是分享他们的用户，这点对于一个新兴的、不完全靠创新的网站是很有必要的。</p>
+
+<p>本以为自己的点子是足够创新的，但在这个神奇的土地上，一个思想都快要变得神奇的人很难一下子突破这些禁锢达到真正创新的地步，不过我感觉现在我的这个网站还是足够创新的，至少还没大有这样做的。</p>
+
+<p>国内人多，想到的点子也就丰富，虽说其中创新的并不多，但至少能有一小部分吧，由于基数比较大，所以即使比率低一些也无妨，可我们身边这些SNS、论坛之类的东西并不多。关键还在对于一个点子的运营上吧！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-16T21:35:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/wodeyitian/'>wodeyitian</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/02/14/eclipse-color/">
+		
+			新的eclipse配色</a>
+	</h2>
+	<div class="entry-content">
+		<p>本打算将php、java、android开发集成到eclipse中，因为这本来就是可以的嘛，但不知道该如何安装插件，索性就把php和java开发分开了，下载了两套eclipse，这是我找的一个eclipse配色，for java的：</p>
+
+<p><img src="http://pic.yupoo.com/loose_v/AQCjlpBz/medium.jpg" alt="" /></p>
+
+<p>在此要感谢这位<a href="http://utensil.javaeye.com/blog/444590">作者</a>，他的博客中有更多的图可以看！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-14T15:31:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/02/13/compromise-choose/">
+		
+			折衷的选择</a>
+	</h2>
+	<div class="entry-content">
+		<p>新的VPS上绝对能够承受我所有的站点，不过就是访问的时候速度不理想，在我不知到该怎么办的时候遇到了Typecho这个精简的博客程序，而且在他们的论坛上遇到了一个赞助新加坡主机的朋友，我顺利申请了他的新加坡主机，当时ping值相当高，大约到了400多，怎么比我的VPS还慢？过后再试试，只有100ms了，果断把youth2009.org搬过去吧。其实，我不买这个VPS也就可以了，只是现在能够学到一些linux下的小知识，花些钱也就能说得过去了（还是要把自己说服）。再者说了，自己的VPS毕竟能够掌握所有控制，也相对安全一些。</p>
+
+<p>折衷的选择就是把原来国内的那个空间迁移到这里，看看ningxin.org还要不要动，这样就空出来了国内的垃圾空间，如果能够退款就更好了，不能的话，我也没办法了，我会一直相信一分钱一分货的！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-13T21:47:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/vps/'>vps</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/02/05/dynamic-form-authentication/">
+		
+			动态验证表单也不难</a>
+	</h2>
+	<div class="entry-content">
+		<p>一般来说现在的注册、登录的表单验证都是在浏览器这一级先做一个合法性验证，这样能够缓解服务器的压力，否则这些合法性验证都要移到服务器上，无论从性能和表现力都不及在浏览器用一些很炫的效果来验证。我使用了jQuery这个javascript库完成了表单的动态验证，核心不算难。一开始我都是参考豆瓣的注册页面，他们现在用的也是jQuery来做这块，代码看起来超长，还分了好几个js文件来组织，不是他们的前端工程师谁也看不懂（我真怀疑他们的前端工程师是不是能看懂）。 我做得很简单，不过看起来也能用： 一般有个空的div显示提醒文字，假设input的id是xxx，我们这样</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input#xxx).focus(function(){$(&quot;</span><span class="nx">suggestion</span><span class="err">&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="err">插入提示文字</span><span class="p">);});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>就能够在焦点进入input的时候提示一些文字了，然后在  </p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">focusout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">xxxxxx</span><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>中先remove插入的文字，再添加新的文字。 一般在focusout中进行一次查询，然后进行更改文字，是能够注册还是已经被占用，在查询的时候我使用的是$.getJSON函数，用GET方式提交查询看起来比较帅，当然最好做简单的提交，因为用了getJSON的方式，返回值一定是要json，我的服务器端脚本使用的是php，看到jQuery官方例子中提及了json_encode函数，接收array，正好能够返回我的查询结果，SQL查询返回结果用fetch_assoc放进一个array了。getJSON第三个参数是个callback函数，是结果成功返回时调用的函数，更改相应提示文字就在这里面进行，这个callback有个参数data，应该就是包含json的数据吧，用点运算符取到响应结果进行操作。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-05T23:06:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/js/'>js</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/01/27/mysql-bad-encoding-for-chinese/">
+		
+			Mysql中的中文乱码</a>
+	</h2>
+	<div class="entry-content">
+		<p>从mysql中返回的内容如果是中文的，而页面用了utf-8的编码，那么会出现一些“问号”，就是乱码了！应该将mysql中表的编码改为utf8_unicode_ci，各字段改为utf8_unicode_ci。在PHP中执行SQL查询前执行<code>SQLCONNECT.query(SET NAMES utf8);</code>这条SQL语句。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-27T23:20:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mysql/'>mysql</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/01/18/charset-issue/">
+		
+			字符编码的问题</a>
+	</h2>
+	<div class="entry-content">
+		<p>昨日写完hello,world之后，发现里面的中文显示出来都是乱码，于是找了几处资料，先是怀疑emacs作怪，M-x describe-coding-system查看后挺正常，于是开始怀疑apache和php的输出编码，再次查询后也发现是正常的：httpd.conf中根本没有AddDefaultCharset” 内容，php.ini中的default_charset已经被注释掉了：（</p>
+
+<p>于是开始怀疑网页编码，改成了：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;meta</span> <span class="na">content=</span><span class="s">&quot;text/html;charset = utf-8&quot;</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>（第一次我写成了mate！！！）这下已经正常了！</p>
+
+<p>参考资料：<a href="http://www.cnblogs.com/RChen/archive/2007/08/27/871427.html">http://www.cnblogs.com/RChen/archive/2007/08/27/871427.html</a></p>
+
+<p>在调节emacs和ibus的时候参考了<a href="http://www.sciencenet.cn/m/user_content.aspx?id=325692">这里</a>，不过到现在我的ibus也不能在emacs中打开，除非用<code>LC_CTYPE=zh_CN.utf8 emacs</code>这样启动emacs。</p>
+
+<p>感谢<a href="http://www.yzznl.cn/archives/242.html">这里</a>下载了修改后的编辑界面和学习到了WP-Syntax的使用方法。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-18T08:36:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/blog/'>blog</a>
+
+
+</div>
+	
+</div>
+</article>
+
+<nav id="pagenavi">
+    
+        <a href="22" class="prev">Prev</a>
+    
+    
+        <a href="24" class="next">Next</a>
+    
+    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
+</nav></div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    dawncold
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-8650400-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

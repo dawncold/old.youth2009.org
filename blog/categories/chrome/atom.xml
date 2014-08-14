@@ -4,7 +4,7 @@
   <title><![CDATA[Category: chrome | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/chrome/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -26,7 +26,7 @@
 
 <p>2.进入这个目录，建立一个叫manifest.json的文件，从文件名就能看出这是个json，用vi、vim、emacs等写入如下内容：  </p>
 
-<p>```js
+<p>&#8220;`js
 {
  &ldquo;name&rdquo;: &ldquo;hide-other-bookmark-button&rdquo;,
  &ldquo;version&rdquo;: &ldquo;1.0&rdquo;,
@@ -42,7 +42,7 @@
 <p>  ],
  &ldquo;background_page&rdquo;:&ldquo;index.html&rdquo;
 }
-```</p>
+&#8220;`</p>
 
 <p>然后找个ico文件，命名成上面提到的icon.ico，只要和json文件中对应即可，png也行。现在这个扩展的配置文件就基本完成了，因为这是要操控bookmarks的扩展程序，所以在permissions那里药写上bookmarks以表示这个扩展要使用chrome的bookmarks的API来做一些东西。具体的API可以参考Google的文档。</p>
 

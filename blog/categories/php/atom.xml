@@ -4,7 +4,7 @@
   <title><![CDATA[Category: php | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/php/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -20,7 +20,7 @@
     <id>http://www.youth2009.org/www/blog/2011/07/09/best-content-in-include_path</id>
     <content type="html"><![CDATA[<p>刚刚用了下typecho博客插件——友情链接来添加一个友情链接，但发现很多php文件找不到了，很奇怪，以前是可以的，看到warning中的信息，有个include_path的相关东西，看看里面提到的路径是不是有需要的文件，结果没有，而在其中路径的下一级目录下有，这就怪了。</p>
 
-<p>Google说最好把include_path写成"./&ldquo;。是不是这样就是自动便利所有的内容了？我猜是的！当前的include_path中又pear的路径，我就先不删除了，linux系统下用冒号分隔各个路径，在前面加上一个点即可。</p>
+<p>Google说最好把include_path写成&#8221;./&ldquo;。是不是这样就是自动便利所有的内容了？我猜是的！当前的include_path中又pear的路径，我就先不删除了，linux系统下用冒号分隔各个路径，在前面加上一个点即可。</p>
 
 <p>重启php，再次访问，恢复正常！</p>
 ]]></content>
@@ -35,7 +35,7 @@
 
 <p>这题目看起来不算难，但这要是不靠一个语言的特性来解决，还是有些麻烦的。我说的语言特性就是一个bt数组方法，比如说移除元素啊这样的方法，用纯粹的C语言来写最好了。不过我那位同学是在雪VB.net不知道那里有没有语言特性。我手头上正在写PHP网页，就干脆用PHP写一个出来试试吧：）  </p>
 
-<p>```php
+<p>&#8220;`php
 $circle = array();
 $out = 0;
 $count = 0;
@@ -57,7 +57,7 @@ $n++;
 }
 $count++;
 }
-```</p>
+&#8220;`</p>
 
 <p>这就是主要代码了，还算是简单吧？去Google了一下，看到有些人的解法都用了好麻烦的链表来抽象，用链表确实更符合客观事实，不过那样写起来，是不是给别人看的呢？！</p>
 

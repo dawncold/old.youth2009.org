@@ -83,16 +83,16 @@
 
 <p>比如：得到的是Student实体，可以用里面的name属性。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>SELECT s FROM Student s, School sc WHERE sc.city <span class="o">=</span> <span class="s1">&#39;北京&#39;</span> AND s.school.id <span class="o">=</span> sc.id AND s.name LIKE <span class="s1">&#39;张%&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>但是：得到的就是具体的name了，再用name属性就会出现上面的错误</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>SELECT s.name FROM Student s, School sc WHERE sc.city <span class="o">=</span> <span class="s1">&#39;北京&#39;</span> AND s.school.id <span class="o">=</span> sc.id AND s.name LIKE <span class="s1">&#39;张%&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>这种错误很难搞的！！！</p>
@@ -112,11 +112,11 @@
   
 
 
-<time datetime="2012-06-25T09:00:00+08:00" pubdate data-updated="true">Jun 25<span>th</span>, 2012</time></div>
+<time datetime="2012-06-25T09:00:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/s2sh/'>S2SH</a>
+	<a class='category' href='/blog/categories/s2sh/'>s2sh</a>
 
 
 </div>

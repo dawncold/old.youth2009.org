@@ -81,7 +81,7 @@
 
 <p>从Python2.4以后list.sort()和sorted()方法都提供了一个key可选参数，传入一个function用来决定排序需要的key。这个key就是所排序元素的权值，最终就是根据权值来排序了。你也可以自己写一个方法，就是那种用def来定义的方法，不过要求接受一个参数，返回一个值，接受的参数就是这个集合（list、dict、tuple）中的某个元素。我是这样写的，it works：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -89,7 +89,7 @@
 </span><span class='line'> <span class="c"># +++your code here+++</span>
 </span><span class='line'> <span class="n">tuples</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </span><span class='line'> <span class="k">return</span> <span class="n">tuples</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>根据tuple中最后一个排序。</p>
@@ -109,7 +109,7 @@
   
 
 
-<time datetime="2012-10-04T14:58:00+08:00" pubdate data-updated="true">Oct 4<span>th</span>, 2012</time></div>
+<time datetime="2012-10-04T14:58:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

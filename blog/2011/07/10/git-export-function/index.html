@@ -81,8 +81,8 @@
 
 <p>用git管理项目不可避免要遇到导出功能，在svn和cvs上应该叫export功能，git上的这个功能似乎没找到，要这样做：先打包，再解压到一个地方去。还能接受吧。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git-archive --prefix=map/ master | tar -x -C ../map_e/</span></code></pre></td></tr></table></div></figure>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git-archive --prefix=map/ master | tar -x -C ../map_e/</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>稍微解释一下，prefix指明了用哪个仓库，后面的master应该就是branch的名称了，然后把这些传递给了tar，因为不指明&mdash;format的时候默认用了tar方式打包，所以这里传递给tar解压到上层目录的map_e中，当然实际工作可以解压到生产服务器上去。</p>
@@ -102,7 +102,7 @@
   
 
 
-<time datetime="2011-07-10T08:13:00+08:00" pubdate data-updated="true">Jul 10<span>th</span>, 2011</time></div>
+<time datetime="2011-07-10T08:13:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

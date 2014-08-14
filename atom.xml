@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/www/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[role in postgresql]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/08/14/role-in-postgresql/"/>
+    <updated>2014-08-14T22:08:20+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/08/14/role-in-postgresql</id>
+    <content type="html"><![CDATA[<p>In PostgreSQL versions before 8.1, users and groups were distinct kinds of entities, but now only role, it is user or group or both.</p>
+
+<p>if you create a role using “CREATE ROLE r1”, r1 is not a user, only a generic role, it is likely a group, you can not find it in pg_user, only in pg_roles table, but if you grant LOGIN privilege to r1, it will be appear in pg_user table.</p>
+
+<p>After installed postgresql cluster, you need execute initdb, and it will create a default role with superuser privilege, costomarily this role(user) named postgres</p>
+
+<p>Role’s attributes: login, superuser, database creation, role creation, initiating replication, password</p>
+
+<p>CREATE USER r1 == CREATE ROLE r1 LOGIN</p>
+
+<p>Tip: It is good practice to create a role that has the CREATEDB and CREATEROLE privileges, but is not a superuser, and then use this role for all routine management of databases and roles. This approach avoids the dangers of operating as a superuser for tasks that do not really require it.</p>
+
+<p>examples:</p>
+
+<p>CREATE ROLE joe LOGIN INHERIT;
+CREATE ROLE admin NOINHERIT;
+CREATE ROLE wheel NOINHERIT;
+GRANT admin TO joe;
+GRANT wheel TO admin;</p>
+
+<p>joe can access admin privilege by using “SET ROLE admin”, or if joe has the INHERIT, joe can access privilege directly from admin, if joe want to use these privileges, joe must “SET ROLE admin”. Joe can not access privilege from wheel, because admin has the NOINHERIT, admin can not get these privileges, so as joe.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[else clause in python loop]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/08/14/else-clause-in-python-loop/"/>
+    <updated>2014-08-14T22:07:09+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/08/14/else-clause-in-python-loop</id>
+    <content type="html"><![CDATA[<p>both in while and for loop, if in loop body, no break, no return, no exception is raised, statements in else block will be executed.</p>
+
+<p>for x in []:</p>
+
+<pre><code> print x
+</code></pre>
+
+<p>else:</p>
+
+<pre><code> print ‘xxx’
+</code></pre>
+
+<p>this example will print ‘xxx’, even nothing in list and this loop is not executed.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[-A INPUT -i eth0 -p tcp -m tcp --dport 80 -j ACCEPT]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept/"/>
+    <updated>2014-08-14T22:05:46+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept</id>
+    <content type="html"><![CDATA[<p>what’s the agreement of -m?</p>
+
+<p>not tcp, it’s “tcp &mdash;dport 80”</p>
+
+<p>-m matches, using a somewhat complicated &ldquo;module matching&rdquo; mechanism.  There are a bunch of pretty cool modules in iptables, for example &ldquo;recent&rdquo;.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Absolute Positioning Inside Relative Positioning]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/08/14/absolute-positioning-inside-relative-positioning/"/>
+    <updated>2014-08-14T22:00:36+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/08/14/absolute-positioning-inside-relative-positioning</id>
+    <content type="html"><![CDATA[<p>if you want a div with absolute position relative its parent, not body, the parent div must be relative position.</p>
+
+<p>see details <a href="http://css-tricks.com/absolute-positioning-inside-relative-positioning/">http://css-tricks.com/absolute-positioning-inside-relative-positioning/</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iptables MASQUERADE]]></title>
@@ -336,109 +410,6 @@
 <p>传一张停1秒呢？问题不大，但看着还是不保险，而且变慢了，因为要等。。。</p>
 
 <p>纯粹uuid倒是问题不大，但日后管理起来确实就不爽了——看uuid根本不知道谁先谁后，所以就把tiemstamp和uuid4连起来当新文件名，这样程序批量传也不会有问题（其实概率已经低到这个时代可接受的程度吧），又在trade off了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[conceptual-models]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/08/19/conceptual-models/"/>
-    <updated>2013-08-19T22:12:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/08/19/conceptual-models</id>
-    <content type="html"><![CDATA[<h2>Conceptual Models</h2>
-
-<p>Designing software so that its structure reflects that of the problem.</p>
-
-<p>Analysis is not only listing requirments, but also looking behind the surface requirments to come up with a mental model of what is going in the problem.</p>
-
-<p>Conceptual model is a human artifact.</p>
-
-<p>Developers use conceptual models to represent a model of the real world in order to understanding the read part of problems easily.</p>
-
-<p>There is no right or wrong model, merely one that is more useful for the job at hand.</p>
-
-<p>The example, snooker simulation, if your choose a Einsteinian model would be flexible enought to low speed or high speed situation, but the complexity is totally different you know, so the flexibility and many others aspects need a trade-off.</p>
-
-<p>When building a model in a programming language, maybe Python, you may get lost in this language or building this model using some features belong to Python, so this model is a Python-model, and it is hard to be implemented in other languages such as Java, PHP, etc. To avoid these problems, you need a third-party analysis techniques.</p>
-
-<p>Only domain experts could build right model, because of their domain knowledge.</p>
-
-<p>Conceptual model is closely to software interfaces rather than software implementations. One of the important things about OO is that it separates interface from implementation.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[arp]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/08/18/arp/"/>
-    <updated>2013-08-18T20:38:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/08/18/arp</id>
-    <content type="html"><![CDATA[<pre><code>32 bits Internet address
-|                   /|
-|ARP                 |RARP
-|/                   |
-48 bits Ethernet address
-</code></pre>
-
-<h1>Gratuitous ARP</h1>
-
-<ol>
-<li>send its own IP to verify whether someone has used this.</li>
-<li>update old MAC address in ARP cache</li>
-</ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[manage-rasp-pi-in-internal-network]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/08/08/manage-rasp-pi-in-internal-network/"/>
-    <updated>2013-08-08T22:16:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/08/08/manage-rasp-pi-in-internal-network</id>
-    <content type="html"><![CDATA[<p>今天早晨去公司后一开邮箱发现好多树莓派发来的警告信，如果是一封信可能是误报，但这么多，难道是真的有人闯入？不过看了大部分的图片都是空空的房间，但仍然有新的邮件过来，看来是红外探测器出问题了。</p>
-
-<p>想了半天以为是昨天加的DHT11在读取数据的时候是不是改变了GPIO的布局，导致探测器的数据口得到数据，激活了它？后来证明不是。猜测啊：探测器放到了无线网卡下方，无线网卡有个工作指示灯一直闪烁，会不会触发了探测器，因为我换了个地方后探测器就正常工作了。</p>
-
-<p>在没有远程管理的前提下，解决的方法是去七牛把bucket先删掉，这样就不能再上传图片了，然后去sendgrid修改密码，这样就不能发送邮件了。其实我期待能引发一个异常，这样程序就退出了，但很可惜，七牛的lib似乎做了些处理，删掉bucket或者修改API KEY这样的方法也就是给个提示出来，他们处理了异常，不过好在sendgrid的lib没有处理异常，密码错误后引发的异常终止了程序！GREAT！我还担心了一天摄像头不断拍照会不会坏掉。</p>
-
-<p>上面都是背景吧，主题是一个远程管理的重要性，特别是出现这种突发情况而你又不在边上。</p>
-
-<p>受限于当地的网络环境，树莓派在一个很深的网络中——有家庭的路由器，再往上是小区的路由器，也许再往上就是公网IP了，和在原来的家不同，直接能拿到公网IP，这样基本可以让树莓派暴露在公网上，管理起来当然方便了。穿透这么多层网络，感觉好麻烦，虽然毕业论文是NAT穿透的应用。。。</p>
-
-<p>简单的做法就是利用第三方，我有一个VPS，当然在海外，除了速度上不如国内快之外，别的没啥了。</p>
-
-<p>于是在树莓派上建立一个反向SSH：<code>ssh -p VPS_PORT -fNR 2222:127.0.0.1:22 USER@VPS_HOST</code>，其中VPS_PORT如果你没修改默认的22的话，可以不写<code>-p VPS_PORT</code>，其他的，比如<code>fN</code>，你可以先不写，测试成功后再写上，只做端口转发而不执行命令。后面的R表示反向连接：就是127.0.0.1的22端口在后面远程主机中映射到2222端口。这样，登陆了远程主机的人，访问2222端口就可以访问到树莓派的22端口了。</p>
-
-<p>再临时生成几个rsa key加到authorized_keys中就可以不输密码登陆了，虽然速度稍慢一点，但至少是可用的！</p>
-
-<p>测试通过后使用autossh建立连接，这样即便是中断也会重连上：）</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[basestring-and-str-in-python2x]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/08/08/basestring-and-str-in-python2x/"/>
-    <updated>2013-08-08T21:39:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/08/08/basestring-and-str-in-python2x</id>
-    <content type="html"><![CDATA[<p>今天在代码中发现原本过滤str的一个func被写成了过滤basestring，于是查了下basestring和str的区别：(在3.0之前)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>    object
-</span><span class='line'>         |
-</span><span class='line'>         |
-</span><span class='line'>     basestring
-</span><span class='line'>        / \
-</span><span class='line'>       /   \
-</span><span class='line'>     str  unicode</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3.0之前python中有plain string和unicode string，前者是ascii中的那些字符，后者就是所有字符了，因为historical legacy。。。python出现的时候还木有unicode，所以很多python的lib是需要慢慢转换的，当然到了3.0就会不复存在了，全是unicode。</p>
-
-<p>这样的话就清楚了，str代表了那些ascii字符，unicode就是全部的字符，他们都继承自basestring。basestring是从python2.3开始引入的。</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vps | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/vps/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -60,7 +60,7 @@
 
 <p>总的来说就是用virtualenv来创建各个app的目录，在里面安装需要的环境（flask、mysql-python、beautifulsoup4等等吧），nginx的配置大概如下：</p>
 
-<p>```bash
+<p>&#8220;`bash
 server {</p>
 
 <pre><code> listen       80;
@@ -75,7 +75,7 @@ server {</p>
 </code></pre>
 
 <p>}
-```</p>
+&#8220;`</p>
 
 <p>UWSGI_PYHOME是app的主目录，下面的CHDIR是app中py文件所在的目录，这个可以自己设置，下面的SCRIPT是入口脚本模块名和变量名，模块就是文件名喽，变量一般在flask都是用app作为整个网站的入口变量，写过python基本都能明白这个。</p>
 

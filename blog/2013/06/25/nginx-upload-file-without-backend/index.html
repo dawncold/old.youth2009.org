@@ -83,7 +83,7 @@
 
 <p>由于client_body_in_file_only只能放在server、http、location中，得专门建立一个location而不能放在if中。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -106,7 +106,7 @@
 </span><span class='line'>  proxy_set_body             off;
 </span><span class='line'>  proxy_redirect             off;
 </span><span class='line'>  proxy_pass                 http://backend/
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>这样以upload开头的就会做这样处理，上传的文件path会放在header中，至于name该怎么办，我是把name的值作为query string拼在了form的action中，在上传开始前得到文件名，然后拼上去。</p>
@@ -130,7 +130,7 @@
   
 
 
-<time datetime="2013-06-25T23:09:00+08:00" pubdate data-updated="true">Jun 25<span>th</span>, 2013</time></div>
+<time datetime="2013-06-25T23:09:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

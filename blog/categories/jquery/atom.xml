@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jquery | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/jquery/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -20,7 +20,7 @@
     <id>http://www.youth2009.org/www/blog/2013/02/16/extend-in-jquery</id>
     <content type="html"><![CDATA[<p>jquery中的extend方法可以扩展一个{}，今天用到了。写了一组配置文件：</p>
 
-<p>```
+<p>&#8220;`
 var options = {</p>
 
 <pre><code>data:1,

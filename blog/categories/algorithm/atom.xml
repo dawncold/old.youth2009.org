@@ -4,7 +4,7 @@
   <title><![CDATA[Category: algorithm | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/algorithm/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -30,7 +30,7 @@
 
 <p>这是修改后输出逆序对的归并排序算法，有点可惜哈，这么长的排序算法只让副产品在台前显露了一把！</p>
 
-<p>```python</p>
+<p>&#8220;`python</p>
 
 <h1>! /usr/bin/env python</h1>
 
@@ -81,7 +81,7 @@
 <p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:
 lst = [2,3,8,6,1]
 merge_sort(lst, 0, len(lst) &ndash; 1)
-```</p>
+&#8220;`</p>
 
 <p>运行结果：</p>
 
@@ -106,7 +106,7 @@ merge_sort(lst, 0, len(lst) &ndash; 1)
 
 <p>看着好简单的题目，当时比赛时候就是一下子没做出来，现在做好了，贴出来，如果有需要可以拿去用哈，代码风格不算好，因为是比赛嘛，又不是商业项目，先快速得到结果再说！</p>
 
-<p>```java
+<p>&#8220;`java
 import java.util.ArrayList;</p>
 
 <p>public class unittest
@@ -217,7 +217,7 @@ import java.util.ArrayList;</p>
 
 <p>   }
 }
-```</p>
+&#8220;`</p>
 
 <p>结果是这样的：</p>
 
@@ -248,7 +248,7 @@ All Run Time: 496ms
 
 <p>这题目看起来不算难，但这要是不靠一个语言的特性来解决，还是有些麻烦的。我说的语言特性就是一个bt数组方法，比如说移除元素啊这样的方法，用纯粹的C语言来写最好了。不过我那位同学是在雪VB.net不知道那里有没有语言特性。我手头上正在写PHP网页，就干脆用PHP写一个出来试试吧：）  </p>
 
-<p>```php
+<p>&#8220;`php
 $circle = array();
 $out = 0;
 $count = 0;
@@ -270,7 +270,7 @@ $n++;
 }
 $count++;
 }
-```</p>
+&#8220;`</p>
 
 <p>这就是主要代码了，还算是简单吧？去Google了一下，看到有些人的解法都用了好麻烦的链表来抽象，用链表确实更符合客观事实，不过那样写起来，是不是给别人看的呢？！</p>
 

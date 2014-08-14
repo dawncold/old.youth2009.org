@@ -4,7 +4,7 @@
   <title><![CDATA[Category: c | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/c/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -20,7 +20,7 @@
     <id>http://www.youth2009.org/www/blog/2012/05/30/simple-c-language-program</id>
     <content type="html"><![CDATA[<p>嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（</p>
 
-<p>```c</p>
+<p>&#8220;`c</p>
 
 <h1>include &lt;stdio.h></h1>
 
@@ -43,7 +43,7 @@ free(t);</p>
 <p>void strcp(char <em>s,char </em>t)<br/>
 {<br/>
 while(<em>s++ = </em>t++);<br/>
-}```</p>
+}&#8220;`</p>
 
 <p>最漂亮的就是那句strcp的函数了，非常简洁好用：）</p>
 ]]></content>

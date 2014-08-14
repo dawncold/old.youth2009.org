@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iphone-dev | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/iphone-dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -57,7 +57,7 @@ cp -f ./ldid $THEOS/bin/ldid
 
 <p>headers用这里的：<a href="https://github.com/rpetrich/iphoneheaders">https://github.com/rpetrich/iphoneheaders</a>需要注意一点的是IOSurface这个framework，你需要增加一个新的头文件，在Mac系统中，可能还得注释掉两行，这取决于你是不是10.7版本的Mac系统。命令是：<code>cp /System/Library/Frameworks/IOSurface.framework/Headers/IOSurfaceAPI.h .</code>，在251和255行（我编译错误时候提示的就这两行），注释掉</p>
 
-<p>```objective-c
+<p>&#8220;`objective-c
 /<em> This call lets you get an xpc_object_t that holds a reference to the IOSurface.
   Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&rsquo;s global use
   count by one until the object is destroyed. </em>/
@@ -67,7 +67,7 @@ cp -f ./ldid $THEOS/bin/ldid
 <p>/<em> This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. </em>/
 //IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)
 //IOSFC_AVAILABLE_STARTING(<strong>MAC_10_7, </strong>IPHONE_NA);
-```</p>
+&#8220;`</p>
 
 <p>然后做你的tweak就可以了，我按照经典的heloworld例子搞了个hook，springboard中applicationDidFinishLaunching弹出alert，成功了。</p>
 

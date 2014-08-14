@@ -4,7 +4,7 @@
   <title><![CDATA[Category: wodeyitian | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/wodeyitian/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -48,7 +48,7 @@ chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update
 
 <p>５.在本地用git做最后的工作，修改gitosis的配置文件并上传：  </p>
 
-<p>```bash
+<p>&#8220;`bash
 git clone ssh://git@DOMAIN:8888/gitosis-admin.git
 cd gitosis-admin
 vi gitosis.conf</p>
@@ -58,7 +58,7 @@ vi gitosis.conf</p>
 <p>[group AWAD]#ＡＷＡＤ组
 writable = wodeyitian_web　　　#仓库中的名字
 members = dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员名字就是rsa共钥中最后的成员名字
-```</p>
+&#8220;`</p>
 
 <p>好像和那个pub文件的名字要一样，那样的pub文件放在和这个conf文件在一起的keydir文件夹下.</p>
 

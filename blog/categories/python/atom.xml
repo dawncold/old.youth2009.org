@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -20,7 +20,7 @@
     <id>http://www.youth2009.org/www/blog/2013/08/08/basestring-and-str-in-python2x</id>
     <content type="html"><![CDATA[<p>今天在代码中发现原本过滤str的一个func被写成了过滤basestring，于是查了下basestring和str的区别：(在3.0之前)</p>
 
-<p>```</p>
+<p>&#8220;`</p>
 
 <pre><code>       object
          |
@@ -31,7 +31,7 @@
      str  unicode
 </code></pre>
 
-<p>```</p>
+<p>&#8220;`</p>
 
 <p>3.0之前python中有plain string和unicode string，前者是ascii中的那些字符，后者就是所有字符了，因为historical legacy。。。python出现的时候还木有unicode，所以很多python的lib是需要慢慢转换的，当然到了3.0就会不复存在了，全是unicode。</p>
 
@@ -95,7 +95,7 @@ def firstn(n):
 
 <p>总之，如果产生100个数字，你可以一下子弄出100个来，或者你知道规则的话，你就弄出第一个来，然后用的时候按照规则，从第一个一直走下去，也产生了100个。最大的不同就是性能，后者必然速度更快了，前提是数量要足够多！写了一个简单的性能对比，主要是时间上的，内存上的不容易监控。</p>
 
-<p>```</p>
+<p>&#8220;`</p>
 
 <h1>/usr/bin/python</h1>
 
@@ -134,7 +134,7 @@ def firstn(n):
 dawncold [21:49:11] ~=>$ python 1.py
 return: 499999500000   use 0.137414 ms[s: 1363182552.38, e: 1363182552.52]
 return: 499999500000   use 0.290716 ms[s: 1363182552.52, e: 1363182552.81]
-```</p>
+&#8220;`</p>
 ]]></content>
   </entry>
   

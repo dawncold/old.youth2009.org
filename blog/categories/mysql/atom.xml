@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mysql | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -58,7 +58,7 @@ ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient
     <id>http://www.youth2009.org/www/blog/2012/04/27/backup-mysql-databases-using-python</id>
     <content type="html"><![CDATA[<p>备份数据库的重要性不想多说了。</p>
 
-<p>```python</p>
+<p>&#8220;`python</p>
 
 <h1>! /usr/bin/env python</h1>
 
@@ -95,7 +95,7 @@ os.system(&ldquo;%smysqldump -u%s -p%s &mdash;all-databases > &lsquo;%s%s&rsquo;
 validate_backup_path()
 backup_all_databases()
 print &ldquo;finish!!!&rdquo;
-```</p>
+&#8220;`</p>
 
 <p>这个是修改了一次的备份脚本，本来是分数据库备份的，无奈制定了分数据库备份需要输入密码，这就不容易加入cron来自动完成了，不过听说在my.cnf中加入mysqldump的设置可以避免输入账号密码，这也算是一个办法吧，不过还是本着简化的思想，只导出所有数据库出来就好，配合着上一篇的dropbox自动备份，这样VPS的灾备就稍稍好些了：）</p>
 ]]></content>
@@ -118,10 +118,10 @@ mysqladmin -u root password "mysqlpassword"
 
 <p>先停止mysql的服务，用下面这句启动mysql：</p>
 
-<p>```sql
+<p>&#8220;`sql
 mysqld_safe &mdash;skip-grant-tables &mdash;skip-networking &amp;</p>
 
-<p>```</p>
+<p>&#8220;`</p>
 
 <p>用SQL语句修改root的密码：</p>
 
@@ -141,7 +141,7 @@ FLUSH PRIVILEGES;
     <id>http://www.youth2009.org/www/blog/2011/08/08/mysqldb-have_wcscoll-redefined</id>
     <content type="html"><![CDATA[<p>问题就是这样了：</p>
 
-<p>```bash
+<p>&#8220;`bash
 [root@wodeyitian MySQL-python-1.2.3]# python setup.py install
 running install
 running bdist_egg
@@ -175,7 +175,7 @@ gcc -pthread -shared build/temp.linux-x86_64-2.7/<em>mysql.o -L/usr/lib64/mysql 
 /usr/bin/ld: cannot find -lmysqlclient_r
 collect2: ld 返回 1
 error: command &lsquo;gcc&rsquo; failed with exit status 1
-```</p>
+&#8220;`</p>
 
 <p>也不算什么解决方法吧，就是缺失一些组件，安装了mysql-devel就好了：</p>
 

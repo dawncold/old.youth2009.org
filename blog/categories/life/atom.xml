@@ -4,7 +4,7 @@
   <title><![CDATA[Category: life | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/life/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -101,7 +101,7 @@
 
 <p>这篇文章发表得不容易，generate的时候总出现一个错误:
 <code>`` bash
-/Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:203:in</code>parse': (<unknown>): control characters are not allowed at line 1 column 1 (Psych::SyntaxError)</p>
+/Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:203:in</code>parse&#8217;: (<unknown>): control characters are not allowed at line 1 column 1 (Psych::SyntaxError)</p>
 
 <pre><code>from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:203:in `parse_stream'
 from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:151:in `parse'
@@ -120,7 +120,7 @@ from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin/jekyll:23:in `load'
 from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin/jekyll:23:in `&lt;main&gt;'
 </code></pre>
 
-<p>```
+<p>&#8220;`
 这种错误找起来真是蛋疼，最终是在dev这个字符开始的地方找到的，有个奇怪的字符出现了，看不到，也不占空，但确实有个字符在那里占着地方，或许是输入法在切换的时候遗留到那里的吧。。。可恶！</p>
 
 <p>明天还有新工作，测试完ERP后继续做CMS，王总提出了不少新的东西要改进。</p>

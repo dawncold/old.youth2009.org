@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -66,7 +66,7 @@ write_attribute(:password, User.encrypted_password(self.password, self.salt))
     <link href="http://www.youth2009.org/www/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/"/>
     <updated>2012-02-09T20:08:00+08:00</updated>
     <id>http://www.youth2009.org/www/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver</id>
-    <content type="html"><![CDATA[<p>```bash
+    <content type="html"><![CDATA[<p>&#8220;`bash
 dawncold@tianzhenmatoMacBook-Pro ~$ gem install mysql
 Fetching: mysql-2.8.1.gem (100%)
 Building native extensions.  This could take a while&hellip;

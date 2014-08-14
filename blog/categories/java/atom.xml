@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -55,7 +55,7 @@ You may need to link the Java bindings into the Java Extensions folder:
 
 <p>我写的测试是每秒输出现在的时间而已。</p>
 
-<p>```java
+<p>&#8220;`java
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -76,13 +76,13 @@ import java.util.Date;</p>
 <p>   }
 }</p>
 
-<p>```</p>
+<p>&#8220;`</p>
 
 <p>在调用的时候如果忘记写Thread.sleep(xxx)这行就不会看到效果，具体原因不太清楚，可能这个swing中的Timer只是用来在GUI中做些什么工作的，而我用终端输出内容就不太合适了，于是就牵扯出来很多线程的问题。</p>
 
 <p>这是main方法中的内容：</p>
 
-<p>```bash
+<p>&#8220;`bash
 import java.awt.event.ActionListener;</p>
 
 <p>import javax.swing.Timer;</p>
@@ -102,7 +102,7 @@ import java.awt.event.ActionListener;</p>
 <p>   }
 }</p>
 
-<p>```</p>
+<p>&#8220;`</p>
 ]]></content>
   </entry>
   

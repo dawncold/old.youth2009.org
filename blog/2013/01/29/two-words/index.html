@@ -87,7 +87,7 @@ synchronous：  美 ['sɪŋkrənəs]
 
 <p>Here is a minimal example program. It uses the alarm() function to limit the time spent waiting to open a file; this is useful if the file is for a serial device that may not be turned on, which would normally cause the os.open() to hang indefinitely. The solution is to set a 5-second alarm before opening the file; if the operation takes too long, the alarm signal will be sent, and the handler raises an exception.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -115,7 +115,7 @@ synchronous：  美 ['sɪŋkrənəs]
 </span><span class='line'><span class="n">fd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;/dev/ttyS0&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">O_RDWR</span><span class="p">)</span>
 </span><span class='line'>
 </span><span class='line'><span class="n">signal</span><span class="o">.</span><span class="n">alarm</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>          <span class="c"># Disable the alarm</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 </div>
 
@@ -133,7 +133,7 @@ synchronous：  美 ['sɪŋkrənəs]
   
 
 
-<time datetime="2013-01-29T08:15:00+08:00" pubdate data-updated="true">Jan 29<span>th</span>, 2013</time></div>
+<time datetime="2013-01-29T08:15:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

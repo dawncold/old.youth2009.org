@@ -88,7 +88,7 @@ console.log( &hellip;">
 	<h2 class="title">Extend in Jquery</h2>
 	<div class="entry-content"><p>jquery中的extend方法可以扩展一个{}，今天用到了。写了一组配置文件：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -101,7 +101,7 @@ console.log( &hellip;">
 </span><span class='line'>};
 </span><span class='line'>
 </span><span class='line'>console.log($.extend(options, {data3:3}));
-</span><span class='line'>console.log(options);</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>console.log(options);</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>这样的结果就是在extend之后optons已经被加入了data3这个key-value，因为默认extend使用的是deep copy，你可以<code>$.extend(false, options, {data3:3})</code>，这样就能够得到暂时的并且扩展了的options。</p>
@@ -121,7 +121,7 @@ console.log( &hellip;">
   
 
 
-<time datetime="2013-02-16T20:02:00+08:00" pubdate data-updated="true">Feb 16<span>th</span>, 2013</time></div>
+<time datetime="2013-02-16T20:02:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nginx | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/nginx/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-06-18T22:03:38+08:00</updated>
+  <updated>2014-08-14T22:09:08+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -35,7 +35,7 @@
 
 <p>由于client_body_in_file_only只能放在server、http、location中，得专门建立一个location而不能放在if中。</p>
 
-<p>```
+<p>&#8220;`
 location ^~ /upload/ {
   client_body_temp_path      /tmp/;
   client_body_in_file_only   on;
@@ -48,7 +48,7 @@ location ^~ /upload/ {
   proxy_redirect             off;
   proxy_pass                 <a href="http://backend/">http://backend/</a>
 }
-```
+&#8220;`
 这样以upload开头的就会做这样处理，上传的文件path会放在header中，至于name该怎么办，我是把name的值作为query string拼在了form的action中，在上传开始前得到文件名，然后拼上去。</p>
 
 <p>需要注意的是，client_body_in_file_only不支持RFC2388，也就是说multipart不管用，你可以考虑用ajax上传插件来做上传，注意插件里的multipart设为false。上传插件推荐JQuery-File-Upload。</p>
@@ -64,7 +64,7 @@ location ^~ /upload/ {
     <id>http://www.youth2009.org/www/blog/2011/07/10/nginx-location-config</id>
     <content type="html"><![CDATA[<p>原来的location只是处理了“/”的情况，结果访问一个目录，即使此目录下有index.html也不会成功显示，于是改成了这样：</p>
 
-<p>```
+<p>&#8220;`
 location ~.*.(php|php5)?$
 {</p>
 
@@ -72,13 +72,13 @@ location ~.*.(php|php5)?$
 </code></pre>
 
 <p>}
-```</p>
+&#8220;`</p>
 
 <p>这样之后，发现直接访问目录或者域名的时候不能正常显示了，必须跟上index.php这样的才可以。</p>
 
 <p>最终改成这样，解决了问题：</p>
 
-<p>```
+<p>&#8220;`
 location / {</p>
 
 <pre><code>           root html;
@@ -89,7 +89,7 @@ location / {</p>
 location ~.*.(php|php5)?$ {
 处理php
 }
-```</p>
+&#8220;`</p>
 ]]></content>
   </entry>
   

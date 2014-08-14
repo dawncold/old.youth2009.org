@@ -82,9 +82,9 @@ find ./ -name &#39;*.html&#39; | xargs sed -i &#39;s/iso-8859-1/utf-8/g&#39; 这
 
 <p>以前的一个sed的命令终于明白了：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>find ./ -name <span class="s1">&#39;*.html&#39;</span> | xargs sed -i <span class="s1">&#39;s/iso-8859-1/utf-8/g&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>这是替换html编码用的一个语句，find出当前目录下的html文件名字，然后传给sed，当然这里用到了xrags中转，其实没有的话也ok（除非你不用-i模式），sed用了-i模式，可以编辑文件内容保存，并且存一个备份，当然你得传入一个扩展名字才能保存，没有的话就不存和没有-i效果一样。后面的一个字符串，s表示用正则匹配，s后面的是一个分隔符，可以用斜杠，可以换你喜欢的，但后面都要统一起来，上面的意思是iso-8859-1这个替换成utf-8，最后的加的/g是表示global替换，全部替换，否则就替换一次。</p>
@@ -106,7 +106,7 @@ find ./ -name &#39;*.html&#39; | xargs sed -i &#39;s/iso-8859-1/utf-8/g&#39; 这
   
 
 
-<time datetime="2012-12-01T11:52:00+08:00" pubdate data-updated="true">Dec 1<span>st</span>, 2012</time></div>
+<time datetime="2012-12-01T11:52:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 
