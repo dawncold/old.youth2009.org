@@ -7,8 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="生产环境是：nginx+uwsgi+flask+sqlalchemy等等等 自带的调试功能比较好用，也能很方便的查看各种变量的值，不过在生产环境中调试并不是那么容易。需要在uwsgi开启的时候传入“&mdash;catch exceptions”： 1
-uwsgi -s :9090 -M -p &hellip;">
+	<meta name="description" content="最近有个网站需要一个简单的功能——全选一些checkbox，但用attr的方法总是出问题，主要问题如下：第一次全选没问题，如果此时取消选择一些checkbox，再用全选就不管用了，主要原因就是第一次全选的时候自动加入了checked属性，以后再强制attr(&ldquo;checked& &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -77,6 +76,49 @@ uwsgi -s :9090 -M -p &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/08/18/prop-method-in-jquery1-6-or-later/">
+		
+			jquery1.6+中的prop方法</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近有个网站需要一个简单的功能——全选一些checkbox，但用attr的方法总是出问题，主要问题如下：第一次全选没问题，如果此时取消选择一些checkbox，再用全选就不管用了，主要原因就是第一次全选的时候自动加入了checked属性，以后再强制attr(&ldquo;checked&rdquo;,true)就会没反应。在<a href="http://blog.csdn.net/yaerfeng/article/details/7792832">这里</a>看到一篇文章，里面提到了prop方法，是1.6以后才加入的，就是部分替换了attr的功能，用了prop就可以及时对操作做出反应（这里我不太理解），总之本来用attr的操作现在需要用prop才有效果，当然了，如果你用纯js肯定是没问题喽。</p>
+
+<p>换用prop之后，问题解决！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-18T19:27:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/js/'>js</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -630,51 +672,6 @@ uwsgi -s :9090 -M -p &hellip;">
 
 
 	<a class='category' href='/blog/categories/vi/'>vi</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/06/13/migrate-to-new-vps/">
-		
-			迁移到了新VPS上</a>
-	</h2>
-	<div class="entry-content">
-		<p>前面几篇log中有提及，实在无法忍受yardvps的服务了，一开始真的不错，但现在越来越不行了，可能这就是标志着一个vps提供商由正规经营到超卖的转变。上次停机超过了24个小时，发了ticket过去问，结果是说我被ddos了，就自动把我从网络中断开了，真有意思的说法，反正已经无法考证其真实性了，我只好选择离开。</p>
-
-<p>新的VPS比以前贵，大约是每月10刀（原来的512Mb的YardVPS是7.59刀），但新的vps性能很好，网络也很好很快，希望能一直用下去，贵点就贵点呗，比起神器Linode便宜了不少。</p>
-
-<p>这个技术blog是最后迁移过来的了，原先有几个php写得东西光是把数据库保存下来了，就不再挂出来让大家访问了吧，我猜也没几个用得，留着数据库做个纪念</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-13T16:22:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/vps/'>vps</a>
 
 
 </div>

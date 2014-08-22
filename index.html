@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="In PostgreSQL versions before 8.1, users and groups were distinct kinds of entities, but now only role, it is user or group or both. if you create a &hellip;">
+	<meta name="description" content="上次笔记本替换下来的硬盘闲在那里很久了，反正闲着没用，不如装点东西，比如监控的图片什么的，每分钟两张的速度拍，一个工作日，大约能有5G的数据，要是都传到七牛那么也就两天，免费的磁盘空间就满了，但绝大多数图片是没意义的，手动删得勤快些也行。 不过要是存到磁盘上的话，就无所谓了，500G的空间， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,117 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/08/22/external-disk-with-openwrt/">
+		
+			External Disk With Openwrt</a>
+	</h2>
+	<div class="entry-content">
+		<p>上次笔记本替换下来的硬盘闲在那里很久了，反正闲着没用，不如装点东西，比如监控的图片什么的，每分钟两张的速度拍，一个工作日，大约能有5G的数据，要是都传到七牛那么也就两天，免费的磁盘空间就满了，但绝大多数图片是没意义的，手动删得勤快些也行。</p>
+
+<p>不过要是存到磁盘上的话，就无所谓了，500G的空间，怎么能等好几个月之后再考虑，程序员都是很懒很懒的。。。</p>
+
+<p>磁盘是笔记本的2.5英寸STAT接口，需要一根USB2STAT的线，接到已经很疲劳的路由器上（703N改装版），路由器刷了OpenWrt。</p>
+
+<p>登陆路由器后需要装几个软件，一是mount磁盘需要的，二是vsftpd，准备做成ftp供监控使用。把磁盘连接到路由器上而不是直接连到监控上的原因是加入有人入侵，看到监控一定会破坏，有可能会把磁盘也带走，这样证据就木有了，而连接到路由器上的话，位置比较隐蔽，不容易察觉，会好一些，我就是这么邪恶。。。</p>
+
+<p>对于mount磁盘需要的软件可能是：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>opkg update
+</span><span class='line'>opkg install kmod-usb-storage block-mount kmod-fs-ext4</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可能不是必须的，但看了文档没怎么研究，反正装了这些能mount了，由于我就一块磁盘，直接mount到了/mnt中。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mount /dev/sda1 /mnt</span></code></pre></td></tr></table></div></figure>
+
+
+<p>能用后需要把/mnt的owner改为root:root，权限755，在/mnt下创建ftp目录，owner是<a href="ftp:ftp%EF%BC%8C%E6%9D%83%E9%99%90755%E3%80%82%EF%BC%88ftp%E7%94%A8%E6%88%B7%E6%98%AF%E8%A3%85%E4%BA%86vsftpd%E5%90%8E%E5%88%9B%E5%BB%BA%E7%9A%84%EF%BC%8C%E6%89%80%E4%BB%A5%E4%BD%A0%E9%9C%80%E8%A6%81%E5%85%88%E8%A3%85%E4%B8%80%E4%B8%8Bvsftpd%EF%BC%89">ftp:ftp%EF%BC%8C%E6%9D%83%E9%99%90755%E3%80%82%EF%BC%88ftp%E7%94%A8%E6%88%B7%E6%98%AF%E8%A3%85%E4%BA%86vsftpd%E5%90%8E%E5%88%9B%E5%BB%BA%E7%9A%84%EF%BC%8C%E6%89%80%E4%BB%A5%E4%BD%A0%E9%9C%80%E8%A6%81%E5%85%88%E8%A3%85%E4%B8%80%E4%B8%8Bvsftpd%EF%BC%89</a></p>
+
+<p>vsftpd的配置：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>background=YES
+</span><span class='line'>listen=YES
+</span><span class='line'>anonymous_enable=NO
+</span><span class='line'>chroot_local_user=YES
+</span><span class='line'>local_enable=YES
+</span><span class='line'>local_root=/mnt
+</span><span class='line'>write_enable=YES
+</span><span class='line'>local_umask=022
+</span><span class='line'>check_shell=NO</span></code></pre></td></tr></table></div></figure>
+
+
+<p>研究了一段时间这些配置，第一个建议测试时候用NO，正式开始用就YES，否则会让路由器一直卡在启动vsftpd这里，网路会不可用。比较关键的是<code>local_root</code>这个，登陆后用户的root目录会在这里，但不能在里面的ftp中，原因和chroot有关，刚刚在/mnt中创建的ftp目录就是ftp用户登陆上去后可操作的地方，所有操作都需要在ftp目录下进行。其他配置具体不详述，具体含义可以看官方的man page，感觉前七行是比较重要的。</p>
+
+<p>ftp搭建过程中出现can not create file和permission方面的问题请检查local_root和里面目录的权限。另外vsftpd有本地用户和匿名用户、虚拟用户等不同的配置，我用的是本地用户的方法，其他两种，除了虚拟用户配置看起来比较麻烦我没有尝试外，匿名用户也配置过，不过后来一直卡在can not create file这里，没再尝试，应该还是权限问题。</p>
+
+<p>下面是OpenWrt启动mount的设置，在<code>/etc/config/fstab</code>中加入：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>config mount
+</span><span class='line'>  option target /mnt
+</span><span class='line'>  option device /dev/sda1
+</span><span class='line'>  option fstype ext4
+</span><span class='line'>  option options rw,sync
+</span><span class='line'>  option enabled 1
+</span><span class='line'>  option enabled_fsck 0</span></code></pre></td></tr></table></div></figure>
+
+
+<p>具体的/mnt和/dev/sda1、ext4根据你的情况做修改，enabled为1就是启动时加载。</p>
+
+<p>没想到的是装了vsftpd，又挂了个磁盘，小路由器还能撑得住，也许还没开始用，等往里写文件的时候再看看。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-22T23:05:57+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -551,49 +662,6 @@ GRANT wheel TO admin;</p>
 
 
 	<a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/05/30/md5-digest/">
-		
-			Md5 Digest</a>
-	</h2>
-	<div class="entry-content">
-		<p>对于一个字符串做md5，例如：&#8221;<order></order>123456&#8221;做完md5后，比较常见的结果是：<code>2e08539049ac0f6b5b4377ec20145c06</code>，即十六进制的表示形式，长度一般是32位，有人也用16位的表示，就是把32位的字符串前后各去掉8位后的结果，但不多见。还有就是用md5的digest值，这是一个16字节的字符串，不容易看，但可以转换成ascii后观察，比如上面的digest就是：<code>[46, 8, 83, 144, 73, 172, 15, 107, 91, 67, 119, 236, 32, 20, 92, 6]</code>， 如果你还看不清的话，可以考虑把这些ascii转成十六进制再看看：<code>['2e', '08', '53', '90', '49', 'ac', '0f', '6b', '5b', '43', '77', 'ec', '20', '14', '5c', '06']</code>，是不是很熟悉了，对就是一开始那个32位长的字符串。</p>
-
-<p>在对某通的接口开发中遇到对发送数据校验，文档中说的是对数据进行md5再做base64，通常就是把那个32位长的字符串做base64，但怎么也对不上，后来再研究发现其实是用digest的结果做base64，太坑人了是吧，文档这个东西，能写详细就写详细点，没坏处。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-30T20:29:58+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>
 
 
 </div>
