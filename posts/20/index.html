@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="自认为我也算是一个追求技术的人了，现在更加喜欢技术的世界了，那里没有一些弹性的东西，不像官场那样可以商量，严格地执行着计算机的语言——0、1。 作为一个技术人员，我发现自己很喜欢买书，当然买的最多的可能就是技术方面的书籍，包括一些被称为计算机编程名著一类的书，当然这些书太多了，在网上混迹时间一长 &hellip;">
+	<meta name="description" content="原来我有很多ape和flac音乐的，在windows时代用foobar软件播放音乐很快乐，但在mac下，就有点儿别扭了，cog可以打开cue文件，并且播放也没问题，就是不能分割，这让人很头疼啊！ 从这里找了些办法，应该可以！ 安装macports这个软件，希望用源代码的方式安装， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,76 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/06/cut-flac-file-on-macos/">
+		
+			Mac下分割flac文件</a>
+	</h2>
+	<div class="entry-content">
+		<p>原来我有很多ape和flac音乐的，在windows时代用foobar软件播放音乐很快乐，但在mac下，就有点儿别扭了，cog可以打开cue文件，并且播放也没问题，就是不能分割，这让人很头疼啊！ 从<a href="http://broadeno.wordpress.com/2009/06/16/%E5%A6%82%E4%BD%95%E5%9C%A8mac%E7%B3%BB%E7%BB%9F%E9%87%8C%E5%88%86%E5%89%B2flac%E9%9F%B3%E4%B9%90%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E8%BD%AC%E6%8D%A2%E4%B8%BAwav">这里</a>找了些办法，应该可以！ 安装macports这个软件，希望用源代码的方式安装，否则如果用官方的dmg文件安装，到最后一步运行安装脚本的时候你会发现进度条总是停留在最后不动，打开install的日志一看，有很多记录，听其他人说最后在下载一些包的信息文件，就像是一个索引镜像吧，断了网还好。1423s过后，安装完了。</p>
+
+<p><code>sudo port install cuetools</code></p>
+
+<p>这样就安装好了cuetools和shntool这两个软件，其中缺失的依赖软件也被macports自动安装上了，只是在下载的时候没有进度，很可恶，如果又兴趣可以看这里学着改改macports的fetch部分，至少能看看下载了多少，心里也有个数！ 下面进行分割：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold@tianzhenmatoMacBook-Pro Music<span class="nv">$ </span>cuebreakpoints 手嶌葵<span class="se">\(</span>Teshima.Aoi<span class="se">\)</span>.-.<span class="se">\[</span>The.Rose～I.Love.Cinemas～<span class="se">\]</span>.专辑.<span class="se">\(</span>FLAC<span class="se">\)</span>.cue | shnsplit -o flac 手嶌葵<span class="se">\(</span>Teshima.Aoi<span class="se">\)</span>.-.<span class="se">\[</span>The.Rose～I.Love.Cinemas～<span class="se">\]</span>.专辑.<span class="se">\(</span>FLAC<span class="se">\)</span>.flac
+</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track01.flac<span class="o">]</span> <span class="o">(</span>3:56.27<span class="o">)</span> : 100% OK
+</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track02.flac<span class="o">]</span> <span class="o">(</span>3:21.71<span class="o">)</span> : 100% OK
+</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track03.flac<span class="o">]</span> <span class="o">(</span>5:36.65<span class="o">)</span> : 100% OK
+</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track04.flac<span class="o">]</span> <span class="o">(</span>2:56.00<span class="o">)</span> : 100% OK
+</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track05.flac<span class="o">]</span> <span class="o">(</span>2:57.12<span class="o">)</span> : 100% OK
+</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track06.flac<span class="o">]</span> <span class="o">(</span>4:31.59<span class="o">)</span> : 100% OK
+</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track07.flac<span class="o">]</span> <span class="o">(</span>4:03.01<span class="o">)</span> : 100% OK
+</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track08.flac<span class="o">]</span> <span class="o">(</span>3:14.16<span class="o">)</span> : 100% OK
+</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track09.flac<span class="o">]</span> <span class="o">(</span>3:34.67<span class="o">)</span> : 100% OK
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>文件名有点差劲，也许可以配合cueprint和shnsplit的o参数可以实现完美的转换。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-06T13:59:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mac/'>mac</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -609,51 +679,6 @@
 
 
 	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/06/01/mapapp-approaches-end/">
-		
-			项目要收工了</a>
-	</h2>
-	<div class="entry-content">
-		<p>虽然最后的几个功能还没有完成，但总归目前已经能用了。如果说端午过后还有机会继续提交的话，可能最终就是完成这几个功能吧。不过最大的问题是现在已经到了考试前夕，如果不想承受考前突击带来的痛苦和自责，那必须得提前准备，何况今年还要考英语四级。按照Fnln的说法，按照正常退步速度就能通过，但我已经不清楚现在是不是正常退步速度了，应该还没有吧，仅仅是最近大家都在复习的时候我在做网站而已：）</p>
-
-<p>刚刚用phpDocumentor把文档生成出来了，还遇到了可恶的乱码问题，最终用了强大的替换工具，硬生生把字符集换成了utf8，总算是解决了吧，虽然解决方法不太好，但这是个看结果的事情：）</p>
-
-<p>不知道Yfan那边的css工作怎么样了，要是进展顺利，明天全线停止，开始写写计划书什么的文字材料，在最后一个工作日交上去。当然这算是理想的情况。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-01T18:04:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mapapp/'>mapapp</a>
 
 
 </div>

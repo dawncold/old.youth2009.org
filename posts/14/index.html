@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="昨天参加了一个小型编程比赛，有个题目是这样的，有1～9这九个数字，按照顺序排列着，你可以在他们之间加入加号、减号或者什么都不加，组成的算式经过运算后结果为110的输出出来。 看着好简单的题目，当时比赛时候就是一下子没做出来，现在做好了，贴出来，如果有需要可以拿去用哈，代码风格不算好，因为是比赛嘛 &hellip;">
+	<meta name="description" content="资格赛已经结束了，还好做出来几个题，现在来看这些题目都不算是特别有难度，最主要的还是在理解题目的要求，这当然对于我们非英语系国家的人来说是有些困难的，可能我们需要多读几遍题目才能开始编码，这确实有些不利，但最主要的还是理解错了题目，这样才可怕。 第二个题我就理解有些问题，考虑得太多了， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,51 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/04/16/google-code-jam-2012/">
+		
+			Code Jam 2012</a>
+	</h2>
+	<div class="entry-content">
+		<p>资格赛已经结束了，还好做出来几个题，现在来看这些题目都不算是特别有难度，最主要的还是在理解题目的要求，这当然对于我们非英语系国家的人来说是有些困难的，可能我们需要多读几遍题目才能开始编码，这确实有些不利，但最主要的还是理解错了题目，这样才可怕。</p>
+
+<p>第二个题我就理解有些问题，考虑得太多了，看优秀选手的代码，才十几行结束，真是羡慕死我了！！！</p>
+
+<p>下一轮比赛可能就要在家做了吧？毕竟到了我跑回家的日子：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-16T13:20:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/google/'>google</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -959,199 +1004,6 @@ Binary data inserted for</code>string<code>type on column</code>randstring`
 
 
 	<a class='category' href='/blog/categories/ror/'>ror</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/">
-		
-			安装mysql的Ruby驱动遇到的问题</a>
-	</h2>
-	<div class="entry-content">
-		<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold@tianzhenmatoMacBook-Pro ~<span class="nv">$ </span>gem install mysql
-</span><span class='line'>Fetching: mysql-2.8.1.gem <span class="o">(</span>100%<span class="o">)</span>
-</span><span class='line'>Building native extensions.  This could take a <span class="k">while</span>...
-</span><span class='line'>ERROR:  Error installing mysql:
-</span><span class='line'>ERROR: Failed to build gem native extension.
-</span><span class='line'>
-</span><span class='line'>       /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
-</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
-</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lm... yes
-</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
-</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lz... yes
-</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
-</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lsocket... no
-</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
-</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lnsl... no
-</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
-</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lmygcc... no
-</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
-</span><span class='line'>*** extconf.rb failed ***
-</span><span class='line'>Could not create Makefile due to some reason, probably lack of
-</span><span class='line'>necessary libraries and/or headers.  Check the mkmf.log file <span class="k">for </span>more
-</span><span class='line'>details.  You may need configuration options.
-</span><span class='line'>
-</span><span class='line'>Provided configuration options:
-</span><span class='line'>--with-opt-dir
-</span><span class='line'>--without-opt-dir
-</span><span class='line'>--with-opt-include
-</span><span class='line'>--without-opt-include<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/include
-</span><span class='line'>--with-opt-lib
-</span><span class='line'>--without-opt-lib<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/lib
-</span><span class='line'>--with-make-prog
-</span><span class='line'>--without-make-prog
-</span><span class='line'>--srcdir<span class="o">=</span>.
-</span><span class='line'>--curdir
-</span><span class='line'>--ruby<span class="o">=</span>/usr/local/Cellar/ruby/1.9.3-p0/bin/ruby
-</span><span class='line'>--with-mysql-config
-</span><span class='line'>--without-mysql-config
-</span><span class='line'>--with-mysql-dir
-</span><span class='line'>--without-mysql-dir
-</span><span class='line'>--with-mysql-include
-</span><span class='line'>--without-mysql-include<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/include
-</span><span class='line'>--with-mysql-lib
-</span><span class='line'>--without-mysql-lib<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/lib
-</span><span class='line'>--with-mysqlclientlib
-</span><span class='line'>--without-mysqlclientlib
-</span><span class='line'>--with-mlib
-</span><span class='line'>--without-mlib
-</span><span class='line'>--with-mysqlclientlib
-</span><span class='line'>--without-mysqlclientlib
-</span><span class='line'>--with-zlib
-</span><span class='line'>--without-zlib
-</span><span class='line'>--with-mysqlclientlib
-</span><span class='line'>--without-mysqlclientlib
-</span><span class='line'>--with-socketlib
-</span><span class='line'>--without-socketlib
-</span><span class='line'>--with-mysqlclientlib
-</span><span class='line'>--without-mysqlclientlib
-</span><span class='line'>--with-nsllib
-</span><span class='line'>--without-nsllib
-</span><span class='line'>--with-mysqlclientlib
-</span><span class='line'>--without-mysqlclientlib
-</span><span class='line'>--with-mygcclib
-</span><span class='line'>--without-mygcclib
-</span><span class='line'>--with-mysqlclientlib
-</span><span class='line'>--without-mysqlclientlib
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 <span class="k">for </span>inspection.
-</span><span class='line'>Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out
-</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>bash
-gem install mysql &mdash; &mdash;with-mysql-dir=/usr/local/mysql
-&#8220;`</p>
-
-<p>一开始的那两个“&mdash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
-
-<p>我已经解决问题了，成功安装mysql的ruby驱动，如果仍然遇到问题，可以试试参考<a href="http://blog.bmn.name/2008/02/rails-gem-install-mysql-throws-error-extconfrb-failed/">这里</a>（同样感谢这里）。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-09T20:08:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>

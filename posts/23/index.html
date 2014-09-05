@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="早就看着这个文件夹不顺眼，但就是无法删除，打开chrome的书签管理器发现它和“书签栏”是同级的，刚刚去研究了一番chrome的扩展程序，本以为通过chrome本身能够操控自己，但经过实践后发现这根本行不通。 建立一个chrome的扩展程序是这样的： 1.建立一个目录，随便在什么地方。 2. &hellip;">
+	<meta name="description" content="总算是这本新书仍旧躺在图书馆的新书架上，上次看到后感觉没时间来学习，自己总是拼命追赶技术的前沿，而在这里是有难度的，虽然网络让我们和世界保持同步，但知识的追赶总还是需要时间来加冕。不知道这还算不算是技术前沿了，不过总是比其他的那些新了不少，函数式编程。 这也是我第一次阅读全英文的技术书籍， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,160 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/03/03/start-haskell-study/">
+		
+			Haskell的学习开始了</a>
+	</h2>
+	<div class="entry-content">
+		<p>总算是这本新书仍旧躺在图书馆的新书架上，上次看到后感觉没时间来学习，自己总是拼命追赶技术的前沿，而在这里是有难度的，虽然网络让我们和世界保持同步，但知识的追赶总还是需要时间来加冕。不知道这还算不算是技术前沿了，不过总是比其他的那些新了不少，函数式编程。</p>
+
+<p>这也是我第一次阅读全英文的技术书籍，以前也曾阅读过带注释的《程序员修炼之道》，可惜没有看完，现在图书馆中也见不到了，以后有机会再找回来看看。 Haskell的不少语法规则都和已经学过的编程语言差不多，如果一种新的语言推出了极其怪异的语法而它又不能自圆其说的话，那这门语言很快就将泯灭，原因不用多讲。这样的话学习起来就能稍微简单些了。 使用的书籍叫《Real World Haskell》。</p>
+
+<p>首先接触到了GHC的概念，这是个缩写，包括了三个组件：ghc、ghci、runghc。 ghc是编译器；ghci是个交互模式的命令行，类似python的那个；runghc是可以作为脚本运行haskell的东西，不用编译就可以运行了，感觉这就是个脚本解释器吧。</p>
+
+<h1>安装GHC平台</h1>
+
+<p>在<a href="http://www.haskell.org">这里</a>能够下载到各个系统上的haskell平台，具体的下载地址还是看这里：<a href="http://hackage.haskell.org/platform/">http://hackage.haskell.org/platform/</a>我使用的是Mac版本的平台，下载后即可安装，但mac平台下需要先安装xcode，接着就能安装GHC了。安装过程可以参考相关文档，mac下的安装就是2步，第一是安装GHC，第二个是安装叫Haskell平台的东西，都在下载的dmg中。</p>
+
+<h1>帮助</h1>
+
+<p>在命令行中输入ghci即可使用交互式来学习haskell。 输入“：？”即可看到一串帮助信息。</p>
+
+<h1>基础模块</h1>
+
+<p>在shell中能够看到命令提示标志是一个叫“Prelude”的东西，书上讲这是haskell默认加载的一个模块，就是个基础模块吧，如果不喜欢这个名字可以这样更改掉：  </p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:set prompt <span class="s2">&quot;ghci &gt;&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>现在的提示符标志就变成ghci >了。</p>
+
+<h2>加载其他模块</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:module + Data.Ratio
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就加载了Data.Ratio这个模块，这个模块似乎是使用浮点数之类的东西吧，我还没有细看。具体可以参考文档。</p>
+
+<h1>进行一些简单计算</h1>
+
+<p>输入2+2啦，3+3啦这样的表达式，haskell都能计算出来，这点和python的解释器一样。书中提及了关于负号应该注意的地方：如果输入2+-3这样的表达式就不对了，加入想要得到正确结果需要这样2+（-3）；再者，haskell中的函数调用没有括号，func -3这样的表达式到底是传递参数-3进去呢，还是func这个变量减去3呢？所以要多多注意！</p>
+
+<h1>Bool的注意</h1>
+
+<p>haskell中有True和False这两个(注意大小写），但和其它语言中不同的是这里的数字0、1不能和bool类型相互转化，如果输入表达式True&amp;&amp;1是不正确的！</p>
+
+<h1>运算符</h1>
+
+<p>说说不等号的表示方法──“/=”，像是其他语言中的x = x/y这样的，但这里看起来更象是不等号。 感叹号表示对一个变量的反，这里用not单词表示──“not True”  => False（=>是我自己为了好看而打上的符号） 乘方运算符：**或者^</p>
+
+<h2>优先级</h2>
+
+<p>使用info查看运算符的优先级：  </p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:info <span class="o">(</span>+<span class="o">)</span>
+</span><span class='line'>:info <span class="o">(</span>*<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>分别查看加号、乘号的优先级，返回的结果类似这样：  </p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>class <span class="o">(</span>Eq a, Show a<span class="o">)</span> <span class="o">=</span>&gt; Num a where
+</span><span class='line'> <span class="o">(</span>+<span class="o">)</span> :: a -&gt; a -&gt; a
+</span><span class='line'> ...
+</span><span class='line'> -- Defined in GHC.Num
+</span><span class='line'>infixl 6 +
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后一样的6表示加号的优先级是6，在haskell中优先级是1～9不等，最高的是9.从这个结果中我们还能看出来如果相同的加号连接表达式的处理方法，是从左到右（在第二行中的三个a，顺次向右箭头）</p>
+
+<h1>几个常量</h1>
+
+<p>说来惭愧，我就知道一个──pi，连e都没有定义！书上教了这样定义临时常量的方法：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">let </span><span class="nv">e</span> <span class="o">=</span> exp 1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里我们就使用了exp函数，传递参数1进去。</p>
+
+<h1>List</h1>
+
+<p>list是haskell中的一种数据结构吧，好像和python中的一样，干脆叫列表好了。定义方法很简单，就是把元素放入两个中括号中，而且药注意的是中括号中的必须是同样的类型，不能放进去整形又放进去字符串这样的混合。在书写上，[1,2,3]这样是正确的，而[1,2,]这样多余了一个逗号，虽然在其他的语言中可能正确，但在这里不行！</p>
+
+<h2>枚举填充列表</h2>
+
+<p>可以使用枚举符号来快速把一个序列填充到列表中： <code>[1..10]</code></p>
+
+<p>这样的列表就变成[1，2，3，4，5，6，7，8，9，10]了，最好别尝试[1..]，因为书上说这样做了就必须kill掉解释器，否则会一直循环下去。</p>
+
+<h3>数列填充</h3>
+
+<p>类似枚举填充，只是多输入几个数字，让haskell知道其中的规律，然后就能构造出各种数列填充了：<code>[10,9..1]</code>这是一个从10到1的递减数列</p>
+
+<h2>注意</h2>
+
+<p><code>[1.0..1.8]</code>这样的结果会出现：<code>[1.0,2.0]</code>，不要感到奇怪，这是浮点数的四舍五入吧，总之使用浮点数填充的时候要多多注意这种细节。</p>
+
+<h2>列表的运算</h2>
+
+
+<p><code>[1,2,3] ++ [4,5]</code>会得到一个[1,2,3,4,5]的列表，就是加起来而已，重复的元素也不会覆盖。  </p>
+
+<p><code>1:[2,3]</code>
+这样会把1放入后面的列表最前面。此处需要注意的是：冒号前面必须是列表中同类的元素，而冒号后面必须是列表，所以反过来就不行了。（遵循原则，前面是个列表，后面是包含列表的列表，这样都对）</p>
+
+<h1>字符串</h1>
+
+<p>这里没什么体别，字符串就是用引号引起来的内容。在字符串中可以使用转义字符，类似\n、\t这类。 字符串就是把每一个字符一个个放入列表中实现的，所以一个空字符串──“”与一个空列表──[]是等价的。   就先到这儿吧，英文版书籍看起来也不算快，边看变查字典呢！haskell的前言中说过这是一个比较奇特的语言，会引发对软件设计的新方法，当然是因为函数式编程吧。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-03T23:44:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/haskell/'>haskell</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -590,47 +744,6 @@
 
 
 	<a class='category' href='/blog/categories/js/'>js</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/01/27/mysql-bad-encoding-for-chinese/">
-		
-			Mysql中的中文乱码</a>
-	</h2>
-	<div class="entry-content">
-		<p>从mysql中返回的内容如果是中文的，而页面用了utf-8的编码，那么会出现一些“问号”，就是乱码了！应该将mysql中表的编码改为utf8_unicode_ci，各字段改为utf8_unicode_ci。在PHP中执行SQL查询前执行<code>SQLCONNECT.query(SET NAMES utf8);</code>这条SQL语句。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-27T23:20:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mysql/'>mysql</a>
 
 
 </div>

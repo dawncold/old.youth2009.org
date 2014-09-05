@@ -7,8 +7,58 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。 在保存iptables规则的时候遇到这样的问题： 1
-iptables: Saving firewall rules &hellip;">
+	<meta name="description" content="1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -77,6 +127,199 @@ iptables: Saving firewall rules &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/">
+		
+			安装mysql的Ruby驱动遇到的问题</a>
+	</h2>
+	<div class="entry-content">
+		<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold@tianzhenmatoMacBook-Pro ~<span class="nv">$ </span>gem install mysql
+</span><span class='line'>Fetching: mysql-2.8.1.gem <span class="o">(</span>100%<span class="o">)</span>
+</span><span class='line'>Building native extensions.  This could take a <span class="k">while</span>...
+</span><span class='line'>ERROR:  Error installing mysql:
+</span><span class='line'>ERROR: Failed to build gem native extension.
+</span><span class='line'>
+</span><span class='line'>       /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lm... yes
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lz... yes
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lsocket... no
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lnsl... no
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for </span>main<span class="o">()</span> in -lmygcc... no
+</span><span class='line'>checking <span class="k">for </span>mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>*** extconf.rb failed ***
+</span><span class='line'>Could not create Makefile due to some reason, probably lack of
+</span><span class='line'>necessary libraries and/or headers.  Check the mkmf.log file <span class="k">for </span>more
+</span><span class='line'>details.  You may need configuration options.
+</span><span class='line'>
+</span><span class='line'>Provided configuration options:
+</span><span class='line'>--with-opt-dir
+</span><span class='line'>--without-opt-dir
+</span><span class='line'>--with-opt-include
+</span><span class='line'>--without-opt-include<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/include
+</span><span class='line'>--with-opt-lib
+</span><span class='line'>--without-opt-lib<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/lib
+</span><span class='line'>--with-make-prog
+</span><span class='line'>--without-make-prog
+</span><span class='line'>--srcdir<span class="o">=</span>.
+</span><span class='line'>--curdir
+</span><span class='line'>--ruby<span class="o">=</span>/usr/local/Cellar/ruby/1.9.3-p0/bin/ruby
+</span><span class='line'>--with-mysql-config
+</span><span class='line'>--without-mysql-config
+</span><span class='line'>--with-mysql-dir
+</span><span class='line'>--without-mysql-dir
+</span><span class='line'>--with-mysql-include
+</span><span class='line'>--without-mysql-include<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/include
+</span><span class='line'>--with-mysql-lib
+</span><span class='line'>--without-mysql-lib<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/lib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-mlib
+</span><span class='line'>--without-mlib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-zlib
+</span><span class='line'>--without-zlib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-socketlib
+</span><span class='line'>--without-socketlib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-nsllib
+</span><span class='line'>--without-nsllib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-mygcclib
+</span><span class='line'>--without-mygcclib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 <span class="k">for </span>inspection.
+</span><span class='line'>Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>bash
+gem install mysql &mdash; &mdash;with-mysql-dir=/usr/local/mysql
+&#8220;`</p>
+
+<p>一开始的那两个“&mdash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
+
+<p>我已经解决问题了，成功安装mysql的ruby驱动，如果仍然遇到问题，可以试试参考<a href="http://blog.bmn.name/2008/02/rails-gem-install-mysql-throws-error-extconfrb-failed/">这里</a>（同样感谢这里）。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-09T20:08:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -610,59 +853,6 @@ iptables: Saving firewall rules &hellip;">
 
 
 <time datetime="2012-01-26T17:29:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/01/26/git-study-remote-repo/">
-		
-			Git使用重新学习（远程仓库）</a>
-	</h2>
-	<div class="entry-content">
-		<p>查看当前远程仓库：git remote  -v，加上-v属性能看得内容详细一些。</p>
-
-<p>添加远程仓库：git remote add [shortname] [url]</p>
-
-<p>有了shortname，就相对于给仓库了一个别名，以后可以用别名操作，git fetch xx即可</p>
-
-<p>get fetch xx是获取远程仓库中有而本地没有的数据</p>
-
-<p>提送数据到远程仓库用：git push remote-name branch-name，推送的时候要注意必须没有他人在推送，且没有其他更新才行，如果他人推送了不少更新，你需要先得到更新，合并后再推送。（这里并不是说和svn一样了，只是你可以自己先在本地提交，但推送到远程服务器上时，需要按照先来后到的原则，保证每个人的提交是不冲突的，是最新的。这是我个人的理解）</p>
-
-<p>远程仓库重命名、删除：git remote rename short-name new-name，git remote rm xx</p>
-
-<p>另外git remote show repo-name能够得到不少信息，有哪些要合并啦，哪些已经删除啦，哪些新仓库出现啦等等，这个是需要连接服务器获取的。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T16:08:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

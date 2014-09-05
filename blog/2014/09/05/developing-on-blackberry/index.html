@@ -1,0 +1,272 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>developing-on-blackberry - Trade Off</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="Create BlackBerry ID token here: https://www.blackberry.com/SignedKeys/ If you will develop an app on BlackBerry OS 10 or some new plateform, choose &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Developing-on-blackberry</h2>
+	<div class="entry-content"><h1>Create BlackBerry ID token</h1>
+
+<p>here:
+<strong> <a href="https://www.blackberry.com/SignedKeys/">https://www.blackberry.com/SignedKeys/</a> </strong></p>
+
+<p>If you will develop an app on BlackBerry OS 10 or some new plateform, choose the first checkbox, and you will be requested your BlackBerry ID username and password, other choices I haven&rsquo;t tried. Then fill a storepass for the key, you can download a file like <code>bbidtoken.csk</code>, save this file to <code>~/Library/Research In Motion</code>, if you are on Windows or Linux, save this file to where website mentioned.</p>
+
+<h1>Create author.p12 file</h1>
+
+<p>I have installed a WebWorks SDK, so I can access blackberry tools on <code>/Applications/BB10 WebWorks SDK 2.1.0.13/cordova-blackberry/bin/dependencies/bb-tools/bin</code>, you should change this path as your SDK type, the target file is <code>blackberry-keytool</code>.</p>
+
+<p><code>blackberry-keytool -genkeypair -storepass &lt;keystore_pw&gt; -author &lt;YOUR_NAME&gt;</code></p>
+
+<p>This will create the author.p12 file on the same directory described below:<code>~/Library/Research In Mothion</code></p>
+
+<h1>Create debug token</h1>
+
+<p><code>blackberry-debugtokenrequest -storepass &lt;KeystorePassword&gt; -devicepin &lt;YOUR_DEVICE_PIN&gt; ~/Library/Research In Motion/debug_token.bar</code></p>
+
+<p>This will create debug token bar file on <code>~/Library/Research In Motion</code>, caution: debug token file must be a *.bar file.</p>
+
+<h1>Install debug token on your device</h1>
+
+<p>Enable your development mode on your device first (Settings > Security and Privacy > Development Mode)</p>
+
+<p><code>blackberry-deploy -installDebugToken &lt;path to debug token&gt; -device &lt;DEVICE_IP_ADDRESS&gt; -password &lt;DEVICE_PIN&gt;</code></p>
+
+<p>Your should get output like these:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Info: Sending request: INSTALL_DEBUG_TOKEN
+</span><span class='line'>Info: Action: Install Debug Token
+</span><span class='line'>Info: File size: 2607
+</span><span class='line'>result::success</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>Then your device development info has changed, &ldquo;Debug Token Installed&rdquo;</p>
+
+<h1>deploy an hello world to your device</h1>
+
+<p>I use WebWorks SDK, so I launched this app on Mac, and fill some info about project on <code>localhost:3123</code>, a web management for development. After created the app, choose &ldquo;Build&rdquo; on left hand, fill your device password and keystore password, choose BUILD &amp; INSTALL, you may get output like these:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[INFO]    Target Q10-2b1e42dc selected
+</span><span class='line'>[INFO]    Generating debug token
+</span><span class='line'>[INFO]    Debug token created.
+</span><span class='line'>[INFO]    Deploying debug token to target "Q10-2b1e42dc"
+</span><span class='line'>[INFO]    Sending request: INSTALL_DEBUG_TOKEN
+</span><span class='line'>[INFO]    Action: Install Debug Token
+</span><span class='line'>[INFO]    File size: 2605
+</span><span class='line'>[INFO]    result::success
+</span><span class='line'>[INFO]    Populating application source
+</span><span class='line'>[INFO]    Parsing config.xml
+</span><span class='line'>[INFO]    Generating output files
+</span><span class='line'>[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/simulator/bb10app.bar
+</span><span class='line'>[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/device/bb10app.bar
+</span><span class='line'>[INFO]    BAR packaging complete
+</span><span class='line'>[INFO]    Sending request: INSTALL_AND_LAUNCH
+</span><span class='line'>[INFO]    Action: Install and Launch
+</span><span class='line'>[INFO]    File size: 69497
+</span><span class='line'>[INFO]    Installing Project1.testDev_Project1___c8537c58...
+</span><span class='line'>[INFO]    Processing 69497 bytes
+</span><span class='line'>[INFO]    Progress 100%...
+</span><span class='line'>[INFO]    Progress 100%...
+</span><span class='line'>[INFO]    actual_dname::Project1.testDev_Project1___c8537c58actual_id::testDev_Project1___c8537c58
+</span><span class='line'>[INFO]    actual_version::0.0.1.1result::successLaunching Project1.testDev_Project1___c8537c58...
+</span><span class='line'>[INFO]    result::19132657
+</span><span class='line'>[INFO]    done</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>Meanwhile, your app will be opened on your device!
+<img src="http://pic.yupoo.com/dawncold0/E2fQtBuX/small.jpg" alt="webworks launch screen" /></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-05T21:58:07+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    dawncold
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/www/blog/2014/09/05/developing-on-blackberry/';
+        var disqus_url = 'http://www.youth2009.org/www/blog/2014/09/05/developing-on-blackberry/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-8650400-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

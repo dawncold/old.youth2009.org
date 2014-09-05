@@ -7,10 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="安装ppp： 1
-yum install ppp 下载pptpd： 1
-wget -c http://poptop.sourceforge.net/yum/stable/packages/pptpd-1.3.4-1.rhel5.1.x86_64.rpm 安装pptpd： 1
-rpm -ivh &hellip;">
+	<meta name="description" content="真没想到MM2011（2011年的数学建模）的时间改在了9月9日～12日，直接覆盖了中秋节，不知道组委会那帮人是不是有问题只顾自己过中秋，当然9月12日才是中秋，而且那天上午8点就结束了，但假期可是提前开始的。 本想在家看那本刚刚买来的书，但还有好多别的事情要做，就暂且搁置了看这本书的念头， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,6 +76,53 @@ rpm -ivh &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/08/31/i-havent-ready-for-mm2011/">
+		
+			MM2011我还没准备好</a>
+	</h2>
+	<div class="entry-content">
+		<p>真没想到MM2011（2011年的数学建模）的时间改在了9月9日～12日，直接覆盖了中秋节，不知道组委会那帮人是不是有问题只顾自己过中秋，当然9月12日才是中秋，而且那天上午8点就结束了，但假期可是提前开始的。</p>
+
+<p>本想在家看那本刚刚买来的书，但还有好多别的事情要做，就暂且搁置了看这本书的念头，而且每次看书都发现很简单，于是就不想继续看下去了。谁知难的东西都在后面，而且买的书是讲美国数学建模的，我们这个神奇的国家并不会太按照套路出牌，所以从这本书上找什么帮助看来渺茫了。</p>
+
+<p>报名前打算用Python代替Matlab来出些数据呢，现在也是渺茫了吧？！不是专门做这个的突然插足进来参赛都是这下场。索性也抛弃掉指导老师，这最后的救命稻草也没了（当然，我们一直就没找到）。</p>
+
+<p>MM2011，我还没准备好。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-31T11:48:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mm/'>mm</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -741,64 +785,6 @@ A style for a cell with a left-aligned label across the top and a left-aligned l
 
 
 <time datetime="2011-07-28T06:01:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/26/iphone-simulator-and-sqlite/">
-		
-			Iphone模拟器和sqlite的问题</a>
-	</h2>
-	<div class="entry-content">
-		<p>最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。</p>
-
-<p>今天update进去信息，总是没发现数据库更新，怀疑是忘记commit，查看一下FMDB的使用方法，确实有commit一说，而我在看国内某博客写的使用教程时发现他就是随意的update和insert，殊不知这些都需要commit呀！在update和insert代码前后需要加入</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="p">[</span><span class="n">db</span> <span class="n">beginTransaction</span><span class="p">];</span>
-</span><span class='line'><span class="err">和</span>
-</span><span class='line'><span class="p">[</span><span class="n">db</span> <span class="n">commit</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>我用的Objective-C。</p>
-
-<p>然而即便是这样，更新了数据库后再查询，确实数据被更改了，但我重新在模拟器中运行程序时候又恢复成了以前的值。偶然在模拟器中打开了程序而不是用xcode运行程序，数据竟然被永久更新了。</p>
-
-<p>所以，以后测试update的时候，前后对比应该只在模拟器中看，如果再用xcode启动，会把原来的数据传入模拟器，这样你就看不到效果了。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-26T09:19:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

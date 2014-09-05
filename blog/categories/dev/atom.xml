@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dev | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-09-04T20:42:23+08:00</updated>
+  <updated>2014-09-05T22:24:45+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,84 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[developing-on-blackberry]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/09/05/developing-on-blackberry/"/>
+    <updated>2014-09-05T21:58:07+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/09/05/developing-on-blackberry</id>
+    <content type="html"><![CDATA[<h1>Create BlackBerry ID token</h1>
+
+<p>here:
+<strong> <a href="https://www.blackberry.com/SignedKeys/">https://www.blackberry.com/SignedKeys/</a> </strong></p>
+
+<p>If you will develop an app on BlackBerry OS 10 or some new plateform, choose the first checkbox, and you will be requested your BlackBerry ID username and password, other choices I haven&rsquo;t tried. Then fill a storepass for the key, you can download a file like <code>bbidtoken.csk</code>, save this file to <code>~/Library/Research In Motion</code>, if you are on Windows or Linux, save this file to where website mentioned.</p>
+
+<h1>Create author.p12 file</h1>
+
+<p>I have installed a WebWorks SDK, so I can access blackberry tools on <code>/Applications/BB10 WebWorks SDK 2.1.0.13/cordova-blackberry/bin/dependencies/bb-tools/bin</code>, you should change this path as your SDK type, the target file is <code>blackberry-keytool</code>.</p>
+
+<p><code>blackberry-keytool -genkeypair -storepass &lt;keystore_pw&gt; -author &lt;YOUR_NAME&gt;</code></p>
+
+<p>This will create the author.p12 file on the same directory described below:<code>~/Library/Research In Mothion</code></p>
+
+<h1>Create debug token</h1>
+
+<p><code>blackberry-debugtokenrequest -storepass &lt;KeystorePassword&gt; -devicepin &lt;YOUR_DEVICE_PIN&gt; ~/Library/Research In Motion/debug_token.bar</code></p>
+
+<p>This will create debug token bar file on <code>~/Library/Research In Motion</code>, caution: debug token file must be a *.bar file.</p>
+
+<h1>Install debug token on your device</h1>
+
+<p>Enable your development mode on your device first (Settings > Security and Privacy > Development Mode)</p>
+
+<p><code>blackberry-deploy -installDebugToken &lt;path to debug token&gt; -device &lt;DEVICE_IP_ADDRESS&gt; -password &lt;DEVICE_PIN&gt;</code></p>
+
+<p>Your should get output like these:</p>
+
+<p><code>
+Info: Sending request: INSTALL_DEBUG_TOKEN
+Info: Action: Install Debug Token
+Info: File size: 2607
+result::success
+</code>
+Then your device development info has changed, &ldquo;Debug Token Installed&rdquo;</p>
+
+<h1>deploy an hello world to your device</h1>
+
+<p>I use WebWorks SDK, so I launched this app on Mac, and fill some info about project on <code>localhost:3123</code>, a web management for development. After created the app, choose &ldquo;Build&rdquo; on left hand, fill your device password and keystore password, choose BUILD &amp; INSTALL, you may get output like these:</p>
+
+<p><code>
+[INFO]    Target Q10-2b1e42dc selected
+[INFO]    Generating debug token
+[INFO]    Debug token created.
+[INFO]    Deploying debug token to target "Q10-2b1e42dc"
+[INFO]    Sending request: INSTALL_DEBUG_TOKEN
+[INFO]    Action: Install Debug Token
+[INFO]    File size: 2605
+[INFO]    result::success
+[INFO]    Populating application source
+[INFO]    Parsing config.xml
+[INFO]    Generating output files
+[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/simulator/bb10app.bar
+[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/device/bb10app.bar
+[INFO]    BAR packaging complete
+[INFO]    Sending request: INSTALL_AND_LAUNCH
+[INFO]    Action: Install and Launch
+[INFO]    File size: 69497
+[INFO]    Installing Project1.testDev_Project1___c8537c58...
+[INFO]    Processing 69497 bytes
+[INFO]    Progress 100%...
+[INFO]    Progress 100%...
+[INFO]    actual_dname::Project1.testDev_Project1___c8537c58actual_id::testDev_Project1___c8537c58
+[INFO]    actual_version::0.0.1.1result::successLaunching Project1.testDev_Project1___c8537c58...
+[INFO]    result::19132657
+[INFO]    done
+</code>
+Meanwhile, your app will be opened on your device!
+<img src="http://pic.yupoo.com/dawncold0/E2fQtBuX/small.jpg" alt="webworks launch screen" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[role in postgresql]]></title>
@@ -86,21 +164,6 @@ this example will print ‘xxx’, even nothing in list and this loop is not exe
     <content type="html"><![CDATA[<p>if you want a div with absolute position relative its parent, not body, the parent div must be relative position.</p>
 
 <p>see details <a href="http://css-tricks.com/absolute-positioning-inside-relative-positioning/">http://css-tricks.com/absolute-positioning-inside-relative-positioning/</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[iptables MASQUERADE]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/06/13/iptables-MASQUERADE/"/>
-    <updated>2014-06-13T20:50:30+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/06/13/iptables-MASQUERADE</id>
-    <content type="html"><![CDATA[<p>If you need private hosts communicate with external network, maybe some LXC contaners want to using apt-get, you need add a iptables rule like this:</p>
-
-<p><code>
-iptables -t nat -A POSTROUTING -s 10.24.1.0/24 ! -d 10.24.1.0/24 -j MASQUERADE
-</code></p>
-
-<p>This rule allows network traffic from 10.24.1.x, and destination is not 10.24.1.x, maybe it wants to communicating with 10.24.2.x, but that doesn&rsquo;t cover in this post, we assumed it want to communicating with Google, the host has an external ip like 200.200.200.200, iptables can convert IP from 10.24.1.x to IP from 200.200.200.200, like the host request Google.</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/www/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-09-04T20:42:23+08:00</updated>
+  <updated>2014-09-05T22:24:45+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,113 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[developing-on-blackberry]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/09/05/developing-on-blackberry/"/>
+    <updated>2014-09-05T21:58:07+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/09/05/developing-on-blackberry</id>
+    <content type="html"><![CDATA[<h1>Create BlackBerry ID token</h1>
+
+<p>here:
+<strong> <a href="https://www.blackberry.com/SignedKeys/">https://www.blackberry.com/SignedKeys/</a> </strong></p>
+
+<p>If you will develop an app on BlackBerry OS 10 or some new plateform, choose the first checkbox, and you will be requested your BlackBerry ID username and password, other choices I haven&rsquo;t tried. Then fill a storepass for the key, you can download a file like <code>bbidtoken.csk</code>, save this file to <code>~/Library/Research In Motion</code>, if you are on Windows or Linux, save this file to where website mentioned.</p>
+
+<h1>Create author.p12 file</h1>
+
+<p>I have installed a WebWorks SDK, so I can access blackberry tools on <code>/Applications/BB10 WebWorks SDK 2.1.0.13/cordova-blackberry/bin/dependencies/bb-tools/bin</code>, you should change this path as your SDK type, the target file is <code>blackberry-keytool</code>.</p>
+
+<p><code>blackberry-keytool -genkeypair -storepass &lt;keystore_pw&gt; -author &lt;YOUR_NAME&gt;</code></p>
+
+<p>This will create the author.p12 file on the same directory described below:<code>~/Library/Research In Mothion</code></p>
+
+<h1>Create debug token</h1>
+
+<p><code>blackberry-debugtokenrequest -storepass &lt;KeystorePassword&gt; -devicepin &lt;YOUR_DEVICE_PIN&gt; ~/Library/Research In Motion/debug_token.bar</code></p>
+
+<p>This will create debug token bar file on <code>~/Library/Research In Motion</code>, caution: debug token file must be a *.bar file.</p>
+
+<h1>Install debug token on your device</h1>
+
+<p>Enable your development mode on your device first (Settings > Security and Privacy > Development Mode)</p>
+
+<p><code>blackberry-deploy -installDebugToken &lt;path to debug token&gt; -device &lt;DEVICE_IP_ADDRESS&gt; -password &lt;DEVICE_PIN&gt;</code></p>
+
+<p>Your should get output like these:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Info: Sending request: INSTALL_DEBUG_TOKEN
+</span><span class='line'>Info: Action: Install Debug Token
+</span><span class='line'>Info: File size: 2607
+</span><span class='line'>result::success</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then your device development info has changed, &ldquo;Debug Token Installed&rdquo;</p>
+
+<h1>deploy an hello world to your device</h1>
+
+<p>I use WebWorks SDK, so I launched this app on Mac, and fill some info about project on <code>localhost:3123</code>, a web management for development. After created the app, choose &ldquo;Build&rdquo; on left hand, fill your device password and keystore password, choose BUILD &amp; INSTALL, you may get output like these:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[INFO]    Target Q10-2b1e42dc selected
+</span><span class='line'>[INFO]    Generating debug token
+</span><span class='line'>[INFO]    Debug token created.
+</span><span class='line'>[INFO]    Deploying debug token to target "Q10-2b1e42dc"
+</span><span class='line'>[INFO]    Sending request: INSTALL_DEBUG_TOKEN
+</span><span class='line'>[INFO]    Action: Install Debug Token
+</span><span class='line'>[INFO]    File size: 2605
+</span><span class='line'>[INFO]    result::success
+</span><span class='line'>[INFO]    Populating application source
+</span><span class='line'>[INFO]    Parsing config.xml
+</span><span class='line'>[INFO]    Generating output files
+</span><span class='line'>[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/simulator/bb10app.bar
+</span><span class='line'>[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/device/bb10app.bar
+</span><span class='line'>[INFO]    BAR packaging complete
+</span><span class='line'>[INFO]    Sending request: INSTALL_AND_LAUNCH
+</span><span class='line'>[INFO]    Action: Install and Launch
+</span><span class='line'>[INFO]    File size: 69497
+</span><span class='line'>[INFO]    Installing Project1.testDev_Project1___c8537c58...
+</span><span class='line'>[INFO]    Processing 69497 bytes
+</span><span class='line'>[INFO]    Progress 100%...
+</span><span class='line'>[INFO]    Progress 100%...
+</span><span class='line'>[INFO]    actual_dname::Project1.testDev_Project1___c8537c58actual_id::testDev_Project1___c8537c58
+</span><span class='line'>[INFO]    actual_version::0.0.1.1result::successLaunching Project1.testDev_Project1___c8537c58...
+</span><span class='line'>[INFO]    result::19132657
+</span><span class='line'>[INFO]    done</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Meanwhile, your app will be opened on your device!
+<img src="http://pic.yupoo.com/dawncold0/E2fQtBuX/small.jpg" alt="webworks launch screen" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[external disk with openwrt]]></title>
@@ -462,21 +569,6 @@ GRANT wheel TO admin;</p>
 <p>Linode Referral Code：84379f19216416e48085518afcde3beb02aee9c8</p>
 
 <p>如果用这个code注册linode，在你用满3个月的时候我们彼此能够得到20刀的奖励：）</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[rarp]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/08/25/rarp/"/>
-    <updated>2013-08-25T12:01:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/08/25/rarp</id>
-    <content type="html"><![CDATA[<h2>Packet Format</h2>
-
-<p>RARP packet is identical to ARP packet, differences: RARP &lsquo;type&rsquo; field is 0x8035 for request and reply and &lsquo;op&rsquo; field is 3 for RARP request and 4 for RARP reply.</p>
-
-<p>RARP&rsquo;s reply is unicast.</p>
-
-<p>The implementation of RARP server is complex&hellip;</p>
 ]]></content>
   </entry>
   
