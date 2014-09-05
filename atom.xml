@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/www/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-09-05T22:24:45+08:00</updated>
+  <updated>2014-09-05T23:40:55+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -25,7 +25,9 @@
 
 <p>If you will develop an app on BlackBerry OS 10 or some new plateform, choose the first checkbox, and you will be requested your BlackBerry ID username and password, other choices I haven&rsquo;t tried. Then fill a storepass for the key, you can download a file like <code>bbidtoken.csk</code>, save this file to <code>~/Library/Research In Motion</code>, if you are on Windows or Linux, save this file to where website mentioned.</p>
 
-<h1>Create author.p12 file</h1>
+<h1>Create developer certificate file</h1>
+
+<p>developer certificate file is a file named author.p12</p>
 
 <p>I have installed a WebWorks SDK, so I can access blackberry tools on <code>/Applications/BB10 WebWorks SDK 2.1.0.13/cordova-blackberry/bin/dependencies/bb-tools/bin</code>, you should change this path as your SDK type, the target file is <code>blackberry-keytool</code>.</p>
 
