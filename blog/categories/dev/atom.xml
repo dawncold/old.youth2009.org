@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dev | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-09-05T23:40:55+08:00</updated>
+  <updated>2014-09-20T08:19:35+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -146,7 +146,7 @@ this example will print ‘xxx’, even nothing in list and this loop is not exe
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[-A INPUT -i eth0 -p tcp -m tcp --dport 80 -j ACCEPT]]></title>
+    <title type="html"><![CDATA[iptables -A INPUT -i eth0 -p tcp -m tcp --dport 80 -j ACCEPT]]></title>
     <link href="http://www.youth2009.org/www/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept/"/>
     <updated>2014-08-14T22:05:46+08:00</updated>
     <id>http://www.youth2009.org/www/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept</id>

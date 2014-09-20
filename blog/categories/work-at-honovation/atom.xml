@@ -4,7 +4,7 @@
   <title><![CDATA[Category: work@honovation | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/work-at-honovation/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-09-05T23:40:55+08:00</updated>
+  <updated>2014-09-20T08:19:35+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -25,10 +25,10 @@
 <p>同样的Object.keys()因为不能在IE9下使用，因为要取一个Object的keys数量，有的时候是用Object的keys列表，所以以后为了兼容，就只能：</p>
 
 <p>&#8220;`js
+var keys = [];
 for(var p in obj) {</p>
 
 <pre><code>if(obj.hasOwnProperty(p)) {
-    count++;
     keys.push(p);
 }
 </code></pre>
