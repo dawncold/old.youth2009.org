@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/www/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-09-20T08:19:35+08:00</updated>
+  <updated>2014-11-22T14:24:29+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,346 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[linux-study]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/11/22/linux-study/"/>
+    <updated>2014-11-22T14:14:25+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/11/22/linux-study</id>
+    <content type="html"><![CDATA[<p>directory permission x means this directory can be work directory, if you want to write or read a file behind this directory, you must have permission x of this directory.</p>
+
+<p>directory permission w means you can delete or create files or directories behind this</p>
+
+<p>usr = unix software resource</p>
+
+<p>&ldquo;&ndash;&rdquo; means last work directory(cd /mnt;cd;cd &ndash;)</p>
+
+<p>umask means default permission minus this mask, e.g default new directory 777, if mask is 022, then you will get 777-022——>755 directory; default new file 666, is mask is 002, then you will get 666 &ndash; 002——>664 file. mask only can be set in (1, 2, 4) every bit, one bit means the sum of one permission group(current/group/others). umask is based on user, default root has a 0022 mask, normal user has a 0002 mask.</p>
+
+<p>lsattr/chattr is available on ext2/ext3 filesystem, add ‘+i’ attribute can lock one file, no edit or delete, even you are root, ‘+a’ attribute can let a file only accept append content, etc.</p>
+
+<p>SUID, SGID, SBIT special permission:
+there is a ’s’ on x position of user part, like ‘rws- &ndash; &ndash; &ndash; &ndash; -‘. SUID can only set to binary program, if user has x permission of this binary, it can temporarily get the owner permission of this binary, e.g binary ‘passwd’ and /etc/shadow file, shadow only can be updated by root, but every user can change their password via ‘passwd’, it means the user temporarily get owner(root) permission by SUID special permission.
+SGID similar as SUID, there will be a ’s’ on x position of group part like ‘rwx- &ndash; s &ndash; &ndash; x’. if a user can execute binary, he will temporarily get owner permission, e.g binary ‘locate’ and file ‘mlocate.db’. SGID can be set on a directory, it means if a user have r and x permission of one directory, and ’s’ set on this directory, this user can create a file which owner group is this directory’s.
+SBIT(Sticky BIT) only set to directory, if a directory has this permission, a user who can create file or directory on this directory, the new file or new directory can only delete by root or himself, e.g /tmp directory, root can delete your new file, and you can also delete it, but others can not.
+SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SBIT, if omit, this bit is zero, if you set a invalid SUID/SGID/SBIT, there will be upper case S/T, lower case is valid.</p>
+
+<p>find / -size 1M -exec ls -l {} \;     {} means the args from find, “\;” means the end of “exec”, commands in exec can not use alias.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[aix-security]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/11/22/aix-security/"/>
+    <updated>2014-11-22T14:04:41+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/11/22/aix-security</id>
+    <content type="html"><![CDATA[<p>some security configuration for AIX ssh and system services</p>
+
+<p>create a user group named rmt_acc, only allow this group user access ssh, don&rsquo;t allow root login and use public key authentication.</p>
+
+<h1>sshd_config content</h1>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># $OpenBSD: sshd_config,v 1.77 2008/02/08 23:24:07 djm Exp $
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># This is the sshd server system-wide configuration file. See
+</span><span class='line'># sshd_config(5) for more information.
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># This sshd was compiled with PATH=/usr/bin:/bin:/usr/sbin:/sbin
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># The strategy used for options in the default sshd_config shipped with
+</span><span class='line'># OpenSSH is to specify options with their default value where
+</span><span class='line'># possible, but leave them commented. Uncommented options change a
+</span><span class='line'># default value.
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>#Port 22
+</span><span class='line'>#AddressFamily any
+</span><span class='line'>#ListenAddress 0.0.0.0
+</span><span class='line'>#ListenAddress ::
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Disable legacy (protocol version 1) support in the server for new
+</span><span class='line'># installations. In future the default will change to require explicit
+</span><span class='line'># activation of protocol 1
+</span><span class='line'>Protocol 2
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># HostKey for protocol version 1
+</span><span class='line'>#HostKey /etc/ssh/ssh_host_key
+</span><span class='line'># HostKeys for protocol version 2
+</span><span class='line'>#HostKey /etc/ssh/ssh_host_rsa_key
+</span><span class='line'>#HostKey /etc/ssh/ssh_host_dsa_key
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Lifetime and size of ephemeral version 1 server key
+</span><span class='line'>#KeyRegenerationInterval 1h
+</span><span class='line'>#ServerKeyBits 768
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Logging
+</span><span class='line'># obsoletes QuietMode and FascistLogging
+</span><span class='line'>#SyslogFacility AUTH
+</span><span class='line'>#LogLevel INFO
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Authentication:
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>#LoginGraceTime 2m
+</span><span class='line'>PermitRootLogin no
+</span><span class='line'>StrictModes yes
+</span><span class='line'>#MaxAuthTries 6
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>#RSAAuthentication yes
+</span><span class='line'>PubkeyAuthentication yes
+</span><span class='line'>#AuthorizedKeysFile .ssh/authorized_keys
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+</span><span class='line'>#RhostsRSAAuthentication no
+</span><span class='line'># similar for protocol version 2
+</span><span class='line'>#HostbasedAuthentication no
+</span><span class='line'># Change to yes if you don't trust ~/.ssh/known_hosts for
+</span><span class='line'># RhostsRSAAuthentication and HostbasedAuthentication
+</span><span class='line'>#IgnoreUserKnownHosts no
+</span><span class='line'># Don't read the user's ~/.rhosts and ~/.shosts files
+</span><span class='line'>#IgnoreRhosts yes
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># To disable tunneled clear text passwords, change to no here!
+</span><span class='line'>PasswordAuthentication no
+</span><span class='line'>PermitEmptyPasswords no
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Change to no to disable s/key passwords
+</span><span class='line'>ChallengeResponseAuthentication no
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Kerberos options
+</span><span class='line'>#KerberosAuthentication no
+</span><span class='line'>#KerberosOrLocalPasswd yes
+</span><span class='line'>#KerberosTicketCleanup yes
+</span><span class='line'>#KerberosGetAFSToken no
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># GSSAPI options
+</span><span class='line'>#GSSAPIAuthentication no
+</span><span class='line'>#GSSAPICleanupCredentials yes
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Set this to 'yes' to enable PAM authentication, account processing,
+</span><span class='line'># and session processing. If this is enabled, PAM authentication will
+</span><span class='line'># be allowed through the ChallengeResponseAuthentication and
+</span><span class='line'># PasswordAuthentication. Depending on your PAM configuration,
+</span><span class='line'># PAM authentication via ChallengeResponseAuthentication may bypass
+</span><span class='line'># the setting of "PermitRootLogin without-password".
+</span><span class='line'># If you just want the PAM account and session checks to run without
+</span><span class='line'># PAM authentication, then enable this but set PasswordAuthentication
+</span><span class='line'># and ChallengeResponseAuthentication to 'no'.
+</span><span class='line'>UsePAM yes
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>#AllowTcpForwarding yes
+</span><span class='line'>#GatewayPorts no
+</span><span class='line'>#X11Forwarding no
+</span><span class='line'>#X11DisplayOffset 10
+</span><span class='line'>#X11UseLocalhost yes
+</span><span class='line'>#PrintMotd yes
+</span><span class='line'>#PrintLastLog yes
+</span><span class='line'>#TCPKeepAlive yes
+</span><span class='line'>#UseLogin no
+</span><span class='line'>UsePrivilegeSeparation yes
+</span><span class='line'>#PermitUserEnvironment no
+</span><span class='line'>#Compression delayed
+</span><span class='line'>ClientAliveInterval 600
+</span><span class='line'>ClientAliveCountMax 0
+</span><span class='line'>#UseDNS yes
+</span><span class='line'>#PidFile /var/run/sshd.pid
+</span><span class='line'>#MaxStartups 10
+</span><span class='line'>PermitTunnel no
+</span><span class='line'>#ChrootDirectory none
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># no default banner path
+</span><span class='line'>#Banner none
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># override default of no subsystems
+</span><span class='line'>Subsystem sftp /usr/sbin/sftp-server
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Example of overriding settings on a per-user basis
+</span><span class='line'>#Match User anoncvs
+</span><span class='line'># X11Forwarding no
+</span><span class='line'># AllowTcpForwarding no
+</span><span class='line'># ForceCommand cvs server
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>AllowGroups rmt_acc</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>install sudo for AIX</h1>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rpm -i sudo-for-aix.rpm</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>stop telnet/login/ftp/shell/exec service:</h1>
+
+<p>don&rsquo;t start telnet if reboot:</p>
+
+<p>comment the line starts with &lsquo;telnet&rsquo;/&lsquo;login&rsquo;/&lsquo;ftp&rsquo;/&lsquo;shell&rsquo;/&lsquo;exec&rsquo; in /etc/inetd.conf</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>stopsrc -t telnet</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[developing-on-blackberry]]></title>
@@ -528,49 +868,6 @@ GRANT wheel TO admin;</p>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[useful-shell-command]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/12/07/useful-shell-command/"/>
-    <updated>2013-12-07T22:28:53+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/12/07/useful-shell-command</id>
-    <content type="html"><![CDATA[<p>找到size为0的文件，并删除：<code>find -type f -size 0 | xargs rm</code></p>
-
-<p>替换Linux的换行成windows的：<code>ls | xargs perl -i -pe 's/\n/\r\n/g'</code></p>
-
-<p>批量改名哦（把<em>.md改为</em>.markdown）：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">for </span>i in <span class="sb">`</span>ls *.md<span class="sb">`</span>;<span class="k">do </span>mv <span class="nv">$i</span> <span class="sb">`</span><span class="nb">echo</span> <span class="nv">$i</span> | sed <span class="s1">&#39;s/.md/.markdown/&#39;</span><span class="sb">`</span>;<span class="k">done</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[upgrade-to-linode-for-not-waiting]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/12/03/upgrade-to-linode-for-not-waiting/"/>
-    <updated>2013-12-03T22:32:58+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/12/03/upgrade-to-linode-for-not-waiting</id>
-    <content type="html"><![CDATA[<p>上个月买了linode的vps，不知道干什么用，光翻墙了，月底干脆就关了，觉得这样翻墙的成本太高了，完全可以租个便宜的vps来用，后来觉得还是linode好。</p>
-
-<p>在用linode之前用过digitalocean，那时候DO刚刚起步，速度不错，主要是华人不多，而且价格一如既往的便宜，公司决定买这个翻墙用，但后来速度一天天慢下来了，看到最近DO的推广力度增大，可能这就是为啥速度不理想的原因。</p>
-
-<p>prgmr.com是个不错的vps，技术感超强，但很可惜在公司速度很好，160ms的ping延迟，不过回到家发现延迟到了400+，真不明白网络就能差这么多。好处是能不交费先用一段时间体验，support很好。</p>
-
-<p>ramhost.us据说也不错，不会超售，在家wget一个文件速度上了400+，可惜就那么一次，也不知道是不是那一次把所有RP全用光了，后来怎么都是个位数的速度。同样技术感很强，缺点就是support靠人，站长貌似也不总是盯着这个，没拿到trial来试试。</p>
-
-<p>其实vpsee这个也能考虑试试，linuxtoy.org放在上面，感觉访问速度挺好，价格10刀，不算是便宜，但和linode比便宜一半了。以前用过几个月的vps，很稳定，被GFW过IP，站长免费给换，总之一切都好。</p>
-
-<p>最后是linode，又回来了，很早很早的时候，大约是初中那会，对建站很感兴趣，那时候还没有流行vps，都是shared hosting，当时买过hostmonster的一年服务，没做啥东西，算是浪费了吧。后来过了挺长时间逐渐接触到vps，用过yardvps，amazon的也试过，那时候没法买linode，因为信用卡，就想着哪天能有信用卡了就可以自由买这个了，现在确实能买了，也不知道买了干嘛了，以为能做个app，但终究没想出来做什么。好在能解决访问Google等网站时候的延迟，有时候大脑在想一件事，google一下结果，此时慢了，可能又跳跃到别的事情上了。或许人和人不太一样。</p>
-
-<p><del>Linode Referral URL：<a href="https://www.linode.com/?r=84379f19216416e48085518afcde3beb02aee9c8">https://www.linode.com/?r=84379f19216416e48085518afcde3beb02aee9c8</a></del></p>
-
-<p><del>Linode Referral Code：84379f19216416e48085518afcde3beb02aee9c8</del></p>
-
-<p>如果用这个code注册linode，在你用满3个月的时候我们彼此能够得到20刀的奖励：）</p>
 ]]></content>
   </entry>
   

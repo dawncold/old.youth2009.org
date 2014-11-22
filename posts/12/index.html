@@ -7,10 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="看到vpsee上的vi打开网页啥的都能自动高亮，原本一直用着纯文本方式vi的我动心了，搜索了一点点配置，加入这些配置到~/vimrc这样的文件中后，打开vi就能自动加载配置。 下面的分别是：显示行号、自动缩进、开启语法高亮、编辑背景为暗色调、开启粘贴（传说复制过来的代码不会乱掉） 1
-2
-3
-4 &hellip;">
+	<meta name="description" content="好了，我直接说自己遇到的情况，就是上面这行提示，找不到name属性，在java.lang.String中，仔细看哦，这句话的意思是你在一个String类型中找name属性，当然不会找到了！！！因为本来String中就没有name属性。 初衷是一个list中，里面的每个元素都有name属性， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,6 +76,108 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/06/25/property-not-found-in-el-expression/">
+		
+			关于EL表达式中的Property 'Name' Not Found on Type java.lang.String错误</a>
+	</h2>
+	<div class="entry-content">
+		<p>好了，我直接说自己遇到的情况，就是上面这行提示，找不到name属性，在java.lang.String中，仔细看哦，这句话的意思是你在一个String类型中找name属性，当然不会找到了！！！因为本来String中就没有name属性。</p>
+
+<p>初衷是一个list中，里面的每个元素都有name属性，但是经过JPQL查询后的list给了jsp页面，在输出的时候就得到了这样的提示。实际上我是JPQL写错了，我直接得到了具体的值，所以是String类型的一个list，应该用JPQL得到实体，这样就OK了。</p>
+
+<p>比如：得到的是Student实体，可以用里面的name属性。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>SELECT s FROM Student s, School sc WHERE sc.city <span class="o">=</span> <span class="s1">&#39;北京&#39;</span> AND s.school.id <span class="o">=</span> sc.id AND s.name LIKE <span class="s1">&#39;张%&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但是：得到的就是具体的name了，再用name属性就会出现上面的错误</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>SELECT s.name FROM Student s, School sc WHERE sc.city <span class="o">=</span> <span class="s1">&#39;北京&#39;</span> AND s.school.id <span class="o">=</span> sc.id AND s.name LIKE <span class="s1">&#39;张%&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这种错误很难搞的！！！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-25T09:00:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/s2sh/'>s2sh</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/06/18/it-is-better-to-config-two-shortkeys-for-switch-tags--in-eclipse/">
+		
+			Eclipse中最好配置上切换tabs的快捷键</a>
+	</h2>
+	<div class="entry-content">
+		<p>在Terminal中用Command+Shift+[和Command+Shift+]来切换tabs太爽了，很多Mac下的程序都默认支持了这样的切换方式，不过eclipse中默认没支持，非常可惜，硬用这样切换倒是也有效果，不过你用两次就知道这不是你想要的那种！！</p>
+
+<p>于是配置快捷键，分别配置Privious Tag和Next Tag即可</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-18T08:01:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -627,192 +726,6 @@
 
 
 	<a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/05/30/simple-c-language-program/">
-		
-			一个简单的C程序</a>
-	</h2>
-	<div class="entry-content">
-		<p>嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（</p>
-
-<p>&#8220;`c</p>
-
-<h1>include &lt;stdio.h></h1>
-
-<h1>include &lt;string.h></h1>
-
-<h1>include &lt;stdlib.h></h1>
-
-<p>void strcp(char<em>, char</em>);
-int main()
-{
-char<em> s = &ldquo;test string&hellip;&rdquo;;
-char</em> t = malloc(strlen(s));
-strcp(t, s);
-printf(&ldquo;%s\n&rdquo;, t);
-free(t);</p>
-
-<p>return 0;
-}</p>
-
-<p>void strcp(char <em>s,char </em>t)<br/>
-{<br/>
-while(<em>s++ = </em>t++);<br/>
-}&#8220;`</p>
-
-<p>最漂亮的就是那句strcp的函数了，非常简洁好用：）</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-30T19:39:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/c/'>c</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/05/30/test-the-performace-of-vps-using-unixbench/">
-		
-			用UnixBench测试VPS性能</a>
-	</h2>
-	<div class="entry-content">
-		<p>本来就想测试一下性能的，不过中途遇到点问题。</p>
-
-<p>UnixBench用了perl，但不知道为何我的VPS对perl似乎不太友好，提示有几个关键的moudle找不到，于是无法测试了，根据提示我需要安装Time::HiRes这个module。</p>
-
-<p>听说perl5之后有了一个module管理器，叫CPAN（C盘？），就和yum这样的工具一样可以随意安装module，确实方便，可以和python的pip啊easy_install这样的工具媲美。</p>
-
-<p>但我在使用CPAN的时候发现连这个module都没有…………于是去CPAN.org这里搜索下载这个基础module，但在makefile的时候（用perl做makefile），发现又缺少一个module，看来这个更加底层。从网上找到方法说用yum进行安装，于是用yum -y install perl-CPAN，这样就能用了：）</p>
-
-<p>在安装Time::HiRes的时候发现找不到install工具………………天啊，又去了CPAN.org下载了这个module的源码，自己编译安装上了，这样就没问题了：）</p>
-
-<p>VPS的得分稍后更新：）</p>
-
-<p>UPDATE:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>Benchmark Run: 三  5月 30 2012 11:38:34 - 12:06:53
-</span><span class='line'>1 CPU in system; running 1 parallel copy of tests
-</span><span class='line'>
-</span><span class='line'>Dhrystone 2 using register variables       12579232.4 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
-</span><span class='line'>Double-Precision Whetstone                     2268.2 MWIPS <span class="o">(</span>10.3 s, 7 samples<span class="o">)</span>
-</span><span class='line'>Execl Throughput                               1140.1 lps   <span class="o">(</span>29.6 s, 2 samples<span class="o">)</span>
-</span><span class='line'>File Copy 1024 bufsize 2000 maxblocks        270525.4 KBps  <span class="o">(</span>30.0 s, 2 samples<span class="o">)</span>
-</span><span class='line'>File Copy 256 bufsize 500 maxblocks           77911.8 KBps  <span class="o">(</span>30.1 s, 2 samples<span class="o">)</span>
-</span><span class='line'>File Copy 4096 bufsize 8000 maxblocks        709368.9 KBps  <span class="o">(</span>30.0 s, 2 samples<span class="o">)</span>
-</span><span class='line'>Pipe Throughput                              394585.6 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
-</span><span class='line'>Pipe-based Context Switching                  40293.3 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
-</span><span class='line'>Process Creation                               1908.7 lps   <span class="o">(</span>30.0 s, 2 samples<span class="o">)</span>
-</span><span class='line'>Shell Scripts <span class="o">(</span>1 concurrent<span class="o">)</span>                   1539.5 lpm   <span class="o">(</span>60.0 s, 2 samples<span class="o">)</span>
-</span><span class='line'>Shell Scripts <span class="o">(</span>8 concurrent<span class="o">)</span>                    204.1 lpm   <span class="o">(</span>60.1 s, 2 samples<span class="o">)</span>
-</span><span class='line'>System Call Overhead                         525047.2 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
-</span><span class='line'>
-</span><span class='line'>System Benchmarks Index Values               BASELINE       RESULT    INDEX
-</span><span class='line'>Dhrystone 2 using register variables         116700.0   12579232.4   1077.9
-</span><span class='line'>Double-Precision Whetstone                       55.0       2268.2    412.4
-</span><span class='line'>Execl Throughput                                 43.0       1140.1    265.1
-</span><span class='line'>File Copy 1024 bufsize 2000 maxblocks          3960.0     270525.4    683.1
-</span><span class='line'>File Copy 256 bufsize 500 maxblocks            1655.0      77911.8    470.8
-</span><span class='line'>File Copy 4096 bufsize 8000 maxblocks          5800.0     709368.9   1223.0
-</span><span class='line'>Pipe Throughput                               12440.0     394585.6    317.2
-</span><span class='line'>Pipe-based Context Switching                   4000.0      40293.3    100.7
-</span><span class='line'>Process Creation                                126.0       1908.7    151.5
-</span><span class='line'>Shell Scripts <span class="o">(</span>1 concurrent<span class="o">)</span>                     42.4       1539.5    363.1
-</span><span class='line'>Shell Scripts <span class="o">(</span>8 concurrent<span class="o">)</span>                      6.0        204.1    340.2
-</span><span class='line'>System Call Overhead                          15000.0     525047.2    350.0
-</span><span class='line'>                                                                  <span class="o">========</span>
-</span><span class='line'>System Benchmarks Index Score                                         382.2
-</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-30T12:02:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/vps/'>vps</a>
 
 
 </div>

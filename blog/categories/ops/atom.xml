@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ops | Trade Off]]></title>
+  <link href="http://www.youth2009.org/www/blog/categories/ops/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www/"/>
+  <updated>2014-11-22T14:24:29+08:00</updated>
+  <id>http://www.youth2009.org/www/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[aix-security]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/11/22/aix-security/"/>
+    <updated>2014-11-22T14:04:41+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/11/22/aix-security</id>
+    <content type="html"><![CDATA[<p>some security configuration for AIX ssh and system services</p>
+
+<p>create a user group named rmt_acc, only allow this group user access ssh, don&rsquo;t allow root login and use public key authentication.</p>
+
+<h1>sshd_config content</h1>
+
+<p>&#8220;`</p>
+
+<h1>$OpenBSD: sshd_config,v 1.77 2008/02/08 23:24:07 djm Exp $</h1>
+
+<h1>This is the sshd server system-wide configuration file. See</h1>
+
+<h1>sshd_config(5) for more information.</h1>
+
+<h1>This sshd was compiled with PATH=/usr/bin:/bin:/usr/sbin:/sbin</h1>
+
+<h1>The strategy used for options in the default sshd_config shipped with</h1>
+
+<h1>OpenSSH is to specify options with their default value where</h1>
+
+<h1>possible, but leave them commented. Uncommented options change a</h1>
+
+<h1>default value.</h1>
+
+<h1>Port 22</h1>
+
+<h1>AddressFamily any</h1>
+
+<h1>ListenAddress 0.0.0.0</h1>
+
+<h1>ListenAddress ::</h1>
+
+<h1>Disable legacy (protocol version 1) support in the server for new</h1>
+
+<h1>installations. In future the default will change to require explicit</h1>
+
+<h1>activation of protocol 1</h1>
+
+<p>Protocol 2</p>
+
+<h1>HostKey for protocol version 1</h1>
+
+<h1>HostKey /etc/ssh/ssh_host_key</h1>
+
+<h1>HostKeys for protocol version 2</h1>
+
+<h1>HostKey /etc/ssh/ssh_host_rsa_key</h1>
+
+<h1>HostKey /etc/ssh/ssh_host_dsa_key</h1>
+
+<h1>Lifetime and size of ephemeral version 1 server key</h1>
+
+<h1>KeyRegenerationInterval 1h</h1>
+
+<h1>ServerKeyBits 768</h1>
+
+<h1>Logging</h1>
+
+<h1>obsoletes QuietMode and FascistLogging</h1>
+
+<h1>SyslogFacility AUTH</h1>
+
+<h1>LogLevel INFO</h1>
+
+<h1>Authentication:</h1>
+
+<h1>LoginGraceTime 2m</h1>
+
+<p>PermitRootLogin no
+StrictModes yes</p>
+
+<h1>MaxAuthTries 6</h1>
+
+<h1>RSAAuthentication yes</h1>
+
+<p>PubkeyAuthentication yes</p>
+
+<h1>AuthorizedKeysFile .ssh/authorized_keys</h1>
+
+<h1>For this to work you will also need host keys in /etc/ssh/ssh_known_hosts</h1>
+
+<h1>RhostsRSAAuthentication no</h1>
+
+<h1>similar for protocol version 2</h1>
+
+<h1>HostbasedAuthentication no</h1>
+
+<h1>Change to yes if you don&rsquo;t trust ~/.ssh/known_hosts for</h1>
+
+<h1>RhostsRSAAuthentication and HostbasedAuthentication</h1>
+
+<h1>IgnoreUserKnownHosts no</h1>
+
+<h1>Don&rsquo;t read the user&rsquo;s ~/.rhosts and ~/.shosts files</h1>
+
+<h1>IgnoreRhosts yes</h1>
+
+<h1>To disable tunneled clear text passwords, change to no here!</h1>
+
+<p>PasswordAuthentication no
+PermitEmptyPasswords no</p>
+
+<h1>Change to no to disable s/key passwords</h1>
+
+<p>ChallengeResponseAuthentication no</p>
+
+<h1>Kerberos options</h1>
+
+<h1>KerberosAuthentication no</h1>
+
+<h1>KerberosOrLocalPasswd yes</h1>
+
+<h1>KerberosTicketCleanup yes</h1>
+
+<h1>KerberosGetAFSToken no</h1>
+
+<h1>GSSAPI options</h1>
+
+<h1>GSSAPIAuthentication no</h1>
+
+<h1>GSSAPICleanupCredentials yes</h1>
+
+<h1>Set this to &lsquo;yes&rsquo; to enable PAM authentication, account processing,</h1>
+
+<h1>and session processing. If this is enabled, PAM authentication will</h1>
+
+<h1>be allowed through the ChallengeResponseAuthentication and</h1>
+
+<h1>PasswordAuthentication. Depending on your PAM configuration,</h1>
+
+<h1>PAM authentication via ChallengeResponseAuthentication may bypass</h1>
+
+<h1>the setting of &ldquo;PermitRootLogin without-password&rdquo;.</h1>
+
+<h1>If you just want the PAM account and session checks to run without</h1>
+
+<h1>PAM authentication, then enable this but set PasswordAuthentication</h1>
+
+<h1>and ChallengeResponseAuthentication to &lsquo;no&rsquo;.</h1>
+
+<p>UsePAM yes</p>
+
+<h1>AllowTcpForwarding yes</h1>
+
+<h1>GatewayPorts no</h1>
+
+<h1>X11Forwarding no</h1>
+
+<h1>X11DisplayOffset 10</h1>
+
+<h1>X11UseLocalhost yes</h1>
+
+<h1>PrintMotd yes</h1>
+
+<h1>PrintLastLog yes</h1>
+
+<h1>TCPKeepAlive yes</h1>
+
+<h1>UseLogin no</h1>
+
+<p>UsePrivilegeSeparation yes</p>
+
+<h1>PermitUserEnvironment no</h1>
+
+<h1>Compression delayed</h1>
+
+<p>ClientAliveInterval 600
+ClientAliveCountMax 0</p>
+
+<h1>UseDNS yes</h1>
+
+<h1>PidFile /var/run/sshd.pid</h1>
+
+<h1>MaxStartups 10</h1>
+
+<p>PermitTunnel no</p>
+
+<h1>ChrootDirectory none</h1>
+
+<h1>no default banner path</h1>
+
+<h1>Banner none</h1>
+
+<h1>override default of no subsystems</h1>
+
+<p>Subsystem sftp /usr/sbin/sftp-server</p>
+
+<h1>Example of overriding settings on a per-user basis</h1>
+
+<h1>Match User anoncvs</h1>
+
+<h1>X11Forwarding no</h1>
+
+<h1>AllowTcpForwarding no</h1>
+
+<h1>ForceCommand cvs server</h1>
+
+<p>AllowGroups rmt_acc
+&#8220;`</p>
+
+<h1>install sudo for AIX</h1>
+
+<p><code>
+rpm -i sudo-for-aix.rpm
+</code></p>
+
+<h1>stop telnet/login/ftp/shell/exec service:</h1>
+
+<p>don&rsquo;t start telnet if reboot:</p>
+
+<p>comment the line starts with &lsquo;telnet&rsquo;/&lsquo;login&rsquo;/&lsquo;ftp&rsquo;/&lsquo;shell&rsquo;/&lsquo;exec&rsquo; in /etc/inetd.conf</p>
+
+<p><code>
+stopsrc -t telnet
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

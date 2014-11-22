@@ -7,11 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="bnly.org使用crontab来不断fetch和send，这看起来很傻，不过挺容易搭建。目前send过程每分钟一次，fetch过程10分钟一次。 在ubuntu下默认没有cron的日志，需要这样开启： 1
-2
-3
-4
-vi /etc/rsyslog.d/50-default.conf &hellip;">
+	<meta name="description" content="这几天都卡在ie6的兼容问题上了，都要上线了才想到要去用ie来看下效果，前一次看的时候没什么问题，还很欣慰，怎么会这么安全？最近用ie6、360、搜狗一看，直接无法接受了，但原网站的最大用户群就是360，现在搞不清楚360用的是不是ie6的内核，虽然它自称是ie8的内核了， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -80,6 +76,92 @@ vi /etc/rsyslog.d/50-default.conf &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/12/20/ie6/">
+		
+			Ie6</a>
+	</h2>
+	<div class="entry-content">
+		<p>这几天都卡在ie6的兼容问题上了，都要上线了才想到要去用ie来看下效果，前一次看的时候没什么问题，还很欣慰，怎么会这么安全？最近用ie6、360、搜狗一看，直接无法接受了，但原网站的最大用户群就是360，现在搞不清楚360用的是不是ie6的内核，虽然它自称是ie8的内核了，但我今天下载了用仍然是ie6，然后他又会提示你可以升级到ie8内核，真是流氓啊。我们现在如果能够把网站调整到ie6下也正常显示，就基本不怕ie7、8、9了，相信不管一款软件多么垃圾，随着版本的提升，也会越来越好，要不然根本都不可能升级，也违背社会的发展啊。。。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-20T23:26:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/12/19/make-a-contribution-to-open-source-project/">
+		
+			给开源项目做贡献了</a>
+	</h2>
+	<div class="entry-content">
+		<p>惭愧，第一次给开源项目做贡献竟然是现在，其实早就想帮着做点啥了，无奈技术能力不足，终于发现一个机会，给progit的README文档添加MacOS用户的使用方式，可惜噩梦也是这样开始的。</p>
+
+<p>一开始添加了usage for macos users，commit然后push，作者和我说少一个blank line，我加了再commit和push，另一个开发者和我说你不应该多次commit，需要说清楚commit的工作而不是一味用commit修改，我改好了发现remote的版本和本地不一样，因为我是在上一个版本的基础上amend后再提交的，无奈之下我merge了remote然后commit又push，这时候作者跳出来一对一教我怎么做了，有不少细节地方需要注意，比如完全的command line可以在markdown中用tab的indent，而list的indent和tab是完全不一样的。。。又给我罗列了markdown的语法。我让他写一个正确的给我看一下，他真的就给我写了一遍，但是他给希望让别人来做这部分工作而不是自己来做，并不是自己能力不足什么的，光是在我这里付出的时间就远超编辑好几个版本的README了。这点在国内开发者的身上很难发现吧？！</p>
+
+<p>最后当然是pull request被接受了：）这次经历很难得！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-19T21:18:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -595,144 +677,6 @@ convey:             表达
 
 
 <time datetime="2012-11-11T14:19:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/09/pragmatic-programmer-log/">
-		
-			Pragmatic Programmer Log</a>
-	</h2>
-	<div class="entry-content">
-		<p>比较喜欢的一章，讲软件的足够完美性。世间几乎所有东西都不是完美的，当然有完美的——“不完美”就是完美的，就像“永远不变的只有变化”一样。</p>
-
-<p>似乎和昨天的有些关联，要先给用户们一个不够完美的东西用，他们就会给出意见，你再逐渐完美这个软件，当然这也不可能达到完美的标准，只是更接近用户的需求了，其实这已经足够了，你为了用户制定出软件，满足了他们的需求不就是完美的了么？那些什么良好的UI、UE，如果end user根本都没能感到你的用心良苦，那只能算是你的蛋疼设计了（为用户创造出需求的除外）。</p>
-
-<p>质量算是需求的一部分么？</p>
-
-<p>我们的需求文档会包含质量的规约么？乍一看似乎有不同声音，需求文档只要满足需求，需求又是什么呢？人们在描述自己需求的时候会加入质量这个衡量标准么？还是找大牛们交流去吧。</p>
-
-<p>何时stop。这个问题在我这里常常出现，似乎coder都免不了带点完美主义，做一个feature会不断refine it，最终overrefinement，make a solution becomes academic research。作者没明确说when，只是说for a while，然后慢慢完善就好了。。。不负责的作者。</p>
-
-<p>补充几个单词：</p>
-
-<pre><code>overembellishment:      过于美化
-sketch out:             拟订
-preferable:             更好的
-tight:                  紧的
-polish up:              改善
-advocate:               提倡
-stringent:              紧迫的
-pacemaker:              心脏起搏器
-space shuttle:          航天飞机
-disseminate:            公开的
-shorter incubation:     短潜伏期
-conspire:               阴谋
-oft:                    常常
-mar:                    破坏
-strive:                 努力
-</code></pre>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-09T00:05:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/07/pragmatic-programmer-log/">
-		
-			Pragmatic Programmer Log</a>
-	</h2>
-	<div class="entry-content">
-		<p>stone soup 和 boiled forgs是两种不同的引导，一种是良性的，一种是”恶性”的。恶性的意思是，你对forg有伤害，最后被你煮死了。而stone soup只是借助其他人的力量达到自己的愿望，所以，boiled forgs主要还是提醒我们要有一个big picture的概念，时刻拥有，感知周围的changes，否则你只有被cook了。</p>
-
-<p>我们似乎正处在stone soup这个环境里，做出的产品正在给编辑们用，还有一些别的部门后期也会参与进来，让他们使用这个并不完善的系统，然后得到那种“如果加上xxx就会更好用”了的建议，我们再改进，最终能够做一个让用户满意的系统，那也是我们的愿望。</p>
-
-<p>来几个单词：</p>
-
-<pre><code>hoard:          贮存
-undeterred:     未受损的
-ingredient:     作料
-moral:          道德
-trick:          戏弄
-catalyst:       催化剂
-synergistic:    协同的
-tackle:         处理
-stare:          凝视
-fatigue:        疲劳
-reasonably:     适当地
-marvel:         惊异
-glimpse:        一瞥
-gradual:        逐渐
-progressively:  逐渐地
-deception:      骗局
-tightly:        紧紧地
-creep up on:    爬向
-inexorably:     不可阻挡地
-disaster:       灾难
-morale:         斗志
-perceive:       注意到
-will:           决心，意志
-</code></pre>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-07T23:38:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

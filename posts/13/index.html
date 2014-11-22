@@ -7,10 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="刚刚用yum升级了系统，发现日志中有很多这样的提示： 1
-2
-ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link
-ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a &hellip;">
+	<meta name="description" content="嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（ &#8220;`c include &lt;stdio.h> include &lt;string.h> include &lt;stdlib.h> void strcp(char &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,6 +76,192 @@ ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/05/30/simple-c-language-program/">
+		
+			一个简单的C程序</a>
+	</h2>
+	<div class="entry-content">
+		<p>嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（</p>
+
+<p>&#8220;`c</p>
+
+<h1>include &lt;stdio.h></h1>
+
+<h1>include &lt;string.h></h1>
+
+<h1>include &lt;stdlib.h></h1>
+
+<p>void strcp(char<em>, char</em>);
+int main()
+{
+char<em> s = &ldquo;test string&hellip;&rdquo;;
+char</em> t = malloc(strlen(s));
+strcp(t, s);
+printf(&ldquo;%s\n&rdquo;, t);
+free(t);</p>
+
+<p>return 0;
+}</p>
+
+<p>void strcp(char <em>s,char </em>t)<br/>
+{<br/>
+while(<em>s++ = </em>t++);<br/>
+}&#8220;`</p>
+
+<p>最漂亮的就是那句strcp的函数了，非常简洁好用：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-30T19:39:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/c/'>c</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/05/30/test-the-performace-of-vps-using-unixbench/">
+		
+			用UnixBench测试VPS性能</a>
+	</h2>
+	<div class="entry-content">
+		<p>本来就想测试一下性能的，不过中途遇到点问题。</p>
+
+<p>UnixBench用了perl，但不知道为何我的VPS对perl似乎不太友好，提示有几个关键的moudle找不到，于是无法测试了，根据提示我需要安装Time::HiRes这个module。</p>
+
+<p>听说perl5之后有了一个module管理器，叫CPAN（C盘？），就和yum这样的工具一样可以随意安装module，确实方便，可以和python的pip啊easy_install这样的工具媲美。</p>
+
+<p>但我在使用CPAN的时候发现连这个module都没有…………于是去CPAN.org这里搜索下载这个基础module，但在makefile的时候（用perl做makefile），发现又缺少一个module，看来这个更加底层。从网上找到方法说用yum进行安装，于是用yum -y install perl-CPAN，这样就能用了：）</p>
+
+<p>在安装Time::HiRes的时候发现找不到install工具………………天啊，又去了CPAN.org下载了这个module的源码，自己编译安装上了，这样就没问题了：）</p>
+
+<p>VPS的得分稍后更新：）</p>
+
+<p>UPDATE:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Benchmark Run: 三  5月 30 2012 11:38:34 - 12:06:53
+</span><span class='line'>1 CPU in system; running 1 parallel copy of tests
+</span><span class='line'>
+</span><span class='line'>Dhrystone 2 using register variables       12579232.4 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
+</span><span class='line'>Double-Precision Whetstone                     2268.2 MWIPS <span class="o">(</span>10.3 s, 7 samples<span class="o">)</span>
+</span><span class='line'>Execl Throughput                               1140.1 lps   <span class="o">(</span>29.6 s, 2 samples<span class="o">)</span>
+</span><span class='line'>File Copy 1024 bufsize 2000 maxblocks        270525.4 KBps  <span class="o">(</span>30.0 s, 2 samples<span class="o">)</span>
+</span><span class='line'>File Copy 256 bufsize 500 maxblocks           77911.8 KBps  <span class="o">(</span>30.1 s, 2 samples<span class="o">)</span>
+</span><span class='line'>File Copy 4096 bufsize 8000 maxblocks        709368.9 KBps  <span class="o">(</span>30.0 s, 2 samples<span class="o">)</span>
+</span><span class='line'>Pipe Throughput                              394585.6 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
+</span><span class='line'>Pipe-based Context Switching                  40293.3 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
+</span><span class='line'>Process Creation                               1908.7 lps   <span class="o">(</span>30.0 s, 2 samples<span class="o">)</span>
+</span><span class='line'>Shell Scripts <span class="o">(</span>1 concurrent<span class="o">)</span>                   1539.5 lpm   <span class="o">(</span>60.0 s, 2 samples<span class="o">)</span>
+</span><span class='line'>Shell Scripts <span class="o">(</span>8 concurrent<span class="o">)</span>                    204.1 lpm   <span class="o">(</span>60.1 s, 2 samples<span class="o">)</span>
+</span><span class='line'>System Call Overhead                         525047.2 lps   <span class="o">(</span>10.0 s, 7 samples<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>System Benchmarks Index Values               BASELINE       RESULT    INDEX
+</span><span class='line'>Dhrystone 2 using register variables         116700.0   12579232.4   1077.9
+</span><span class='line'>Double-Precision Whetstone                       55.0       2268.2    412.4
+</span><span class='line'>Execl Throughput                                 43.0       1140.1    265.1
+</span><span class='line'>File Copy 1024 bufsize 2000 maxblocks          3960.0     270525.4    683.1
+</span><span class='line'>File Copy 256 bufsize 500 maxblocks            1655.0      77911.8    470.8
+</span><span class='line'>File Copy 4096 bufsize 8000 maxblocks          5800.0     709368.9   1223.0
+</span><span class='line'>Pipe Throughput                               12440.0     394585.6    317.2
+</span><span class='line'>Pipe-based Context Switching                   4000.0      40293.3    100.7
+</span><span class='line'>Process Creation                                126.0       1908.7    151.5
+</span><span class='line'>Shell Scripts <span class="o">(</span>1 concurrent<span class="o">)</span>                     42.4       1539.5    363.1
+</span><span class='line'>Shell Scripts <span class="o">(</span>8 concurrent<span class="o">)</span>                      6.0        204.1    340.2
+</span><span class='line'>System Call Overhead                          15000.0     525047.2    350.0
+</span><span class='line'>                                                                  <span class="o">========</span>
+</span><span class='line'>System Benchmarks Index Score                                         382.2
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-30T12:02:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/vps/'>vps</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -787,300 +970,6 @@ ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a &hellip;">
 
 
 	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/04/27/auto-backup-data-in-vps-using-python-script-to-control/">
-		
-			dropbox自动备份VPS</a>
-	</h2>
-	<div class="entry-content">
-		<p>在<a href="http://www.deepvps.com/dropbox-backup.html" target="_blank">这里看过的文章，感觉很不错，于是发表过来，但发现有点问题，我就自己再改改。</p>
-
-<p>安装linux下的dropbox（我的是32为系统，如果是64位在下面地址末尾加上“_64”即可）：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget -O dropbox.tar.gz http://www.dropbox.com/download?plat<span class="o">=</span>lnx.x86
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>解压后在.dropbox-dist目录中有dropboxd可执行文件，让其在后台执行（就是在执行文件后面加“&amp;”符号）</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>~/.dropbox-dist/dropboxd &amp;
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>此后会出现一个地址，你得复制出来然后在浏览器中打开，之后就是注册或者登陆dropbox，这样就激活了在这台机器上的dropbox，就可以同步文件了。</p>
-
-<p>把需要同步备份的文件软连接到Dropbox这个目录中：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~/Dropbox
-</span><span class='line'>ln -s /home/wwwroot/
-</span><span class='line'>。。。
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>此时dropbox已经在帮你同步了，你可以通过web端观察。</p>
-
-<p>我看到的文章中带着一个自动运行的脚本，用sh写的，我发现在主机上运行没反应，不会sh，会点python，于是我改写了一下，也是可用的：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
-</span><span class='line'><span class="c"># coding: utf-8</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">start</span><span class="p">():</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Starting Dropbox...&quot;</span>
-</span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;~/.dropbox-dist/dropboxd &amp;&quot;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">stop</span><span class="p">():</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Stoping Dropbox...&quot;</span>
-</span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;pkill dropbox&quot;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">restart</span><span class="p">():</span>
-</span><span class='line'><span class="n">stop</span><span class="p">()</span>
-</span><span class='line'><span class="n">start</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class='line'><span class="n">action</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;now action: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">action</span>
-</span><span class='line'><span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="s">&#39;start&#39;</span><span class="p">:</span>
-</span><span class='line'><span class="n">start</span><span class="p">()</span>
-</span><span class='line'><span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s">&quot;stop&quot;</span><span class="p">:</span>
-</span><span class='line'><span class="n">stop</span><span class="p">()</span>
-</span><span class='line'><span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="s">&quot;restart&quot;</span><span class="p">:</span>
-</span><span class='line'><span class="n">restart</span><span class="p">()</span>
-</span><span class='line'><span class="k">else</span><span class="p">:</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Bad arguments!&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>相应的crontab配置文件中这样写就好了：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#auto dropbox</span>
-</span><span class='line'>0 4 * * * python /root/dropbox.py restart
-</span><span class='line'>0 5 * * * python /root/dropbox.py stop
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果没装crontab（极少情况），这样(也许你用apt-get来做这件事，我的是centos系统，用yum了)：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>yum -y install crontab
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>python让我很快乐：）</p>
-
-<p>一开始在python用的是exec来执行命令发现不可用，于是用了os.system，查看pydoc才发现exec是执行python code用的……惭愧！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-27T17:51:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/04/20/grub-table-from-html-using-pything/">
-		
-			抓取一些网页上的表格</a>
-	</h2>
-	<div class="entry-content">
-		<p>这些表格是所有参加比赛的学生成绩单，当然只有省份、学校、准考证、姓名、组别、奖项、是否进入决赛这几个列，我用python写的脚本来抓取，存入了本地的一个excel中，所以除了python环境之外还需要xlwt这个包包：）</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#/usr/bin/env python</span>
-</span><span class='line'><span class="c">#coding: utf-8</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">urllib2</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">xlwt</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">link_list</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'><span class="n">xls</span> <span class="o">=</span> <span class="n">xlwt</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
-</span><span class='line'><span class="n">table</span> <span class="o">=</span> <span class="n">xls</span><span class="o">.</span><span class="n">add_sheet</span><span class="p">(</span><span class="s">&quot;main&quot;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">288</span><span class="p">,</span> <span class="mi">318</span><span class="p">):</span>
-</span><span class='line'><span class="n">link_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;http://www.lanqiao.org/Article/ShowArticle.asp?ArticleID=</span><span class="si">%d</span><span class="s">&quot;</span><span class="o">%</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">chinese</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'><span class="n">content</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'><span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">link_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'><span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">link_list</span><span class="p">:</span>
-</span><span class='line'><span class="k">print</span> <span class="n">link</span>
-</span><span class='line'><span class="k">try</span><span class="p">:</span>
-</span><span class='line'><span class="n">content</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="n">link</span><span class="p">,</span> <span class="n">timeout</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</span><span class='line'><span class="n">link_list</span> <span class="o">=</span> <span class="n">link_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-</span><span class='line'><span class="k">except</span><span class="p">:</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;timeout!&quot;</span>
-</span><span class='line'><span class="k">if</span> <span class="n">link</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">link_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-</span><span class='line'><span class="n">link_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
-</span><span class='line'><span class="n">some</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">u&#39;&lt;TR.*?&lt;\/TR&gt;&#39;</span><span class="p">,</span> <span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;gbk&#39;</span><span class="p">,</span> <span class="s">&#39;ignore&#39;</span><span class="p">),</span> <span class="n">re</span><span class="o">.</span><span class="n">S</span><span class="p">)</span>
-</span><span class='line'><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">some</span><span class="p">:</span>
-</span><span class='line'><span class="n">chinese_value</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">u&#39;(?&lt;=</span><span class="se">\u5b8b\u4f53</span><span class="s">&gt;).*(?=&lt;\/FONT&gt;)&#39;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
-</span><span class='line'><span class="n">chinese</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chinese_value</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chinese</span><span class="p">)):</span>
-</span><span class='line'><span class="n">tmp</span> <span class="o">=</span> <span class="n">chinese</span><span class="p">[</span><span class="n">line</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">)):</span>
-</span><span class='line'><span class="n">table</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s">, </span><span class="si">%d</span><span class="s">, </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">xls</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">&#39;x.xls&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">link_list</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>链接抓取超时的时候会自动重新抓取，最终就有了一个叫x.xls的表格。其中有个省的数据有问题，可以在筛选中看到奖项这里面有个垃圾数据项，自己改改吧。</p>
-
-<p>里面的正则表达式耗费了我好久时间！！！不过我还是很欣慰能找到这行：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">(</span><span class="err">?</span><span class="o">&lt;=</span>\<span class="n">u5b8b</span>\<span class="n">u4f53</span><span class="o">&gt;</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="err">?</span><span class="o">=&lt;</span>\<span class="o">/</span><span class="n">FONT</span><span class="o">&gt;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>前面两个unicode是“宋体”，这个得看具体的html代码了，所以这个脚本没什么通用性……</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-20T09:34:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>

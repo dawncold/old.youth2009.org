@@ -4,7 +4,7 @@
   <title><![CDATA[Category: study | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/study/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-09-20T08:19:35+08:00</updated>
+  <updated>2014-11-22T14:24:29+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[linux-study]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/11/22/linux-study/"/>
+    <updated>2014-11-22T14:14:25+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/11/22/linux-study</id>
+    <content type="html"><![CDATA[<p>directory permission x means this directory can be work directory, if you want to write or read a file behind this directory, you must have permission x of this directory.</p>
+
+<p>directory permission w means you can delete or create files or directories behind this</p>
+
+<p>usr = unix software resource</p>
+
+<p>&ldquo;&ndash;&rdquo; means last work directory(cd /mnt;cd;cd &ndash;)</p>
+
+<p>umask means default permission minus this mask, e.g default new directory 777, if mask is 022, then you will get 777-022——>755 directory; default new file 666, is mask is 002, then you will get 666 &ndash; 002——>664 file. mask only can be set in (1, 2, 4) every bit, one bit means the sum of one permission group(current/group/others). umask is based on user, default root has a 0022 mask, normal user has a 0002 mask.</p>
+
+<p>lsattr/chattr is available on ext2/ext3 filesystem, add ‘+i’ attribute can lock one file, no edit or delete, even you are root, ‘+a’ attribute can let a file only accept append content, etc.</p>
+
+<p>SUID, SGID, SBIT special permission:
+there is a ’s’ on x position of user part, like ‘rws- &ndash; &ndash; &ndash; &ndash; -‘. SUID can only set to binary program, if user has x permission of this binary, it can temporarily get the owner permission of this binary, e.g binary ‘passwd’ and /etc/shadow file, shadow only can be updated by root, but every user can change their password via ‘passwd’, it means the user temporarily get owner(root) permission by SUID special permission.
+SGID similar as SUID, there will be a ’s’ on x position of group part like ‘rwx- &ndash; s &ndash; &ndash; x’. if a user can execute binary, he will temporarily get owner permission, e.g binary ‘locate’ and file ‘mlocate.db’. SGID can be set on a directory, it means if a user have r and x permission of one directory, and ’s’ set on this directory, this user can create a file which owner group is this directory’s.
+SBIT(Sticky BIT) only set to directory, if a directory has this permission, a user who can create file or directory on this directory, the new file or new directory can only delete by root or himself, e.g /tmp directory, root can delete your new file, and you can also delete it, but others can not.
+SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SBIT, if omit, this bit is zero, if you set a invalid SUID/SGID/SBIT, there will be upper case S/T, lower case is valid.</p>
+
+<p>find / -size 1M -exec ls -l {} \;     {} means the args from find, “\;” means the end of “exec”, commands in exec can not use alias.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[external disk with openwrt]]></title>
@@ -139,33 +166,6 @@ option enabled_fsck 0
 <p>RARP&rsquo;s reply is unicast.</p>
 
 <p>The implementation of RARP server is complex&hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[conceptual-models]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/08/19/conceptual-models/"/>
-    <updated>2013-08-19T22:12:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/08/19/conceptual-models</id>
-    <content type="html"><![CDATA[<h2>Conceptual Models</h2>
-
-<p>Designing software so that its structure reflects that of the problem.</p>
-
-<p>Analysis is not only listing requirments, but also looking behind the surface requirments to come up with a mental model of what is going in the problem.</p>
-
-<p>Conceptual model is a human artifact.</p>
-
-<p>Developers use conceptual models to represent a model of the real world in order to understanding the read part of problems easily.</p>
-
-<p>There is no right or wrong model, merely one that is more useful for the job at hand.</p>
-
-<p>The example, snooker simulation, if your choose a Einsteinian model would be flexible enought to low speed or high speed situation, but the complexity is totally different you know, so the flexibility and many others aspects need a trade-off.</p>
-
-<p>When building a model in a programming language, maybe Python, you may get lost in this language or building this model using some features belong to Python, so this model is a Python-model, and it is hard to be implemented in other languages such as Java, PHP, etc. To avoid these problems, you need a third-party analysis techniques.</p>
-
-<p>Only domain experts could build right model, because of their domain knowledge.</p>
-
-<p>Conceptual model is closely to software interfaces rather than software implementations. One of the important things about OO is that it separates interface from implementation.</p>
 ]]></content>
   </entry>
   

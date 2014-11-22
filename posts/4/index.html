@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="Good design should be open for extension and closed for modification. You can extend the module instead of modifying some working code. Abstraction &hellip;">
+	<meta name="description" content="TCP, UDP, ICMP, IGMP need IP datagrams as data transmitting method. IP is a unrealiable and connectionless delivery service. unrealiable: no &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,188 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/07/27/internet-protocol/">
+		
+			Internet Protocol</a>
+	</h2>
+	<div class="entry-content">
+		<p>TCP, UDP, ICMP, IGMP need IP datagrams as data transmitting method.</p>
+
+<p>IP is a unrealiable and connectionless delivery service.</p>
+
+<ul>
+<li>unrealiable: no guarantee that an IP datagram successfully get to its destination.</li>
+<li>connectionless: IP doesn&rsquo;t maintain any state of successive datagrams, it means there is no order in IP datagrams, latter sent IP datagram may arrived before former sent.</li>
+</ul>
+
+
+<h2>Header</h2>
+
+<p>TOS: 3 bits precedence field(ignored today), 4 bits TOS(mini delay, max throughput, max relability, mini monetary cost), 1 bit always 0. TOS maynot supported by most TCP/IP implementations today, but some routing protocol such as OSPF and IS-IS are capable of making routing decisions based on this field.</p>
+
+<p>Furthermore, a host isn&rsquo;t required to receive a datagram larger than 576 bytes. TCP and UDP will divide user data into small pieces, so one IP datagram will below that limit.</p>
+
+<p>Some small IP datagram will be padded up to the mini length of frame, which maybe 46 or 38 bytes, so total length field is required when you want to know how long the IP datagram&rsquo;s length on earth.</p>
+
+<p>TTL: set by sender, if this datagram pass a router, it will decrease 1, when it reaches 0, this datagram will thrown away, and sender will received an ICMP message. prevent routing loop.</p>
+
+<p>Checksum: TCP, UDP, ICMP, IGMP use same algorithm to computing checksum. Since a router often cheages only TTL value, a router can incrementally update the checksum when it forwards a datagram, instead of calculating the checksum over the entire IP header again.</p>
+
+<h2>IP routing</h2>
+
+<p>The fundamental difference is that a host never forward a datagram from one of its interface to another, while a router forwards datagram.</p>
+
+<p>Router may reach a local optimum result, because every search route table, the router will get a closer next-hop router address, but it may not global optimum.</p>
+
+<p>Frame&rsquo;s destination address(MAC address) may not the really destination address, it may the next-hop router&rsquo;s MAC address, because when it is routing, it can&rsquo;t be found in the current network, it must be routed to a next-hop router, so the destination address is the next-hop router&rsquo;s.</p>
+
+<h2>Subnet addressing</h2>
+
+<p>Don&rsquo;t forget subtract 2, because all 0 bits and all 1 bits address for host address is invalid.</p>
+
+<p>The advantage to using s single class B address with 30 subnets, compared to 30 class C addresses, is that subnetting reduces the size of the Internet&rsquo;s routing tables entry.</p>
+
+<p>A special address: 127.x.x.x means loopback address, not only 127.0.0.1 can be loopback address!</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-27T23:02:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/tcpip/'>tcpip</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/07/27/link-layer/">
+		
+			Link-layer</a>
+	</h2>
+	<div class="entry-content">
+		<h2>link layer</h2>
+
+<h3>link layer&rsquo;s usage</h3>
+
+<ol>
+<li>send and receive IP datagram</li>
+<li>ARP request and reply</li>
+<li>RARP request and reply</li>
+</ol>
+
+
+<p>many different link layers, depending on the type of networking: ethernet, token ring, FDDI, RS232 serial lines, etc.</p>
+
+<p>IEEE 802.2/3 format and Ethernet format</p>
+
+<p>in 802 format, after 2 bytes length field, there are 3 bytes LLC and 5 bytes SNAP and data field(38~1492) but in Ethernet format, there will be data field(46~1500), the end field is 4 bytes CRC.</p>
+
+<p>frame formats use 48-bits destination and source address</p>
+
+<h2>SLIP: Serial Line IP</h2>
+
+<p>END &mdash; 0xc0</p>
+
+<p>SLIP ESC &mdash; 0xdb</p>
+
+<p>IP datagram will be terminated by a special character called END(0xc0), most implementations transmit an END at the beginning of the datagram.</p>
+
+<p>if a byte of IP datagram equals:</p>
+
+<p>0xc0 &mdash;> 0xdb, 0xdc</p>
+
+<p>0xdb&mdash;>0xdb, 0xdd</p>
+
+<h2>PPP</h2>
+
+<ol>
+<li>async link with 8bits of data and no parity(no checksum)</li>
+<li>bit-oriented sync links</li>
+</ol>
+
+
+<p>start and end with a flag byte whose value is 0x7e, and if a byte value appears in information field, it should be escaped.</p>
+
+<p>batter than SLIP:(pay for 3 bytes addition)</p>
+
+<ol>
+<li>multiple protocols on a serial line</li>
+<li>CRC</li>
+<li>IP network control protocol negotiate IP address for each end</li>
+<li>header compress like CSLIP</li>
+<li>link control protocol negotiate many data-link options</li>
+</ol>
+
+
+<h2>Loopback</h2>
+
+<p>127.0.0.1 or localhost is the loopback interface, an IP datagram sent to this must not appear on any network.</p>
+
+<p>datagrams sent to broadcast and multicast addtess are copied to the loopback interface and sent out on the Ethernet.</p>
+
+<p>anything sent to one of the host&rsquo;s own IP addresses is ent to the loopback interface!</p>
+
+<h2>MTU</h2>
+
+<p>if the length of data field in IP datagram is larger than MTU(1500 or 1492 in Ethernet and 802 format), it will be fragmented.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-27T00:03:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/tcpip/'>tcpip</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -513,102 +695,6 @@
 
 
 	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/nginx/'>nginx</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/06/15/some-sed-work/">
-		
-			Some-sed-work</a>
-	</h2>
-	<div class="entry-content">
-		<p>博客内容是从wordpress转过来的，不可避免有很多地方没转换好，当时懒得弄，今天得空学习Shell编程，讲到了sed，就又搞了一下，基本满意了。</p>
-
-<p>以前用sed替换过分类等简单的文字错误，今天主要是把一些html给替换掉了。</p>
-
-<p>把<code>&lt;p&gt;</code>删掉，在删掉<code>&lt;/p&gt;以及&lt;br /&gt;</code>后面加换行等：</p>
-
-<p><code>sed -i "" -e 's;&lt;/p&gt;;\'$'\n;g' *.markdown</code></p>
-
-<p><code>sed -i "" -e 's;&lt;br /&gt;;\'$'\n;g' *.markdown</code></p>
-
-<p>需要注意的是Mac OS中的sed和我看到的很不一样，所以这个替换都是特殊的，来自<a href="http://cafenate.wordpress.com/2010/12/05/newlines-in-sed-on-mac/">这里</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-15T16:34:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/06/13/pushd-and-popd/">
-		
-			Pushd-and-popd</a>
-	</h2>
-	<div class="entry-content">
-		<p>amazoing的两个命令，pushd和popd</p>
-
-<p>相关介绍：<a href="http://en.wikipedia.org/wiki/Pushd_and_popd">pushd &amp; popd</a></p>
-
-<p><code>pushd /etc</code>可以到etc目录下，工作完了后再用<code>popd</code>就回到了刚刚离开的目录。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-13T19:50:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
