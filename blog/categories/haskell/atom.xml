@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: haskell | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/haskell/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/haskell/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Haskell的学习开始了]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/03/03/start-haskell-study/"/>
+    <link href="http://www.youth2009.org/blog/2011/03/03/start-haskell-study/"/>
     <updated>2011-03-03T23:44:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/03/03/start-haskell-study</id>
+    <id>http://www.youth2009.org/blog/2011/03/03/start-haskell-study</id>
     <content type="html"><![CDATA[<p>总算是这本新书仍旧躺在图书馆的新书架上，上次看到后感觉没时间来学习，自己总是拼命追赶技术的前沿，而在这里是有难度的，虽然网络让我们和世界保持同步，但知识的追赶总还是需要时间来加冕。不知道这还算不算是技术前沿了，不过总是比其他的那些新了不少，函数式编程。</p>
 
 <p>这也是我第一次阅读全英文的技术书籍，以前也曾阅读过带注释的《程序员修炼之道》，可惜没有看完，现在图书馆中也见不到了，以后有机会再找回来看看。 Haskell的不少语法规则都和已经学过的编程语言差不多，如果一种新的语言推出了极其怪异的语法而它又不能自圆其说的话，那这门语言很快就将泯灭，原因不用多讲。这样的话学习起来就能稍微简单些了。 使用的书籍叫《Real World Haskell》。</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: chrome | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/chrome/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/chrome/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[终于知道为何chrome浏览器中的“其他书签”为何无法去掉了]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/02/24/i-know-why-the-other-bookmarks-can-not-be-delete-on-bookmark-toolbar/"/>
+    <link href="http://www.youth2009.org/blog/2011/02/24/i-know-why-the-other-bookmarks-can-not-be-delete-on-bookmark-toolbar/"/>
     <updated>2011-02-24T22:51:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/02/24/i-know-why-the-other-bookmarks-can-not-be-delete-on-bookmark-toolbar</id>
+    <id>http://www.youth2009.org/blog/2011/02/24/i-know-why-the-other-bookmarks-can-not-be-delete-on-bookmark-toolbar</id>
     <content type="html"><![CDATA[<p><img src="http://pic.yupoo.com/loose_v/ASbtBMXR/TI9ji.png" alt="" /></p>
 
 <p>早就看着这个文件夹不顺眼，但就是无法删除，打开chrome的书签管理器发现它和“书签栏”是同级的，刚刚去研究了一番chrome的扩展程序，本以为通过chrome本身能够操控自己，但经过实践后发现这根本行不通。 建立一个chrome的扩展程序是这样的：</p>

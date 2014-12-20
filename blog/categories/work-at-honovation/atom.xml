@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: work@honovation | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/work-at-honovation/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/work-at-honovation/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Object.keys-and-JSON-in-IE6]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/12/08/object-dot-keys-and-json-in-ie6/"/>
+    <link href="http://www.youth2009.org/blog/2013/12/08/object-dot-keys-and-json-in-ie6/"/>
     <updated>2013-12-08T14:52:12+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/12/08/object-dot-keys-and-json-in-ie6</id>
+    <id>http://www.youth2009.org/blog/2013/12/08/object-dot-keys-and-json-in-ie6</id>
     <content type="html"><![CDATA[<p>下单页面用到了js中的JSON和Object.keys，都是坑。</p>
 
 <p>JSON虽然是build-in的JSON parser和stringify方法，但IE6，7，8(Q)都是无法使用的，如果用jQuery的话，可以用jQuery的parseJSON来解析，但stringify的话需要依赖第三方库或者自己实现，我用了JSON3.js这个库。首选build-in的parse和stringify方法，如果没有就实现。github地址：<a href="https://github.com/bestiejs/json3">https://github.com/bestiejs/json3</a></p>
@@ -40,9 +40,9 @@ for(var p in obj) {</p>
   
   <entry>
     <title type="html"><![CDATA[timestamp]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/08/20/timestamp/"/>
+    <link href="http://www.youth2009.org/blog/2013/08/20/timestamp/"/>
     <updated>2013-08-20T21:56:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/08/20/timestamp</id>
+    <id>http://www.youth2009.org/blog/2013/08/20/timestamp</id>
     <content type="html"><![CDATA[<p>今天在做批量导入图片功能的时候，发现一个问题，原先save image过程用timestamp当文件名，这样在一般使用的时候倒是没什么问题了，但让程序去做的时候，timestamp就显得不好用了，程序跑的很快，可能三四张图都在1s内处理完上传，这样就很难保证文件名不重复。</p>
 
 <p>传一张停1秒呢？问题不大，但看着还是不保险，而且变慢了，因为要等。。。</p>
@@ -53,9 +53,9 @@ for(var p in obj) {</p>
   
   <entry>
     <title type="html"><![CDATA[basestring-and-str-in-python2x]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/08/08/basestring-and-str-in-python2x/"/>
+    <link href="http://www.youth2009.org/blog/2013/08/08/basestring-and-str-in-python2x/"/>
     <updated>2013-08-08T21:39:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/08/08/basestring-and-str-in-python2x</id>
+    <id>http://www.youth2009.org/blog/2013/08/08/basestring-and-str-in-python2x</id>
     <content type="html"><![CDATA[<p>今天在代码中发现原本过滤str的一个func被写成了过滤basestring，于是查了下basestring和str的区别：(在3.0之前)</p>
 
 <p>&#8220;`</p>
@@ -79,9 +79,9 @@ for(var p in obj) {</p>
   
   <entry>
     <title type="html"><![CDATA[use-change-event-on-checkbox]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/07/26/use-change-event-on-checkbox/"/>
+    <link href="http://www.youth2009.org/blog/2013/07/26/use-change-event-on-checkbox/"/>
     <updated>2013-07-26T09:07:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/07/26/use-change-event-on-checkbox</id>
+    <id>http://www.youth2009.org/blog/2013/07/26/use-change-event-on-checkbox</id>
     <content type="html"><![CDATA[<p>昨天在一个table的第一行放了一个checkbox, 想做一个效果：一开始这个table的每一行都是冻结状态，点击这一行就激活了，顺便会把checkbox选中，当然直接点checkbox也会激活这一行。可惜在bind event的时候，分别给tr和checkbox加了click事件，tr的click会trigger到checkbox上，这样导致的结果就是点tr会触发checkbox的click handler，但同时又触发了tr的click handler，循环导致最后js崩溃。</p>
 
 <p>后来发现在tr的click handler中检查event.target可以不触发这种死循环，但在checkbox click handler中使用prop判断checked状态不准，在stackoverflow中找到解答：jquery1.8中的 click()和真实的click是不一样的，应该在checkbox上用change event，然后一切ok。</p>
@@ -92,9 +92,9 @@ for(var p in obj) {</p>
   
   <entry>
     <title type="html"><![CDATA[suds-literal-soap]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/07/08/suds-literal-soap/"/>
+    <link href="http://www.youth2009.org/blog/2013/07/08/suds-literal-soap/"/>
     <updated>2013-07-08T22:16:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/07/08/suds-literal-soap</id>
+    <id>http://www.youth2009.org/blog/2013/07/08/suds-literal-soap</id>
     <content type="html"><![CDATA[<p>SAP的接口就是和别人给的不一样，style为literal，最明显的地方就是operation中的参数是literal，原先的参数是一个object，按照原先的方法调用时发现传递过去的值都被放在了第一个参数中，很是不解。后来才知道这样的operation需要用keywords的那种传值方法——<code>**suds_client.dict(object)</code>，用suds的client的dict方法把构造的对象变成dict，再用<code>**</code>。</p>
 
 <p>又被坑了一下。</p>

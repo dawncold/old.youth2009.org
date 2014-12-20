@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: wodeyitian | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/wodeyitian/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/wodeyitian/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[为项目搭建git版本控制]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/02/24/git-for-project/"/>
+    <link href="http://www.youth2009.org/blog/2011/02/24/git-for-project/"/>
     <updated>2011-02-24T17:37:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/02/24/git-for-project</id>
+    <id>http://www.youth2009.org/blog/2011/02/24/git-for-project</id>
     <content type="html"><![CDATA[<p>这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １.安装git就不再多说了，我似乎把redhat中的一个仓库加入了rpm，直接yum install -y git安装了，不如下载源代码安装的git版本高，我这里似乎只有１.５的版本。 ２.我使用了gitosis来管理所有的项目，所以：  </p>
 
 <p><code>
@@ -75,18 +75,18 @@ git push
   
   <entry>
     <title type="html"><![CDATA[网站开发告一段落]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/02/19/pause-website-development/"/>
+    <link href="http://www.youth2009.org/blog/2011/02/19/pause-website-development/"/>
     <updated>2011-02-19T13:26:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/02/19/pause-website-development</id>
+    <id>http://www.youth2009.org/blog/2011/02/19/pause-website-development</id>
     <content type="html"><![CDATA[<p>刚刚把一个比较大的功能完成了——日历。还有一个星期就要回去了，我这次回家拿回来的几本书还没有看完，PHP的那本书看得差不多了，还没有回头细看，可能还需要再带回去。《深入理解计算机系统》那本书没有看，打算剩下的这一个星期全看那本书，能看多少是多少，不能总和PHP为伍，毕竟回去了有不少人还是能帮我继续做网站的！</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[应用通过审核之后]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/02/16/after-app-approved/"/>
+    <link href="http://www.youth2009.org/blog/2011/02/16/after-app-approved/"/>
     <updated>2011-02-16T21:35:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/02/16/after-app-approved</id>
+    <id>http://www.youth2009.org/blog/2011/02/16/after-app-approved</id>
     <content type="html"><![CDATA[<p>这是第二次进行人人网的应用审核了，第一次只是把网站于人人网连接起来就草草申请审核，很快被打了回来，前天刚刚实现了发表新鲜事到人人网的功能，这次就有理由来申请了。今天下午我打开人人网，看到站内信中有开放平台发来的信件，告诉我已经上线了，至此，我的一天网站又一大功能实现了。</p>
 
 <p>其实我不是很想实现与这些网站的连接，只是因为开放API的方式已经渐渐成了国内网站的主流，相信这点在国外同类网站已经做得相当成熟了，在国内，就连Tencent都喊着要开放了。实现与这些网站得对接能够利用他们已经建立的用户资源，也就是分享他们的用户，这点对于一个新兴的、不完全靠创新的网站是很有必要的。</p>

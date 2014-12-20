@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: host | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/host/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/host/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[国内不能待了]]></title>
-    <link href="http://www.youth2009.org/www/blog/2010/12/01/website-can-not-found-in-my-country/"/>
+    <link href="http://www.youth2009.org/blog/2010/12/01/website-can-not-found-in-my-country/"/>
     <updated>2010-12-01T13:30:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2010/12/01/website-can-not-found-in-my-country</id>
+    <id>http://www.youth2009.org/blog/2010/12/01/website-can-not-found-in-my-country</id>
     <content type="html"><![CDATA[<p>也许是我购买的这个主机比较差吧，时不时出现宕机的情况，悔恨当初没有去买个好的主机，不过好的主机毕竟很贵，比如易联的入门主机要600一年，机房在上海外高架桥，是个电信机房，在全国口碑似乎还不错，本来打算买，就是价格很难接受，现在他们竟然送Win7旗舰版的序列号，随便买个主机就可以，我有点后悔，因为已经买了Win7专业版！</p>
 
 <p>对于现在市面上普遍见到的好几片云彩，倒是很喜欢，想把博客迁移过去，那样起码能够保证三个九的网站在线时间（99.9%），好像新浪的云彩是保证三个九的，记不清楚了。不过现在只有新浪的云彩是用php+mysql架构；Google的现在应该是Python、Java；Amazon那个我还没怎么研究，微软的能够运行php程序，但数据库肯定是mssql了。难道要让我放弃使用已久的WordPress么？</p>

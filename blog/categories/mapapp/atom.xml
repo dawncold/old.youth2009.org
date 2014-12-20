@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: mapapp | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/mapapp/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/mapapp/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[项目要收工了]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/06/01/mapapp-approaches-end/"/>
+    <link href="http://www.youth2009.org/blog/2011/06/01/mapapp-approaches-end/"/>
     <updated>2011-06-01T18:04:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/06/01/mapapp-approaches-end</id>
+    <id>http://www.youth2009.org/blog/2011/06/01/mapapp-approaches-end</id>
     <content type="html"><![CDATA[<p>虽然最后的几个功能还没有完成，但总归目前已经能用了。如果说端午过后还有机会继续提交的话，可能最终就是完成这几个功能吧。不过最大的问题是现在已经到了考试前夕，如果不想承受考前突击带来的痛苦和自责，那必须得提前准备，何况今年还要考英语四级。按照Fnln的说法，按照正常退步速度就能通过，但我已经不清楚现在是不是正常退步速度了，应该还没有吧，仅仅是最近大家都在复习的时候我在做网站而已：）</p>
 
 <p>刚刚用phpDocumentor把文档生成出来了，还遇到了可恶的乱码问题，最终用了强大的替换工具，硬生生把字符集换成了utf8，总算是解决了吧，虽然解决方法不太好，但这是个看结果的事情：）</p>
@@ -28,9 +28,9 @@
   
   <entry>
     <title type="html"><![CDATA[项目在冲刺]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/05/29/project-is-rushing/"/>
+    <link href="http://www.youth2009.org/blog/2011/05/29/project-is-rushing/"/>
     <updated>2011-05-29T06:48:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/05/29/project-is-rushing</id>
+    <id>http://www.youth2009.org/blog/2011/05/29/project-is-rushing</id>
     <content type="html"><![CDATA[<p>看着日期就要到最后提交的日子了，这几天一直都在写最后的几个功能，昨天写的是活动功能，基本上完工了吧，只是没有一个很好的展示效果。今天主要做做基础通知功能，这个功能完成后就能把以前的很多模块产生的消息应用起来，首页也有一个不断抓取消息的语句。其实还是接口抓取啦，不知道那些大型网站，比如新浪微博是如何做这个的，可能也是如此吧。</p>
 
 <p>其实这样想来，做一个即使聊天的东西也就是这样吧，不断从一个接口抓取消息，不断向一个地方发送消息即可，只是若这样实现，会不会对数据库的压力非常大呢？也许还有更好的办法处理即时消息，比如NoSQL？</p>
@@ -41,9 +41,9 @@
   
   <entry>
     <title type="html"><![CDATA[懒得写博客了]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/05/14/i-am-tired-to-create-blog/"/>
+    <link href="http://www.youth2009.org/blog/2011/05/14/i-am-tired-to-create-blog/"/>
     <updated>2011-05-14T18:13:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/05/14/i-am-tired-to-create-blog</id>
+    <id>http://www.youth2009.org/blog/2011/05/14/i-am-tired-to-create-blog</id>
     <content type="html"><![CDATA[<p>最近一直还在忙活学校的那个项目，还有自己要做的同学录，看着日子越来越紧张，我也变得越来越紧张：）</p>
 
 <p>学校的项目还有不多的工作了，我赶紧忙活一下，最后的几个功能也差不多没问题了，琐碎的工作交给另一个人了，这几天我没管，希望他做了些什么吧。同学录的工作写了不少代码，没去统计，外部引用的js库太多了，一统计都是别人的工作：（</p>

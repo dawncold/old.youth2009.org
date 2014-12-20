@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: gameapp | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/gameapp/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/gameapp/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[VertexHelper的使用]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/08/04/use-vertexhelper/"/>
+    <link href="http://www.youth2009.org/blog/2011/08/04/use-vertexhelper/"/>
     <updated>2011-08-04T23:02:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/08/04/use-vertexhelper</id>
+    <id>http://www.youth2009.org/blog/2011/08/04/use-vertexhelper</id>
     <content type="html"><![CDATA[<p>最近在用Box2d开发小游戏，不可避免用到多边形物体，当然有的形状还好描述，但大多数是那种难以描述的物体，所以这个VertexHelper就是不可或缺的武器了，它能够让你把需要的物体边界描出来，自动生成Box2d需要的边界代码。</p>
 
 <p>没想到作者把软件放到app store上卖，但还提供源代码，不知道他们之间是什么不一样……</p>
@@ -30,9 +30,9 @@
   
   <entry>
     <title type="html"><![CDATA[惨痛的Box2d经验]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/07/23/sadly-box2d-expreiences/"/>
+    <link href="http://www.youth2009.org/blog/2011/07/23/sadly-box2d-expreiences/"/>
     <updated>2011-07-23T11:30:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/07/23/sadly-box2d-expreiences</id>
+    <id>http://www.youth2009.org/blog/2011/07/23/sadly-box2d-expreiences</id>
     <content type="html"><![CDATA[<p>说来也可笑，Box2d中有各种各样的Shape，有多边形，矩形，圆形。我就是在用圆形的时候遇到的这样的问题：需要设置圆形的半径，我就用了这样的表达式：26 / PTM_RADIO，后面的是一个宏定义，表示拿多少像素和box2d中的米作为兑换。我这样设置后总看着圆形很不正常，半径不对，而且落到底边也不弹起来，为此还查找了API、Google等地方，看着别人的代码都没问题，就是自己的不正常。</p>
 
 <p>最终还是解决了这样的问题，真羞愧，原来半径需要一个float的值，但我的表达式算出来的应该是int，不过我也曾经写过 float radius = 26 / PTM_RADIO这样的，再把radius给半径，依然无果，感觉即便是类型不对也应该自动转换过去吧，没想到这里还就是不行了。</p>
@@ -45,9 +45,9 @@
   
   <entry>
     <title type="html"><![CDATA[Box2d的简单使用]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/07/20/simple-intro-to-box2d/"/>
+    <link href="http://www.youth2009.org/blog/2011/07/20/simple-intro-to-box2d/"/>
     <updated>2011-07-20T13:49:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/07/20/simple-intro-to-box2d</id>
+    <id>http://www.youth2009.org/blog/2011/07/20/simple-intro-to-box2d</id>
     <content type="html"><![CDATA[<p>真不太想写，因为写这篇日志应该比写一个程序都要复杂。</p>
 
 <p>我介绍的是box2d引擎在iphone上的使用方法，网上也有不少介绍的，我再简单啰嗦一番：</p>
@@ -66,9 +66,9 @@
   
   <entry>
     <title type="html"><![CDATA[用python处理词汇]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/07/19/process-cis-and-zis-with-python/"/>
+    <link href="http://www.youth2009.org/blog/2011/07/19/process-cis-and-zis-with-python/"/>
     <updated>2011-07-19T14:06:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/07/19/process-cis-and-zis-with-python</id>
+    <id>http://www.youth2009.org/blog/2011/07/19/process-cis-and-zis-with-python</id>
     <content type="html"><![CDATA[<p>要整理一些词汇，并且还要给每个词汇编码，我把所有的词汇分割称了独立的汉字，再把这些汉字压缩，去掉重复的汉字，最后把这些汉字导入数据库，得到了每个汉字的id，把这些id组合起来作为词的编码，这样还算是好用吧。</p>
 
 <p>用python写了7个脚本来做这些工作，最后得到了近7万条记录，包括单独的字和一些词。因为要用来做iphone应用，所以数据库用的是sqlite，大约4MB的数据，看来这些数据已经很够用了吧。</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: vps | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/vps/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/vps/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[upgrade-to-linode-for-not-waiting]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/12/03/upgrade-to-linode-for-not-waiting/"/>
+    <link href="http://www.youth2009.org/blog/2013/12/03/upgrade-to-linode-for-not-waiting/"/>
     <updated>2013-12-03T22:32:58+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/12/03/upgrade-to-linode-for-not-waiting</id>
+    <id>http://www.youth2009.org/blog/2013/12/03/upgrade-to-linode-for-not-waiting</id>
     <content type="html"><![CDATA[<p>上个月买了linode的vps，不知道干什么用，光翻墙了，月底干脆就关了，觉得这样翻墙的成本太高了，完全可以租个便宜的vps来用，后来觉得还是linode好。</p>
 
 <p>在用linode之前用过digitalocean，那时候DO刚刚起步，速度不错，主要是华人不多，而且价格一如既往的便宜，公司决定买这个翻墙用，但后来速度一天天慢下来了，看到最近DO的推广力度增大，可能这就是为啥速度不理想的原因。</p>
@@ -40,9 +40,9 @@
   
   <entry>
     <title type="html"><![CDATA[be-blocked-by-GFW]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/03/20/be-blocked-by-gfw/"/>
+    <link href="http://www.youth2009.org/blog/2013/03/20/be-blocked-by-gfw/"/>
     <updated>2013-03-20T21:04:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/03/20/be-blocked-by-gfw</id>
+    <id>http://www.youth2009.org/blog/2013/03/20/be-blocked-by-gfw</id>
     <content type="html"><![CDATA[<p>不知什么原因，我的VPS进入了全国路由监视节点。。。现实只要是谁打算ssh过去，就会被封锁一段时间。根据某人告知，这是进入短名单后的action，可以探测我换端口什么的操作，相信离IP被封已经不远了！</p>
 
 <p>VPS啊，先提前和你说R.I.P.吧</p>
@@ -51,9 +51,9 @@
   
   <entry>
     <title type="html"><![CDATA[VPS中部署了Flask框架]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/07/02/deploy-flask-on-my-vps/"/>
+    <link href="http://www.youth2009.org/blog/2012/07/02/deploy-flask-on-my-vps/"/>
     <updated>2012-07-02T20:46:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/07/02/deploy-flask-on-my-vps</id>
+    <id>http://www.youth2009.org/blog/2012/07/02/deploy-flask-on-my-vps</id>
     <content type="html"><![CDATA[<p>一开始我也是用web.py的，不料接受不了它的session处理，然后离开，Django这种庞大的东西我是没精力去研究了，当然开始也伴随激情看过文档，没坚持下去，后来和强锅一起找了不少框架做东西，我实践性比较强，就找到了Flask，感觉还挺好用的，做了一个todo，有兴趣可以看：<a href="http://todo.wodeyitian.com%E3%80%82">http://todo.wodeyitian.com%E3%80%82</a></p>
 
 <p>原先部署在dotcloud上，刚刚在自己的VPS上完成了nginx+uwsgi+flask的集成，当然还是没有废弃掉php，为了好几个博客嘛～</p>
@@ -91,9 +91,9 @@ uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost
   
   <entry>
     <title type="html"><![CDATA[迁移到了新VPS上]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/06/13/migrate-to-new-vps/"/>
+    <link href="http://www.youth2009.org/blog/2012/06/13/migrate-to-new-vps/"/>
     <updated>2012-06-13T16:22:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/06/13/migrate-to-new-vps</id>
+    <id>http://www.youth2009.org/blog/2012/06/13/migrate-to-new-vps</id>
     <content type="html"><![CDATA[<p>前面几篇log中有提及，实在无法忍受yardvps的服务了，一开始真的不错，但现在越来越不行了，可能这就是标志着一个vps提供商由正规经营到超卖的转变。上次停机超过了24个小时，发了ticket过去问，结果是说我被ddos了，就自动把我从网络中断开了，真有意思的说法，反正已经无法考证其真实性了，我只好选择离开。</p>
 
 <p>新的VPS比以前贵，大约是每月10刀（原来的512Mb的YardVPS是7.59刀），但新的vps性能很好，网络也很好很快，希望能一直用下去，贵点就贵点呗，比起神器Linode便宜了不少。</p>
@@ -104,9 +104,9 @@ uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost
   
   <entry>
     <title type="html"><![CDATA[sudo 出现unable to resolve host 解决方法]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/06/08/solved-sudo-unable-to-resolve-host/"/>
+    <link href="http://www.youth2009.org/blog/2012/06/08/solved-sudo-unable-to-resolve-host/"/>
     <updated>2012-06-08T16:23:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/06/08/solved-sudo-unable-to-resolve-host</id>
+    <id>http://www.youth2009.org/blog/2012/06/08/solved-sudo-unable-to-resolve-host</id>
     <content type="html"><![CDATA[<p>执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）</p>
 
 <p><code>bash

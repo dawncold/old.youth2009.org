@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: agile | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/agile/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/agile/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[坏味的简单分析]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/03/05/agile-develop-simple-bad-smell-analytics/"/>
+    <link href="http://www.youth2009.org/blog/2011/03/05/agile-develop-simple-bad-smell-analytics/"/>
     <updated>2011-03-05T22:10:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/03/05/agile-develop-simple-bad-smell-analytics</id>
+    <id>http://www.youth2009.org/blog/2011/03/05/agile-develop-simple-bad-smell-analytics</id>
     <content type="html"><![CDATA[<p>软件工程的设计是一种抽象概念，设计的最终体现是源代码。</p>
 
 <p>软件需求总在变化，本来一个简单的程序，经过几次需求变化就需要添加上很多额外的参数来控制流程，这时根本不可能期望修改接口，因为这时很多模块可能已经在使用你，如果你进行了更改，依赖你的所有代码都需要重新编译，这在一个庞大的项目中简直就是灾难！</p>

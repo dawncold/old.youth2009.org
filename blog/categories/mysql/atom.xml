@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: mysql | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/mysql/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/mysql/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[mysql只允许127.0.0.1连接的解决方法]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/06/05/solved-mysql-refuse-localhost-connection/"/>
+    <link href="http://www.youth2009.org/blog/2012/06/05/solved-mysql-refuse-localhost-connection/"/>
     <updated>2012-06-05T10:30:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/06/05/solved-mysql-refuse-localhost-connection</id>
+    <id>http://www.youth2009.org/blog/2012/06/05/solved-mysql-refuse-localhost-connection</id>
     <content type="html"><![CDATA[<p>我上次记录过一次这样的情况，突然间所有的php应用无法连接数据库了，但可惜我忘记是为何导致了这样的结果，总是有很多奇怪的地方在这个vps上发生，比如有次突然在某个app中出现了嵌入的广告，这个app可是我写的呀，怎么会有广告？！还有就是那次mysql突然无法连接了，最后用127.0.0.1代替了localhost。</p>
 
 <p>昨晚国庆安装了织梦的后台，但提示无法使用数据库，由于昨天太晚了没有深入研究，早晨起来看了一下，有人说去查看data/common.inc.php文件中的信息，我去看了一下，突然想起来localhost不能用了，于是改为127.0.0.1就可以了，但这也只是缓兵之计，于是想办法解决！</p>
@@ -30,9 +30,9 @@
   
   <entry>
     <title type="html"><![CDATA[ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link的问题]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/05/23/two-mysql-lib-issue-after-yum-update/"/>
+    <link href="http://www.youth2009.org/blog/2012/05/23/two-mysql-lib-issue-after-yum-update/"/>
     <updated>2012-05-23T19:50:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/05/23/two-mysql-lib-issue-after-yum-update</id>
+    <id>http://www.youth2009.org/blog/2012/05/23/two-mysql-lib-issue-after-yum-update</id>
     <content type="html"><![CDATA[<p>刚刚用yum升级了系统，发现日志中有很多这样的提示：</p>
 
 <p><code>bash
@@ -53,9 +53,9 @@ ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient
   
   <entry>
     <title type="html"><![CDATA[用python备份mysql]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/04/27/backup-mysql-databases-using-python/"/>
+    <link href="http://www.youth2009.org/blog/2012/04/27/backup-mysql-databases-using-python/"/>
     <updated>2012-04-27T20:44:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/04/27/backup-mysql-databases-using-python</id>
+    <id>http://www.youth2009.org/blog/2012/04/27/backup-mysql-databases-using-python</id>
     <content type="html"><![CDATA[<p>备份数据库的重要性不想多说了。</p>
 
 <p>&#8220;`python</p>
@@ -103,9 +103,9 @@ print &ldquo;finish!!!&rdquo;
   
   <entry>
     <title type="html"><![CDATA[重置MySQL密码]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/12/07/reset-the-password-of-mysql/"/>
+    <link href="http://www.youth2009.org/blog/2011/12/07/reset-the-password-of-mysql/"/>
     <updated>2011-12-07T17:46:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/12/07/reset-the-password-of-mysql</id>
+    <id>http://www.youth2009.org/blog/2011/12/07/reset-the-password-of-mysql</id>
     <content type="html"><![CDATA[<p>前几天在Mac系统下装了MySQL，装完后是默认没有给root用户带密码的，于是出于安全考虑我就加上了密码，加密码的方式如下：</p>
 
 <p><code>bash
@@ -136,9 +136,9 @@ FLUSH PRIVILEGES;
   
   <entry>
     <title type="html"><![CDATA[安装MySQLdb出现HAVE_WCSCOLL重定义问题的解决方法]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/08/08/mysqldb-have_wcscoll-redefined/"/>
+    <link href="http://www.youth2009.org/blog/2011/08/08/mysqldb-have_wcscoll-redefined/"/>
     <updated>2011-08-08T14:35:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/08/08/mysqldb-have_wcscoll-redefined</id>
+    <id>http://www.youth2009.org/blog/2011/08/08/mysqldb-have_wcscoll-redefined</id>
     <content type="html"><![CDATA[<p>问题就是这样了：</p>
 
 <p>&#8220;`bash

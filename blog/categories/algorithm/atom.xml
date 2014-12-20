@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: algorithm | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/algorithm/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/algorithm/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[逆序对的求解]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/05/07/solve-inversion-by-using-merge/"/>
+    <link href="http://www.youth2009.org/blog/2012/05/07/solve-inversion-by-using-merge/"/>
     <updated>2012-05-07T17:08:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/05/07/solve-inversion-by-using-merge</id>
+    <id>http://www.youth2009.org/blog/2012/05/07/solve-inversion-by-using-merge</id>
     <content type="html"><![CDATA[<p>今天看到算法导论上关于求解一个序列的逆序对的问题，以前自己在这个地方写着解答方法，不过今天怎么看都不懂了，从网上找了找，大都说得很模糊，不过自己突然有种领悟了的感觉，找了个简单的例子，实验了一下，自己的结论是正确的：）</p>
 
 <p>例子是（2，3，8，6，1）这个序列，找出所有的5个逆序对。最好的方法是nlogn复杂度的利用归并排序的副产品——merge部分统计，统计比较左右列表时，左侧大于右侧时“左侧”列表中剩余数目。</p>
@@ -99,9 +99,9 @@ merge_sort(lst, 0, len(lst) &ndash; 1)
   
   <entry>
     <title type="html"><![CDATA[9个数运算结果为110]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/04/08/9-numbers-calculate-110/"/>
+    <link href="http://www.youth2009.org/blog/2012/04/08/9-numbers-calculate-110/"/>
     <updated>2012-04-08T14:20:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/04/08/9-numbers-calculate-110</id>
+    <id>http://www.youth2009.org/blog/2012/04/08/9-numbers-calculate-110</id>
     <content type="html"><![CDATA[<p>昨天参加了一个小型编程比赛，有个题目是这样的，有1～9这九个数字，按照顺序排列着，你可以在他们之间加入加号、减号或者什么都不加，组成的算式经过运算后结果为110的输出出来。</p>
 
 <p>看着好简单的题目，当时比赛时候就是一下子没做出来，现在做好了，贴出来，如果有需要可以拿去用哈，代码风格不算好，因为是比赛嘛，又不是商业项目，先快速得到结果再说！</p>
@@ -241,9 +241,9 @@ All Run Time: 496ms
   
   <entry>
     <title type="html"><![CDATA[约瑟夫问题算法]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/04/23/algo-circle-count-quit/"/>
+    <link href="http://www.youth2009.org/blog/2011/04/23/algo-circle-count-quit/"/>
     <updated>2011-04-23T09:54:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/04/23/algo-circle-count-quit</id>
+    <id>http://www.youth2009.org/blog/2011/04/23/algo-circle-count-quit</id>
     <content type="html"><![CDATA[<p>昨晚还在忙碌网站，一个同学发来短信问了这样一个算法问题：一些人手拉手围成一个圈，从一个人开始报数，数到3的人退出，然后下一个人再开始报数，依然是数到3者退出，问最后剩下2个人是哪两个？</p>
 
 <p>这题目看起来不算难，但这要是不靠一个语言的特性来解决，还是有些麻烦的。我说的语言特性就是一个bt数组方法，比如说移除元素啊这样的方法，用纯粹的C语言来写最好了。不过我那位同学是在雪VB.net不知道那里有没有语言特性。我手头上正在写PHP网页，就干脆用PHP写一个出来试试吧：）  </p>

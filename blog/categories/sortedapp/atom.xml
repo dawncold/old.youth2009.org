@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: sortedapp | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/sortedapp/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/sortedapp/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[end-sorted]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/03/18/end-sorted/"/>
+    <link href="http://www.youth2009.org/blog/2013/03/18/end-sorted/"/>
     <updated>2013-03-18T22:10:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/03/18/end-sorted</id>
+    <id>http://www.youth2009.org/blog/2013/03/18/end-sorted</id>
     <content type="html"><![CDATA[<p>暂时终止sorted的开发，经历了两天痛苦的、没白没黑的、浑浑噩噩的探索后，还是没能搞定iPhone上一个icon的移动过程。实在不行我都打算直接去修改iconstate.plist文件了。。。但就是修改了不能马上响应，需要respring这点受不了！</p>
 
 <p>网上这方面的资料依然少的可怜，很多时间竟然是花在寻找headers文件了，最后才知道根本不需要。你只要有headers拿来看看就ok了，需要什么类的声明自己用@interface写在xm文件中就可以了。tweak的远离是做出dylib后加载，替代系统的api，headers文件对于你来说就是看，然后找需要哪些私有api即可。</p>
@@ -28,9 +28,9 @@
   
   <entry>
     <title type="html"><![CDATA[big-break-in-tweak-app-build]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/03/17/big-break-in-tweak-app-build/"/>
+    <link href="http://www.youth2009.org/blog/2013/03/17/big-break-in-tweak-app-build/"/>
     <updated>2013-03-17T09:15:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/03/17/big-break-in-tweak-app-build</id>
+    <id>http://www.youth2009.org/blog/2013/03/17/big-break-in-tweak-app-build</id>
     <content type="html"><![CDATA[<p>昨晚弄到1点多也没搞定iOSOpenDev，总是编译出问题，在irc上问了一下也没人回答我，看来还是有很多人在泡irc的！</p>
 
 <p>睡前又看了一下各种文章，等起床打算还是回归theos搞搞试试。</p>
@@ -79,9 +79,9 @@ cp -f ./ldid $THEOS/bin/ldid
   
   <entry>
     <title type="html"><![CDATA[open-development-env-for-xcode]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/03/16/open-development-env-for-xcode/"/>
+    <link href="http://www.youth2009.org/blog/2013/03/16/open-development-env-for-xcode/"/>
     <updated>2013-03-16T20:40:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/03/16/open-development-env-for-xcode</id>
+    <id>http://www.youth2009.org/blog/2013/03/16/open-development-env-for-xcode</id>
     <content type="html"><![CDATA[<p>发现一个问题，使用theos这个makefile工具做app有很大困难，就是headers不好管理，真希望能集成到xcode中开发tweak，结果发现了一个神器&mdash;&mdash;iOSOpenDev。</p>
 
 <p>安装好之后就能发现xcode中已经有很多可用的template了，对于tweak来说，有logos和CaptaionHook。logos就是theos，captainhook是另一个hook框架。</p>
@@ -94,9 +94,9 @@ cp -f ./ldid $THEOS/bin/ldid
   
   <entry>
     <title type="html"><![CDATA[build-up-env-for-sorted]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/03/16/build-up-env-for-sorted/"/>
+    <link href="http://www.youth2009.org/blog/2013/03/16/build-up-env-for-sorted/"/>
     <updated>2013-03-16T17:40:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/03/16/build-up-env-for-sorted</id>
+    <id>http://www.youth2009.org/blog/2013/03/16/build-up-env-for-sorted</id>
     <content type="html"><![CDATA[<p>找到了一篇教程，开始构建jailbreaken app的环境。</p>
 
 <p>基本需要的工具</p>
@@ -135,9 +135,9 @@ sudo make package
   
   <entry>
     <title type="html"><![CDATA[about-Sorted]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/03/16/about-sorted/"/>
+    <link href="http://www.youth2009.org/blog/2013/03/16/about-sorted/"/>
     <updated>2013-03-16T12:54:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/03/16/about-sorted</id>
+    <id>http://www.youth2009.org/blog/2013/03/16/about-sorted</id>
     <content type="html"><![CDATA[<p>早就考虑做这么一个app，不过拖延到现在了，再次佩服一下我的拖延症。</p>
 
 <p>Sorted是这样一个app，安装上之后就会跟踪你使用手机上app的习惯，根据使用频率给桌面的app排序，估计等你用一段时间之后，第一页的apps就是最常用的了。</p>

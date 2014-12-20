@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: study | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/study/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/study/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[linux-study]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/11/22/linux-study/"/>
+    <link href="http://www.youth2009.org/blog/2014/11/22/linux-study/"/>
     <updated>2014-11-22T14:14:25+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/11/22/linux-study</id>
+    <id>http://www.youth2009.org/blog/2014/11/22/linux-study</id>
     <content type="html"><![CDATA[<p>directory permission x means this directory can be work directory, if you want to write or read a file behind this directory, you must have permission x of this directory.</p>
 
 <p>directory permission w means you can delete or create files or directories behind this</p>
@@ -42,9 +42,9 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
   
   <entry>
     <title type="html"><![CDATA[external disk with openwrt]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/08/22/external-disk-with-openwrt/"/>
+    <link href="http://www.youth2009.org/blog/2014/08/22/external-disk-with-openwrt/"/>
     <updated>2014-08-22T23:05:57+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/08/22/external-disk-with-openwrt</id>
+    <id>http://www.youth2009.org/blog/2014/08/22/external-disk-with-openwrt</id>
     <content type="html"><![CDATA[<p>上次笔记本替换下来的硬盘闲在那里很久了，反正闲着没用，不如装点东西，比如监控的图片什么的，每分钟两张的速度拍，一个工作日，大约能有5G的数据，要是都传到七牛那么也就两天，免费的磁盘空间就满了，但绝大多数图片是没意义的，手动删的话，勤快些也行。</p>
 
 <p>不过要是存到磁盘上的话，就无所谓了，500G的空间，怎么能等好几个月之后再考虑，程序员都是很懒很懒的。。。</p>
@@ -104,9 +104,9 @@ option enabled_fsck 0
   
   <entry>
     <title type="html"><![CDATA[postgresql indexes]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/06/01/postgresql-indexes/"/>
+    <link href="http://www.youth2009.org/blog/2014/06/01/postgresql-indexes/"/>
     <updated>2014-06-01T10:18:27+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/06/01/postgresql-indexes</id>
+    <id>http://www.youth2009.org/blog/2014/06/01/postgresql-indexes</id>
     <content type="html"><![CDATA[<h1>Introduction</h1>
 
 <p>Indexes will speed up your read(SELECT) and write(INSERT, UPDATE, DELETE) operation on a table, but they should by removed when a query seldom or never used. Create a bit table&rsquo;s index will spend lot of time. By default, PostgreSQL allows reads (SELECT statements) to occur on the table in parallel with index creation, but writes (INSERT, UPDATE, DELETE) are blocked until the index build is finished. In production environments this is often unacceptable. It is possible to allow writes to occur in parallel with index creation, but there are several caveats to be aware of — for more information see <a href="http://www.postgresql.org/docs/9.3/static/sql-createindex.html#SQL-CREATEINDEX-CONCURRENTLY">Building Indexes Concurrently</a>.</p>
@@ -145,9 +145,9 @@ option enabled_fsck 0
   
   <entry>
     <title type="html"><![CDATA[log2n和log3n]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/05/30/log2n-log3n/"/>
+    <link href="http://www.youth2009.org/blog/2014/05/30/log2n-log3n/"/>
     <updated>2014-05-30T20:45:44+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/05/30/log2n-log3n</id>
+    <id>http://www.youth2009.org/blog/2014/05/30/log2n-log3n</id>
     <content type="html"><![CDATA[<p>merge sort的时间复杂度，log2n，曾经在算法书上看到过，相应的，merge sort也可以三分，复杂度变成log3n，好像还不错，但差多少呢？</p>
 
 <p>log3n=log2n/log2(3)，也就是只差了1/log2(3)对于看起来还更大。一般算法复杂度是log2n表示就是这个原因，loga(n)和log2n差不了太多，都是常数级别的差距，而且在复杂度分析的时候都会忽略常数，所以就简记为log2n复杂度了：）</p>
@@ -156,9 +156,9 @@ option enabled_fsck 0
   
   <entry>
     <title type="html"><![CDATA[rarp]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/08/25/rarp/"/>
+    <link href="http://www.youth2009.org/blog/2013/08/25/rarp/"/>
     <updated>2013-08-25T12:01:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/08/25/rarp</id>
+    <id>http://www.youth2009.org/blog/2013/08/25/rarp</id>
     <content type="html"><![CDATA[<h2>Packet Format</h2>
 
 <p>RARP packet is identical to ARP packet, differences: RARP &lsquo;type&rsquo; field is 0x8035 for request and reply and &lsquo;op&rsquo; field is 3 for RARP request and 4 for RARP reply.</p>

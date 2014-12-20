@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: c | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/c/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/c/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[一个简单的C程序]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/05/30/simple-c-language-program/"/>
+    <link href="http://www.youth2009.org/blog/2012/05/30/simple-c-language-program/"/>
     <updated>2012-05-30T19:39:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/05/30/simple-c-language-program</id>
+    <id>http://www.youth2009.org/blog/2012/05/30/simple-c-language-program</id>
     <content type="html"><![CDATA[<p>嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（</p>
 
 <p>&#8220;`c</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: baidu-astar | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/baidu-astar/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/baidu-astar/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[浅谈百度之星参与者的态度]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/06/12/briefly-talk-about-the-attitude-of-participants-in-baidu-astar/"/>
+    <link href="http://www.youth2009.org/blog/2011/06/12/briefly-talk-about-the-attitude-of-participants-in-baidu-astar/"/>
     <updated>2011-06-12T20:26:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/06/12/briefly-talk-about-the-attitude-of-participants-in-baidu-astar</id>
+    <id>http://www.youth2009.org/blog/2011/06/12/briefly-talk-about-the-attitude-of-participants-in-baidu-astar</id>
     <content type="html"><![CDATA[<p>首轮的两场比赛就快结束了，昨晚我也准时出现在19：00的那场之中，经历了10分钟的宕机，不过我想这10分钟根本不会造成什么影响吧，该做出来的不差这10分钟，做不出来的再给1小时还是做不出来。</p>
 
 <p>当然我属于做不出来的那一部分。其实还算好一些的，至少我昨晚提交了第一题的解决方案，就是不清楚能否满足要求。后面两个题目只能说是看懂了，并且有一点思路做。但今天的这三个题显然比昨晚的难一些，至少我是这样感觉的。</p>

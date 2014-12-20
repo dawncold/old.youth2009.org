@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: dev | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/dev/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/dev/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[safe characters of quote method in urllib]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/12/20/quote-in-urllib/"/>
+    <link href="http://www.youth2009.org/blog/2014/12/20/quote-in-urllib/"/>
     <updated>2014-12-20T20:27:59+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/12/20/quote-in-urllib</id>
+    <id>http://www.youth2009.org/blog/2014/12/20/quote-in-urllib</id>
     <content type="html"><![CDATA[<p>quote accept two arguments: a string and safe characters. If you pass empty to <code>quote</code> as the second parameter, it means every characters except preserved characters will be replaced by a % leading characters, e.g. space will be replaced by %20, etc.</p>
 
 <p>In my project, I invoke quote like <code>quote(params, '')</code>, and I have imported <code>unicode_literals</code>, so I passed a unicode parameter to <code>quote</code> method.</p>
@@ -32,9 +32,9 @@
   
   <entry>
     <title type="html"><![CDATA[developing-on-blackberry]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/09/05/developing-on-blackberry/"/>
+    <link href="http://www.youth2009.org/blog/2014/09/05/developing-on-blackberry/"/>
     <updated>2014-09-05T21:58:07+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/09/05/developing-on-blackberry</id>
+    <id>http://www.youth2009.org/blog/2014/09/05/developing-on-blackberry</id>
     <content type="html"><![CDATA[<h1>Create BlackBerry ID token</h1>
 
 <p>here:
@@ -112,9 +112,9 @@ Meanwhile, your app will be opened on your device!
   
   <entry>
     <title type="html"><![CDATA[role in postgresql]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/08/14/role-in-postgresql/"/>
+    <link href="http://www.youth2009.org/blog/2014/08/14/role-in-postgresql/"/>
     <updated>2014-08-14T22:08:20+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/08/14/role-in-postgresql</id>
+    <id>http://www.youth2009.org/blog/2014/08/14/role-in-postgresql</id>
     <content type="html"><![CDATA[<p>In PostgreSQL versions before 8.1, users and groups were distinct kinds of entities, but now only role, it is user or group or both.</p>
 
 <p>if you create a role using “CREATE ROLE r1”, r1 is not a user, only a generic role, it is likely a group, you can not find it in pg_user, only in pg_roles table, but if you grant LOGIN privilege to r1, it will be appear in pg_user table.</p>
@@ -141,9 +141,9 @@ GRANT wheel TO admin;</p>
   
   <entry>
     <title type="html"><![CDATA[else clause in python loop]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/08/14/else-clause-in-python-loop/"/>
+    <link href="http://www.youth2009.org/blog/2014/08/14/else-clause-in-python-loop/"/>
     <updated>2014-08-14T22:07:09+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/08/14/else-clause-in-python-loop</id>
+    <id>http://www.youth2009.org/blog/2014/08/14/else-clause-in-python-loop</id>
     <content type="html"><![CDATA[<p>both in while and for loop, if in loop body, no break, no return, no exception is raised, statements in else block will be executed.</p>
 
 <p>&#8220;`python
@@ -164,9 +164,9 @@ this example will print ‘xxx’, even nothing in list and this loop is not exe
   
   <entry>
     <title type="html"><![CDATA[iptables -A INPUT -i eth0 -p tcp -m tcp --dport 80 -j ACCEPT]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept/"/>
+    <link href="http://www.youth2009.org/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept/"/>
     <updated>2014-08-14T22:05:46+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept</id>
+    <id>http://www.youth2009.org/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept</id>
     <content type="html"><![CDATA[<p>what’s the agreement of -m?</p>
 
 <p>not tcp, it’s “tcp &mdash;dport 80”</p>

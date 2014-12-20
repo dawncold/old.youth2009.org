@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: shell | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/shell/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/shell/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[useful-shell-command]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/12/07/useful-shell-command/"/>
+    <link href="http://www.youth2009.org/blog/2013/12/07/useful-shell-command/"/>
     <updated>2013-12-07T22:28:53+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/12/07/useful-shell-command</id>
+    <id>http://www.youth2009.org/blog/2013/12/07/useful-shell-command</id>
     <content type="html"><![CDATA[<p>找到size为0的文件，并删除：<code>find -type f -size 0 | xargs rm</code></p>
 
 <p>替换Linux的换行成windows的：<code>ls | xargs perl -i -pe 's/\n/\r\n/g'</code></p>
@@ -32,9 +32,9 @@ for i in `ls *.md`;do mv $i `echo $i | sed 's/.md/.markdown/'`;done
   
   <entry>
     <title type="html"><![CDATA[some-sed-work]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/06/15/some-sed-work/"/>
+    <link href="http://www.youth2009.org/blog/2013/06/15/some-sed-work/"/>
     <updated>2013-06-15T16:34:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/06/15/some-sed-work</id>
+    <id>http://www.youth2009.org/blog/2013/06/15/some-sed-work</id>
     <content type="html"><![CDATA[<p>博客内容是从wordpress转过来的，不可避免有很多地方没转换好，当时懒得弄，今天得空学习Shell编程，讲到了sed，就又搞了一下，基本满意了。</p>
 
 <p>以前用sed替换过分类等简单的文字错误，今天主要是把一些html给替换掉了。</p>
@@ -51,9 +51,9 @@ for i in `ls *.md`;do mv $i `echo $i | sed 's/.md/.markdown/'`;done
   
   <entry>
     <title type="html"><![CDATA[pushd-and-popd]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/06/13/pushd-and-popd/"/>
+    <link href="http://www.youth2009.org/blog/2013/06/13/pushd-and-popd/"/>
     <updated>2013-06-13T19:50:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/06/13/pushd-and-popd</id>
+    <id>http://www.youth2009.org/blog/2013/06/13/pushd-and-popd</id>
     <content type="html"><![CDATA[<p>amazoing的两个命令，pushd和popd</p>
 
 <p>相关介绍：<a href="http://en.wikipedia.org/wiki/Pushd_and_popd">pushd &amp; popd</a></p>
@@ -64,9 +64,9 @@ for i in `ls *.md`;do mv $i `echo $i | sed 's/.md/.markdown/'`;done
   
   <entry>
     <title type="html"><![CDATA[shell study]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/12/01/shell-study/"/>
+    <link href="http://www.youth2009.org/blog/2012/12/01/shell-study/"/>
     <updated>2012-12-01T11:52:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/12/01/shell-study</id>
+    <id>http://www.youth2009.org/blog/2012/12/01/shell-study</id>
     <content type="html"><![CDATA[<p>sed是个极其强大的东西，今天开始学习一点点：）</p>
 
 <p>以前的一个sed的命令终于明白了：</p>
@@ -83,9 +83,9 @@ find ./ -name '*.html' | xargs sed -i 's/iso-8859-1/utf-8/g'
   
   <entry>
     <title type="html"><![CDATA[shell study 2]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/11/25/shell-study-2/"/>
+    <link href="http://www.youth2009.org/blog/2012/11/25/shell-study-2/"/>
     <updated>2012-11-25T13:50:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/11/25/shell-study-2</id>
+    <id>http://www.youth2009.org/blog/2012/11/25/shell-study-2</id>
     <content type="html"><![CDATA[<p>shell的参数很有意思，是用数字来命名的，从1~9，如果超过了9就应该这样写：${10}，以后就以此类推。</p>
 
 <p>跟踪shell的执行步骤：sh -x prog，这样就能看到prog的执行动作，如果是在脚本内部，使用set -x开启跟踪，使用set +x关闭跟踪。</p>

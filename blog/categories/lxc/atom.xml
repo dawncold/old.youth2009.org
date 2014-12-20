@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: lxc | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/lxc/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/lxc/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[NAT实践]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/10/09/nat-practical/"/>
+    <link href="http://www.youth2009.org/blog/2012/10/09/nat-practical/"/>
     <updated>2012-10-09T14:09:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/10/09/nat-practical</id>
+    <id>http://www.youth2009.org/blog/2012/10/09/nat-practical</id>
     <content type="html"><![CDATA[<p>昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3.20这台container来处理，相应的response也会返回过去。这样就做到了服务隔离。</p>
 
 <p><code>bash
@@ -35,9 +35,9 @@ sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT --to 200.200.20
   
   <entry>
     <title type="html"><![CDATA[LXC实践]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/10/08/lxc-practical/"/>
+    <link href="http://www.youth2009.org/blog/2012/10/08/lxc-practical/"/>
     <updated>2012-10-08T20:46:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/10/08/lxc-practical</id>
+    <id>http://www.youth2009.org/blog/2012/10/08/lxc-practical</id>
     <content type="html"><![CDATA[<p>这里的LXC是基于Ubuntu12.04的，在其他系统下可能不太一样。</p>
 
 <p>0.安装lxc</p>

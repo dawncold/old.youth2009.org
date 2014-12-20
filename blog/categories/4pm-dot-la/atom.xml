@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: 4pm.la | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/4pm-dot-la/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/4pm-dot-la/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[搭建4pm.la的数据库服务器]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/07/04/build-4pm-env/"/>
+    <link href="http://www.youth2009.org/blog/2013/07/04/build-4pm-env/"/>
     <updated>2013-07-04T21:54:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/07/04/build-4pm-env</id>
+    <id>http://www.youth2009.org/blog/2013/07/04/build-4pm-env</id>
     <content type="html"><![CDATA[<p>原来用MySQL比较多，现在工作上主要用PostgreSQL，对于低级的应用来说，选什么数据库都差不多，但也要为以后发展做准备，不过我暂时看不到那么远，PG作为一个开源的数据库来说，还算是比MySQL有优势一点，所以就用这个了。</p>
 
 <p>在Mac上安装的时候有个locale的选择，我选了这个：</p>

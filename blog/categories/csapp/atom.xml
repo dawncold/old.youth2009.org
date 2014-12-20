@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: csapp | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/csapp/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/csapp/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[CSAPP学习笔记第二辑]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/04/12/csapp-study-part2/"/>
+    <link href="http://www.youth2009.org/blog/2011/04/12/csapp-study-part2/"/>
     <updated>2011-04-12T22:00:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/04/12/csapp-study-part2</id>
+    <id>http://www.youth2009.org/blog/2011/04/12/csapp-study-part2</id>
     <content type="html"><![CDATA[<p>虽然可以使用优化编译器，但对于严谨的程序员来说，能够阅读和理解汇编代码仍然是一项很重要的技能。</p>
 
 <p><code>gcc -O2 -o p p1.c p2.c</code></p>
@@ -83,9 +83,9 @@ movsbl用dh中的最高位填充eax的高24位。
   
   <entry>
     <title type="html"><![CDATA[CSAPP学习笔记第一辑]]></title>
-    <link href="http://www.youth2009.org/www/blog/2011/04/10/csapp-study-part1/"/>
+    <link href="http://www.youth2009.org/blog/2011/04/10/csapp-study-part1/"/>
     <updated>2011-04-10T21:19:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2011/04/10/csapp-study-part1</id>
+    <id>http://www.youth2009.org/blog/2011/04/10/csapp-study-part1</id>
     <content type="html"><![CDATA[<h1>第一章</h1>
 
 <p>一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤：

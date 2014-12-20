@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: life | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/life/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/life/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[got-raspberry]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/08/02/got-raspberry/"/>
+    <link href="http://www.youth2009.org/blog/2013/08/02/got-raspberry/"/>
     <updated>2013-08-02T21:40:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/08/02/got-raspberry</id>
+    <id>http://www.youth2009.org/blog/2013/08/02/got-raspberry</id>
     <content type="html"><![CDATA[<p>工资一发就买了块表。。。并且还狠心买了这个玩具——raspberry。</p>
 
 <p>默认用了新手的那个镜像，叫NOOBS，就是里面装好了不少东西，系统也有好几个，默认用了推荐的Raspbian，是Debian的一个变种啦，开发用的Ubuntu都是一个家族的。</p>
@@ -41,9 +41,9 @@
   
   <entry>
     <title type="html"><![CDATA[first snow]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/11/04/first-snow/"/>
+    <link href="http://www.youth2009.org/blog/2012/11/04/first-snow/"/>
     <updated>2012-11-04T20:24:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/11/04/first-snow</id>
+    <id>http://www.youth2009.org/blog/2012/11/04/first-snow</id>
     <content type="html"><![CDATA[<p>昨晚竟然下了第一场雪，看着不怎么大，但确实是第一场。</p>
 
 <p><img src="http://pic.yupoo.com/dawncold0/Cok3e7iE/medish.jpg" alt="first snow" /></p>
@@ -62,9 +62,9 @@
   
   <entry>
     <title type="html"><![CDATA[online]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/11/02/online/"/>
+    <link href="http://www.youth2009.org/blog/2012/11/02/online/"/>
     <updated>2012-11-02T20:17:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/11/02/online</id>
+    <id>http://www.youth2009.org/blog/2012/11/02/online</id>
     <content type="html"><![CDATA[<p>我们今天终于上线了，给编辑们用了一下，我还不知道他们的反馈如何，应该还不错吧，但很可惜由于公司内部网络的问题，我们的服务器不是所有人都能访问到，好像听说有个部门访问不到，具体问了一下工程部说改个gateway就能行了，当时正在抓图，就没动，下周再修改一下试试吧。</p>
 
 <p>据说下周要开始主攻特辑这部分了，eric说我可能会很忙了，因为一直是我再搞特辑，哎，说特辑真别扭，原来我们一直在用topic，现在竟然换一个说法。</p>
@@ -75,9 +75,9 @@
   
   <entry>
     <title type="html"><![CDATA[erp]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/10/27/erp/"/>
+    <link href="http://www.youth2009.org/blog/2012/10/27/erp/"/>
     <updated>2012-10-27T21:57:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/10/27/erp</id>
+    <id>http://www.youth2009.org/blog/2012/10/27/erp</id>
     <content type="html"><![CDATA[<p>终于把erp的所有接口测试完了，其中仍然不乏几个要命错误，只好记录下来发给开发方，又将是漫长的等待。</p>
 
 <p>王总终于还是看不惯我们专业人士用的一些词汇和设计出来的使用流程，他似乎希望身边即便是初中毕业的员工都能自由使用我们开发的系统，这点有些像Jobs不是么，很可惜我们在做的产品不是面向广大用户，而是他的人数有限的编辑们，有时候我就怀疑需不需要这么人性化的设计。</p>
@@ -90,9 +90,9 @@
   
   <entry>
     <title type="html"><![CDATA[orange has been sweet]]></title>
-    <link href="http://www.youth2009.org/www/blog/2012/10/25/orange-has-been-sweet/"/>
+    <link href="http://www.youth2009.org/blog/2012/10/25/orange-has-been-sweet/"/>
     <updated>2012-10-25T21:04:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2012/10/25/orange-has-been-sweet</id>
+    <id>http://www.youth2009.org/blog/2012/10/25/orange-has-been-sweet</id>
     <content type="html"><![CDATA[<p>今天早晨买了一些水果，也买了几个橙子，虽然不便宜，但今晚上吃起来感觉还不错，挺甜的。</p>
 
 <p>怎么总感觉今天有点儿不稳呢，听说ERP的接口搞定了就要去测试了，测试过程不怎么顺利，让别人做事情，而且相隔很远，再加上对方不怎么关心这个有点陈旧的系统，工作就会很难同步，我们一测试就出问题，报告过去后好久才给我改改，再测试，又出问题。目前来看虽然没有完全测试好，但已经暴露出几个问题了，还是比较重要的。</p>

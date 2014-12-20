@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: ops | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/ops/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/ops/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[aix-security]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/11/22/aix-security/"/>
+    <link href="http://www.youth2009.org/blog/2014/11/22/aix-security/"/>
     <updated>2014-11-22T14:04:41+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/11/22/aix-security</id>
+    <id>http://www.youth2009.org/blog/2014/11/22/aix-security</id>
     <content type="html"><![CDATA[<p>some security configuration for AIX ssh and system services</p>
 
 <p>create a user group named rmt_acc, only allow this group user access ssh, don&rsquo;t allow root login and use public key authentication.</p>

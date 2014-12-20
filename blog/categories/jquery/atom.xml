@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: jquery | Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/blog/categories/jquery/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-12-20T21:32:04+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/blog/categories/jquery/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T21:40:42+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[extend in jquery]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/02/16/extend-in-jquery/"/>
+    <link href="http://www.youth2009.org/blog/2013/02/16/extend-in-jquery/"/>
     <updated>2013-02-16T20:02:00+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/02/16/extend-in-jquery</id>
+    <id>http://www.youth2009.org/blog/2013/02/16/extend-in-jquery</id>
     <content type="html"><![CDATA[<p>jquery中的extend方法可以扩展一个{}，今天用到了。写了一组配置文件：</p>
 
 <p>&#8220;`
