@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="发现一个问题，使用theos这个makefile工具做app有很大困难，就是headers不好管理，真希望能集成到xcode中开发tweak，结果发现了一个神器&mdash;&mdash;iOSOpenDev。 安装好之后就能发现xcode中已经有很多可用的template了，对于tweak来说 &hellip;">
+	<meta name="description" content="昨晚弄到1点多也没搞定iOSOpenDev，总是编译出问题，在irc上问了一下也没人回答我，看来还是有很多人在泡irc的！ 睡前又看了一下各种文章，等起床打算还是回归theos搞搞试试。 没想到早晨用theos搞了一下竟然ok了！或许是用对了theos的版本？不清楚了。 theos我删掉了原来的 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -76,6 +76,106 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/03/17/big-break-in-tweak-app-build/">
+		
+			Big-break-in-tweak-app-build</a>
+	</h2>
+	<div class="entry-content">
+		<p>昨晚弄到1点多也没搞定iOSOpenDev，总是编译出问题，在irc上问了一下也没人回答我，看来还是有很多人在泡irc的！</p>
+
+<p>睡前又看了一下各种文章，等起床打算还是回归theos搞搞试试。</p>
+
+<p>没想到早晨用theos搞了一下竟然ok了！或许是用对了theos的版本？不清楚了。</p>
+
+<p>theos我删掉了原来的，用github上的版本</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://github.com/DHowett/theos.git <span class="nv">$THEOS</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ldid我自己编译的，因为dropbox上的总是很难下载</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://git.saurik.com/ldid.git
+</span><span class='line'><span class="nb">cd </span>ldid
+</span><span class='line'>git submodule update --init
+</span><span class='line'>./make.sh
+</span><span class='line'>cp -f ./ldid <span class="nv">$THEOS</span>/bin/ldid
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>有篇教程说在iOS上也安装perl和theos，我实在不清楚有什么用，不过我也安装了，蛋疼，具体方法看<a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">这里</a></p>
+
+<p>headers用这里的：<a href="https://github.com/rpetrich/iphoneheaders">https://github.com/rpetrich/iphoneheaders</a>需要注意一点的是IOSurface这个framework，你需要增加一个新的头文件，在Mac系统中，可能还得注释掉两行，这取决于你是不是10.7版本的Mac系统。命令是：<code>cp /System/Library/Frameworks/IOSurface.framework/Headers/IOSurfaceAPI.h .</code>，在251和255行（我编译错误时候提示的就这两行），注释掉</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="cm">/* This call lets you get an xpc_object_t that holds a reference to the IOSurface.</span>
+</span><span class='line'><span class="cm">  Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&#39;s global use</span>
+</span><span class='line'><span class="cm">  count by one until the object is destroyed. */</span>
+</span><span class='line'><span class="c1">//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)</span>
+</span><span class='line'><span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/* This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. */</span>
+</span><span class='line'><span class="c1">//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)</span>
+</span><span class='line'><span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后做你的tweak就可以了，我按照经典的heloworld例子搞了个hook，springboard中applicationDidFinishLaunching弹出alert，成功了。</p>
+
+<p>OS:10.8.3，SDKVERSION：6.1</p>
+
+<p>另外昨天说的设置theos的环境变量，我今天又重新加到了bash_profile中，发现make package install都能自动部署了。。。看来真是昨天theos版本的问题？！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-17T09:15:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>, <a class='category' href='/blog/categories/sortedapp/'>sortedapp</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -435,7 +535,7 @@
 
 <p>此时需要检测一下是否已经存在，如果存在就remove掉：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -683,49 +783,6 @@
 
 
 	<a class='category' href='/blog/categories/jquery/'>jquery</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/02/03/do-something-using-refactor/">
-		
-			Do Something Using Refactor</a>
-	</h2>
-	<div class="entry-content">
-		<p>最近在做发送短信的时候犯了个错误——修改配置文件没有使用重构方式。dev环境和pro环境中有相同名字的配置，只是值不一样，再修改了dev中的配置name做开发，但pro环境中的name还是原来的，导致上线后拿不到配置，发不出短信去。。。</p>
-
-<p>以后为了防止遗忘，还是用重构吧！！！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-03T11:22:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>

@@ -50,7 +50,7 @@ location ~.*\.(php|php5)?$
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -73,7 +73,7 @@ location ~.*\.(php|php5)?$
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -85,21 +85,21 @@ location ~.*\.(php|php5)?$
 	<h2 class="title">Nginx下的location配置</h2>
 	<div class="entry-content"><p>原来的location只是处理了“/”的情况，结果访问一个目录，即使此目录下有index.html也不会成功显示，于是改成了这样：</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>location ~.*\.(php|php5)?$
 </span><span class='line'>{
 </span><span class='line'>    处理php
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
 <p>这样之后，发现直接访问目录或者域名的时候不能正常显示了，必须跟上index.php这样的才可以。</p>
 
 <p>最终改成这样，解决了问题：</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -112,7 +112,7 @@ location ~.*\.(php|php5)?$
 </span><span class='line'>}
 </span><span class='line'>location ~.*\.(php|php5)?$ {
 </span><span class='line'>处理php
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -179,8 +179,8 @@ location ~.*\.(php|php5)?$
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2011/07/10/nginx-location-config/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2011/07/10/nginx-location-config/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2011/07/10/nginx-location-config/';
+        var disqus_url = 'http://www.youth2009.org/blog/2011/07/10/nginx-location-config/';
         var disqus_script = 'embed.js';
       
     (function () {

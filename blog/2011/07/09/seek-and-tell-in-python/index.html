@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -79,7 +79,7 @@
 	<h2 class="title">简要写写python的file中的tell和seek</h2>
 	<div class="entry-content"><p>对于一个file，调用tell()能够知道现在的文件位置。seek()是改变文件位置。  比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完tell()我又使用了seek(0),这样文件位置就回到开头了，下次再调用readline就会输出原来第一行的内容了，这应该是很容易理解的。不明白可以亲自试试。</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -149,7 +149,7 @@
 </span><span class='line'><span class="n">current_line</span> <span class="o">+=</span> <span class="mi">1</span>
 </span><span class='line'><span class="n">print_a_line</span><span class="p">(</span><span class="n">current_line</span><span class="p">,</span> <span class="n">current_file</span><span class="p">)</span>
 </span><span class='line'><span class="k">print</span> <span class="s">&quot;current_pos:</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">current_file</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -216,8 +216,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2011/07/09/seek-and-tell-in-python/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2011/07/09/seek-and-tell-in-python/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2011/07/09/seek-and-tell-in-python/';
+        var disqus_url = 'http://www.youth2009.org/blog/2011/07/09/seek-and-tell-in-python/';
         var disqus_script = 'embed.js';
       
     (function () {

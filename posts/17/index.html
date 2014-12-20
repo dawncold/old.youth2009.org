@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="这不是代表春天或者温泉的意思，实际上是我正在学习期末考试课程S2SH中的一个框架——Spring。 就一变态框架啊，Ioc、AOP这些都是令业界震撼的思想级产物。特别是AOP，就是和OOP同层次的东西，怪不得学习起来很慢很艰难，不过我清楚，期末考试肯定考得超简单，现在我基本是学到哪里忘到哪里。 &hellip;">
+	<meta name="description" content="刚刚在学习web.py这个框架，找了一个不错的例子准备自己运行起来看看，结果一调试出现了MySQLdb没找到的情况，于是从官方（http://sourceforge.net/projects/mysql-python/）下载源码准备编译安装，最好不要用easy_install安装了， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -76,6 +76,82 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/12/11/mysql-python-mac/">
+		
+			mac下的MySQL-python问题</a>
+	</h2>
+	<div class="entry-content">
+		<p>刚刚在学习web.py这个框架，找了一个不错的例子准备自己运行起来看看，结果一调试出现了MySQLdb没找到的情况，于是从官方（<a href="http://sourceforge.net/projects/mysql-python/">http://sourceforge.net/projects/mysql-python/</a>）下载源码准备编译安装，最好不要用easy_install安装了，因为还得修改几个地方才能正常编译安装。</p>
+
+<p>由于是mac系统，MySQL是使用的官方提供的dmg安装包装的，但不知为何MySQLdb的安装脚本找不到位置，于是修改MySQLdb的setup_posix.py，26行有个mysql_config.path = &hellip;，修改成你本机中mysql_config所在的地址，比如我的是/usr/local/mysql/bin/mysql_config，保存后分别执行：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo python setup.py build
+</span><span class='line'>sudo python setup.py install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>安装后最好用python的shell加载一下MySQLdb看看能否正常使用，通常是不行的，因为我就遇到这么个情况，提示缺少image，具体是这样提示的：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>File <span class="s2">&quot;/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/MySQLdb/__init__.py&quot;</span>, line 19, in &lt;module&gt;
+</span><span class='line'>   import _mysql
+</span><span class='line'>ImportError: dlopen<span class="o">(</span>/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/_mysql.so, 2<span class="o">)</span>: Library not loaded: libmysqlclient.18.dylib
+</span><span class='line'> Referenced from: /Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/_mysql.so
+</span><span class='line'> Reason: image not found
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>于是用Google搜索问题，从<a href="http://alexbraunstein.com/2011/08/12/library-loaded-libmysqlclient-18-dylib/">这里</a>找到了解决方案：</p>
+
+<p>在~/.bash_profile中加入这样的一句：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">DYLD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/mysql/lib:<span class="nv">$DYLD_LIBRARY_PATH</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后quit掉terminal再进入一次让这个环境变量更新一下，再次使用MySQLdb就没问题了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-11T14:19:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -529,47 +605,6 @@
 
 
 	<a class='category' href='/blog/categories/os/'>os</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/10/06/steve-jobs/">
-		
-			希望你依然能够领导我们的创新</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="http://pic.yupoo.com/dawncold0/BqdQPzJM/medish.jpg" alt="" /></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-10-06T17:19:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>
 
 
 </div>

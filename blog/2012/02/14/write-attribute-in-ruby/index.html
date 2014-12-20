@@ -50,7 +50,7 @@ def password=(pwd) @password = pwd return if @password.blank? create_new_salt se
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -73,7 +73,7 @@ def password=(pwd) @password = pwd return if @password.blank? create_new_salt se
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -85,7 +85,7 @@ def password=(pwd) @password = pwd return if @password.blank? create_new_salt se
 	<h2 class="title">Ruby中的write_attribute</h2>
 	<div class="entry-content"><p>有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误：</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -97,16 +97,16 @@ def password=(pwd) @password = pwd return if @password.blank? create_new_salt se
 </span><span class='line'>   <span class="n">create_new_salt</span>
 </span><span class='line'>   <span class="nb">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">xxx</span>
 </span><span class='line'> <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>ruby</p>
 
 <p>最后那行使用了self.password= xxx，你有没有注意到我们这个方法就是password=，你在自己调用自己，如果有条件停止的话，那这叫递归，如果没有的话，这就是死循环喽，ruby可能会抛出一个stack too deep的错误（rails至少会这样说），此时需要一个magic！</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">write_attribute</span><span class="p">(</span><span class="ss">:password</span><span class="p">,</span> <span class="no">User</span><span class="o">.</span><span class="n">encrypted_password</span><span class="p">(</span><span class="nb">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span> <span class="nb">self</span><span class="o">.</span><span class="n">salt</span><span class="p">))</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>使用write_attribute(xxx,jjj)即可，意思就是把jjj赋值给xxx了，因为此时正好在定义xxx，所以不能用xxx = 这样的方法赋值。</p>
@@ -175,8 +175,8 @@ def password=(pwd) @password = pwd return if @password.blank? create_new_salt se
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2012/02/14/write-attribute-in-ruby/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2012/02/14/write-attribute-in-ruby/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2012/02/14/write-attribute-in-ruby/';
+        var disqus_url = 'http://www.youth2009.org/blog/2012/02/14/write-attribute-in-ruby/';
         var disqus_script = 'embed.js';
       
     (function () {

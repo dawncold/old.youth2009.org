@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -83,7 +83,7 @@
 
 <p>由于client_body_in_file_only只能放在server、http、location中，得专门建立一个location而不能放在if中。</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -106,7 +106,7 @@
 </span><span class='line'>  proxy_set_body             off;
 </span><span class='line'>  proxy_redirect             off;
 </span><span class='line'>  proxy_pass                 http://backend/
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
 <p>这样以upload开头的就会做这样处理，上传的文件path会放在header中，至于name该怎么办，我是把name的值作为query string拼在了form的action中，在上传开始前得到文件名，然后拼上去。</p>
@@ -179,8 +179,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2013/06/25/nginx-upload-file-without-backend/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2013/06/25/nginx-upload-file-without-backend/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2013/06/25/nginx-upload-file-without-backend/';
+        var disqus_url = 'http://www.youth2009.org/blog/2013/06/25/nginx-upload-file-without-backend/';
         var disqus_script = 'embed.js';
       
     (function () {

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: js | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/js/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T22:01:14+08:00</updated>
+  <updated>2014-12-20T22:12:05+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -60,17 +60,25 @@ for(var p in obj) {</p>
 
 <p>此时需要检测一下是否已经存在，如果存在就remove掉：</p>
 
-<p>&#8220;`javascript
-if(CKEDITOR.instances[&lsquo;description&rsquo;]) {</p>
-
-<pre><code>CKEDITOR.remove(CKEDITOR.instances['description']);
-</code></pre>
-
-<p>}
-CKEDITOR.replace(&lsquo;description&rsquo;)</p>
-
-<p>其中description是一个textarea的name。
-&#8220;`</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="k">if</span><span class="p">(</span><span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">instances</span><span class="p">[</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">description</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;])</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">instances</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span><span class='line'><span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">description</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;)</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="err">其中</span><span class="nx">description</span><span class="err">是一个</span><span class="nx">textarea</span><span class="err">的</span><span class="nx">name</span><span class="err">。</span>
+</span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   

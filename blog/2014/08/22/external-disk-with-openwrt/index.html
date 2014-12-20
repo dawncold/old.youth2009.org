@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -87,23 +87,23 @@
 
 <p>对于mount磁盘需要的软件可能是：</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>opkg update
-</span><span class='line'>opkg install kmod-usb-storage block-mount kmod-fs-ext4</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'>opkg install kmod-usb-storage block-mount kmod-fs-ext4</span></code></pre></td></tr></table></div></figure>
 
 
 <p>可能不是必须的，但看了文档没怎么研究，反正装了这些能mount了，由于我就一块磁盘，直接mount到了/mnt中。</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mount /dev/sda1 /mnt</span></code></pre></td></tr></table></div></figure></notextile></div>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mount /dev/sda1 /mnt</span></code></pre></td></tr></table></div></figure>
 
 
 <p>能用后需要把/mnt的owner改为<code>root:root</code>，权限755，在/mnt下创建ftp目录，owner是<code>ftp:ftp</code>，权限755。（ftp用户是装了vsftpd后创建的，所以你需要先装一下vsftpd）</p>
 
 <p>vsftpd的配置：</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -120,7 +120,7 @@
 </span><span class='line'>local_root=/mnt
 </span><span class='line'>write_enable=YES
 </span><span class='line'>local_umask=022
-</span><span class='line'>check_shell=NO</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'>check_shell=NO</span></code></pre></td></tr></table></div></figure>
 
 
 <p>研究了一段时间这些配置，第一个建议测试时候用NO，正式开始用就YES，否则会让路由器一直卡在启动vsftpd这里，网路会不可用。比较关键的是<code>local_root</code>，登陆后用户的root目录会在这里，但不能在里面的ftp中，原因和chroot有关，刚刚在/mnt中创建的ftp目录就是ftp用户登陆上去后可操作的地方，所有操作都需要在ftp目录下进行。其他配置具体不详述，具体含义可以看官方的man page，感觉前七行是比较重要的。</p>
@@ -129,7 +129,7 @@
 
 <p>下面是OpenWrt启动mount的设置，在<code>/etc/config/fstab</code>中加入：</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -142,7 +142,7 @@
 </span><span class='line'>  option fstype ext4
 </span><span class='line'>  option options rw,sync
 </span><span class='line'>  option enabled 1
-</span><span class='line'>  option enabled_fsck 0</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'>  option enabled_fsck 0</span></code></pre></td></tr></table></div></figure>
 
 
 <p>具体的/mnt和/dev/sda1、ext4根据你的情况做修改，enabled为1就是启动时加载。</p>
@@ -213,8 +213,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2014/08/22/external-disk-with-openwrt/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2014/08/22/external-disk-with-openwrt/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2014/08/22/external-disk-with-openwrt/';
+        var disqus_url = 'http://www.youth2009.org/blog/2014/08/22/external-disk-with-openwrt/';
         var disqus_script = 'embed.js';
       
     (function () {

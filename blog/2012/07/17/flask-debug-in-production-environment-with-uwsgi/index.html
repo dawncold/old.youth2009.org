@@ -45,7 +45,7 @@ uwsgi -s :9090 -M -p 4 &hellip;">
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -68,7 +68,7 @@ uwsgi -s :9090 -M -p 4 &hellip;">
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -82,9 +82,9 @@ uwsgi -s :9090 -M -p 4 &hellip;">
 
 <p>自带的调试功能比较好用，也能很方便的查看各种变量的值，不过在生产环境中调试并不是那么容易。需要在uwsgi开启的时候传入“&mdash;catch exceptions”：</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost --catch-exceptions
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>在flask的app中要设置config中的PROPAGATE_EXCEPTIONS = True才可以在遇到错误的时候直接输出到页面上。</p>
@@ -155,8 +155,8 @@ uwsgi -s :9090 -M -p 4 &hellip;">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2012/07/17/flask-debug-in-production-environment-with-uwsgi/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2012/07/17/flask-debug-in-production-environment-with-uwsgi/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2012/07/17/flask-debug-in-production-environment-with-uwsgi/';
+        var disqus_url = 'http://www.youth2009.org/blog/2012/07/17/flask-debug-in-production-environment-with-uwsgi/';
         var disqus_script = 'embed.js';
       
     (function () {

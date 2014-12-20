@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -95,18 +95,18 @@
 
 <p>在shell中能够看到命令提示标志是一个叫“Prelude”的东西，书上讲这是haskell默认加载的一个模块，就是个基础模块吧，如果不喜欢这个名字可以这样更改掉：  </p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>:set prompt <span class="s2">&quot;ghci &gt;&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>现在的提示符标志就变成ghci >了。</p>
 
 <h2>加载其他模块</h2>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>:module + Data.Ratio
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>这样就加载了Data.Ratio这个模块，这个模块似乎是使用浮点数之类的东西吧，我还没有细看。具体可以参考文档。</p>
@@ -127,16 +127,16 @@
 
 <p>使用info查看运算符的优先级：  </p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>:info <span class="o">(</span>+<span class="o">)</span>
 </span><span class='line'>:info <span class="o">(</span>*<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>分别查看加号、乘号的优先级，返回的结果类似这样：  </p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -146,7 +146,7 @@
 </span><span class='line'> ...
 </span><span class='line'> -- Defined in GHC.Num
 </span><span class='line'>infixl 6 +
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>最后一样的6表示加号的优先级是6，在haskell中优先级是1～9不等，最高的是9.从这个结果中我们还能看出来如果相同的加号连接表达式的处理方法，是从左到右（在第二行中的三个a，顺次向右箭头）</p>
@@ -155,9 +155,9 @@
 
 <p>说来惭愧，我就知道一个──pi，连e都没有定义！书上教了这样定义临时常量的方法：</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">let </span><span class="nv">e</span> <span class="o">=</span> exp 1
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>这里我们就使用了exp函数，传递参数1进去。</p>
@@ -256,8 +256,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2011/03/03/start-haskell-study/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2011/03/03/start-haskell-study/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2011/03/03/start-haskell-study/';
+        var disqus_url = 'http://www.youth2009.org/blog/2011/03/03/start-haskell-study/';
         var disqus_script = 'embed.js';
       
     (function () {

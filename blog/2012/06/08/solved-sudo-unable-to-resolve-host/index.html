@@ -46,7 +46,7 @@ sudo ：unable to resolve host HOSTNAME 这样修复：(编辑/etc/hosts，修�
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -69,7 +69,7 @@ sudo ：unable to resolve host HOSTNAME 这样修复：(编辑/etc/hosts，修�
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -81,16 +81,16 @@ sudo ：unable to resolve host HOSTNAME 这样修复：(编辑/etc/hosts，修�
 	<h2 class="title">Sudo 出现unable to Resolve Host 解决方法</h2>
 	<div class="entry-content"><p>执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo ：unable to resolve host HOSTNAME
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>127.0.0.1               localhost.localdomain localhost HOSTNAME
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>希望vpsee的admin能在iso中修复这个问题</p>
@@ -159,8 +159,8 @@ sudo ：unable to resolve host HOSTNAME 这样修复：(编辑/etc/hosts，修�
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2012/06/08/solved-sudo-unable-to-resolve-host/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2012/06/08/solved-sudo-unable-to-resolve-host/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2012/06/08/solved-sudo-unable-to-resolve-host/';
+        var disqus_url = 'http://www.youth2009.org/blog/2012/06/08/solved-sudo-unable-to-resolve-host/';
         var disqus_script = 'embed.js';
       
     (function () {

@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -81,13 +81,13 @@
 
 <p>IO重定向默认在你登录的时候就把standard input/output绑定到了terminal中，所以你可以在terminal中完成很多工作。</p>
 
-<p>简单的重定向：“>”、“&lt;”、“>>”，分别是改变重定向input、output，最后一个是附加到某个文件，如果你在使用">&ldquo;的时候不存在目标文件，那么会被创建出来，如果已经存在就会被覆盖掉，原有数据丢失，如果使用&rdquo;>>&ldquo;则会追加到目标文件中，原有数据依然存在。</p>
+<p>简单的重定向：“>”、“&lt;”、“>>”，分别是改变重定向input、output，最后一个是附加到某个文件，如果你在使用&#8221;>&ldquo;的时候不存在目标文件，那么会被创建出来，如果已经存在就会被覆盖掉，原有数据丢失，如果使用&rdquo;>>&ldquo;则会追加到目标文件中，原有数据依然存在。</p>
 
 <p>管道也是重定向的一部分，prog1 | prog2，可以把prog1的标准输出重定向到prog2的标准输入上，如果你需要连接多个程序的时候，最好用管道方式，这样比临时文件效率高很多（据说10倍）。在使用管道的时候应该逐级让数据量减少，这样能够提高脚本的整体性能，例如在sort之前，你可以grep出需要sort的行，这样会好一些：）</p>
 
 <p>特殊文件：/dev/null 和 /dev/tty。null这个被称为bit bucket，传输到这里的东西都会被丢弃，就如同黑洞一般：）程序把文件写入到这里就会被认为是成功的，但实际什么都没做，例如：</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -99,14 +99,14 @@
 </span><span class='line'><span class="k">else</span>
 </span><span class='line'>…
 </span><span class='line'><span class="k">fi</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>可以做一个探测，是否myfile有pattern，这样不会产生输出。</p>
 
 <p>/dev/tty的功能是，当程序打开这个文件时会重定向到一个terminal，在需要输入密码的时候用的到：</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -118,7 +118,7 @@
 </span><span class='line'><span class="nb">printf</span> <span class="s2">&quot;Enter Again: &quot;</span>
 </span><span class='line'><span class="nb">read </span>pass2 &lt; /dev/tty
 </span><span class='line'>stty <span class="nb">echo</span> <span class="c">#打开自动回显输入的字符功能</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>shell的PATH中最好不要放入当前目录这一选项，这会带来安全问题，所以干脆就不要这么想了：）</p>
@@ -187,8 +187,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2012/11/25/shell-study/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2012/11/25/shell-study/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2012/11/25/shell-study/';
+        var disqus_url = 'http://www.youth2009.org/blog/2012/11/25/shell-study/';
         var disqus_script = 'embed.js';
       
     (function () {

@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -79,7 +79,7 @@
 	<h2 class="title">Encoder Error -2 When Writing Image File Error</h2>
 	<div class="entry-content"><p>今天编辑们在上传一张图的时候出了500错误，他们觉得是图片太大了，传给我看了下果然很大，高度13000+，大约7Mb，本地调试确实是在save的时候出问题，具体错误就是<code>Encoder error -2 when writing image file Error</code>，github上的pilkit中有这个issue，是因为默认的maxblock不够大了，其实PIL中还有个SAFEMAXBLOCK，但那也只是1024*1024，对于这张图仍然不够大。具体的方法就是取出图片width和height的最大值，再来个平方。。。</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -96,7 +96,7 @@
 </span><span class='line'>  try:
 </span><span class='line'>      save process
 </span><span class='line'>  finally:
-</span><span class='line'>      PIL.ImageFile.MAXBLOCK = old_block</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'>      PIL.ImageFile.MAXBLOCK = old_block</span></code></pre></td></tr></table></div></figure>
 
 
 <p>这样试过后就好了。。。真要命啊这个max block</p>
@@ -165,8 +165,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2013/02/17/encoder-error-2-when-writing-image-file-error/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2013/02/17/encoder-error-2-when-writing-image-file-error/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2013/02/17/encoder-error-2-when-writing-image-file-error/';
+        var disqus_url = 'http://www.youth2009.org/blog/2013/02/17/encoder-error-2-when-writing-image-file-error/';
         var disqus_script = 'embed.js';
       
     (function () {

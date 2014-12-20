@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>关于EL表达式中的Property 'name' not found on type java.lang.String错误 - Trade Off</title>
+	<title>关于EL表达式中的Property &#8216;name&#8217; not found on type java.lang.String错误 - Trade Off</title>
 	<meta name="author" content="dawncold">
 
 	
@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -76,23 +76,23 @@
 		
 	
 	<div id="content" class="inner"><article class="post">
-	<h2 class="title">关于EL表达式中的Property 'Name' Not Found on Type java.lang.String错误</h2>
+	<h2 class="title">关于EL表达式中的Property &#8216;Name&#8217; Not Found on Type java.lang.String错误</h2>
 	<div class="entry-content"><p>好了，我直接说自己遇到的情况，就是上面这行提示，找不到name属性，在java.lang.String中，仔细看哦，这句话的意思是你在一个String类型中找name属性，当然不会找到了！！！因为本来String中就没有name属性。</p>
 
 <p>初衷是一个list中，里面的每个元素都有name属性，但是经过JPQL查询后的list给了jsp页面，在输出的时候就得到了这样的提示。实际上我是JPQL写错了，我直接得到了具体的值，所以是String类型的一个list，应该用JPQL得到实体，这样就OK了。</p>
 
 <p>比如：得到的是Student实体，可以用里面的name属性。</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>SELECT s FROM Student s, School sc WHERE sc.city <span class="o">=</span> <span class="s1">&#39;北京&#39;</span> AND s.school.id <span class="o">=</span> sc.id AND s.name LIKE <span class="s1">&#39;张%&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>但是：得到的就是具体的name了，再用name属性就会出现上面的错误</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>SELECT s.name FROM Student s, School sc WHERE sc.city <span class="o">=</span> <span class="s1">&#39;北京&#39;</span> AND s.school.id <span class="o">=</span> sc.id AND s.name LIKE <span class="s1">&#39;张%&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>这种错误很难搞的！！！</p>
@@ -161,8 +161,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2012/06/25/property-not-found-in-el-expression/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2012/06/25/property-not-found-in-el-expression/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2012/06/25/property-not-found-in-el-expression/';
+        var disqus_url = 'http://www.youth2009.org/blog/2012/06/25/property-not-found-in-el-expression/';
         var disqus_script = 'embed.js';
       
     (function () {

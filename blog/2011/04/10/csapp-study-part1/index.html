@@ -8,7 +8,7 @@
 
 	
 	<meta name="description" content="第一章 一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤：
-源文件&mdash;&mdash;>经过预处理器（cpp）成为.i文件&mdash;&mdash;>经过编译器（cc1）成为.s文件&mdash;&mdash;>经过汇编器（as）成为.o文件，所有函数调用都成为. &hellip;">
+源文件&mdash;&mdash;>经过预处理器（cpp）成为.i文件&mdash;&mdash;>经过编译器（cc1）成为.s文件&mdash;&mdash;>经过汇编器（as）成为.o文件，所有函数调用都成为. &hellip;&#8221;>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -45,7 +45,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -68,7 +68,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -101,7 +101,7 @@
 
 <p>十六进制的转化：把每个十六进制数分别转化为二进制即可。例如：</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -114,7 +114,7 @@
 </span><span class='line'>3：0011
 </span><span class='line'>A：1010
 </span><span class='line'>4：0100
-</span><span class='line'>C：1100</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'>C：1100</span></code></pre></td></tr></table></div></figure>
 
 
 <p>开头的0x是十六进制的标示，无需翻译。二进制转化到十六进制是要从右侧开始，每4位二进制数换成一个十六进制，因为取的是4位二进制数，所以不可能超过15，就能够换算成十六进制的0～F。</p>
@@ -135,7 +135,7 @@
 
 <p>交换两个数的值（技巧性炫耀，没有性能上提升）:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -146,7 +146,7 @@
 </span><span class='line'>   x = x ^ y;
 </span><span class='line'>   y = x ^ y;
 </span><span class='line'>   x = x ^ *y;
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
 <p>`
@@ -220,8 +220,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2011/04/10/csapp-study-part1/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2011/04/10/csapp-study-part1/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2011/04/10/csapp-study-part1/';
+        var disqus_url = 'http://www.youth2009.org/blog/2011/04/10/csapp-study-part1/';
         var disqus_script = 'embed.js';
       
     (function () {

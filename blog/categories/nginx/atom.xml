@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nginx | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/nginx/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T22:01:14+08:00</updated>
+  <updated>2014-12-20T22:12:05+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -48,31 +48,52 @@ location ^~ /upload/ {
   proxy_redirect             off;
   proxy_pass                 <a href="http://backend/">http://backend/</a>
 }
-&#8220;`
-这样以upload开头的就会做这样处理，上传的文件path会放在header中，至于name该怎么办，我是把name的值作为query string拼在了form的action中，在上传开始前得到文件名，然后拼上去。</p>
-
-<p>需要注意的是，client_body_in_file_only不支持RFC2388，也就是说multipart不管用，你可以考虑用ajax上传插件来做上传，注意插件里的multipart设为false。上传插件推荐JQuery-File-Upload。</p>
-
-<p>依赖，越少越好。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[nginx下的location配置]]></title>
-    <link href="http://www.youth2009.org/blog/2011/07/10/nginx-location-config/"/>
-    <updated>2011-07-10T20:15:00+08:00</updated>
-    <id>http://www.youth2009.org/blog/2011/07/10/nginx-location-config</id>
-    <content type="html"><![CDATA[<p>原来的location只是处理了“/”的情况，结果访问一个目录，即使此目录下有index.html也不会成功显示，于是改成了这样：</p>
-
-<p>&#8220;`
-location ~.*.(php|php5)?$
-{</p>
-
-<pre><code>处理php
-</code></pre>
-
-<p>}
-&#8220;`</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>这样以upload开头的就会做这样处理，上传的文件path会放在header中，至于name该怎么办，我是把name的值作为query string拼在了form的action中，在上传开始前得到文件名，然后拼上去。&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;需要注意的是，client_body_in_file_only不支持RFC2388，也就是说multipart不管用，你可以考虑用ajax上传插件来做上传，注意插件里的multipart设为false。上传插件推荐JQuery-File-Upload。&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;依赖，越少越好。&lt;/p&gt;
+</span><span class='line'>]]&gt;&lt;/content&gt;
+</span><span class='line'>  &lt;/entry&gt;
+</span><span class='line'>  
+</span><span class='line'>  &lt;entry&gt;
+</span><span class='line'>    &lt;title type="html"&gt;&lt;![CDATA[nginx下的location配置]]&gt;&lt;/title&gt;
+</span><span class='line'>    &lt;link href="http://www.youth2009.org/blog/2011/07/10/nginx-location-config/"/&gt;
+</span><span class='line'>    &lt;updated&gt;2011-07-10T20:15:00+08:00&lt;/updated&gt;
+</span><span class='line'>    &lt;id&gt;http://www.youth2009.org/blog/2011/07/10/nginx-location-config&lt;/id&gt;
+</span><span class='line'>    &lt;content type="html"&gt;&lt;![CDATA[&lt;p&gt;原来的location只是处理了“/”的情况，结果访问一个目录，即使此目录下有index.html也不会成功显示，于是改成了这样：&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;```
+</span><span class='line'>location ~.*.(php|php5)?$
+</span><span class='line'>{&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;处理php
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;}</span></code></pre></td></tr></table></div></figure></p>
 
 <p>这样之后，发现直接访问目录或者域名的时候不能正常显示了，必须跟上index.php这样的才可以。</p>
 

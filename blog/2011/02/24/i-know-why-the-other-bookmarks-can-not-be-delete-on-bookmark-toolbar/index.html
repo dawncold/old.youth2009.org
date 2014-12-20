@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -85,7 +85,7 @@
 
 <p>2.进入这个目录，建立一个叫manifest.json的文件，从文件名就能看出这是个json，用vi、vim、emacs等写入如下内容：  </p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -109,7 +109,7 @@
 </span><span class='line'>  <span class="p">],</span>
 </span><span class='line'> <span class="s2">&quot;background_page&quot;</span><span class="o">:</span><span class="s2">&quot;index.html&quot;</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>然后找个ico文件，命名成上面提到的icon.ico，只要和json文件中对应即可，png也行。现在这个扩展的配置文件就基本完成了，因为这是要操控bookmarks的扩展程序，所以在permissions那里药写上bookmarks以表示这个扩展要使用chrome的bookmarks的API来做一些东西。具体的API可以参考Google的文档。</p>
@@ -191,8 +191,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2011/02/24/i-know-why-the-other-bookmarks-can-not-be-delete-on-bookmark-toolbar/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2011/02/24/i-know-why-the-other-bookmarks-can-not-be-delete-on-bookmark-toolbar/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2011/02/24/i-know-why-the-other-bookmarks-can-not-be-delete-on-bookmark-toolbar/';
+        var disqus_url = 'http://www.youth2009.org/blog/2011/02/24/i-know-why-the-other-bookmarks-can-not-be-delete-on-bookmark-toolbar/';
         var disqus_script = 'embed.js';
       
     (function () {

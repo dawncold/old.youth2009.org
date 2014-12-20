@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="也不知道怎么的，明天竟然就要内部测试了，首先是让编辑们录入商品，然后逐渐开始上一些主题、促销什么的东西，后者还没有时间表，不过从星期一就知道了星期四开始正式录入商品，也就是说我们的数据库从星期四就不能再drop了，只能migrate。 今天我们每个人都开始了带生产环境下的开发， &hellip;">
+	<meta name="description" content="原本以为今天能上线给编辑们使用，结果只是找了编辑部的几个人来现场的开发环境中玩了玩，提了提意见，明天下午1点我们正式开始用生产环境。 今天我又部署了好几次，期间也出现过一些问题，但都一一修复了，比较大的就是我把Git搞乱了，让周围几个人突然陷入困境。其实是我在生产分支上做了改动， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -76,6 +76,55 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/01/git-mass/">
+		
+			Git Mass</a>
+	</h2>
+	<div class="entry-content">
+		<p>原本以为今天能上线给编辑们使用，结果只是找了编辑部的几个人来现场的开发环境中玩了玩，提了提意见，明天下午1点我们正式开始用生产环境。</p>
+
+<p>今天我又部署了好几次，期间也出现过一些问题，但都一一修复了，比较大的就是我把Git搞乱了，让周围几个人突然陷入困境。其实是我在生产分支上做了改动，发现应该去master做，结果我就跳到master上想要合并生产分支，后来被我不断rebase弄坏了，处于一种无分支所在的状况，taowen帮我reset到了之前的地方，还好改动不多，又凭记忆修复过来了。看来部署这个东西真不能让一个人来搞定，一合并就会出现不少冲突，有的你能解决，有的解决不了（现在还没遇到解决不了的）。</p>
+
+<p>上午的standup持续了好久，大概又是在讨论需不需要这么多生产环境的纪律，昨天taowen只是加了commit前需要self-check，现在又出现了一个component不能超过xxx行的纪律，而且自动算出来，如果超了你就无法commit，wanglei今天早晨中招，顺便就开始说这个事儿了，我猜等我要做别的东西的时候也会这样吧。</p>
+
+<p>backup、restore、restore-from-baseline这几个虽然看起来简单，但调试起来缺不怎么容易，而且在调试过程中还出现了不少突发问题，解决起来也是相当费时间的，现在部署后再做这些工作应该都没什么问题了。</p>
+
+<p>晚上回来后我把web service的检查加入到了setting中，把部署打tag加入到了deploy流程中。明天去了打算把部署前lock所有sql脚本加入进去，这样每次部署就需要和大家说一下了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-01T21:56:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -589,54 +638,6 @@
 
 
 	<a class='category' href='/blog/categories/lvm/'>lvm</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/04/dict-formatting-in-python/">
-		
-			Python中dict格式化</a>
-	</h2>
-	<div class="entry-content">
-		<p>最近在工作中遇到过写SQL的问题，参数是直接传递进去的，比如这样：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">db</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;SELECT * FROM xxx WHERE id = </span><span class="si">%(id)s</span><span class="s">&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">get_id</span><span class="p">())</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>今天细看Google提供的Python课程发现一个叫DictFormatting的部分，里面就有类似这样的语法，现在才明白。以前用过Python的格式化输出，其实这个dict的格式化和字符串的类似，就是在字符串格式化的基础之上加入了dict的key，%s是表示这里有字符串，而%(xxx)s是表示字符串，而且是以xxx为key的字符串，这个value就是从字典中给出。一半会在这样一个字符串后加“% dictname”表示值从dictname这个字典中给出，这不就是和字符串格式化一样么。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-04T17:54:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>

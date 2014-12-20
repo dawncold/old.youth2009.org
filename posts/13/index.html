@@ -7,7 +7,23 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="嗯，我是一直喜欢C的，不过没勇气说我从事C方面的开发，因为C是需要很多技巧和底层技术的，我自知这方面的能力不足：（ &#8220;`c include &lt;stdio.h> include &lt;string.h> include &lt;stdlib.h> void strcp(char &hellip;">
+	<meta name="description" content="刚刚翻了翻《Java核心技术》这本书，里面提到了swing中的Timer的用法，我就实践一下，结果发现根本没有反映，于是网上搜索答案，在stackoverflow中找到。 我写的测试是每秒输出现在的时间而已。 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -44,7 +60,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +83,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -76,6 +92,125 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/06/02/method-timer-in-swing-is-better-in-gui/">
+		
+			swing中的Timer还是用在GUI中的好</a>
+	</h2>
+	<div class="entry-content">
+		<p>刚刚翻了翻《Java核心技术》这本书，里面提到了swing中的Timer的用法，我就实践一下，结果发现根本没有反映，于是网上搜索答案，在stackoverflow中找到。</p>
+
+<p>我写的测试是每秒输出现在的时间而已。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.awt.Toolkit</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TimePrint</span> <span class="kd">implements</span> <span class="n">ActionListener</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="nd">@Override</span>
+</span><span class='line'>   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span>
+</span><span class='line'>   <span class="o">{</span>
+</span><span class='line'>       <span class="c1">// TODO Auto-generated method stub</span>
+</span><span class='line'>       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;date is: &quot;</span> <span class="o">+</span> <span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">()));</span>
+</span><span class='line'>       <span class="n">Toolkit</span><span class="o">.</span><span class="na">getDefaultToolkit</span><span class="o">().</span><span class="na">beep</span><span class="o">();</span>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在调用的时候如果忘记写Thread.sleep(xxx)这行就不会看到效果，具体原因不太清楚，可能这个swing中的Timer只是用来在GUI中做些什么工作的，而我用终端输出内容就不太合适了，于是就牵扯出来很多线程的问题。</p>
+
+<p>这是main方法中的内容：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>import java.awt.event.ActionListener;
+</span><span class='line'>
+</span><span class='line'>import javax.swing.Timer;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>public class TimerPrintTest
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>   public static void main<span class="o">(</span>String<span class="o">[]</span> argStrings<span class="o">)</span> throws InterruptedException
+</span><span class='line'>   <span class="o">{</span>
+</span><span class='line'>       System.out.println<span class="o">(</span><span class="s2">&quot;Running...&quot;</span><span class="o">)</span>;
+</span><span class='line'>       ActionListener <span class="nv">listener</span> <span class="o">=</span> new TimePrint<span class="o">()</span>;
+</span><span class='line'>       Timer <span class="nv">timer</span> <span class="o">=</span> new Timer<span class="o">(</span>1000, listener<span class="o">)</span>;
+</span><span class='line'>       timer.start<span class="o">()</span>;
+</span><span class='line'>       Thread.sleep<span class="o">(</span>4000<span class="o">)</span>;
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-02T09:23:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -663,7 +798,7 @@ while(<em>s++ = </em>t++);<br/>
 
 <p>这是修改后输出逆序对的归并排序算法，有点可惜哈，这么长的排序算法只让副产品在台前显露了一把！</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -738,7 +873,7 @@ while(<em>s++ = </em>t++);<br/>
 
 <p>运行结果：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -866,110 +1001,6 @@ while(<em>s++ = </em>t++);<br/>
 
 
 	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/04/27/backup-mysql-databases-using-python/">
-		
-			用python备份mysql</a>
-	</h2>
-	<div class="entry-content">
-		<p>备份数据库的重要性不想多说了。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
-</span><span class='line'><span class="c"># coding: utf-8</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="o">*</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">time</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#mysql&#39;s path</span>
-</span><span class='line'><span class="n">mysql_path</span> <span class="o">=</span> <span class="s">&#39;/usr/local/mysql/bin/&#39;</span>
-</span><span class='line'><span class="c">#edit this if your mysql username and password is not like this:</span>
-</span><span class='line'><span class="n">mysql_username</span> <span class="o">=</span> <span class="s">&#39;root&#39;</span>
-</span><span class='line'><span class="n">mysql_password</span> <span class="o">=</span> <span class="s">&#39;xxxxxx&#39;</span>
-</span><span class='line'><span class="c">#backup path</span>
-</span><span class='line'><span class="n">backup_path</span> <span class="o">=</span> <span class="s">&#39;mysqlbackup/&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">validate_backup_path</span><span class="p">():</span>
-</span><span class='line'><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">backup_path</span><span class="p">)</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;I create a directory here: </span><span class="si">%s</span><span class="s"> &quot;</span> <span class="o">%</span> <span class="n">backup_path</span>
-</span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">backup_path</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">backup_all_databases</span><span class="p">():</span>
-</span><span class='line'><span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;all_</span><span class="si">%s</span><span class="s">.sql&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()))</span>
-</span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">mysqldump -u</span><span class="si">%s</span><span class="s"> -p</span><span class="si">%s</span><span class="s"> --all-databases &gt; &#39;</span><span class="si">%s%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mysql_path</span><span class="p">,</span> <span class="n">mysql_username</span><span class="p">,</span> <span class="n">mysql_password</span><span class="p">,</span> <span class="n">backup_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class='line'><span class="n">validate_backup_path</span><span class="p">()</span>
-</span><span class='line'><span class="n">backup_all_databases</span><span class="p">()</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;finish!!!&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这个是修改了一次的备份脚本，本来是分数据库备份的，无奈制定了分数据库备份需要输入密码，这就不容易加入cron来自动完成了，不过听说在my.cnf中加入mysqldump的设置可以避免输入账号密码，这也算是一个办法吧，不过还是本着简化的思想，只导出所有数据库出来就好，配合着上一篇的dropbox自动备份，这样VPS的灾备就稍稍好些了：）</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-27T20:44:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>

@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -79,8 +79,8 @@
 	<h2 class="title">Iptables MASQUERADE</h2>
 	<div class="entry-content"><p>If you need private hosts communicate with external network, maybe some LXC contaners want to using apt-get, you need add a iptables rule like this:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>iptables -t nat -A POSTROUTING -s 10.24.1.0/24 ! -d 10.24.1.0/24 -j MASQUERADE</span></code></pre></td></tr></table></div></figure></notextile></div>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>iptables -t nat -A POSTROUTING -s 10.24.1.0/24 ! -d 10.24.1.0/24 -j MASQUERADE</span></code></pre></td></tr></table></div></figure>
 
 
 <p>This rule allows network traffic from 10.24.1.x, and destination is not 10.24.1.x, maybe it wants to communicating with 10.24.2.x, but that doesn&rsquo;t cover in this post, we assumed it want to communicating with Google, the host has an external ip like 200.200.200.200, iptables can convert IP from 10.24.1.x to IP from 200.200.200.200, like the host request Google.</p>
@@ -149,8 +149,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2014/06/13/iptables-MASQUERADE/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2014/06/13/iptables-MASQUERADE/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2014/06/13/iptables-MASQUERADE/';
+        var disqus_url = 'http://www.youth2009.org/blog/2014/06/13/iptables-MASQUERADE/';
         var disqus_script = 'embed.js';
       
     (function () {

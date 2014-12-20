@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="博客内容是从wordpress转过来的，不可避免有很多地方没转换好，当时懒得弄，今天得空学习Shell编程，讲到了sed，就又搞了一下，基本满意了。 以前用sed替换过分类等简单的文字错误，今天主要是把一些html给替换掉了。 把&lt;p&gt;删掉，在删掉&lt;/p&gt;以及&lt;br &hellip;">
+	<meta name="description" content="以前用了nginx-upload-module，不过这个module的作者不打算继续更新了，导致nginx版本高于1.3.9就无法使用这个module来处理上传文件。本着不引入更多依赖并且使用一个比较成熟方法的前提，只有client_body_in_file_only，这是nginx &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -76,6 +76,83 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/06/25/nginx-upload-file-without-backend/">
+		
+			Nginx-upload-file-without-backend</a>
+	</h2>
+	<div class="entry-content">
+		<p>以前用了nginx-upload-module，不过这个module的作者不打算继续更新了，导致nginx版本高于1.3.9就无法使用这个module来处理上传文件。本着不引入更多依赖并且使用一个比较成熟方法的前提，只有client_body_in_file_only，这是nginx buildin方法。</p>
+
+<p>原本用upload-module的时候在location / 中有个if，如果发现有multipart就会处理一下，再pass回去。处理完后会多出两个参数，比如image.name和image.path，其中image是file input的name。然后back-end就直接那path和name来处理文件了，临时文件会放在一个固定的地方。</p>
+
+<p>由于client_body_in_file_only只能放在server、http、location中，得专门建立一个location而不能放在if中。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>location ^~ /upload/ {
+</span><span class='line'>  client_body_temp_path      /tmp/;
+</span><span class='line'>  client_body_in_file_only   on;
+</span><span class='line'>  client_body_buffer_size    128K;
+</span><span class='line'>  client_max_body_size       1000M;
+</span><span class='line'>
+</span><span class='line'>  proxy_pass_request_headers on;
+</span><span class='line'>  proxy_set_header           X-FILE $request_body_file; 
+</span><span class='line'>  proxy_set_body             off;
+</span><span class='line'>  proxy_redirect             off;
+</span><span class='line'>  proxy_pass                 http://backend/
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样以upload开头的就会做这样处理，上传的文件path会放在header中，至于name该怎么办，我是把name的值作为query string拼在了form的action中，在上传开始前得到文件名，然后拼上去。</p>
+
+<p>需要注意的是，client_body_in_file_only不支持RFC2388，也就是说multipart不管用，你可以考虑用ajax上传插件来做上传，注意插件里的multipart设为false。上传插件推荐JQuery-File-Upload。</p>
+
+<p>依赖，越少越好。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-25T23:09:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/nginx/'>nginx</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -555,106 +632,6 @@
 
 
 <time datetime="2013-03-18T22:10:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>, <a class='category' href='/blog/categories/sortedapp/'>sortedapp</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/03/17/big-break-in-tweak-app-build/">
-		
-			Big-break-in-tweak-app-build</a>
-	</h2>
-	<div class="entry-content">
-		<p>昨晚弄到1点多也没搞定iOSOpenDev，总是编译出问题，在irc上问了一下也没人回答我，看来还是有很多人在泡irc的！</p>
-
-<p>睡前又看了一下各种文章，等起床打算还是回归theos搞搞试试。</p>
-
-<p>没想到早晨用theos搞了一下竟然ok了！或许是用对了theos的版本？不清楚了。</p>
-
-<p>theos我删掉了原来的，用github上的版本</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://github.com/DHowett/theos.git <span class="nv">$THEOS</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>ldid我自己编译的，因为dropbox上的总是很难下载</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://git.saurik.com/ldid.git
-</span><span class='line'><span class="nb">cd </span>ldid
-</span><span class='line'>git submodule update --init
-</span><span class='line'>./make.sh
-</span><span class='line'>cp -f ./ldid <span class="nv">$THEOS</span>/bin/ldid
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>有篇教程说在iOS上也安装perl和theos，我实在不清楚有什么用，不过我也安装了，蛋疼，具体方法看<a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">这里</a></p>
-
-<p>headers用这里的：<a href="https://github.com/rpetrich/iphoneheaders">https://github.com/rpetrich/iphoneheaders</a>需要注意一点的是IOSurface这个framework，你需要增加一个新的头文件，在Mac系统中，可能还得注释掉两行，这取决于你是不是10.7版本的Mac系统。命令是：<code>cp /System/Library/Frameworks/IOSurface.framework/Headers/IOSurfaceAPI.h .</code>，在251和255行（我编译错误时候提示的就这两行），注释掉</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="cm">/* This call lets you get an xpc_object_t that holds a reference to the IOSurface.</span>
-</span><span class='line'><span class="cm">  Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&#39;s global use</span>
-</span><span class='line'><span class="cm">  count by one until the object is destroyed. */</span>
-</span><span class='line'><span class="c1">//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)</span>
-</span><span class='line'><span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="cm">/* This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. */</span>
-</span><span class='line'><span class="c1">//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)</span>
-</span><span class='line'><span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然后做你的tweak就可以了，我按照经典的heloworld例子搞了个hook，springboard中applicationDidFinishLaunching弹出alert，成功了。</p>
-
-<p>OS:10.8.3，SDKVERSION：6.1</p>
-
-<p>另外昨天说的设置theos的环境变量，我今天又重新加到了bash_profile中，发现make package install都能自动部署了。。。看来真是昨天theos版本的问题？！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-17T09:15:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

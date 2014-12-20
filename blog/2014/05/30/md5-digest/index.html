@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -77,7 +77,7 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">Md5 Digest</h2>
-	<div class="entry-content"><p>对于一个字符串做md5，例如："<order></order>123456"做完md5后，比较常见的结果是：<code>2e08539049ac0f6b5b4377ec20145c06</code>，即十六进制的表示形式，长度一般是32位，有人也用16位的表示，就是把32位的字符串前后各去掉8位后的结果，但不多见。还有就是用md5的digest值，这是一个16字节的字符串，不容易看，但可以转换成ascii后观察，比如上面的digest就是：<code>[46, 8, 83, 144, 73, 172, 15, 107, 91, 67, 119, 236, 32, 20, 92, 6]</code>， 如果你还看不清的话，可以考虑把这些ascii转成十六进制再看看：<code>['2e', '08', '53', '90', '49', 'ac', '0f', '6b', '5b', '43', '77', 'ec', '20', '14', '5c', '06']</code>，是不是很熟悉了，对就是一开始那个32位长的字符串。</p>
+	<div class="entry-content"><p>对于一个字符串做md5，例如：&#8221;<order></order>123456&#8221;做完md5后，比较常见的结果是：<code>2e08539049ac0f6b5b4377ec20145c06</code>，即十六进制的表示形式，长度一般是32位，有人也用16位的表示，就是把32位的字符串前后各去掉8位后的结果，但不多见。还有就是用md5的digest值，这是一个16字节的字符串，不容易看，但可以转换成ascii后观察，比如上面的digest就是：<code>[46, 8, 83, 144, 73, 172, 15, 107, 91, 67, 119, 236, 32, 20, 92, 6]</code>， 如果你还看不清的话，可以考虑把这些ascii转成十六进制再看看：<code>['2e', '08', '53', '90', '49', 'ac', '0f', '6b', '5b', '43', '77', 'ec', '20', '14', '5c', '06']</code>，是不是很熟悉了，对就是一开始那个32位长的字符串。</p>
 
 <p>在对某通的接口开发中遇到对发送数据校验，文档中说的是对数据进行md5再做base64，通常就是把那个32位长的字符串做base64，但怎么也对不上，后来再研究发现其实是用digest的结果做base64，太坑人了是吧，文档这个东西，能写详细就写详细点，没坏处。</p>
 </div>
@@ -145,8 +145,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2014/05/30/md5-digest/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2014/05/30/md5-digest/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2014/05/30/md5-digest/';
+        var disqus_url = 'http://www.youth2009.org/blog/2014/05/30/md5-digest/';
         var disqus_script = 'embed.js';
       
     (function () {

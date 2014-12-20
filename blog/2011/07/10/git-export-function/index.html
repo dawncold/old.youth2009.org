@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -81,8 +81,8 @@
 
 <p>用git管理项目不可避免要遇到导出功能，在svn和cvs上应该叫export功能，git上的这个功能似乎没找到，要这样做：先打包，再解压到一个地方去。还能接受吧。</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git-archive --prefix=map/ master | tar -x -C ../map_e/</span></code></pre></td></tr></table></div></figure></notextile></div>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git-archive --prefix=map/ master | tar -x -C ../map_e/</span></code></pre></td></tr></table></div></figure>
 
 
 <p>稍微解释一下，prefix指明了用哪个仓库，后面的master应该就是branch的名称了，然后把这些传递给了tar，因为不指明&mdash;format的时候默认用了tar方式打包，所以这里传递给tar解压到上层目录的map_e中，当然实际工作可以解压到生产服务器上去。</p>
@@ -151,8 +151,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2011/07/10/git-export-function/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2011/07/10/git-export-function/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2011/07/10/git-export-function/';
+        var disqus_url = 'http://www.youth2009.org/blog/2011/07/10/git-export-function/';
         var disqus_script = 'embed.js';
       
     (function () {

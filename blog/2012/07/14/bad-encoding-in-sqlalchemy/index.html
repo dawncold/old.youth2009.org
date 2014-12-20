@@ -45,7 +45,7 @@ mysql://root:@localhost/haolesong 在插入数据的时候看到数据库中的�
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -68,7 +68,7 @@ mysql://root:@localhost/haolesong 在插入数据的时候看到数据库中的�
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -80,9 +80,9 @@ mysql://root:@localhost/haolesong 在插入数据的时候看到数据库中的�
 	<h2 class="title">SQLAlchemy中的乱码</h2>
 	<div class="entry-content"><p>一开始没怎么关心这个问题，连接数据库的时候我直接这样用的：</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">mysql</span><span class="p">:</span><span class="o">//</span><span class="n">root</span><span class="p">:</span><span class="nd">@localhost</span><span class="o">/</span><span class="n">haolesong</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>在插入数据的时候看到数据库中的内容是乱码，但网页中显示的时候正常，于是我就没怎么关心，不过前天在修改一个值的时候，就是用一段中文替换原先的值，提交数据后网页打不开了，提示unicode编码的xxx问题，相信用Python写网站的人应该会遇得到。</p>
@@ -91,9 +91,9 @@ mysql://root:@localhost/haolesong 在插入数据的时候看到数据库中的�
 
 <p>最终就是这样即可：</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">mysql</span><span class="p">:</span><span class="o">//</span><span class="n">root</span><span class="p">:</span><span class="nd">@localhost</span><span class="o">/</span><span class="n">haolesong</span><span class="err">?</span><span class="n">charset</span><span class="o">=</span><span class="n">utf8</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -160,8 +160,8 @@ mysql://root:@localhost/haolesong 在插入数据的时候看到数据库中的�
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2012/07/14/bad-encoding-in-sqlalchemy/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2012/07/14/bad-encoding-in-sqlalchemy/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2012/07/14/bad-encoding-in-sqlalchemy/';
+        var disqus_url = 'http://www.youth2009.org/blog/2012/07/14/bad-encoding-in-sqlalchemy/';
         var disqus_script = 'embed.js';
       
     (function () {

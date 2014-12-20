@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -81,13 +81,13 @@
 
 <p>今天update进去信息，总是没发现数据库更新，怀疑是忘记commit，查看一下FMDB的使用方法，确实有commit一说，而我在看国内某博客写的使用教程时发现他就是随意的update和insert，殊不知这些都需要commit呀！在update和insert代码前后需要加入</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="p">[</span><span class="n">db</span> <span class="n">beginTransaction</span><span class="p">];</span>
 </span><span class='line'><span class="err">和</span>
 </span><span class='line'><span class="p">[</span><span class="n">db</span> <span class="n">commit</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>我用的Objective-C。</p>
@@ -160,8 +160,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2011/07/26/iphone-simulator-and-sqlite/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2011/07/26/iphone-simulator-and-sqlite/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2011/07/26/iphone-simulator-and-sqlite/';
+        var disqus_url = 'http://www.youth2009.org/blog/2011/07/26/iphone-simulator-and-sqlite/';
         var disqus_script = 'embed.js';
       
     (function () {

@@ -44,7 +44,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -79,7 +79,7 @@
 	<h2 class="title">Shell Study</h2>
 	<div class="entry-content"><p>今天开始学学Shell编程，不光是因为需要在惯例服务器的时候使用到，平常作为一门必须掌握的脚本语言也是很有必要的，所以就学吧，况且那本《Shell脚本学习指南》已经买了放那里好久了，就书刚到的时候看了两页，真的就像是两页，后来光看《The Pragmatic Programmer》和《1Q84》了。</p>
 
-<p>shell脚本的第一行一般写明这个脚本使用哪种脚本解释器运行，以"#!&ldquo;开头，后面加脚本解释器的名字和相应参数，如果不需要什么参数就写上“-”，这是出于安全考虑，可以避免某种程度上的欺骗式攻击（spoofing attack）。</p>
+<p>shell脚本的第一行一般写明这个脚本使用哪种脚本解释器运行，以&#8221;#!&ldquo;开头，后面加脚本解释器的名字和相应参数，如果不需要什么参数就写上“-”，这是出于安全考虑，可以避免某种程度上的欺骗式攻击（spoofing attack）。</p>
 
 <pre><code>选项：命令后面用一个“-”开头书写的内容，如：ls -l，那么“-l”就是选项。
 参数：有的选项需要传入参数，那么就要紧跟着那个需要参数的“选项”，如：cc -o exp exp.c
@@ -89,7 +89,7 @@
 
 <p>shell中的变量赋值有个要求，变量名后，到等号，到值都不能有空格：“var=1”这是正确的，“var = 1、var= 1等等都不对”，这点有些别扭，我喜欢多加空格。。。而且大多数coder也是如此吧？</p>
 
-<p>取出刚刚你创建的变量需要在变量名前面加"$&ldquo;符号，看来和取钱的感觉差不多哈哈，或许以前认为变量中的值放在内存或者磁盘上都是昂贵的，如同取钱。</p>
+<p>取出刚刚你创建的变量需要在变量名前面加&#8221;$&ldquo;符号，看来和取钱的感觉差不多哈哈，或许以前认为变量中的值放在内存或者磁盘上都是昂贵的，如同取钱。</p>
 
 <p>变量赋值这里还有些东西值得说一下：</p>
 
@@ -166,8 +166,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2012/11/21/shell-study/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2012/11/21/shell-study/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2012/11/21/shell-study/';
+        var disqus_url = 'http://www.youth2009.org/blog/2012/11/21/shell-study/';
         var disqus_script = 'embed.js';
       
     (function () {

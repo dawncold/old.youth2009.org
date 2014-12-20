@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Trade Off]]></title>
-  <link href="http://www.youth2009.org/www/atom.xml" rel="self"/>
-  <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-11-22T14:24:29+08:00</updated>
-  <id>http://www.youth2009.org/www/</id>
+  <link href="http://www.youth2009.org/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2014-12-20T22:12:05+08:00</updated>
+  <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
     
@@ -14,10 +14,27 @@
 
   
   <entry>
+    <title type="html"><![CDATA[safe characters of quote method in urllib]]></title>
+    <link href="http://www.youth2009.org/blog/2014/12/20/quote-in-urllib/"/>
+    <updated>2014-12-20T20:27:59+08:00</updated>
+    <id>http://www.youth2009.org/blog/2014/12/20/quote-in-urllib</id>
+    <content type="html"><![CDATA[<p>quote accept two arguments: a string and safe characters. If you pass empty to <code>quote</code> as the second parameter, it means every characters except preserved characters will be replaced by a % leading characters, e.g. space will be replaced by %20, etc.</p>
+
+<p>In my project, I invoke quote like <code>quote(params, '')</code>, and I have imported <code>unicode_literals</code>, so I passed a unicode parameter to <code>quote</code> method.</p>
+
+<p>What will happen?</p>
+
+<p>Next time you invoke quote with the same <code>safe</code> parameter you used before, you may get an error like <code>UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)</code>, urllib will cache the safe parameter(urllib.py 1277 line), it expects a byte type parameter but you pass an unicode one, also, that library didn&rsquo;t check or convert it before it uses.</p>
+
+<p>Best practice, pass a byte parameter like <code>b''</code> to <code>quote</code> if you have same usage(unicode literals) like me.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[linux-study]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/11/22/linux-study/"/>
+    <link href="http://www.youth2009.org/blog/2014/11/22/linux-study/"/>
     <updated>2014-11-22T14:14:25+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/11/22/linux-study</id>
+    <id>http://www.youth2009.org/blog/2014/11/22/linux-study</id>
     <content type="html"><![CDATA[<p>directory permission x means this directory can be work directory, if you want to write or read a file behind this directory, you must have permission x of this directory.</p>
 
 <p>directory permission w means you can delete or create files or directories behind this</p>
@@ -42,9 +59,9 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
   
   <entry>
     <title type="html"><![CDATA[aix-security]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/11/22/aix-security/"/>
+    <link href="http://www.youth2009.org/blog/2014/11/22/aix-security/"/>
     <updated>2014-11-22T14:04:41+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/11/22/aix-security</id>
+    <id>http://www.youth2009.org/blog/2014/11/22/aix-security</id>
     <content type="html"><![CDATA[<p>some security configuration for AIX ssh and system services</p>
 
 <p>create a user group named rmt_acc, only allow this group user access ssh, don&rsquo;t allow root login and use public key authentication.</p>
@@ -355,9 +372,9 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
   
   <entry>
     <title type="html"><![CDATA[developing-on-blackberry]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/09/05/developing-on-blackberry/"/>
+    <link href="http://www.youth2009.org/blog/2014/09/05/developing-on-blackberry/"/>
     <updated>2014-09-05T21:58:07+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/09/05/developing-on-blackberry</id>
+    <id>http://www.youth2009.org/blog/2014/09/05/developing-on-blackberry</id>
     <content type="html"><![CDATA[<h1>Create BlackBerry ID token</h1>
 
 <p>here:
@@ -464,9 +481,9 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
   
   <entry>
     <title type="html"><![CDATA[external disk with openwrt]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/08/22/external-disk-with-openwrt/"/>
+    <link href="http://www.youth2009.org/blog/2014/08/22/external-disk-with-openwrt/"/>
     <updated>2014-08-22T23:05:57+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/08/22/external-disk-with-openwrt</id>
+    <id>http://www.youth2009.org/blog/2014/08/22/external-disk-with-openwrt</id>
     <content type="html"><![CDATA[<p>上次笔记本替换下来的硬盘闲在那里很久了，反正闲着没用，不如装点东西，比如监控的图片什么的，每分钟两张的速度拍，一个工作日，大约能有5G的数据，要是都传到七牛那么也就两天，免费的磁盘空间就满了，但绝大多数图片是没意义的，手动删的话，勤快些也行。</p>
 
 <p>不过要是存到磁盘上的话，就无所谓了，500G的空间，怎么能等好几个月之后再考虑，程序员都是很懒很懒的。。。</p>
@@ -543,9 +560,9 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
   
   <entry>
     <title type="html"><![CDATA[role in postgresql]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/08/14/role-in-postgresql/"/>
+    <link href="http://www.youth2009.org/blog/2014/08/14/role-in-postgresql/"/>
     <updated>2014-08-14T22:08:20+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/08/14/role-in-postgresql</id>
+    <id>http://www.youth2009.org/blog/2014/08/14/role-in-postgresql</id>
     <content type="html"><![CDATA[<p>In PostgreSQL versions before 8.1, users and groups were distinct kinds of entities, but now only role, it is user or group or both.</p>
 
 <p>if you create a role using “CREATE ROLE r1”, r1 is not a user, only a generic role, it is likely a group, you can not find it in pg_user, only in pg_roles table, but if you grant LOGIN privilege to r1, it will be appear in pg_user table.</p>
@@ -572,9 +589,9 @@ GRANT wheel TO admin;</p>
   
   <entry>
     <title type="html"><![CDATA[else clause in python loop]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/08/14/else-clause-in-python-loop/"/>
+    <link href="http://www.youth2009.org/blog/2014/08/14/else-clause-in-python-loop/"/>
     <updated>2014-08-14T22:07:09+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/08/14/else-clause-in-python-loop</id>
+    <id>http://www.youth2009.org/blog/2014/08/14/else-clause-in-python-loop</id>
     <content type="html"><![CDATA[<p>both in while and for loop, if in loop body, no break, no return, no exception is raised, statements in else block will be executed.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -594,9 +611,9 @@ GRANT wheel TO admin;</p>
   
   <entry>
     <title type="html"><![CDATA[iptables -A INPUT -i eth0 -p tcp -m tcp --dport 80 -j ACCEPT]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept/"/>
+    <link href="http://www.youth2009.org/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept/"/>
     <updated>2014-08-14T22:05:46+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept</id>
+    <id>http://www.youth2009.org/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept</id>
     <content type="html"><![CDATA[<p>what’s the agreement of -m?</p>
 
 <p>not tcp, it’s “tcp &mdash;dport 80”</p>
@@ -607,9 +624,9 @@ GRANT wheel TO admin;</p>
   
   <entry>
     <title type="html"><![CDATA[Absolute Positioning Inside Relative Positioning]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/08/14/absolute-positioning-inside-relative-positioning/"/>
+    <link href="http://www.youth2009.org/blog/2014/08/14/absolute-positioning-inside-relative-positioning/"/>
     <updated>2014-08-14T22:00:36+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/08/14/absolute-positioning-inside-relative-positioning</id>
+    <id>http://www.youth2009.org/blog/2014/08/14/absolute-positioning-inside-relative-positioning</id>
     <content type="html"><![CDATA[<p>if you want a div with absolute position relative its parent, not body, the parent div must be relative position.</p>
 
 <p>see details <a href="http://css-tricks.com/absolute-positioning-inside-relative-positioning/">http://css-tricks.com/absolute-positioning-inside-relative-positioning/</a></p>
@@ -618,9 +635,9 @@ GRANT wheel TO admin;</p>
   
   <entry>
     <title type="html"><![CDATA[iptables MASQUERADE]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/06/13/iptables-MASQUERADE/"/>
+    <link href="http://www.youth2009.org/blog/2014/06/13/iptables-MASQUERADE/"/>
     <updated>2014-06-13T20:50:30+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/06/13/iptables-MASQUERADE</id>
+    <id>http://www.youth2009.org/blog/2014/06/13/iptables-MASQUERADE</id>
     <content type="html"><![CDATA[<p>If you need private hosts communicate with external network, maybe some LXC contaners want to using apt-get, you need add a iptables rule like this:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -633,9 +650,9 @@ GRANT wheel TO admin;</p>
   
   <entry>
     <title type="html"><![CDATA[postgresql indexes]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/06/01/postgresql-indexes/"/>
+    <link href="http://www.youth2009.org/blog/2014/06/01/postgresql-indexes/"/>
     <updated>2014-06-01T10:18:27+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/06/01/postgresql-indexes</id>
+    <id>http://www.youth2009.org/blog/2014/06/01/postgresql-indexes</id>
     <content type="html"><![CDATA[<h1>Introduction</h1>
 
 <p>Indexes will speed up your read(SELECT) and write(INSERT, UPDATE, DELETE) operation on a table, but they should by removed when a query seldom or never used. Create a bit table&rsquo;s index will spend lot of time. By default, PostgreSQL allows reads (SELECT statements) to occur on the table in parallel with index creation, but writes (INSERT, UPDATE, DELETE) are blocked until the index build is finished. In production environments this is often unacceptable. It is possible to allow writes to occur in parallel with index creation, but there are several caveats to be aware of — for more information see <a href="http://www.postgresql.org/docs/9.3/static/sql-createindex.html#SQL-CREATEINDEX-CONCURRENTLY">Building Indexes Concurrently</a>.</p>
@@ -674,18 +691,18 @@ GRANT wheel TO admin;</p>
   
   <entry>
     <title type="html"><![CDATA[python-main-py]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/05/30/python-main-py/"/>
+    <link href="http://www.youth2009.org/blog/2014/05/30/python-main-py/"/>
     <updated>2014-05-30T21:05:20+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/05/30/python-main-py</id>
+    <id>http://www.youth2009.org/blog/2014/05/30/python-main-py</id>
     <content type="html"><![CDATA[<p>python的<code>__main__.py</code>文件，通常，一个package下有一个<code>__init__.py</code>文件标识这是package，同样可以有一个<code>__main__.py</code>文件，有了后你就可以这样运行一个脚本：<code>python script_dir</code>或者把这个dir打包成zip，可以使用<code>python zipball.zip</code>来执行，python会执行<code>__main__.py</code>中的语句。</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[disable-keyboard-on-ubuntu]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/05/30/disable-keyboard-on-ubuntu/"/>
+    <link href="http://www.youth2009.org/blog/2014/05/30/disable-keyboard-on-ubuntu/"/>
     <updated>2014-05-30T20:54:45+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/05/30/disable-keyboard-on-ubuntu</id>
+    <id>http://www.youth2009.org/blog/2014/05/30/disable-keyboard-on-ubuntu</id>
     <content type="html"><![CDATA[<p>有时候不接外置显示器的时候，喜欢把键盘压在笔记本键盘上方使用，但如果不禁用内置键盘的话就会有误操作的风险，所以这样做，利用ubuntu中的xinput</p>
 
 <p>查看设备使用<code>xinput list</code></p>
@@ -725,9 +742,9 @@ GRANT wheel TO admin;</p>
   
   <entry>
     <title type="html"><![CDATA[log2n和log3n]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/05/30/log2n-log3n/"/>
+    <link href="http://www.youth2009.org/blog/2014/05/30/log2n-log3n/"/>
     <updated>2014-05-30T20:45:44+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/05/30/log2n-log3n</id>
+    <id>http://www.youth2009.org/blog/2014/05/30/log2n-log3n</id>
     <content type="html"><![CDATA[<p>merge sort的时间复杂度，log2n，曾经在算法书上看到过，相应的，merge sort也可以三分，复杂度变成log3n，好像还不错，但差多少呢？</p>
 
 <p>log3n=log2n/log2(3)，也就是只差了1/log2(3)对于看起来还更大。一般算法复杂度是log2n表示就是这个原因，loga(n)和log2n差不了太多，都是常数级别的差距，而且在复杂度分析的时候都会忽略常数，所以就简记为log2n复杂度了：）</p>
@@ -736,9 +753,9 @@ GRANT wheel TO admin;</p>
   
   <entry>
     <title type="html"><![CDATA[md5 digest]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/05/30/md5-digest/"/>
+    <link href="http://www.youth2009.org/blog/2014/05/30/md5-digest/"/>
     <updated>2014-05-30T20:29:58+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/05/30/md5-digest</id>
+    <id>http://www.youth2009.org/blog/2014/05/30/md5-digest</id>
     <content type="html"><![CDATA[<p>对于一个字符串做md5，例如：&#8221;<order></order>123456&#8221;做完md5后，比较常见的结果是：<code>2e08539049ac0f6b5b4377ec20145c06</code>，即十六进制的表示形式，长度一般是32位，有人也用16位的表示，就是把32位的字符串前后各去掉8位后的结果，但不多见。还有就是用md5的digest值，这是一个16字节的字符串，不容易看，但可以转换成ascii后观察，比如上面的digest就是：<code>[46, 8, 83, 144, 73, 172, 15, 107, 91, 67, 119, 236, 32, 20, 92, 6]</code>， 如果你还看不清的话，可以考虑把这些ascii转成十六进制再看看：<code>['2e', '08', '53', '90', '49', 'ac', '0f', '6b', '5b', '43', '77', 'ec', '20', '14', '5c', '06']</code>，是不是很熟悉了，对就是一开始那个32位长的字符串。</p>
 
 <p>在对某通的接口开发中遇到对发送数据校验，文档中说的是对数据进行md5再做base64，通常就是把那个32位长的字符串做base64，但怎么也对不上，后来再研究发现其实是用digest的结果做base64，太坑人了是吧，文档这个东西，能写详细就写详细点，没坏处。</p>
@@ -747,9 +764,9 @@ GRANT wheel TO admin;</p>
   
   <entry>
     <title type="html"><![CDATA[dive-into-tornado]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/03/27/dive-into-tornado/"/>
+    <link href="http://www.youth2009.org/blog/2014/03/27/dive-into-tornado/"/>
     <updated>2014-03-27T21:22:58+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/03/27/dive-into-tornado</id>
+    <id>http://www.youth2009.org/blog/2014/03/27/dive-into-tornado</id>
     <content type="html"><![CDATA[<p>早就有这样的计划，要深入了解自己在用的工具，veil算一个，tornado算一个，flask算一个……当然还有好多，总得一个个看一番，好在这些库都写得足够简单，不至于一下子看不懂，而且借助pycharm这样优秀的工具，一步步跟踪代码也给深入理解框架极大的帮助，所以，开始吧。（也好久都没更新过技术博客的内容了）</p>
 
 <p>终于可以再让Mac发挥发挥余热了，pycharm用的社区版，估计对于学习够用了。tornado升级到了稳定的3.2版，也是目前的最新版，先慢慢研读官方的文档，再慢慢看完api。</p>
@@ -762,18 +779,18 @@ GRANT wheel TO admin;</p>
   
   <entry>
     <title type="html"><![CDATA[return-value-in-jquery-json-datatype]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/01/23/return-value-in-jquery-json-datatype/"/>
+    <link href="http://www.youth2009.org/blog/2014/01/23/return-value-in-jquery-json-datatype/"/>
     <updated>2014-01-23T18:57:21+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/01/23/return-value-in-jquery-json-datatype</id>
+    <id>http://www.youth2009.org/blog/2014/01/23/return-value-in-jquery-json-datatype</id>
     <content type="html"><![CDATA[<p>向api server发送请求做一件事的时候，比如修改密码，server做完后没有返回值，response code是200。这在原来的时候没问题，“原来”是指ajax的dataType未指定的时候，jQuery会自己猜测用什么，但这次指定了server的response是json，所以，即便是看到200 code也未能调用OnSuccess，空返回值对于json是不合法的，于是返回一个什么东西就好，当然要先to_json再返回。</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[nginx-and-dependences]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/01/16/nginx-and-dependences/"/>
+    <link href="http://www.youth2009.org/blog/2014/01/16/nginx-and-dependences/"/>
     <updated>2014-01-16T18:46:33+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/01/16/nginx-and-dependences</id>
+    <id>http://www.youth2009.org/blog/2014/01/16/nginx-and-dependences</id>
     <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -812,9 +829,9 @@ GRANT wheel TO admin;</p>
   
   <entry>
     <title type="html"><![CDATA[lxml-and-dependences]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/01/16/lxml-and-dependences/"/>
+    <link href="http://www.youth2009.org/blog/2014/01/16/lxml-and-dependences/"/>
     <updated>2014-01-16T18:31:09+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/01/16/lxml-and-dependences</id>
+    <id>http://www.youth2009.org/blog/2014/01/16/lxml-and-dependences</id>
     <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -828,9 +845,9 @@ GRANT wheel TO admin;</p>
   
   <entry>
     <title type="html"><![CDATA[daemon-in-nginx]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/01/06/daemon-in-nginx/"/>
+    <link href="http://www.youth2009.org/blog/2014/01/06/daemon-in-nginx/"/>
     <updated>2014-01-06T21:57:39+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/01/06/daemon-in-nginx</id>
+    <id>http://www.youth2009.org/blog/2014/01/06/daemon-in-nginx</id>
     <content type="html"><![CDATA[<p>最近要把bnly重新运行起来，前两天整理了cli版本的程序，放到<a href="GitHub">https://github.com/dawncold/bnly-cli</a>，另一个web版的放到了bitbucket上的私有仓库，准备做部署的时候用，没想到bitbucket最近没有被kill，难道放开了？</p>
 
 <p>用supervisor做进程管理的时候被nginx坑了，由于nginx的配置很强大，现在还处在搭建环境的初期，很多配置写不完整，导致了nginx总是在频繁启动，log中看到的是80端口已经被占用。。。找了半天只有nginx占着80，而且又不会开多个nginx（supervisor的配置中没有明确说开多个程序，默认一个），搜了挺长时间都没有结果。</p>
@@ -840,34 +857,6 @@ GRANT wheel TO admin;</p>
 <p>nginx的文档建议生产环境应该off，但这个和我遇到的问题无关。默认daemon开了，supervisor运行后会认为nginx退出了，再启动一个，其实上一个已经启动成功，所以就总看到80端口被占用，于是在nginx的配置上加<code>deamon off</code>即可。</p>
 
 <p>是不是很坑？</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Object.keys-and-JSON-in-IE6]]></title>
-    <link href="http://www.youth2009.org/www/blog/2013/12/08/object-dot-keys-and-json-in-ie6/"/>
-    <updated>2013-12-08T14:52:12+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2013/12/08/object-dot-keys-and-json-in-ie6</id>
-    <content type="html"><![CDATA[<p>下单页面用到了js中的JSON和Object.keys，都是坑。</p>
-
-<p>JSON虽然是build-in的JSON parser和stringify方法，但IE6，7，8(Q)都是无法使用的，如果用jQuery的话，可以用jQuery的parseJSON来解析，但stringify的话需要依赖第三方库或者自己实现，我用了JSON3.js这个库。首选build-in的parse和stringify方法，如果没有就实现。github地址：<a href="https://github.com/bestiejs/json3">https://github.com/bestiejs/json3</a></p>
-
-<p>同样的Object.keys()因为不能在IE9下使用，因为要取一个Object的keys数量，有的时候是用Object的keys列表，所以以后为了兼容，就只能：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="p">[];</span>
-</span><span class='line'><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">p</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">p</span><span class="p">))</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">keys</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   

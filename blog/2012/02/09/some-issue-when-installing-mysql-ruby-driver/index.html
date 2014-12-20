@@ -96,7 +96,7 @@
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org/www">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
 			</form>
 		</div>
 	</div>
@@ -119,7 +119,7 @@
 	</div>
 	<form class="search" action="http://google.com/search" method="get">
 		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org/www">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
 	</form>
 </nav>
 
@@ -129,7 +129,7 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">安装mysql的Ruby驱动遇到的问题</h2>
-	<div class="entry-content"><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+	<div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -267,17 +267,17 @@
 </span><span class='line'>
 </span><span class='line'>Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 <span class="k">for </span>inspection.
 </span><span class='line'>Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>bash
 gem install mysql &mdash; &mdash;with-mysql-dir=/usr/local/mysql
-```</p>
+&#8220;`</p>
 
 <p>一开始的那两个“&mdash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
 
@@ -347,8 +347,8 @@ gem install mysql &mdash; &mdash;with-mysql-dir=/usr/local/mysql
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.youth2009.org/www/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/';
-        var disqus_url = 'http://www.youth2009.org/www/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/';
+        var disqus_identifier = 'http://www.youth2009.org/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/';
+        var disqus_url = 'http://www.youth2009.org/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/';
         var disqus_script = 'embed.js';
       
     (function () {
