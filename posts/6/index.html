@@ -94,22 +94,30 @@
 
 <p>theos我删掉了原来的，用github上的版本</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://github.com/DHowett/theos.git <span class="nv">$THEOS</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>ldid我自己编译的，因为dropbox上的总是很难下载</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://git.saurik.com/ldid.git
+</span><span class='line'>
 </span><span class='line'><span class="nb">cd </span>ldid
+</span><span class='line'>
 </span><span class='line'>git submodule update --init
+</span><span class='line'>
 </span><span class='line'>./make.sh
+</span><span class='line'>
 </span><span class='line'>cp -f ./ldid <span class="nv">$THEOS</span>/bin/ldid
 </span></code></pre></td></tr></table></div></figure>
 
@@ -118,7 +126,7 @@
 
 <p>headers用这里的：<a href="https://github.com/rpetrich/iphoneheaders">https://github.com/rpetrich/iphoneheaders</a>需要注意一点的是IOSurface这个framework，你需要增加一个新的头文件，在Mac系统中，可能还得注释掉两行，这取决于你是不是10.7版本的Mac系统。命令是：<code>cp /System/Library/Frameworks/IOSurface.framework/Headers/IOSurfaceAPI.h .</code>，在251和255行（我编译错误时候提示的就这两行），注释掉</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -128,17 +136,34 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="cm">/* This call lets you get an xpc_object_t that holds a reference to the IOSurface.</span>
-</span><span class='line'><span class="cm">  Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&#39;s global use</span>
-</span><span class='line'><span class="cm">  count by one until the object is destroyed. */</span>
-</span><span class='line'><span class="c1">//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)</span>
-</span><span class='line'><span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/* This call lets you get an xpc_object_t that holds a reference to the IOSurface.
+</span><span class='line'>
+</span><span class='line'>  Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface's global use
+</span><span class='line'>
+</span><span class='line'>  count by one until the object is destroyed. */
+</span><span class='line'>
+</span><span class='line'>//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)
+</span><span class='line'>
+</span><span class='line'>//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'><span class="cm">/* This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. */</span>
-</span><span class='line'><span class="c1">//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)</span>
-</span><span class='line'><span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>/* This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. */
+</span><span class='line'>
+</span><span class='line'>//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)
+</span><span class='line'>
+</span><span class='line'>//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span></code></pre></td></tr></table></div></figure>
 
 
 <p>然后做你的tweak就可以了，我按照经典的heloworld例子搞了个hook，springboard中applicationDidFinishLaunching弹出alert，成功了。</p>
@@ -237,13 +262,19 @@
 
 <p>基本需要的工具</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">THEOS</span><span class="o">=</span>/opt/theos
+</span><span class='line'>
 </span><span class='line'>svn co http://svn.howett.net/svn/theos/trunk <span class="nv">$THEOS</span>
-</span><span class='line'>curl -s https://dl.dropboxusercontent.com/u/3157793/ldid &gt; <span class="nv">$THEOS</span>/bin/ldid; chmod +x <span class="nv">$THEOS</span>/bin/ldid
+</span><span class='line'>
+</span><span class='line'>curl -s https://dl.dropboxusercontent.com/u/3157793/ldid &gt; <span class="nv">$THEOS</span>/bin/ldid<span class="p">;</span> chmod +x <span class="nv">$THEOS</span>/bin/ldid
+</span><span class='line'>
 </span><span class='line'>brew install dpkg<span class="o">(</span>如果出错安不上dpkg，那就先update一下brew，我就遇到这么个问题<span class="o">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -254,9 +285,11 @@
 
 <p>再加两个环境变量</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">SDKVERSION</span><span class="o">=</span>6.1
+</span><span class='line'>
 </span><span class='line'><span class="nb">export </span><span class="nv">THEOS_DEVICE_IP</span><span class="o">=</span>10.0.0.101
 </span></code></pre></td></tr></table></div></figure>
 
@@ -265,9 +298,11 @@
 
 <p>make&amp;make package，在make的时候不加sudo我会无法make成功。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo make
+</span><span class='line'>
 </span><span class='line'>sudo make package
 </span></code></pre></td></tr></table></div></figure>
 
@@ -376,43 +411,59 @@
 
 <p>generator这个东西是很有意思的，比如：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">other_firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'> <span class="n">num</span><span class="p">,</span> <span class="n">nums</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[]</span>
-</span><span class='line'> <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
-</span><span class='line'>   <span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
-</span><span class='line'>   <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'> <span class="k">return</span> <span class="n">nums</span>
-</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def other_firstn(n):
+</span><span class='line'>
+</span><span class='line'> num, nums = 0, []
+</span><span class='line'>
+</span><span class='line'> while num &lt; n:
+</span><span class='line'>
+</span><span class='line'>   nums.append(num)
+</span><span class='line'>
+</span><span class='line'>   num += 1
+</span><span class='line'>
+</span><span class='line'> return nums</span></code></pre></td></tr></table></div></figure>
 
 
 <p>可以产生一个list，里面是按顺序的数字，有n个，结果类似于range(n)的返回值。</p>
 
 <p>还有一个版本的firstn：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'> <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
-</span><span class='line'>   <span class="k">yield</span> <span class="n">num</span>
-</span><span class='line'>   <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
-</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def firstn(n):
+</span><span class='line'>
+</span><span class='line'> num = 0
+</span><span class='line'>
+</span><span class='line'> while num &lt; n:
+</span><span class='line'>
+</span><span class='line'>   yield num
+</span><span class='line'>
+</span><span class='line'>   num += 1</span></code></pre></td></tr></table></div></figure>
 
 
 <p>这个看起来就很帅了，代码也简洁了很多，yield是十分神奇的表达式，产生了一个num，这里不太好想，不能按照正常的function来思考这个执行顺序了。</p>
 
 <p>总之，如果产生100个数字，你可以一下子弄出100个来，或者你知道规则的话，你就弄出第一个来，然后用的时候按照规则，从第一个一直走下去，也产生了100个。最大的不同就是性能，后者必然速度更快了，前提是数量要足够多！写了一个简单的性能对比，主要是时间上的，内存上的不容易监控。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -445,50 +496,117 @@
 <span class='line-number'>31</span>
 <span class='line-number'>32</span>
 <span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># /usr/bin/python</span>
-</span><span class='line'><span class="c">#! -*- coding: utf-8 -*-</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># /usr/bin/python
 </span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">time</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'> <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
-</span><span class='line'>   <span class="k">yield</span> <span class="n">num</span>
-</span><span class='line'>   <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">other_firstn</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'> <span class="n">num</span><span class="p">,</span> <span class="n">nums</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[]</span>
-</span><span class='line'> <span class="k">while</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
-</span><span class='line'>   <span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
-</span><span class='line'>   <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'> <span class="k">return</span> <span class="n">nums</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="n">func_wrap</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwards</span><span class="p">):</span>
-</span><span class='line'> <span class="n">s</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-</span><span class='line'> <span class="n">r</span> <span class="o">=</span> <span class="n">func_wrap</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwards</span><span class="p">))</span>
-</span><span class='line'> <span class="n">e</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-</span><span class='line'> <span class="k">print</span> <span class="s">&#39;return: </span><span class="si">%s</span><span class="s">   use </span><span class="si">%f</span><span class="s"> ms[s: </span><span class="si">%s</span><span class="s">, e: </span><span class="si">%s</span><span class="s">]&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="p">(</span><span class="n">e</span> <span class="o">-</span> <span class="n">s</span><span class="p">),</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-</span><span class='line'> <span class="n">timer</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">firstn</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
-</span><span class='line'> <span class="n">timer</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">other_firstn</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span>
+</span><span class='line'>#! -*- coding: utf-8 -*-
 </span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class='line'> <span class="n">main</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>import time
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>def firstn(n):
+</span><span class='line'>
+</span><span class='line'> num = 0
+</span><span class='line'>
+</span><span class='line'> while num &lt; n:
+</span><span class='line'>
+</span><span class='line'>   yield num
+</span><span class='line'>
+</span><span class='line'>   num += 1
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>def other_firstn(n):
+</span><span class='line'>
+</span><span class='line'> num, nums = 0, []
+</span><span class='line'>
+</span><span class='line'> while num &lt; n:
+</span><span class='line'>
+</span><span class='line'>   nums.append(num)
+</span><span class='line'>
+</span><span class='line'>   num += 1
+</span><span class='line'>
+</span><span class='line'> return nums
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>def timer(func_wrap, func, *args, **kwards):
+</span><span class='line'>
+</span><span class='line'> s = time.time()
+</span><span class='line'>
+</span><span class='line'> r = func_wrap(func(*args, **kwards))
+</span><span class='line'>
+</span><span class='line'> e = time.time()
+</span><span class='line'>
+</span><span class='line'> print 'return: %s   use %f ms[s: %s, e: %s]' % (r, (e - s), s, e)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>def main():
+</span><span class='line'>
+</span><span class='line'> timer(sum, firstn, 1000000)
+</span><span class='line'>
+</span><span class='line'> timer(sum, other_firstn, 1000000)
+</span><span class='line'>
+</span><span class='line'> 
+</span><span class='line'>
+</span><span class='line'> 
+</span><span class='line'>
+</span><span class='line'> 
+</span><span class='line'>
+</span><span class='line'>if __name__ == "__main__":
+</span><span class='line'>
+</span><span class='line'> main()</span></code></pre></td></tr></table></div></figure>
 
 
 <p>输出结果是：大约会慢1倍</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold <span class="o">[</span>21:49:11<span class="o">]</span> ~<span class="o">=</span>&gt;<span class="nv">$ </span>python 1.py
-</span><span class='line'><span class="k">return</span>: 499999500000   use 0.137414 ms<span class="o">[</span>s: 1363182552.38, e: 1363182552.52<span class="o">]</span>
-</span><span class='line'><span class="k">return</span>: 499999500000   use 0.290716 ms<span class="o">[</span>s: 1363182552.52, e: 1363182552.81<span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">return</span>: <span class="m">499999500000</span>   use 0.137414 ms<span class="o">[</span>s: 1363182552.38, e: 1363182552.52<span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">return</span>: <span class="m">499999500000</span>   use 0.290716 ms<span class="o">[</span>s: 1363182552.52, e: 1363182552.81<span class="o">]</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -541,13 +659,25 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="k">if</span><span class="p">(</span><span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">instances</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">instances</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]);</span>
+</span><span class='line'>
 </span><span class='line'><span class="p">}</span>
+</span><span class='line'>
 </span><span class='line'><span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'><span class="err">其中</span><span class="nx">description</span><span class="err">是一个</span><span class="nx">textarea</span><span class="err">的</span><span class="nx">name</span><span class="err">。</span>
 </span></code></pre></td></tr></table></div></figure>
+
+
 
 
 		
@@ -688,14 +818,30 @@
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>try:
+</span><span class='line'>
 </span><span class='line'>  save porcess
+</span><span class='line'>
 </span><span class='line'>except IOError:
+</span><span class='line'>
 </span><span class='line'>  old_block = PIL.ImageFile.MAXBLOCK
+</span><span class='line'>
 </span><span class='line'>  PIL.ImageFile.MAXBLOCK = max(image.size) ** 2
+</span><span class='line'>
 </span><span class='line'>  try:
+</span><span class='line'>
 </span><span class='line'>      save process
+</span><span class='line'>
 </span><span class='line'>  finally:
+</span><span class='line'>
 </span><span class='line'>      PIL.ImageFile.MAXBLOCK = old_block</span></code></pre></td></tr></table></div></figure>
 
 
@@ -749,12 +895,24 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>var options = {
+</span><span class='line'>
 </span><span class='line'>  data:1,
+</span><span class='line'>
 </span><span class='line'>  data2:2
+</span><span class='line'>
 </span><span class='line'>};
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'>console.log($.extend(options, {data3:3}));
+</span><span class='line'>
 </span><span class='line'>console.log(options);</span></code></pre></td></tr></table></div></figure>
 
 

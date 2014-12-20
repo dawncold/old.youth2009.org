@@ -10,8 +10,9 @@
 	<meta name="description" content="刚拿到vps，打算更新一些软件，发现有些warning挺讨厌的，于是就想根除他们！！他们一般是这样的： 1
 2
 3
-locale: Cannot set LC_CTYPE to default locale: No such file or directory
-locale: Cannot set &hellip;">
+4
+5
+locale: Cannot set LC_CTYPE to default locale: No such file or directory locale: Cannot &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -83,29 +84,37 @@ locale: Cannot set &hellip;">
 	<h2 class="title">解决Cannot Set LC_CTYPE to Default Locale: No Such File or Directory问题</h2>
 	<div class="entry-content"><p>刚拿到vps，打算更新一些软件，发现有些warning挺讨厌的，于是就想根除他们！！他们一般是这样的：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>locale: Cannot <span class="nb">set </span>LC_CTYPE to default locale: No such file or directory
+</span><span class='line'>
 </span><span class='line'>locale: Cannot <span class="nb">set </span>LC_MESSAGES to default locale: No such file or directory
+</span><span class='line'>
 </span><span class='line'>locale: Cannot <span class="nb">set </span>LC_ALL to default locale: No such file or directory
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>我看到我的LANG被设定为zh_CN.utf8，虽然我们是国人，但这个语言习惯不能代表我们的爱国情怀吧，我就改为en_US.utf8了：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo touch /etc/default/locale
+</span><span class='line'>
 </span><span class='line'>vi /etc/default/locale
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>加入：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">LANG</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</span><span class='line'>
 </span><span class='line'><span class="nv">LANGUAGE</span><span class="o">=</span><span class="s2">&quot;en_US:en&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 

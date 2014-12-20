@@ -79,7 +79,7 @@
 	<h2 class="title">Svn的javahl库</h2>
 	<div class="entry-content"><p>今天基本完成了LoveSMS，想checkout一下jdrcom来看看，所以就安装上了svn for eclipse，然后在导入的时候提示缺少javahl库，去了官方查看了一下，说是对于Mac用户，只需要下载他们的bin文件就能解决，我一看才给到1.6.5的版本，而我自己用brew都装到了1.7.5，而且svn插件用的是1.8.x，需要1.7+的svn支持才行，所以就自己重新安装了svn：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install subversion --universal --java
 </span></code></pre></td></tr></table></div></figure>
 
@@ -88,7 +88,7 @@
 
 <p>会有这样的提示哦：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -99,16 +99,36 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>To use Java bindings with various Java IDEs, you might need a universal build:
+</span><span class='line'>
 </span><span class='line'> brew install subversion --universal --java
+</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; ./configure --disable-debug --prefix<span class="o">=</span>/usr/local/Cellar/subversion/1.7.5 --with-ssl --with-zlib<span class="o">=</span>/usr --with-sqlite<span class="o">=</span>/usr/local --disable-neon-version-chec
+</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; <span class="nv">make</span>
+</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; make <span class="nv">install</span>
+</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; make <span class="nv">javahl</span>
+</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; make install-javahl
+</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; Caveats
+</span><span class='line'>
 </span><span class='line'>You may need to link the Java bindings into the Java Extensions folder:
+</span><span class='line'>
 </span><span class='line'> sudo mkdir -p /Library/Java/Extensions
+</span><span class='line'>
 </span><span class='line'> sudo ln -s /usr/local/lib/libsvnjavahl-1.dylib /Library/Java/Extensions/libsvnjavahl-1.dylib
 </span></code></pre></td></tr></table></div></figure>
 

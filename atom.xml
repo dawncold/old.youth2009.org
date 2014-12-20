@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T22:12:05+08:00</updated>
+  <updated>2014-12-20T23:49:29+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -47,11 +47,15 @@
 
 <p>lsattr/chattr is available on ext2/ext3 filesystem, add ‘+i’ attribute can lock one file, no edit or delete, even you are root, ‘+a’ attribute can let a file only accept append content, etc.</p>
 
-<p>SUID, SGID, SBIT special permission:
-there is a ’s’ on x position of user part, like ‘rws- &ndash; &ndash; &ndash; &ndash; -‘. SUID can only set to binary program, if user has x permission of this binary, it can temporarily get the owner permission of this binary, e.g binary ‘passwd’ and /etc/shadow file, shadow only can be updated by root, but every user can change their password via ‘passwd’, it means the user temporarily get owner(root) permission by SUID special permission.
-SGID similar as SUID, there will be a ’s’ on x position of group part like ‘rwx- &ndash; s &ndash; &ndash; x’. if a user can execute binary, he will temporarily get owner permission, e.g binary ‘locate’ and file ‘mlocate.db’. SGID can be set on a directory, it means if a user have r and x permission of one directory, and ’s’ set on this directory, this user can create a file which owner group is this directory’s.
-SBIT(Sticky BIT) only set to directory, if a directory has this permission, a user who can create file or directory on this directory, the new file or new directory can only delete by root or himself, e.g /tmp directory, root can delete your new file, and you can also delete it, but others can not.
-SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SBIT, if omit, this bit is zero, if you set a invalid SUID/SGID/SBIT, there will be upper case S/T, lower case is valid.</p>
+<p>SUID, SGID, SBIT special permission:</p>
+
+<p>there is a ’s’ on x position of user part, like ‘rws- &ndash; &ndash; &ndash; &ndash; -‘. SUID can only set to binary program, if user has x permission of this binary, it can temporarily get the owner permission of this binary, e.g binary ‘passwd’ and /etc/shadow file, shadow only can be updated by root, but every user can change their password via ‘passwd’, it means the user temporarily get owner(root) permission by SUID special permission.</p>
+
+<p>SGID similar as SUID, there will be a ’s’ on x position of group part like ‘rwx- &ndash; s &ndash; &ndash; x’. if a user can execute binary, he will temporarily get owner permission, e.g binary ‘locate’ and file ‘mlocate.db’. SGID can be set on a directory, it means if a user have r and x permission of one directory, and ’s’ set on this directory, this user can create a file which owner group is this directory’s.</p>
+
+<p>SBIT(Sticky BIT) only set to directory, if a directory has this permission, a user who can create file or directory on this directory, the new file or new directory can only delete by root or himself, e.g /tmp directory, root can delete your new file, and you can also delete it, but others can not.</p>
+
+<p>SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SBIT, if omit, this bit is zero, if you set a invalid SUID/SGID/SBIT, there will be upper case S/T, lower case is valid.</p>
 
 <p>find / -size 1M -exec ls -l {} \;     {} means the args from find, “\;” means the end of “exec”, commands in exec can not use alias.</p>
 ]]></content>
@@ -209,144 +213,424 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
 <span class='line-number'>139</span>
 <span class='line-number'>140</span>
 <span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+<span class='line-number'>174</span>
+<span class='line-number'>175</span>
+<span class='line-number'>176</span>
+<span class='line-number'>177</span>
+<span class='line-number'>178</span>
+<span class='line-number'>179</span>
+<span class='line-number'>180</span>
+<span class='line-number'>181</span>
+<span class='line-number'>182</span>
+<span class='line-number'>183</span>
+<span class='line-number'>184</span>
+<span class='line-number'>185</span>
+<span class='line-number'>186</span>
+<span class='line-number'>187</span>
+<span class='line-number'>188</span>
+<span class='line-number'>189</span>
+<span class='line-number'>190</span>
+<span class='line-number'>191</span>
+<span class='line-number'>192</span>
+<span class='line-number'>193</span>
+<span class='line-number'>194</span>
+<span class='line-number'>195</span>
+<span class='line-number'>196</span>
+<span class='line-number'>197</span>
+<span class='line-number'>198</span>
+<span class='line-number'>199</span>
+<span class='line-number'>200</span>
+<span class='line-number'>201</span>
+<span class='line-number'>202</span>
+<span class='line-number'>203</span>
+<span class='line-number'>204</span>
+<span class='line-number'>205</span>
+<span class='line-number'>206</span>
+<span class='line-number'>207</span>
+<span class='line-number'>208</span>
+<span class='line-number'>209</span>
+<span class='line-number'>210</span>
+<span class='line-number'>211</span>
+<span class='line-number'>212</span>
+<span class='line-number'>213</span>
+<span class='line-number'>214</span>
+<span class='line-number'>215</span>
+<span class='line-number'>216</span>
+<span class='line-number'>217</span>
+<span class='line-number'>218</span>
+<span class='line-number'>219</span>
+<span class='line-number'>220</span>
+<span class='line-number'>221</span>
+<span class='line-number'>222</span>
+<span class='line-number'>223</span>
+<span class='line-number'>224</span>
+<span class='line-number'>225</span>
+<span class='line-number'>226</span>
+<span class='line-number'>227</span>
+<span class='line-number'>228</span>
+<span class='line-number'>229</span>
+<span class='line-number'>230</span>
+<span class='line-number'>231</span>
+<span class='line-number'>232</span>
+<span class='line-number'>233</span>
+<span class='line-number'>234</span>
+<span class='line-number'>235</span>
+<span class='line-number'>236</span>
+<span class='line-number'>237</span>
+<span class='line-number'>238</span>
+<span class='line-number'>239</span>
+<span class='line-number'>240</span>
+<span class='line-number'>241</span>
+<span class='line-number'>242</span>
+<span class='line-number'>243</span>
+<span class='line-number'>244</span>
+<span class='line-number'>245</span>
+<span class='line-number'>246</span>
+<span class='line-number'>247</span>
+<span class='line-number'>248</span>
+<span class='line-number'>249</span>
+<span class='line-number'>250</span>
+<span class='line-number'>251</span>
+<span class='line-number'>252</span>
+<span class='line-number'>253</span>
+<span class='line-number'>254</span>
+<span class='line-number'>255</span>
+<span class='line-number'>256</span>
+<span class='line-number'>257</span>
+<span class='line-number'>258</span>
+<span class='line-number'>259</span>
+<span class='line-number'>260</span>
+<span class='line-number'>261</span>
+<span class='line-number'>262</span>
+<span class='line-number'>263</span>
+<span class='line-number'>264</span>
+<span class='line-number'>265</span>
+<span class='line-number'>266</span>
+<span class='line-number'>267</span>
+<span class='line-number'>268</span>
+<span class='line-number'>269</span>
+<span class='line-number'>270</span>
+<span class='line-number'>271</span>
+<span class='line-number'>272</span>
+<span class='line-number'>273</span>
+<span class='line-number'>274</span>
+<span class='line-number'>275</span>
+<span class='line-number'>276</span>
+<span class='line-number'>277</span>
+<span class='line-number'>278</span>
+<span class='line-number'>279</span>
+<span class='line-number'>280</span>
+<span class='line-number'>281</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'># $OpenBSD: sshd_config,v 1.77 2008/02/08 23:24:07 djm Exp $
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'># This is the sshd server system-wide configuration file. See
+</span><span class='line'>
 </span><span class='line'># sshd_config(5) for more information.
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>
 </span><span class='line'># This sshd was compiled with PATH=/usr/bin:/bin:/usr/sbin:/sbin
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'># The strategy used for options in the default sshd_config shipped with
+</span><span class='line'>
 </span><span class='line'># OpenSSH is to specify options with their default value where
+</span><span class='line'>
 </span><span class='line'># possible, but leave them commented. Uncommented options change a
+</span><span class='line'>
 </span><span class='line'># default value.
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'>#Port 22
+</span><span class='line'>
 </span><span class='line'>#AddressFamily any
+</span><span class='line'>
 </span><span class='line'>#ListenAddress 0.0.0.0
+</span><span class='line'>
 </span><span class='line'>#ListenAddress ::
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'># Disable legacy (protocol version 1) support in the server for new
+</span><span class='line'>
 </span><span class='line'># installations. In future the default will change to require explicit
+</span><span class='line'>
 </span><span class='line'># activation of protocol 1
+</span><span class='line'>
 </span><span class='line'>Protocol 2
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'># HostKey for protocol version 1
+</span><span class='line'>
 </span><span class='line'>#HostKey /etc/ssh/ssh_host_key
+</span><span class='line'>
 </span><span class='line'># HostKeys for protocol version 2
+</span><span class='line'>
 </span><span class='line'>#HostKey /etc/ssh/ssh_host_rsa_key
+</span><span class='line'>
 </span><span class='line'>#HostKey /etc/ssh/ssh_host_dsa_key
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'># Lifetime and size of ephemeral version 1 server key
+</span><span class='line'>
 </span><span class='line'>#KeyRegenerationInterval 1h
+</span><span class='line'>
 </span><span class='line'>#ServerKeyBits 768
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'># Logging
+</span><span class='line'>
 </span><span class='line'># obsoletes QuietMode and FascistLogging
+</span><span class='line'>
 </span><span class='line'>#SyslogFacility AUTH
+</span><span class='line'>
 </span><span class='line'>#LogLevel INFO
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>
 </span><span class='line'># Authentication:
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'>#LoginGraceTime 2m
+</span><span class='line'>
 </span><span class='line'>PermitRootLogin no
+</span><span class='line'>
 </span><span class='line'>StrictModes yes
+</span><span class='line'>
 </span><span class='line'>#MaxAuthTries 6
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'>#RSAAuthentication yes
+</span><span class='line'>
 </span><span class='line'>PubkeyAuthentication yes
+</span><span class='line'>
 </span><span class='line'>#AuthorizedKeysFile .ssh/authorized_keys
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'># For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+</span><span class='line'>
 </span><span class='line'>#RhostsRSAAuthentication no
+</span><span class='line'>
 </span><span class='line'># similar for protocol version 2
+</span><span class='line'>
 </span><span class='line'>#HostbasedAuthentication no
+</span><span class='line'>
 </span><span class='line'># Change to yes if you don't trust ~/.ssh/known_hosts for
+</span><span class='line'>
 </span><span class='line'># RhostsRSAAuthentication and HostbasedAuthentication
+</span><span class='line'>
 </span><span class='line'>#IgnoreUserKnownHosts no
+</span><span class='line'>
 </span><span class='line'># Don't read the user's ~/.rhosts and ~/.shosts files
+</span><span class='line'>
 </span><span class='line'>#IgnoreRhosts yes
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'># To disable tunneled clear text passwords, change to no here!
+</span><span class='line'>
 </span><span class='line'>PasswordAuthentication no
+</span><span class='line'>
 </span><span class='line'>PermitEmptyPasswords no
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'># Change to no to disable s/key passwords
+</span><span class='line'>
 </span><span class='line'>ChallengeResponseAuthentication no
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'># Kerberos options
+</span><span class='line'>
 </span><span class='line'>#KerberosAuthentication no
+</span><span class='line'>
 </span><span class='line'>#KerberosOrLocalPasswd yes
+</span><span class='line'>
 </span><span class='line'>#KerberosTicketCleanup yes
+</span><span class='line'>
 </span><span class='line'>#KerberosGetAFSToken no
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'># GSSAPI options
+</span><span class='line'>
 </span><span class='line'>#GSSAPIAuthentication no
+</span><span class='line'>
 </span><span class='line'>#GSSAPICleanupCredentials yes
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'># Set this to 'yes' to enable PAM authentication, account processing,
+</span><span class='line'>
 </span><span class='line'># and session processing. If this is enabled, PAM authentication will
+</span><span class='line'>
 </span><span class='line'># be allowed through the ChallengeResponseAuthentication and
+</span><span class='line'>
 </span><span class='line'># PasswordAuthentication. Depending on your PAM configuration,
+</span><span class='line'>
 </span><span class='line'># PAM authentication via ChallengeResponseAuthentication may bypass
+</span><span class='line'>
 </span><span class='line'># the setting of "PermitRootLogin without-password".
+</span><span class='line'>
 </span><span class='line'># If you just want the PAM account and session checks to run without
+</span><span class='line'>
 </span><span class='line'># PAM authentication, then enable this but set PasswordAuthentication
+</span><span class='line'>
 </span><span class='line'># and ChallengeResponseAuthentication to 'no'.
+</span><span class='line'>
 </span><span class='line'>UsePAM yes
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'>#AllowTcpForwarding yes
+</span><span class='line'>
 </span><span class='line'>#GatewayPorts no
+</span><span class='line'>
 </span><span class='line'>#X11Forwarding no
+</span><span class='line'>
 </span><span class='line'>#X11DisplayOffset 10
+</span><span class='line'>
 </span><span class='line'>#X11UseLocalhost yes
+</span><span class='line'>
 </span><span class='line'>#PrintMotd yes
+</span><span class='line'>
 </span><span class='line'>#PrintLastLog yes
+</span><span class='line'>
 </span><span class='line'>#TCPKeepAlive yes
+</span><span class='line'>
 </span><span class='line'>#UseLogin no
+</span><span class='line'>
 </span><span class='line'>UsePrivilegeSeparation yes
+</span><span class='line'>
 </span><span class='line'>#PermitUserEnvironment no
+</span><span class='line'>
 </span><span class='line'>#Compression delayed
+</span><span class='line'>
 </span><span class='line'>ClientAliveInterval 600
+</span><span class='line'>
 </span><span class='line'>ClientAliveCountMax 0
+</span><span class='line'>
 </span><span class='line'>#UseDNS yes
+</span><span class='line'>
 </span><span class='line'>#PidFile /var/run/sshd.pid
+</span><span class='line'>
 </span><span class='line'>#MaxStartups 10
+</span><span class='line'>
 </span><span class='line'>PermitTunnel no
+</span><span class='line'>
 </span><span class='line'>#ChrootDirectory none
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'># no default banner path
+</span><span class='line'>
 </span><span class='line'>#Banner none
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'># override default of no subsystems
+</span><span class='line'>
 </span><span class='line'>Subsystem sftp /usr/sbin/sftp-server
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'># Example of overriding settings on a per-user basis
+</span><span class='line'>
 </span><span class='line'>#Match User anoncvs
+</span><span class='line'>
 </span><span class='line'># X11Forwarding no
+</span><span class='line'>
 </span><span class='line'># AllowTcpForwarding no
+</span><span class='line'>
 </span><span class='line'># ForceCommand cvs server
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>AllowGroups rmt_acc</span></code></pre></td></tr></table></div></figure>
@@ -377,8 +661,9 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
     <id>http://www.youth2009.org/blog/2014/09/05/developing-on-blackberry</id>
     <content type="html"><![CDATA[<h1>Create BlackBerry ID token</h1>
 
-<p>here:
-<strong> <a href="https://www.blackberry.com/SignedKeys/">https://www.blackberry.com/SignedKeys/</a> </strong></p>
+<p>here:</p>
+
+<p><strong> <a href="https://www.blackberry.com/SignedKeys/">https://www.blackberry.com/SignedKeys/</a> </strong></p>
 
 <p>If you will develop an app on BlackBerry OS 10 or some new plateform, choose the first checkbox, and you will be requested your BlackBerry ID username and password, other choices I haven&rsquo;t tried. Then fill a storepass for the key, you can download a file like <code>bbidtoken.csk</code>, save this file to <code>~/Library/Research In Motion</code>, if you are on Windows or Linux, save this file to where website mentioned.</p>
 
@@ -410,9 +695,15 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>Info: Sending request: INSTALL_DEBUG_TOKEN
+</span><span class='line'>
 </span><span class='line'>Info: Action: Install Debug Token
+</span><span class='line'>
 </span><span class='line'>Info: File size: 2607
+</span><span class='line'>
 </span><span class='line'>result::success</span></code></pre></td></tr></table></div></figure>
 
 
@@ -447,35 +738,84 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
 <span class='line-number'>23</span>
 <span class='line-number'>24</span>
 <span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>[INFO]    Target Q10-2b1e42dc selected
+</span><span class='line'>
 </span><span class='line'>[INFO]    Generating debug token
+</span><span class='line'>
 </span><span class='line'>[INFO]    Debug token created.
+</span><span class='line'>
 </span><span class='line'>[INFO]    Deploying debug token to target "Q10-2b1e42dc"
+</span><span class='line'>
 </span><span class='line'>[INFO]    Sending request: INSTALL_DEBUG_TOKEN
+</span><span class='line'>
 </span><span class='line'>[INFO]    Action: Install Debug Token
+</span><span class='line'>
 </span><span class='line'>[INFO]    File size: 2605
+</span><span class='line'>
 </span><span class='line'>[INFO]    result::success
+</span><span class='line'>
 </span><span class='line'>[INFO]    Populating application source
+</span><span class='line'>
 </span><span class='line'>[INFO]    Parsing config.xml
+</span><span class='line'>
 </span><span class='line'>[INFO]    Generating output files
+</span><span class='line'>
 </span><span class='line'>[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/simulator/bb10app.bar
+</span><span class='line'>
 </span><span class='line'>[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/device/bb10app.bar
+</span><span class='line'>
 </span><span class='line'>[INFO]    BAR packaging complete
+</span><span class='line'>
 </span><span class='line'>[INFO]    Sending request: INSTALL_AND_LAUNCH
+</span><span class='line'>
 </span><span class='line'>[INFO]    Action: Install and Launch
+</span><span class='line'>
 </span><span class='line'>[INFO]    File size: 69497
+</span><span class='line'>
 </span><span class='line'>[INFO]    Installing Project1.testDev_Project1___c8537c58...
+</span><span class='line'>
 </span><span class='line'>[INFO]    Processing 69497 bytes
+</span><span class='line'>
 </span><span class='line'>[INFO]    Progress 100%...
+</span><span class='line'>
 </span><span class='line'>[INFO]    Progress 100%...
+</span><span class='line'>
 </span><span class='line'>[INFO]    actual_dname::Project1.testDev_Project1___c8537c58actual_id::testDev_Project1___c8537c58
+</span><span class='line'>
 </span><span class='line'>[INFO]    actual_version::0.0.1.1result::successLaunching Project1.testDev_Project1___c8537c58...
+</span><span class='line'>
 </span><span class='line'>[INFO]    result::19132657
+</span><span class='line'>
 </span><span class='line'>[INFO]    done</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Meanwhile, your app will be opened on your device!
-<img src="http://pic.yupoo.com/dawncold0/E2fQtBuX/small.jpg" alt="webworks launch screen" /></p>
+<p>Meanwhile, your app will be opened on your device!</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/E2fQtBuX/small.jpg" alt="webworks launch screen" /></p>
 ]]></content>
   </entry>
   
@@ -496,7 +836,9 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>opkg update
+</span><span class='line'>
 </span><span class='line'>opkg install kmod-usb-storage block-mount kmod-fs-ext4</span></code></pre></td></tr></table></div></figure>
 
 
@@ -519,14 +861,30 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>background=YES
+</span><span class='line'>
 </span><span class='line'>listen=YES
+</span><span class='line'>
 </span><span class='line'>anonymous_enable=NO
+</span><span class='line'>
 </span><span class='line'>chroot_local_user=YES
+</span><span class='line'>
 </span><span class='line'>local_enable=YES
+</span><span class='line'>
 </span><span class='line'>local_root=/mnt
+</span><span class='line'>
 </span><span class='line'>write_enable=YES
+</span><span class='line'>
 </span><span class='line'>local_umask=022
+</span><span class='line'>
 </span><span class='line'>check_shell=NO</span></code></pre></td></tr></table></div></figure>
 
 
@@ -543,12 +901,24 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>config mount
+</span><span class='line'>
 </span><span class='line'>  option target /mnt
+</span><span class='line'>
 </span><span class='line'>  option device /dev/sda1
+</span><span class='line'>
 </span><span class='line'>  option fstype ext4
+</span><span class='line'>
 </span><span class='line'>  option options rw,sync
+</span><span class='line'>
 </span><span class='line'>  option enabled 1
+</span><span class='line'>
 </span><span class='line'>  option enabled_fsck 0</span></code></pre></td></tr></table></div></figure>
 
 
@@ -577,11 +947,15 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
 
 <p>examples:</p>
 
-<p>CREATE ROLE joe LOGIN INHERIT;
-CREATE ROLE admin NOINHERIT;
-CREATE ROLE wheel NOINHERIT;
-GRANT admin TO joe;
-GRANT wheel TO admin;</p>
+<p>CREATE ROLE joe LOGIN INHERIT;</p>
+
+<p>CREATE ROLE admin NOINHERIT;</p>
+
+<p>CREATE ROLE wheel NOINHERIT;</p>
+
+<p>GRANT admin TO joe;</p>
+
+<p>GRANT wheel TO admin;</p>
 
 <p>joe can access admin privilege by using “SET ROLE admin”, or if joe has the INHERIT, joe can access privilege directly from admin, if joe want to use these privileges, joe must “SET ROLE admin”. Joe can not access privilege from wheel, because admin has the NOINHERIT, admin can not get these privileges, so as joe.</p>
 ]]></content>
@@ -594,15 +968,20 @@ GRANT wheel TO admin;</p>
     <id>http://www.youth2009.org/blog/2014/08/14/else-clause-in-python-loop</id>
     <content type="html"><![CDATA[<p>both in while and for loop, if in loop body, no break, no return, no exception is raised, statements in else block will be executed.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[]:</span>
-</span><span class='line'>     <span class="k">print</span> <span class="n">x</span>
-</span><span class='line'><span class="k">else</span><span class="p">:</span>
-</span><span class='line'>     <span class="k">print</span> <span class="err">‘</span><span class="n">xxx</span><span class="err">’</span>
-</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>for x in []:
+</span><span class='line'>
+</span><span class='line'>     print x
+</span><span class='line'>
+</span><span class='line'>else:
+</span><span class='line'>
+</span><span class='line'>     print ‘xxx’</span></code></pre></td></tr></table></div></figure>
 
 
 <p>this example will print ‘xxx’, even nothing in list and this loop is not executed.</p>
@@ -707,7 +1086,7 @@ GRANT wheel TO admin;</p>
 
 <p>查看设备使用<code>xinput list</code></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -719,18 +1098,40 @@ GRANT wheel TO admin;</p>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>⎡ Virtual core pointer                      <span class="nv">id</span><span class="o">=</span>2    <span class="o">[</span>master pointer  <span class="o">(</span>3<span class="o">)]</span>
-</span><span class='line'>⎜   ↳ Virtual core XTEST pointer                <span class="nv">id</span><span class="o">=</span>4    <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
-</span><span class='line'>⎜   ↳ SynPS/2 Synaptics TouchPad                <span class="nv">id</span><span class="o">=</span>11   <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
-</span><span class='line'>⎜   ↳ Logitech USB-PS/2 Optical Mouse           <span class="nv">id</span><span class="o">=</span>12   <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
-</span><span class='line'>⎜   ↳ Logitech Unifying Device. Wireless PID:4004   <span class="nv">id</span><span class="o">=</span>13   <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
-</span><span class='line'>⎣ Virtual core keyboard                     <span class="nv">id</span><span class="o">=</span>3    <span class="o">[</span>master keyboard <span class="o">(</span>2<span class="o">)]</span>
-</span><span class='line'>    ↳ Virtual core XTEST keyboard               <span class="nv">id</span><span class="o">=</span>5    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
-</span><span class='line'>    ↳ Power Button                              <span class="nv">id</span><span class="o">=</span>6    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
-</span><span class='line'>    ↳ Video Bus                                 <span class="nv">id</span><span class="o">=</span>7    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
-</span><span class='line'>    ↳ Sleep Button                              <span class="nv">id</span><span class="o">=</span>8    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
-</span><span class='line'>    ↳ Acer CrystalEye webcam                    <span class="nv">id</span><span class="o">=</span>9    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
-</span><span class='line'>    ↳ AT Translated Set 2 keyboard              <span class="nv">id</span><span class="o">=</span>10   <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>⎡ Virtual core pointer                      <span class="nv">id</span><span class="o">=</span><span class="m">2</span>    <span class="o">[</span>master pointer  <span class="o">(</span>3<span class="o">)]</span>
+</span><span class='line'>
+</span><span class='line'>⎜   ↳ Virtual core XTEST pointer                <span class="nv">id</span><span class="o">=</span><span class="m">4</span>    <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
+</span><span class='line'>
+</span><span class='line'>⎜   ↳ SynPS/2 Synaptics TouchPad                <span class="nv">id</span><span class="o">=</span><span class="m">11</span>   <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
+</span><span class='line'>
+</span><span class='line'>⎜   ↳ Logitech USB-PS/2 Optical Mouse           <span class="nv">id</span><span class="o">=</span><span class="m">12</span>   <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
+</span><span class='line'>
+</span><span class='line'>⎜   ↳ Logitech Unifying Device. Wireless PID:4004   <span class="nv">id</span><span class="o">=</span><span class="m">13</span>   <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
+</span><span class='line'>
+</span><span class='line'>⎣ Virtual core keyboard                     <span class="nv">id</span><span class="o">=</span><span class="m">3</span>    <span class="o">[</span>master keyboard <span class="o">(</span>2<span class="o">)]</span>
+</span><span class='line'>
+</span><span class='line'>    ↳ Virtual core XTEST keyboard               <span class="nv">id</span><span class="o">=</span><span class="m">5</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span><span class='line'>
+</span><span class='line'>    ↳ Power Button                              <span class="nv">id</span><span class="o">=</span><span class="m">6</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span><span class='line'>
+</span><span class='line'>    ↳ Video Bus                                 <span class="nv">id</span><span class="o">=</span><span class="m">7</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span><span class='line'>
+</span><span class='line'>    ↳ Sleep Button                              <span class="nv">id</span><span class="o">=</span><span class="m">8</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span><span class='line'>
+</span><span class='line'>    ↳ Acer CrystalEye webcam                    <span class="nv">id</span><span class="o">=</span><span class="m">9</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span><span class='line'>
+</span><span class='line'>    ↳ AT Translated Set <span class="m">2</span> keyboard              <span class="nv">id</span><span class="o">=</span><span class="m">10</span>   <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -791,18 +1192,22 @@ GRANT wheel TO admin;</p>
     <link href="http://www.youth2009.org/blog/2014/01/16/nginx-and-dependences/"/>
     <updated>2014-01-16T18:46:33+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/01/16/nginx-and-dependences</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+    <content type="html"><![CDATA[<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.34.tar.gz
+</span><span class='line'>
 </span><span class='line'>wget http://www.openssl.org/source/openssl-1.0.1f.tar.gz
+</span><span class='line'>
 </span><span class='line'>wget http://nginx.org/download/nginx-1.5.8.tar.gz
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>default install pcre and openssl</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -812,17 +1217,34 @@ GRANT wheel TO admin;</p>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>nginx configure
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>nginx configure
+</span><span class='line'>
 </span><span class='line'>+gzip
 </span><span class='line'>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'>Configuration summary
+</span><span class='line'>
 </span><span class='line'>  + using system PCRE library
+</span><span class='line'>
 </span><span class='line'>  + OpenSSL library is not used
+</span><span class='line'>
 </span><span class='line'>  + md5: using system crypto library
+</span><span class='line'>
 </span><span class='line'>  + sha1: using system crypto library
-</span><span class='line'>  + using system zlib library
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>
+</span><span class='line'>  + using system zlib library</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
@@ -832,11 +1254,15 @@ GRANT wheel TO admin;</p>
     <link href="http://www.youth2009.org/blog/2014/01/16/lxml-and-dependences/"/>
     <updated>2014-01-16T18:31:09+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/01/16/lxml-and-dependences</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+    <content type="html"><![CDATA[<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install libxml2-dev
+</span><span class='line'>
 </span><span class='line'>sudo apt-get install libxslt1-dev
+</span><span class='line'>
 </span><span class='line'>sudo apt-get install python-dev  （if Python.h: No file or dir..）
 </span></code></pre></td></tr></table></div></figure>
 

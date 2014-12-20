@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lxc | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/lxc/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T22:12:05+08:00</updated>
+  <updated>2014-12-20T23:49:29+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -20,10 +20,17 @@
     <id>http://www.youth2009.org/blog/2012/10/09/nat-practical</id>
     <content type="html"><![CDATA[<p>昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3.20这台container来处理，相应的response也会返回过去。这样就做到了服务隔离。</p>
 
-<p><code>bash
-sudo iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to 10.0.3.20
-sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT --to 200.200.200.25
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo iptables -t nat -A PREROUTING -i eth1 -p tcp <span class="p">&amp;</span>mdash<span class="p">;</span>dport <span class="m">80</span> -j DNAT <span class="p">&amp;</span>mdash<span class="p">;</span>to 10.0.3.20&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT <span class="p">&amp;</span>mdash<span class="p">;</span>to 200.200.200.25&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>这样就把进入的请求都发到了10.0.3.20这台container上去处理。</p>
 
@@ -42,28 +49,47 @@ sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT --to 200.200.20
 
 <p>0.安装lxc</p>
 
-<p><code>bash
-sudo apt-get install lxc
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install lxc&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>1.修改lxc的mirror，不修改的话下载一个ubuntu景象会非常慢！！！</p>
 
-<p><code>bash
-sudo emacs /etc/default/lxc
-第三行的mirror注释去掉，并修改为cn.archive.ubuntu.com，这样就非常快了
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo emacs /etc/default/lxc&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;第三行的mirror注释去掉，并修改为cn.archive.ubuntu.com，这样就非常快了&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>2.创建lxc容器，t表示模板中的名字，n表示这个容器的名字（可自定义）</p>
 
-<p><code>bash
-sudo lxc-create -t ubuntu -n ubuntu_container
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-create -t ubuntu -n ubuntu_container&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>3.启动容器</p>
 
-<p><code>bash
-sudo lxc-start -n ubuntu_container
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-start -n ubuntu_container&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>启动后就会出现登录ubuntu的界面，刚刚创建好容器后会给出一个提示，帐号密码都是ubuntu，登录进去就可以使用了。</p>
 

@@ -79,7 +79,7 @@
 	<h2 class="title">简要写写python的file中的tell和seek</h2>
 	<div class="entry-content"><p>对于一个file，调用tell()能够知道现在的文件位置。seek()是改变文件位置。  比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完tell()我又使用了seek(0),这样文件位置就回到开头了，下次再调用readline就会输出原来第一行的内容了，这应该是很容易理解的。不明白可以亲自试试。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -114,42 +114,109 @@
 <span class='line-number'>33</span>
 <span class='line-number'>34</span>
 <span class='line-number'>35</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">argv</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>from sys import argv
 </span><span class='line'>
-</span><span class='line'><span class="n">script</span><span class="p">,</span> <span class="n">input_file</span> <span class="o">=</span> <span class="n">argv</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">print_all</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-</span><span class='line'>   <span class="k">print</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">rewind</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-</span><span class='line'>   <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>script, input_file = argv
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">print_a_line</span><span class="p">(</span><span class="n">line_count</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
-</span><span class='line'>   <span class="k">print</span> <span class="n">line_count</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">current_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;First let&#39;s print the while file:</span><span class="se">\n</span><span class="s">&quot;</span>
-</span><span class='line'><span class="n">print_all</span><span class="p">(</span><span class="n">current_file</span><span class="p">)</span>
+</span><span class='line'>def print_all(f):
 </span><span class='line'>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Now let&#39;s rewind, kind of like a tape.&quot;</span>
-</span><span class='line'><span class="n">rewind</span><span class="p">(</span><span class="n">current_file</span><span class="p">)</span>
+</span><span class='line'>   print f.read()
 </span><span class='line'>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Let&#39;s print three lines:&quot;</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">current_line</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'><span class="n">print_a_line</span><span class="p">(</span><span class="n">current_line</span><span class="p">,</span> <span class="n">current_file</span><span class="p">)</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;current_pos:</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">current_file</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
-</span><span class='line'><span class="n">rewind</span><span class="p">(</span><span class="n">current_file</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">current_line</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'><span class="n">print_a_line</span><span class="p">(</span><span class="n">current_line</span><span class="p">,</span> <span class="n">current_file</span><span class="p">)</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;current_pos:</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">current_file</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
+</span><span class='line'>def rewind(f):
 </span><span class='line'>
-</span><span class='line'><span class="n">current_line</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'><span class="n">print_a_line</span><span class="p">(</span><span class="n">current_line</span><span class="p">,</span> <span class="n">current_file</span><span class="p">)</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;current_pos:</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">current_file</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>   f.seek(0)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>def print_a_line(line_count, f):
+</span><span class='line'>
+</span><span class='line'>   print line_count, f.readline()
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>current_file = open(input_file)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>print "First let's print the while file:\n"
+</span><span class='line'>
+</span><span class='line'>print_all(current_file)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>print "Now let's rewind, kind of like a tape."
+</span><span class='line'>
+</span><span class='line'>rewind(current_file)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>print "Let's print three lines:"
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>current_line = 1
+</span><span class='line'>
+</span><span class='line'>print_a_line(current_line, current_file)
+</span><span class='line'>
+</span><span class='line'>print "current_pos:%d" % current_file.tell()
+</span><span class='line'>
+</span><span class='line'>rewind(current_file)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>current_line += 1
+</span><span class='line'>
+</span><span class='line'>print_a_line(current_line, current_file)
+</span><span class='line'>
+</span><span class='line'>print "current_pos:%d" % current_file.tell()
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>current_line += 1
+</span><span class='line'>
+</span><span class='line'>print_a_line(current_line, current_file)
+</span><span class='line'>
+</span><span class='line'>print "current_pos:%d" % current_file.tell()</span></code></pre></td></tr></table></div></figure>
 
 </div>
 

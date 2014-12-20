@@ -9,9 +9,9 @@
 	
 	<meta name="description" content="两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。 0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响： 1
 2
-fdisk /dev/sda
-fdisk /dev/sdb 1.创建PV 1
-sudo pvcreate /dev/sd{a1,b1} &hellip;">
+3
+fdisk /dev/sda fdisk /dev/sdb 1.创建PV 1
+sudo pvcreate /dev/sd{a1,b1 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -85,31 +85,33 @@ sudo pvcreate /dev/sd{a1,b1} &hellip;">
 
 <p>0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>fdisk /dev/sda
+</span><span class='line'>
 </span><span class='line'>fdisk /dev/sdb
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>1.创建PV</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pvcreate /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>2.创建VG</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vgcreate -s 16M vg0 /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>3.创建LV</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m 1 -lxxxx --corelog
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m <span class="m">1</span> -lxxxx --corelog
 </span></code></pre></td></tr></table></div></figure>
 
 </div>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: chrome | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/chrome/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T22:12:05+08:00</updated>
+  <updated>2014-12-20T23:49:29+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -26,23 +26,59 @@
 
 <p>2.进入这个目录，建立一个叫manifest.json的文件，从文件名就能看出这是个json，用vi、vim、emacs等写入如下内容：  </p>
 
-<p>&#8220;`js
-{
- &ldquo;name&rdquo;: &ldquo;hide-other-bookmark-button&rdquo;,
- &ldquo;version&rdquo;: &ldquo;1.0&rdquo;,
- &ldquo;description&rdquo;: &ldquo;I want to hide the &lsquo;other bookmark&rsquo; button in Chrome&rsquo;s bookmark toolbar!&rdquo;,
- &ldquo;browser_action&rdquo;: {
-   &ldquo;default_icon&rdquo;: &ldquo;icon.ico&rdquo;
- },
- &ldquo;permissions&rdquo;: [</p>
-
-<pre><code>"bookmarks"
-</code></pre>
-
-<p>  ],
- &ldquo;background_page&rdquo;:&ldquo;index.html&rdquo;
-}
-&#8220;`</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">name</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">hide</span><span class="o">-</span><span class="nx">other</span><span class="o">-</span><span class="nx">bookmark</span><span class="o">-</span><span class="nx">button</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;,</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">version</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="mf">1.0</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;,</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">description</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">I</span> <span class="nx">want</span> <span class="nx">to</span> <span class="nx">hide</span> <span class="nx">the</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">other</span> <span class="nx">bookmark</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;</span> <span class="nx">button</span> <span class="k">in</span> <span class="nx">Chrome</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;</span><span class="nx">s</span> <span class="nx">bookmark</span> <span class="nx">toolbar</span><span class="o">!&amp;</span><span class="nx">rdquo</span><span class="p">;,</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">browser_action</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">:</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>   <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">default_icon</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">icon</span><span class="p">.</span><span class="nx">ico</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span> <span class="p">},</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">permissions</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="s2">&quot;bookmarks&quot;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">],</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">background_page</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">:&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>然后找个ico文件，命名成上面提到的icon.ico，只要和json文件中对应即可，png也行。现在这个扩展的配置文件就基本完成了，因为这是要操控bookmarks的扩展程序，所以在permissions那里药写上bookmarks以表示这个扩展要使用chrome的bookmarks的API来做一些东西。具体的API可以参考Google的文档。</p>
 
@@ -56,8 +92,9 @@
 
 <p><img src="http://pic.yupoo.com/loose_v/ASbvzoiM/kjvjq.png" alt="" /></p>
 
-<p>到了这里，这篇文章也就基本结束了，虽然我们没有成功，但这个过程是值得的，能够在chrome这样的大型软件中体验扩展程序也是很不错的
-！</p>
+<p>到了这里，这篇文章也就基本结束了，虽然我们没有成功，但这个过程是值得的，能够在chrome这样的大型软件中体验扩展程序也是很不错的</p>
+
+<p>！</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jquery | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/jquery/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T22:12:05+08:00</updated>
+  <updated>2014-12-20T23:49:29+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -20,19 +20,35 @@
     <id>http://www.youth2009.org/blog/2013/02/16/extend-in-jquery</id>
     <content type="html"><![CDATA[<p>jquery中的extend方法可以扩展一个{}，今天用到了。写了一组配置文件：</p>
 
-<p>&#8220;`
-var options = {</p>
-
-<pre><code>data:1,
-data2:2
-</code></pre>
-
-<p>};</p>
-
-<p>console.log($.extend(options, {data3:3}));
-console.log(options);
-<code>``
-这样的结果就是在extend之后optons已经被加入了data3这个key-value，因为默认extend使用的是deep copy，你可以</code>$.extend(false, options, {data3:3})`，这样就能够得到暂时的并且扩展了的options。</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var options = {&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>data:1,
+</span><span class='line'>
+</span><span class='line'>data2:2
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>};&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>console.log($.extend(options, {data3:3}));&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>console.log(options);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure>
+这样的结果就是在extend之后optons已经被加入了data3这个key-value，因为默认extend使用的是deep copy，你可以<code>$.extend(false, options, {data3:3})</code>，这样就能够得到暂时的并且扩展了的options。</p>
 ]]></content>
   </entry>
   

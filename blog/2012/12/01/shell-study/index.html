@@ -82,8 +82,8 @@ find ./ -name &#39;*.html&#39; | xargs sed -i &#39;s/iso-8859-1/utf-8/g&#39; 这
 
 <p>以前的一个sed的命令终于明白了：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>find ./ -name <span class="s1">&#39;*.html&#39;</span> | xargs sed -i <span class="s1">&#39;s/iso-8859-1/utf-8/g&#39;</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>find ./ -name <span class="s1">&#39;*.html&#39;</span> <span class="p">|</span> xargs sed -i <span class="s1">&#39;s/iso-8859-1/utf-8/g&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

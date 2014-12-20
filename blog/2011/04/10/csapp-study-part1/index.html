@@ -7,8 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="第一章 一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤：
-源文件&mdash;&mdash;>经过预处理器（cpp）成为.i文件&mdash;&mdash;>经过编译器（cc1）成为.s文件&mdash;&mdash;>经过汇编器（as）成为.o文件，所有函数调用都成为. &hellip;&#8221;>
+	<meta name="description" content="第一章 一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤： 源文件&mdash;&mdash;>经过预处理器（cpp）成为.i文件&mdash;&mdash;>经过编译器（cc1）成为.s文件&mdash;&mdash;>经过汇编器（as）成为.o文件，所有函数调用都成为. &hellip;&#8221;>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -80,8 +79,9 @@
 	<h2 class="title">CSAPP学习笔记第一辑</h2>
 	<div class="entry-content"><h1>第一章</h1>
 
-<p>一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤：
-源文件&mdash;&mdash;>经过预处理器（cpp）成为.i文件&mdash;&mdash;>经过编译器（cc1）成为.s文件&mdash;&mdash;>经过汇编器（as）成为.o文件，所有函数调用都成为.o这样可重定向的目标程序&mdash;&mdash;>最后由连接器（ld）链接成成为可执行文件。cc1这名字真好听：）</p>
+<p>一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤：</p>
+
+<p>源文件&mdash;&mdash;>经过预处理器（cpp）成为.i文件&mdash;&mdash;>经过编译器（cc1）成为.s文件&mdash;&mdash;>经过汇编器（as）成为.o文件，所有函数调用都成为.o这样可重定向的目标程序&mdash;&mdash;>最后由连接器（ld）链接成成为可执行文件。cc1这名字真好听：）</p>
 
 <p>系统设计者的主要目标就是让信息在各种设备之间“拷贝速度”尽量快。显示一行“hello，world”的过程主要是从磁盘&mdash;&mdash;>主存&mdash;&mdash;>显示设备传递。</p>
 
@@ -108,12 +108,24 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>0x173A4C
+</span><span class='line'>
 </span><span class='line'>1：0001
+</span><span class='line'>
 </span><span class='line'>7：0111
+</span><span class='line'>
 </span><span class='line'>3：0011
+</span><span class='line'>
 </span><span class='line'>A：1010
+</span><span class='line'>
 </span><span class='line'>4：0100
+</span><span class='line'>
 </span><span class='line'>C：1100</span></code></pre></td></tr></table></div></figure>
 
 
@@ -141,16 +153,25 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>void swap(int x , int y)
+</span><span class='line'>
 </span><span class='line'>{
+</span><span class='line'>
 </span><span class='line'>   x = x ^ y;
+</span><span class='line'>
 </span><span class='line'>   y = x ^ y;
+</span><span class='line'>
 </span><span class='line'>   x = x ^ *y;
+</span><span class='line'>
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
-<p>`
-移位运算要注意结核性，x&lt;&lt;j&lt;&lt;k的结核性是（x&lt;&lt;j）&lt;&lt;k，而且还要注意优先级，1&lt;&lt;5-1应该是这样计算的：1&lt;&lt;(5-1)！！！所以只要不确定就加上括号，这样肯定安全，而且可读性也是比较好的。</p>
+<p>移位运算要注意结核性，x&lt;&lt;j&lt;&lt;k的结核性是（x&lt;&lt;j）&lt;&lt;k，而且还要注意优先级，1&lt;&lt;5-1应该是这样计算的：1&lt;&lt;(5-1)！！！所以只要不确定就加上括号，这样肯定安全，而且可读性也是比较好的。</p>
 
 <p>右移运算分两种：算术右移和逻辑右移。算术右移在左边补充n个最高有效位的拷贝，逻辑右移是在左边补充n个0.对于无符号数的右移必须是逻辑的（补0），而几乎所有的编译器/机器组合都对有符号数据使用算术右移（拷贝最高有效位）</p>
 

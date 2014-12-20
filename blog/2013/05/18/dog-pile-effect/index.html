@@ -82,8 +82,8 @@
 <p>解决方法有这样的：</p>
 
 <ul>
-<li>有专门的job（比如crontab）来更新cache，这样request总是去cache取，不用管过不过期。好处就是简单；坏处是可能做一些没必要的重复计算，没有request你也更新了cache，而且你得确保这个job的执行时间要小于job的间隔，否则会积压很多job。</li>
-<li>request取到数据发现过期，再请求一个update lock，成功拿到锁就可以更新cache，此时其他request也会请求这把锁，但就是请求不到，那就继续返回过期的数据。这是不容忍延迟的情况，如果对数据准确性要求高，那在updating的时候其他request会等，等数据更新了再返回。怎么用取决于environment。</li>
+<li><p>有专门的job（比如crontab）来更新cache，这样request总是去cache取，不用管过不过期。好处就是简单；坏处是可能做一些没必要的重复计算，没有request你也更新了cache，而且你得确保这个job的执行时间要小于job的间隔，否则会积压很多job。</p></li>
+<li><p>request取到数据发现过期，再请求一个update lock，成功拿到锁就可以更新cache，此时其他request也会请求这把锁，但就是请求不到，那就继续返回过期的数据。这是不容忍延迟的情况，如果对数据准确性要求高，那在updating的时候其他request会等，等数据更新了再返回。怎么用取决于environment。</p></li>
 </ul>
 
 

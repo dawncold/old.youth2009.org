@@ -36,9 +36,24 @@
 27
 28
 29
-#! /usr/bin/env python
-# coding: utf-8 import os
-import &hellip;">
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -139,34 +154,90 @@ import &hellip;">
 <span class='line-number'>27</span>
 <span class='line-number'>28</span>
 <span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span><span class='line'>
 </span><span class='line'><span class="c"># coding: utf-8</span>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
+</span><span class='line'>
 </span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'>
 </span><span class='line'><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="o">*</span>
+</span><span class='line'>
 </span><span class='line'><span class="kn">import</span> <span class="nn">time</span>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'><span class="c">#mysql&#39;s path</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">mysql_path</span> <span class="o">=</span> <span class="s">&#39;/usr/local/mysql/bin/&#39;</span>
+</span><span class='line'>
 </span><span class='line'><span class="c">#edit this if your mysql username and password is not like this:</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">mysql_username</span> <span class="o">=</span> <span class="s">&#39;root&#39;</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">mysql_password</span> <span class="o">=</span> <span class="s">&#39;xxxxxx&#39;</span>
+</span><span class='line'>
 </span><span class='line'><span class="c">#backup path</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">backup_path</span> <span class="o">=</span> <span class="s">&#39;mysqlbackup/&#39;</span>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">validate_backup_path</span><span class="p">():</span>
+</span><span class='line'>
 </span><span class='line'><span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">backup_path</span><span class="p">)</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+</span><span class='line'>
 </span><span class='line'><span class="k">print</span> <span class="s">&quot;I create a directory here: </span><span class="si">%s</span><span class="s"> &quot;</span> <span class="o">%</span> <span class="n">backup_path</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">backup_path</span><span class="p">)</span>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">backup_all_databases</span><span class="p">():</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;all_</span><span class="si">%s</span><span class="s">.sql&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()))</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">mysqldump -u</span><span class="si">%s</span><span class="s"> -p</span><span class="si">%s</span><span class="s"> --all-databases &gt; &#39;</span><span class="si">%s%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mysql_path</span><span class="p">,</span> <span class="n">mysql_username</span><span class="p">,</span> <span class="n">mysql_password</span><span class="p">,</span> <span class="n">backup_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
 </span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
 </span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">validate_backup_path</span><span class="p">()</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">backup_all_databases</span><span class="p">()</span>
+</span><span class='line'>
 </span><span class='line'><span class="k">print</span> <span class="s">&quot;finish!!!&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 

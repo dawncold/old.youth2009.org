@@ -35,7 +35,12 @@
 26
 27
 28
-#! /usr/bin/ &hellip;">
+29
+30
+31
+32
+33
+34 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -107,7 +112,7 @@
 	<h2 class="title">Python的继承</h2>
 	<div class="entry-content"><p>python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -135,35 +140,88 @@
 <span class='line-number'>26</span>
 <span class='line-number'>27</span>
 <span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/python</span>
-</span><span class='line'><span class="c"># -*- coding:utf-8 -*-</span>
-</span><span class='line'><span class="c"># Filename : inherit.py</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#! /usr/bin/python
 </span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-</span><span class='line'>   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">):</span>
-</span><span class='line'>       <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-</span><span class='line'>       <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
-</span><span class='line'>       <span class="k">print</span> <span class="s">&quot;init for </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+</span><span class='line'># -*- coding:utf-8 -*-
 </span><span class='line'>
-</span><span class='line'>   <span class="k">def</span> <span class="nf">tell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>       <span class="k">print</span> <span class="s">&quot;name:</span><span class="si">%s</span><span class="s"> age:</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>
+</span><span class='line'># Filename : inherit.py
 </span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Teacher</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
-</span><span class='line'>   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">salary</span><span class="p">):</span>
-</span><span class='line'>       <span class="n">Person</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">)</span>
-</span><span class='line'>       <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
-</span><span class='line'>       <span class="k">print</span> <span class="s">&quot;init for teacher </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
 </span><span class='line'>
-</span><span class='line'>   <span class="k">def</span> <span class="nf">tell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>       <span class="n">Person</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-</span><span class='line'>       <span class="k">print</span> <span class="s">&quot;salary:</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">salary</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">p</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&#39;tianzhen&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
-</span><span class='line'><span class="n">p</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
+</span><span class='line'>class Person:
 </span><span class='line'>
-</span><span class='line'><span class="n">tea_p</span> <span class="o">=</span> <span class="n">Teacher</span><span class="p">(</span><span class="s">&#39;zhenzhen&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1010000000</span><span class="p">)</span>
-</span><span class='line'><span class="n">tea_p</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>   def __init__(self,name,age):
+</span><span class='line'>
+</span><span class='line'>       self.name = name
+</span><span class='line'>
+</span><span class='line'>       self.age = age
+</span><span class='line'>
+</span><span class='line'>       print "init for %s" % self.name
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>   def tell(self):
+</span><span class='line'>
+</span><span class='line'>       print "name:%s age:%d" % (self.name,self.age)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>class Teacher(Person):
+</span><span class='line'>
+</span><span class='line'>   def __init__(self,name,age,salary):
+</span><span class='line'>
+</span><span class='line'>       Person.__init__(self,name,age)
+</span><span class='line'>
+</span><span class='line'>       self.salary = salary
+</span><span class='line'>
+</span><span class='line'>       print "init for teacher %s" % self.name
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>   def tell(self):
+</span><span class='line'>
+</span><span class='line'>       Person.tell(self)
+</span><span class='line'>
+</span><span class='line'>       print "salary:%d" % self.salary
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>p = Person('tianzhen',20)
+</span><span class='line'>
+</span><span class='line'>p.tell()
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>tea_p = Teacher('zhenzhen',20,1010000000)
+</span><span class='line'>
+</span><span class='line'>tea_p.tell()</span></code></pre></td></tr></table></div></figure>
 
 </div>
 

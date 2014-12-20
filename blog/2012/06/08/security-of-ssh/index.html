@@ -89,21 +89,21 @@
 
 <p> </p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>groupadd admin
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>1.增加马甲账号(-m表示创建home目录，-s表示后面跟着的是terminal，-G表示加入后面的那个组，最后的USERNAME各位自己发挥)</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>useradd -m -s /bin/bash -G admin USERNAME
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>2.修改刚刚马甲的密码：(输入两次新密码就ok了)</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>passwd USERNAME
 </span></code></pre></td></tr></table></div></figure>
 
@@ -112,7 +112,7 @@
 
 <p>下面禁止root登陆，直接修改/etc/ssh/sshd_config中的PermitRootLogin为no即可，然后重启ssh：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>service ssh restart
 </span></code></pre></td></tr></table></div></figure>
 

@@ -11,7 +11,9 @@
 2
 3
 4
-for x in &hellip;">
+5
+6
+7 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -83,15 +85,20 @@ for x in &hellip;">
 	<h2 class="title">Else Clause in Python Loop</h2>
 	<div class="entry-content"><p>both in while and for loop, if in loop body, no break, no return, no exception is raised, statements in else block will be executed.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[]:</span>
-</span><span class='line'>     <span class="k">print</span> <span class="n">x</span>
-</span><span class='line'><span class="k">else</span><span class="p">:</span>
-</span><span class='line'>     <span class="k">print</span> <span class="err">‘</span><span class="n">xxx</span><span class="err">’</span>
-</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>for x in []:
+</span><span class='line'>
+</span><span class='line'>     print x
+</span><span class='line'>
+</span><span class='line'>else:
+</span><span class='line'>
+</span><span class='line'>     print ‘xxx’</span></code></pre></td></tr></table></div></figure>
 
 
 <p>this example will print ‘xxx’, even nothing in list and this loop is not executed.</p>

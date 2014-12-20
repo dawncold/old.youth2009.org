@@ -91,11 +91,15 @@
 
 <p>examples:</p>
 
-<p>CREATE ROLE joe LOGIN INHERIT;
-CREATE ROLE admin NOINHERIT;
-CREATE ROLE wheel NOINHERIT;
-GRANT admin TO joe;
-GRANT wheel TO admin;</p>
+<p>CREATE ROLE joe LOGIN INHERIT;</p>
+
+<p>CREATE ROLE admin NOINHERIT;</p>
+
+<p>CREATE ROLE wheel NOINHERIT;</p>
+
+<p>GRANT admin TO joe;</p>
+
+<p>GRANT wheel TO admin;</p>
 
 <p>joe can access admin privilege by using “SET ROLE admin”, or if joe has the INHERIT, joe can access privilege directly from admin, if joe want to use these privileges, joe must “SET ROLE admin”. Joe can not access privilege from wheel, because admin has the NOINHERIT, admin can not get these privileges, so as joe.</p>
 </div>

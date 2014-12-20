@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ops | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/ops/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T22:12:05+08:00</updated>
+  <updated>2014-12-20T23:49:29+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -24,205 +24,409 @@
 
 <h1>sshd_config content</h1>
 
-<p>&#8220;`</p>
-
-<h1>$OpenBSD: sshd_config,v 1.77 2008/02/08 23:24:07 djm Exp $</h1>
-
-<h1>This is the sshd server system-wide configuration file. See</h1>
-
-<h1>sshd_config(5) for more information.</h1>
-
-<h1>This sshd was compiled with PATH=/usr/bin:/bin:/usr/sbin:/sbin</h1>
-
-<h1>The strategy used for options in the default sshd_config shipped with</h1>
-
-<h1>OpenSSH is to specify options with their default value where</h1>
-
-<h1>possible, but leave them commented. Uncommented options change a</h1>
-
-<h1>default value.</h1>
-
-<h1>Port 22</h1>
-
-<h1>AddressFamily any</h1>
-
-<h1>ListenAddress 0.0.0.0</h1>
-
-<h1>ListenAddress ::</h1>
-
-<h1>Disable legacy (protocol version 1) support in the server for new</h1>
-
-<h1>installations. In future the default will change to require explicit</h1>
-
-<h1>activation of protocol 1</h1>
-
-<p>Protocol 2</p>
-
-<h1>HostKey for protocol version 1</h1>
-
-<h1>HostKey /etc/ssh/ssh_host_key</h1>
-
-<h1>HostKeys for protocol version 2</h1>
-
-<h1>HostKey /etc/ssh/ssh_host_rsa_key</h1>
-
-<h1>HostKey /etc/ssh/ssh_host_dsa_key</h1>
-
-<h1>Lifetime and size of ephemeral version 1 server key</h1>
-
-<h1>KeyRegenerationInterval 1h</h1>
-
-<h1>ServerKeyBits 768</h1>
-
-<h1>Logging</h1>
-
-<h1>obsoletes QuietMode and FascistLogging</h1>
-
-<h1>SyslogFacility AUTH</h1>
-
-<h1>LogLevel INFO</h1>
-
-<h1>Authentication:</h1>
-
-<h1>LoginGraceTime 2m</h1>
-
-<p>PermitRootLogin no
-StrictModes yes</p>
-
-<h1>MaxAuthTries 6</h1>
-
-<h1>RSAAuthentication yes</h1>
-
-<p>PubkeyAuthentication yes</p>
-
-<h1>AuthorizedKeysFile .ssh/authorized_keys</h1>
-
-<h1>For this to work you will also need host keys in /etc/ssh/ssh_known_hosts</h1>
-
-<h1>RhostsRSAAuthentication no</h1>
-
-<h1>similar for protocol version 2</h1>
-
-<h1>HostbasedAuthentication no</h1>
-
-<h1>Change to yes if you don&rsquo;t trust ~/.ssh/known_hosts for</h1>
-
-<h1>RhostsRSAAuthentication and HostbasedAuthentication</h1>
-
-<h1>IgnoreUserKnownHosts no</h1>
-
-<h1>Don&rsquo;t read the user&rsquo;s ~/.rhosts and ~/.shosts files</h1>
-
-<h1>IgnoreRhosts yes</h1>
-
-<h1>To disable tunneled clear text passwords, change to no here!</h1>
-
-<p>PasswordAuthentication no
-PermitEmptyPasswords no</p>
-
-<h1>Change to no to disable s/key passwords</h1>
-
-<p>ChallengeResponseAuthentication no</p>
-
-<h1>Kerberos options</h1>
-
-<h1>KerberosAuthentication no</h1>
-
-<h1>KerberosOrLocalPasswd yes</h1>
-
-<h1>KerberosTicketCleanup yes</h1>
-
-<h1>KerberosGetAFSToken no</h1>
-
-<h1>GSSAPI options</h1>
-
-<h1>GSSAPIAuthentication no</h1>
-
-<h1>GSSAPICleanupCredentials yes</h1>
-
-<h1>Set this to &lsquo;yes&rsquo; to enable PAM authentication, account processing,</h1>
-
-<h1>and session processing. If this is enabled, PAM authentication will</h1>
-
-<h1>be allowed through the ChallengeResponseAuthentication and</h1>
-
-<h1>PasswordAuthentication. Depending on your PAM configuration,</h1>
-
-<h1>PAM authentication via ChallengeResponseAuthentication may bypass</h1>
-
-<h1>the setting of &ldquo;PermitRootLogin without-password&rdquo;.</h1>
-
-<h1>If you just want the PAM account and session checks to run without</h1>
-
-<h1>PAM authentication, then enable this but set PasswordAuthentication</h1>
-
-<h1>and ChallengeResponseAuthentication to &lsquo;no&rsquo;.</h1>
-
-<p>UsePAM yes</p>
-
-<h1>AllowTcpForwarding yes</h1>
-
-<h1>GatewayPorts no</h1>
-
-<h1>X11Forwarding no</h1>
-
-<h1>X11DisplayOffset 10</h1>
-
-<h1>X11UseLocalhost yes</h1>
-
-<h1>PrintMotd yes</h1>
-
-<h1>PrintLastLog yes</h1>
-
-<h1>TCPKeepAlive yes</h1>
-
-<h1>UseLogin no</h1>
-
-<p>UsePrivilegeSeparation yes</p>
-
-<h1>PermitUserEnvironment no</h1>
-
-<h1>Compression delayed</h1>
-
-<p>ClientAliveInterval 600
-ClientAliveCountMax 0</p>
-
-<h1>UseDNS yes</h1>
-
-<h1>PidFile /var/run/sshd.pid</h1>
-
-<h1>MaxStartups 10</h1>
-
-<p>PermitTunnel no</p>
-
-<h1>ChrootDirectory none</h1>
-
-<h1>no default banner path</h1>
-
-<h1>Banner none</h1>
-
-<h1>override default of no subsystems</h1>
-
-<p>Subsystem sftp /usr/sbin/sftp-server</p>
-
-<h1>Example of overriding settings on a per-user basis</h1>
-
-<h1>Match User anoncvs</h1>
-
-<h1>X11Forwarding no</h1>
-
-<h1>AllowTcpForwarding no</h1>
-
-<h1>ForceCommand cvs server</h1>
-
-<p>AllowGroups rmt_acc
-&#8220;`</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+<span class='line-number'>174</span>
+<span class='line-number'>175</span>
+<span class='line-number'>176</span>
+<span class='line-number'>177</span>
+<span class='line-number'>178</span>
+<span class='line-number'>179</span>
+<span class='line-number'>180</span>
+<span class='line-number'>181</span>
+<span class='line-number'>182</span>
+<span class='line-number'>183</span>
+<span class='line-number'>184</span>
+<span class='line-number'>185</span>
+<span class='line-number'>186</span>
+<span class='line-number'>187</span>
+<span class='line-number'>188</span>
+<span class='line-number'>189</span>
+<span class='line-number'>190</span>
+<span class='line-number'>191</span>
+<span class='line-number'>192</span>
+<span class='line-number'>193</span>
+<span class='line-number'>194</span>
+<span class='line-number'>195</span>
+<span class='line-number'>196</span>
+<span class='line-number'>197</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>$OpenBSD: sshd_config,v 1.77 2008/02/08 23:24:07 djm Exp $&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>This is the sshd server system-wide configuration file. See&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>sshd_config(5) for more information.&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>This sshd was compiled with PATH=/usr/bin:/bin:/usr/sbin:/sbin&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>The strategy used for options in the default sshd_config shipped with&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>OpenSSH is to specify options with their default value where&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>possible, but leave them commented. Uncommented options change a&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>default value.&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Port 22&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>AddressFamily any&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>ListenAddress 0.0.0.0&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>ListenAddress ::&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Disable legacy (protocol version 1) support in the server for new&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>installations. In future the default will change to require explicit&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>activation of protocol 1&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Protocol 2&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>HostKey for protocol version 1&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>HostKey /etc/ssh/ssh_host_key&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>HostKeys for protocol version 2&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>HostKey /etc/ssh/ssh_host_rsa_key&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>HostKey /etc/ssh/ssh_host_dsa_key&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Lifetime and size of ephemeral version 1 server key&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>KeyRegenerationInterval 1h&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>ServerKeyBits 768&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Logging&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>obsoletes QuietMode and FascistLogging&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>SyslogFacility AUTH&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>LogLevel INFO&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Authentication:&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>LoginGraceTime 2m&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>PermitRootLogin no&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>StrictModes yes&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>MaxAuthTries 6&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>RSAAuthentication yes&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>PubkeyAuthentication yes&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>AuthorizedKeysFile .ssh/authorized_keys&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>For this to work you will also need host keys in /etc/ssh/ssh_known_hosts&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>RhostsRSAAuthentication no&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>similar for protocol version 2&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>HostbasedAuthentication no&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Change to yes if you don&rsquo;t trust ~/.ssh/known_hosts for&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>RhostsRSAAuthentication and HostbasedAuthentication&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>IgnoreUserKnownHosts no&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Don&rsquo;t read the user&rsquo;s ~/.rhosts and ~/.shosts files&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>IgnoreRhosts yes&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>To disable tunneled clear text passwords, change to no here!&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>PasswordAuthentication no&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>PermitEmptyPasswords no&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Change to no to disable s/key passwords&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>ChallengeResponseAuthentication no&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Kerberos options&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>KerberosAuthentication no&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>KerberosOrLocalPasswd yes&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>KerberosTicketCleanup yes&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>KerberosGetAFSToken no&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>GSSAPI options&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>GSSAPIAuthentication no&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>GSSAPICleanupCredentials yes&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Set this to &lsquo;yes&rsquo; to enable PAM authentication, account processing,&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>and session processing. If this is enabled, PAM authentication will&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>be allowed through the ChallengeResponseAuthentication and&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>PasswordAuthentication. Depending on your PAM configuration,&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>PAM authentication via ChallengeResponseAuthentication may bypass&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>the setting of &ldquo;PermitRootLogin without-password&rdquo;.&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>If you just want the PAM account and session checks to run without&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>PAM authentication, then enable this but set PasswordAuthentication&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>and ChallengeResponseAuthentication to &lsquo;no&rsquo;.&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>UsePAM yes&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>AllowTcpForwarding yes&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>GatewayPorts no&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>X11Forwarding no&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>X11DisplayOffset 10&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>X11UseLocalhost yes&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>PrintMotd yes&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>PrintLastLog yes&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>TCPKeepAlive yes&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>UseLogin no&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>UsePrivilegeSeparation yes&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>PermitUserEnvironment no&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Compression delayed&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>ClientAliveInterval 600&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>ClientAliveCountMax 0&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>UseDNS yes&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>PidFile /var/run/sshd.pid&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>MaxStartups 10&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>PermitTunnel no&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>ChrootDirectory none&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>no default banner path&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Banner none&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>override default of no subsystems&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Subsystem sftp /usr/sbin/sftp-server&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Example of overriding settings on a per-user basis&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Match User anoncvs&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>X11Forwarding no&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>AllowTcpForwarding no&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>ForceCommand cvs server&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>AllowGroups rmt_acc&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h1>install sudo for AIX</h1>
 
-<p><code>
-rpm -i sudo-for-aix.rpm
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rpm -i sudo-for-aix.rpm&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h1>stop telnet/login/ftp/shell/exec service:</h1>
 
@@ -230,9 +434,12 @@ rpm -i sudo-for-aix.rpm
 
 <p>comment the line starts with &lsquo;telnet&rsquo;/&lsquo;login&rsquo;/&lsquo;ftp&rsquo;/&lsquo;shell&rsquo;/&lsquo;exec&rsquo; in /etc/inetd.conf</p>
 
-<p><code>
-stopsrc -t telnet
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>stopsrc -t telnet&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   

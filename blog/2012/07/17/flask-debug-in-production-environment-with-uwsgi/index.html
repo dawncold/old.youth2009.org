@@ -82,8 +82,8 @@ uwsgi -s :9090 -M -p 4 &hellip;">
 
 <p>自带的调试功能比较好用，也能很方便的查看各种变量的值，不过在生产环境中调试并不是那么容易。需要在uwsgi开启的时候传入“&mdash;catch exceptions”：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>uwsgi -s :9090 -M -p 4 -t 30 --limit-as 128 -R 10000 -d uwsgi.log --vhost --catch-exceptions
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>uwsgi -s :9090 -M -p <span class="m">4</span> -t <span class="m">30</span> --limit-as <span class="m">128</span> -R <span class="m">10000</span> -d uwsgi.log --vhost --catch-exceptions
 </span></code></pre></td></tr></table></div></figure>
 
 

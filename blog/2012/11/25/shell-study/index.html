@@ -87,17 +87,27 @@
 
 <p>特殊文件：/dev/null 和 /dev/tty。null这个被称为bit bucket，传输到这里的东西都会被丢弃，就如同黑洞一般：）程序把文件写入到这里就会被认为是成功的，但实际什么都没做，例如：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if </span>grep pattern myfile &gt; /dev/null
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if</span> grep pattern myfile &gt; /dev/null
+</span><span class='line'>
 </span><span class='line'><span class="k">then</span>
+</span><span class='line'>
 </span><span class='line'>…
+</span><span class='line'>
 </span><span class='line'><span class="k">else</span>
+</span><span class='line'>
 </span><span class='line'>…
+</span><span class='line'>
 </span><span class='line'><span class="k">fi</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -106,17 +116,27 @@
 
 <p>/dev/tty的功能是，当程序打开这个文件时会重定向到一个terminal，在需要输入密码的时候用的到：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">printf</span> <span class="s2">&quot;Enter password: &quot;</span>
+</span><span class='line'>
 </span><span class='line'>stty -echo <span class="c">#关闭自动回显输入的字符功能</span>
+</span><span class='line'>
 </span><span class='line'><span class="nb">read </span>pass &lt; /dev/tty
+</span><span class='line'>
 </span><span class='line'><span class="nb">printf</span> <span class="s2">&quot;Enter Again: &quot;</span>
+</span><span class='line'>
 </span><span class='line'><span class="nb">read </span>pass2 &lt; /dev/tty
+</span><span class='line'>
 </span><span class='line'>stty <span class="nb">echo</span> <span class="c">#打开自动回显输入的字符功能</span>
 </span></code></pre></td></tr></table></div></figure>
 

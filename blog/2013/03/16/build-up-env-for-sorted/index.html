@@ -11,9 +11,10 @@
 2
 3
 4
-export THEOS=/opt/theos
-svn co http://svn.howett.net/svn/theos/trunk $THEOS
-curl -s https://dl. &hellip;">
+5
+6
+7
+export THEOS=/opt/theos svn co http://svn.howett.net/svn/theos/trunk $THEOS curl -s https://dl. &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -87,13 +88,19 @@ curl -s https://dl. &hellip;">
 
 <p>基本需要的工具</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">THEOS</span><span class="o">=</span>/opt/theos
+</span><span class='line'>
 </span><span class='line'>svn co http://svn.howett.net/svn/theos/trunk <span class="nv">$THEOS</span>
-</span><span class='line'>curl -s https://dl.dropboxusercontent.com/u/3157793/ldid &gt; <span class="nv">$THEOS</span>/bin/ldid; chmod +x <span class="nv">$THEOS</span>/bin/ldid
+</span><span class='line'>
+</span><span class='line'>curl -s https://dl.dropboxusercontent.com/u/3157793/ldid &gt; <span class="nv">$THEOS</span>/bin/ldid<span class="p">;</span> chmod +x <span class="nv">$THEOS</span>/bin/ldid
+</span><span class='line'>
 </span><span class='line'>brew install dpkg<span class="o">(</span>如果出错安不上dpkg，那就先update一下brew，我就遇到这么个问题<span class="o">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -104,9 +111,11 @@ curl -s https://dl. &hellip;">
 
 <p>再加两个环境变量</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">SDKVERSION</span><span class="o">=</span>6.1
+</span><span class='line'>
 </span><span class='line'><span class="nb">export </span><span class="nv">THEOS_DEVICE_IP</span><span class="o">=</span>10.0.0.101
 </span></code></pre></td></tr></table></div></figure>
 
@@ -115,9 +124,11 @@ curl -s https://dl. &hellip;">
 
 <p>make&amp;make package，在make的时候不加sudo我会无法make成功。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo make
+</span><span class='line'>
 </span><span class='line'>sudo make package
 </span></code></pre></td></tr></table></div></figure>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T22:12:05+08:00</updated>
+  <updated>2014-12-20T23:49:29+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -20,27 +20,65 @@
     <id>http://www.youth2009.org/blog/2012/06/11/lib-javahl-for-svn-on-mac</id>
     <content type="html"><![CDATA[<p>今天基本完成了LoveSMS，想checkout一下jdrcom来看看，所以就安装上了svn for eclipse，然后在导入的时候提示缺少javahl库，去了官方查看了一下，说是对于Mac用户，只需要下载他们的bin文件就能解决，我一看才给到1.6.5的版本，而我自己用brew都装到了1.7.5，而且svn插件用的是1.8.x，需要1.7+的svn支持才行，所以就自己重新安装了svn：</p>
 
-<p><code>bash
-brew install subversion --universal --java
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install subversion <span class="p">&amp;</span>mdash<span class="p">;</span>universal <span class="p">&amp;</span>mdash<span class="p">;</span>java&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>这句是关键哦，当然你得先uninstall已经安装的svn才行。加了java开关就可以告诉svn需要java IDE的库，编译的完成后会继续编译javahl～</p>
 
 <p>会有这样的提示哦：</p>
 
-<p><code>bash
-To use Java bindings with various Java IDEs, you might need a universal build:
- brew install subversion --universal --java
-==&gt; ./configure --disable-debug --prefix=/usr/local/Cellar/subversion/1.7.5 --with-ssl --with-zlib=/usr --with-sqlite=/usr/local --disable-neon-version-chec
-==&gt; make
-==&gt; make install
-==&gt; make javahl
-==&gt; make install-javahl
-==&gt; Caveats
-You may need to link the Java bindings into the Java Extensions folder:
- sudo mkdir -p /Library/Java/Extensions
- sudo ln -s /usr/local/lib/libsvnjavahl-1.dylib /Library/Java/Extensions/libsvnjavahl-1.dylib
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>To use Java bindings with various Java IDEs, you might need a universal build:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt; brew install subversion <span class="p">&amp;</span>mdash<span class="p">;</span>universal <span class="p">&amp;</span>mdash<span class="p">;</span>java&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">==</span>&gt; ./configure <span class="p">&amp;</span>mdash<span class="p">;</span>disable-debug <span class="p">&amp;</span>mdash<span class="p">;</span><span class="nv">prefix</span><span class="o">=</span>/usr/local/Cellar/subversion/1.7.5 <span class="p">&amp;</span>mdash<span class="p">;</span>with-ssl <span class="p">&amp;</span>mdash<span class="p">;</span>with-zlib<span class="o">=</span>/usr <span class="p">&amp;</span>mdash<span class="p">;</span>with-sqlite<span class="o">=</span>/usr/local <span class="p">&amp;</span>mdash<span class="p">;</span>disable-neon-version-chec&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">==</span>&gt; make&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">==</span>&gt; make install&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">==</span>&gt; make javahl&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">==</span>&gt; make install-javahl&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">==</span>&gt; Caveats&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;You may need to link the Java bindings into the Java Extensions folder:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt; sudo mkdir -p /Library/Java/Extensions&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt; sudo ln -s /usr/local/lib/libsvnjavahl-1.dylib /Library/Java/Extensions/libsvnjavahl-1.dylib&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>自己加入后面的链接就ok了！</p>
 ]]></content>
@@ -55,54 +93,129 @@ You may need to link the Java bindings into the Java Extensions folder:
 
 <p>我写的测试是每秒输出现在的时间而已。</p>
 
-<p>&#8220;`java
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;</p>
-
-<p>public class TimePrint implements ActionListener
-{</p>
-
-<p>   @Override
-   public void actionPerformed(ActionEvent e)
-   {</p>
-
-<pre><code>   // TODO Auto-generated method stub
-   System.out.println("date is: " + (new Date()));
-   Toolkit.getDefaultToolkit().beep();
-</code></pre>
-
-<p>   }
-}</p>
-
-<p>&#8220;`</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.awt.Toolkit</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TimePrint</span> <span class="kd">implements</span> <span class="n">ActionListener</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>   <span class="nd">@Override</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>   <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>   <span class="c1">// TODO Auto-generated method stub</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;date is: &quot;</span> <span class="o">+</span> <span class="o">(</span><span class="k">new</span> <span class="nf">Date</span><span class="o">()));</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">Toolkit</span><span class="o">.</span><span class="na">getDefaultToolkit</span><span class="o">().</span><span class="na">beep</span><span class="o">();</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>   <span class="o">}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>在调用的时候如果忘记写Thread.sleep(xxx)这行就不会看到效果，具体原因不太清楚，可能这个swing中的Timer只是用来在GUI中做些什么工作的，而我用终端输出内容就不太合适了，于是就牵扯出来很多线程的问题。</p>
 
 <p>这是main方法中的内容：</p>
 
-<p>&#8220;`bash
-import java.awt.event.ActionListener;</p>
-
-<p>import javax.swing.Timer;</p>
-
-<p>public class TimerPrintTest
-{
-   public static void main(String[] argStrings) throws InterruptedException
-   {</p>
-
-<pre><code>   System.out.println("Running...");
-   ActionListener listener = new TimePrint();
-   Timer timer = new Timer(1000, listener);
-   timer.start();
-   Thread.sleep(4000);
-</code></pre>
-
-<p>   }
-}</p>
-
-<p>&#8220;`</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>import java.awt.event.ActionListener<span class="p">;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;import javax.swing.Timer<span class="p">;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;public class TimerPrintTest&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">{</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;   public static void main<span class="o">(</span>String<span class="o">[]</span> argStrings<span class="o">)</span> throws InterruptedException&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;   <span class="o">{</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;   System.out.println<span class="o">(</span><span class="s2">&quot;Running...&quot;</span><span class="o">)</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>   ActionListener <span class="nv">listener</span> <span class="o">=</span> new TimePrint<span class="o">()</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>   Timer <span class="nv">timer</span> <span class="o">=</span> new Timer<span class="o">(</span>1000, listener<span class="o">)</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>   timer.start<span class="o">()</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>   Thread.sleep<span class="o">(</span>4000<span class="o">)</span><span class="p">;</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;   <span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">}</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   

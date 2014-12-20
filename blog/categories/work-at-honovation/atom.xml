@@ -4,7 +4,7 @@
   <title><![CDATA[Category: work@honovation | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/work-at-honovation/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T22:12:05+08:00</updated>
+  <updated>2014-12-20T23:49:29+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -24,17 +24,35 @@
 
 <p>同样的Object.keys()因为不能在IE9下使用，因为要取一个Object的keys数量，有的时候是用Object的keys列表，所以以后为了兼容，就只能：</p>
 
-<p>&#8220;`js
-var keys = [];
-for(var p in obj) {</p>
-
-<pre><code>if(obj.hasOwnProperty(p)) {
-    keys.push(p);
-}
-</code></pre>
-
-<p>}
-&#8220;`</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="p">[];</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">p</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">p</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">keys</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   
@@ -58,18 +76,42 @@ for(var p in obj) {</p>
     <id>http://www.youth2009.org/blog/2013/08/08/basestring-and-str-in-python2x</id>
     <content type="html"><![CDATA[<p>今天在代码中发现原本过滤str的一个func被写成了过滤basestring，于是查了下basestring和str的区别：(在3.0之前)</p>
 
-<p>&#8220;`</p>
-
-<pre><code>       object
-         |
-         |
-     basestring
-        / \
-       /   \
-     str  unicode
-</code></pre>
-
-<p>&#8220;`</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>       object
+</span><span class='line'>
+</span><span class='line'>         |
+</span><span class='line'>
+</span><span class='line'>         |
+</span><span class='line'>
+</span><span class='line'>     basestring
+</span><span class='line'>
+</span><span class='line'>        / \
+</span><span class='line'>
+</span><span class='line'>       /   \
+</span><span class='line'>
+</span><span class='line'>     str  unicode
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>3.0之前python中有plain string和unicode string，前者是ascii中的那些字符，后者就是所有字符了，因为historical legacy。。。python出现的时候还木有unicode，所以很多python的lib是需要慢慢转换的，当然到了3.0就会不复存在了，全是unicode。</p>
 

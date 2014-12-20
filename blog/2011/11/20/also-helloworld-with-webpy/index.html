@@ -18,8 +18,17 @@
 9
 10
 11
-import web urls = (&quot;/hello&quot;, &quot;hello&quot;)
-app = web. &hellip;">
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+import web urls = ("/hello", "hello") app &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -91,7 +100,7 @@ app = web. &hellip;">
 	<h2 class="title">又是helloworld</h2>
 	<div class="entry-content"><p>学计算机编程语言的人都有helloworld情节，不管学成什么样，他们写helloworld的能力都很强。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -102,18 +111,37 @@ app = web. &hellip;">
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">web</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import web
 </span><span class='line'>
-</span><span class='line'><span class="n">urls</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;/hello&quot;</span><span class="p">,</span> <span class="s">&quot;hello&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">application</span><span class="p">(</span><span class="n">urls</span><span class="p">,</span> <span class="nb">globals</span><span class="p">())</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">hello</span><span class="p">:</span>
-</span><span class='line'>   <span class="k">def</span> <span class="nf">GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>       <span class="k">return</span> <span class="s">&quot;hello, world&quot;</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class='line'>   <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>urls = ("/hello", "hello")
+</span><span class='line'>
+</span><span class='line'>app = web.application(urls, globals())
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>class hello:
+</span><span class='line'>
+</span><span class='line'>   def GET(self):
+</span><span class='line'>
+</span><span class='line'>       return "hello, world"
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>if __name__ == "__main__":
+</span><span class='line'>
+</span><span class='line'>   app.run()</span></code></pre></td></tr></table></div></figure>
 
 
 <p>今晚已经开始了Web.py的学习阶段。</p>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T22:12:05+08:00</updated>
+  <updated>2014-12-20T23:49:29+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -20,18 +20,42 @@
     <id>http://www.youth2009.org/blog/2013/08/08/basestring-and-str-in-python2x</id>
     <content type="html"><![CDATA[<p>今天在代码中发现原本过滤str的一个func被写成了过滤basestring，于是查了下basestring和str的区别：(在3.0之前)</p>
 
-<p>&#8220;`</p>
-
-<pre><code>       object
-         |
-         |
-     basestring
-        / \
-       /   \
-     str  unicode
-</code></pre>
-
-<p>&#8220;`</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>       object
+</span><span class='line'>
+</span><span class='line'>         |
+</span><span class='line'>
+</span><span class='line'>         |
+</span><span class='line'>
+</span><span class='line'>     basestring
+</span><span class='line'>
+</span><span class='line'>        / \
+</span><span class='line'>
+</span><span class='line'>       /   \
+</span><span class='line'>
+</span><span class='line'>     str  unicode
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>3.0之前python中有plain string和unicode string，前者是ascii中的那些字符，后者就是所有字符了，因为historical legacy。。。python出现的时候还木有unicode，所以很多python的lib是需要慢慢转换的，当然到了3.0就会不复存在了，全是unicode。</p>
 
@@ -52,12 +76,55 @@
 
 <p>crontab:</p>
 
-<p><code>bash
-MAILTO="dawncold@me.com"
-PATH=/Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin:/Users/dawncold/.rvm/gems/ruby-1.9.3-p286@global/bin:/Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/bin:/Users/dawncold/.rvm/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin
-PYTHONPATH=/usr/bin
-* * * * * /Users/dawncold/ping_test.py &gt; /Users/dawncold/pt
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">MAILTO</span><span class="o">=</span><span class="p">&amp;</span>ldquo<span class="p">;</span>&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;&amp;#x6d;&amp;#x61;&amp;#x69;&amp;#108;&amp;#116;&amp;#111;&amp;#x3a;&amp;#100;&amp;#97;&amp;#119;&amp;#110;&amp;#x63;&amp;#111;&amp;#x6c;&amp;#100;&amp;#x40;&amp;#109;&amp;#101;&amp;#x2e;&amp;#x63;&amp;#x6f;&amp;#109;&quot;</span>&gt;<span class="p">&amp;</span><span class="c">#x64;&amp;#x61;&amp;#x77;&amp;#x6e;&amp;#x63;&amp;#111;&amp;#108;&amp;#100;&amp;#64;&amp;#x6d;&amp;#101;&amp;#x2e;&amp;#x63;&amp;#111;&amp;#x6d;&lt;/a&gt;&amp;rdquo;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;PATH<span class="o">=</span>/Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin:/Users/dawncold/.rvm/gems/ruby-1.9.3-p286@global/bin:/Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/bin:/Users/dawncold/.rvm/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;PYTHONPATH<span class="o">=</span>/usr/bin&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;/Users/dawncold/ping_test.py &gt; /Users/dawncold/pt&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   
@@ -72,69 +139,181 @@ PYTHONPATH=/usr/bin
 
 <p>generator这个东西是很有意思的，比如：</p>
 
-<p><code>python
-def other_firstn(n):
- num, nums = 0, []
- while num &lt; n:
-   nums.append(num)
-   num += 1
- return nums
-</code>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def other_firstn(n):&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> num, nums = 0, []&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> while num &lt; n:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>   nums.append(num)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>   num += 1&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> return nums&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure>
 可以产生一个list，里面是按顺序的数字，有n个，结果类似于range(n)的返回值。</p>
 
 <p>还有一个版本的firstn：</p>
 
-<p><code>python
-def firstn(n):
- num = 0
- while num &lt; n:
-   yield num
-   num += 1
-</code>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def firstn(n):&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> num = 0&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> while num &lt; n:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>   yield num&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>   num += 1&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure>
 这个看起来就很帅了，代码也简洁了很多，yield是十分神奇的表达式，产生了一个num，这里不太好想，不能按照正常的function来思考这个执行顺序了。</p>
 
 <p>总之，如果产生100个数字，你可以一下子弄出100个来，或者你知道规则的话，你就弄出第一个来，然后用的时候按照规则，从第一个一直走下去，也产生了100个。最大的不同就是性能，后者必然速度更快了，前提是数量要足够多！写了一个简单的性能对比，主要是时间上的，内存上的不容易监控。</p>
 
-<p>&#8220;`</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>/usr/bin/python&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>! &ndash;&lt;em>&ndash; coding: utf-8 &ndash;&lt;/em>&ndash;&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>import time&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>def firstn(n):&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> num = 0&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> while num &lt; n:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>   yield num&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>   num += 1&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>def other_firstn(n):&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> num, nums = 0, []&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> while num &lt; n:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>   nums.append(num)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>   num += 1&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> return nums&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>def timer(func_wrap, func, *args, **kwards):&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> s = time.time()&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> r = func_wrap(func(*args, **kwards))&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> e = time.time()&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> print &lsquo;return: %s   use %f ms[s: %s, e: %s]&rsquo; % (r, (e &ndash; s), s, e)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>def main():&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> timer(sum, firstn, 1000000)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> timer(sum, other_firstn, 1000000)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>if &lt;strong>name&lt;/strong> == &ldquo;&lt;strong>main&lt;/strong>&rdquo;:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> main()&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure>
+输出结果是：大约会慢1倍</p>
 
-<h1>/usr/bin/python</h1>
-
-<h1>! &ndash;<em>&ndash; coding: utf-8 &ndash;</em>&ndash;</h1>
-
-<p>import time</p>
-
-<p>def firstn(n):
- num = 0
- while num &lt; n:
-   yield num
-   num += 1</p>
-
-<p>def other_firstn(n):
- num, nums = 0, []
- while num &lt; n:
-   nums.append(num)
-   num += 1
- return nums</p>
-
-<p>def timer(func_wrap, func, <em>args, **kwards):
- s = time.time()
- r = func_wrap(func(</em>args, **kwards))
- e = time.time()
- print &lsquo;return: %s   use %f ms[s: %s, e: %s]&rsquo; % (r, (e &ndash; s), s, e)</p>
-
-<p>def main():
- timer(sum, firstn, 1000000)
- timer(sum, other_firstn, 1000000)</p>
-
-<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:
- main()
-<code>
-输出结果是：大约会慢1倍
-</code>bash
-dawncold [21:49:11] ~=>$ python 1.py
-return: 499999500000   use 0.137414 ms[s: 1363182552.38, e: 1363182552.52]
-return: 499999500000   use 0.290716 ms[s: 1363182552.52, e: 1363182552.81]
-&#8220;`</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold <span class="o">[</span>21:49:11<span class="o">]</span> ~<span class="o">=</span>&gt;<span class="nv">$ </span>python 1.py&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;return: <span class="m">499999500000</span>   use 0.137414 ms<span class="o">[</span>s: 1363182552.38, e: 1363182552.52<span class="o">]</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;return: <span class="m">499999500000</span>   use 0.290716 ms<span class="o">[</span>s: 1363182552.52, e: 1363182552.81<span class="o">]</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   
@@ -156,9 +335,12 @@ return: 499999500000   use 0.290716 ms[s: 1363182552.52, e: 1363182552.81]
     <id>http://www.youth2009.org/blog/2012/10/04/dict-formatting-in-python</id>
     <content type="html"><![CDATA[<p>最近在工作中遇到过写SQL的问题，参数是直接传递进去的，比如这样：</p>
 
-<p><code>python
-db().execute('SELECT * FROM xxx WHERE id = %(id)s', id=get_id())
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>db().execute(&lsquo;SELECT * FROM xxx WHERE id = %(id)s&rsquo;, id=get_id())&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>今天细看Google提供的Python课程发现一个叫DictFormatting的部分，里面就有类似这样的语法，现在才明白。以前用过Python的格式化输出，其实这个dict的格式化和字符串的类似，就是在字符串格式化的基础之上加入了dict的key，%s是表示这里有字符串，而%(xxx)s是表示字符串，而且是以xxx为key的字符串，这个value就是从字典中给出。一半会在这样一个字符串后加“% dictname”表示值从dictname这个字典中给出，这不就是和字符串格式化一样么。</p>
 ]]></content>

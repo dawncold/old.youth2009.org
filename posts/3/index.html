@@ -92,17 +92,27 @@
 
 <p>同样的Object.keys()因为不能在IE9下使用，因为要取一个Object的keys数量，有的时候是用Object的keys列表，所以以后为了兼容，就只能：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="p">[];</span>
+</span><span class='line'>
 </span><span class='line'><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">p</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">p</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>
 </span><span class='line'>      <span class="nx">keys</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -152,8 +162,8 @@
 
 <p>批量改名哦（把<em>.md改为</em>.markdown）：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">for </span>i in <span class="sb">`</span>ls *.md<span class="sb">`</span>;<span class="k">do </span>mv <span class="nv">$i</span> <span class="sb">`</span><span class="nb">echo</span> <span class="nv">$i</span> | sed <span class="s1">&#39;s/.md/.markdown/&#39;</span><span class="sb">`</span>;<span class="k">done</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">for</span> i in <span class="sb">`</span>ls *.md<span class="sb">`</span><span class="p">;</span><span class="k">do</span> mv <span class="nv">$i</span> <span class="sb">`</span><span class="nb">echo</span> <span class="nv">$i</span> <span class="p">|</span> sed <span class="s1">&#39;s/.md/.markdown/&#39;</span><span class="sb">`</span><span class="p">;</span><span class="k">done</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -405,17 +415,21 @@
 	</h2>
 	<div class="entry-content">
 		<pre><code>32 bits Internet address
+
 |                   /|
+
 |ARP                 |RARP
+
 |/                   |
+
 48 bits Ethernet address
 </code></pre>
 
 <h1>Gratuitous ARP</h1>
 
 <ol>
-<li>send its own IP to verify whether someone has used this.</li>
-<li>update old MAC address in ARP cache</li>
+<li><p>send its own IP to verify whether someone has used this.</p></li>
+<li><p>update old MAC address in ARP cache</p></li>
 </ol>
 
 
@@ -524,13 +538,25 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>    object
-</span><span class='line'>         |
-</span><span class='line'>         |
-</span><span class='line'>     basestring
-</span><span class='line'>        / \
-</span><span class='line'>       /   \
-</span><span class='line'>     str  unicode</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>object
+</span><span class='line'>
+</span><span class='line'>             |
+</span><span class='line'>
+</span><span class='line'>             |
+</span><span class='line'>
+</span><span class='line'>         basestring
+</span><span class='line'>
+</span><span class='line'>            / \
+</span><span class='line'>
+</span><span class='line'>           /   \
+</span><span class='line'>
+</span><span class='line'>         str  unicode</span></code></pre></td></tr></table></div></figure>
 
 
 <p>3.0之前python中有plain string和unicode string，前者是ascii中的那些字符，后者就是所有字符了，因为historical legacy。。。python出现的时候还木有unicode，所以很多python的lib是需要慢慢转换的，当然到了3.0就会不复存在了，全是unicode。</p>

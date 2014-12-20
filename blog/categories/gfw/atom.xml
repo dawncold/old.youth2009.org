@@ -4,7 +4,7 @@
   <title><![CDATA[Category: gfw | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/gfw/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T22:12:05+08:00</updated>
+  <updated>2014-12-20T23:49:29+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -42,31 +42,100 @@
 
 <p>添加一个My Agents就可以了，何时运行那里我勾选了at startup or login，生成的plist会放在~/Library/LaunchAgents/中，生成的内容如下：</p>
 
-<p><code>
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
-&lt;plist version="1.0"&gt;
-&lt;dict&gt;
-&lt;key&gt;Label&lt;/key&gt;
-&lt;string&gt;autossh&lt;/string&gt;
-&lt;key&gt;ProgramArguments&lt;/key&gt;
-&lt;array&gt;
-&lt;string&gt;/usr/local/bin/autossh&lt;/string&gt;
-&lt;string&gt;-M&lt;/string&gt;
-&lt;string&gt;20000&lt;/string&gt;
-&lt;string&gt;-f&lt;/string&gt;
-&lt;string&gt;-p&lt;/string&gt;
-&lt;string&gt;9999&lt;/string&gt;
-&lt;string&gt;-D&lt;/string&gt;
-&lt;string&gt;9998&lt;/string&gt;
-&lt;string&gt;google@8.8.8.8&lt;/string&gt;
-&lt;string&gt;-N&lt;/string&gt;
-&lt;/array&gt;
-&lt;key&gt;RunAtLoad&lt;/key&gt;
-&lt;true/&gt;
-&lt;/dict&gt;
-&lt;/plist&gt;
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;!DOCTYPE plist PUBLIC &ldquo;&ndash;//Apple//DTD PLIST 1.0//EN&rdquo; &ldquo;&lt;a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd&lt;/a>&rdquo;>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;plist version="1.0">&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;dict>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;key>Label&lt;/key>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;string>autossh&lt;/string>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;key>ProgramArguments&lt;/key>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;array>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;string>/usr/local/bin/autossh&lt;/string>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;string>-M&lt;/string>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;string>20000&lt;/string>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;string>-f&lt;/string>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;string>-p&lt;/string>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;string>9999&lt;/string>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;string>-D&lt;/string>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;string>9998&lt;/string>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;string>&lt;a href="&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#58;&#103;&#x6f;&#111;&#103;&#108;&#x65;&#x40;&#x38;&#46;&#56;&#46;&#x38;&#x2e;&#x38;">&#x67;&#111;&#111;&#x67;&#x6c;&#101;&#64;&#x38;&#46;&#x38;&#x2e;&#x38;&#x2e;&#56;&lt;/a>&lt;/string>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;string>-N&lt;/string>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;/array>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;key>RunAtLoad&lt;/key>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;true/>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;/dict>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;/plist>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>至此，开机自动连接ssh，自由surfing吧。</p>
 ]]></content>

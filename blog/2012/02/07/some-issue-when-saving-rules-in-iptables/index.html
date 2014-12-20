@@ -82,18 +82,16 @@ iptables: Saving firewall rules &hellip;">
 
 <p>在保存iptables规则的时候遇到这样的问题：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>iptables: Saving firewall rules to /etc/sysconfig/iptables: /etc/init.d/iptables: line 268: restorecon: <span class="nb">command </span>not found
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p>`</p>
 
 <p>当然你可能会看到中文的提示（我的就是），意思是一样的。从<a href="http://www.live-in.org/archives/1112.html">这里</a>得到了解决方案：</p>
 
 <p>安装一个包包：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>yum install policycoreutils
 </span></code></pre></td></tr></table></div></figure>
 

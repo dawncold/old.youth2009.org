@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tcpip | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/tcpip/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T22:12:05+08:00</updated>
+  <updated>2014-12-20T23:49:29+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -34,17 +34,21 @@
     <updated>2013-08-18T20:38:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2013/08/18/arp</id>
     <content type="html"><![CDATA[<pre><code>32 bits Internet address
+
 |                   /|
+
 |ARP                 |RARP
+
 |/                   |
+
 48 bits Ethernet address
 </code></pre>
 
 <h1>Gratuitous ARP</h1>
 
 <ol>
-<li>send its own IP to verify whether someone has used this.</li>
-<li>update old MAC address in ARP cache</li>
+<li><p>send its own IP to verify whether someone has used this.</p></li>
+<li><p>update old MAC address in ARP cache</p></li>
 </ol>
 
 ]]></content>
@@ -60,8 +64,8 @@
 <p>IP is a unrealiable and connectionless delivery service.</p>
 
 <ul>
-<li>unrealiable: no guarantee that an IP datagram successfully get to its destination.</li>
-<li>connectionless: IP doesn&rsquo;t maintain any state of successive datagrams, it means there is no order in IP datagrams, latter sent IP datagram may arrived before former sent.</li>
+<li><p>unrealiable: no guarantee that an IP datagram successfully get to its destination.</p></li>
+<li><p>connectionless: IP doesn&rsquo;t maintain any state of successive datagrams, it means there is no order in IP datagrams, latter sent IP datagram may arrived before former sent.</p></li>
 </ul>
 
 
@@ -105,9 +109,9 @@
 <h3>link layer&rsquo;s usage</h3>
 
 <ol>
-<li>send and receive IP datagram</li>
-<li>ARP request and reply</li>
-<li>RARP request and reply</li>
+<li><p>send and receive IP datagram</p></li>
+<li><p>ARP request and reply</p></li>
+<li><p>RARP request and reply</p></li>
 </ol>
 
 
@@ -136,8 +140,8 @@
 <h2>PPP</h2>
 
 <ol>
-<li>async link with 8bits of data and no parity(no checksum)</li>
-<li>bit-oriented sync links</li>
+<li><p>async link with 8bits of data and no parity(no checksum)</p></li>
+<li><p>bit-oriented sync links</p></li>
 </ol>
 
 
@@ -146,11 +150,11 @@
 <p>batter than SLIP:(pay for 3 bytes addition)</p>
 
 <ol>
-<li>multiple protocols on a serial line</li>
-<li>CRC</li>
-<li>IP network control protocol negotiate IP address for each end</li>
-<li>header compress like CSLIP</li>
-<li>link control protocol negotiate many data-link options</li>
+<li><p>multiple protocols on a serial line</p></li>
+<li><p>CRC</p></li>
+<li><p>IP network control protocol negotiate IP address for each end</p></li>
+<li><p>header compress like CSLIP</p></li>
+<li><p>link control protocol negotiate many data-link options</p></li>
 </ol>
 
 

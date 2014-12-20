@@ -81,24 +81,34 @@
 
 <p>由于是mac系统，MySQL是使用的官方提供的dmg安装包装的，但不知为何MySQLdb的安装脚本找不到位置，于是修改MySQLdb的setup_posix.py，26行有个mysql_config.path = &hellip;，修改成你本机中mysql_config所在的地址，比如我的是/usr/local/mysql/bin/mysql_config，保存后分别执行：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo python setup.py build
+</span><span class='line'>
 </span><span class='line'>sudo python setup.py install
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>安装后最好用python的shell加载一下MySQLdb看看能否正常使用，通常是不行的，因为我就遇到这么个情况，提示缺少image，具体是这样提示的：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>File <span class="s2">&quot;/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/MySQLdb/__init__.py&quot;</span>, line 19, in &lt;module&gt;
+</span><span class='line'>
 </span><span class='line'>   import _mysql
+</span><span class='line'>
 </span><span class='line'>ImportError: dlopen<span class="o">(</span>/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/_mysql.so, 2<span class="o">)</span>: Library not loaded: libmysqlclient.18.dylib
+</span><span class='line'>
 </span><span class='line'> Referenced from: /Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/_mysql.so
+</span><span class='line'>
 </span><span class='line'> Reason: image not found
 </span></code></pre></td></tr></table></div></figure>
 
@@ -107,7 +117,7 @@
 
 <p>在~/.bash_profile中加入这样的一句：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">DYLD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/mysql/lib:<span class="nv">$DYLD_LIBRARY_PATH</span>
 </span></code></pre></td></tr></table></div></figure>
 

@@ -90,8 +90,9 @@
 
 <p>刚刚我把cell的style改成了default，然后再设置这些alignment，就能用了，真奇怪用subtitle的方式即使重建了cell，都不能设置alignment到center。但原因是这样的，我引用下官方reference：</p>
 
-<blockquote><p>UITableViewCellStyleSubtitle
-A style for a cell with a left-aligned label across the top and a left-aligned label below it in smaller gray text. The iPod application uses cells in this style.</p></blockquote>
+<blockquote><p>UITableViewCellStyleSubtitle</p>
+
+<p>A style for a cell with a left-aligned label across the top and a left-aligned label below it in smaller gray text. The iPod application uses cells in this style.</p></blockquote>
 
 <p>很明确了吧，subtitle就是left-aligned的label，再改也没用。当然还有个value1和value2的style，似乎是专门left-aligned和right-aligned的，不过在他们各自的反方向还有另外的label，最好看官方的说明和多多实践。</p>
 
@@ -232,13 +233,16 @@ A style for a cell with a left-aligned label across the top and a left-aligned l
 
 <p>今天update进去信息，总是没发现数据库更新，怀疑是忘记commit，查看一下FMDB的使用方法，确实有commit一说，而我在看国内某博客写的使用教程时发现他就是随意的update和insert，殊不知这些都需要commit呀！在update和insert代码前后需要加入</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="p">[</span><span class="n">db</span> <span class="n">beginTransaction</span><span class="p">];</span>
-</span><span class='line'><span class="err">和</span>
-</span><span class='line'><span class="p">[</span><span class="n">db</span> <span class="n">commit</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[db beginTransaction];
+</span><span class='line'>
+</span><span class='line'>和
+</span><span class='line'>
+</span><span class='line'>[db commit];</span></code></pre></td></tr></table></div></figure>
 
 
 <p>我用的Objective-C。</p>
@@ -439,9 +443,15 @@ A style for a cell with a left-aligned label across the top and a left-aligned l
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>location ~.*\.(php|php5)?$
+</span><span class='line'>
 </span><span class='line'>{
+</span><span class='line'>
 </span><span class='line'>    处理php
+</span><span class='line'>
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
@@ -456,12 +466,24 @@ A style for a cell with a left-aligned label across the top and a left-aligned l
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>location / {
+</span><span class='line'>
 </span><span class='line'>               root html;
+</span><span class='line'>
 </span><span class='line'>               index index.html index.php;
+</span><span class='line'>
 </span><span class='line'>}
+</span><span class='line'>
 </span><span class='line'>location ~.*\.(php|php5)?$ {
+</span><span class='line'>
 </span><span class='line'>处理php
+</span><span class='line'>
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 

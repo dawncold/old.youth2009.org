@@ -82,28 +82,28 @@ rpm -ivh &hellip;">
 	<h2 class="title">centos5上ppp、pptpd配置VPN</h2>
 	<div class="entry-content"><p>安装ppp：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>yum install ppp
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>下载pptpd：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>wget -c http://poptop.sourceforge.net/yum/stable/packages/pptpd-1.3.4-1.rhel5.1.x86_64.rpm
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>安装pptpd：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>rpm -ivh pptpd-1.3.4-1.rhel5.1.x86_64.rpm
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>修改参数：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>vi /etc/ppp/options.pptpd
 </span></code></pre></td></tr></table></div></figure>
 
@@ -112,7 +112,7 @@ rpm -ivh &hellip;">
 
 <p>加入分配IP等信息：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>vi /etc/pptpd.conf
 </span></code></pre></td></tr></table></div></figure>
 
@@ -123,7 +123,7 @@ rpm -ivh &hellip;">
 
 <p>加入账号密码：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>vi /etc/ppp/chap-secrets
 </span></code></pre></td></tr></table></div></figure>
 
@@ -132,36 +132,44 @@ rpm -ivh &hellip;">
 
 <p>修改转发参数：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>vi /etc/sysctl.conf
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>把net.ipv4.ip_forward = 0改正1保存退出</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>/sbin/sysctl -p
+</span><span class='line'>
 </span><span class='line'>使刚才配置的转发参数生效，你能够看到系统打印出的参数列表，应该能够看到ip_forward <span class="o">=</span> 1了
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>启动pptpd：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>/sbin/services pptpd start
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>配置iptables内容：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/sbin/iptables -A INPUT -p tcp --dport 1723 -j ACCEPT
-</span><span class='line'>/sbin/iptables -A INPUT -p tcp --dport 47 -j ACCEPT
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/sbin/iptables -A INPUT -p tcp --dport <span class="m">1723</span> -j ACCEPT
+</span><span class='line'>
+</span><span class='line'>/sbin/iptables -A INPUT -p tcp --dport <span class="m">47</span> -j ACCEPT
+</span><span class='line'>
 </span><span class='line'>/sbin/iptables -A INPUT -p gre -j ACCEPT
+</span><span class='line'>
 </span><span class='line'>/sbin/iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o eth0 -j MASQUERADE
 </span></code></pre></td></tr></table></div></figure>
 
@@ -170,20 +178,26 @@ rpm -ivh &hellip;">
 
 <p>保存iptables规则，重启iptables：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>/etc/init.d/iptables save
+</span><span class='line'>
 </span><span class='line'>/etc/init.d/iptables restart
+</span><span class='line'>
 </span><span class='line'>如果原有iptables内容可能会和现有的冲突，所以发现问题后先检查一下这里，毕竟iptables是控制连接的所有出口
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>下面这两条根据需要执行吧：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>/sbin/chkconfig pptpd on
+</span><span class='line'>
 </span><span class='line'>/sbin/chkconfig iptables on
 </span></code></pre></td></tr></table></div></figure>
 

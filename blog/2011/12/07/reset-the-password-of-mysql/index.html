@@ -80,7 +80,7 @@ mysqladmin -u root password &quot;mysqlpassword&quot; 很明显引号内的是ro
 	<h2 class="title">重置MySQL密码</h2>
 	<div class="entry-content"><p>前几天在Mac系统下装了MySQL，装完后是默认没有给root用户带密码的，于是出于安全考虑我就加上了密码，加密码的方式如下：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>mysqladmin -u root password <span class="s2">&quot;mysqlpassword&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -91,16 +91,18 @@ mysqladmin -u root password &quot;mysqlpassword&quot; 很明显引号内的是ro
 
 <p>先停止mysql的服务，用下面这句启动mysql：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysqld_safe</span> <span class="c1">--skip-grant-tables --skip-networking &amp;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>用SQL语句修改root的密码：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">UPDATE</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span> <span class="k">SET</span> <span class="n">Password</span><span class="o">=</span><span class="n">PASSWORD</span><span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">)</span> <span class="k">WHERE</span> <span class="k">User</span><span class="o">=</span><span class="s1">&#39;...&#39;</span> <span class="k">AND</span> <span class="k">Host</span><span class="o">=</span> <span class="s1">&#39;...&#39;</span><span class="p">;</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">FLUSH</span> <span class="k">PRIVILEGES</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
 

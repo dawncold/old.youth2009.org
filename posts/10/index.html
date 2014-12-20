@@ -241,7 +241,7 @@
 
 <p>这篇文章发表得不容易，generate的时候总出现一个错误:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -257,21 +257,51 @@
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>/Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:203:in <span class="sb">`</span>parse<span class="s1">&#39;: (&lt;unknown&gt;): control characters are not allowed at line 1 column 1 (Psych::SyntaxError)</span>
+</span><span class='line'>
 </span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:203:in `parse_stream&#39;</span>
+</span><span class='line'>
 </span><span class='line'>  from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:151:in <span class="sb">`</span>parse<span class="s1">&#39;</span>
+</span><span class='line'>
 </span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:127:in `load&#39;</span>
+</span><span class='line'>
 </span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/convertible.rb:33:in <span class="sb">`</span>read_yaml<span class="s1">&#39;</span>
+</span><span class='line'>
 </span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/post.rb:39:in `initialize&#39;</span>
+</span><span class='line'>
 </span><span class='line'>  from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:23:in <span class="sb">`</span>new<span class="s1">&#39;</span>
+</span><span class='line'>
 </span><span class='line'><span class="s1"> from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:23:in `block in read_posts&#39;</span>
+</span><span class='line'>
 </span><span class='line'>  from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:21:in <span class="sb">`</span>each<span class="s1">&#39;</span>
+</span><span class='line'>
 </span><span class='line'><span class="s1"> from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:21:in `read_posts&#39;</span>
+</span><span class='line'>
 </span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/site.rb:128:in <span class="sb">`</span>read_directories<span class="s1">&#39;</span>
+</span><span class='line'>
 </span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/site.rb:98:in `read&#39;</span>
+</span><span class='line'>
 </span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/site.rb:38:in <span class="sb">`</span>process<span class="s1">&#39;</span>
+</span><span class='line'>
 </span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/bin/jekyll:250:in `&lt;top (required)&gt;&#39;</span>
+</span><span class='line'>
 </span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin/jekyll:23:in <span class="sb">`</span>load<span class="s1">&#39;</span>
+</span><span class='line'>
 </span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin/jekyll:23:in `&lt;main&gt;&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -456,9 +486,11 @@
 	<div class="entry-content">
 		<p>昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3.20这台container来处理，相应的response也会返回过去。这样就做到了服务隔离。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 80 -j DNAT --to 10.0.3.20
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo iptables -t nat -A PREROUTING -i eth1 -p tcp --dport <span class="m">80</span> -j DNAT --to 10.0.3.20
+</span><span class='line'>
 </span><span class='line'>sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT --to 200.200.200.25
 </span></code></pre></td></tr></table></div></figure>
 
@@ -512,30 +544,32 @@
 
 <p>0.安装lxc</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install lxc
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>1.修改lxc的mirror，不修改的话下载一个ubuntu景象会非常慢！！！</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo emacs /etc/default/lxc
+</span><span class='line'>
 </span><span class='line'>第三行的mirror注释去掉，并修改为cn.archive.ubuntu.com，这样就非常快了
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>2.创建lxc容器，t表示模板中的名字，n表示这个容器的名字（可自定义）</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-create -t ubuntu -n ubuntu_container
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>3.启动容器</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-start -n ubuntu_container
 </span></code></pre></td></tr></table></div></figure>
 
@@ -587,31 +621,33 @@
 
 <p>0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>fdisk /dev/sda
+</span><span class='line'>
 </span><span class='line'>fdisk /dev/sdb
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>1.创建PV</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pvcreate /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>2.创建VG</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vgcreate -s 16M vg0 /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>3.创建LV</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m 1 -lxxxx --corelog
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m <span class="m">1</span> -lxxxx --corelog
 </span></code></pre></td></tr></table></div></figure>
 
 

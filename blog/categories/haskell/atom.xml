@@ -4,7 +4,7 @@
   <title><![CDATA[Category: haskell | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/haskell/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T22:12:05+08:00</updated>
+  <updated>2014-12-20T23:49:29+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -36,17 +36,24 @@
 
 <p>在shell中能够看到命令提示标志是一个叫“Prelude”的东西，书上讲这是haskell默认加载的一个模块，就是个基础模块吧，如果不喜欢这个名字可以这样更改掉：  </p>
 
-<p><code>bash
-:set prompt "ghci &gt;"
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>:set prompt <span class="p">&amp;</span>ldquo<span class="p">;</span>ghci &gt;<span class="p">&amp;</span>rdquo<span class="p">;</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>现在的提示符标志就变成ghci >了。</p>
 
 <h2>加载其他模块</h2>
 
-<p><code>
-:module + Data.Ratio
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:module + Data.Ratio&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>这样就加载了Data.Ratio这个模块，这个模块似乎是使用浮点数之类的东西吧，我还没有细看。具体可以参考文档。</p>
 
@@ -66,19 +73,40 @@
 
 <p>使用info查看运算符的优先级：  </p>
 
-<p><code>
-:info (+)
-:info (*)
-</code>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:info (+)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>:info (*)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure>
 分别查看加号、乘号的优先级，返回的结果类似这样：  </p>
 
-<p><code>
-class (Eq a, Show a) =&gt; Num a where
- (+) :: a -&gt; a -&gt; a
- ...
- -- Defined in GHC.Num
-infixl 6 +
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class (Eq a, Show a) => Num a where&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> (+) :: a &ndash;> a &ndash;> a&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> &hellip;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p> &mdash; Defined in GHC.Num&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>infixl 6 +&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>最后一样的6表示加号的优先级是6，在haskell中优先级是1～9不等，最高的是9.从这个结果中我们还能看出来如果相同的加号连接表达式的处理方法，是从左到右（在第二行中的三个a，顺次向右箭头）</p>
 
@@ -86,9 +114,12 @@ infixl 6 +
 
 <p>说来惭愧，我就知道一个──pi，连e都没有定义！书上教了这样定义临时常量的方法：</p>
 
-<p><code>
-let e = exp 1
-</code></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>let e = exp 1&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>这里我们就使用了exp函数，传递参数1进去。</p>
 
@@ -115,8 +146,9 @@ let e = exp 1
 
 <p><code>[1,2,3] ++ [4,5]</code>会得到一个[1,2,3,4,5]的列表，就是加起来而已，重复的元素也不会覆盖。  </p>
 
-<p><code>1:[2,3]</code>
-这样会把1放入后面的列表最前面。此处需要注意的是：冒号前面必须是列表中同类的元素，而冒号后面必须是列表，所以反过来就不行了。（遵循原则，前面是个列表，后面是包含列表的列表，这样都对）</p>
+<p><code>1:[2,3]</code></p>
+
+<p>这样会把1放入后面的列表最前面。此处需要注意的是：冒号前面必须是列表中同类的元素，而冒号后面必须是列表，所以反过来就不行了。（遵循原则，前面是个列表，后面是包含列表的列表，这样都对）</p>
 
 <h1>字符串</h1>
 

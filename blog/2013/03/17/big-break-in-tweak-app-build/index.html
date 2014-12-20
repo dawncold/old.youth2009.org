@@ -85,22 +85,30 @@
 
 <p>theos我删掉了原来的，用github上的版本</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://github.com/DHowett/theos.git <span class="nv">$THEOS</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>ldid我自己编译的，因为dropbox上的总是很难下载</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://git.saurik.com/ldid.git
+</span><span class='line'>
 </span><span class='line'><span class="nb">cd </span>ldid
+</span><span class='line'>
 </span><span class='line'>git submodule update --init
+</span><span class='line'>
 </span><span class='line'>./make.sh
+</span><span class='line'>
 </span><span class='line'>cp -f ./ldid <span class="nv">$THEOS</span>/bin/ldid
 </span></code></pre></td></tr></table></div></figure>
 
@@ -109,7 +117,7 @@
 
 <p>headers用这里的：<a href="https://github.com/rpetrich/iphoneheaders">https://github.com/rpetrich/iphoneheaders</a>需要注意一点的是IOSurface这个framework，你需要增加一个新的头文件，在Mac系统中，可能还得注释掉两行，这取决于你是不是10.7版本的Mac系统。命令是：<code>cp /System/Library/Frameworks/IOSurface.framework/Headers/IOSurfaceAPI.h .</code>，在251和255行（我编译错误时候提示的就这两行），注释掉</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -119,17 +127,34 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="cm">/* This call lets you get an xpc_object_t that holds a reference to the IOSurface.</span>
-</span><span class='line'><span class="cm">  Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&#39;s global use</span>
-</span><span class='line'><span class="cm">  count by one until the object is destroyed. */</span>
-</span><span class='line'><span class="c1">//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)</span>
-</span><span class='line'><span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/* This call lets you get an xpc_object_t that holds a reference to the IOSurface.
+</span><span class='line'>
+</span><span class='line'>  Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface's global use
+</span><span class='line'>
+</span><span class='line'>  count by one until the object is destroyed. */
+</span><span class='line'>
+</span><span class='line'>//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)
+</span><span class='line'>
+</span><span class='line'>//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'><span class="cm">/* This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. */</span>
-</span><span class='line'><span class="c1">//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)</span>
-</span><span class='line'><span class="c1">//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>/* This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. */
+</span><span class='line'>
+</span><span class='line'>//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)
+</span><span class='line'>
+</span><span class='line'>//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span></code></pre></td></tr></table></div></figure>
 
 
 <p>然后做你的tweak就可以了，我按照经典的heloworld例子搞了个hook，springboard中applicationDidFinishLaunching弹出alert，成功了。</p>

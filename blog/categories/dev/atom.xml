@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dev | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T22:12:05+08:00</updated>
+  <updated>2014-12-20T23:49:29+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -37,8 +37,9 @@
     <id>http://www.youth2009.org/blog/2014/09/05/developing-on-blackberry</id>
     <content type="html"><![CDATA[<h1>Create BlackBerry ID token</h1>
 
-<p>here:
-<strong> <a href="https://www.blackberry.com/SignedKeys/">https://www.blackberry.com/SignedKeys/</a> </strong></p>
+<p>here:</p>
+
+<p><strong> <a href="https://www.blackberry.com/SignedKeys/">https://www.blackberry.com/SignedKeys/</a> </strong></p>
 
 <p>If you will develop an app on BlackBerry OS 10 or some new plateform, choose the first checkbox, and you will be requested your BlackBerry ID username and password, other choices I haven&rsquo;t tried. Then fill a storepass for the key, you can download a file like <code>bbidtoken.csk</code>, save this file to <code>~/Library/Research In Motion</code>, if you are on Windows or Linux, save this file to where website mentioned.</p>
 
@@ -66,47 +67,135 @@
 
 <p>Your should get output like these:</p>
 
-<p><code>
-Info: Sending request: INSTALL_DEBUG_TOKEN
-Info: Action: Install Debug Token
-Info: File size: 2607
-result::success
-</code>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Info: Sending request: INSTALL_DEBUG_TOKEN&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Info: Action: Install Debug Token&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Info: File size: 2607&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>result::success&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure>
 Then your device development info has changed, &ldquo;Debug Token Installed&rdquo;</p>
 
 <h1>deploy an hello world to your device</h1>
 
 <p>I use WebWorks SDK, so I launched this app on Mac, and fill some info about project on <code>localhost:3123</code>, a web management for development. After created the app, choose &ldquo;Build&rdquo; on left hand, fill your device password and keystore password, choose BUILD &amp; INSTALL, you may get output like these:</p>
 
-<p><code>
-[INFO]    Target Q10-2b1e42dc selected
-[INFO]    Generating debug token
-[INFO]    Debug token created.
-[INFO]    Deploying debug token to target "Q10-2b1e42dc"
-[INFO]    Sending request: INSTALL_DEBUG_TOKEN
-[INFO]    Action: Install Debug Token
-[INFO]    File size: 2605
-[INFO]    result::success
-[INFO]    Populating application source
-[INFO]    Parsing config.xml
-[INFO]    Generating output files
-[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/simulator/bb10app.bar
-[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/device/bb10app.bar
-[INFO]    BAR packaging complete
-[INFO]    Sending request: INSTALL_AND_LAUNCH
-[INFO]    Action: Install and Launch
-[INFO]    File size: 69497
-[INFO]    Installing Project1.testDev_Project1___c8537c58...
-[INFO]    Processing 69497 bytes
-[INFO]    Progress 100%...
-[INFO]    Progress 100%...
-[INFO]    actual_dname::Project1.testDev_Project1___c8537c58actual_id::testDev_Project1___c8537c58
-[INFO]    actual_version::0.0.1.1result::successLaunching Project1.testDev_Project1___c8537c58...
-[INFO]    result::19132657
-[INFO]    done
-</code>
-Meanwhile, your app will be opened on your device!
-<img src="http://pic.yupoo.com/dawncold0/E2fQtBuX/small.jpg" alt="webworks launch screen" /></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[INFO]    Target Q10-2b1e42dc selected&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Generating debug token&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Debug token created.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Deploying debug token to target &ldquo;Q10-2b1e42dc&rdquo;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Sending request: INSTALL_DEBUG_TOKEN&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Action: Install Debug Token&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    File size: 2605&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    result::success&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Populating application source&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Parsing config.xml&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Generating output files&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/simulator/bb10app.bar&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/device/bb10app.bar&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    BAR packaging complete&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Sending request: INSTALL_AND_LAUNCH&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Action: Install and Launch&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    File size: 69497&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Installing Project1.testDev_Project1___c8537c58&hellip;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Processing 69497 bytes&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Progress 100%&hellip;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    Progress 100%&hellip;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    actual_dname::Project1.testDev_Project1&lt;strong>&lt;em>c8537c58actual_id::testDev_Project1&lt;/em>&lt;/strong>c8537c58&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    actual_version::0.0.1.1result::successLaunching Project1.testDev_Project1___c8537c58&hellip;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    result::19132657&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[INFO]    done&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure>
+Meanwhile, your app will be opened on your device!</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/E2fQtBuX/small.jpg" alt="webworks launch screen" /></p>
 ]]></content>
   </entry>
   
@@ -129,11 +218,15 @@ Meanwhile, your app will be opened on your device!
 
 <p>examples:</p>
 
-<p>CREATE ROLE joe LOGIN INHERIT;
-CREATE ROLE admin NOINHERIT;
-CREATE ROLE wheel NOINHERIT;
-GRANT admin TO joe;
-GRANT wheel TO admin;</p>
+<p>CREATE ROLE joe LOGIN INHERIT;</p>
+
+<p>CREATE ROLE admin NOINHERIT;</p>
+
+<p>CREATE ROLE wheel NOINHERIT;</p>
+
+<p>GRANT admin TO joe;</p>
+
+<p>GRANT wheel TO admin;</p>
 
 <p>joe can access admin privilege by using “SET ROLE admin”, or if joe has the INHERIT, joe can access privilege directly from admin, if joe want to use these privileges, joe must “SET ROLE admin”. Joe can not access privilege from wheel, because admin has the NOINHERIT, admin can not get these privileges, so as joe.</p>
 ]]></content>
@@ -146,18 +239,28 @@ GRANT wheel TO admin;</p>
     <id>http://www.youth2009.org/blog/2014/08/14/else-clause-in-python-loop</id>
     <content type="html"><![CDATA[<p>both in while and for loop, if in loop body, no break, no return, no exception is raised, statements in else block will be executed.</p>
 
-<p>&#8220;`python
-for x in []:</p>
-
-<pre><code> print x
-</code></pre>
-
-<p>else:</p>
-
-<pre><code> print ‘xxx’
-</code></pre>
-
-<p>&#8220;`
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>for x in []:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code> print x
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>else:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code> print ‘xxx’
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure>
 this example will print ‘xxx’, even nothing in list and this loop is not executed.</p>
 ]]></content>
   </entry>

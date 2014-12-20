@@ -79,14 +79,14 @@
 	<h2 class="title">动态验证表单也不难</h2>
 	<div class="entry-content"><p>一般来说现在的注册、登录的表单验证都是在浏览器这一级先做一个合法性验证，这样能够缓解服务器的压力，否则这些合法性验证都要移到服务器上，无论从性能和表现力都不及在浏览器用一些很炫的效果来验证。我使用了jQuery这个javascript库完成了表单的动态验证，核心不算难。一开始我都是参考豆瓣的注册页面，他们现在用的也是jQuery来做这块，代码看起来超长，还分了好几个js文件来组织，不是他们的前端工程师谁也看不懂（我真怀疑他们的前端工程师是不是能看懂）。 我做得很简单，不过看起来也能用： 一般有个空的div显示提醒文字，假设input的id是xxx，我们这样</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input#xxx).focus(function(){$(&quot;</span><span class="nx">suggestion</span><span class="err">&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="err">插入提示文字</span><span class="p">);});</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>就能够在焦点进入input的时候提示一些文字了，然后在  </p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">focusout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">xxxxxx</span><span class="p">});</span>
 </span></code></pre></td></tr></table></div></figure>
 

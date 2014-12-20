@@ -80,14 +80,17 @@
 	<div class="entry-content"><p>看到python捕获SIGINT event的文档，上面说signal这个包里的东西的功能是set handler for asynchronous event，于是背了下这两个词——asynchronous和synchronous，简称分别是async和sync，由于这两个词比较长，我们通常都用简称，而且发音也都正好不会破坏。</p>
 
 <pre><code>asynchronous： 美 [eɪ'sɪŋkrənəs]
+
 synchronous：  美 ['sɪŋkrənəs]
+
+
 
 以上音标来自dict.cn
 </code></pre>
 
 <p>Here is a minimal example program. It uses the alarm() function to limit the time spent waiting to open a file; this is useful if the file is for a serial device that may not be turned on, which would normally cause the os.open() to hang indefinitely. The solution is to set a 5-second alarm before opening the file; if the operation takes too long, the alarm signal will be sent, and the handler raises an exception.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -101,21 +104,46 @@ synchronous：  美 ['sɪŋkrənəs]
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">signal</span><span class="o">,</span> <span class="nn">os</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import signal, os
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">signum</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">print</span> <span class="s">&#39;Signal handler called with signal&#39;</span><span class="p">,</span> <span class="n">signum</span>
-</span><span class='line'>    <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t open device!&quot;</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="c"># Set the signal handler and a 5-second alarm</span>
-</span><span class='line'><span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGALRM</span><span class="p">,</span> <span class="n">handler</span><span class="p">)</span>
-</span><span class='line'><span class="n">signal</span><span class="o">.</span><span class="n">alarm</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="c"># This open() may hang indefinitely</span>
-</span><span class='line'><span class="n">fd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#39;/dev/ttyS0&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">O_RDWR</span><span class="p">)</span>
+</span><span class='line'>def handler(signum, frame):
 </span><span class='line'>
-</span><span class='line'><span class="n">signal</span><span class="o">.</span><span class="n">alarm</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>          <span class="c"># Disable the alarm</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>    print 'Signal handler called with signal', signum
+</span><span class='line'>
+</span><span class='line'>    raise IOError("Couldn't open device!")
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Set the signal handler and a 5-second alarm
+</span><span class='line'>
+</span><span class='line'>signal.signal(signal.SIGALRM, handler)
+</span><span class='line'>
+</span><span class='line'>signal.alarm(5)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># This open() may hang indefinitely
+</span><span class='line'>
+</span><span class='line'>fd = os.open('/dev/ttyS0', os.O_RDWR)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>signal.alarm(0)          # Disable the alarm</span></code></pre></td></tr></table></div></figure>
 
 </div>
 

@@ -90,24 +90,34 @@
 
 <p>由于是mac系统，MySQL是使用的官方提供的dmg安装包装的，但不知为何MySQLdb的安装脚本找不到位置，于是修改MySQLdb的setup_posix.py，26行有个mysql_config.path = &hellip;，修改成你本机中mysql_config所在的地址，比如我的是/usr/local/mysql/bin/mysql_config，保存后分别执行：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo python setup.py build
+</span><span class='line'>
 </span><span class='line'>sudo python setup.py install
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>安装后最好用python的shell加载一下MySQLdb看看能否正常使用，通常是不行的，因为我就遇到这么个情况，提示缺少image，具体是这样提示的：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>File <span class="s2">&quot;/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/MySQLdb/__init__.py&quot;</span>, line 19, in &lt;module&gt;
+</span><span class='line'>
 </span><span class='line'>   import _mysql
+</span><span class='line'>
 </span><span class='line'>ImportError: dlopen<span class="o">(</span>/Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/_mysql.so, 2<span class="o">)</span>: Library not loaded: libmysqlclient.18.dylib
+</span><span class='line'>
 </span><span class='line'> Referenced from: /Library/Python/2.7/site-packages/MySQL_python-1.2.3-py2.7-macosx-10.7-intel.egg/_mysql.so
+</span><span class='line'>
 </span><span class='line'> Reason: image not found
 </span></code></pre></td></tr></table></div></figure>
 
@@ -116,7 +126,7 @@
 
 <p>在~/.bash_profile中加入这样的一句：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">DYLD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/mysql/lib:<span class="nv">$DYLD_LIBRARY_PATH</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -215,7 +225,7 @@
 	<div class="entry-content">
 		<p>前几天在Mac系统下装了MySQL，装完后是默认没有给root用户带密码的，于是出于安全考虑我就加上了密码，加密码的方式如下：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>mysqladmin -u root password <span class="s2">&quot;mysqlpassword&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -226,16 +236,18 @@
 
 <p>先停止mysql的服务，用下面这句启动mysql：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysqld_safe</span> <span class="c1">--skip-grant-tables --skip-networking &amp;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>用SQL语句修改root的密码：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">UPDATE</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span> <span class="k">SET</span> <span class="n">Password</span><span class="o">=</span><span class="n">PASSWORD</span><span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">)</span> <span class="k">WHERE</span> <span class="k">User</span><span class="o">=</span><span class="s1">&#39;...&#39;</span> <span class="k">AND</span> <span class="k">Host</span><span class="o">=</span> <span class="s1">&#39;...&#39;</span><span class="p">;</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">FLUSH</span> <span class="k">PRIVILEGES</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -324,7 +336,7 @@
 	<div class="entry-content">
 		<p>学计算机编程语言的人都有helloworld情节，不管学成什么样，他们写helloworld的能力都很强。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -335,18 +347,37 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">web</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import web
 </span><span class='line'>
-</span><span class='line'><span class="n">urls</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;/hello&quot;</span><span class="p">,</span> <span class="s">&quot;hello&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">application</span><span class="p">(</span><span class="n">urls</span><span class="p">,</span> <span class="nb">globals</span><span class="p">())</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">hello</span><span class="p">:</span>
-</span><span class='line'>   <span class="k">def</span> <span class="nf">GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>       <span class="k">return</span> <span class="s">&quot;hello, world&quot;</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class='line'>   <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>urls = ("/hello", "hello")
+</span><span class='line'>
+</span><span class='line'>app = web.application(urls, globals())
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>class hello:
+</span><span class='line'>
+</span><span class='line'>   def GET(self):
+</span><span class='line'>
+</span><span class='line'>       return "hello, world"
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>if __name__ == "__main__":
+</span><span class='line'>
+</span><span class='line'>   app.run()</span></code></pre></td></tr></table></div></figure>
 
 
 <p>今晚已经开始了Web.py的学习阶段。</p>

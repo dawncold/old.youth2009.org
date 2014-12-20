@@ -83,9 +83,15 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>yum install python-setuptools
+</span><span class='line'>
 </span><span class='line'>git clone git://eagain.net/gitosis.git
+</span><span class='line'>
 </span><span class='line'>cd gitosis
+</span><span class='line'>
 </span><span class='line'>python setup.py install</span></code></pre></td></tr></table></div></figure>
 
 
@@ -96,41 +102,67 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>useradd -m -s /bin/bash -d /home/git git
+</span><span class='line'>
 </span><span class='line'>passwd git #给git用户加上密码
+</span><span class='line'>
 </span><span class='line'>su - git
+</span><span class='line'>
 </span><span class='line'>cd ~
+</span><span class='line'>
 </span><span class='line'>gitosis-init &lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径</span></code></pre></td></tr></table></div></figure>
 
 
 <p>４.修改一些权限，据说很重要，为了安全：  </p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod 755 /home/git
-</span><span class='line'>chmod 700 /home/git/.ssh
-</span><span class='line'>chmod 644 /home/git/.ssh/authorized_keys
-</span><span class='line'>chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>５.在本地用git做最后的工作，修改gitosis的配置文件并上传：  </p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod <span class="m">755</span> /home/git
+</span><span class='line'>
+</span><span class='line'>chmod <span class="m">700</span> /home/git/.ssh
+</span><span class='line'>
+</span><span class='line'>chmod <span class="m">644</span> /home/git/.ssh/authorized_keys
+</span><span class='line'>
+</span><span class='line'>chmod <span class="m">755</span> /home/git/repositories/gitosis-admin.git/hooks/post-update
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>５.在本地用git做最后的工作，修改gitosis的配置文件并上传：  </p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone ssh://git@DOMAIN:8888/gitosis-admin.git
+</span><span class='line'>
 </span><span class='line'><span class="nb">cd </span>gitosis-admin
+</span><span class='line'>
 </span><span class='line'>vi gitosis.conf
+</span><span class='line'>
 </span><span class='line'><span class="c">#增加新的项目名字和相关配置</span>
+</span><span class='line'>
 </span><span class='line'><span class="o">[</span>group AWAD<span class="o">]</span><span class="c">#ＡＷＡＤ组</span>
+</span><span class='line'>
 </span><span class='line'><span class="nv">writable</span> <span class="o">=</span> wodeyitian_web　　　#仓库中的名字
+</span><span class='line'>
 </span><span class='line'><span class="nv">members</span> <span class="o">=</span> dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员名字就是rsa共钥中最后的成员名字
 </span></code></pre></td></tr></table></div></figure>
 
@@ -139,9 +171,11 @@
 
 <p>6.完成这里后提交一下再push到远程服务器上即可完成：  </p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>git commit -a -m <span class="s1">&#39;建立了新的项目&#39;</span>
+</span><span class='line'>
 </span><span class='line'>git push
 </span></code></pre></td></tr></table></div></figure>
 

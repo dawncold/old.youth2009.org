@@ -94,7 +94,7 @@
 	<h2 class="title">抓取一些网页上的表格</h2>
 	<div class="entry-content"><p>这些表格是所有参加比赛的学生成绩单，当然只有省份、学校、准考证、姓名、组别、奖项、是否进入决赛这几个列，我用python写的脚本来抓取，存入了本地的一个excel中，所以除了python环境之外还需要xlwt这个包包：）</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -133,55 +133,129 @@
 <span class='line-number'>37</span>
 <span class='line-number'>38</span>
 <span class='line-number'>39</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#/usr/bin/env python</span>
-</span><span class='line'><span class="c">#coding: utf-8</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#/usr/bin/env python
 </span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">urllib2</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">xlwt</span>
+</span><span class='line'>#coding: utf-8
 </span><span class='line'>
-</span><span class='line'><span class="n">link_list</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'><span class="n">xls</span> <span class="o">=</span> <span class="n">xlwt</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
-</span><span class='line'><span class="n">table</span> <span class="o">=</span> <span class="n">xls</span><span class="o">.</span><span class="n">add_sheet</span><span class="p">(</span><span class="s">&quot;main&quot;</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">288</span><span class="p">,</span> <span class="mi">318</span><span class="p">):</span>
-</span><span class='line'><span class="n">link_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;http://www.lanqiao.org/Article/ShowArticle.asp?ArticleID=</span><span class="si">%d</span><span class="s">&quot;</span><span class="o">%</span><span class="n">i</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">chinese</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'><span class="n">content</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'><span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">link_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'><span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">link_list</span><span class="p">:</span>
-</span><span class='line'><span class="k">print</span> <span class="n">link</span>
-</span><span class='line'><span class="k">try</span><span class="p">:</span>
-</span><span class='line'><span class="n">content</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span> <span class="o">=</span> <span class="n">link</span><span class="p">,</span> <span class="n">timeout</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</span><span class='line'><span class="n">link_list</span> <span class="o">=</span> <span class="n">link_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-</span><span class='line'><span class="k">except</span><span class="p">:</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;timeout!&quot;</span>
-</span><span class='line'><span class="k">if</span> <span class="n">link</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">link_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-</span><span class='line'><span class="n">link_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
-</span><span class='line'><span class="n">some</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">u&#39;&lt;TR.*?&lt;\/TR&gt;&#39;</span><span class="p">,</span> <span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;gbk&#39;</span><span class="p">,</span> <span class="s">&#39;ignore&#39;</span><span class="p">),</span> <span class="n">re</span><span class="o">.</span><span class="n">S</span><span class="p">)</span>
-</span><span class='line'><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">some</span><span class="p">:</span>
-</span><span class='line'><span class="n">chinese_value</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">u&#39;(?&lt;=</span><span class="se">\u5b8b\u4f53</span><span class="s">&gt;).*(?=&lt;\/FONT&gt;)&#39;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
-</span><span class='line'><span class="n">chinese</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chinese_value</span><span class="p">))</span>
+</span><span class='line'>import urllib2
 </span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">chinese</span><span class="p">)):</span>
-</span><span class='line'><span class="n">tmp</span> <span class="o">=</span> <span class="n">chinese</span><span class="p">[</span><span class="n">line</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">)):</span>
-</span><span class='line'><span class="n">table</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s">, </span><span class="si">%d</span><span class="s">, </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>import re
 </span><span class='line'>
-</span><span class='line'><span class="n">xls</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">&#39;x.xls&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">link_list</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>import xlwt
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>link_list = []
+</span><span class='line'>
+</span><span class='line'>xls = xlwt.Workbook()
+</span><span class='line'>
+</span><span class='line'>table = xls.add_sheet("main")
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>for i in xrange(288, 318):
+</span><span class='line'>
+</span><span class='line'>link_list.append("http://www.lanqiao.org/Article/ShowArticle.asp?ArticleID=%d"%i)
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>chinese = []
+</span><span class='line'>
+</span><span class='line'>content = ''
+</span><span class='line'>
+</span><span class='line'>while len(link_list) > 0:
+</span><span class='line'>
+</span><span class='line'>for link in link_list:
+</span><span class='line'>
+</span><span class='line'>print link
+</span><span class='line'>
+</span><span class='line'>try:
+</span><span class='line'>
+</span><span class='line'>content = urllib2.urlopen(url = link, timeout = 3).read()
+</span><span class='line'>
+</span><span class='line'>link_list = link_list[1:]
+</span><span class='line'>
+</span><span class='line'>except:
+</span><span class='line'>
+</span><span class='line'>print "timeout!"
+</span><span class='line'>
+</span><span class='line'>if link not in link_list[1:]:
+</span><span class='line'>
+</span><span class='line'>link_list.append(link)
+</span><span class='line'>
+</span><span class='line'>some = re.findall(u'&lt;TR.*?&lt;\/TR>', content.decode('gbk', 'ignore'), re.S)
+</span><span class='line'>
+</span><span class='line'>for s in some:
+</span><span class='line'>
+</span><span class='line'>chinese_value = re.findall(u'(?&lt;=\u5b8b\u4f53>).*(?=&lt;\/FONT>)', s)
+</span><span class='line'>
+</span><span class='line'>chinese.append(','.join(chinese_value))
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>for line in xrange(0, len(chinese)):
+</span><span class='line'>
+</span><span class='line'>tmp = chinese[line].split(',')
+</span><span class='line'>
+</span><span class='line'>for i in xrange(0, len(tmp)):
+</span><span class='line'>
+</span><span class='line'>table.write(line, i, tmp[i])
+</span><span class='line'>
+</span><span class='line'>print "%d, %d, %s" % (line, i, tmp[i])
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>xls.save('x.xls')
+</span><span class='line'>
+</span><span class='line'>print len(link_list)</span></code></pre></td></tr></table></div></figure>
 
 
 <p>链接抓取超时的时候会自动重新抓取，最终就有了一个叫x.xls的表格。其中有个省的数据有问题，可以在筛选中看到奖项这里面有个垃圾数据项，自己改改吧。</p>
 
 <p>里面的正则表达式耗费了我好久时间！！！不过我还是很欣慰能找到这行：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">(</span><span class="err">?</span><span class="o">&lt;=</span>\<span class="n">u5b8b</span>\<span class="n">u4f53</span><span class="o">&gt;</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="err">?</span><span class="o">=&lt;</span>\<span class="o">/</span><span class="n">FONT</span><span class="o">&gt;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(?&lt;=\u5b8b\u4f53>).*(?=&lt;\/FONT>)</span></code></pre></td></tr></table></div></figure>
 
 
 <p>前面两个unicode是“宋体”，这个得看具体的html代码了，所以这个脚本没什么通用性……</p>

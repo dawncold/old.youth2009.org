@@ -83,7 +83,7 @@
 
 <p>这样就安装好了cuetools和shntool这两个软件，其中缺失的依赖软件也被macports自动安装上了，只是在下载的时候没有进度，很可恶，如果又兴趣可以看这里学着改改macports的fetch部分，至少能看看下载了多少，心里也有个数！ 下面进行分割：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -93,15 +93,33 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold@tianzhenmatoMacBook-Pro Music<span class="nv">$ </span>cuebreakpoints 手嶌葵<span class="se">\(</span>Teshima.Aoi<span class="se">\)</span>.-.<span class="se">\[</span>The.Rose～I.Love.Cinemas～<span class="se">\]</span>.专辑.<span class="se">\(</span>FLAC<span class="se">\)</span>.cue | shnsplit -o flac 手嶌葵<span class="se">\(</span>Teshima.Aoi<span class="se">\)</span>.-.<span class="se">\[</span>The.Rose～I.Love.Cinemas～<span class="se">\]</span>.专辑.<span class="se">\(</span>FLAC<span class="se">\)</span>.flac
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold@tianzhenmatoMacBook-Pro Music<span class="nv">$ </span>cuebreakpoints 手嶌葵<span class="se">\(</span>Teshima.Aoi<span class="se">\)</span>.-.<span class="se">\[</span>The.Rose～I.Love.Cinemas～<span class="se">\]</span>.专辑.<span class="se">\(</span>FLAC<span class="se">\)</span>.cue <span class="p">|</span> shnsplit -o flac 手嶌葵<span class="se">\(</span>Teshima.Aoi<span class="se">\)</span>.-.<span class="se">\[</span>The.Rose～I.Love.Cinemas～<span class="se">\]</span>.专辑.<span class="se">\(</span>FLAC<span class="se">\)</span>.flac
+</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track01.flac<span class="o">]</span> <span class="o">(</span>3:56.27<span class="o">)</span> : 100% OK
+</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track02.flac<span class="o">]</span> <span class="o">(</span>3:21.71<span class="o">)</span> : 100% OK
+</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track03.flac<span class="o">]</span> <span class="o">(</span>5:36.65<span class="o">)</span> : 100% OK
+</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track04.flac<span class="o">]</span> <span class="o">(</span>2:56.00<span class="o">)</span> : 100% OK
+</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track05.flac<span class="o">]</span> <span class="o">(</span>2:57.12<span class="o">)</span> : 100% OK
+</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track06.flac<span class="o">]</span> <span class="o">(</span>4:31.59<span class="o">)</span> : 100% OK
+</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track07.flac<span class="o">]</span> <span class="o">(</span>4:03.01<span class="o">)</span> : 100% OK
+</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track08.flac<span class="o">]</span> <span class="o">(</span>3:14.16<span class="o">)</span> : 100% OK
+</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track09.flac<span class="o">]</span> <span class="o">(</span>3:34.67<span class="o">)</span> : 100% OK
 </span></code></pre></td></tr></table></div></figure>
 
