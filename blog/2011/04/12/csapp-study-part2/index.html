@@ -125,21 +125,11 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>%dh = 8D     
-</span><span class='line'>
 </span><span class='line'>%eax = 98765432     
-</span><span class='line'>
 </span><span class='line'>movb %dh,%al    //%eax = 9876548D     
-</span><span class='line'>
 </span><span class='line'>movsbl %dh,%eax    //%eax = FFFFFF8D     
-</span><span class='line'>
 </span><span class='line'>movzbl %dh,%eax    //%eax = 0000008D movzbl用0填充eax的高24位；
-</span><span class='line'>
 </span><span class='line'>movsbl用dh中的最高位填充eax的高24位。</span></code></pre></td></tr></table></div></figure>
 
 

@@ -104,39 +104,17 @@
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>location ^~ /upload/ {
-</span><span class='line'>
 </span><span class='line'>  client_body_temp_path      /tmp/;
-</span><span class='line'>
 </span><span class='line'>  client_body_in_file_only   on;
-</span><span class='line'>
 </span><span class='line'>  client_body_buffer_size    128K;
-</span><span class='line'>
 </span><span class='line'>  client_max_body_size       1000M;
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>  proxy_pass_request_headers on;
-</span><span class='line'>
 </span><span class='line'>  proxy_set_header           X-FILE $request_body_file; 
-</span><span class='line'>
 </span><span class='line'>  proxy_set_body             off;
-</span><span class='line'>
 </span><span class='line'>  proxy_redirect             off;
-</span><span class='line'>
 </span><span class='line'>  proxy_pass                 http://backend/
-</span><span class='line'>
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
@@ -286,8 +264,8 @@
 <p>解决方法有这样的：</p>
 
 <ul>
-<li><p>有专门的job（比如crontab）来更新cache，这样request总是去cache取，不用管过不过期。好处就是简单；坏处是可能做一些没必要的重复计算，没有request你也更新了cache，而且你得确保这个job的执行时间要小于job的间隔，否则会积压很多job。</p></li>
-<li><p>request取到数据发现过期，再请求一个update lock，成功拿到锁就可以更新cache，此时其他request也会请求这把锁，但就是请求不到，那就继续返回过期的数据。这是不容忍延迟的情况，如果对数据准确性要求高，那在updating的时候其他request会等，等数据更新了再返回。怎么用取决于environment。</p></li>
+<li>有专门的job（比如crontab）来更新cache，这样request总是去cache取，不用管过不过期。好处就是简单；坏处是可能做一些没必要的重复计算，没有request你也更新了cache，而且你得确保这个job的执行时间要小于job的间隔，否则会积压很多job。</li>
+<li>request取到数据发现过期，再请求一个update lock，成功拿到锁就可以更新cache，此时其他request也会请求这把锁，但就是请求不到，那就继续返回过期的数据。这是不容忍延迟的情况，如果对数据准确性要求高，那在updating的时候其他request会等，等数据更新了再返回。怎么用取决于environment。</li>
 </ul>
 
 
@@ -424,72 +402,28 @@
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>&lt;?xml version="1.0" encoding="UTF-8"?>
-</span><span class='line'>
 </span><span class='line'>&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-</span><span class='line'>
 </span><span class='line'>&lt;plist version="1.0">
-</span><span class='line'>
 </span><span class='line'>&lt;dict>
-</span><span class='line'>
 </span><span class='line'>&lt;key>Label&lt;/key>
-</span><span class='line'>
 </span><span class='line'>&lt;string>autossh&lt;/string>
-</span><span class='line'>
 </span><span class='line'>&lt;key>ProgramArguments&lt;/key>
-</span><span class='line'>
 </span><span class='line'>&lt;array>
-</span><span class='line'>
 </span><span class='line'>&lt;string>/usr/local/bin/autossh&lt;/string>
-</span><span class='line'>
 </span><span class='line'>&lt;string>-M&lt;/string>
-</span><span class='line'>
 </span><span class='line'>&lt;string>20000&lt;/string>
-</span><span class='line'>
 </span><span class='line'>&lt;string>-f&lt;/string>
-</span><span class='line'>
 </span><span class='line'>&lt;string>-p&lt;/string>
-</span><span class='line'>
 </span><span class='line'>&lt;string>9999&lt;/string>
-</span><span class='line'>
 </span><span class='line'>&lt;string>-D&lt;/string>
-</span><span class='line'>
 </span><span class='line'>&lt;string>9998&lt;/string>
-</span><span class='line'>
 </span><span class='line'>&lt;string>google@8.8.8.8&lt;/string>
-</span><span class='line'>
 </span><span class='line'>&lt;string>-N&lt;/string>
-</span><span class='line'>
 </span><span class='line'>&lt;/array>
-</span><span class='line'>
 </span><span class='line'>&lt;key>RunAtLoad&lt;/key>
-</span><span class='line'>
 </span><span class='line'>&lt;true/>
-</span><span class='line'>
 </span><span class='line'>&lt;/dict>
-</span><span class='line'>
 </span><span class='line'>&lt;/plist></span></code></pre></td></tr></table></div></figure>
 
 

@@ -18,17 +18,8 @@
 9
 10
 11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-import web urls = ("/hello", "hello") app &hellip;">
+import web urls = ("/hello", "hello")
+app = web.application(urls, &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -111,36 +102,16 @@ import web urls = ("/hello", "hello") app &hellip;">
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>import web
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>urls = ("/hello", "hello")
-</span><span class='line'>
 </span><span class='line'>app = web.application(urls, globals())
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>class hello:
-</span><span class='line'>
 </span><span class='line'>   def GET(self):
-</span><span class='line'>
 </span><span class='line'>       return "hello, world"
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>if __name__ == "__main__":
-</span><span class='line'>
 </span><span class='line'>   app.run()</span></code></pre></td></tr></table></div></figure>
 
 

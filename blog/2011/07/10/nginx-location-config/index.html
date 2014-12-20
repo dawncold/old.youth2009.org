@@ -11,10 +11,9 @@
 2
 3
 4
-5
-6
-7
-location ~.*\.(php|php5)?$ { 处理php } 这样之后，发现直接访问目录或者域名的时候不能正常显示了， &hellip;">
+location ~.*\.(php|php5)?$
+{ 处理php
+} 这样之后，发现直接访问目录或者域名的时候不能正常显示了，必须跟上index. &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -90,15 +89,9 @@ location ~.*\.(php|php5)?$ { 处理php } 这样之后，发现直接访问目录
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>location ~.*\.(php|php5)?$
-</span><span class='line'>
 </span><span class='line'>{
-</span><span class='line'>
 </span><span class='line'>    处理php
-</span><span class='line'>
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
@@ -113,24 +106,12 @@ location ~.*\.(php|php5)?$ { 处理php } 这样之后，发现直接访问目录
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>location / {
-</span><span class='line'>
 </span><span class='line'>               root html;
-</span><span class='line'>
 </span><span class='line'>               index index.html index.php;
-</span><span class='line'>
 </span><span class='line'>}
-</span><span class='line'>
 </span><span class='line'>location ~.*\.(php|php5)?$ {
-</span><span class='line'>
 </span><span class='line'>处理php
-</span><span class='line'>
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 </div>

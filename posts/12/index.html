@@ -103,36 +103,16 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>server <span class="o">{</span>
-</span><span class='line'>
 </span><span class='line'>     listen       80<span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>     server_name  todo.wodeyitian.com<span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>     location / <span class="o">{</span>
-</span><span class='line'>
 </span><span class='line'>               include uwsgi_params<span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>               uwsgi_pass 127.0.0.1:9090<span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>               uwsgi_param UWSGI_PYHOME /home/wwwroot/python_app_todo<span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>               uwsgi_param UWSGI_CHDIR /home/wwwroot/python_app_todo/app_dir<span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>               uwsgi_param UWSGI_SCRIPT todoApp:app<span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>     <span class="o">}</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -298,18 +278,10 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">set </span>number
-</span><span class='line'>
 </span><span class='line'><span class="nb">set </span>autoindent
-</span><span class='line'>
 </span><span class='line'>syntax <span class="nb">enable</span>
-</span><span class='line'>
 </span><span class='line'><span class="nb">set </span><span class="nv">background</span><span class="o">=</span>dark
-</span><span class='line'>
 </span><span class='line'><span class="nb">set </span>paste
 </span></code></pre></td></tr></table></div></figure>
 
@@ -422,36 +394,16 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>To use Java bindings with various Java IDEs, you might need a universal build:
-</span><span class='line'>
 </span><span class='line'> brew install subversion --universal --java
-</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; ./configure --disable-debug --prefix<span class="o">=</span>/usr/local/Cellar/subversion/1.7.5 --with-ssl --with-zlib<span class="o">=</span>/usr --with-sqlite<span class="o">=</span>/usr/local --disable-neon-version-chec
-</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; <span class="nv">make</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; make <span class="nv">install</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; make <span class="nv">javahl</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; make install-javahl
-</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; Caveats
-</span><span class='line'>
 </span><span class='line'>You may need to link the Java bindings into the Java Extensions folder:
-</span><span class='line'>
 </span><span class='line'> sudo mkdir -p /Library/Java/Extensions
-</span><span class='line'>
 </span><span class='line'> sudo ln -s /usr/local/lib/libsvnjavahl-1.dylib /Library/Java/Extensions/libsvnjavahl-1.dylib
 </span></code></pre></td></tr></table></div></figure>
 
@@ -557,12 +509,8 @@
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>locale: Cannot <span class="nb">set </span>LC_CTYPE to default locale: No such file or directory
-</span><span class='line'>
 </span><span class='line'>locale: Cannot <span class="nb">set </span>LC_MESSAGES to default locale: No such file or directory
-</span><span class='line'>
 </span><span class='line'>locale: Cannot <span class="nb">set </span>LC_ALL to default locale: No such file or directory
 </span></code></pre></td></tr></table></div></figure>
 
@@ -571,9 +519,7 @@
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo touch /etc/default/locale
-</span><span class='line'>
 </span><span class='line'>vi /etc/default/locale
 </span></code></pre></td></tr></table></div></figure>
 
@@ -582,9 +528,7 @@
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">LANG</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">LANGUAGE</span><span class="o">=</span><span class="s2">&quot;en_US:en&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 

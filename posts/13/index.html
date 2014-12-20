@@ -123,54 +123,22 @@
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.awt.Toolkit</span><span class="o">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="o">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TimePrint</span> <span class="kd">implements</span> <span class="n">ActionListener</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">{</span>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>   <span class="nd">@Override</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="o">{</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="c1">// TODO Auto-generated method stub</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;date is: &quot;</span> <span class="o">+</span> <span class="o">(</span><span class="k">new</span> <span class="nf">Date</span><span class="o">()));</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="n">Toolkit</span><span class="o">.</span><span class="na">getDefaultToolkit</span><span class="o">().</span><span class="na">beep</span><span class="o">();</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="o">}</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -195,51 +163,21 @@
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>import java.awt.event.ActionListener<span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>import javax.swing.Timer<span class="p">;</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>public class TimerPrintTest
-</span><span class='line'>
 </span><span class='line'><span class="o">{</span>
-</span><span class='line'>
 </span><span class='line'>   public static void main<span class="o">(</span>String<span class="o">[]</span> argStrings<span class="o">)</span> throws InterruptedException
-</span><span class='line'>
 </span><span class='line'>   <span class="o">{</span>
-</span><span class='line'>
 </span><span class='line'>       System.out.println<span class="o">(</span><span class="s2">&quot;Running...&quot;</span><span class="o">)</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>       ActionListener <span class="nv">listener</span> <span class="o">=</span> new TimePrint<span class="o">()</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>       Timer <span class="nv">timer</span> <span class="o">=</span> new Timer<span class="o">(</span>1000, listener<span class="o">)</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>       timer.start<span class="o">()</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>       Thread.sleep<span class="o">(</span>4000<span class="o">)</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="o">}</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -304,60 +242,24 @@
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
 </pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="cp">#include &lt;string.h&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="cp">#include &lt;stdlib.h&gt;</span>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'><span class="kt">void</span> <span class="nf">strcp</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span><span class="p">);</span>
-</span><span class='line'>
 </span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>
 </span><span class='line'><span class="kt">char</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;test string...&quot;</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="kt">char</span><span class="o">*</span> <span class="n">t</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">));</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">strcp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">free</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'><span class="kt">void</span> <span class="nf">strcp</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">t</span><span class="p">)</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">while</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="o">++</span> <span class="o">=</span> <span class="o">*</span><span class="n">t</span><span class="o">++</span><span class="p">);</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -448,96 +350,36 @@
 <span class='line-number'>29</span>
 <span class='line-number'>30</span>
 <span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>Benchmark Run: 三  5月 <span class="m">30</span> <span class="m">2012</span> 11:38:34 - 12:06:53
-</span><span class='line'>
 </span><span class='line'><span class="m">1</span> CPU in system<span class="p">;</span> running <span class="m">1</span> parallel copy of tests
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>Dhrystone <span class="m">2</span> using register variables       12579232.4 lps   <span class="o">(</span>10.0 s, <span class="m">7</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>Double-Precision Whetstone                     2268.2 MWIPS <span class="o">(</span>10.3 s, <span class="m">7</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>Execl Throughput                               1140.1 lps   <span class="o">(</span>29.6 s, <span class="m">2</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>File Copy <span class="m">1024</span> bufsize <span class="m">2000</span> maxblocks        270525.4 KBps  <span class="o">(</span>30.0 s, <span class="m">2</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>File Copy <span class="m">256</span> bufsize <span class="m">500</span> maxblocks           77911.8 KBps  <span class="o">(</span>30.1 s, <span class="m">2</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>File Copy <span class="m">4096</span> bufsize <span class="m">8000</span> maxblocks        709368.9 KBps  <span class="o">(</span>30.0 s, <span class="m">2</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>Pipe Throughput                              394585.6 lps   <span class="o">(</span>10.0 s, <span class="m">7</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>Pipe-based Context Switching                  40293.3 lps   <span class="o">(</span>10.0 s, <span class="m">7</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>Process Creation                               1908.7 lps   <span class="o">(</span>30.0 s, <span class="m">2</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>Shell Scripts <span class="o">(</span><span class="m">1</span> concurrent<span class="o">)</span>                   1539.5 lpm   <span class="o">(</span>60.0 s, <span class="m">2</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>Shell Scripts <span class="o">(</span><span class="m">8</span> concurrent<span class="o">)</span>                    204.1 lpm   <span class="o">(</span>60.1 s, <span class="m">2</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>System Call Overhead                         525047.2 lps   <span class="o">(</span>10.0 s, <span class="m">7</span> samples<span class="o">)</span>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>System Benchmarks Index Values               BASELINE       RESULT    INDEX
-</span><span class='line'>
 </span><span class='line'>Dhrystone <span class="m">2</span> using register variables         116700.0   12579232.4   1077.9
-</span><span class='line'>
 </span><span class='line'>Double-Precision Whetstone                       55.0       2268.2    412.4
-</span><span class='line'>
 </span><span class='line'>Execl Throughput                                 43.0       1140.1    265.1
-</span><span class='line'>
 </span><span class='line'>File Copy <span class="m">1024</span> bufsize <span class="m">2000</span> maxblocks          3960.0     270525.4    683.1
-</span><span class='line'>
 </span><span class='line'>File Copy <span class="m">256</span> bufsize <span class="m">500</span> maxblocks            1655.0      77911.8    470.8
-</span><span class='line'>
 </span><span class='line'>File Copy <span class="m">4096</span> bufsize <span class="m">8000</span> maxblocks          5800.0     709368.9   1223.0
-</span><span class='line'>
 </span><span class='line'>Pipe Throughput                               12440.0     394585.6    317.2
-</span><span class='line'>
 </span><span class='line'>Pipe-based Context Switching                   4000.0      40293.3    100.7
-</span><span class='line'>
 </span><span class='line'>Process Creation                                126.0       1908.7    151.5
-</span><span class='line'>
 </span><span class='line'>Shell Scripts <span class="o">(</span><span class="m">1</span> concurrent<span class="o">)</span>                     42.4       1539.5    363.1
-</span><span class='line'>
 </span><span class='line'>Shell Scripts <span class="o">(</span><span class="m">8</span> concurrent<span class="o">)</span>                      6.0        204.1    340.2
-</span><span class='line'>
 </span><span class='line'>System Call Overhead                          15000.0     525047.2    350.0
-</span><span class='line'>
 </span><span class='line'>                                                                  <span class="o">========</span>
-</span><span class='line'>
 </span><span class='line'>System Benchmarks Index Score                                         382.2
 </span></code></pre></td></tr></table></div></figure>
 
@@ -585,9 +427,7 @@
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link
-</span><span class='line'>
 </span><span class='line'>ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a symbolic link
 </span></code></pre></td></tr></table></div></figure>
 
@@ -598,9 +438,7 @@
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -sf /usr/local/mysql/lib/mysql/libmysqlclient.so.16 /usr/lib/mysqlclient.so.16
-</span><span class='line'>
 </span><span class='line'>ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient_r.so.16
 </span></code></pre></td></tr></table></div></figure>
 
@@ -657,30 +495,14 @@
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>tell application <span class="s2">&quot;Google Chrome&quot;</span>
-</span><span class='line'>
 </span><span class='line'>activate
-</span><span class='line'>
 </span><span class='line'>repeat with i from <span class="m">0</span> to 25
-</span><span class='line'>
 </span><span class='line'>delay 0.04
-</span><span class='line'>
 </span><span class='line'>tell application <span class="s2">&quot;System Events&quot;</span>
-</span><span class='line'>
 </span><span class='line'>keystroke <span class="o">(</span>ASCII character of <span class="o">(</span><span class="m">97</span> + i<span class="o">))</span>
-</span><span class='line'>
 </span><span class='line'>end tell
-</span><span class='line'>
 </span><span class='line'>end repeat
-</span><span class='line'>
 </span><span class='line'>end tell
 </span></code></pre></td></tr></table></div></figure>
 
@@ -787,168 +609,60 @@
 <span class='line-number'>53</span>
 <span class='line-number'>54</span>
 <span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>#! /usr/bin/env python
-</span><span class='line'>
 </span><span class='line'># coding: utf-8
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>import sqlite3
-</span><span class='line'>
 </span><span class='line'>import os
-</span><span class='line'>
 </span><span class='line'>import time
-</span><span class='line'>
 </span><span class='line'>import random
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def connect():
-</span><span class='line'>
 </span><span class='line'>return sqlite3.connect('./test.db')
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def insertProgress(conn, user_id):
-</span><span class='line'>
 </span><span class='line'>cur = conn.execute('INSERT INTO todo(title, date) VALUES(?,?)', ['just test!!!', time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())])
-</span><span class='line'>
 </span><span class='line'>conn.execute('INSERT INTO todo_meta(todo_id, user_id) VALUES(?,?)', [cur.lastrowid, user_id])
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def insertManyData(conn):
-</span><span class='line'>
 </span><span class='line'>#reset database
-</span><span class='line'>
 </span><span class='line'>os.system('sqlite3 test.db &lt; schema.sql')
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>conn.cursor()
-</span><span class='line'>
 </span><span class='line'>counts = [0,0,0,0,0,0]
-</span><span class='line'>
 </span><span class='line'>for i in xrange(100000):
-</span><span class='line'>
 </span><span class='line'>userid = random.choice([0, 1, 2, 3, 4, 5])
-</span><span class='line'>
 </span><span class='line'>counts[userid] += 1
-</span><span class='line'>
 </span><span class='line'>insertProgress(conn, userid)
-</span><span class='line'>
 </span><span class='line'>conn.commit()
-</span><span class='line'>
 </span><span class='line'>conn.close()
-</span><span class='line'>
 </span><span class='line'>print counts
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def selectUsingLeftOuterJoin(conn, user_id):
-</span><span class='line'>
 </span><span class='line'>conn.cursor()
-</span><span class='line'>
 </span><span class='line'>cur = conn.execute('SELECT t.title, t.date \
-</span><span class='line'>
 </span><span class='line'>FROM todo t LEFT OUTER JOIN todo_meta tm \
-</span><span class='line'>
 </span><span class='line'>ON tm.todo_id = t.id\WHERE tm.user_id = ?', [user_id])
-</span><span class='line'>
 </span><span class='line'>def selectTwoTimes(conn, user_id):
-</span><span class='line'>
 </span><span class='line'>conn.cursor()
-</span><span class='line'>
 </span><span class='line'>cur = conn.execute('SELECT todo_id FROM todo_meta WHERE user_id = ?', [user_id])
-</span><span class='line'>
 </span><span class='line'>for tid in [row[0] for row in cur.fetchall()]:
-</span><span class='line'>
 </span><span class='line'>cur = conn.execute('SELECT title, date FROM todo WHERE id = ?', [tid])
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>if __name__ == "__main__":
-</span><span class='line'>
 </span><span class='line'>uids = [0, 1, 2, 3, 4, 5]
-</span><span class='line'>
 </span><span class='line'>insert_time_start = time.time()
-</span><span class='line'>
 </span><span class='line'>insertManyData(connect())
-</span><span class='line'>
 </span><span class='line'>print "Insert Time: %f" % (time.time() - insert_time_start)
-</span><span class='line'>
 </span><span class='line'>select_ULOJ_start = time.time()
-</span><span class='line'>
 </span><span class='line'>for uid in uids:
-</span><span class='line'>
 </span><span class='line'>selectUsingLeftOuterJoin(connect(), uid)
-</span><span class='line'>
 </span><span class='line'>print "Select Using Left Outer Join time: %f" % (time.time() - select_ULOJ_start)
-</span><span class='line'>
 </span><span class='line'>select_two_times = time.time()
-</span><span class='line'>
 </span><span class='line'>for uid in uids:
-</span><span class='line'>
 </span><span class='line'>selectTwoTimes(connect(), uid)
-</span><span class='line'>
 </span><span class='line'>print "Select Two Times time: %f" % (time.time() - select_two_times)</span></code></pre></td></tr></table></div></figure>
 
 
@@ -975,66 +689,26 @@
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
 </pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">todo</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="k">user</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">todo_meta</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="n">todo</span> <span class="p">(</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">id</span> <span class="nb">integer</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">autoincrement</span><span class="p">,</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">title</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
-</span><span class='line'>
 </span><span class='line'><span class="nb">date</span> <span class="n">datetime</span> <span class="k">not</span> <span class="k">null</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">);</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="k">user</span> <span class="p">(</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">id</span> <span class="nb">integer</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">autoincrement</span><span class="p">,</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">email</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">password</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">nickname</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">salt</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">);</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="n">todo_meta</span> <span class="p">(</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">todo_id</span> <span class="nb">integer</span><span class="p">,</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">user_id</span> <span class="nb">integer</span><span class="p">,</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">todo_id</span><span class="p">)</span> <span class="k">references</span> <span class="n">todo</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span> <span class="k">references</span> <span class="k">user</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">);</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -1174,108 +848,40 @@
 <span class='line-number'>33</span>
 <span class='line-number'>34</span>
 <span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
-</span><span class='line'>
 </span><span class='line'><span class="c"># coding: utf-8</span>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="n">i</span> <span class="o">=</span> <span class="n">first</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="n">j</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">middle</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">last</span><span class="p">:</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="k">if</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
-</span><span class='line'>
 </span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>
 </span><span class='line'>           <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>
 </span><span class='line'>           <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
-</span><span class='line'>
 </span><span class='line'>               <span class="k">print</span> <span class="s">&quot;(</span><span class="si">%d</span><span class="s">,</span><span class="si">%d</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-</span><span class='line'>
 </span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-</span><span class='line'>
 </span><span class='line'>           <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">middle</span><span class="p">:</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">last</span><span class="p">:</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">last</span> <span class="o">-</span> <span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="n">arraylist</span><span class="p">[</span><span class="n">first</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="k">if</span> <span class="n">first</span> <span class="o">&lt;</span> <span class="n">last</span><span class="p">:</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">first</span> <span class="o">+</span> <span class="n">last</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">)</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="n">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">merge_sort</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -1287,18 +893,10 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">(</span>6,1<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">(</span>2,1<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">(</span>3,1<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">(</span>8,1<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">(</span>8,6<span class="o">)</span>
 </span></code></pre></td></tr></table></div></figure>
 

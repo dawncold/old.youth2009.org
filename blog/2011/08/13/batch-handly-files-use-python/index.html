@@ -121,72 +121,28 @@
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>#! /usr/bin/python
-</span><span class='line'>
 </span><span class='line'># -*- coding:utf-8 -*-
-</span><span class='line'>
 </span><span class='line'># 遍历所有目录，把resx文件扩展名删掉
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>import os
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>current_path = os.getcwd()
-</span><span class='line'>
 </span><span class='line'>allsubdir = os.listdir(current_path)
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>for subdir in allsubdir:
-</span><span class='line'>
 </span><span class='line'>   subdir_path = './' + subdir
-</span><span class='line'>
 </span><span class='line'>   if os.path.isdir(subdir_path):
-</span><span class='line'>
 </span><span class='line'>       files = os.listdir(subdir_path)
-</span><span class='line'>
 </span><span class='line'>       for _file in files:
-</span><span class='line'>
 </span><span class='line'>           basename = os.path.basename(_file)
-</span><span class='line'>
 </span><span class='line'>           allname = os.path.splitext(basename)
-</span><span class='line'>
 </span><span class='line'>           if '.resx' in allname:
-</span><span class='line'>
 </span><span class='line'>               print 'resx file %s' % basename
-</span><span class='line'>
 </span><span class='line'>               without_resx = allname[0]
-</span><span class='line'>
 </span><span class='line'>               os.rename(subdir_path+'/'+_file,without_resx)
-</span><span class='line'>
 </span><span class='line'>           else:
-</span><span class='line'>
 </span><span class='line'>               print 'not resx file'
-</span><span class='line'>
 </span><span class='line'>               continue</span></code></pre></td></tr></table></div></figure>
 
 
@@ -208,51 +164,21 @@
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>#! /usr/bin/python
-</span><span class='line'>
 </span><span class='line'># -*- coding:utf-8 -*-
-</span><span class='line'>
 </span><span class='line'>#删除空目录
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>import os
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>alldir = os.listdir(os.getcwd())
-</span><span class='line'>
 </span><span class='line'>for _dir in alldir:
-</span><span class='line'>
 </span><span class='line'>   if os.path.isdir('./'+_dir):
-</span><span class='line'>
 </span><span class='line'>       print 'dir: %s' % _dir
-</span><span class='line'>
 </span><span class='line'>       if os.listdir('./'+_dir):
-</span><span class='line'>
 </span><span class='line'>           print 'have something %s' % os.listdir('./'+_dir)
-</span><span class='line'>
 </span><span class='line'>       else:
-</span><span class='line'>
 </span><span class='line'>           os.rmdir('./'+_dir)
-</span><span class='line'>
 </span><span class='line'>   else:
-</span><span class='line'>
 </span><span class='line'>       print 'file or others'</span></code></pre></td></tr></table></div></figure>
 
 

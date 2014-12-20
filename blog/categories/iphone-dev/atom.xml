@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iphone-dev | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/iphone-dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T23:49:29+08:00</updated>
+  <updated>2014-12-20T23:53:58+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -40,11 +40,7 @@
 <p>theos我删掉了原来的，用github上的版本</p>
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://github.com/DHowett/theos.git <span class="nv">$THEOS</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://github.com/DHowett/theos.git <span class="nv">$THEOS</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
 <p>ldid我自己编译的，因为dropbox上的总是很难下载</p>
@@ -54,23 +50,11 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://git.saurik.com/ldid.git&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;cd ldid&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;git submodule update <span class="p">&amp;</span>mdash<span class="p">;</span>init&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;./make.sh&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;cp -f ./ldid <span class="nv">$THEOS</span>/bin/ldid&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://git.saurik.com/ldid.git
+</span><span class='line'><span class="nb">cd </span>ldid
+</span><span class='line'>git submodule update <span class="p">&amp;</span>mdash<span class="p">;</span>init
+</span><span class='line'>./make.sh
+</span><span class='line'>cp -f ./ldid <span class="nv">$THEOS</span>/bin/ldid
 </span></code></pre></td></tr></table></div></figure></p>
 
 <p>有篇教程说在iOS上也安装perl和theos，我实在不清楚有什么用，不过我也安装了，蛋疼，具体方法看<a href="http://iphonedevwiki.net/index.php/Theos/Getting_Started">这里</a></p>
@@ -86,31 +70,15 @@
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>/* This call lets you get an xpc_object_t that holds a reference to the IOSurface.&lt;/p>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/&lt;em> This call lets you get an xpc_object_t that holds a reference to the IOSurface.
+</span><span class='line'>  Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&rsquo;s global use
+</span><span class='line'>  count by one until the object is destroyed. &lt;/em>/
+</span><span class='line'>//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)
+</span><span class='line'>//IOSFC_AVAILABLE_STARTING(&lt;strong>MAC_10_7, &lt;/strong>IPHONE_NA);&lt;/p>
 </span><span class='line'>
-</span><span class='line'>&lt;p>  Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface&rsquo;s global use&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  count by one until the object is destroyed. */&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>//IOSFC_AVAILABLE_STARTING(&lt;strong>MAC_10_7, &lt;/strong>IPHONE_NA);&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>/&lt;em> This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. &lt;/em>/&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>//IOSFC_AVAILABLE_STARTING(&lt;strong>MAC_10_7, &lt;/strong>IPHONE_NA);&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+</span><span class='line'>&lt;p>/&lt;em> This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. &lt;/em>/
+</span><span class='line'>//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)
+</span><span class='line'>//IOSFC_AVAILABLE_STARTING(&lt;strong>MAC_10_7, &lt;/strong>IPHONE_NA);</span></code></pre></td></tr></table></div></figure></p>
 
 <p>然后做你的tweak就可以了，我按照经典的heloworld例子搞了个hook，springboard中applicationDidFinishLaunching弹出alert，成功了。</p>
 
@@ -148,20 +116,10 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">THEOS</span><span class="o">=</span>/opt/theos&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;svn co &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://svn.howett.net/svn/theos/trunk&quot;</span>&gt;http://svn.howett.net/svn/theos/trunk&lt;/a&gt; <span class="nv">$THEOS</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;curl -s &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://dl.dropboxusercontent.com/u/3157793/ldid&quot;</span>&gt;https://dl.dropboxusercontent.com/u/3157793/ldid&lt;/a&gt; &gt; <span class="nv">$THEOS</span>/bin/ldid<span class="p">;</span> chmod +x <span class="nv">$THEOS</span>/bin/ldid&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;brew install dpkg<span class="o">(</span>如果出错安不上dpkg，那就先update一下brew，我就遇到这么个问题<span class="o">)</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">THEOS</span><span class="o">=</span>/opt/theos
+</span><span class='line'>svn co &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://svn.howett.net/svn/theos/trunk&quot;</span>&gt;http://svn.howett.net/svn/theos/trunk&lt;/a&gt; <span class="nv">$THEOS</span>
+</span><span class='line'>curl -s &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://dl.dropboxusercontent.com/u/3157793/ldid&quot;</span>&gt;https://dl.dropboxusercontent.com/u/3157793/ldid&lt;/a&gt; &gt; <span class="nv">$THEOS</span>/bin/ldid<span class="p">;</span> chmod +x <span class="nv">$THEOS</span>/bin/ldid
+</span><span class='line'>brew install dpkg<span class="o">(</span>如果出错安不上dpkg，那就先update一下brew，我就遇到这么个问题<span class="o">)</span>
 </span></code></pre></td></tr></table></div></figure>
 用theos模板创建项目，<code>$THEOS/bin/nic.pl</code>，这会在当前目录中创建你的项目，选择模板类型，然后起名字之类的，填好就ok。</p>
 
@@ -171,14 +129,8 @@
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">SDKVERSION</span><span class="o">=</span>6.1&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;export <span class="nv">THEOS_DEVICE_IP</span><span class="o">=</span>10.0.0.101&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">SDKVERSION</span><span class="o">=</span>6.1
+</span><span class='line'><span class="nb">export </span><span class="nv">THEOS_DEVICE_IP</span><span class="o">=</span>10.0.0.101
 </span></code></pre></td></tr></table></div></figure>
 目标sdk版本，我用6.1了，后一个是手机的ip，自己弄到一个wifi中吧，后面部署需要。</p>
 
@@ -186,14 +138,8 @@
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo make&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;sudo make package&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo make
+</span><span class='line'>sudo make package
 </span></code></pre></td></tr></table></div></figure>
 本目录下的deb就可以放到设备上安装了，安装命令是<code>dpkg -i xxx.deb</code></p>
 

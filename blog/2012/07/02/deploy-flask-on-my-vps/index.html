@@ -94,36 +94,16 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>server <span class="o">{</span>
-</span><span class='line'>
 </span><span class='line'>     listen       80<span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>     server_name  todo.wodeyitian.com<span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>     location / <span class="o">{</span>
-</span><span class='line'>
 </span><span class='line'>               include uwsgi_params<span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>               uwsgi_pass 127.0.0.1:9090<span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>               uwsgi_param UWSGI_PYHOME /home/wwwroot/python_app_todo<span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>               uwsgi_param UWSGI_CHDIR /home/wwwroot/python_app_todo/app_dir<span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>               uwsgi_param UWSGI_SCRIPT todoApp:app<span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>     <span class="o">}</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 

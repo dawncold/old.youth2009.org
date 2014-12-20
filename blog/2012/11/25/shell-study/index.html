@@ -93,21 +93,11 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if</span> grep pattern myfile &gt; /dev/null
-</span><span class='line'>
 </span><span class='line'><span class="k">then</span>
-</span><span class='line'>
 </span><span class='line'>…
-</span><span class='line'>
 </span><span class='line'><span class="k">else</span>
-</span><span class='line'>
 </span><span class='line'>…
-</span><span class='line'>
 </span><span class='line'><span class="k">fi</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -122,21 +112,11 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">printf</span> <span class="s2">&quot;Enter password: &quot;</span>
-</span><span class='line'>
 </span><span class='line'>stty -echo <span class="c">#关闭自动回显输入的字符功能</span>
-</span><span class='line'>
 </span><span class='line'><span class="nb">read </span>pass &lt; /dev/tty
-</span><span class='line'>
 </span><span class='line'><span class="nb">printf</span> <span class="s2">&quot;Enter Again: &quot;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nb">read </span>pass2 &lt; /dev/tty
-</span><span class='line'>
 </span><span class='line'>stty <span class="nb">echo</span> <span class="c">#打开自动回显输入的字符功能</span>
 </span></code></pre></td></tr></table></div></figure>
 

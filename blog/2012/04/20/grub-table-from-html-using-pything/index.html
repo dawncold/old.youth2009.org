@@ -133,120 +133,44 @@
 <span class='line-number'>37</span>
 <span class='line-number'>38</span>
 <span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>#/usr/bin/env python
-</span><span class='line'>
 </span><span class='line'>#coding: utf-8
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>import urllib2
-</span><span class='line'>
 </span><span class='line'>import re
-</span><span class='line'>
 </span><span class='line'>import xlwt
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>link_list = []
-</span><span class='line'>
 </span><span class='line'>xls = xlwt.Workbook()
-</span><span class='line'>
 </span><span class='line'>table = xls.add_sheet("main")
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>for i in xrange(288, 318):
-</span><span class='line'>
 </span><span class='line'>link_list.append("http://www.lanqiao.org/Article/ShowArticle.asp?ArticleID=%d"%i)
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>chinese = []
-</span><span class='line'>
 </span><span class='line'>content = ''
-</span><span class='line'>
 </span><span class='line'>while len(link_list) > 0:
-</span><span class='line'>
 </span><span class='line'>for link in link_list:
-</span><span class='line'>
 </span><span class='line'>print link
-</span><span class='line'>
 </span><span class='line'>try:
-</span><span class='line'>
 </span><span class='line'>content = urllib2.urlopen(url = link, timeout = 3).read()
-</span><span class='line'>
 </span><span class='line'>link_list = link_list[1:]
-</span><span class='line'>
 </span><span class='line'>except:
-</span><span class='line'>
 </span><span class='line'>print "timeout!"
-</span><span class='line'>
 </span><span class='line'>if link not in link_list[1:]:
-</span><span class='line'>
 </span><span class='line'>link_list.append(link)
-</span><span class='line'>
 </span><span class='line'>some = re.findall(u'&lt;TR.*?&lt;\/TR>', content.decode('gbk', 'ignore'), re.S)
-</span><span class='line'>
 </span><span class='line'>for s in some:
-</span><span class='line'>
 </span><span class='line'>chinese_value = re.findall(u'(?&lt;=\u5b8b\u4f53>).*(?=&lt;\/FONT>)', s)
-</span><span class='line'>
 </span><span class='line'>chinese.append(','.join(chinese_value))
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>for line in xrange(0, len(chinese)):
-</span><span class='line'>
 </span><span class='line'>tmp = chinese[line].split(',')
-</span><span class='line'>
 </span><span class='line'>for i in xrange(0, len(tmp)):
-</span><span class='line'>
 </span><span class='line'>table.write(line, i, tmp[i])
-</span><span class='line'>
 </span><span class='line'>print "%d, %d, %s" % (line, i, tmp[i])
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>xls.save('x.xls')
-</span><span class='line'>
 </span><span class='line'>print len(link_list)</span></code></pre></td></tr></table></div></figure>
 
 

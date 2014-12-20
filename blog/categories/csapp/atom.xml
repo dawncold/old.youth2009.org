@@ -4,7 +4,7 @@
   <title><![CDATA[Category: csapp | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/csapp/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T23:49:29+08:00</updated>
+  <updated>2014-12-20T23:53:58+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -66,26 +66,12 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>%dh = 8D&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>%eax = 98765432&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>movb %dh,%al    //%eax = 9876548D&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>movsbl %dh,%eax    //%eax = FFFFFF8D&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>movzbl %dh,%eax    //%eax = 0000008D movzbl用0填充eax的高24位；&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>movsbl用dh中的最高位填充eax的高24位。&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+</pre></td><td class='code'><pre><code class=''><span class='line'>%dh = 8D   &lt;br/>
+</span><span class='line'>%eax = 98765432   &lt;br/>
+</span><span class='line'>movb %dh,%al    //%eax = 9876548D   &lt;br/>
+</span><span class='line'>movsbl %dh,%eax    //%eax = FFFFFF8D   &lt;br/>
+</span><span class='line'>movzbl %dh,%eax    //%eax = 0000008D movzbl用0填充eax的高24位；
+</span><span class='line'>movsbl用dh中的最高位填充eax的高24位。</span></code></pre></td></tr></table></div></figure></p>
 
 <p>至于为何是填充eax的高24位，原因是movsbl、movzbl的源操作数是字节长度（就是这里的dh），而这条指令会执行扩展32位，就是把目的操作数的高24位进行相应的扩展操作。</p>
 
@@ -106,9 +92,8 @@
     <id>http://www.youth2009.org/blog/2011/04/10/csapp-study-part1</id>
     <content type="html"><![CDATA[<h1>第一章</h1>
 
-<p>一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤：</p>
-
-<p>源文件&mdash;&mdash;>经过预处理器（cpp）成为.i文件&mdash;&mdash;>经过编译器（cc1）成为.s文件&mdash;&mdash;>经过汇编器（as）成为.o文件，所有函数调用都成为.o这样可重定向的目标程序&mdash;&mdash;>最后由连接器（ld）链接成成为可执行文件。cc1这名字真好听：）</p>
+<p>一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤：
+源文件&mdash;&mdash;>经过预处理器（cpp）成为.i文件&mdash;&mdash;>经过编译器（cc1）成为.s文件&mdash;&mdash;>经过汇编器（as）成为.o文件，所有函数调用都成为.o这样可重定向的目标程序&mdash;&mdash;>最后由连接器（ld）链接成成为可执行文件。cc1这名字真好听：）</p>
 
 <p>系统设计者的主要目标就是让信息在各种设备之间“拷贝速度”尽量快。显示一行“hello，world”的过程主要是从磁盘&mdash;&mdash;>主存&mdash;&mdash;>显示设备传递。</p>
 
@@ -135,29 +120,13 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>0x173A4C&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>1：0001&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>7：0111&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>3：0011&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>A：1010&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>4：0100&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>C：1100&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>0x173A4C
+</span><span class='line'>1：0001
+</span><span class='line'>7：0111
+</span><span class='line'>3：0011
+</span><span class='line'>A：1010
+</span><span class='line'>4：0100
+</span><span class='line'>C：1100</span></code></pre></td></tr></table></div></figure>
 开头的0x是十六进制的标示，无需翻译。二进制转化到十六进制是要从右侧开始，每4位二进制数换成一个十六进制，因为取的是4位二进制数，所以不可能超过15，就能够换算成十六进制的0～F。</p>
 
 <p>用一个数除以2或者16取出余数就能得到相应的二进制或者十六进制编码，不过要倒序书写余数！！！</p>
@@ -182,26 +151,12 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>void swap(int x , int y)&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>{&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>   x = x ^ y;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>   y = x ^ y;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>   x = x ^ *y;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>}&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>void swap(int x , int y)
+</span><span class='line'>{
+</span><span class='line'>   x = x ^ y;
+</span><span class='line'>   y = x ^ y;
+</span><span class='line'>   x = x ^ *y;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 移位运算要注意结核性，x&lt;&lt;j&lt;&lt;k的结核性是（x&lt;&lt;j）&lt;&lt;k，而且还要注意优先级，1&lt;&lt;5-1应该是这样计算的：1&lt;&lt;(5-1)！！！所以只要不确定就加上括号，这样肯定安全，而且可读性也是比较好的。</p>
 
 <p>右移运算分两种：算术右移和逻辑右移。算术右移在左边补充n个最高有效位的拷贝，逻辑右移是在左边补充n个0.对于无符号数的右移必须是逻辑的（补0），而几乎所有的编译器/机器组合都对有符号数据使用算术右移（拷贝最高有效位）</p>

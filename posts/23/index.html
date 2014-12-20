@@ -186,15 +186,9 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>PasswordAuthentication yes
-</span><span class='line'>
 </span><span class='line'>ChallengeResponseAuthentication no
-</span><span class='line'>
 </span><span class='line'>GSSAPIAuthentication yes
-</span><span class='line'>
 </span><span class='line'>UsePAM no</span></code></pre></td></tr></table></div></figure>
 
 
@@ -290,9 +284,7 @@
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>:info (+)
-</span><span class='line'>
 </span><span class='line'>:info (*)</span></code></pre></td></tr></table></div></figure>
 
 
@@ -303,18 +295,10 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>class (Eq a, Show a) => Num a where
-</span><span class='line'>
 </span><span class='line'> (+) :: a -> a -> a
-</span><span class='line'>
 </span><span class='line'> ...
-</span><span class='line'>
 </span><span class='line'> -- Defined in GHC.Num
-</span><span class='line'>
 </span><span class='line'>infixl 6 +</span></code></pre></td></tr></table></div></figure>
 
 
@@ -353,9 +337,8 @@
 
 <p><code>[1,2,3] ++ [4,5]</code>会得到一个[1,2,3,4,5]的列表，就是加起来而已，重复的元素也不会覆盖。  </p>
 
-<p><code>1:[2,3]</code></p>
-
-<p>这样会把1放入后面的列表最前面。此处需要注意的是：冒号前面必须是列表中同类的元素，而冒号后面必须是列表，所以反过来就不行了。（遵循原则，前面是个列表，后面是包含列表的列表，这样都对）</p>
+<p><code>1:[2,3]</code>
+这样会把1放入后面的列表最前面。此处需要注意的是：冒号前面必须是列表中同类的元素，而冒号后面必须是列表，所以反过来就不行了。（遵循原则，前面是个列表，后面是包含列表的列表，这样都对）</p>
 
 <h1>字符串</h1>
 
@@ -420,39 +403,17 @@
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">{</span>
-</span><span class='line'>
 </span><span class='line'> <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;hide-other-bookmark-button&quot;</span><span class="p">,</span>
-</span><span class='line'>
 </span><span class='line'> <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
-</span><span class='line'>
 </span><span class='line'> <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;I want to hide the &#39;other bookmark&#39; button in Chrome&#39;s bookmark toolbar!&quot;</span><span class="p">,</span>
-</span><span class='line'>
 </span><span class='line'> <span class="s2">&quot;browser_action&quot;</span><span class="o">:</span> <span class="p">{</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="s2">&quot;default_icon&quot;</span><span class="o">:</span> <span class="s2">&quot;icon.ico&quot;</span>
-</span><span class='line'>
 </span><span class='line'> <span class="p">},</span>
-</span><span class='line'>
 </span><span class='line'> <span class="s2">&quot;permissions&quot;</span><span class="o">:</span> <span class="p">[</span>
-</span><span class='line'>
 </span><span class='line'>    <span class="s2">&quot;bookmarks&quot;</span>
-</span><span class='line'>
 </span><span class='line'>  <span class="p">],</span>
-</span><span class='line'>
 </span><span class='line'> <span class="s2">&quot;background_page&quot;</span><span class="o">:</span><span class="s2">&quot;index.html&quot;</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -469,9 +430,8 @@
 
 <p><img src="http://pic.yupoo.com/loose_v/ASbvzoiM/kjvjq.png" alt="" /></p>
 
-<p>到了这里，这篇文章也就基本结束了，虽然我们没有成功，但这个过程是值得的，能够在chrome这样的大型软件中体验扩展程序也是很不错的</p>
-
-<p>！</p>
+<p>到了这里，这篇文章也就基本结束了，虽然我们没有成功，但这个过程是值得的，能够在chrome这样的大型软件中体验扩展程序也是很不错的
+！</p>
 
 		
 		
@@ -518,15 +478,9 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>yum install python-setuptools
-</span><span class='line'>
 </span><span class='line'>git clone git://eagain.net/gitosis.git
-</span><span class='line'>
 </span><span class='line'>cd gitosis
-</span><span class='line'>
 </span><span class='line'>python setup.py install</span></code></pre></td></tr></table></div></figure>
 
 
@@ -537,18 +491,10 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>useradd -m -s /bin/bash -d /home/git git
-</span><span class='line'>
 </span><span class='line'>passwd git #给git用户加上密码
-</span><span class='line'>
 </span><span class='line'>su - git
-</span><span class='line'>
 </span><span class='line'>cd ~
-</span><span class='line'>
 </span><span class='line'>gitosis-init &lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径</span></code></pre></td></tr></table></div></figure>
 
 
@@ -558,15 +504,9 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod <span class="m">755</span> /home/git
-</span><span class='line'>
 </span><span class='line'>chmod <span class="m">700</span> /home/git/.ssh
-</span><span class='line'>
 </span><span class='line'>chmod <span class="m">644</span> /home/git/.ssh/authorized_keys
-</span><span class='line'>
 </span><span class='line'>chmod <span class="m">755</span> /home/git/repositories/gitosis-admin.git/hooks/post-update
 </span></code></pre></td></tr></table></div></figure>
 
@@ -580,24 +520,12 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone ssh://git@DOMAIN:8888/gitosis-admin.git
-</span><span class='line'>
 </span><span class='line'><span class="nb">cd </span>gitosis-admin
-</span><span class='line'>
 </span><span class='line'>vi gitosis.conf
-</span><span class='line'>
 </span><span class='line'><span class="c">#增加新的项目名字和相关配置</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">[</span>group AWAD<span class="o">]</span><span class="c">#ＡＷＡＤ组</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">writable</span> <span class="o">=</span> wodeyitian_web　　　#仓库中的名字
-</span><span class='line'>
 </span><span class='line'><span class="nv">members</span> <span class="o">=</span> dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员名字就是rsa共钥中最后的成员名字
 </span></code></pre></td></tr></table></div></figure>
 
@@ -608,9 +536,7 @@
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>git commit -a -m <span class="s1">&#39;建立了新的项目&#39;</span>
-</span><span class='line'>
 </span><span class='line'>git push
 </span></code></pre></td></tr></table></div></figure>
 

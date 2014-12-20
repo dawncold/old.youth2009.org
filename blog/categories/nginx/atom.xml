@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nginx | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/nginx/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T23:49:29+08:00</updated>
+  <updated>2014-12-20T23:53:58+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -47,40 +47,18 @@
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>location ^~ /upload/ {&lt;/p>
+</pre></td><td class='code'><pre><code class=''><span class='line'>location ^~ /upload/ {
+</span><span class='line'>  client_body_temp_path      /tmp/;
+</span><span class='line'>  client_body_in_file_only   on;
+</span><span class='line'>  client_body_buffer_size    128K;
+</span><span class='line'>  client_max_body_size       1000M;&lt;/p>
 </span><span class='line'>
-</span><span class='line'>&lt;p>  client_body_temp_path      /tmp/;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  client_body_in_file_only   on;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  client_body_buffer_size    128K;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  client_max_body_size       1000M;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  proxy_pass_request_headers on;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  proxy_set_header           X-FILE $request_body_file;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  proxy_set_body             off;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  proxy_redirect             off;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  proxy_pass                 &lt;a href="http://backend/">http://backend/&lt;/a>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>}&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>&lt;p>  proxy_pass_request_headers on;
+</span><span class='line'>  proxy_set_header           X-FILE $request_body_file;
+</span><span class='line'>  proxy_set_body             off;
+</span><span class='line'>  proxy_redirect             off;
+</span><span class='line'>  proxy_pass                 &lt;a href="http://backend/">http://backend/&lt;/a>
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 这样以upload开头的就会做这样处理，上传的文件path会放在header中，至于name该怎么办，我是把name的值作为query string拼在了form的action中，在上传开始前得到文件名，然后拼上去。</p>
 
 <p>需要注意的是，client_body_in_file_only不支持RFC2388，也就是说multipart不管用，你可以考虑用ajax上传插件来做上传，注意插件里的multipart设为false。上传插件推荐JQuery-File-Upload。</p>
@@ -103,19 +81,13 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>location ~.*.(php|php5)?$&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>{&lt;/p>
+</pre></td><td class='code'><pre><code class=''><span class='line'>location ~.*.(php|php5)?$
+</span><span class='line'>{&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;pre>&lt;code>处理php
 </span><span class='line'>&lt;/code>&lt;/pre>
 </span><span class='line'>
-</span><span class='line'>&lt;p>}&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+</span><span class='line'>&lt;p>}</span></code></pre></td></tr></table></div></figure></p>
 
 <p>这样之后，发现直接访问目录或者域名的时候不能正常显示了，必须跟上index.php这样的才可以。</p>
 
@@ -131,28 +103,16 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>location / {&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;pre>&lt;code>           root html;
-</span><span class='line'>
 </span><span class='line'>           index index.html index.php;
 </span><span class='line'>&lt;/code>&lt;/pre>
 </span><span class='line'>
-</span><span class='line'>&lt;p>}&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>location ~.*.(php|php5)?$ {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>处理php&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>}&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+</span><span class='line'>&lt;p>}
+</span><span class='line'>location ~.*.(php|php5)?$ {
+</span><span class='line'>处理php
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   

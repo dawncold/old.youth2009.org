@@ -4,7 +4,7 @@
   <title><![CDATA[Category: bnly | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/bnly/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T23:49:29+08:00</updated>
+  <updated>2014-12-20T23:53:58+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -43,20 +43,10 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>vi /etc/rsyslog.d/50-default.conf&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>解除cron的注释&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>service rsyslog restart&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>service cron restart&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vi /etc/rsyslog.d/50-default.conf
+</span><span class='line'>解除cron的注释
+</span><span class='line'>service rsyslog restart
+</span><span class='line'>service cron restart</span></code></pre></td></tr></table></div></figure>
 这样就可以在/var/log/下找到cron.log查看了。</p>
 ]]></content>
   </entry>

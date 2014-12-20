@@ -86,11 +86,8 @@
 <p>然后下载了pgAdmin作为GUI工具，结合PG的CLI一起使用比较好。使用psql登陆数据库可以用：<code>psql -h localhost -U postgres -W</code></p>
 
 <pre><code>其中
-
 -h db host
-
 -U db user
-
 -W use password
 </code></pre>
 
@@ -101,13 +98,9 @@
 <p><code>createuser -dEeP -h localhost -U postgres -W xxx</code></p>
 
 <pre><code>其中
-
 -d can create db
-
 -E encrypted user's password
-
 -e echo SQL command
-
 -P can not create role
 </code></pre>
 
@@ -116,13 +109,9 @@
 <p><code>createdb -e -E UTF8 -l zh_CN.UTF-8 -O OWNER -h localhost -U postgres -W DBNAME</code></p>
 
 <pre><code>其中
-
 -e echo SQL command
-
 -E use encoding
-
 -l set locale, included LC_COLLATE and LC_CTYPE
-
 -O db's owner
 </code></pre>
 

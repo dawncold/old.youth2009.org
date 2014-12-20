@@ -102,66 +102,26 @@
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
 </pre></td><td class='code'><pre><code class='php'><span class='line'><span class="nv">$circle</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$out</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'><span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$num</span><span class="p">;</span><span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$circle</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$i</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">}</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$count</span> <span class="o">%=</span> <span class="nv">$num</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">if</span><span class="p">(</span><span class="nv">$circle</span><span class="p">[</span><span class="nv">$count</span><span class="p">]</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">if</span><span class="p">((</span><span class="nv">$n</span> <span class="o">%</span> <span class="nv">$diff</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="nv">$diff</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$circle</span><span class="p">[</span><span class="nv">$count</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$out</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">if</span><span class="p">(</span><span class="nv">$out</span> <span class="o">===</span> <span class="nv">$num</span> <span class="o">-</span> <span class="nv">$sur</span><span class="p">)</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">}</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$n</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">}</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$count</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 

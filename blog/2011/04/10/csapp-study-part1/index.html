@@ -7,7 +7,8 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="第一章 一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤： 源文件&mdash;&mdash;>经过预处理器（cpp）成为.i文件&mdash;&mdash;>经过编译器（cc1）成为.s文件&mdash;&mdash;>经过汇编器（as）成为.o文件，所有函数调用都成为. &hellip;&#8221;>
+	<meta name="description" content="第一章 一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤：
+源文件&mdash;&mdash;>经过预处理器（cpp）成为.i文件&mdash;&mdash;>经过编译器（cc1）成为.s文件&mdash;&mdash;>经过汇编器（as）成为.o文件，所有函数调用都成为. &hellip;&#8221;>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,9 +80,8 @@
 	<h2 class="title">CSAPP学习笔记第一辑</h2>
 	<div class="entry-content"><h1>第一章</h1>
 
-<p>一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤：</p>
-
-<p>源文件&mdash;&mdash;>经过预处理器（cpp）成为.i文件&mdash;&mdash;>经过编译器（cc1）成为.s文件&mdash;&mdash;>经过汇编器（as）成为.o文件，所有函数调用都成为.o这样可重定向的目标程序&mdash;&mdash;>最后由连接器（ld）链接成成为可执行文件。cc1这名字真好听：）</p>
+<p>一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤：
+源文件&mdash;&mdash;>经过预处理器（cpp）成为.i文件&mdash;&mdash;>经过编译器（cc1）成为.s文件&mdash;&mdash;>经过汇编器（as）成为.o文件，所有函数调用都成为.o这样可重定向的目标程序&mdash;&mdash;>最后由连接器（ld）链接成成为可执行文件。cc1这名字真好听：）</p>
 
 <p>系统设计者的主要目标就是让信息在各种设备之间“拷贝速度”尽量快。显示一行“hello，world”的过程主要是从磁盘&mdash;&mdash;>主存&mdash;&mdash;>显示设备传递。</p>
 
@@ -108,24 +108,12 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>0x173A4C
-</span><span class='line'>
 </span><span class='line'>1：0001
-</span><span class='line'>
 </span><span class='line'>7：0111
-</span><span class='line'>
 </span><span class='line'>3：0011
-</span><span class='line'>
 </span><span class='line'>A：1010
-</span><span class='line'>
 </span><span class='line'>4：0100
-</span><span class='line'>
 </span><span class='line'>C：1100</span></code></pre></td></tr></table></div></figure>
 
 
@@ -153,21 +141,11 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>void swap(int x , int y)
-</span><span class='line'>
 </span><span class='line'>{
-</span><span class='line'>
 </span><span class='line'>   x = x ^ y;
-</span><span class='line'>
 </span><span class='line'>   y = x ^ y;
-</span><span class='line'>
 </span><span class='line'>   x = x ^ *y;
-</span><span class='line'>
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 

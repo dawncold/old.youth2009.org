@@ -97,18 +97,10 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://git.saurik.com/ldid.git
-</span><span class='line'>
 </span><span class='line'><span class="nb">cd </span>ldid
-</span><span class='line'>
 </span><span class='line'>git submodule update --init
-</span><span class='line'>
 </span><span class='line'>./make.sh
-</span><span class='line'>
 </span><span class='line'>cp -f ./ldid <span class="nv">$THEOS</span>/bin/ldid
 </span></code></pre></td></tr></table></div></figure>
 
@@ -127,33 +119,15 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>/* This call lets you get an xpc_object_t that holds a reference to the IOSurface.
-</span><span class='line'>
 </span><span class='line'>  Note: Any live XPC objects created from an IOSurfaceRef implicity increase the IOSurface's global use
-</span><span class='line'>
 </span><span class='line'>  count by one until the object is destroyed. */
-</span><span class='line'>
 </span><span class='line'>//xpc_object_t IOSurfaceCreateXPCObject(IOSurfaceRef aSurface)
-</span><span class='line'>
 </span><span class='line'>//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>/* This call lets you take an xpc_object_t created via IOSurfaceCreatePort() and recreate an IOSurfaceRef from it. */
-</span><span class='line'>
 </span><span class='line'>//IOSurfaceRef IOSurfaceLookupFromXPCObject(xpc_object_t xobj)
-</span><span class='line'>
 </span><span class='line'>//IOSFC_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_NA);</span></code></pre></td></tr></table></div></figure>
 
 

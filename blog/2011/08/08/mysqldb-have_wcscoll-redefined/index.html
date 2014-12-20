@@ -37,26 +37,7 @@
 28
 29
 30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50 &hellip;">
+[root@wodeyitian MySQL-python-1.2.3]# python setup.py &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -158,93 +139,35 @@
 <span class='line-number'>28</span>
 <span class='line-number'>29</span>
 <span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@wodeyitian MySQL-python-1.2.3<span class="o">]</span><span class="c"># python setup.py install</span>
-</span><span class='line'>
 </span><span class='line'>running install
-</span><span class='line'>
 </span><span class='line'>running bdist_egg
-</span><span class='line'>
 </span><span class='line'>running egg_info
-</span><span class='line'>
 </span><span class='line'>writing MySQL_python.egg-info/PKG-INFO
-</span><span class='line'>
 </span><span class='line'>writing top-level names to MySQL_python.egg-info/top_level.txt
-</span><span class='line'>
 </span><span class='line'>writing dependency_links to MySQL_python.egg-info/dependency_links.txt
-</span><span class='line'>
 </span><span class='line'>reading manifest file <span class="s1">&#39;MySQL_python.egg-info/SOURCES.txt&#39;</span>
-</span><span class='line'>
 </span><span class='line'>reading manifest template <span class="s1">&#39;MANIFEST.in&#39;</span>
-</span><span class='line'>
 </span><span class='line'>warning: no files found matching <span class="s1">&#39;MANIFEST&#39;</span>
-</span><span class='line'>
 </span><span class='line'>warning: no files found matching <span class="s1">&#39;ChangeLog&#39;</span>
-</span><span class='line'>
 </span><span class='line'>warning: no files found matching <span class="s1">&#39;GPL&#39;</span>
-</span><span class='line'>
 </span><span class='line'>writing manifest file <span class="s1">&#39;MySQL_python.egg-info/SOURCES.txt&#39;</span>
-</span><span class='line'>
 </span><span class='line'>installing library code to build/bdist.linux-x86_64/egg
-</span><span class='line'>
 </span><span class='line'>running install_lib
-</span><span class='line'>
 </span><span class='line'>running build_py
-</span><span class='line'>
 </span><span class='line'>copying MySQLdb/release.py -&gt; build/lib.linux-x86_64-2.7/MySQLdb
-</span><span class='line'>
 </span><span class='line'>running build_ext
-</span><span class='line'>
 </span><span class='line'>building <span class="s1">&#39;_mysql&#39;</span> extension
-</span><span class='line'>
 </span><span class='line'>gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info<span class="o">=(</span>1,2,3,<span class="s1">&#39;final&#39;</span>,0<span class="o">)</span> -D__version__<span class="o">=</span>1.2.3 -I/usr/include/mysql -I/usr/local/include/python2.7 -c _mysql.c -o build/temp.linux-x86_64-2.7/_mysql.o -g -pipe -Wp,-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span> -fexceptions -fstack-protector --param<span class="o">=</span>ssp-buffer-size<span class="o">=</span><span class="m">4</span> -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS<span class="o">=</span><span class="m">64</span> -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv
-</span><span class='line'>
 </span><span class='line'>在包含自 _mysql.c：36 的文件中:
-</span><span class='line'>
 </span><span class='line'>/usr/include/mysql/my_config.h:1062:1: 警告：“HAVE_WCSCOLL”重定义
-</span><span class='line'>
 </span><span class='line'>在包含自 /usr/local/include/python2.7/Python.h：8 的文件中，
-</span><span class='line'>
 </span><span class='line'>                从 pymemcompat.h：10，
-</span><span class='line'>
 </span><span class='line'>                从 _mysql.c：29:
-</span><span class='line'>
 </span><span class='line'>/usr/local/include/python2.7/pyconfig.h:887:1: 警告：这是先前定义的位置
-</span><span class='line'>
 </span><span class='line'>gcc -pthread -shared build/temp.linux-x86_64-2.7/_mysql.o -L/usr/lib64/mysql -L/usr/lib64 -lmysqlclient_r -lz -lpthread -lcrypt -lnsl -lm -lpthread -lssl -lcrypto -o build/lib.linux-x86_64-2.7/_mysql.so
-</span><span class='line'>
 </span><span class='line'>/usr/bin/ld: cannot find -lmysqlclient_r
-</span><span class='line'>
 </span><span class='line'>collect2: ld 返回 1
-</span><span class='line'>
 </span><span class='line'>error: <span class="nb">command</span> <span class="s1">&#39;gcc&#39;</span> failed with <span class="nb">exit </span>status 1
 </span></code></pre></td></tr></table></div></figure>
 

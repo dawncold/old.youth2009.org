@@ -128,9 +128,7 @@
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>:info (+)
-</span><span class='line'>
 </span><span class='line'>:info (*)</span></code></pre></td></tr></table></div></figure>
 
 
@@ -141,18 +139,10 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>class (Eq a, Show a) => Num a where
-</span><span class='line'>
 </span><span class='line'> (+) :: a -> a -> a
-</span><span class='line'>
 </span><span class='line'> ...
-</span><span class='line'>
 </span><span class='line'> -- Defined in GHC.Num
-</span><span class='line'>
 </span><span class='line'>infixl 6 +</span></code></pre></td></tr></table></div></figure>
 
 
@@ -191,9 +181,8 @@
 
 <p><code>[1,2,3] ++ [4,5]</code>会得到一个[1,2,3,4,5]的列表，就是加起来而已，重复的元素也不会覆盖。  </p>
 
-<p><code>1:[2,3]</code></p>
-
-<p>这样会把1放入后面的列表最前面。此处需要注意的是：冒号前面必须是列表中同类的元素，而冒号后面必须是列表，所以反过来就不行了。（遵循原则，前面是个列表，后面是包含列表的列表，这样都对）</p>
+<p><code>1:[2,3]</code>
+这样会把1放入后面的列表最前面。此处需要注意的是：冒号前面必须是列表中同类的元素，而冒号后面必须是列表，所以反过来就不行了。（遵循原则，前面是个列表，后面是包含列表的列表，这样都对）</p>
 
 <h1>字符串</h1>
 

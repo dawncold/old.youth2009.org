@@ -123,108 +123,40 @@
 <span class='line-number'>33</span>
 <span class='line-number'>34</span>
 <span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>from sys import argv
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>script, input_file = argv
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def print_all(f):
-</span><span class='line'>
 </span><span class='line'>   print f.read()
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def rewind(f):
-</span><span class='line'>
 </span><span class='line'>   f.seek(0)
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def print_a_line(line_count, f):
-</span><span class='line'>
 </span><span class='line'>   print line_count, f.readline()
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>current_file = open(input_file)
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>print "First let's print the while file:\n"
-</span><span class='line'>
 </span><span class='line'>print_all(current_file)
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>print "Now let's rewind, kind of like a tape."
-</span><span class='line'>
 </span><span class='line'>rewind(current_file)
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>print "Let's print three lines:"
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>current_line = 1
-</span><span class='line'>
 </span><span class='line'>print_a_line(current_line, current_file)
-</span><span class='line'>
 </span><span class='line'>print "current_pos:%d" % current_file.tell()
-</span><span class='line'>
 </span><span class='line'>rewind(current_file)
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>current_line += 1
-</span><span class='line'>
 </span><span class='line'>print_a_line(current_line, current_file)
-</span><span class='line'>
 </span><span class='line'>print "current_pos:%d" % current_file.tell()
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>current_line += 1
-</span><span class='line'>
 </span><span class='line'>print_a_line(current_line, current_file)
-</span><span class='line'>
 </span><span class='line'>print "current_pos:%d" % current_file.tell()</span></code></pre></td></tr></table></div></figure>
 
 
@@ -375,33 +307,15 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold@tianzhenmatoMacBook-Pro Music<span class="nv">$ </span>cuebreakpoints 手嶌葵<span class="se">\(</span>Teshima.Aoi<span class="se">\)</span>.-.<span class="se">\[</span>The.Rose～I.Love.Cinemas～<span class="se">\]</span>.专辑.<span class="se">\(</span>FLAC<span class="se">\)</span>.cue <span class="p">|</span> shnsplit -o flac 手嶌葵<span class="se">\(</span>Teshima.Aoi<span class="se">\)</span>.-.<span class="se">\[</span>The.Rose～I.Love.Cinemas～<span class="se">\]</span>.专辑.<span class="se">\(</span>FLAC<span class="se">\)</span>.flac
-</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track01.flac<span class="o">]</span> <span class="o">(</span>3:56.27<span class="o">)</span> : 100% OK
-</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track02.flac<span class="o">]</span> <span class="o">(</span>3:21.71<span class="o">)</span> : 100% OK
-</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track03.flac<span class="o">]</span> <span class="o">(</span>5:36.65<span class="o">)</span> : 100% OK
-</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track04.flac<span class="o">]</span> <span class="o">(</span>2:56.00<span class="o">)</span> : 100% OK
-</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track05.flac<span class="o">]</span> <span class="o">(</span>2:57.12<span class="o">)</span> : 100% OK
-</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track06.flac<span class="o">]</span> <span class="o">(</span>4:31.59<span class="o">)</span> : 100% OK
-</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track07.flac<span class="o">]</span> <span class="o">(</span>4:03.01<span class="o">)</span> : 100% OK
-</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track08.flac<span class="o">]</span> <span class="o">(</span>3:14.16<span class="o">)</span> : 100% OK
-</span><span class='line'>
 </span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track09.flac<span class="o">]</span> <span class="o">(</span>3:34.67<span class="o">)</span> : 100% OK
 </span></code></pre></td></tr></table></div></figure>
 
@@ -698,33 +612,15 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>#!/usr/bin/python
-</span><span class='line'>
 </span><span class='line'># Filename: lambda.py
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def make_repeater(n):
-</span><span class='line'>
 </span><span class='line'>   return lambda s: s*n
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>twice = make_repeater(2)
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>print twice('word')
-</span><span class='line'>
 </span><span class='line'>print twice(5)</span></code></pre></td></tr></table></div></figure>
 
 

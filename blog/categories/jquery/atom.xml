@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jquery | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/jquery/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T23:49:29+08:00</updated>
+  <updated>2014-12-20T23:53:58+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -30,24 +30,16 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>var options = {&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;pre>&lt;code>data:1,
-</span><span class='line'>
 </span><span class='line'>data2:2
 </span><span class='line'>&lt;/code>&lt;/pre>
 </span><span class='line'>
 </span><span class='line'>&lt;p>};&lt;/p>
 </span><span class='line'>
-</span><span class='line'>&lt;p>console.log($.extend(options, {data3:3}));&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>console.log(options);&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>&lt;p>console.log($.extend(options, {data3:3}));
+</span><span class='line'>console.log(options);</span></code></pre></td></tr></table></div></figure>
 这样的结果就是在extend之后optons已经被加入了data3这个key-value，因为默认extend使用的是deep copy，你可以<code>$.extend(false, options, {data3:3})</code>，这样就能够得到暂时的并且扩展了的options。</p>
 ]]></content>
   </entry>

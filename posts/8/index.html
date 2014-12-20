@@ -230,15 +230,9 @@ var less={env: "development"}; 这样就让less成为development环境了。 &he
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>vi /etc/rsyslog.d/50-default.conf
-</span><span class='line'>
 </span><span class='line'>解除cron的注释
-</span><span class='line'>
 </span><span class='line'>service rsyslog restart
-</span><span class='line'>
 </span><span class='line'>service cron restart</span></code></pre></td></tr></table></div></figure>
 
 
@@ -393,49 +387,27 @@ var less={env: "development"}; 这样就让less成为development环境了。 &he
 <p>依然补充几个单词：</p>
 
 <pre><code>contradictory:          矛盾的
-
 marauding:              恶意的
-
 harness:                管理，控制
-
 enhacing:               增强
-
 constantly:             不断地
-
 discrete:               不连续的
-
 entire:                 全部的
-
 representation:         陈述
-
 nightmare:              噩梦
-
 authoritative:          权威性的
-
 inadvertent:            不注意的
-
 imposed:                强制的
-
 honoring:               尊敬
-
 ingenuity:              精巧
-
 metadata:               元数据
-
 one-time:               一次的
-
 inevitably:             不可避免地
-
 defer:                  推迟
-
 reveal:                 显示
-
 illustrate:             说明
-
 violate:                违犯
-
 insidious:              暗中危害的
-
 foster:                 培养
 </code></pre>
 
@@ -552,21 +524,11 @@ foster:                 培养
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if</span> grep pattern myfile &gt; /dev/null
-</span><span class='line'>
 </span><span class='line'><span class="k">then</span>
-</span><span class='line'>
 </span><span class='line'>…
-</span><span class='line'>
 </span><span class='line'><span class="k">else</span>
-</span><span class='line'>
 </span><span class='line'>…
-</span><span class='line'>
 </span><span class='line'><span class="k">fi</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -581,21 +543,11 @@ foster:                 培养
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">printf</span> <span class="s2">&quot;Enter password: &quot;</span>
-</span><span class='line'>
 </span><span class='line'>stty -echo <span class="c">#关闭自动回显输入的字符功能</span>
-</span><span class='line'>
 </span><span class='line'><span class="nb">read </span>pass &lt; /dev/tty
-</span><span class='line'>
 </span><span class='line'><span class="nb">printf</span> <span class="s2">&quot;Enter Again: &quot;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nb">read </span>pass2 &lt; /dev/tty
-</span><span class='line'>
 </span><span class='line'>stty <span class="nb">echo</span> <span class="c">#打开自动回显输入的字符功能</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -646,11 +598,8 @@ foster:                 培养
 <p>shell脚本的第一行一般写明这个脚本使用哪种脚本解释器运行，以&#8221;#!&ldquo;开头，后面加脚本解释器的名字和相应参数，如果不需要什么参数就写上“-”，这是出于安全考虑，可以避免某种程度上的欺骗式攻击（spoofing attack）。</p>
 
 <pre><code>选项：命令后面用一个“-”开头书写的内容，如：ls -l，那么“-l”就是选项。
-
 参数：有的选项需要传入参数，那么就要紧跟着那个需要参数的“选项”，如：cc -o exp exp.c
-
 没参数的选项合并，例如：ls -al = ls -a -l，书写非常方便吧。
-
 分号分隔开几条命令，会逐一执行；如果用“&amp;”的话，就会让命令进入后台执行，可以立刻相应你的下一条命令。
 </code></pre>
 
@@ -661,9 +610,7 @@ foster:                 培养
 <p>变量赋值这里还有些东西值得说一下：</p>
 
 <pre><code>可以一行多次赋值，比如，first=1 second=2 third=3
-
 如果有空格就加双引号: var="1 2 3"，这看起来像string
-
 还可以这样，var="$first $second $third"，最后var的值里面会包含first、second、third的值，这点就不太像string了，需要注意！！！
 </code></pre>
 

@@ -142,15 +142,9 @@ db().execute('SELECT * FROM xxx WHERE id = %(id)s', id=get_id()) 今天细看Goo
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>def sort_last(tuples):
-</span><span class='line'>
 </span><span class='line'> # +++your code here+++
-</span><span class='line'>
 </span><span class='line'> tuples.sort(key = lambda t: t[-1])
-</span><span class='line'>
 </span><span class='line'> return tuples</span></code></pre></td></tr></table></div></figure>
 
 
@@ -265,57 +259,23 @@ db().execute('SELECT * FROM xxx WHERE id = %(id)s', id=get_id()) 今天细看Goo
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
 </pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot;</span>
-</span><span class='line'>
 </span><span class='line'><span class="cp">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;dict&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;string&gt;</span>noatime<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;array&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;string&gt;</span>mount<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;string&gt;</span>-vuwo<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;string&gt;</span>noatime<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;string&gt;</span>/<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;/array&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;key&gt;</span>RunAtLoad<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;true/&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;/dict&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;/plist&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -599,33 +559,15 @@ db().execute('SELECT * FROM xxx WHERE id = %(id)s', id=get_id()) 今天细看Goo
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
 </pre></td><td class='code'><pre><code class='html'><span class='line'>......
-</span><span class='line'>
 </span><span class='line'>{# set total_price = 0 #}
-</span><span class='line'>
 </span><span class='line'>{# for item in order.items #}
-</span><span class='line'>
 </span><span class='line'>{# total_price = item.meal.price * item.quantity #}
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;p</span> <span class="na">class =</span><span class="err"> </span><span class="s">&quot;order_list_item&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>{# endfor #}
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;/td&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;td&gt;&lt;/td&gt;</span>
-</span><span class='line'>
 </span><span class='line'>......
 </span></code></pre></td></tr></table></div></figure>
 
@@ -642,33 +584,15 @@ db().execute('SELECT * FROM xxx WHERE id = %(id)s', id=get_id()) 今天细看Goo
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
 </pre></td><td class='code'><pre><code class='html'><span class='line'>......
-</span><span class='line'>
 </span><span class='line'>{# set prices = [] #}
-</span><span class='line'>
 </span><span class='line'>{# for item in order.items #}
-</span><span class='line'>
 </span><span class='line'>{# do prices.append(item.meal.price * item.quantity) #}
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;p</span> <span class="na">class =</span><span class="err"> </span><span class="s">&quot;order_list_item&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>{# endfor #}
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;/td&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;td&gt;&lt;/td&gt;</span>
-</span><span class='line'>
 </span><span class='line'>......
 </span></code></pre></td></tr></table></div></figure>
 
@@ -771,21 +695,11 @@ db().execute('SELECT * FROM xxx WHERE id = %(id)s', id=get_id()) 今天细看Goo
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>form = xxxForm(request.form)
-</span><span class='line'>
 </span><span class='line'>f = request.files["image"]
-</span><span class='line'>
 </span><span class='line'>if len(f.filename) == 0:
-</span><span class='line'>
 </span><span class='line'> form.image.errors = ValidationError(u"need a pic file!!!")
-</span><span class='line'>
 </span><span class='line'> return render_template("xxx", form = form)
-</span><span class='line'>
 </span><span class='line'>......</span></code></pre></td></tr></table></div></figure>
 
 

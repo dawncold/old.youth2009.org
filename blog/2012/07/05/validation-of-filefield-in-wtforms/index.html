@@ -87,21 +87,11 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>form = xxxForm(request.form)
-</span><span class='line'>
 </span><span class='line'>f = request.files["image"]
-</span><span class='line'>
 </span><span class='line'>if len(f.filename) == 0:
-</span><span class='line'>
 </span><span class='line'> form.image.errors = ValidationError(u"need a pic file!!!")
-</span><span class='line'>
 </span><span class='line'> return render_template("xxx", form = form)
-</span><span class='line'>
 </span><span class='line'>......</span></code></pre></td></tr></table></div></figure>
 
 

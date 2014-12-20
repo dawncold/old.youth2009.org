@@ -89,15 +89,11 @@
 
 <p>lsattr/chattr is available on ext2/ext3 filesystem, add ‘+i’ attribute can lock one file, no edit or delete, even you are root, ‘+a’ attribute can let a file only accept append content, etc.</p>
 
-<p>SUID, SGID, SBIT special permission:</p>
-
-<p>there is a ’s’ on x position of user part, like ‘rws- &ndash; &ndash; &ndash; &ndash; -‘. SUID can only set to binary program, if user has x permission of this binary, it can temporarily get the owner permission of this binary, e.g binary ‘passwd’ and /etc/shadow file, shadow only can be updated by root, but every user can change their password via ‘passwd’, it means the user temporarily get owner(root) permission by SUID special permission.</p>
-
-<p>SGID similar as SUID, there will be a ’s’ on x position of group part like ‘rwx- &ndash; s &ndash; &ndash; x’. if a user can execute binary, he will temporarily get owner permission, e.g binary ‘locate’ and file ‘mlocate.db’. SGID can be set on a directory, it means if a user have r and x permission of one directory, and ’s’ set on this directory, this user can create a file which owner group is this directory’s.</p>
-
-<p>SBIT(Sticky BIT) only set to directory, if a directory has this permission, a user who can create file or directory on this directory, the new file or new directory can only delete by root or himself, e.g /tmp directory, root can delete your new file, and you can also delete it, but others can not.</p>
-
-<p>SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SBIT, if omit, this bit is zero, if you set a invalid SUID/SGID/SBIT, there will be upper case S/T, lower case is valid.</p>
+<p>SUID, SGID, SBIT special permission:
+there is a ’s’ on x position of user part, like ‘rws- &ndash; &ndash; &ndash; &ndash; -‘. SUID can only set to binary program, if user has x permission of this binary, it can temporarily get the owner permission of this binary, e.g binary ‘passwd’ and /etc/shadow file, shadow only can be updated by root, but every user can change their password via ‘passwd’, it means the user temporarily get owner(root) permission by SUID special permission.
+SGID similar as SUID, there will be a ’s’ on x position of group part like ‘rwx- &ndash; s &ndash; &ndash; x’. if a user can execute binary, he will temporarily get owner permission, e.g binary ‘locate’ and file ‘mlocate.db’. SGID can be set on a directory, it means if a user have r and x permission of one directory, and ’s’ set on this directory, this user can create a file which owner group is this directory’s.
+SBIT(Sticky BIT) only set to directory, if a directory has this permission, a user who can create file or directory on this directory, the new file or new directory can only delete by root or himself, e.g /tmp directory, root can delete your new file, and you can also delete it, but others can not.
+SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SBIT, if omit, this bit is zero, if you set a invalid SUID/SGID/SBIT, there will be upper case S/T, lower case is valid.</p>
 
 <p>find / -size 1M -exec ls -l {} \;     {} means the args from find, “\;” means the end of “exec”, commands in exec can not use alias.</p>
 </div>

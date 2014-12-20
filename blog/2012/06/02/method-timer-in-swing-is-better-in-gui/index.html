@@ -23,8 +23,7 @@
 14
 15
 16
-17
-18 &hellip;">
+17 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -115,54 +114,22 @@
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.awt.Toolkit</span><span class="o">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="o">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TimePrint</span> <span class="kd">implements</span> <span class="n">ActionListener</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">{</span>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>   <span class="nd">@Override</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="o">{</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="c1">// TODO Auto-generated method stub</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;date is: &quot;</span> <span class="o">+</span> <span class="o">(</span><span class="k">new</span> <span class="nf">Date</span><span class="o">()));</span>
-</span><span class='line'>
 </span><span class='line'>       <span class="n">Toolkit</span><span class="o">.</span><span class="na">getDefaultToolkit</span><span class="o">().</span><span class="na">beep</span><span class="o">();</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="o">}</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -187,51 +154,21 @@
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>import java.awt.event.ActionListener<span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>import javax.swing.Timer<span class="p">;</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>public class TimerPrintTest
-</span><span class='line'>
 </span><span class='line'><span class="o">{</span>
-</span><span class='line'>
 </span><span class='line'>   public static void main<span class="o">(</span>String<span class="o">[]</span> argStrings<span class="o">)</span> throws InterruptedException
-</span><span class='line'>
 </span><span class='line'>   <span class="o">{</span>
-</span><span class='line'>
 </span><span class='line'>       System.out.println<span class="o">(</span><span class="s2">&quot;Running...&quot;</span><span class="o">)</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>       ActionListener <span class="nv">listener</span> <span class="o">=</span> new TimePrint<span class="o">()</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>       Timer <span class="nv">timer</span> <span class="o">=</span> new Timer<span class="o">(</span>1000, listener<span class="o">)</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>       timer.start<span class="o">()</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>       Thread.sleep<span class="o">(</span>4000<span class="o">)</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'>   <span class="o">}</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 

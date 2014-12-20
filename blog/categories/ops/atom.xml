@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ops | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/ops/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T23:49:29+08:00</updated>
+  <updated>2014-12-20T23:53:58+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -216,11 +216,6 @@
 <span class='line-number'>190</span>
 <span class='line-number'>191</span>
 <span class='line-number'>192</span>
-<span class='line-number'>193</span>
-<span class='line-number'>194</span>
-<span class='line-number'>195</span>
-<span class='line-number'>196</span>
-<span class='line-number'>197</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;h1>$OpenBSD: sshd_config,v 1.77 2008/02/08 23:24:07 djm Exp $&lt;/h1>
@@ -283,9 +278,8 @@
 </span><span class='line'>
 </span><span class='line'>&lt;h1>LoginGraceTime 2m&lt;/h1>
 </span><span class='line'>
-</span><span class='line'>&lt;p>PermitRootLogin no&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>StrictModes yes&lt;/p>
+</span><span class='line'>&lt;p>PermitRootLogin no
+</span><span class='line'>StrictModes yes&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;h1>MaxAuthTries 6&lt;/h1>
 </span><span class='line'>
@@ -315,9 +309,8 @@
 </span><span class='line'>
 </span><span class='line'>&lt;h1>To disable tunneled clear text passwords, change to no here!&lt;/h1>
 </span><span class='line'>
-</span><span class='line'>&lt;p>PasswordAuthentication no&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>PermitEmptyPasswords no&lt;/p>
+</span><span class='line'>&lt;p>PasswordAuthentication no
+</span><span class='line'>PermitEmptyPasswords no&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;h1>Change to no to disable s/key passwords&lt;/h1>
 </span><span class='line'>
@@ -383,9 +376,8 @@
 </span><span class='line'>
 </span><span class='line'>&lt;h1>Compression delayed&lt;/h1>
 </span><span class='line'>
-</span><span class='line'>&lt;p>ClientAliveInterval 600&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>ClientAliveCountMax 0&lt;/p>
+</span><span class='line'>&lt;p>ClientAliveInterval 600
+</span><span class='line'>ClientAliveCountMax 0&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;h1>UseDNS yes&lt;/h1>
 </span><span class='line'>
@@ -415,18 +407,12 @@
 </span><span class='line'>
 </span><span class='line'>&lt;h1>ForceCommand cvs server&lt;/h1>
 </span><span class='line'>
-</span><span class='line'>&lt;p>AllowGroups rmt_acc&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+</span><span class='line'>&lt;p>AllowGroups rmt_acc</span></code></pre></td></tr></table></div></figure></p>
 
 <h1>install sudo for AIX</h1>
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rpm -i sudo-for-aix.rpm&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rpm -i sudo-for-aix.rpm</span></code></pre></td></tr></table></div></figure></p>
 
 <h1>stop telnet/login/ftp/shell/exec service:</h1>
 
@@ -435,11 +421,7 @@
 <p>comment the line starts with &lsquo;telnet&rsquo;/&lsquo;login&rsquo;/&lsquo;ftp&rsquo;/&lsquo;shell&rsquo;/&lsquo;exec&rsquo; in /etc/inetd.conf</p>
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>stopsrc -t telnet&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+</pre></td><td class='code'><pre><code class=''><span class='line'>stopsrc -t telnet</span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   

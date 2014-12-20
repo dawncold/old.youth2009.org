@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sql | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/sql/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T23:49:29+08:00</updated>
+  <updated>2014-12-20T23:53:58+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -80,66 +80,23 @@
 <span class='line-number'>56</span>
 <span class='line-number'>57</span>
 <span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;h1>! /usr/bin/env python&lt;/h1>
 </span><span class='line'>
 </span><span class='line'>&lt;h1>coding: utf-8&lt;/h1>
 </span><span class='line'>
-</span><span class='line'>&lt;p>import sqlite3&lt;/p>
+</span><span class='line'>&lt;p>import sqlite3
+</span><span class='line'>import os
+</span><span class='line'>import time
+</span><span class='line'>import random&lt;/p>
 </span><span class='line'>
-</span><span class='line'>&lt;p>import os&lt;/p>
+</span><span class='line'>&lt;p>def connect():
+</span><span class='line'>return sqlite3.connect(&lsquo;./test.db&rsquo;)&lt;/p>
 </span><span class='line'>
-</span><span class='line'>&lt;p>import time&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>import random&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>def connect():&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>return sqlite3.connect(&lsquo;./test.db&rsquo;)&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>def insertProgress(conn, user_id):&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>cur = conn.execute(&lsquo;INSERT INTO todo(title, date) VALUES(?,?)&rsquo;, [&lsquo;just test!!!&rsquo;, time.strftime(&ldquo;%Y-%m-%d %H:%M:%S&rdquo;, time.localtime())])&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>conn.execute(&lsquo;INSERT INTO todo_meta(todo_id, user_id) VALUES(?,?)&rsquo;, [cur.lastrowid, user_id])&lt;/p>
+</span><span class='line'>&lt;p>def insertProgress(conn, user_id):
+</span><span class='line'>cur = conn.execute(&lsquo;INSERT INTO todo(title, date) VALUES(?,?)&rsquo;, [&lsquo;just test!!!&rsquo;, time.strftime(&ldquo;%Y-%m-%d %H:%M:%S&rdquo;, time.localtime())])
+</span><span class='line'>conn.execute(&lsquo;INSERT INTO todo_meta(todo_id, user_id) VALUES(?,?)&rsquo;, [cur.lastrowid, user_id])&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>def insertManyData(conn):&lt;/p>
 </span><span class='line'>
@@ -147,71 +104,40 @@
 </span><span class='line'>
 </span><span class='line'>&lt;p>os.system(&lsquo;sqlite3 test.db &lt; schema.sql&rsquo;)&lt;/p>
 </span><span class='line'>
-</span><span class='line'>&lt;p>conn.cursor()&lt;/p>
+</span><span class='line'>&lt;p>conn.cursor()
+</span><span class='line'>counts = [0,0,0,0,0,0]
+</span><span class='line'>for i in xrange(100000):
+</span><span class='line'>userid = random.choice([0, 1, 2, 3, 4, 5])
+</span><span class='line'>counts[userid] += 1
+</span><span class='line'>insertProgress(conn, userid)
+</span><span class='line'>conn.commit()
+</span><span class='line'>conn.close()
+</span><span class='line'>print counts&lt;/p>
 </span><span class='line'>
-</span><span class='line'>&lt;p>counts = [0,0,0,0,0,0]&lt;/p>
+</span><span class='line'>&lt;p>def selectUsingLeftOuterJoin(conn, user_id):
+</span><span class='line'>conn.cursor()
+</span><span class='line'>cur = conn.execute(&lsquo;SELECT t.title, t.date \
+</span><span class='line'>FROM todo t LEFT OUTER JOIN todo_meta tm \
+</span><span class='line'>ON tm.todo_id = t.id\WHERE tm.user_id = ?&rsquo;, [user_id])
+</span><span class='line'>def selectTwoTimes(conn, user_id):
+</span><span class='line'>conn.cursor()
+</span><span class='line'>cur = conn.execute(&lsquo;SELECT todo_id FROM todo_meta WHERE user_id = ?&rsquo;, [user_id])
+</span><span class='line'>for tid in [row[0] for row in cur.fetchall()]:
+</span><span class='line'>cur = conn.execute(&lsquo;SELECT title, date FROM todo WHERE id = ?&rsquo;, [tid])&lt;/p>
 </span><span class='line'>
-</span><span class='line'>&lt;p>for i in xrange(100000):&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>userid = random.choice([0, 1, 2, 3, 4, 5])&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>counts[userid] += 1&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>insertProgress(conn, userid)&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>conn.commit()&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>conn.close()&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>print counts&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>def selectUsingLeftOuterJoin(conn, user_id):&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>conn.cursor()&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>cur = conn.execute(&lsquo;SELECT t.title, t.date \&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>FROM todo t LEFT OUTER JOIN todo_meta tm \&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>ON tm.todo_id = t.id\WHERE tm.user_id = ?&lsquo;, [user_id])&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>def selectTwoTimes(conn, user_id):&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>conn.cursor()&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>cur = conn.execute(&lsquo;SELECT todo_id FROM todo_meta WHERE user_id = ?&rsquo;, [user_id])&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>for tid in [row[0] for row in cur.fetchall()]:&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>cur = conn.execute(&lsquo;SELECT title, date FROM todo WHERE id = ?&rsquo;, [tid])&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>if &lt;strong>name&lt;/strong> == &ldquo;&lt;strong>main&lt;/strong>&rdquo;:&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>uids = [0, 1, 2, 3, 4, 5]&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>insert_time_start = time.time()&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>insertManyData(connect())&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>print &ldquo;Insert Time: %f&rdquo; % (time.time() &ndash; insert_time_start)&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>select_ULOJ_start = time.time()&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>for uid in uids:&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>selectUsingLeftOuterJoin(connect(), uid)&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>print &ldquo;Select Using Left Outer Join time: %f&rdquo; % (time.time() &ndash; select_ULOJ_start)&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>select_two_times = time.time()&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>for uid in uids:&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>selectTwoTimes(connect(), uid)&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>print &ldquo;Select Two Times time: %f&rdquo; % (time.time() &ndash; select_two_times)&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+</span><span class='line'>&lt;p>if &lt;strong>name&lt;/strong> == &ldquo;&lt;strong>main&lt;/strong>&rdquo;:
+</span><span class='line'>uids = [0, 1, 2, 3, 4, 5]
+</span><span class='line'>insert_time_start = time.time()
+</span><span class='line'>insertManyData(connect())
+</span><span class='line'>print &ldquo;Insert Time: %f&rdquo; % (time.time() &ndash; insert_time_start)
+</span><span class='line'>select_ULOJ_start = time.time()
+</span><span class='line'>for uid in uids:
+</span><span class='line'>selectUsingLeftOuterJoin(connect(), uid)
+</span><span class='line'>print &ldquo;Select Using Left Outer Join time: %f&rdquo; % (time.time() &ndash; select_ULOJ_start)
+</span><span class='line'>select_two_times = time.time()
+</span><span class='line'>for uid in uids:
+</span><span class='line'>selectTwoTimes(connect(), uid)
+</span><span class='line'>print &ldquo;Select Two Times time: %f&rdquo; % (time.time() &ndash; select_two_times)</span></code></pre></td></tr></table></div></figure></p>
 
 <p>schema：</p>
 
@@ -236,71 +162,27 @@
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">todo</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="k">user</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">todo_meta</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">create</span> <span class="k">table</span> <span class="n">todo</span> <span class="p">(</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">id</span> <span class="nb">integer</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">autoincrement</span><span class="p">,</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">title</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="nb">date</span> <span class="n">datetime</span> <span class="k">not</span> <span class="k">null</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">create</span> <span class="k">table</span> <span class="k">user</span> <span class="p">(</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">id</span> <span class="nb">integer</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">autoincrement</span><span class="p">,</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">email</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">password</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">nickname</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">salt</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">create</span> <span class="k">table</span> <span class="n">todo_meta</span> <span class="p">(</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">todo_id</span> <span class="nb">integer</span><span class="p">,</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">user_id</span> <span class="nb">integer</span><span class="p">,</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">todo_id</span><span class="p">)</span> <span class="k">references</span> <span class="n">todo</span><span class="p">(</span><span class="n">id</span><span class="p">),</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span> <span class="k">references</span> <span class="k">user</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">todo</span><span class="p">;</span>
+</span><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="k">user</span><span class="p">;</span>
+</span><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">todo_meta</span><span class="p">;</span>
+</span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="n">todo</span> <span class="p">(</span>
+</span><span class='line'><span class="n">id</span> <span class="nb">integer</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">autoincrement</span><span class="p">,</span>
+</span><span class='line'><span class="n">title</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="nb">date</span> <span class="n">datetime</span> <span class="k">not</span> <span class="k">null</span>
+</span><span class='line'><span class="p">);</span>
+</span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="k">user</span> <span class="p">(</span>
+</span><span class='line'><span class="n">id</span> <span class="nb">integer</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">autoincrement</span><span class="p">,</span>
+</span><span class='line'><span class="n">email</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="n">password</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="n">nickname</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="n">salt</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span>
+</span><span class='line'><span class="p">);</span>
+</span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="n">todo_meta</span> <span class="p">(</span>
+</span><span class='line'><span class="n">todo_id</span> <span class="nb">integer</span><span class="p">,</span>
+</span><span class='line'><span class="n">user_id</span> <span class="nb">integer</span><span class="p">,</span>
+</span><span class='line'><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">todo_id</span><span class="p">)</span> <span class="k">references</span> <span class="n">todo</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+</span><span class='line'><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span> <span class="k">references</span> <span class="k">user</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span class='line'><span class="p">);</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
 <p>启动脚本就会创建数据库并开始测试。</p>

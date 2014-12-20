@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/blog/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T23:49:29+08:00</updated>
+  <updated>2014-12-20T23:53:58+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -36,11 +36,7 @@
 <p>于是开始怀疑网页编码，改成了：</p>
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;meta</span> <span class="na">content=</span><span class="s">&quot;text/html;charset = utf-8&quot;</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span><span class="nt">&gt;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;meta</span> <span class="na">content=</span><span class="s">&quot;text/html;charset = utf-8&quot;</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span><span class="nt">&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 （第一次我写成了mate！！！）这下已经正常了！</p>
 

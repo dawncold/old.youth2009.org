@@ -100,9 +100,7 @@ mysqladmin -u root password &quot;mysqlpassword&quot; 很明显引号内的是ro
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">UPDATE</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span> <span class="k">SET</span> <span class="n">Password</span><span class="o">=</span><span class="n">PASSWORD</span><span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">)</span> <span class="k">WHERE</span> <span class="k">User</span><span class="o">=</span><span class="s1">&#39;...&#39;</span> <span class="k">AND</span> <span class="k">Host</span><span class="o">=</span> <span class="s1">&#39;...&#39;</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">FLUSH</span> <span class="k">PRIVILEGES</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
 

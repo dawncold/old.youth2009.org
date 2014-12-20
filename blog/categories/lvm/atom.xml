@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lvm | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/lvm/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T23:49:29+08:00</updated>
+  <updated>2014-12-20T23:53:58+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -24,44 +24,25 @@
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>fdisk /dev/sda&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;fdisk /dev/sdb&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>fdisk /dev/sda
+</span><span class='line'>fdisk /dev/sdb
 </span></code></pre></td></tr></table></div></figure></p>
 
 <p>1.创建PV</p>
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pvcreate /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pvcreate /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
 <p>2.创建VG</p>
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vgcreate -s 16M vg0 /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vgcreate -s 16M vg0 /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
-<p>3.创建LV</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m <span class="m">1</span> -lxxxx <span class="p">&amp;</span>mdash<span class="p">;</span>corelog&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+<p>3.创建LV
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m <span class="m">1</span> -lxxxx <span class="p">&amp;</span>mdash<span class="p">;</span>corelog
 </span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>

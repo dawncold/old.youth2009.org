@@ -99,36 +99,16 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>To use Java bindings with various Java IDEs, you might need a universal build:
-</span><span class='line'>
 </span><span class='line'> brew install subversion --universal --java
-</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; ./configure --disable-debug --prefix<span class="o">=</span>/usr/local/Cellar/subversion/1.7.5 --with-ssl --with-zlib<span class="o">=</span>/usr --with-sqlite<span class="o">=</span>/usr/local --disable-neon-version-chec
-</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; <span class="nv">make</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; make <span class="nv">install</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; make <span class="nv">javahl</span>
-</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; make install-javahl
-</span><span class='line'>
 </span><span class='line'><span class="o">==</span>&gt; Caveats
-</span><span class='line'>
 </span><span class='line'>You may need to link the Java bindings into the Java Extensions folder:
-</span><span class='line'>
 </span><span class='line'> sudo mkdir -p /Library/Java/Extensions
-</span><span class='line'>
 </span><span class='line'> sudo ln -s /usr/local/lib/libsvnjavahl-1.dylib /Library/Java/Extensions/libsvnjavahl-1.dylib
 </span></code></pre></td></tr></table></div></figure>
 

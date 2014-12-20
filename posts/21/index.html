@@ -107,60 +107,24 @@
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>#! /usr/bin/python
-</span><span class='line'>
 </span><span class='line'># -*- coding:utf-8 -*-
-</span><span class='line'>
 </span><span class='line'># Filename : pickling.py
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>import cPickle as p
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>shoplistfile = 'shoplist.dat'
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>shoplist = ['apple mac book pro','iphone4']
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>f = file(shoplistfile,'w')
-</span><span class='line'>
 </span><span class='line'>p.dump(shoplist, f)
-</span><span class='line'>
 </span><span class='line'>f.close()
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>print 'ok,we can read the data from '+shoplistfile+':'
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>f = file(shoplistfile)
-</span><span class='line'>
 </span><span class='line'>from_file = p.load(f)
-</span><span class='line'>
 </span><span class='line'>print from_file</span></code></pre></td></tr></table></div></figure>
 
 
@@ -235,87 +199,33 @@
 <span class='line-number'>26</span>
 <span class='line-number'>27</span>
 <span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>#! /usr/bin/python
-</span><span class='line'>
 </span><span class='line'># -*- coding:utf-8 -*-
-</span><span class='line'>
 </span><span class='line'># Filename : inherit.py
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>class Person:
-</span><span class='line'>
 </span><span class='line'>   def __init__(self,name,age):
-</span><span class='line'>
 </span><span class='line'>       self.name = name
-</span><span class='line'>
 </span><span class='line'>       self.age = age
-</span><span class='line'>
 </span><span class='line'>       print "init for %s" % self.name
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>   def tell(self):
-</span><span class='line'>
 </span><span class='line'>       print "name:%s age:%d" % (self.name,self.age)
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>class Teacher(Person):
-</span><span class='line'>
 </span><span class='line'>   def __init__(self,name,age,salary):
-</span><span class='line'>
 </span><span class='line'>       Person.__init__(self,name,age)
-</span><span class='line'>
 </span><span class='line'>       self.salary = salary
-</span><span class='line'>
 </span><span class='line'>       print "init for teacher %s" % self.name
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>   def tell(self):
-</span><span class='line'>
 </span><span class='line'>       Person.tell(self)
-</span><span class='line'>
 </span><span class='line'>       print "salary:%d" % self.salary
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>p = Person('tianzhen',20)
-</span><span class='line'>
 </span><span class='line'>p.tell()
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>tea_p = Teacher('zhenzhen',20,1010000000)
-</span><span class='line'>
 </span><span class='line'>tea_p.tell()</span></code></pre></td></tr></table></div></figure>
 
 
@@ -366,9 +276,8 @@
 
 <p>在创建一个GAE项目后，需要填写GAE的location，在Mac系统下，装了Google提供的SDK For Mac就找不到GAE的相关文件了，因为都在那个app包中，只是在/usr/local/bin中有几个相关的py文件，在/usr/local/中有个链接，链接到app包中的一个地方，主要就是用这个链接，不过你会发现这样用之后还有点问题，插件需要找到lib目录下的django，如果你看看目录的话会发现根本没有django目录，只有另一个叫django_0_96这样的目录，于是建立一个软连接到django过去即可。</p>
 
-<p>以上方法来自国外一技术博客：</p>
-
-<p><a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac">http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac</a></p>
+<p>以上方法来自国外一技术博客：
+<a href="http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac">http://www.joelennon.ie/2011/03/25/using-pydev-for-google-app-engine-development-on-a-mac</a></p>
 
 		
 		
@@ -461,18 +370,10 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>var da = '2000-01-01 00:00:00';
-</span><span class='line'>
 </span><span class='line'>var da_array = da.split(' ');
-</span><span class='line'>
 </span><span class='line'>var da_1 = da_array[0].split('-');
-</span><span class='line'>
 </span><span class='line'>var da_2 = da_array[1].split(':');
-</span><span class='line'>
 </span><span class='line'>alert(new Date(da_1[0],da_1[1],da_1[2],da_2[0],da_2[1],da_2[2]));</span></code></pre></td></tr></table></div></figure>
 
 
@@ -724,66 +625,26 @@
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
 </pre></td><td class='code'><pre><code class='php'><span class='line'><span class="nv">$circle</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$out</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'><span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$num</span><span class="p">;</span><span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$circle</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$i</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">}</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$count</span> <span class="o">%=</span> <span class="nv">$num</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">if</span><span class="p">(</span><span class="nv">$circle</span><span class="p">[</span><span class="nv">$count</span><span class="p">]</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">if</span><span class="p">((</span><span class="nv">$n</span> <span class="o">%</span> <span class="nv">$diff</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="nv">$diff</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$circle</span><span class="p">[</span><span class="nv">$count</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$out</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">if</span><span class="p">(</span><span class="nv">$out</span> <span class="o">===</span> <span class="nv">$num</span> <span class="o">-</span> <span class="nv">$sur</span><span class="p">)</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">break</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">}</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$n</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">}</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">$count</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 

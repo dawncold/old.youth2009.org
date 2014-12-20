@@ -89,9 +89,7 @@
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>opkg update
-</span><span class='line'>
 </span><span class='line'>opkg install kmod-usb-storage block-mount kmod-fs-ext4</span></code></pre></td></tr></table></div></figure>
 
 
@@ -114,30 +112,14 @@
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>background=YES
-</span><span class='line'>
 </span><span class='line'>listen=YES
-</span><span class='line'>
 </span><span class='line'>anonymous_enable=NO
-</span><span class='line'>
 </span><span class='line'>chroot_local_user=YES
-</span><span class='line'>
 </span><span class='line'>local_enable=YES
-</span><span class='line'>
 </span><span class='line'>local_root=/mnt
-</span><span class='line'>
 </span><span class='line'>write_enable=YES
-</span><span class='line'>
 </span><span class='line'>local_umask=022
-</span><span class='line'>
 </span><span class='line'>check_shell=NO</span></code></pre></td></tr></table></div></figure>
 
 
@@ -154,24 +136,12 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>config mount
-</span><span class='line'>
 </span><span class='line'>  option target /mnt
-</span><span class='line'>
 </span><span class='line'>  option device /dev/sda1
-</span><span class='line'>
 </span><span class='line'>  option fstype ext4
-</span><span class='line'>
 </span><span class='line'>  option options rw,sync
-</span><span class='line'>
 </span><span class='line'>  option enabled 1
-</span><span class='line'>
 </span><span class='line'>  option enabled_fsck 0</span></code></pre></td></tr></table></div></figure>
 
 

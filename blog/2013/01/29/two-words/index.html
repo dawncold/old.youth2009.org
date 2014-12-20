@@ -80,10 +80,7 @@
 	<div class="entry-content"><p>看到python捕获SIGINT event的文档，上面说signal这个包里的东西的功能是set handler for asynchronous event，于是背了下这两个词——asynchronous和synchronous，简称分别是async和sync，由于这两个词比较长，我们通常都用简称，而且发音也都正好不会破坏。</p>
 
 <pre><code>asynchronous： 美 [eɪ'sɪŋkrənəs]
-
 synchronous：  美 ['sɪŋkrənəs]
-
-
 
 以上音标来自dict.cn
 </code></pre>
@@ -104,44 +101,18 @@ synchronous：  美 ['sɪŋkrənəs]
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>import signal, os
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def handler(signum, frame):
-</span><span class='line'>
 </span><span class='line'>    print 'Signal handler called with signal', signum
-</span><span class='line'>
 </span><span class='line'>    raise IOError("Couldn't open device!")
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'># Set the signal handler and a 5-second alarm
-</span><span class='line'>
 </span><span class='line'>signal.signal(signal.SIGALRM, handler)
-</span><span class='line'>
 </span><span class='line'>signal.alarm(5)
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'># This open() may hang indefinitely
-</span><span class='line'>
 </span><span class='line'>fd = os.open('/dev/ttyS0', os.O_RDWR)
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>signal.alarm(0)          # Disable the alarm</span></code></pre></td></tr></table></div></figure>
 

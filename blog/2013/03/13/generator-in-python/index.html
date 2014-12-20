@@ -13,9 +13,7 @@
 4
 5
 6
-7
-8
-9 &hellip;">
+def &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -97,21 +95,11 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>def other_firstn(n):
-</span><span class='line'>
 </span><span class='line'> num, nums = 0, []
-</span><span class='line'>
 </span><span class='line'> while num &lt; n:
-</span><span class='line'>
 </span><span class='line'>   nums.append(num)
-</span><span class='line'>
 </span><span class='line'>   num += 1
-</span><span class='line'>
 </span><span class='line'> return nums</span></code></pre></td></tr></table></div></figure>
 
 
@@ -124,18 +112,10 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>def firstn(n):
-</span><span class='line'>
 </span><span class='line'> num = 0
-</span><span class='line'>
 </span><span class='line'> while num &lt; n:
-</span><span class='line'>
 </span><span class='line'>   yield num
-</span><span class='line'>
 </span><span class='line'>   num += 1</span></code></pre></td></tr></table></div></figure>
 
 
@@ -176,102 +156,38 @@
 <span class='line-number'>31</span>
 <span class='line-number'>32</span>
 <span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'># /usr/bin/python
-</span><span class='line'>
 </span><span class='line'>#! -*- coding: utf-8 -*-
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>import time
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def firstn(n):
-</span><span class='line'>
 </span><span class='line'> num = 0
-</span><span class='line'>
 </span><span class='line'> while num &lt; n:
-</span><span class='line'>
 </span><span class='line'>   yield num
-</span><span class='line'>
 </span><span class='line'>   num += 1
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>def other_firstn(n):
-</span><span class='line'>
 </span><span class='line'> num, nums = 0, []
-</span><span class='line'>
 </span><span class='line'> while num &lt; n:
-</span><span class='line'>
 </span><span class='line'>   nums.append(num)
-</span><span class='line'>
 </span><span class='line'>   num += 1
-</span><span class='line'>
 </span><span class='line'> return nums
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def timer(func_wrap, func, *args, **kwards):
-</span><span class='line'>
 </span><span class='line'> s = time.time()
-</span><span class='line'>
 </span><span class='line'> r = func_wrap(func(*args, **kwards))
-</span><span class='line'>
 </span><span class='line'> e = time.time()
-</span><span class='line'>
 </span><span class='line'> print 'return: %s   use %f ms[s: %s, e: %s]' % (r, (e - s), s, e)
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>def main():
-</span><span class='line'>
 </span><span class='line'> timer(sum, firstn, 1000000)
-</span><span class='line'>
 </span><span class='line'> timer(sum, other_firstn, 1000000)
-</span><span class='line'>
 </span><span class='line'> 
-</span><span class='line'>
 </span><span class='line'> 
-</span><span class='line'>
 </span><span class='line'> 
-</span><span class='line'>
 </span><span class='line'>if __name__ == "__main__":
-</span><span class='line'>
 </span><span class='line'> main()</span></code></pre></td></tr></table></div></figure>
 
 
@@ -280,12 +196,8 @@
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold <span class="o">[</span>21:49:11<span class="o">]</span> ~<span class="o">=</span>&gt;<span class="nv">$ </span>python 1.py
-</span><span class='line'>
 </span><span class='line'><span class="k">return</span>: <span class="m">499999500000</span>   use 0.137414 ms<span class="o">[</span>s: 1363182552.38, e: 1363182552.52<span class="o">]</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">return</span>: <span class="m">499999500000</span>   use 0.290716 ms<span class="o">[</span>s: 1363182552.52, e: 1363182552.81<span class="o">]</span>
 </span></code></pre></td></tr></table></div></figure>
 

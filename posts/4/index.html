@@ -92,9 +92,8 @@
 
 <p>配置的话，没啥可说的，就是把显卡占用的内存改成了16Mb，默认似乎分配了128M过去，对于我这种总看命令行的人足够了。如果你和我一样买了官方的摄像头模块，那就可以把camera给enable了。再就是在adcanced options中把SSH打开，否则你还得连上键盘鼠标去操作。。。</p>
 
-<p>不喜欢插网线，但很可惜办公室的Cisco双频无线网卡AE2500装不上，貌似是驱动问题，不想折腾，还好买了个免驱的小网卡叫EOUP。我的无线路由是hidden SSID了，所以在连接的时候还有点问题。在配置文件<code>/etc/wpa_supp/wpa_supp.conf</code>中多加了一行：</p>
-
-<p><code>scan_ssid=1</code></p>
+<p>不喜欢插网线，但很可惜办公室的Cisco双频无线网卡AE2500装不上，貌似是驱动问题，不想折腾，还好买了个免驱的小网卡叫EOUP。我的无线路由是hidden SSID了，所以在连接的时候还有点问题。在配置文件<code>/etc/wpa_supp/wpa_supp.conf</code>中多加了一行：
+<code>scan_ssid=1</code></p>
 
 <p>apt的source也改到了ustc.edu.cn的：<code>http://mirrors.ustc.edu.cn/raspbian/raspbian/</code>，具体就是把<code>/etc/apt/source.list</code>中第一行的URL改成上面那个即可。</p>
 
@@ -150,8 +149,8 @@
 <p>IP is a unrealiable and connectionless delivery service.</p>
 
 <ul>
-<li><p>unrealiable: no guarantee that an IP datagram successfully get to its destination.</p></li>
-<li><p>connectionless: IP doesn&rsquo;t maintain any state of successive datagrams, it means there is no order in IP datagrams, latter sent IP datagram may arrived before former sent.</p></li>
+<li>unrealiable: no guarantee that an IP datagram successfully get to its destination.</li>
+<li>connectionless: IP doesn&rsquo;t maintain any state of successive datagrams, it means there is no order in IP datagrams, latter sent IP datagram may arrived before former sent.</li>
 </ul>
 
 
@@ -227,9 +226,9 @@
 <h3>link layer&rsquo;s usage</h3>
 
 <ol>
-<li><p>send and receive IP datagram</p></li>
-<li><p>ARP request and reply</p></li>
-<li><p>RARP request and reply</p></li>
+<li>send and receive IP datagram</li>
+<li>ARP request and reply</li>
+<li>RARP request and reply</li>
 </ol>
 
 
@@ -258,8 +257,8 @@
 <h2>PPP</h2>
 
 <ol>
-<li><p>async link with 8bits of data and no parity(no checksum)</p></li>
-<li><p>bit-oriented sync links</p></li>
+<li>async link with 8bits of data and no parity(no checksum)</li>
+<li>bit-oriented sync links</li>
 </ol>
 
 
@@ -268,11 +267,11 @@
 <p>batter than SLIP:(pay for 3 bytes addition)</p>
 
 <ol>
-<li><p>multiple protocols on a serial line</p></li>
-<li><p>CRC</p></li>
-<li><p>IP network control protocol negotiate IP address for each end</p></li>
-<li><p>header compress like CSLIP</p></li>
-<li><p>link control protocol negotiate many data-link options</p></li>
+<li>multiple protocols on a serial line</li>
+<li>CRC</li>
+<li>IP network control protocol negotiate IP address for each end</li>
+<li>header compress like CSLIP</li>
+<li>link control protocol negotiate many data-link options</li>
 </ol>
 
 
@@ -435,15 +434,9 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">MAILTO</span><span class="o">=</span><span class="s2">&quot;dawncold@me.com&quot;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nv">PATH</span><span class="o">=</span>/Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin:/Users/dawncold/.rvm/gems/ruby-1.9.3-p286@global/bin:/Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/bin:/Users/dawncold/.rvm/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin
-</span><span class='line'>
 </span><span class='line'><span class="nv">PYTHONPATH</span><span class="o">=</span>/usr/bin
-</span><span class='line'>
 </span><span class='line'>* * * * * /Users/dawncold/ping_test.py &gt; /Users/dawncold/pt
 </span></code></pre></td></tr></table></div></figure>
 
@@ -539,11 +532,8 @@
 <p>然后下载了pgAdmin作为GUI工具，结合PG的CLI一起使用比较好。使用psql登陆数据库可以用：<code>psql -h localhost -U postgres -W</code></p>
 
 <pre><code>其中
-
 -h db host
-
 -U db user
-
 -W use password
 </code></pre>
 
@@ -554,13 +544,9 @@
 <p><code>createuser -dEeP -h localhost -U postgres -W xxx</code></p>
 
 <pre><code>其中
-
 -d can create db
-
 -E encrypted user's password
-
 -e echo SQL command
-
 -P can not create role
 </code></pre>
 
@@ -569,13 +555,9 @@
 <p><code>createdb -e -E UTF8 -l zh_CN.UTF-8 -O OWNER -h localhost -U postgres -W DBNAME</code></p>
 
 <pre><code>其中
-
 -e echo SQL command
-
 -E use encoding
-
 -l set locale, included LC_COLLATE and LC_CTYPE
-
 -O db's owner
 </code></pre>
 

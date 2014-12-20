@@ -4,7 +4,7 @@
   <title><![CDATA[Category: s2sh | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/s2sh/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T23:49:29+08:00</updated>
+  <updated>2014-12-20T23:53:58+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -25,21 +25,13 @@
 <p>比如：得到的是Student实体，可以用里面的name属性。</p>
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>SELECT s FROM Student s, School sc WHERE sc.city <span class="o">=</span> <span class="p">&amp;</span>lsquo<span class="p">;</span>北京<span class="p">&amp;</span>rsquo<span class="p">;</span> AND s.school.id <span class="o">=</span> sc.id AND s.name LIKE <span class="p">&amp;</span>lsquo<span class="p">;</span>张%<span class="p">&amp;</span>rsquo<span class="p">;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>SELECT s FROM Student s, School sc WHERE sc.city <span class="o">=</span> <span class="p">&amp;</span>lsquo<span class="p">;</span>北京<span class="p">&amp;</span>rsquo<span class="p">;</span> AND s.school.id <span class="o">=</span> sc.id AND s.name LIKE <span class="p">&amp;</span>lsquo<span class="p">;</span>张%<span class="p">&amp;</span>rsquo<span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
 <p>但是：得到的就是具体的name了，再用name属性就会出现上面的错误</p>
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>SELECT s.name FROM Student s, School sc WHERE sc.city <span class="o">=</span> <span class="p">&amp;</span>lsquo<span class="p">;</span>北京<span class="p">&amp;</span>rsquo<span class="p">;</span> AND s.school.id <span class="o">=</span> sc.id AND s.name LIKE <span class="p">&amp;</span>lsquo<span class="p">;</span>张%<span class="p">&amp;</span>rsquo<span class="p">;</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>SELECT s.name FROM Student s, School sc WHERE sc.city <span class="o">=</span> <span class="p">&amp;</span>lsquo<span class="p">;</span>北京<span class="p">&amp;</span>rsquo<span class="p">;</span> AND s.school.id <span class="o">=</span> sc.id AND s.name LIKE <span class="p">&amp;</span>lsquo<span class="p">;</span>张%<span class="p">&amp;</span>rsquo<span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
 <p>这种错误很难搞的！！！</p>

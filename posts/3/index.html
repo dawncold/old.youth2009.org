@@ -98,21 +98,11 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="p">[];</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">p</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
 </span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">p</span><span class="p">))</span> <span class="p">{</span>
-</span><span class='line'>
 </span><span class='line'>      <span class="nx">keys</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
-</span><span class='line'>
 </span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -415,21 +405,17 @@
 	</h2>
 	<div class="entry-content">
 		<pre><code>32 bits Internet address
-
 |                   /|
-
 |ARP                 |RARP
-
 |/                   |
-
 48 bits Ethernet address
 </code></pre>
 
 <h1>Gratuitous ARP</h1>
 
 <ol>
-<li><p>send its own IP to verify whether someone has used this.</p></li>
-<li><p>update old MAC address in ARP cache</p></li>
+<li>send its own IP to verify whether someone has used this.</li>
+<li>update old MAC address in ARP cache</li>
 </ol>
 
 
@@ -538,24 +524,12 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>object
-</span><span class='line'>
 </span><span class='line'>             |
-</span><span class='line'>
 </span><span class='line'>             |
-</span><span class='line'>
 </span><span class='line'>         basestring
-</span><span class='line'>
 </span><span class='line'>            / \
-</span><span class='line'>
 </span><span class='line'>           /   \
-</span><span class='line'>
 </span><span class='line'>         str  unicode</span></code></pre></td></tr></table></div></figure>
 
 

@@ -122,96 +122,36 @@
 <span class='line-number'>29</span>
 <span class='line-number'>30</span>
 <span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>Benchmark Run: 三  5月 <span class="m">30</span> <span class="m">2012</span> 11:38:34 - 12:06:53
-</span><span class='line'>
 </span><span class='line'><span class="m">1</span> CPU in system<span class="p">;</span> running <span class="m">1</span> parallel copy of tests
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>Dhrystone <span class="m">2</span> using register variables       12579232.4 lps   <span class="o">(</span>10.0 s, <span class="m">7</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>Double-Precision Whetstone                     2268.2 MWIPS <span class="o">(</span>10.3 s, <span class="m">7</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>Execl Throughput                               1140.1 lps   <span class="o">(</span>29.6 s, <span class="m">2</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>File Copy <span class="m">1024</span> bufsize <span class="m">2000</span> maxblocks        270525.4 KBps  <span class="o">(</span>30.0 s, <span class="m">2</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>File Copy <span class="m">256</span> bufsize <span class="m">500</span> maxblocks           77911.8 KBps  <span class="o">(</span>30.1 s, <span class="m">2</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>File Copy <span class="m">4096</span> bufsize <span class="m">8000</span> maxblocks        709368.9 KBps  <span class="o">(</span>30.0 s, <span class="m">2</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>Pipe Throughput                              394585.6 lps   <span class="o">(</span>10.0 s, <span class="m">7</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>Pipe-based Context Switching                  40293.3 lps   <span class="o">(</span>10.0 s, <span class="m">7</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>Process Creation                               1908.7 lps   <span class="o">(</span>30.0 s, <span class="m">2</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>Shell Scripts <span class="o">(</span><span class="m">1</span> concurrent<span class="o">)</span>                   1539.5 lpm   <span class="o">(</span>60.0 s, <span class="m">2</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>Shell Scripts <span class="o">(</span><span class="m">8</span> concurrent<span class="o">)</span>                    204.1 lpm   <span class="o">(</span>60.1 s, <span class="m">2</span> samples<span class="o">)</span>
-</span><span class='line'>
 </span><span class='line'>System Call Overhead                         525047.2 lps   <span class="o">(</span>10.0 s, <span class="m">7</span> samples<span class="o">)</span>
 </span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span><span class='line'>System Benchmarks Index Values               BASELINE       RESULT    INDEX
-</span><span class='line'>
 </span><span class='line'>Dhrystone <span class="m">2</span> using register variables         116700.0   12579232.4   1077.9
-</span><span class='line'>
 </span><span class='line'>Double-Precision Whetstone                       55.0       2268.2    412.4
-</span><span class='line'>
 </span><span class='line'>Execl Throughput                                 43.0       1140.1    265.1
-</span><span class='line'>
 </span><span class='line'>File Copy <span class="m">1024</span> bufsize <span class="m">2000</span> maxblocks          3960.0     270525.4    683.1
-</span><span class='line'>
 </span><span class='line'>File Copy <span class="m">256</span> bufsize <span class="m">500</span> maxblocks            1655.0      77911.8    470.8
-</span><span class='line'>
 </span><span class='line'>File Copy <span class="m">4096</span> bufsize <span class="m">8000</span> maxblocks          5800.0     709368.9   1223.0
-</span><span class='line'>
 </span><span class='line'>Pipe Throughput                               12440.0     394585.6    317.2
-</span><span class='line'>
 </span><span class='line'>Pipe-based Context Switching                   4000.0      40293.3    100.7
-</span><span class='line'>
 </span><span class='line'>Process Creation                                126.0       1908.7    151.5
-</span><span class='line'>
 </span><span class='line'>Shell Scripts <span class="o">(</span><span class="m">1</span> concurrent<span class="o">)</span>                     42.4       1539.5    363.1
-</span><span class='line'>
 </span><span class='line'>Shell Scripts <span class="o">(</span><span class="m">8</span> concurrent<span class="o">)</span>                      6.0        204.1    340.2
-</span><span class='line'>
 </span><span class='line'>System Call Overhead                          15000.0     525047.2    350.0
-</span><span class='line'>
 </span><span class='line'>                                                                  <span class="o">========</span>
-</span><span class='line'>
 </span><span class='line'>System Benchmarks Index Score                                         382.2
 </span></code></pre></td></tr></table></div></figure>
 

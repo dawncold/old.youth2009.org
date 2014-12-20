@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vi | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/vi/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T23:49:29+08:00</updated>
+  <updated>2014-12-20T23:53:58+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -27,23 +27,11 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">set </span>number&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;set autoindent&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;syntax <span class="nb">enable</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;set <span class="nv">background</span><span class="o">=</span>dark&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;set paste&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">set </span>number
+</span><span class='line'><span class="nb">set </span>autoindent
+</span><span class='line'>syntax <span class="nb">enable</span>
+</span><span class='line'><span class="nb">set </span><span class="nv">background</span><span class="o">=</span>dark
+</span><span class='line'><span class="nb">set </span>paste
 </span></code></pre></td></tr></table></div></figure></p>
 
 <p>vim是和emace同样重量级的编辑器，如果你是一个Linux控你肯定明白那句话，vi是vim的前身（允许我这样描述吧），所以配置都是这些编辑器的看家本领，这几条简单配置仅仅是个入门，还可以根据自己的需要添加修改</p>
