@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dev | Trade Off]]></title>
   <link href="http://www.youth2009.org/www/blog/categories/dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/www/"/>
-  <updated>2014-11-22T14:24:29+08:00</updated>
+  <updated>2014-12-20T20:57:42+08:00</updated>
   <id>http://www.youth2009.org/www/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[safe characters of quote method in urllib]]></title>
+    <link href="http://www.youth2009.org/www/blog/2014/12/20/quote-in-urllib/"/>
+    <updated>2014-12-20T20:27:59+08:00</updated>
+    <id>http://www.youth2009.org/www/blog/2014/12/20/quote-in-urllib</id>
+    <content type="html"><![CDATA[<p>quote accept two arguments: a string and safe characters. If you pass empty to <code>quote</code> as the second parameter, it means every characters except preserved characters will be replaced by a % leading characters, e.g. space will be replaced by %20, etc.</p>
+
+<p>In my project, I invoke quote like <code>quote(params, '')</code>, and I have imported <code>unicode_literals</code>, so I passed a unicode parameter to <code>quote</code> method.</p>
+
+<p>What will happen?</p>
+
+<p>Next time you invoke quote with the same <code>safe</code> parameter you used before, you may get an error like <code>UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)</code>, urllib will cache the safe parameter(urllib.py 1277 line), it expects a byte type parameter but you pass an unicode one, also, that library didn&rsquo;t check or convert it before it uses.</p>
+
+<p>Best practice, pass a byte parameter like <code>b''</code> to <code>quote</code> if you have same usage(unicode literals) like me.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[developing-on-blackberry]]></title>
@@ -155,17 +172,6 @@ this example will print ‘xxx’, even nothing in list and this loop is not exe
 <p>not tcp, it’s “tcp &mdash;dport 80”</p>
 
 <p>-m matches, using a somewhat complicated &ldquo;module matching&rdquo; mechanism.  There are a bunch of pretty cool modules in iptables, for example &ldquo;recent&rdquo;.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Absolute Positioning Inside Relative Positioning]]></title>
-    <link href="http://www.youth2009.org/www/blog/2014/08/14/absolute-positioning-inside-relative-positioning/"/>
-    <updated>2014-08-14T22:00:36+08:00</updated>
-    <id>http://www.youth2009.org/www/blog/2014/08/14/absolute-positioning-inside-relative-positioning</id>
-    <content type="html"><![CDATA[<p>if you want a div with absolute position relative its parent, not body, the parent div must be relative position.</p>
-
-<p>see details <a href="http://css-tricks.com/absolute-positioning-inside-relative-positioning/">http://css-tricks.com/absolute-positioning-inside-relative-positioning/</a></p>
 ]]></content>
   </entry>
   
