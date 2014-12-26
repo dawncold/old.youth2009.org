@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="工资一发就买了块表。。。并且还狠心买了这个玩具——raspberry。 默认用了新手的那个镜像，叫NOOBS，就是里面装好了不少东西，系统也有好几个，默认用了推荐的Raspbian，是Debian的一个变种啦，开发用的Ubuntu都是一个家族的。 配置的话，没啥可说的， &hellip;">
+	<meta name="description" content="想了好久都觉得连续拍照片做监控实在是没什么效率，默认情况应该是什么都不做，如果发现有人来了才拍下来或者录下来，但用标配的摄像头录像实在是会录出非常大的文件，保存文件又是问题。在官网的博客中看到了一个用opencv做的人脸识别，可以这样干嘛。于是紧随那片文章开始干。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,55 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/08/03/opencv-with-pi/">
+		
+			Opencv-with-pi</a>
+	</h2>
+	<div class="entry-content">
+		<p>想了好久都觉得连续拍照片做监控实在是没什么效率，默认情况应该是什么都不做，如果发现有人来了才拍下来或者录下来，但用标配的摄像头录像实在是会录出非常大的文件，保存文件又是问题。在<a href="http://www.raspberrypi.org/archives/4207">官网的博客</a>中看到了一个用opencv做的人脸识别，可以这样干嘛。于是紧随那片文章开始干。</p>
+
+<p>由于标配摄像头模块不是usb设备，所以需要重新编译使用的几个程序，比如raspistill和raspivid等等。</p>
+
+<p>另外，如果直接在raspberrypi上编译，需要安装一些软件：<a href="http://thinkrpi.wordpress.com/2013/04/05/step-3-install-softwares-for-webcam-and-computer-vision/">http://thinkrpi.wordpress.com/2013/04/05/step-3-install-softwares-for-webcam-and-computer-vision/</a></p>
+
+<p>具体的操作请参照：<a href="http://thinkrpi.wordpress.com/2013/05/22/opencv-and-camera-board-csi/">http://thinkrpi.wordpress.com/2013/05/22/opencv-and-camera-board-csi/</a></p>
+
+<p>替换arm-linux.cmake的命令:<code>sed -i 's/if (DEFINED CMAKE_TOOLCHAIN_FILE)/if (NOT DEFINED CMAKE_TOOLCHAIN_FILE)/g' arm-linux.cmake</code>，看准了arm-linux.cmake的路径，我运行命令的时候已经到了和arm-linux.cmake一个目录下了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-03T17:44:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/raspberrypi/'>raspberrypi</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -631,51 +680,6 @@
 
 
 	<a class='category' href='/blog/categories/nginx/'>nginx</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/01/lazy-load-if-image-in-background/">
-		
-			Lazy-load-if-image-in-background</a>
-	</h2>
-	<div class="entry-content">
-		<p>自从发现background-position在各个浏览器下表现良好之后就在网站首页几个地方用了，可惜有个问题也出现了，只要是在background中的图一般会等到页面所有img中的图片加载完之后才会被加载，无论这个image是在html中的什么位置。在一般的网站首页可能还好，没那么多img，放在background中的image慢一点加载可能看不出异常，不过在我们网站，那个首页超多images的网站，就真的能看到差别（只要没有cache）。</p>
-
-<p>现在的做法要效仿twitter，它的首页是一张巨大背景图，是用img加载进来后css调整得像是background。</p>
-
-<p>还有个图片上传的功能需要改改，原先让编辑们把两张图拼在一起，现在我竟然要用PIL把它们再分开，为了不让他们察觉到和以前不一样，并且要让他们传两张图当然还不如让他们传一张来得简单。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-01T23:21:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/css/'>css</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>

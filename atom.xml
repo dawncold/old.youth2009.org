@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-20T23:53:58+08:00</updated>
+  <updated>2014-12-26T21:22:28+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,72 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[NotImplemented-in-python]]></title>
+    <link href="http://www.youth2009.org/blog/2014/12/26/notimplemented-in-python/"/>
+    <updated>2014-12-26T21:03:20+08:00</updated>
+    <id>http://www.youth2009.org/blog/2014/12/26/notimplemented-in-python</id>
+    <content type="html"><![CDATA[<p>It&rsquo;s best to return <code>NotImplemented</code> in magic method(e.g. <code>__eq__</code>, <code>__ne__</code>, etc), see <a href="http://shahriar.svbtle.com/python-notimplemented-type">here</a> for details.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># example.py</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;Comparing an A with an A&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;Comparing an A with a B&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+</span><span class='line'>        <span class="k">print</span><span class="p">(</span><span class="s">&#39;Could not compare A with the other class&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="bp">NotImplemented</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;Comparing a B with another B&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+</span><span class='line'>        <span class="k">print</span><span class="p">(</span><span class="s">&#39;Could not compare B with the other class&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="bp">NotImplemented</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>a</code> is instance of ClassA, and <code>b</code> is instance of ClassB, if we invoke <code>a == b</code>, we will get the result, True or False, but if we invoke <code>b == a</code>, we will also get the result! Because of we return <code>NotImplemented</code> in Class B&rsquo;s <code>__eq__</code> method, runtime could invoke Class A&rsquo;s <code>__eq__</code>, that method can compare A and B.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[safe characters of quote method in urllib]]></title>
@@ -838,23 +904,6 @@ GRANT wheel TO admin;</p>
 </span><span class='line'>sudo apt-get install python-dev  （if Python.h: No file or dir..）
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[daemon-in-nginx]]></title>
-    <link href="http://www.youth2009.org/blog/2014/01/06/daemon-in-nginx/"/>
-    <updated>2014-01-06T21:57:39+08:00</updated>
-    <id>http://www.youth2009.org/blog/2014/01/06/daemon-in-nginx</id>
-    <content type="html"><![CDATA[<p>最近要把bnly重新运行起来，前两天整理了cli版本的程序，放到<a href="GitHub">https://github.com/dawncold/bnly-cli</a>，另一个web版的放到了bitbucket上的私有仓库，准备做部署的时候用，没想到bitbucket最近没有被kill，难道放开了？</p>
-
-<p>用supervisor做进程管理的时候被nginx坑了，由于nginx的配置很强大，现在还处在搭建环境的初期，很多配置写不完整，导致了nginx总是在频繁启动，log中看到的是80端口已经被占用。。。找了半天只有nginx占着80，而且又不会开多个nginx（supervisor的配置中没有明确说开多个程序，默认一个），搜了挺长时间都没有结果。</p>
-
-<p>突然想到了daemon。</p>
-
-<p>nginx的文档建议生产环境应该off，但这个和我遇到的问题无关。默认daemon开了，supervisor运行后会认为nginx退出了，再启动一个，其实上一个已经启动成功，所以就总看到80端口被占用，于是在nginx的配置上加<code>deamon off</code>即可。</p>
-
-<p>是不是很坑？</p>
 ]]></content>
   </entry>
   

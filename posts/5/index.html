@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="以前用了nginx-upload-module，不过这个module的作者不打算继续更新了，导致nginx版本高于1.3.9就无法使用这个module来处理上传文件。本着不引入更多依赖并且使用一个比较成熟方法的前提，只有client_body_in_file_only，这是nginx &hellip;">
+	<meta name="description" content="自从发现background-position在各个浏览器下表现良好之后就在网站首页几个地方用了，可惜有个问题也出现了，只要是在background中的图一般会等到页面所有img中的图片加载完之后才会被加载，无论这个image是在html中的什么位置。在一般的网站首页可能还好，没那么多img， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,51 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/07/01/lazy-load-if-image-in-background/">
+		
+			Lazy-load-if-image-in-background</a>
+	</h2>
+	<div class="entry-content">
+		<p>自从发现background-position在各个浏览器下表现良好之后就在网站首页几个地方用了，可惜有个问题也出现了，只要是在background中的图一般会等到页面所有img中的图片加载完之后才会被加载，无论这个image是在html中的什么位置。在一般的网站首页可能还好，没那么多img，放在background中的image慢一点加载可能看不出异常，不过在我们网站，那个首页超多images的网站，就真的能看到差别（只要没有cache）。</p>
+
+<p>现在的做法要效仿twitter，它的首页是一张巨大背景图，是用img加载进来后css调整得像是background。</p>
+
+<p>还有个图片上传的功能需要改改，原先让编辑们把两张图拼在一起，现在我竟然要用PIL把它们再分开，为了不让他们察觉到和以前不一样，并且要让他们传两张图当然还不如让他们传一张来得简单。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-01T23:21:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/css/'>css</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -591,51 +636,6 @@
 
 
 	<a class='category' href='/blog/categories/gfw/'>gfw</a>, <a class='category' href='/blog/categories/vps/'>vps</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/03/18/end-sorted/">
-		
-			End-sorted</a>
-	</h2>
-	<div class="entry-content">
-		<p>暂时终止sorted的开发，经历了两天痛苦的、没白没黑的、浑浑噩噩的探索后，还是没能搞定iPhone上一个icon的移动过程。实在不行我都打算直接去修改iconstate.plist文件了。。。但就是修改了不能马上响应，需要respring这点受不了！</p>
-
-<p>网上这方面的资料依然少的可怜，很多时间竟然是花在寻找headers文件了，最后才知道根本不需要。你只要有headers拿来看看就ok了，需要什么类的声明自己用@interface写在xm文件中就可以了。tweak的远离是做出dylib后加载，替代系统的api，headers文件对于你来说就是看，然后找需要哪些私有api即可。</p>
-
-<p>过两天兴致来了或许又再搞一下。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-18T22:10:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>, <a class='category' href='/blog/categories/sortedapp/'>sortedapp</a>
 
 
 </div>
