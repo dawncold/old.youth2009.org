@@ -7,7 +7,12 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="最近要把bnly重新运行起来，前两天整理了cli版本的程序，放到https://github.com/dawncold/bnly-cli，另一个web版的放到了bitbucket上的私有仓库，准备做部署的时候用，没想到bitbucket最近没有被kill，难道放开了？ &hellip;">
+	<meta name="description" content=" 1
+2
+3
+sudo apt-get install libxml2-dev
+sudo apt-get install libxslt1-dev
+sudo apt-get install python-dev （if Python.h: No file or dir..） dev ">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +81,54 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/01/16/lxml-and-dependences/">
+		
+			Lxml-and-dependences</a>
+	</h2>
+	<div class="entry-content">
+		<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install libxml2-dev
+</span><span class='line'>sudo apt-get install libxslt1-dev
+</span><span class='line'>sudo apt-get install python-dev  （if Python.h: No file or dir..）
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-16T18:31:09+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -555,67 +608,6 @@
 </div>
 </article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/08/08/basestring-and-str-in-python2x/">
-		
-			Basestring-and-str-in-python2x</a>
-	</h2>
-	<div class="entry-content">
-		<p>今天在代码中发现原本过滤str的一个func被写成了过滤basestring，于是查了下basestring和str的区别：(在3.0之前)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>object
-</span><span class='line'>             |
-</span><span class='line'>             |
-</span><span class='line'>         basestring
-</span><span class='line'>            / \
-</span><span class='line'>           /   \
-</span><span class='line'>         str  unicode</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3.0之前python中有plain string和unicode string，前者是ascii中的那些字符，后者就是所有字符了，因为historical legacy。。。python出现的时候还木有unicode，所以很多python的lib是需要慢慢转换的，当然到了3.0就会不复存在了，全是unicode。</p>
-
-<p>这样的话就清楚了，str代表了那些ascii字符，unicode就是全部的字符，他们都继承自basestring。basestring是从python2.3开始引入的。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-08T21:39:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
 <nav id="pagenavi">
     
     
@@ -627,7 +619,7 @@
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">Copyright &copy; 2015
 
     dawncold
 

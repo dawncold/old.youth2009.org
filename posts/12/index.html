@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="本来打算针对上传的图片进行验证，不过发现在form中加入enctype属性之后原本针对FileField的验证就不管用了，field.data始终是None，但是去掉enctype属性就ok，不过去掉之后不能上传文件了，所以最终只好去掉验证，在request中进行验证。 &hellip;">
+	<meta name="description" content="今天在这里遇到些问题，花了一段时间，后来看官方文档解决了，很管用！ 各个orm中的关系设置大同小异，一对多的关系中需要在“多”方的列中加入一个外键，指向“一”方，然后在“一”方加入一个存储“多”方的变量（这个orm中需要使用relationship方法声明）。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,53 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/07/05/onetomany-in-sqlalchemy/">
+		
+			SQLalchemy中的oneToMany</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天在这里遇到些问题，花了一段时间，后来看官方文档解决了，很管用！</p>
+
+<p>各个orm中的关系设置大同小异，一对多的关系中需要在“多”方的列中加入一个外键，指向“一”方，然后在“一”方加入一个存储“多”方的变量（这个orm中需要使用relationship方法声明）。</p>
+
+<p>至此一个单项的OneToMany就弄好了，如果需要加入“反向”，形成双向的关系，那就在刚才的“一”方中存储“多”方的变量中指明backref参数，值就是在“多”方的属性中存储“一”方的这个属性名。我在这里弄错了，受了EJB的影响，以为双方都需要设置，结果弄的重复了，还好看了官方文档。</p>
+
+<p>其他关系请参考<a href="http://docs.sqlalchemy.org/en/rel_0_7/orm/relationships.html#sqlalchemy.orm.relationship">官方文档</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-05T22:54:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -626,87 +673,6 @@
 </div>
 </article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/06/08/security-of-ssh/">
-		
-			Ssh的安全配置</a>
-	</h2>
-	<div class="entry-content">
-		<p>今天刚刚换了vps，ssh的安全早就该配置好，没想到竟然是现在了……</p>
-
-<p>首先这些基本需要做：<a href="http://www.deepvps.com/improve-ssh-security.html">http://www.deepvps.com/improve-ssh-security.html</a></p>
-
-<p>再就是禁止root后需要创建一个马甲账号：</p>
-
-<p> </p>
-
-<p>0.增加ubuntu的admin组，我的vps默认没有，所以就创建了，sudoer文件中写明了admin组可以用sudo，所以我省略了这一步</p>
-
-<p> </p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>groupadd admin
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>1.增加马甲账号(-m表示创建home目录，-s表示后面跟着的是terminal，-G表示加入后面的那个组，最后的USERNAME各位自己发挥)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>useradd -m -s /bin/bash -G admin USERNAME
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2.修改刚刚马甲的密码：(输入两次新密码就ok了)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>passwd USERNAME
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>＃＃＃＃＃＃＃＃＃＃＃禁止root登陆＃＃＃＃＃＃＃＃＃＃＃</p>
-
-<p>下面禁止root登陆，直接修改/etc/ssh/sshd_config中的PermitRootLogin为no即可，然后重启ssh：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>service ssh restart
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>不放心的可以断开ssh连接用root和刚刚的马甲账号登陆试试看，肯定root不能用了，而且用马甲登陆上去之后你可以“su -”一下，输入root的密码后就切换到了root的环境下了（不要忘记su后面的短横杠哦，那样才切换环境）。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-08T16:11:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/vps/'>vps</a>
-
-
-</div>
-	
-</div>
-</article>
-
 <nav id="pagenavi">
     
     
@@ -718,7 +684,7 @@
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">Copyright &copy; 2015
 
     dawncold
 

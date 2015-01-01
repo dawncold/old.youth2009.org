@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="其实没有像标题中说的那么宏伟，只是需要写一个软件工程用的文档，就是一系列的需求分析、设计、开发、测试、维护文档，主题自定，我觉着看了很多国内的软件作品，动不动就是XXX系统，好象任何东西加上“系统”两个字之后都会变得无比金光闪闪，那我也来一个吧——“操作系统”。 虽然不需要实际编码， &hellip;">
+	<meta name="description" content="我充满了信心，但自己感觉准备周期有些长，每天都用准备软考的理由在上课的时候看软考的资料，导致很多门课现在还是比较陌生的，不过大学中这样并不是大问题，即便是都不怎么学，到了年底要是肯努力几天的话，成绩还是会很给面子的。但我并不喜欢这样突击，我更喜欢轻松自在一点。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,49 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/10/28/software-exam-is-comming-soon/">
+		
+			马上就要软考了</a>
+	</h2>
+	<div class="entry-content">
+		<p>我充满了信心，但自己感觉准备周期有些长，每天都用准备软考的理由在上课的时候看软考的资料，导致很多门课现在还是比较陌生的，不过大学中这样并不是大问题，即便是都不怎么学，到了年底要是肯努力几天的话，成绩还是会很给面子的。但我并不喜欢这样突击，我更喜欢轻松自在一点。</p>
+
+<p>软考结束后本以为能够把丢下的知识拾起来，但国庆和光瑞都找我做些东西，我也想继续搞一些开发，一是能增加些经验，二是能够做一些真正的商业产品，产品和参赛作品毕竟有不少差别，参赛作品做了几个了，就那样放着，产品的话，目前还没有能拿得出手的：（</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-28T22:31:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -730,53 +773,6 @@
 </div>
 </article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/08/08/the-difference-between-iphone-simulator-and-device/">
-		
-			Iphone模拟器和设备的差异</a>
-	</h2>
-	<div class="entry-content">
-		<p>昨天1ST告诉我代码到了设备上有些地方不正常，我一直没用设备调试过，只是用模拟器，这次就用设备试试，没想到果然有些问题。</p>
-
-<p>1.模拟器编译没有任何问题，但编译到设备就出现了8个错误，是因为继承后访问不到某些属性的问题。由于我在基类中用了property，在子类中直接引用，这样看来不行，于是在子类中但凡是从基类中继承过来的成员，都使用了self来引用。</p>
-
-<p>2.在Organzer的设备console中查看输出的时候，发现有个地方应该输出东西了反而不输出，最终能够确认这个操作已经执行了，但就是不输出内容。也不知道怎么回事，我把原先的printf输出改成了nslog，竟然好了。由于使用的一个类是用c++写的，就没有使用nslog，这竟然在后来调试变成了大问题。</p>
-
-<p>哎，以后有什么调试工作还是连接设备进行吧，虽然启动比模拟器慢一点，但能够暴露出问题啊！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-08T07:27:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
 <nav id="pagenavi">
     
     
@@ -788,7 +784,7 @@
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">Copyright &copy; 2015
 
     dawncold
 

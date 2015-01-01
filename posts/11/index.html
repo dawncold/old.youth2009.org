@@ -7,11 +7,10 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。 0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响： 1
+	<meta name="description" content="这里的LXC是基于Ubuntu12.04的，在其他系统下可能不太一样。 0.安装lxc 1
+sudo apt-get install lxc 1.修改lxc的mirror，不修改的话下载一个ubuntu景象会非常慢！！！ 1
 2
-fdisk /dev/sda
-fdisk /dev/sdb 1.创建PV 1
-sudo pvcreate /dev/sd{a1,b1 &hellip;">
+sudo emacs /etc/default/lxc &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -80,6 +79,81 @@ sudo pvcreate /dev/sd{a1,b1 &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/10/08/lxc-practical/">
+		
+			LXC实践</a>
+	</h2>
+	<div class="entry-content">
+		<p>这里的LXC是基于Ubuntu12.04的，在其他系统下可能不太一样。</p>
+
+<p>0.安装lxc</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install lxc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>1.修改lxc的mirror，不修改的话下载一个ubuntu景象会非常慢！！！</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo emacs /etc/default/lxc
+</span><span class='line'>第三行的mirror注释去掉，并修改为cn.archive.ubuntu.com，这样就非常快了
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.创建lxc容器，t表示模板中的名字，n表示这个容器的名字（可自定义）</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-create -t ubuntu -n ubuntu_container
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.启动容器</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-start -n ubuntu_container
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>启动后就会出现登录ubuntu的界面，刚刚创建好容器后会给出一个提示，帐号密码都是ubuntu，登录进去就可以使用了。</p>
+
+<p>猜想lxc的用法可能是对于部署的某个进程使用lxc隔离，这并不能做vps用，lxc只是轻量虚拟化，针对进程来的，所以还是单机在使用，如果做vps就得用vmware、xen、openvz这样的东西了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-08T20:46:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/lxc/'>lxc</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -703,53 +777,6 @@ sudo pvcreate /dev/sd{a1,b1 &hellip;">
 </div>
 </article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/07/05/onetomany-in-sqlalchemy/">
-		
-			SQLalchemy中的oneToMany</a>
-	</h2>
-	<div class="entry-content">
-		<p>今天在这里遇到些问题，花了一段时间，后来看官方文档解决了，很管用！</p>
-
-<p>各个orm中的关系设置大同小异，一对多的关系中需要在“多”方的列中加入一个外键，指向“一”方，然后在“一”方加入一个存储“多”方的变量（这个orm中需要使用relationship方法声明）。</p>
-
-<p>至此一个单项的OneToMany就弄好了，如果需要加入“反向”，形成双向的关系，那就在刚才的“一”方中存储“多”方的变量中指明backref参数，值就是在“多”方的属性中存储“一”方的这个属性名。我在这里弄错了，受了EJB的影响，以为双方都需要设置，结果弄的重复了，还好看了官方文档。</p>
-
-<p>其他关系请参考<a href="http://docs.sqlalchemy.org/en/rel_0_7/orm/relationships.html#sqlalchemy.orm.relationship">官方文档</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-05T22:54:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
 <nav id="pagenavi">
     
     
@@ -761,7 +788,7 @@ sudo pvcreate /dev/sd{a1,b1 &hellip;">
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">Copyright &copy; 2015
 
     dawncold
 

@@ -7,7 +7,8 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][: &hellip;">
+	<meta name="description" content="Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。 没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1 1
+2 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +77,79 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/02/15/set-timezone-in-rails/">
+		
+			设置Rails中的timezone</a>
+	</h2>
+	<div class="entry-content">
+		<p>Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。</p>
+
+<p>没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">active_record</span><span class="o">.</span><span class="n">default_timezone</span> <span class="o">=</span> <span class="ss">:local</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">time_zone</span> <span class="o">=</span> <span class="s1">&#39;Beijing&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>为何我说差不多呢，原因如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">irb</span><span class="p">(</span><span class="n">main</span><span class="p">):</span><span class="mo">001</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span> <span class="no">Fpwd</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'> <span class="no">Fpwd</span> <span class="no">Load</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">&quot;fpwds&quot;</span><span class="o">.</span><span class="n">*</span> <span class="no">FROM</span> <span class="s2">&quot;fpwds&quot;</span> <span class="no">WHERE</span> <span class="s2">&quot;fpwds&quot;</span><span class="o">.</span><span class="s2">&quot;user_id&quot;</span> <span class="o">=</span> <span class="mi">1</span> <span class="no">LIMIT</span> <span class="mi">1</span>
+</span><span class='line'> <span class="no">SQL</span> <span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="mi">7</span><span class="n">ms</span><span class="p">)</span>  <span class="no">DELETE</span> <span class="no">FROM</span> <span class="s2">&quot;fpwds&quot;</span> <span class="no">WHERE</span> <span class="s2">&quot;fpwds&quot;</span><span class="o">.</span><span class="s2">&quot;user_id&quot;</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="n">ms</span><span class="p">)</span>  <span class="k">begin</span> <span class="n">transaction</span>
+</span><span class='line'><span class="no">Binary</span> <span class="n">data</span> <span class="n">inserted</span> <span class="k">for</span> <span class="sb">`string`</span> <span class="n">type</span> <span class="n">on</span> <span class="n">column</span> <span class="sb">`randstring`</span>
+</span><span class='line'> <span class="no">SQL</span> <span class="p">(</span><span class="mi">429</span><span class="o">.</span><span class="mi">6</span><span class="n">ms</span><span class="p">)</span>  <span class="no">INSERT</span> <span class="no">INTO</span> <span class="s2">&quot;fpwds&quot;</span> <span class="p">(</span><span class="s2">&quot;created_at&quot;</span><span class="p">,</span> <span class="s2">&quot;randstring&quot;</span><span class="p">,</span> <span class="s2">&quot;updated_at&quot;</span><span class="p">,</span> <span class="s2">&quot;user_id&quot;</span><span class="p">)</span> <span class="no">VALUES</span> <span class="p">(</span><span class="sc">?,</span> <span class="sc">?,</span> <span class="sc">?,</span> <span class="sc">?)</span>  <span class="o">[[</span><span class="s2">&quot;created_at&quot;</span><span class="p">,</span> <span class="no">Wed</span><span class="p">,</span> <span class="mi">15</span> <span class="no">Feb</span> <span class="mi">2012</span> <span class="mi">14</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">35</span> <span class="no">CST</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;randstring&quot;</span><span class="p">,</span> <span class="s2">&quot;87e685e0d2ab37143fae248083822ffea600f577&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;updated_at&quot;</span><span class="p">,</span> <span class="no">Wed</span><span class="p">,</span> <span class="mi">15</span> <span class="no">Feb</span> <span class="mi">2012</span> <span class="mi">14</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">35</span> <span class="no">CST</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="o">]]</span>
+</span><span class='line'>  <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="n">commit</span> <span class="n">transaction</span>
+</span><span class='line'><span class="o">=&lt;</span><span class="no">Fpwd</span> <span class="ss">user_id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">randstring</span><span class="p">:</span> <span class="s2">&quot;87e685e0d2ab37143fae248083822ffea600f577&quot;</span><span class="p">,</span> <span class="ss">created_at</span><span class="p">:</span> <span class="s2">&quot;2012-02-15 06:29:35&quot;</span><span class="p">,</span> <span class="ss">updated_at</span><span class="p">:</span> <span class="s2">&quot;2012-02-15 06:29:35&quot;</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后的返回值那里还是晚了8小时，我用sqlite3查看的时候时间是正常的，所以这里怀疑是ruby的时间问题了，好在app中已经正常！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-15T14:37:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ror/'>ror</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -714,78 +788,6 @@
 </div>
 </article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/02/04/uninstall-macports/">
-		
-			删除MacPorts</a>
-	</h2>
-	<div class="entry-content">
-		<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo port -f uninstall installed
-</span><span class='line'>
-</span><span class='line'>sudo rm -rf <span class="se">\</span>
-</span><span class='line'>/opt/local <span class="se">\</span>
-</span><span class='line'>/Applications/DarwinPorts <span class="se">\</span>
-</span><span class='line'>/Applications/MacPorts <span class="se">\</span>
-</span><span class='line'>/Library/LaunchDaemons/org.macports.* <span class="se">\</span>
-</span><span class='line'>/Library/Receipts/DarwinPorts*.pkg <span class="se">\</span>
-</span><span class='line'>/Library/Receipts/MacPorts*.pkg <span class="se">\</span>
-</span><span class='line'>/Library/StartupItems/DarwinPortsStartup <span class="se">\</span>
-</span><span class='line'>/Library/Tcl/darwinports1.0 <span class="se">\</span>
-</span><span class='line'>/Library/Tcl/macports1.0 <span class="se">\</span>
-</span><span class='line'>~/.macports
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>第一行是删除了用MacPorts安装的软件，第二行是删除MacPorts各种相关文件。</p>
-
-<p>我删除了MacPorts后就开始用Homebrew了。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-04T21:53:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mac/'>mac</a>
-
-
-</div>
-	
-</div>
-</article>
-
 <nav id="pagenavi">
     
     
@@ -797,7 +799,7 @@
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">Copyright &copy; 2015
 
     dawncold
 

@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="昨晚还在忙碌网站，一个同学发来短信问了这样一个算法问题：一些人手拉手围成一个圈，从一个人开始报数，数到3的人退出，然后下一个人再开始报数，依然是数到3者退出，问最后剩下2个人是哪两个？ 这题目看起来不算难，但这要是不靠一个语言的特性来解决，还是有些麻烦的。我说的语言特性就是一个bt数组方法， &hellip;">
+	<meta name="description" content="最近一直还在忙活学校的那个项目，还有自己要做的同学录，看着日子越来越紧张，我也变得越来越紧张：） 学校的项目还有不多的工作了，我赶紧忙活一下，最后的几个功能也差不多没问题了，琐碎的工作交给另一个人了，这几天我没管，希望他做了些什么吧。同学录的工作写了不少代码，没去统计，外部引用的js库太多了， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,61 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/05/14/i-am-tired-to-create-blog/">
+		
+			懒得写博客了</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近一直还在忙活学校的那个项目，还有自己要做的同学录，看着日子越来越紧张，我也变得越来越紧张：）</p>
+
+<p>学校的项目还有不多的工作了，我赶紧忙活一下，最后的几个功能也差不多没问题了，琐碎的工作交给另一个人了，这几天我没管，希望他做了些什么吧。同学录的工作写了不少代码，没去统计，外部引用的js库太多了，一统计都是别人的工作：（</p>
+
+<p>今天下午用了下jquery的表单验证插件，调试了好久的remote方法，现在分享点经验：</p>
+
+<p>1.远程的查询方法我接受了post的提交方法，不过我感觉get也是没问题的，只是没去测试，修改这个是在remote中传入type:&lsquo;post&#8217;即可。</p>
+
+<p>2.remote要提交上去的data用这样的方法：function(){return xxx;}</p>
+
+<p>3.remote对应的messages直接写remote即可，注意这里处理的是得到false结果显示的提示信息，所以查询数据库并返回值的那个页面要注意别写反了结果，当然要只能返回true或者false。我用php写的结果就是直接echo一个字符串，只有这样简单写才能让这个傻傻的remote认出来。一开始我还包装了一个json返回，现在想想根本就是奢望，根本不可能知道你的json是个什么东西！因为根本就没有告诉它去检查哪个元素的值：）</p>
+
+<p>如果按照这个速度做下去，可能到6月6日能够交上去作品：）希望其他人做得不太好吧，那样我就有机会去深圳旅游（答辩）啦：）</p>
+
+<p>最后在这里说一下QQMap的API，除了单一只能玩js的以外没什么太大的失误，用起来比较顺手，只是和Google的想比，还差很远，如果不是为了参赛，我可能会去用Google的，但那个相对用起来会很麻烦的：─（</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-14T18:13:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/mapapp/'>mapapp</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -1053,55 +1108,6 @@
 </div>
 </article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/03/27/my-technology-is-bad/">
-		
-			自己的技术还差得远</a>
-	</h2>
-	<div class="entry-content">
-		<p>虽然别人感觉我的技术水平挺高的，不过我自身却一直都没这样想，有时候也是喜欢说得多做得少，毕竟说一件事是很简单的，要是真的要自己去做，我可能就很难完成了，不过凭借自己的责任感也会弄出点结果，只是过程是艰辛、痛苦的，不想回忆自己的那些过程，虽然不少人认为这是美好的回忆。</p>
-
-<p>看过几个Google的面试、实习生题目，原本的打算全部破灭，真得是很有难度，虽然想暑假去瞻仰一下Google的风采，不过先看也得看看现实的东西──你是不是匹配Google的标准？你是不是能够受得了Google那种技术生活？捎带着点感伤的我可能还差得远呢！</p>
-
-<p>前天去参观了大学里的招聘会，虽然周围都是些大四的同学，我也想试试自己是否基本达到企业的要求。其中有四五家面向计算机专业学生招聘的单位，其中大多数是做网站的。我和一个招收软件开发的单位聊了几句，他们可能打算找我，不过了解到我不是毕业生后就没办法了。我还是有几个能拿得出手的能力，只是在这种小范围还行，到了Google那里，直接清零：（</p>
-
-<p>情况就是这么严峻，既然自己想从事技术路线，那就不要再执迷不悟了！！！从头开始学起吧，汇编、C、C++、数据结构，暑假里用Java做点东西防止遗忘，没有扎实的功底，即使去了某些单位实习也很难积累到什么经验──现在面对的问题基本上是从未涉及的，只是边看前人的经验边研发，这似乎已经成了我们公认的事实，这样搭建出来的作品是能短期交付，但对于自己没什么益处，对于“客户”，长远看来也不是什么好事，还有其中的那种痛苦感……</p>
-
-<p>希望这些话，我能听进去吧：）</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-03-27T19:28:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/google/'>google</a>
-
-
-</div>
-	
-</div>
-</article>
-
 <nav id="pagenavi">
     
     
@@ -1113,7 +1119,7 @@
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">Copyright &copy; 2015
 
     dawncold
 

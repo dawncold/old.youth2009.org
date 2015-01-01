@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="今天开始学学Shell编程，不光是因为需要在惯例服务器的时候使用到，平常作为一门必须掌握的脚本语言也是很有必要的，所以就学吧，况且那本《Shell脚本学习指南》已经买了放那里好久了，就书刚到的时候看了两页，真的就像是两页，后来光看《The Pragmatic Programmer》和《1Q84》 &hellip;">
+	<meta name="description" content="上次说到了echo有可能出现标准不一致的情况，所以建议使用printf，但如果你只是使用最简单的echo输出一段话，那还是没问题的。printf更加复杂，功能和C语言中的printf基本相同。 IO重定向默认在你登录的时候就把standard input/output绑定到了terminal中， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,91 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/25/shell-study/">
+		
+			Shell Study</a>
+	</h2>
+	<div class="entry-content">
+		<p>上次说到了echo有可能出现标准不一致的情况，所以建议使用printf，但如果你只是使用最简单的echo输出一段话，那还是没问题的。printf更加复杂，功能和C语言中的printf基本相同。</p>
+
+<p>IO重定向默认在你登录的时候就把standard input/output绑定到了terminal中，所以你可以在terminal中完成很多工作。</p>
+
+<p>简单的重定向：“>”、“&lt;”、“>>”，分别是改变重定向input、output，最后一个是附加到某个文件，如果你在使用&#8221;>&ldquo;的时候不存在目标文件，那么会被创建出来，如果已经存在就会被覆盖掉，原有数据丢失，如果使用&rdquo;>>&ldquo;则会追加到目标文件中，原有数据依然存在。</p>
+
+<p>管道也是重定向的一部分，prog1 | prog2，可以把prog1的标准输出重定向到prog2的标准输入上，如果你需要连接多个程序的时候，最好用管道方式，这样比临时文件效率高很多（据说10倍）。在使用管道的时候应该逐级让数据量减少，这样能够提高脚本的整体性能，例如在sort之前，你可以grep出需要sort的行，这样会好一些：）</p>
+
+<p>特殊文件：/dev/null 和 /dev/tty。null这个被称为bit bucket，传输到这里的东西都会被丢弃，就如同黑洞一般：）程序把文件写入到这里就会被认为是成功的，但实际什么都没做，例如：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if</span> grep pattern myfile &gt; /dev/null
+</span><span class='line'><span class="k">then</span>
+</span><span class='line'>…
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>…
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以做一个探测，是否myfile有pattern，这样不会产生输出。</p>
+
+<p>/dev/tty的功能是，当程序打开这个文件时会重定向到一个terminal，在需要输入密码的时候用的到：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">printf</span> <span class="s2">&quot;Enter password: &quot;</span>
+</span><span class='line'>stty -echo <span class="c">#关闭自动回显输入的字符功能</span>
+</span><span class='line'><span class="nb">read </span>pass &lt; /dev/tty
+</span><span class='line'><span class="nb">printf</span> <span class="s2">&quot;Enter Again: &quot;</span>
+</span><span class='line'><span class="nb">read </span>pass2 &lt; /dev/tty
+</span><span class='line'>stty <span class="nb">echo</span> <span class="c">#打开自动回显输入的字符功能</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>shell的PATH中最好不要放入当前目录这一选项，这会带来安全问题，所以干脆就不要这么想了：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-25T10:24:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -676,59 +761,6 @@ cornerstone:    奠基石
 </div>
 </article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/04/first-snow/">
-		
-			First Snow</a>
-	</h2>
-	<div class="entry-content">
-		<p>昨晚竟然下了第一场雪，看着不怎么大，但确实是第一场。</p>
-
-<p><img src="http://pic.yupoo.com/dawncold0/Cok3e7iE/medish.jpg" alt="first snow" /></p>
-
-<p>这种天本来就是吃火锅的时候。</p>
-
-<p><img src="http://pic.yupoo.com/dawncold0/Cok38geE/medish.jpg" alt="meal" /></p>
-
-<p>这篇日志几乎和y.youth2009.org上的发重复了，以后我也在想，这种重复该怎么办呢？</p>
-
-<p>大晚上的将要睡下，不料看了《饮食男女2012》，真的很好，而且我也感动的哭，心情大为激动，起来coding了，把taowen说的product link block和product list block问题都fix了。由于白天我把添加额外展示的小类功能给做完了，现在手上没工作了，下星期有我要做的特辑，可能要去忙那边了。taowen让我找本git书看看，想了半天也没买《Git权威指南》，估计暂时用不到那么深入的技巧，只要小心点在master上修改，到prod分支合并就好了都是fast-forward，没问题的，但最主要的不买的原因是，我怕买了后和那本《Shell编程指南》一样，躺在那里不知道干嘛。</p>
-
-<p>转眼望去，床头一堆没怎么翻看的《程序员》杂志，《设计模式》、《重构》、《极限编程》、《Clean code》这样足够好的书都没怎么被我青睐，现在主要看《1Q84》，比较有吸引力。不怎么看技术书的原因我仍然不知道：（</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-04T20:24:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/life/'>life</a>
-
-
-</div>
-	
-</div>
-</article>
-
 <nav id="pagenavi">
     
     
@@ -740,7 +772,7 @@ cornerstone:    奠基石
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">Copyright &copy; 2015
 
     dawncold
 

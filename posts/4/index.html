@@ -7,7 +7,14 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="想了好久都觉得连续拍照片做监控实在是没什么效率，默认情况应该是什么都不做，如果发现有人来了才拍下来或者录下来，但用标配的摄像头录像实在是会录出非常大的文件，保存文件又是问题。在官网的博客中看到了一个用opencv做的人脸识别，可以这样干嘛。于是紧随那片文章开始干。 &hellip;">
+	<meta name="description" content="今天在代码中发现原本过滤str的一个func被写成了过滤basestring，于是查了下basestring和str的区别：(在3.0之前) 1
+2
+3
+4
+5
+6
+7
+object | | basestring / \ / \ str unicode 3.0之前python中有plain &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +83,67 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/08/08/basestring-and-str-in-python2x/">
+		
+			Basestring-and-str-in-python2x</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天在代码中发现原本过滤str的一个func被写成了过滤basestring，于是查了下basestring和str的区别：(在3.0之前)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>object
+</span><span class='line'>             |
+</span><span class='line'>             |
+</span><span class='line'>         basestring
+</span><span class='line'>            / \
+</span><span class='line'>           /   \
+</span><span class='line'>         str  unicode</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.0之前python中有plain string和unicode string，前者是ascii中的那些字符，后者就是所有字符了，因为historical legacy。。。python出现的时候还木有unicode，所以很多python的lib是需要慢慢转换的，当然到了3.0就会不复存在了，全是unicode。</p>
+
+<p>这样的话就清楚了，str代表了那些ascii字符，unicode就是全部的字符，他们都继承自basestring。basestring是从python2.3开始引入的。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-08T21:39:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -644,49 +712,6 @@
 </div>
 </article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/01/without-nginx-upload-module/">
-		
-			Without-nginx-upload-module</a>
-	</h2>
-	<div class="entry-content">
-		<p>前些天把nginx-upload-module这个依赖去掉了，用了nginx builtin的方法，感觉更好了，其实深层原因是这个module的作者不玩了。。。只有感受到了这种切肤之痛才有变革的动力！！！</p>
-
-<p>主要内容记录在了这里：<a href="http://www.youth2009.org/blog/2013/06/25/nginx-upload-file-without-backend/">http://www.youth2009.org/blog/2013/06/25/nginx-upload-file-without-backend/</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-01T23:28:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/nginx/'>nginx</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
 <nav id="pagenavi">
     
     
@@ -698,7 +723,7 @@
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">Copyright &copy; 2015
 
     dawncold
 

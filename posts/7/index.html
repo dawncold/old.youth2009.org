@@ -7,16 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="jquery中的extend方法可以扩展一个{}，今天用到了。写了一组配置文件： 1
-2
-3
-4
-5
-6
-7
-var options = { data:1, data2:2
-}; console.log($.extend(options, {data3:3}));
-console.log( &hellip;">
+	<meta name="description" content="今天编辑们在上传一张图的时候出了500错误，他们觉得是图片太大了，传给我看了下果然很大，高度13000+，大约7Mb，本地调试确实是在save的时候出问题，具体错误就是Encoder error -2 when writing image file Error， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -85,6 +76,69 @@ console.log( &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/02/17/encoder-error-2-when-writing-image-file-error/">
+		
+			Encoder Error -2 When Writing Image File Error</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天编辑们在上传一张图的时候出了500错误，他们觉得是图片太大了，传给我看了下果然很大，高度13000+，大约7Mb，本地调试确实是在save的时候出问题，具体错误就是<code>Encoder error -2 when writing image file Error</code>，github上的pilkit中有这个issue，是因为默认的maxblock不够大了，其实PIL中还有个SAFEMAXBLOCK，但那也只是1024*1024，对于这张图仍然不够大。具体的方法就是取出图片width和height的最大值，再来个平方。。。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>try:
+</span><span class='line'>  save porcess
+</span><span class='line'>except IOError:
+</span><span class='line'>  old_block = PIL.ImageFile.MAXBLOCK
+</span><span class='line'>  PIL.ImageFile.MAXBLOCK = max(image.size) ** 2
+</span><span class='line'>  try:
+</span><span class='line'>      save process
+</span><span class='line'>  finally:
+</span><span class='line'>      PIL.ImageFile.MAXBLOCK = old_block</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样试过后就好了。。。真要命啊这个max block</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-17T23:25:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -565,47 +619,6 @@ synchronous：  美 ['sɪŋkrənəs]
 </div>
 </article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/01/03/gets-method-in-ruby/">
-		
-			Gets Method in Ruby</a>
-	</h2>
-	<div class="entry-content">
-		<p><strong>Important</strong>: Also notice that we&rsquo;re using STDIN.gets instead of plain &lsquo;ol gets. That is because if there is stuff in ARGV, the default gets method tries to treat the first one as a file and read from that. To read from the user&rsquo;s input (i.e., stdin) in such a situation, you have to use it STDIN.gets explicitly.</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-03T20:40:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
 <nav id="pagenavi">
     
     
@@ -617,7 +630,7 @@ synchronous：  美 ['sɪŋkrənəs]
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">Copyright &copy; 2015
 
     dawncold
 

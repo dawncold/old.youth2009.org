@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2014-12-26T21:22:28+08:00</updated>
+  <updated>2015-01-01T20:51:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,91 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[host-octopress-blog-on-raspberry-pi]]></title>
+    <link href="http://www.youth2009.org/blog/2015/01/01/build-octopress-blog-on-raspberry-pi/"/>
+    <updated>2015-01-01T20:25:24+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/01/01/build-octopress-blog-on-raspberry-pi</id>
+    <content type="html"><![CDATA[<p>First post on 2015!</p>
+
+<p>I have a raspberry pi several months ago, and I often use it to recording temp and humidity, uploading to a cloud host, but after a home movement, it had been stored in my drawer. Last day of 2014, while waiting 2015, I want build it and host an external disk for MacBookPro backup(Time Machine), but failed for power supply, normal power supply is not enough for raspi, so I should buy another USB Hub powered by itself.</p>
+
+<p>My raspi used a wireless NIC to connecting with my router(OpenWrt), but I want use a ethernet cable for it, so it can get a unique IP on Internet, but when I pluged it, the wireless NIC would down, because of ifplugd or something else, so I keep the wireless NIC working and add some rules on route, port forward, WAN 80 to rasp 80, WAN 443 to rasp 443.</p>
+
+<p>Install nginx via<code>sudo apt-get install nginx</code>, remove default site<code>rm /etc/nginx/sites-enable/default</code>, add conf in <code>/etc/nginx/conf.d</code>, like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>server {
+</span><span class='line'>  listen 80;
+</span><span class='line'>  server_name dawncold.me;
+</span><span class='line'>  return 301 https://$server_name$request_uri;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'># HTTPS server
+</span><span class='line'>
+</span><span class='line'>server {
+</span><span class='line'>  listen 443 ssl;
+</span><span class='line'>  server_name dawncold.me;
+</span><span class='line'>
+</span><span class='line'>  root /usr/share/nginx/dawncold.me;
+</span><span class='line'>  index index.html index.htm;
+</span><span class='line'>
+</span><span class='line'>  ssl on;
+</span><span class='line'>  ssl_certificate /usr/share/nginx/dawncold.me/dawncold.me.crt;
+</span><span class='line'>  ssl_certificate_key /usr/share/nginx/dawncold.me/dawncold.me.key;
+</span><span class='line'>
+</span><span class='line'>  ssl_session_timeout 5m;
+</span><span class='line'>
+</span><span class='line'>  ssl_protocols SSLv3 TLSv1;
+</span><span class='line'>  ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv3:+EXP;
+</span><span class='line'>  ssl_prefer_server_ciphers on;
+</span><span class='line'>
+</span><span class='line'>  location / {
+</span><span class='line'>      try_files $uri $uri/ =404;
+</span><span class='line'>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I got a SSL certificate from nc.me(github student pack), so I rewrite HTTP to HTTPS.</p>
+
+<p>start nginx via <code>sudo nginx</code> or reload config via <code>sudo nginx -s reload</code>.</p>
+
+<p>Oh, your should update your domain A record to your router WAN ip address, you can write a script or use your router buildin DDNS function.</p>
+
+<p>Octopress supported rsync publishment, so edit your Rakefile and enter your raspi ssh account and nginx html root path, like <code>/usr/share/nginx/www</code>.</p>
+
+<p>publish to github and rasp: <code>rake gen_deploy rsync</code> or only to raspi: <code>rake rsync</code>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[NotImplemented-in-python]]></title>
@@ -887,22 +972,6 @@ GRANT wheel TO admin;</p>
 </span><span class='line'>  + md5: using system crypto library
 </span><span class='line'>  + sha1: using system crypto library
 </span><span class='line'>  + using system zlib library</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[lxml-and-dependences]]></title>
-    <link href="http://www.youth2009.org/blog/2014/01/16/lxml-and-dependences/"/>
-    <updated>2014-01-16T18:31:09+08:00</updated>
-    <id>http://www.youth2009.org/blog/2014/01/16/lxml-and-dependences</id>
-    <content type="html"><![CDATA[<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install libxml2-dev
-</span><span class='line'>sudo apt-get install libxslt1-dev
-</span><span class='line'>sudo apt-get install python-dev  （if Python.h: No file or dir..）
-</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>

@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="刚刚用了下typecho博客插件——友情链接来添加一个友情链接，但发现很多php文件找不到了，很奇怪，以前是可以的，看到warning中的信息，有个include_path的相关东西，看看里面提到的路径是不是有需要的文件，结果没有，而在其中路径的下一级目录下有，这就怪了。 &hellip;">
+	<meta name="description" content="用git管理项目的优势大家可能都看了许久了，我也是因为如此才用了git而不是svn、cvs这些。其实我是挺喜欢喜新厌旧的，因为新东西的出现并流行一定是比原来的有所突破，并且大多数人喜欢这种变革，所以为何不喜欢呢？ 用git管理项目不可避免要遇到导出功能，在svn和cvs上应该叫export功能， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,55 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/10/git-export-function/">
+		
+			Git的导出功能</a>
+	</h2>
+	<div class="entry-content">
+		<p>用git管理项目的优势大家可能都看了许久了，我也是因为如此才用了git而不是svn、cvs这些。其实我是挺喜欢喜新厌旧的，因为新东西的出现并流行一定是比原来的有所突破，并且大多数人喜欢这种变革，所以为何不喜欢呢？</p>
+
+<p>用git管理项目不可避免要遇到导出功能，在svn和cvs上应该叫export功能，git上的这个功能似乎没找到，要这样做：先打包，再解压到一个地方去。还能接受吧。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git-archive --prefix=map/ master | tar -x -C ../map_e/</span></code></pre></td></tr></table></div></figure>
+
+
+<p>稍微解释一下，prefix指明了用哪个仓库，后面的master应该就是branch的名称了，然后把这些传递给了tar，因为不指明&mdash;format的时候默认用了tar方式打包，所以这里传递给tar解压到上层目录的map_e中，当然实际工作可以解压到生产服务器上去。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-10T08:13:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/git/'>git</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -587,55 +636,6 @@
 </div>
 </article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/06/05/today-i-write-too-articles/">
-		
-			写了不少文章</a>
-	</h2>
-	<div class="entry-content">
-		<p>今天似乎写了很多文章，间隔也不长，似乎是想要把前几天缺失的都补回来。</p>
-
-<p>似乎是从中午开始的吧，看《Python简明教程》，到晚上吃饭的时候，正好看完了，不知道是我看得快呢还是这本书本身就不厚。这就算是我正式学习python的开始了吧。</p>
-
-<p>现在我越来越发现我对于自己的未来很难掌控，当然是对于那部分可控部分变得难以掌控。心理学上的专用词汇可能是“延迟满足效应”。就是说，一个人对于自己未来的满足感能够控制。我本以为自己这样带有“理想主义者”标签的人，对于未来这样的憧憬因该是一点问题都没有的，当然，我证明了没有问题，可出现问题的却是“控制”这种满足上。</p>
-
-<p>简单地讲，似乎是我对于某件事的坚持程度很低，很脆弱。这点我确实证明过了！</p>
-
-<p>在网上看过几篇文章，<a href="http://www.read.org.cn/html/368-learning-how-to-adhere-to-the-daily.html">这里</a>的一篇提供了一些不错的方法，值得学习。自己根据软件工程的方法总结出来：把宏伟的目标分解成小任务，就是一个个小目标，大的目标你可能一下子做不完，而且只要一次难以完成就会产生懈怠情绪，可能会很快走向失败。小任务基本上是可以短时间完成的，再结合上文提供的方法，让完成小任务成为自己的习惯。我想应该就没什么问题了吧。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-05T21:28:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
 <nav id="pagenavi">
     
     
@@ -647,7 +647,7 @@
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">Copyright &copy; 2015
 
     dawncold
 
