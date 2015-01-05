@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="前些天把nginx-upload-module这个依赖去掉了，用了nginx builtin的方法，感觉更好了，其实深层原因是这个module的作者不玩了。。。只有感受到了这种切肤之痛才有变革的动力！！！ 主要内容记录在了这里：http://www.youth2009.org/blog/2013 &hellip;">
+	<meta name="description" content="SAP的接口就是和别人给的不一样，style为literal，最明显的地方就是operation中的参数是literal，原先的参数是一个object，按照原先的方法调用时发现传递过去的值都被放在了第一个参数中，很是不解。后来才知道这样的operation需要用keywords的那种传值方法 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,130 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/07/08/suds-literal-soap/">
+		
+			Suds-literal-soap</a>
+	</h2>
+	<div class="entry-content">
+		<p>SAP的接口就是和别人给的不一样，style为literal，最明显的地方就是operation中的参数是literal，原先的参数是一个object，按照原先的方法调用时发现传递过去的值都被放在了第一个参数中，很是不解。后来才知道这样的operation需要用keywords的那种传值方法——<code>**suds_client.dict(object)</code>，用suds的client的dict方法把构造的对象变成dict，再用<code>**</code>。</p>
+
+<p>又被坑了一下。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-08T22:16:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/07/04/build-4pm-env/">
+		
+			搭建4pm.la的数据库服务器</a>
+	</h2>
+	<div class="entry-content">
+		<p>原来用MySQL比较多，现在工作上主要用PostgreSQL，对于低级的应用来说，选什么数据库都差不多，但也要为以后发展做准备，不过我暂时看不到那么远，PG作为一个开源的数据库来说，还算是比MySQL有优势一点，所以就用这个了。</p>
+
+<p>在Mac上安装的时候有个locale的选择，我选了这个：</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/CZ9bpp9U/medish.jpg" alt="locale select" /></p>
+
+<p>然后下载了pgAdmin作为GUI工具，结合PG的CLI一起使用比较好。使用psql登陆数据库可以用：<code>psql -h localhost -U postgres -W</code></p>
+
+<pre><code>其中
+-h db host
+-U db user
+-W use password
+</code></pre>
+
+<p>pgAdmin用起来感觉超差，目测是java写的，有点小卡，远不如在Ubuntu上的体验。</p>
+
+<p>创建一个网站用的用户，可以用createuser这条命令，或者连上PG后写CREATE USER这种SQL，官方文档介绍两者没什么差别。createuser只是包装了一下SQL而已。（<a href="http://www.postgresql.org/docs/current/static/app-createuser.html">官方文档</a>）</p>
+
+<p><code>createuser -dEeP -h localhost -U postgres -W xxx</code></p>
+
+<pre><code>其中
+-d can create db
+-E encrypted user's password
+-e echo SQL command
+-P can not create role
+</code></pre>
+
+<p>创建一个数据库，同样可以用包装了CREATE DATABASE的createdb。(<a href="http://www.postgresql.org/docs/9.2/static/app-createdb.html">官方文档</a>）</p>
+
+<p><code>createdb -e -E UTF8 -l zh_CN.UTF-8 -O OWNER -h localhost -U postgres -W DBNAME</code></p>
+
+<pre><code>其中
+-e echo SQL command
+-E use encoding
+-l set locale, included LC_COLLATE and LC_CTYPE
+-O db's owner
+</code></pre>
+
+<p>看到篇不错的文章，介绍PG的ROLE、USER、SCHEMA、TABLESPACE、DATABASE等概念的关系：<a href="http://blog.csdn.net/kanon_lgt/article/details/5931522">这里</a></p>
+
+<p>生产环境用的Ubuntu12.04.2，在创建数据库的时候制定locale，但没有zh_CN这个locale，于是需要安装：<code>/usr/shard/locales/install-language-pack zh_CN</code>，安装完了最好能重启机器，不然的话好像createdb一直会报错说zh_CN.UTF-8这个locale不正确。重启了之后再创建db就ok了，但告诉你说collection你选了zh_CN的，和默认模板template1的en_US冲突，提示是换成template0模板，于是加了参数<code>-T</code>:<code>createdb -e -E UTF8 -l "zh_CN.UTF-8" -O :OWNER -T template0 -h localhost -U postgres -W :DBNAME</code></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-04T21:54:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/4pm-dot-la/'>4pm.la</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -540,102 +664,6 @@
 
 
 	<a class='category' href='/blog/categories/gfw/'>gfw</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/04/02/hhkb/">
-		
-			Hhkb</a>
-	</h2>
-	<div class="entry-content">
-		<p>终于，它来了。</p>
-
-<p><img src="http://pic.yupoo.com/dawncold0/CL0AxKWr/medish.jpg" alt="HHKB" /></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-02T23:01:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/03/26/nonexistence/">
-		
-			Nonexistent Bug</a>
-	</h2>
-	<div class="entry-content">
-		<p>问题表现：IE6下，$.ajax()出现error，内容：No Transport</p>
-
-<p>大约花了3天修复了一个不存在的问题。</p>
-
-<p>第一天发现问题感觉这是一个大bug，可能因为它的表现真的很大，一下子就开始着手修复。很快发现这个bug没有正常在Log中找到记录，客户端还没有发送数据到服务器上，所以更难定位问题，因为在IE6下没有可用的js调试工具。</p>
-
-<p>我委托了一个用户测试，她反馈说没问题，不过我没在意，以为她用错了浏览器或者其他问题导致的她可以“正常”使用。</p>
-
-<p>第二天继续修复，Google前几页所有相关的页面都看了一遍，和这个问题的表现相同，不过根本不是一回事儿，为此去了jquery的IRC@freenode，还去了官方论坛发帖，在几个blog中留言反馈，均没有得到有效的帮助。</p>
-
-<p>第三天，开始回退版本，无奈这个过程比较麻烦，主要是一些配置文件和改动不可能完全无错的回退。我又找用户测试了一遍，发现没什么问题，已经开始怀疑当初的判断。另找了一批用户机器，发现果真是没问题的。</p>
-
-<p>重装了一台XP SP3，用里面的IE6测试，果然也没问题。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-26T21:57:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>

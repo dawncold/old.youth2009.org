@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-01T20:51:54+08:00</updated>
+  <updated>2015-01-05T23:39:37+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,64 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[联通封了80和8080 but 443 is ok]]></title>
+    <link href="http://www.youth2009.org/blog/2015/01/05/unicom-blocked-80-8080/"/>
+    <updated>2015-01-05T23:24:57+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/01/05/unicom-blocked-80-8080</id>
+    <content type="html"><![CDATA[<p>地点：北京
+ISP：中国联通
+接入方式：光纤入户</p>
+
+<p>换联通宽带几个月了，感觉良好，但觉得BT下载不够快，因为下的少，也没深究，而且多用迅雷离线下载，基本就是直连迅雷CDN的速度，都能跑满带宽。</p>
+
+<p>OpenWrt多拨尝试过，没有效果，据说早就被封了，所以不再尝试。</p>
+
+<p>前段时间打算把openwrt的管理界面移到WAN和LAN上，即在外面也能访问路由器，默认我就放到了WAN的80上，很可惜失败了，内部访问没问题，外面不行，当时也没多想，总觉得是iptables有问题，一看openwrt的规则，好可怕，嵌套了几层，不看了，改成了别的端口，比如9999，竟然内外都可以，因为后来很少从外面访问，所以这个需求基本是为需求，不管了。</p>
+
+<p>最近把一个网站放到raspberry pi上，路由器做端口映射到内部的80，当时在内网里测试的没问题，还把https也一并做好了。碰巧在公司访问了一下，80不能访问，但443没问题。</p>
+
+<p>今晚直接在PREROUTING的第一行加了log，从外部服务器请求80直接看不到，但443的没问题，而且PREROUTING是第一个被执行的，只能说80的请求就没到这里，可这都是公网对公网的访问了，难道这个请求被某个路由截获然后丢弃了？Google了一下发现几年前几大运营商的能提供公网IP的服务里80和8080端口被封了，说是不能随意搭建网站，想想也是啊，现在国内都得备案才行。</p>
+
+<p>BUT PORT 443 IS OK&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[聚石塔里面的坑]]></title>
+    <link href="http://www.youth2009.org/blog/2015/01/05/traps-of-jushita/"/>
+    <updated>2015-01-05T22:56:42+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/01/05/traps-of-jushita</id>
+    <content type="html"><![CDATA[<p>今天开始全面接触聚石塔，就是天猫的云平台，上面服务众多，全都能收费，第一次听说了API调用也是可以收费的。下面记录一些可能成为坑的东西，希望有人看到后可以小心躲避。</p>
+
+<h1>创建应用要先报备</h1>
+
+<p>说明书要按照模版写，模板有下载，看说明就能找到，其中里面有个架构图，这个要仔细画，基本思想（阿里思想）就是把你所有的业务系统都放到ECS上，如果在ECS外出现了一个你们自己的平台，他们就怀疑你用ECS做了一个代理来调用API，因为收费API只能是塔内调用，其他没有遇到特别的，时间大概是3天出结果。</p>
+
+<h1>创建应用</h1>
+
+<p>报备通过就可以创建应用了，创建成功后可以去买ECS和RDS等服务，别的服务暂时没用到，这两个服务都是绑定应用的，所以要先有应用。ECS的配置可选的比较少，我在北京，但机房目前只有杭州，所以你写了你的位置也没用，据说杭州那个机房是6线接入，出口质量和淘宝一样，但拿到ECS后ping了一下，31ms左右，第二天ping到了70ms左右，虽然ping不代表什么，但总感觉怪怪的。。。价格和阿里云的ECS相比有些贵。</p>
+
+<h1>ECS</h1>
+
+<p>管理终端有个密码，要改的话记得改完重启机器，否则不生效，而且重启后自己再用管理终端连接一下看看是不是生效了。</p>
+
+<p>他们把10和172.16网段都用了，自己要用内网的话可以考虑多租几个ECS实例，但想玩LXC的话，可以考虑用192.168网段。</p>
+
+<p>DNS不要换别的，就用ECS配置好的，据说改了影响内部访问和RDS通信，我改成114dns后直接无法使用。</p>
+
+<p>我买的是最便宜的ECS，但不知道为何没有SWAP分区，512Mb内存在起了LXC后又编译了一个东西就超了，那里怎么都不行，于是加了SWAP，可以。</p>
+
+<h1>RDS</h1>
+
+<p>我想用聚石塔的推送服务，就是可以把订单、商品等数据推送到买的RDS中，但今天申请的时候对方说应用未上线，不能申请。。。我就是需要这些数据才能开发应用，这不就变成死锁了？具体如何解决等更新。</p>
+
+<hr />
+
+<p>目前就遇到这些坑，欢迎更新坑们。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[host-octopress-blog-on-raspberry-pi]]></title>
@@ -924,55 +982,6 @@ GRANT wheel TO admin;</p>
 <p>在写hello，world例子的时候，处理GET我直接就下意识返回了想要的字符串，没想到运行起来是500 error，仔细一看原来官方的例子中处理GET是要调用<code>self.write('xxx')</code>，然后我就看了下self.write做了什么，self是我定义的class，但这个class继承自tornado.web.RequestHandler, 于是看tornado.web.RequestHandler的write做什么，write的参数叫chunk，并不是简单的叫str之类的东西，也就是说不限于str，有可能是些别的东西，比如注释中说如果你write了一个dict，tornado会转换成JSON，并且把Content-Type给你设置好，现在的veil也支持了这个优秀特性。还提到了list不会被转换成JSON格式，因为一个漏洞（坑），具体看<a href="http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx/">这里</a>，简单讲，就是用script的src指向一个网站需要登陆后才能访问的地址，因为你如果登陆过的话，cookie信息会随之发送到这个地址，此时如果你去了一个邪恶的网站，他里面有些脚本，引用刚刚提到的你需要登陆的网址，你浏览器会把你的一些信息带上，请求这个地址，这个地址会返回一些你的个人资料，比如是用JSON的array回给你，但邪恶网站把javascript array的constructor改写了，你拿到JSON的array会被自动转成js array，这样邪恶网站会收集到你的信息，然后再发送回自己一个接受数据的接口就可以了。避免方法就是：返回JSON的时候用对象方式；这种关键信息用POST提交，script标签只会发送GET请求；现代高级浏览器都不会有问题，大可放心。转换成了byte string（就是str）放入chunk_buffer，一起写到output。</p>
 
 <p>我们的handler很简单，实现了get方法，然后write了一个字符串，但后来呢？或许应该从另一条路看起——从url被映射到handler看起。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[return-value-in-jquery-json-datatype]]></title>
-    <link href="http://www.youth2009.org/blog/2014/01/23/return-value-in-jquery-json-datatype/"/>
-    <updated>2014-01-23T18:57:21+08:00</updated>
-    <id>http://www.youth2009.org/blog/2014/01/23/return-value-in-jquery-json-datatype</id>
-    <content type="html"><![CDATA[<p>向api server发送请求做一件事的时候，比如修改密码，server做完后没有返回值，response code是200。这在原来的时候没问题，“原来”是指ajax的dataType未指定的时候，jQuery会自己猜测用什么，但这次指定了server的response是json，所以，即便是看到200 code也未能调用OnSuccess，空返回值对于json是不合法的，于是返回一个什么东西就好，当然要先to_json再返回。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[nginx-and-dependences]]></title>
-    <link href="http://www.youth2009.org/blog/2014/01/16/nginx-and-dependences/"/>
-    <updated>2014-01-16T18:46:33+08:00</updated>
-    <id>http://www.youth2009.org/blog/2014/01/16/nginx-and-dependences</id>
-    <content type="html"><![CDATA[<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.34.tar.gz
-</span><span class='line'>wget http://www.openssl.org/source/openssl-1.0.1f.tar.gz
-</span><span class='line'>wget http://nginx.org/download/nginx-1.5.8.tar.gz
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>default install pcre and openssl</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>nginx configure
-</span><span class='line'>+gzip
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>Configuration summary
-</span><span class='line'>  + using system PCRE library
-</span><span class='line'>  + OpenSSL library is not used
-</span><span class='line'>  + md5: using system crypto library
-</span><span class='line'>  + sha1: using system crypto library
-</span><span class='line'>  + using system zlib library</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   

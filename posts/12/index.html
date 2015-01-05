@@ -7,7 +7,8 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="今天在这里遇到些问题，花了一段时间，后来看官方文档解决了，很管用！ 各个orm中的关系设置大同小异，一对多的关系中需要在“多”方的列中加入一个外键，指向“一”方，然后在“一”方加入一个存储“多”方的变量（这个orm中需要使用relationship方法声明）。 &hellip;">
+	<meta name="description" content="一开始没怎么关心这个问题，连接数据库的时候我直接这样用的： 1
+mysql://root:@localhost/haolesong 在插入数据的时候看到数据库中的内容是乱码，但网页中显示的时候正常，于是我就没怎么关心，不过前天在修改一个值的时候，就是用一段中文替换原先的值，提交数据后网页打不开了 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +77,162 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/07/14/bad-encoding-in-sqlalchemy/">
+		
+			SQLAlchemy中的乱码</a>
+	</h2>
+	<div class="entry-content">
+		<p>一开始没怎么关心这个问题，连接数据库的时候我直接这样用的：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql://root:@localhost/haolesong</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在插入数据的时候看到数据库中的内容是乱码，但网页中显示的时候正常，于是我就没怎么关心，不过前天在修改一个值的时候，就是用一段中文替换原先的值，提交数据后网页打不开了，提示unicode编码的xxx问题，相信用Python写网站的人应该会遇得到。</p>
+
+<p>后来在<a href="http://meizhini.iteye.com/blog/294691">这里</a>发现了解决方法，还有一段长长的分析。我很喜欢这样的文章，对于想直接知道问题答案的人来说一目了然，想知道原理的人也可以直接看下去。</p>
+
+<p>最终就是这样即可：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql://root:@localhost/haolesong?charset=utf8</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-14T09:47:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/07/06/load-jinja2-extension-in-flask/">
+		
+			Flask中Jinja2加载扩展</a>
+	</h2>
+	<div class="entry-content">
+		<p>代码中我把jinja2的语法改成了这样的，{##}，因为这样就不会和blog生成html冲突了，大家改回来就可以。</p>
+
+<p>在Flask中接触到了jinja2，由于某个简单的需要——在模板系统中计算某些订单项的总价格，必须打开Jinja2的“do”扩展，用一种hack的方法来计算，十分不喜欢这样，但能用。</p>
+
+<p>在Flask的API中没有公开这样的方法，不过在邮件列表的索引里找到了：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>app.jinja_env.add_extension("jinja2.ext.do")</span></code></pre></td></tr></table></div></figure>
+
+
+<p>还想多说一下Jinja2的set方法，超级不爽的一个方法，原本以为set出来的变量就可以和python中的变量一样使用呢，结果在这里的set出来的变量也就是一个助记作用，根本不能保存新的值，也就是说这里的变量相当于我们通常意义上的常量！！！</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>......
+</span><span class='line'>{# set total_price = 0 #}
+</span><span class='line'>{# for item in order.items #}
+</span><span class='line'>{# total_price = item.meal.price * item.quantity #}
+</span><span class='line'><span class="nt">&lt;p</span> <span class="na">class =</span><span class="err"> </span><span class="s">&quot;order_list_item&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>{# endfor #}
+</span><span class='line'><span class="nt">&lt;/td&gt;</span>
+</span><span class='line'><span class="nt">&lt;td&gt;&lt;/td&gt;</span>
+</span><span class='line'>......
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>原本希望在for外面设置一个变量，然后在for中计算好total_price使用，结果根本不行，这样写的结果就是“找不到total_price变量”，如果去掉for中对total_price的引用就可以正常看到total_price，是0。总之，这里set出来的变量就是一个常量了！！！后来打开了do扩展，把total_price设置成一个list，然后在for中把没一项的价格都append进去，最终输出的地方用了jinja2的filter计算总和。大约会写成这样：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>......
+</span><span class='line'>{# set prices = [] #}
+</span><span class='line'>{# for item in order.items #}
+</span><span class='line'>{# do prices.append(item.meal.price * item.quantity) #}
+</span><span class='line'><span class="nt">&lt;p</span> <span class="na">class =</span><span class="err"> </span><span class="s">&quot;order_list_item&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>{# endfor #}
+</span><span class='line'><span class="nt">&lt;/td&gt;</span>
+</span><span class='line'><span class="nt">&lt;td&gt;&lt;/td&gt;</span>
+</span><span class='line'>......
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>相信jinja2改进set之后会是一个很不错的模板系统：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-06T20:34:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -539,133 +696,6 @@
 
 
 	<a class='category' href='/blog/categories/java/'>java</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/06/08/solved-sudo-unable-to-resolve-host/">
-		
-			Sudo 出现unable to Resolve Host 解决方法</a>
-	</h2>
-	<div class="entry-content">
-		<p>执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo ：unable to resolve host HOSTNAME
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>127.0.0.1               localhost.localdomain localhost HOSTNAME
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>希望vpsee的admin能在iso中修复这个问题</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-08T16:23:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/vps/'>vps</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/06/08/solved-set-lc_ctype-to-default-locale-no-such-file-or-directory/">
-		
-			解决Cannot Set LC_CTYPE to Default Locale: No Such File or Directory问题</a>
-	</h2>
-	<div class="entry-content">
-		<p>刚拿到vps，打算更新一些软件，发现有些warning挺讨厌的，于是就想根除他们！！他们一般是这样的：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>locale: Cannot <span class="nb">set </span>LC_CTYPE to default locale: No such file or directory
-</span><span class='line'>locale: Cannot <span class="nb">set </span>LC_MESSAGES to default locale: No such file or directory
-</span><span class='line'>locale: Cannot <span class="nb">set </span>LC_ALL to default locale: No such file or directory
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>我看到我的LANG被设定为zh_CN.utf8，虽然我们是国人，但这个语言习惯不能代表我们的爱国情怀吧，我就改为en_US.utf8了：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo touch /etc/default/locale
-</span><span class='line'>vi /etc/default/locale
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>加入：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">LANG</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
-</span><span class='line'><span class="nv">LANGUAGE</span><span class="o">=</span><span class="s2">&quot;en_US:en&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>再执行一下locale就发现问题不见了。</p>
-
-<p>希望vpsee的admin能在iso中修正这个事儿～</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-08T16:20:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/vps/'>vps</a>
 
 
 </div>

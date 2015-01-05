@@ -1,0 +1,200 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>聚石塔里面的坑 - Trade Off</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="今天开始全面接触聚石塔，就是天猫的云平台，上面服务众多，全都能收费，第一次听说了API调用也是可以收费的。下面记录一些可能成为坑的东西，希望有人看到后可以小心躲避。 创建应用要先报备 说明书要按照模版写，模板有下载，看说明就能找到，其中里面有个架构图，这个要仔细画，基本思想（阿里思想） &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">聚石塔里面的坑</h2>
+	<div class="entry-content"><p>今天开始全面接触聚石塔，就是天猫的云平台，上面服务众多，全都能收费，第一次听说了API调用也是可以收费的。下面记录一些可能成为坑的东西，希望有人看到后可以小心躲避。</p>
+
+<h1>创建应用要先报备</h1>
+
+<p>说明书要按照模版写，模板有下载，看说明就能找到，其中里面有个架构图，这个要仔细画，基本思想（阿里思想）就是把你所有的业务系统都放到ECS上，如果在ECS外出现了一个你们自己的平台，他们就怀疑你用ECS做了一个代理来调用API，因为收费API只能是塔内调用，其他没有遇到特别的，时间大概是3天出结果。</p>
+
+<h1>创建应用</h1>
+
+<p>报备通过就可以创建应用了，创建成功后可以去买ECS和RDS等服务，别的服务暂时没用到，这两个服务都是绑定应用的，所以要先有应用。ECS的配置可选的比较少，我在北京，但机房目前只有杭州，所以你写了你的位置也没用，据说杭州那个机房是6线接入，出口质量和淘宝一样，但拿到ECS后ping了一下，31ms左右，第二天ping到了70ms左右，虽然ping不代表什么，但总感觉怪怪的。。。价格和阿里云的ECS相比有些贵。</p>
+
+<h1>ECS</h1>
+
+<p>管理终端有个密码，要改的话记得改完重启机器，否则不生效，而且重启后自己再用管理终端连接一下看看是不是生效了。</p>
+
+<p>他们把10和172.16网段都用了，自己要用内网的话可以考虑多租几个ECS实例，但想玩LXC的话，可以考虑用192.168网段。</p>
+
+<p>DNS不要换别的，就用ECS配置好的，据说改了影响内部访问和RDS通信，我改成114dns后直接无法使用。</p>
+
+<p>我买的是最便宜的ECS，但不知道为何没有SWAP分区，512Mb内存在起了LXC后又编译了一个东西就超了，那里怎么都不行，于是加了SWAP，可以。</p>
+
+<h1>RDS</h1>
+
+<p>我想用聚石塔的推送服务，就是可以把订单、商品等数据推送到买的RDS中，但今天申请的时候对方说应用未上线，不能申请。。。我就是需要这些数据才能开发应用，这不就变成死锁了？具体如何解决等更新。</p>
+
+<hr />
+
+<p>目前就遇到这些坑，欢迎更新坑们。</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-05T22:56:42+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    dawncold
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2015/01/05/traps-of-jushita/';
+        var disqus_url = 'http://www.youth2009.org/blog/2015/01/05/traps-of-jushita/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-8650400-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

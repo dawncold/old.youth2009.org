@@ -7,7 +7,37 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="昨天1ST告诉我代码到了设备上有些地方不正常，我一直没用设备调试过，只是用模拟器，这次就用设备试试，没想到果然有些问题。 1.模拟器编译没有任何问题，但编译到设备就出现了8个错误，是因为继承后访问不到某些属性的问题。由于我在基类中用了property，在子类中直接引用，这样看来不行， &hellip;">
+	<meta name="description" content="问题就是这样了： 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+[root@wodeyitian MySQL-python-1.2.3]# python setup.py &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +106,162 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/08/08/mysqldb-have_wcscoll-redefined/">
+		
+			安装MySQLdb出现HAVE_WCSCOLL重定义问题的解决方法</a>
+	</h2>
+	<div class="entry-content">
+		<p>问题就是这样了：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@wodeyitian MySQL-python-1.2.3<span class="o">]</span><span class="c"># python setup.py install</span>
+</span><span class='line'>running install
+</span><span class='line'>running bdist_egg
+</span><span class='line'>running egg_info
+</span><span class='line'>writing MySQL_python.egg-info/PKG-INFO
+</span><span class='line'>writing top-level names to MySQL_python.egg-info/top_level.txt
+</span><span class='line'>writing dependency_links to MySQL_python.egg-info/dependency_links.txt
+</span><span class='line'>reading manifest file <span class="s1">&#39;MySQL_python.egg-info/SOURCES.txt&#39;</span>
+</span><span class='line'>reading manifest template <span class="s1">&#39;MANIFEST.in&#39;</span>
+</span><span class='line'>warning: no files found matching <span class="s1">&#39;MANIFEST&#39;</span>
+</span><span class='line'>warning: no files found matching <span class="s1">&#39;ChangeLog&#39;</span>
+</span><span class='line'>warning: no files found matching <span class="s1">&#39;GPL&#39;</span>
+</span><span class='line'>writing manifest file <span class="s1">&#39;MySQL_python.egg-info/SOURCES.txt&#39;</span>
+</span><span class='line'>installing library code to build/bdist.linux-x86_64/egg
+</span><span class='line'>running install_lib
+</span><span class='line'>running build_py
+</span><span class='line'>copying MySQLdb/release.py -&gt; build/lib.linux-x86_64-2.7/MySQLdb
+</span><span class='line'>running build_ext
+</span><span class='line'>building <span class="s1">&#39;_mysql&#39;</span> extension
+</span><span class='line'>gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info<span class="o">=(</span>1,2,3,<span class="s1">&#39;final&#39;</span>,0<span class="o">)</span> -D__version__<span class="o">=</span>1.2.3 -I/usr/include/mysql -I/usr/local/include/python2.7 -c _mysql.c -o build/temp.linux-x86_64-2.7/_mysql.o -g -pipe -Wp,-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span> -fexceptions -fstack-protector --param<span class="o">=</span>ssp-buffer-size<span class="o">=</span><span class="m">4</span> -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS<span class="o">=</span><span class="m">64</span> -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv
+</span><span class='line'>在包含自 _mysql.c：36 的文件中:
+</span><span class='line'>/usr/include/mysql/my_config.h:1062:1: 警告：“HAVE_WCSCOLL”重定义
+</span><span class='line'>在包含自 /usr/local/include/python2.7/Python.h：8 的文件中，
+</span><span class='line'>                从 pymemcompat.h：10，
+</span><span class='line'>                从 _mysql.c：29:
+</span><span class='line'>/usr/local/include/python2.7/pyconfig.h:887:1: 警告：这是先前定义的位置
+</span><span class='line'>gcc -pthread -shared build/temp.linux-x86_64-2.7/_mysql.o -L/usr/lib64/mysql -L/usr/lib64 -lmysqlclient_r -lz -lpthread -lcrypt -lnsl -lm -lpthread -lssl -lcrypto -o build/lib.linux-x86_64-2.7/_mysql.so
+</span><span class='line'>/usr/bin/ld: cannot find -lmysqlclient_r
+</span><span class='line'>collect2: ld 返回 1
+</span><span class='line'>error: <span class="nb">command</span> <span class="s1">&#39;gcc&#39;</span> failed with <span class="nb">exit </span>status 1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也不算什么解决方法吧，就是缺失一些组件，安装了mysql-devel就好了：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>yum install mysql-devel.x86_64
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-08T14:35:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mysql/'>mysql</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/08/08/python-uwsgi-nginx/">
+		
+			基本配置好了python+nginx</a>
+	</h2>
+	<div class="entry-content">
+		<p>没想到配置过程有这么复杂，不过在按照Linode官方的指导做过之后发现一切又是那么简单，果然还是Linode的服务一流，同样的操作肯在所有发行版上都做一次教程，很少有VPS provider能够做到这些吧？看来贵还是有道理的。</p>
+
+<p>不多赘述了，centos5的教程可以看这里（其他版本的在这里找：<a href="http://library.linode.com/web-servers/nginx/python-uwsgi">http://library.linode.com/web-servers/nginx/python-uwsgi</a>）</p>
+
+<p><a href="http://library.linode.com/web-servers/nginx/python-uwsgi/centos-5">http://library.linode.com/web-servers/nginx/python-uwsgi/centos-5</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-08T11:12:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -463,124 +649,6 @@ A style for a cell with a left-aligned label across the top and a left-aligned l
 
 
 	<a class='category' href='/blog/categories/gameapp/'>gameapp</a>, <a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/19/process-cis-and-zis-with-python/">
-		
-			用python处理词汇</a>
-	</h2>
-	<div class="entry-content">
-		<p>要整理一些词汇，并且还要给每个词汇编码，我把所有的词汇分割称了独立的汉字，再把这些汉字压缩，去掉重复的汉字，最后把这些汉字导入数据库，得到了每个汉字的id，把这些id组合起来作为词的编码，这样还算是好用吧。</p>
-
-<p>用python写了7个脚本来做这些工作，最后得到了近7万条记录，包括单独的字和一些词。因为要用来做iphone应用，所以数据库用的是sqlite，大约4MB的数据，看来这些数据已经很够用了吧。</p>
-
-<p>代码实在不太美观，所幸就不粘贴了吧。</p>
-
-<p>哦，对了，在收集资料过程中，找到了一个用mdb包装的成语数据库，可惜mac下没有很好的浏览工具，就找找看有没有转换工具，在GoogleCode上找到了一个mdb转sqlite的工具，用java写的，下载下来后用了一下，出了一个warning，不过没有影响使用。很不错，感谢一下：<a href="http://code.google.com/p/mdb-sqlite/">http://code.google.com/p/mdb-sqlite/</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-19T14:06:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/gameapp/'>gameapp</a>, <a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/10/nginx-location-config/">
-		
-			Nginx下的location配置</a>
-	</h2>
-	<div class="entry-content">
-		<p>原来的location只是处理了“/”的情况，结果访问一个目录，即使此目录下有index.html也不会成功显示，于是改成了这样：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>location ~.*\.(php|php5)?$
-</span><span class='line'>{
-</span><span class='line'>    处理php
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样之后，发现直接访问目录或者域名的时候不能正常显示了，必须跟上index.php这样的才可以。</p>
-
-<p>最终改成这样，解决了问题：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>location / {
-</span><span class='line'>               root html;
-</span><span class='line'>               index index.html index.php;
-</span><span class='line'>}
-</span><span class='line'>location ~.*\.(php|php5)?$ {
-</span><span class='line'>处理php
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-10T20:15:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/nginx/'>nginx</a>
 
 
 </div>

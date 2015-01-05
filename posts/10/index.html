@@ -7,7 +7,10 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="昨晚竟然下了第一场雪，看着不怎么大，但确实是第一场。 这种天本来就是吃火锅的时候。 这篇日志几乎和y.youth2009.org上的发重复了，以后我也在想，这种重复该怎么办呢？ 大晚上的将要睡下，不料看了《饮食男女2012》，真的很好，而且我也感动的哭，心情大为激动，起来coding了， &hellip;">
+	<meta name="description" content="为了强制自己学习，每天晚上都要读书，如果时间允许就多读几种。今晚开始重读《The Pragmatic Programmer》（其实自己本来也没看多少） 强化几个英语单词吧： picture: 描述
+neglect: 忽视
+responsible: 负责任的
+inertia: 惯性 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +79,139 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/06/pragmatic-programmer-log/">
+		
+			Pragmatic Programmer Log</a>
+	</h2>
+	<div class="entry-content">
+		<p>为了强制自己学习，每天晚上都要读书，如果时间允许就多读几种。今晚开始重读《The Pragmatic Programmer》（其实自己本来也没看多少）</p>
+
+<p>强化几个英语单词吧：</p>
+
+<pre><code>picture:        描述
+neglect:        忽视
+responsible:    负责任的
+inertia:        惯性
+instigating:    鼓动
+cautionary:     警告、注意
+tale:           传说
+amphibian:      两栖类
+involved:       有密切关系的
+pull...off:     努力实现
+ongoing:        不断发展的
+portfolio:      文件夹、公文包
+keep...up:      保持
+momentum:       动力
+vacuum:         真空
+unforeseen:     无法预料的
+ethics:         道德标准
+accountable:    负有责任的
+contingency:    偶发事件
+salvage:        抢救
+in term of:     在任期内
+cornerstone:    奠基石
+</code></pre>
+
+<p>pragmatic 哲学的奠基石之一：the idea of taking responsibility for youself and your actions in terms of your career advancement, your project, and your day-to-day work.</p>
+
+<p>一开篇就在讲责任，这个无论是在个人生活还是工作中看来都占了很大的地位，要不然也不会开头就灌输这个，如果是一开始讲什么具体技术那这本书也就不会成为经典了，其实计算机方面很多的书都是在讲人生，只有到了那个高度，才会出现固话的精髓，才能传播。某种技术、语言，也就是几年、几十年的生命力（C除外，这是个未知对象），我一直期望能够从coding这方面找到一些人生中可用的哲学出来。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-06T00:24:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/05/ubuntu-network-configuration/">
+		
+			Ubuntu Network Configuration</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天去机房配置了一下测试服务器的network，以便于让所有编辑部的人都能用上新的产品录入功能，据说我们只需要修改gateway到200.200.200.204就可以了，但奇怪的是，今天我登录到了主机上发现gateway就是204了，好奇怪啊。</p>
+
+<p>起初是用GUI来配置的network，但找不到Network Manager的配置文件在哪里，远程的话我们又没有装VNC只有命令行，索性跑去机房搞定。</p>
+
+<p>ubuntu的netwok配置在/etc/network/interfaces中。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>auto eth0 <span class="c">##这个应该是决定是否启用这个端口 </span>
+</span><span class='line'>iface eth0 inet static <span class="c">##静态设置IP </span>
+</span><span class='line'>hwaddress ether 52:54:xx:51:xx:xx <span class="c">##加入MAC地址，记得要放在IP地址之前 </span>
+</span><span class='line'>address 202.198.151.17
+</span><span class='line'>netmask 255.255.255.0
+</span><span class='line'>gateway 202.198.151.254
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这个样基本够我们现在用的了，据说配置好了要用sudo service networking restart，但我每次搞网络都发现重启这个不管用，似乎配置完了就生效了，不要忘记把原先Network Manager中的配置删除掉哦。今天我忘记加第一行auto eth0导致怎么启动都没效果：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-05T20:41:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -493,103 +629,6 @@
 
 
 	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/20/6-minutes-offset-in-pytz/">
-		
-			Pytz的6分钟时差</a>
-	</h2>
-	<div class="entry-content">
-		<p>项目中有使用pytz这个第三方库来处理datetiem相关的东西。不过最近测试的时候发现，创建了一个时间点后，最终得到的时间点和预想的时间点有6分钟的误差，从网上搜到的资料是这样解决的：详情看<a href="http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1">http://hi.baidu.com/limodou/item/72da32384b25c7ff97f88df1</a></p>
-
-<p>创建datetime的时候，特别是带timezone，需要localize一下，否则在使用pytz的时候就会出现这6分钟的差异。代码中首先创建了datetime，然后localize后再replace了timezone为pytz的，最终还astimezone为pytz.utc。我们是使用utc的，你的代码也许不需要：）</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-20T16:13:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/09/nat-practical/">
-		
-			NAT实践</a>
-	</h2>
-	<div class="entry-content">
-		<p>昨天用LXC建立了不少container，分别用来做webserver、databaseserver等等，让这些container运行着各自程序启动后如果有外部访问，就会通过iptables把请求发送到各自的地方，这里需要宿主机器做NAT。比如访问80端口，我会把请求转发到内部10.0.3.20这台container来处理，相应的response也会返回过去。这样就做到了服务隔离。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo iptables -t nat -A PREROUTING -i eth1 -p tcp --dport <span class="m">80</span> -j DNAT --to 10.0.3.20
-</span><span class='line'>sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT --to 200.200.200.25
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样就把进入的请求都发到了10.0.3.20这台container上去处理。</p>
-
-<p><img src="http://pic.yupoo.com/dawncold0/CkkIbzDr/medish.jpg" alt="nat" /></p>
-
-<p>只默认开了一个nginx，就这样的效果。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-09T14:09:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/lxc/'>lxc</a>
 
 
 </div>

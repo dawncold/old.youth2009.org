@@ -3,6 +3,18 @@
   
   
   <url>
+    <loc>http://www.youth2009.org/blog/2015/01/05/unicom-blocked-80-8080/</loc>
+    <lastmod>2015-01-05T23:24:57+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.youth2009.org/blog/2015/01/05/traps-of-jushita/</loc>
+    <lastmod>2015-01-05T22:56:42+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://www.youth2009.org/blog/2015/01/01/build-octopress-blog-on-raspberry-pi/</loc>
     <lastmod>2015-01-01T20:25:24+08:00</lastmod>
     <priority>0.8</priority>
@@ -1475,21 +1487,21 @@
   
   <url>
     <loc>http://www.youth2009.org/blog/archives/</loc>
-    <lastmod>2015-01-01T20:51:54+08:00</lastmod>
+    <lastmod>2015-01-05T23:39:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://www.youth2009.org/</loc>
-    <lastmod>2015-01-01T20:51:54+08:00</lastmod>
+    <lastmod>2015-01-05T23:39:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://www.youth2009.org/about/</loc>
-    <lastmod>2015-01-01T20:51:54+08:00</lastmod>
+    <lastmod>2015-01-05T23:39:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

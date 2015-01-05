@@ -7,7 +7,9 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="今天刚刚换了vps，ssh的安全早就该配置好，没想到竟然是现在了…… 首先这些基本需要做：http://www.deepvps.com/improve-ssh-security.html 再就是禁止root后需要创建一个马甲账号：   0.增加ubuntu的admin组，我的vps默认没有， &hellip;">
+	<meta name="description" content="执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了） 1
+sudo ：unable to resolve host HOSTNAME 这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可) 1
+127.0.0.1 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +78,133 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/06/08/solved-sudo-unable-to-resolve-host/">
+		
+			Sudo 出现unable to Resolve Host 解决方法</a>
+	</h2>
+	<div class="entry-content">
+		<p>执行一句sudo xxx会发现：（HOSTNAME就是你的hostname了）</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo ：unable to resolve host HOSTNAME
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样修复：(编辑/etc/hosts，修改127.0.0.1那行，把你的hostname加入到那行的最后即可)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>127.0.0.1               localhost.localdomain localhost HOSTNAME
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>希望vpsee的admin能在iso中修复这个问题</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-08T16:23:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/vps/'>vps</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/06/08/solved-set-lc_ctype-to-default-locale-no-such-file-or-directory/">
+		
+			解决Cannot Set LC_CTYPE to Default Locale: No Such File or Directory问题</a>
+	</h2>
+	<div class="entry-content">
+		<p>刚拿到vps，打算更新一些软件，发现有些warning挺讨厌的，于是就想根除他们！！他们一般是这样的：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>locale: Cannot <span class="nb">set </span>LC_CTYPE to default locale: No such file or directory
+</span><span class='line'>locale: Cannot <span class="nb">set </span>LC_MESSAGES to default locale: No such file or directory
+</span><span class='line'>locale: Cannot <span class="nb">set </span>LC_ALL to default locale: No such file or directory
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我看到我的LANG被设定为zh_CN.utf8，虽然我们是国人，但这个语言习惯不能代表我们的爱国情怀吧，我就改为en_US.utf8了：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo touch /etc/default/locale
+</span><span class='line'>vi /etc/default/locale
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>加入：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">LANG</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</span><span class='line'><span class="nv">LANGUAGE</span><span class="o">=</span><span class="s2">&quot;en_US:en&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>再执行一下locale就发现问题不见了。</p>
+
+<p>希望vpsee的admin能在iso中修正这个事儿～</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-08T16:20:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/vps/'>vps</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -850,194 +979,6 @@
 
 
 	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/sql/'>sql</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3/">
-		
-			Sqlite3的rowcount</a>
-	</h2>
-	<div class="entry-content">
-		<p>最近写了一个todo的webapp，在用户登陆的时候是select数据库中的内容进行对比判断，当然如果select的内容是0那就表示用户登陆失败了，可能账号或者密码写错了，数据库用的sqlite3，在python的api中发现有cursor.rowcount可用，于是就这么判断一下是不是有数据被select出来了，没想到这样判断是错误的。</p>
-
-<p>select的rowcount永远为-1，哎，这里着实坑了我一番啊～</p>
-
-<p>只好cursor.fetchone()先，然后判断得到的内容是不是None。</p>
-
-<p>从<a href="http://stackoverflow.com/questions/839069/cursor-rowcount-always-1-in-sqlite3-in-python3k">这里</a>得到的答案。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-14T17:00:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/sql/'>sql</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/05/07/solve-inversion-by-using-merge/">
-		
-			逆序对的求解</a>
-	</h2>
-	<div class="entry-content">
-		<p>今天看到算法导论上关于求解一个序列的逆序对的问题，以前自己在这个地方写着解答方法，不过今天怎么看都不懂了，从网上找了找，大都说得很模糊，不过自己突然有种领悟了的感觉，找了个简单的例子，实验了一下，自己的结论是正确的：）</p>
-
-<p>例子是（2，3，8，6，1）这个序列，找出所有的5个逆序对。最好的方法是nlogn复杂度的利用归并排序的副产品——merge部分统计，统计比较左右列表时，左侧大于右侧时“左侧”列表中剩余数目。</p>
-
-<p>归并的划分应该是这样的，（2，3，8）为左侧，（6，1）为右侧，继续划分为（2，3）和8，右边是6和1。下面就开始合并了，（2，3）和8这边还是（2，3，8），右侧出现一个逆序对，在合并6，1的时候因为作为“左侧”的6要大于1，所以这里有1个逆序对，这里的1就是此时“左侧”序列中的元素个数。</p>
-
-<p>在往下走，要合并（2，3，8）和（1，6），马上就出现了2>1这样的情况，此时会出现（2，1）、（3，1）、（8，1）这几个逆序对，后面还会出现（8，6）这个逆序对，一共就这么5个。</p>
-
-<p>因为原始序列是（2，3，8，6，1），我们需要用到这个原始序列的顺序来判断顺序排在前面的值却大于后面的，这样的机会在每次merge的时候是非常合适的。</p>
-
-<p>这是修改后输出逆序对的归并排序算法，有点可惜哈，这么长的排序算法只让副产品在台前显露了一把！</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
-</span><span class='line'><span class="c"># coding: utf-8</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
-</span><span class='line'>   <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>   <span class="n">i</span> <span class="o">=</span> <span class="n">first</span>
-</span><span class='line'>   <span class="n">j</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span>
-</span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">middle</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">last</span><span class="p">:</span>
-</span><span class='line'>       <span class="k">if</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
-</span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>           <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>       <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>           <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
-</span><span class='line'>               <span class="k">print</span> <span class="s">&quot;(</span><span class="si">%d</span><span class="s">,</span><span class="si">%d</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-</span><span class='line'>           <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-</span><span class='line'>           <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>   <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">middle</span><span class="p">:</span>
-</span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>       <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>   <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">last</span><span class="p">:</span>
-</span><span class='line'>       <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arraylist</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-</span><span class='line'>       <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">last</span> <span class="o">-</span> <span class="n">first</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>       <span class="n">arraylist</span><span class="p">[</span><span class="n">first</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
-</span><span class='line'>   <span class="k">if</span> <span class="n">first</span> <span class="o">&lt;</span> <span class="n">last</span><span class="p">:</span>
-</span><span class='line'>       <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">first</span> <span class="o">+</span> <span class="n">last</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-</span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">)</span>
-</span><span class='line'>       <span class="n">merge_sort</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
-</span><span class='line'>       <span class="n">merge</span><span class="p">(</span><span class="n">arraylist</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class='line'><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="n">merge_sort</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>运行结果：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">(</span>6,1<span class="o">)</span>
-</span><span class='line'><span class="o">(</span>2,1<span class="o">)</span>
-</span><span class='line'><span class="o">(</span>3,1<span class="o">)</span>
-</span><span class='line'><span class="o">(</span>8,1<span class="o">)</span>
-</span><span class='line'><span class="o">(</span>8,6<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>（我的代码缩进似乎出了点问题，本身这段归并排序也是从网上找来的，所以混合了不少tab和whitespace，弄了好久都是error indent，最后我无奈用whitespace来做缩进，好歹调试通过了！）</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-07T17:08:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/algorithm/'>algorithm</a>, <a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>

@@ -7,8 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。 没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1 1
-2 &hellip;">
+	<meta name="description" content="着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。 不过在用的时候发现查看带有中文字符的文件会出现乱码，在这里得到了解决方案： 打开putty主程序， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -77,6 +76,120 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/03/02/bad-chinese-encoding-in-putty/">
+		
+			Putty的中文乱码</a>
+	</h2>
+	<div class="entry-content">
+		<p>着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。</p>
+
+<p>不过在用的时候发现查看带有中文字符的文件会出现乱码，在这里得到了解决方案：</p>
+
+<ol>
+<li><p>打开putty主程序，选择window-〉Appearance-〉Font settings-〉Change…,选择Fixedsys字体,字符集选择CHINESEGB2312。</p></li>
+<li><p>在window-〉Appearance -〉Translation中，Received data assumed to be in which character set 中,把Use font encoding改为UTF-8如果经常使用,把这些设置保存在session里面.</p></li>
+<li><p>现在打开putty,登录成功后,在shell中输入:export LCALL=’zh_CN.utf8’</p></li>
+</ol>
+
+
+<p>然后再打开文件就没问题了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-02T12:08:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/02/23/have-bought-textmate/">
+		
+			买了textmate</a>
+	</h2>
+	<div class="entry-content">
+		<p>截至目前，这是我买得最贵的一款软件了——39欧元（327RMB）</p>
+
+<p>一直在豆瓣Textmate小组中等人家团购，自己也从没在官网试过购买，一看是用的paypal做中转，感觉不靠谱，以前也没试过paypal的支付，没想到这次成功了，先用了张信用卡支付，发现不行，结果换普通银行卡，直接跳转到了银联，然后我又用的信用卡透支……</p>
+
+<p>稍微配置了一下textmate，按照<a href="http://www.lixiaolai.com/archives/10895.html">这里</a>的方法，其中1.5版本的中文字体那里，建议不要尝试了，不完美，还是等2.0正式发布了吧，听说2.0对于中文字体支持得很好，但我懒得下载测试版来用：）</p>
+
+<p>加入GetBundles：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir -p ~/Library/Application<span class="se">\ </span>Support/TextMate/Bundles
+</span><span class='line'><span class="nb">cd</span> !<span class="err">$</span>
+</span><span class='line'>svn co http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/
+</span><span class='line'>osascript -e <span class="s1">&#39;tell app &quot;TextMate&quot; to reload bundles&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>第一次见cd还能这样用，这样简直太方便了！还有最后那句script，多么优美的句子：）</p>
+
+<p>以后就要多用textmate了，先放弃emacs。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-23T19:29:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mac/'>mac</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -641,146 +754,6 @@
 
 
 	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/02/06/firstly-study-ruby/">
-		
-			开学Ruby</a>
-	</h2>
-	<div class="entry-content">
-		<p>先从官方文档那里找各种资料学习，已经在amazon上买书了，买了本rails应用的书，还买了两本考系统架构师的书，再就是想买一本讲ruby语言的书，很可惜amazon上没货，要是从非amazon商家买的话需要支付高昂的快递费，于是从淘宝上找了家靠谱的商家，还有满49包邮（幸亏这本书是51，包邮了）</p>
-
-<p>对了，今天在amazon上买书是因为收到了amazon前段时间送的满100送20优惠券，对于我这种很喜欢在amazon上买技术书籍的书虫来说这类活动太好了，以后多多参加！</p>
-
-<p>说废话太多了，今天断断续续看了这里的教程，基本想要按照讲得做，看完一半了，明天把剩下弄完！</p>
-
-<p>教程地址：<a href="http://pine.fm/LearnToProgram/">http://pine.fm/LearnToProgram/</a></p>
-
-<p>ruby的中文参考文档页：<a href="http://www.ruby-lang.org/zh_cn/documentation/">http://www.ruby-lang.org/zh_cn/documentation/</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-06T00:40:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/02/05/update-ruby-on-mac/">
-		
-			更新Mac下的ruby</a>
-	</h2>
-	<div class="entry-content">
-		<p>刚刚说了要开始学ruby了，但发现Mac下的ruby版本挺低的，才1.8.7，现在官方的都1.9.3了，于是更新，发现这个更新不大容易，到底现在该不该爱Mac呢？！</p>
-
-<p>修改一下/usr/local的权限：(如果不修改的话，或许会出现通过brew安装的软件无法自动创建符号链接到/usr/local/bin中的情况，如果不能自动创建链接过去的话，麻烦是一个方面，关键是后面做的一些工作基本都白费了，可能你运行的一个软件是在/usr/bin中存在的，那样就不会自动搜索到你用brew安装的那个了。详情找找brew的工作原理吧：)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo chown -R <span class="sb">`</span>whoami<span class="sb">`</span> /usr/local
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>首先我用了大家推荐的Homwbrew管理工具，这里安装完homebrew后需要在自己的bash配置文件中加入新的path：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/usr/local/bin:<span class="nv">$PATH</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>把这行加入到bash_profile中吧，这样就能让homebrew发挥作用了，你首先就能用上更新了的程序而不是从默认路径查找。（如果以前用了MacPorts的话你也会和我一样看到MacPorts的export命令，要去掉他们，或者你把Homebrew的export命令写在下面，这样能覆盖掉，既然我已经删除了MacPorts，所以干脆删除掉！）</p>
-
-<p>关闭terminal，重新加载刚才的bash_profile，这样就能用Homebrew了。</p>
-
-<p>首先安装git，自己和Homwbrew都用得到：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install git
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>接着更新一下Homebrew的源：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew update
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然后安装了ruby后就能用gem来更新系统了：</p>
-
-<p>安装ruby：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install ruby
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>更新系统：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem update --system
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>后面的安装rails等操作就可以用gem来做了，看看自己的ruby版本，已经是1.9.3p0(2011-10-30)</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-05T00:00:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
 
 
 </div>

@@ -7,7 +7,11 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="if you want a div with absolute position relative its parent, not body, the parent div must be relative position. see details http://css-tricks.com/ &hellip;">
+	<meta name="description" content="both in while and for loop, if in loop body, no break, no return, no exception is raised, statements in else block will be executed. 1
+2
+3
+4
+for x &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +80,104 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/08/14/else-clause-in-python-loop/">
+		
+			Else Clause in Python Loop</a>
+	</h2>
+	<div class="entry-content">
+		<p>both in while and for loop, if in loop body, no break, no return, no exception is raised, statements in else block will be executed.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>for x in []:
+</span><span class='line'>     print x
+</span><span class='line'>else:
+</span><span class='line'>     print ‘xxx’</span></code></pre></td></tr></table></div></figure>
+
+
+<p>this example will print ‘xxx’, even nothing in list and this loop is not executed.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-14T22:07:09+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept/">
+		
+			Iptables -a INPUT -i Eth0 -p Tcp -m Tcp &#8211;dport 80 -j ACCEPT</a>
+	</h2>
+	<div class="entry-content">
+		<p>what’s the agreement of -m?</p>
+
+<p>not tcp, it’s “tcp &mdash;dport 80”</p>
+
+<p>-m matches, using a somewhat complicated &ldquo;module matching&rdquo; mechanism.  There are a bunch of pretty cool modules in iptables, for example &ldquo;recent&rdquo;.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-14T22:05:46+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -477,119 +579,6 @@
 
 
 <time datetime="2014-03-27T21:22:58+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/01/23/return-value-in-jquery-json-datatype/">
-		
-			Return-value-in-jquery-json-datatype</a>
-	</h2>
-	<div class="entry-content">
-		<p>向api server发送请求做一件事的时候，比如修改密码，server做完后没有返回值，response code是200。这在原来的时候没问题，“原来”是指ajax的dataType未指定的时候，jQuery会自己猜测用什么，但这次指定了server的response是json，所以，即便是看到200 code也未能调用OnSuccess，空返回值对于json是不合法的，于是返回一个什么东西就好，当然要先to_json再返回。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-23T18:57:21+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/01/16/nginx-and-dependences/">
-		
-			Nginx-and-dependences</a>
-	</h2>
-	<div class="entry-content">
-		<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.34.tar.gz
-</span><span class='line'>wget http://www.openssl.org/source/openssl-1.0.1f.tar.gz
-</span><span class='line'>wget http://nginx.org/download/nginx-1.5.8.tar.gz
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>default install pcre and openssl</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>nginx configure
-</span><span class='line'>+gzip
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>Configuration summary
-</span><span class='line'>  + using system PCRE library
-</span><span class='line'>  + OpenSSL library is not used
-</span><span class='line'>  + md5: using system crypto library
-</span><span class='line'>  + sha1: using system crypto library
-</span><span class='line'>  + using system zlib library</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-16T18:46:33+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 
