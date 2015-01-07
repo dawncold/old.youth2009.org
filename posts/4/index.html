@@ -7,11 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="32 bits Internet address
-| /|
-|ARP |RARP
-|/ |
-48 bits Ethernet address Gratuitous ARP send its own IP to verify whether someone has used this. &hellip;">
+	<meta name="description" content="Conceptual Models Designing software so that its structure reflects that of the problem. Analysis is not only listing requirments, but also looking &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -80,6 +76,65 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/08/19/conceptual-models/">
+		
+			Conceptual-models</a>
+	</h2>
+	<div class="entry-content">
+		<h2>Conceptual Models</h2>
+
+<p>Designing software so that its structure reflects that of the problem.</p>
+
+<p>Analysis is not only listing requirments, but also looking behind the surface requirments to come up with a mental model of what is going in the problem.</p>
+
+<p>Conceptual model is a human artifact.</p>
+
+<p>Developers use conceptual models to represent a model of the real world in order to understanding the read part of problems easily.</p>
+
+<p>There is no right or wrong model, merely one that is more useful for the job at hand.</p>
+
+<p>The example, snooker simulation, if your choose a Einsteinian model would be flexible enought to low speed or high speed situation, but the complexity is totally different you know, so the flexibility and many others aspects need a trade-off.</p>
+
+<p>When building a model in a programming language, maybe Python, you may get lost in this language or building this model using some features belong to Python, so this model is a Python-model, and it is hard to be implemented in other languages such as Java, PHP, etc. To avoid these problems, you need a third-party analysis techniques.</p>
+
+<p>Only domain experts could build right model, because of their domain knowledge.</p>
+
+<p>Conceptual model is closely to software interfaces rather than software implementations. One of the important things about OO is that it separates interface from implementation.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-19T22:12:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/analysis-pattern/'>analysis-pattern</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -631,64 +686,6 @@
 
 
 	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/07/21/crontab-a-python-script/">
-		
-			Crontab a Python Script</a>
-	</h2>
-	<div class="entry-content">
-		<p>今天用python写了个<a href="https://github.com/dawncold/stuff/blob/master/ping_test.py">小程序</a>检测网络是否通断，如果断了就弹出一个Notification，当然是Mac上的，并且弹出一个terminal，带着执行ping www.baidu.com。</p>
-
-<p>一开始用Lingon加入到启动项中并且打算2分钟执行一次，几经折腾终于失败，弃之。打算用crontab弄。</p>
-
-<p>好歹算是可用了吧，注意的是：script的开头写/usr/bin/python，crontab中写PATH没用，得写PYTHONPATH才管用，而且我还写了MAILTO（现在不知道管什么用）。由于在script中用了popen，可能这个需要依赖一些环境或者是tty（这是从stackoverflow上看来的，具体可以搜popen crontab），现在想来launchd是不是也因为如此没能成功启动呢？（总提示255退出代码）</p>
-
-<p>crontab:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">MAILTO</span><span class="o">=</span><span class="s2">&quot;dawncold@me.com&quot;</span>
-</span><span class='line'><span class="nv">PATH</span><span class="o">=</span>/Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin:/Users/dawncold/.rvm/gems/ruby-1.9.3-p286@global/bin:/Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/bin:/Users/dawncold/.rvm/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/MacGPG2/bin
-</span><span class='line'><span class="nv">PYTHONPATH</span><span class="o">=</span>/usr/bin
-</span><span class='line'>* * * * * /Users/dawncold/ping_test.py &gt; /Users/dawncold/pt
-</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-21T22:28:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>

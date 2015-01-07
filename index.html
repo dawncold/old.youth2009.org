@@ -7,9 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="地点：北京
-ISP：中国联通
-接入方式：光纤入户 换联通宽带几个月了，感觉良好，但觉得BT下载不够快，因为下的少，也没深究，而且多用迅雷离线下载，基本就是直连迅雷CDN的速度，都能跑满带宽。 OpenWrt多拨尝试过，没有效果，据说早就被封了，所以不再尝试。 &hellip;">
+	<meta name="description" content="I have got a bug when I print something to stdout, I got Bad file descriptor, it means my stdout is a bad descriptor, what?! Core code like this: &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -78,6 +76,53 @@ ISP：中国联通
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/01/07/be-careful-python-fdopen/">
+		
+			Be Careful Python Fdopen</a>
+	</h2>
+	<div class="entry-content">
+		<p>I have got a bug when I <code>print</code> something to stdout, I got <code>Bad file descriptor</code>, it means my stdout is a bad descriptor, what?!</p>
+
+<p>Core code like this: <code>logger.StreamHandler(os.fdopen(sys.stdout.fileno(), 'w', 0))</code>, I want to a unbuffered stdout, so I reopen it by <code>fdopen</code>, and reset the buffer size to 0, I still also did same thing to <code>stderr</code>, but that is no sense, because of <code>stderr</code> is unbuffered normally(but in Python3, it maybe line buffered, in MacOS).</p>
+
+<p>If your stdout is reopened by <code>fdopen</code>, and its reference count hits zero, it will be collected by Python GC, also your stdout will be ate by GC, something wrong will happen after that.</p>
+
+<p>So, be careful with <code>fdopen</code> for <code>stdin</code>, <code>stderr</code>, <code>stdin</code>:)</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-07T23:13:39+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -166,7 +211,11 @@ ISP：中国联通
 
 <h2>RDS</h2>
 
-<p>我想用聚石塔的推送服务，就是可以把订单、商品等数据推送到买的RDS中，但今天申请的时候对方说应用未上线，不能申请。。。我就是需要这些数据才能开发应用，这不就变成死锁了？具体如何解决等更新。</p>
+<p>我想用聚石塔的推送服务，就是可以把订单、商品等数据推送到买的RDS中，但今天申请的时候对方说应用未上线，不能申请。。。我就是需要这些数据才能开发应用，这不就变成死锁了？</p>
+
+<p><strong>2015年1月7日</strong>：后来和客服沟通，说是应用需要先上线，即便你还没有开始开发，这点虽然有点怪怪的，但只有这样才能申请到同步服务。应用上线挺简单，创建完应用只是第一步，完善基本信息后点下一步即可进入安全扫描阶段，再提交，瞬间说审核通过，这就上线运行了。</p>
+
+<p>后续请等待更新。</p>
 
 <hr />
 
@@ -1115,67 +1164,6 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
 
 
 	<a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/08/14/role-in-postgresql/">
-		
-			Role in Postgresql</a>
-	</h2>
-	<div class="entry-content">
-		<p>In PostgreSQL versions before 8.1, users and groups were distinct kinds of entities, but now only role, it is user or group or both.</p>
-
-<p>if you create a role using “CREATE ROLE r1”, r1 is not a user, only a generic role, it is likely a group, you can not find it in pg_user, only in pg_roles table, but if you grant LOGIN privilege to r1, it will be appear in pg_user table.</p>
-
-<p>After installed postgresql cluster, you need execute initdb, and it will create a default role with superuser privilege, costomarily this role(user) named postgres</p>
-
-<p>Role’s attributes: login, superuser, database creation, role creation, initiating replication, password</p>
-
-<p>CREATE USER r1 == CREATE ROLE r1 LOGIN</p>
-
-<p>Tip: It is good practice to create a role that has the CREATEDB and CREATEROLE privileges, but is not a superuser, and then use this role for all routine management of databases and roles. This approach avoids the dangers of operating as a superuser for tasks that do not really require it.</p>
-
-<p>examples:</p>
-
-<p>CREATE ROLE joe LOGIN INHERIT;
-CREATE ROLE admin NOINHERIT;
-CREATE ROLE wheel NOINHERIT;
-GRANT admin TO joe;
-GRANT wheel TO admin;</p>
-
-<p>joe can access admin privilege by using “SET ROLE admin”, or if joe has the INHERIT, joe can access privilege directly from admin, if joe want to use these privileges, joe must “SET ROLE admin”. Joe can not access privilege from wheel, because admin has the NOINHERIT, admin can not get these privileges, so as joe.</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-14T22:08:20+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>
 
 
 </div>

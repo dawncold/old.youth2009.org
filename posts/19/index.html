@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="问题就是这样了： 1
+	<meta name="description" content="从某网站上下载了几个压缩包，里面全是目录，每个目录下都有一个doc文件，但可恶的是这些doc文件被换了扩展名，原本是xxx.doc现在变成xxx.doc.resx，我得用python批量处理一下： 1
 2
 3
 4
@@ -25,19 +25,7 @@
 16
 17
 18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-[root@wodeyitian MySQL-python-1.2.3]# python setup.py &hellip;">
+19 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -106,6 +94,133 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/08/13/batch-handly-files-use-python/">
+		
+			Python批量处理文件</a>
+	</h2>
+	<div class="entry-content">
+		<p>从某网站上下载了几个压缩包，里面全是目录，每个目录下都有一个doc文件，但可恶的是这些doc文件被换了扩展名，原本是xxx.doc现在变成xxx.doc.resx，我得用python批量处理一下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#! /usr/bin/python
+</span><span class='line'># -*- coding:utf-8 -*-
+</span><span class='line'># 遍历所有目录，把resx文件扩展名删掉
+</span><span class='line'>
+</span><span class='line'>import os
+</span><span class='line'>
+</span><span class='line'>current_path = os.getcwd()
+</span><span class='line'>allsubdir = os.listdir(current_path)
+</span><span class='line'>
+</span><span class='line'>for subdir in allsubdir:
+</span><span class='line'>   subdir_path = './' + subdir
+</span><span class='line'>   if os.path.isdir(subdir_path):
+</span><span class='line'>       files = os.listdir(subdir_path)
+</span><span class='line'>       for _file in files:
+</span><span class='line'>           basename = os.path.basename(_file)
+</span><span class='line'>           allname = os.path.splitext(basename)
+</span><span class='line'>           if '.resx' in allname:
+</span><span class='line'>               print 'resx file %s' % basename
+</span><span class='line'>               without_resx = allname[0]
+</span><span class='line'>               os.rename(subdir_path+'/'+_file,without_resx)
+</span><span class='line'>           else:
+</span><span class='line'>               print 'not resx file'
+</span><span class='line'>               continue</span></code></pre></td></tr></table></div></figure>
+
+
+<p>还用了一个删除空目录的脚本：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#! /usr/bin/python
+</span><span class='line'># -*- coding:utf-8 -*-
+</span><span class='line'>#删除空目录
+</span><span class='line'>
+</span><span class='line'>import os
+</span><span class='line'>
+</span><span class='line'>alldir = os.listdir(os.getcwd())
+</span><span class='line'>for _dir in alldir:
+</span><span class='line'>   if os.path.isdir('./'+_dir):
+</span><span class='line'>       print 'dir: %s' % _dir
+</span><span class='line'>       if os.listdir('./'+_dir):
+</span><span class='line'>           print 'have something %s' % os.listdir('./'+_dir)
+</span><span class='line'>       else:
+</span><span class='line'>           os.rmdir('./'+_dir)
+</span><span class='line'>   else:
+</span><span class='line'>       print 'file or others'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>用python，很快乐！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-13T15:30:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -592,59 +707,6 @@ A style for a cell with a left-aligned label across the top and a left-aligned l
 
 
 <time datetime="2011-07-23T11:30:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/gameapp/'>gameapp</a>, <a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/20/simple-intro-to-box2d/">
-		
-			Box2d的简单使用</a>
-	</h2>
-	<div class="entry-content">
-		<p>真不太想写，因为写这篇日志应该比写一个程序都要复杂。</p>
-
-<p>我介绍的是box2d引擎在iphone上的使用方法，网上也有不少介绍的，我再简单啰嗦一番：</p>
-
-<p>首先我们需要一个物理世界：b2world *world;在世界中创造各种各样的body，当然这些body都是刚体，如同经济学中的刚性需求那样，这里值得是形状不会被压扁的坚固物体。这些body默认在实例化后是静态的，除非你明显得把他们的type参数改成b2_dynamicBody，他们就能参与物理运动了。你可以给他们加入密度、弹性、摩擦等参数。这些都是每个body的属性，而这些body是需要刚刚的world创建的，而创建的函数需要一个配置单，就是一个结构体而已。</p>
-
-<p>body出现之后你还不能看到，因为还需要另外的两个重要性质：fixture和shape，这里的shape有两种，一个是多边形，一个是圆形；创建shape后定义一些参数，然后把这个对象传递给fixture的对象，fixture被我叫做材质，刚才介绍的密度、弹性、摩擦等属性就是在这里定义的。当然，fixture有个shape属性，把刚刚实例化的shape对象给他即可。最后用body对象的CreateFixture函数生成fixture。这样应该就能看到你创建的物理实体了。</p>
-
-<p>下面介绍一些刚刚遗漏的概念，在这个物理世界中，我们需要定义一个重要的量——重力，我们所有创建的物理实体都将按照这个重力的方向移动，而这里的重力实际上指的是一个向量，比如说是（0，-10），这样就会向着y轴-10的方向移动，而负坐标是y轴向下的，刚刚实验过，如果用（0，-100）的话，物体下移的速度会比（0，-10）的快很多，这也很明显。</p>
-
-<p>另一个有意义的概念就是休眠了，其实这是创建“世界”的又一个参数，意思是如果有物体到达了无法移动的地方，比如边界，或者说出去了边界，引擎应该就不再计算它的一些数据了，这理所应当，怎么还需要解释呢？我们当然希望引擎能够把主要的计算力量给予需要的物理实体。</p>
-
-<p>上面提到了一个区域的概念，是的，我们应该划定一个区域，在这个区域中的物体参与物理运算，外面的就不再参与了，但这里定义一个区域也是用了向量的方法，而且这个区域也算作一个body，有些难以理解。目前掌握得不好，就不再详述了。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-20T13:49:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

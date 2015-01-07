@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="能够使用paypal最好了，因为那样可以隐藏自己的信用卡信息，总之支持paypal支付的国外商家还是非常多的。要开通这个功能需要在paypal上添加一张信用卡，我已经添加过一张银联卡了，验证方式是paypal给我打了两笔小额资金，真是很小，不到1毛钱！而验证信用卡就不一样了， &hellip;">
+	<meta name="description" content="这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １. &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,116 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/02/24/git-for-project/">
+		
+			为项目搭建git版本控制</a>
+	</h2>
+	<div class="entry-content">
+		<p>这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １.安装git就不再多说了，我似乎把redhat中的一个仓库加入了rpm，直接yum install -y git安装了，不如下载源代码安装的git版本高，我这里似乎只有１.５的版本。 ２.我使用了gitosis来管理所有的项目，所以：  </p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>yum install python-setuptools
+</span><span class='line'>git clone git://eagain.net/gitosis.git
+</span><span class='line'>cd gitosis
+</span><span class='line'>python setup.py install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>３.安装好了就可以初始化gitosis，还得先建立一个git的用户来做一些工作：  </p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>useradd -m -s /bin/bash -d /home/git git
+</span><span class='line'>passwd git #给git用户加上密码
+</span><span class='line'>su - git
+</span><span class='line'>cd ~
+</span><span class='line'>gitosis-init &lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径</span></code></pre></td></tr></table></div></figure>
+
+
+<p>４.修改一些权限，据说很重要，为了安全：  </p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod <span class="m">755</span> /home/git
+</span><span class='line'>chmod <span class="m">700</span> /home/git/.ssh
+</span><span class='line'>chmod <span class="m">644</span> /home/git/.ssh/authorized_keys
+</span><span class='line'>chmod <span class="m">755</span> /home/git/repositories/gitosis-admin.git/hooks/post-update
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>５.在本地用git做最后的工作，修改gitosis的配置文件并上传：  </p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone ssh://git@DOMAIN:8888/gitosis-admin.git
+</span><span class='line'><span class="nb">cd </span>gitosis-admin
+</span><span class='line'>vi gitosis.conf
+</span><span class='line'><span class="c">#增加新的项目名字和相关配置</span>
+</span><span class='line'><span class="o">[</span>group AWAD<span class="o">]</span><span class="c">#ＡＷＡＤ组</span>
+</span><span class='line'><span class="nv">writable</span> <span class="o">=</span> wodeyitian_web　　　#仓库中的名字
+</span><span class='line'><span class="nv">members</span> <span class="o">=</span> dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员名字就是rsa共钥中最后的成员名字
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>好像和那个pub文件的名字要一样，那样的pub文件放在和这个conf文件在一起的keydir文件夹下.</p>
+
+<p>6.完成这里后提交一下再push到远程服务器上即可完成：  </p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git commit -a -m <span class="s1">&#39;建立了新的项目&#39;</span>
+</span><span class='line'>git push
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>7.已经全部完成，在本地已经可以用了，不过还想说一下，如果做开源项目，还是放到github上比较好玩！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-24T17:37:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/wodeyitian/'>wodeyitian</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -484,55 +594,6 @@
 
 
 <time datetime="2011-01-18T08:36:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/blog/'>blog</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/01/04/i-am-not-in-whitelist-this-turn/">
-		
-			我这次没跻身白名单</a>
-	</h2>
-	<div class="entry-content">
-		<p>如果你是我的读者，当然是这里的读者（youth2009.org)就会发现现在已经无法访问了，经过我和服务商的交涉，发现我这次没有跻身白名单，所以国家就把我封掉了。在国内就得这样天天活在被封掉还是随机被封掉的日子里，再也不是以前那个轻松愉快的时代了，一方面能够证明我国的信息产业正一天天发展壮大，正式因为这样，国家才把重点放到这方面了。当然咱还是希望能够通过其他更有效的方式来取代这种白名单制度，把每个人都看成坏人的这种方式，实在是有点对人格不尊重了：（</p>
-
-<p>今天我一气之下打算换到国外的服务器上，不过已经有了一次hostmonster的经历，不想再浪费一些资源，当时自己不知道做什么，花了600多买了一年的主机，守着诺大的空间和限制资源，无事可做，当时要是有个博客也好啊！所以我希望能够充分利用服务器的资源，自己是很难用光的，和几个人一起合租一份空间，自己不用去管服务器的配置，只要能够正常使用WP和FTP等就够了，其实大多数人都是这样的，管理者只是少数。</p>
-
-<p>对于国外的空间，现在看来仍然十分昂贵，当然我已经不再看那种低质量的了，如果彻底走向国外，我只会选择MediaTemple（Hosting）和Linode（VPS）。其实我更加倾向于使用VPS，倒不是我熟悉这个，恰恰相反，VPS是自己配置服务器，我跟本没接触过，只是想利用这个机会练习一下这方面。其实，回家用那台旧的台式机当服务器也挺好的，配置和Linode512差不多（至少是内存差不多）。</p>
-
-<p>各种事情总是不断的发生，今天英语考试十分不顺利，是我考得最糟糕的一次英语，我都想会不会因此挂掉呢？希望不会吧。但这应该不会以人的意志为转移……（明天考马克思的内容）</p>
-
-<p>自从在这儿架设了博客，就喜欢上了Python，自学过两三次，都没大有成果，不过Python能够用在网站的开发上让我感到很神奇，原本打算寒假用PHP完成那个项目的，而且都买好了一本书，现在看来这个想法正不断受到冲击，说不定我会把那本Python书也一并带回去，因为用Google的服务能够省下很多硬件配置，或者亚马逊的云服务，又或者新浪的云。唉，怎么又回到国内了？！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-04T13:49:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="最近那个伟大的墙把我们敬爱的git大神封锁了，无奈很多代码都托管在上面，其中也不乏很多商业项目。自己的几个blog也都放在上面，倒不是因为在那里免费，而是这已然已经成为程序员们的一种生活style。 ubuntu下有个dnsmasq可以连接别的dns， &hellip;">
+	<meta name="description" content="我们发现在IE浏览器中有些ajax操作表面看起来像是没有被执行一样，但手动刷新页面后发现真的执行过了刚刚的操作，进而发现在IE下ajax操作是有cache的。 hack的解决方法就是在request中加random参数，没啥实际效果，纯粹是不让cache出现而已。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,51 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/24/ajax-cache-on-ie/">
+		
+			Ajax Cache on Ie</a>
+	</h2>
+	<div class="entry-content">
+		<p>我们发现在IE浏览器中有些ajax操作表面看起来像是没有被执行一样，但手动刷新页面后发现真的执行过了刚刚的操作，进而发现在IE下ajax操作是有cache的。</p>
+
+<p>hack的解决方法就是在request中加random参数，没啥实际效果，纯粹是不让cache出现而已。当然稍好一点的做法就是在jquery（我们是用jquery的）的$.ajax中加入参数{cache: false}即可。</p>
+
+<p>如果你也遇到类似的效果，先看看是不是没有把cache写成false，默认是true的。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-24T21:02:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -520,53 +565,6 @@
 
 
 	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/28/change-shopping-cart/">
-		
-			Change Shopping Cart</a>
-	</h2>
-	<div class="entry-content">
-		<p>今天taowen给我们show了一个很fancy的日志处理过程，当然是in the future的，深度打动了wanglei，由于是刚刚吃过饭，站着听久了难免会发困，主要听来的意思就是app的log会自己在local记录，然后发送json给syslog，后面接上logstash做一个处理，再往后就是接入各种图表啊、search啊这样的终端app，如果能完全跑起来应该是足够玄的。不知道成形的互联网电商们会不会也是这样做的。</p>
-
-<p>我主要在修改shopping cart，临下班eric过来和我做了一点东西，后来taowen觉得shopping cart有redis和db两种不同实现很不爽，我倒是没那么强烈，不过如果要改全db对我的工作量会加大。回家后吃了饭感觉身体还好，就修改成全db吧，看看是什么效果。</p>
-
-<p>好在都过了测试，但我删掉了一个功能，所以测试文件也进行了修改，没问题：）</p>
-
-<p>明天应该会把手上的issue全部弄好，哦对了，今天花了挺长时间在Set-Cookie，弄了半天发现就只有几行增加，真是不全局看的话，工作量就会无形的被自己放大。。。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-28T23:21:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>

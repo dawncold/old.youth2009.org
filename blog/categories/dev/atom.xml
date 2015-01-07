@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dev | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-05T23:45:26+08:00</updated>
+  <updated>2015-01-07T23:40:13+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[be careful python fdopen]]></title>
+    <link href="http://www.youth2009.org/blog/2015/01/07/be-careful-python-fdopen/"/>
+    <updated>2015-01-07T23:13:39+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/01/07/be-careful-python-fdopen</id>
+    <content type="html"><![CDATA[<p>I have got a bug when I <code>print</code> something to stdout, I got <code>Bad file descriptor</code>, it means my stdout is a bad descriptor, what?!</p>
+
+<p>Core code like this: <code>logger.StreamHandler(os.fdopen(sys.stdout.fileno(), 'w', 0))</code>, I want to a unbuffered stdout, so I reopen it by <code>fdopen</code>, and reset the buffer size to 0, I still also did same thing to <code>stderr</code>, but that is no sense, because of <code>stderr</code> is unbuffered normally(but in Python3, it maybe line buffered, in MacOS).</p>
+
+<p>If your stdout is reopened by <code>fdopen</code>, and its reference count hits zero, it will be collected by Python GC, also your stdout will be ate by GC, something wrong will happen after that.</p>
+
+<p>So, be careful with <code>fdopen</code> for <code>stdin</code>, <code>stderr</code>, <code>stdin</code>:)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[聚石塔里面的坑]]></title>
@@ -40,7 +55,11 @@
 
 <h2>RDS</h2>
 
-<p>我想用聚石塔的推送服务，就是可以把订单、商品等数据推送到买的RDS中，但今天申请的时候对方说应用未上线，不能申请。。。我就是需要这些数据才能开发应用，这不就变成死锁了？具体如何解决等更新。</p>
+<p>我想用聚石塔的推送服务，就是可以把订单、商品等数据推送到买的RDS中，但今天申请的时候对方说应用未上线，不能申请。。。我就是需要这些数据才能开发应用，这不就变成死锁了？</p>
+
+<p><strong>2015年1月7日</strong>：后来和客服沟通，说是应用需要先上线，即便你还没有开始开发，这点虽然有点怪怪的，但只有这样才能申请到同步服务。应用上线挺简单，创建完应用只是第一步，完善基本信息后点下一步即可进入安全扫描阶段，再提交，瞬间说审核通过，这就上线运行了。</p>
+
+<p>后续请等待更新。</p>
 
 <hr />
 
@@ -196,39 +215,6 @@ GRANT admin TO joe;
 GRANT wheel TO admin;</p>
 
 <p>joe can access admin privilege by using “SET ROLE admin”, or if joe has the INHERIT, joe can access privilege directly from admin, if joe want to use these privileges, joe must “SET ROLE admin”. Joe can not access privilege from wheel, because admin has the NOINHERIT, admin can not get these privileges, so as joe.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[else clause in python loop]]></title>
-    <link href="http://www.youth2009.org/blog/2014/08/14/else-clause-in-python-loop/"/>
-    <updated>2014-08-14T22:07:09+08:00</updated>
-    <id>http://www.youth2009.org/blog/2014/08/14/else-clause-in-python-loop</id>
-    <content type="html"><![CDATA[<p>both in while and for loop, if in loop body, no break, no return, no exception is raised, statements in else block will be executed.</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>for x in []:&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code> print x
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>else:&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code> print ‘xxx’
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure>
-this example will print ‘xxx’, even nothing in list and this loop is not executed.</p>
 ]]></content>
   </entry>
   

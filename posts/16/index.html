@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="先从官方文档那里找各种资料学习，已经在amazon上买书了，买了本rails应用的书，还买了两本考系统架构师的书，再就是想买一本讲ruby语言的书，很可惜amazon上没货，要是从非amazon商家买的话需要支付高昂的快递费，于是从淘宝上找了家靠谱的商家，还有满49包邮（幸亏这本书是51，包邮了 &hellip;">
+	<meta name="description" content="今天断断续续把昨天提到的那个Ruby编程入门看完了，原本打算按照教程中的例子做一遍，不过看得时候感觉这样做的话有些浪费时间，对于有一定编程经验的人来说按照例子做一遍没多大意义，很多内容看看就过了。 但很可惜，在Ruby这里，看看还不一定就能理解，要不然今天也不会单独写一篇日志了， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,51 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/02/06/wired-grammar-in-ruby/">
+		
+			奇怪的Ruby语法</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天断断续续把昨天提到的那个Ruby编程入门看完了，原本打算按照教程中的例子做一遍，不过看得时候感觉这样做的话有些浪费时间，对于有一定编程经验的人来说按照例子做一遍没多大意义，很多内容看看就过了。</p>
+
+<p>但很可惜，在Ruby这里，看看还不一定就能理解，要不然今天也不会单独写一篇日志了，真得有不少特性和其他编程语言不一样，概念上倒是还能理解，语法符号上就要重新接受了，想等过两天买的Ruby编程书来到后细细重头看。</p>
+
+<p>还有20天了，真不知道当初设想的几个小理念能够实现多少，但也别失望，我还成功转型了呢，这个寒假收获将会颇丰！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-06T22:19:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -605,63 +650,6 @@
 
 
 <time datetime="2012-01-26T15:05:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/01/26/git-study-filestatus-part/">
-		
-			Git使用重新学习（文件状态）</a>
-	</h2>
-	<div class="entry-content">
-		<p>就几个简单的git命令记录一下自己的学习过程，我发现如果自己不随时记录自己学到的东西就会遗忘。</p>
-
-<p>对于一个文件，如果没有被git跟踪，那必然是untracked状态，只有已经是tracked状态后才会有后面的三种状态（unmodified、modified、staged（暂存状态））。</p>
-
-<p>此时你如果add了一个文件进入git，那么git就会开始跟踪，那么此时这个文件是tracked状态，但没有修改，查看状态（git status）会现实new file：xxx，此时提交（commit）就会把文件快照放入历史记录中了。这里的add意思是放入暂存区，后面的add还有不同的意思。</p>
-
-<p>对于已经跟踪的文件，我们修改后再查看状态，就会发现刚刚的文件被放入了一个modified那行中，样子大概是这样的：modified：xxx，同时观察一下上面几行，有这样的提示“Changed but not updated:”，意思就是修改了，但没有放入暂存区，此时需要add的另一层意思——把已修改但没放入暂存区的文件放入暂存区。</p>
-
-<p>git commit -a 选项可以跳过暂存过程，直接把已经跟踪的文件放入历史记录中。</p>
-
-<p>总之就是及时看status，并且要看里面的提示，只有changes to be committed后面的文件才会在commit的时候加入到历史记录中。</p>
-
-<p>删除和移动文件：git rm，git mv。</p>
-
-<p>改名操作与linux下的mv命令用法一样。</p>
-
-<p>删除时如果仅仅希望在git中删除，实际仍然保存文件那么加上&mdash;cached选项即可。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T14:47:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

@@ -7,7 +7,13 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="不知怎么，突然发现在iPad上注册kindle设备后，在国内的amazon上无法看到这个设备，云端购买的书籍也都没了，深夜给amazon发了邮件，没想到十几分钟就回复了！！！ 得知，如果在amazon美国用了和国内相同的账号，那注册设备的时候可能会被使用美国的数据，那里当然木有我买的书了。。。 &hellip;">
+	<meta name="description" content="初始化ckeditor后再用ajax刷掉页面，如果此时再次初始化它就会报错，说你要初始化的那个已经存在了。。。 此时需要检测一下是否已经存在，如果存在就remove掉： 1
+2
+3
+4
+5
+6
+if(CKEDITOR.instances[&#39;description&#39;]) { &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +82,64 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/02/25/ckeditor-multi-instance-in-ajax/">
+		
+			Ckeditor Multi Instance in Ajax</a>
+	</h2>
+	<div class="entry-content">
+		<p>初始化ckeditor后再用ajax刷掉页面，如果此时再次初始化它就会报错，说你要初始化的那个已经存在了。。。</p>
+
+<p>此时需要检测一下是否已经存在，如果存在就remove掉：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="k">if</span><span class="p">(</span><span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">instances</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">instances</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nx">CKEDITOR</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">其中</span><span class="nx">description</span><span class="err">是一个</span><span class="nx">textarea</span><span class="err">的</span><span class="nx">name</span><span class="err">。</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-25T19:54:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -535,51 +599,6 @@ synchronous：  美 ['sɪŋkrənəs]
 
 
 	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/01/24/ajax-cache-on-ie/">
-		
-			Ajax Cache on Ie</a>
-	</h2>
-	<div class="entry-content">
-		<p>我们发现在IE浏览器中有些ajax操作表面看起来像是没有被执行一样，但手动刷新页面后发现真的执行过了刚刚的操作，进而发现在IE下ajax操作是有cache的。</p>
-
-<p>hack的解决方法就是在request中加random参数，没啥实际效果，纯粹是不让cache出现而已。当然稍好一点的做法就是在jquery（我们是用jquery的）的$.ajax中加入参数{cache: false}即可。</p>
-
-<p>如果你也遇到类似的效果，先看看是不是没有把cache写成false，默认是true的。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-24T21:02:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
