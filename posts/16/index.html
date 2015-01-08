@@ -7,7 +7,8 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="今天断断续续把昨天提到的那个Ruby编程入门看完了，原本打算按照教程中的例子做一遍，不过看得时候感觉这样做的话有些浪费时间，对于有一定编程经验的人来说按照例子做一遍没多大意义，很多内容看看就过了。 但很可惜，在Ruby这里，看看还不一定就能理解，要不然今天也不会单独写一篇日志了， &hellip;">
+	<meta name="description" content="开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。 在保存iptables规则的时候遇到这样的问题： 1
+iptables: Saving firewall rules &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +77,65 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/02/07/some-issue-when-saving-rules-in-iptables/">
+		
+			保存iptables规则遇到的问题</a>
+	</h2>
+	<div class="entry-content">
+		<p>开了vps竟然没开vpn简直是罪过了，只是因为前段时间vps升级到了centos6，挺多东西支持不好，于是安装vpn也就失败了，现在已经没问题了，刚刚用iPad测试了vpn可用。</p>
+
+<p>在保存iptables规则的时候遇到这样的问题：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>iptables: Saving firewall rules to /etc/sysconfig/iptables: /etc/init.d/iptables: line 268: restorecon: <span class="nb">command </span>not found
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当然你可能会看到中文的提示（我的就是），意思是一样的。从<a href="http://www.live-in.org/archives/1112.html">这里</a>得到了解决方案：</p>
+
+<p>安装一个包包：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>yum install policycoreutils
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>行了，剩下就没遇到问题了：)</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-07T18:03:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/vps/'>vps</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -601,55 +661,6 @@
 
 
 <time datetime="2012-01-26T16:08:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/01/26/git-study-mend-file-part/">
-		
-			Git使用重新学习（撤销操作）</a>
-	</h2>
-	<div class="entry-content">
-		<p><strong>修改最后一次提交</strong>：git commit &mdash;amend</p>
-
-<p>如果只是提交信息写错了，运行后会让你重新写提交信息，但如果你忘记了加文件进入，可以这样做，先commit，再add忘记的文件，最后来一句git commit &mdash;amend，这看似两次提交，实际只是一次，后面的提交修正了前面的。</p>
-
-<p><strong>取消已暂存的文件</strong>：看status的时候有提示，git reset HEAD <file>，执行后可以把一个已修改的文件从暂存区拉回到“changed but not update”里，前面日志说过，在这里面的文件需要add后才能进入暂存区被提交。</p>
-
-<p><strong>取消修改</strong>：如果感觉刚才的修改没有必要，需要取消修改，那么用git checkout &mdash; <file>，在1.6.1以上的版本才会有这样的功能，我刚刚看了下git的版本（git &mdash;version）是1.7.5.4，看来暂时不用升级就能体验了。使用后就会发现文件的修改已经被撤销，此命令很危险，如果只是想回退版本可以用stashing和分支来处理，后面再说。</p>
-
-<p>最后说一句，任何被提交的数据都能被恢复，即便是在已经删除的分支中提交的等等，但没有提交的丢了就丢了！！！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T15:05:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

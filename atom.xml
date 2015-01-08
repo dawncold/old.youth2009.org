@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-08T00:18:02+08:00</updated>
+  <updated>2015-01-08T19:23:08+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[mailing list in postfix]]></title>
+    <link href="http://www.youth2009.org/blog/2015/01/08/mailing-list-in-postfix/"/>
+    <updated>2015-01-08T19:20:14+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/01/08/mailing-list-in-postfix</id>
+    <content type="html"><![CDATA[<p>Too simple to making a mailing list in postfix, just define a mailing list name and recipients in <code>/etc/postfix/virtual</code>, like this: <code>dev-group dev1@company.com dev2@company.com dev3@company.com</code>, after that, generate the virtual db by <code>postmap /etc/postfix/virtual</code>.</p>
+
+<p>Don&rsquo;t forget add <code>virtual_alias_maps=hash:/etc/postfix/virtual</code> in your <code>main.cf</code> file, and restart postfix finally.</p>
+
+<p>I think I need study postfix systemally, just build a private smtp/imap server.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[be careful python fdopen]]></title>
@@ -976,17 +989,6 @@ GRANT wheel TO admin;</p>
     <content type="html"><![CDATA[<p>merge sort的时间复杂度，log2n，曾经在算法书上看到过，相应的，merge sort也可以三分，复杂度变成log3n，好像还不错，但差多少呢？</p>
 
 <p>log3n=log2n/log2(3)，也就是只差了1/log2(3)对于看起来还更大。一般算法复杂度是log2n表示就是这个原因，loga(n)和log2n差不了太多，都是常数级别的差距，而且在复杂度分析的时候都会忽略常数，所以就简记为log2n复杂度了：）</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[md5 digest]]></title>
-    <link href="http://www.youth2009.org/blog/2014/05/30/md5-digest/"/>
-    <updated>2014-05-30T20:29:58+08:00</updated>
-    <id>http://www.youth2009.org/blog/2014/05/30/md5-digest</id>
-    <content type="html"><![CDATA[<p>对于一个字符串做md5，例如：&#8221;<order></order>123456&#8221;做完md5后，比较常见的结果是：<code>2e08539049ac0f6b5b4377ec20145c06</code>，即十六进制的表示形式，长度一般是32位，有人也用16位的表示，就是把32位的字符串前后各去掉8位后的结果，但不多见。还有就是用md5的digest值，这是一个16字节的字符串，不容易看，但可以转换成ascii后观察，比如上面的digest就是：<code>[46, 8, 83, 144, 73, 172, 15, 107, 91, 67, 119, 236, 32, 20, 92, 6]</code>， 如果你还看不清的话，可以考虑把这些ascii转成十六进制再看看：<code>['2e', '08', '53', '90', '49', 'ac', '0f', '6b', '5b', '43', '77', 'ec', '20', '14', '5c', '06']</code>，是不是很熟悉了，对就是一开始那个32位长的字符串。</p>
-
-<p>在对某通的接口开发中遇到对发送数据校验，文档中说的是对数据进行md5再做base64，通常就是把那个32位长的字符串做base64，但怎么也对不上，后来再研究发现其实是用digest的结果做base64，太坑人了是吧，文档这个东西，能写详细就写详细点，没坏处。</p>
 ]]></content>
   </entry>
   

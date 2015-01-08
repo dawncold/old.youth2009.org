@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://www.youth2009.org/blog/2015/01/08/mailing-list-in-postfix/</loc>
+    <lastmod>2015-01-08T19:20:14+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://www.youth2009.org/blog/2015/01/07/be-careful-python-fdopen/</loc>
     <lastmod>2015-01-07T23:13:39+08:00</lastmod>
     <priority>0.8</priority>
@@ -1493,21 +1499,21 @@
   
   <url>
     <loc>http://www.youth2009.org/blog/archives/</loc>
-    <lastmod>2015-01-08T00:18:02+08:00</lastmod>
+    <lastmod>2015-01-08T19:23:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://www.youth2009.org/</loc>
-    <lastmod>2015-01-08T00:18:02+08:00</lastmod>
+    <lastmod>2015-01-08T19:23:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://www.youth2009.org/about/</loc>
-    <lastmod>2015-01-08T00:18:02+08:00</lastmod>
+    <lastmod>2015-01-08T19:23:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="I have got a bug when I print something to stdout, I got Bad file descriptor, it means my stdout is a bad descriptor, what?! Core code like this: &hellip;">
+	<meta name="description" content="Too simple to making a mailing list in postfix, just define a mailing list name and recipients in /etc/postfix/virtual, like this: dev-group dev1@ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,51 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/01/08/mailing-list-in-postfix/">
+		
+			Mailing List in Postfix</a>
+	</h2>
+	<div class="entry-content">
+		<p>Too simple to making a mailing list in postfix, just define a mailing list name and recipients in <code>/etc/postfix/virtual</code>, like this: <code>dev-group dev1@company.com dev2@company.com dev3@company.com</code>, after that, generate the virtual db by <code>postmap /etc/postfix/virtual</code>.</p>
+
+<p>Don&rsquo;t forget add <code>virtual_alias_maps=hash:/etc/postfix/virtual</code> in your <code>main.cf</code> file, and restart postfix finally.</p>
+
+<p>I think I need study postfix systemally, just build a private smtp/imap server.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-08T19:20:14+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/parttime/'>parttime</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -1053,117 +1098,6 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
 
 
 	<a class='category' href='/blog/categories/dev/'>dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/08/22/external-disk-with-openwrt/">
-		
-			External Disk With Openwrt</a>
-	</h2>
-	<div class="entry-content">
-		<p>上次笔记本替换下来的硬盘闲在那里很久了，反正闲着没用，不如装点东西，比如监控的图片什么的，每分钟两张的速度拍，一个工作日，大约能有5G的数据，要是都传到七牛那么也就两天，免费的磁盘空间就满了，但绝大多数图片是没意义的，手动删的话，勤快些也行。</p>
-
-<p>不过要是存到磁盘上的话，就无所谓了，500G的空间，怎么能等好几个月之后再考虑，程序员都是很懒很懒的。。。</p>
-
-<p>磁盘是笔记本的2.5英寸STAT接口，需要一根USB2STAT的线，接到已经很疲劳的路由器上（703N改装版），路由器刷了OpenWrt。</p>
-
-<p>登陆路由器后需要装几个软件，一是mount磁盘需要的，二是vsftpd，准备做成ftp供监控使用。把磁盘连接到路由器上而不是直接连到监控上的原因是：假如有人入侵，看到监控一定会破坏，有可能会把磁盘也带走，这样证据就木有了，而连接到路由器上的话，位置比较隐蔽，不容易察觉，会好一些，我就是这么邪恶。。。</p>
-
-<p>对于mount磁盘需要的软件可能是：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>opkg update
-</span><span class='line'>opkg install kmod-usb-storage block-mount kmod-fs-ext4</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可能不是必须的，但看了文档没怎么研究，反正装了这些能mount了，由于我就一块磁盘，直接mount到了/mnt中。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mount /dev/sda1 /mnt</span></code></pre></td></tr></table></div></figure>
-
-
-<p>能用后需要把/mnt的owner改为<code>root:root</code>，权限755，在/mnt下创建ftp目录，owner是<code>ftp:ftp</code>，权限755。（ftp用户是装了vsftpd后创建的，所以你需要先装一下vsftpd）</p>
-
-<p>vsftpd的配置：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>background=YES
-</span><span class='line'>listen=YES
-</span><span class='line'>anonymous_enable=NO
-</span><span class='line'>chroot_local_user=YES
-</span><span class='line'>local_enable=YES
-</span><span class='line'>local_root=/mnt
-</span><span class='line'>write_enable=YES
-</span><span class='line'>local_umask=022
-</span><span class='line'>check_shell=NO</span></code></pre></td></tr></table></div></figure>
-
-
-<p>研究了一段时间这些配置，第一个建议测试时候用NO，正式开始用就YES，否则会让路由器一直卡在启动vsftpd这里，网路会不可用。比较关键的是<code>local_root</code>，登陆后用户的root目录会在这里，但不能在里面的ftp中，原因和chroot有关，刚刚在/mnt中创建的ftp目录就是ftp用户登陆上去后可操作的地方，所有操作都需要在ftp目录下进行。其他配置具体不详述，具体含义可以看官方的man page，感觉前七行是比较重要的。</p>
-
-<p>ftp搭建过程中出现can not create file和permission方面的问题请检查local_root和里面目录的权限。另外vsftpd有本地用户和匿名用户、虚拟用户等不同的配置，我用的是本地用户的方法，其他两种，除了虚拟用户配置看起来比较麻烦我没有尝试外，匿名用户也配置过，不过后来一直卡在can not create file这里，没再尝试，应该还是权限问题。</p>
-
-<p>下面是OpenWrt启动mount的设置，在<code>/etc/config/fstab</code>中加入：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>config mount
-</span><span class='line'>  option target /mnt
-</span><span class='line'>  option device /dev/sda1
-</span><span class='line'>  option fstype ext4
-</span><span class='line'>  option options rw,sync
-</span><span class='line'>  option enabled 1
-</span><span class='line'>  option enabled_fsck 0</span></code></pre></td></tr></table></div></figure>
-
-
-<p>具体的/mnt和/dev/sda1、ext4根据你的情况做修改，enabled为1就是启动时加载。</p>
-
-<p>没想到的是装了vsftpd，又挂了个磁盘，小路由器还能撑得住，也许还没开始用，等往里写文件的时候再看看。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-22T23:05:57+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>

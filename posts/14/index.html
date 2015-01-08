@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。 左外连接查询比两次select快10～20%左右。 1
+	<meta name="description" content="有这么一个小游戏，按照顺序输入字母表的26个英文字母，看看你输入的总时间是多少。有个变态的人竟然在2s内就输入了26个字母，而且不允许有任何错误，真心佩服！！！ 我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊…… 1
 2
 3
 4
@@ -16,19 +16,7 @@
 7
 8
 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22 &hellip;">
+tell &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -97,6 +85,74 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/05/22/little-cheat-for-game/">
+		
+			小作弊玩游戏</a>
+	</h2>
+	<div class="entry-content">
+		<p>有这么一个小游戏，按照顺序输入字母表的26个英文字母，看看你输入的总时间是多少。有个变态的人竟然在2s内就输入了26个字母，而且不允许有任何错误，真心佩服！！！</p>
+
+<p>我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊……</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>tell application <span class="s2">&quot;Google Chrome&quot;</span>
+</span><span class='line'>activate
+</span><span class='line'>repeat with i from <span class="m">0</span> to 25
+</span><span class='line'>delay 0.04
+</span><span class='line'>tell application <span class="s2">&quot;System Events&quot;</span>
+</span><span class='line'>keystroke <span class="o">(</span>ASCII character of <span class="o">(</span><span class="m">97</span> + i<span class="o">))</span>
+</span><span class='line'>end tell
+</span><span class='line'>end repeat
+</span><span class='line'>end tell
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>不减速的话系统根本无法记录，所以还是减速了，这个速度正好拿到第一名的位置，OK，剩下的让人去羡慕吧！！！</p>
+
+<p>感谢Apple提供的AppleScript这样优秀的脚本工具～</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-22T23:31:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mac/'>mac</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -1013,281 +1069,6 @@
 
 
 	<a class='category' href='/blog/categories/google/'>google</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/04/08/9-numbers-calculate-110/">
-		
-			9个数运算结果为110</a>
-	</h2>
-	<div class="entry-content">
-		<p>昨天参加了一个小型编程比赛，有个题目是这样的，有1～9这九个数字，按照顺序排列着，你可以在他们之间加入加号、减号或者什么都不加，组成的算式经过运算后结果为110的输出出来。</p>
-
-<p>看着好简单的题目，当时比赛时候就是一下子没做出来，现在做好了，贴出来，如果有需要可以拿去用哈，代码风格不算好，因为是比赛嘛，又不是商业项目，先快速得到结果再说！</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">unittest</span>
-</span><span class='line'><span class="o">{</span>
-</span><span class='line'>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">argStrings</span><span class="o">)</span>
-</span><span class='line'>   <span class="o">{</span>
-</span><span class='line'>       <span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
-</span><span class='line'>       <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">allopts</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
-</span><span class='line'>       <span class="kt">int</span> <span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">,</span><span class="n">c</span><span class="o">,</span><span class="n">d</span><span class="o">,</span><span class="n">e</span><span class="o">,</span><span class="n">f</span><span class="o">,</span><span class="n">g</span><span class="o">,</span><span class="n">h</span><span class="o">;</span>
-</span><span class='line'>       <span class="k">for</span><span class="o">(</span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">a</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">a</span><span class="o">++)</span>
-</span><span class='line'>           <span class="k">for</span><span class="o">(</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">b</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">b</span><span class="o">++)</span>
-</span><span class='line'>               <span class="k">for</span><span class="o">(</span><span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">c</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">c</span><span class="o">++)</span>
-</span><span class='line'>                   <span class="k">for</span><span class="o">(</span><span class="n">d</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">d</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">d</span><span class="o">++)</span>
-</span><span class='line'>                       <span class="k">for</span><span class="o">(</span><span class="n">e</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">e</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">e</span><span class="o">++)</span>
-</span><span class='line'>                           <span class="k">for</span><span class="o">(</span><span class="n">f</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">f</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">f</span><span class="o">++)</span>
-</span><span class='line'>                               <span class="k">for</span><span class="o">(</span><span class="n">g</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">g</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">g</span><span class="o">++)</span>
-</span><span class='line'>                                   <span class="k">for</span><span class="o">(</span><span class="n">h</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">h</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">h</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>                                       <span class="n">allopts</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">+</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="n">c</span><span class="o">+</span><span class="n">d</span><span class="o">+</span><span class="n">e</span><span class="o">+</span><span class="n">f</span><span class="o">+</span><span class="n">g</span><span class="o">+</span><span class="n">h</span><span class="o">);</span>
-</span><span class='line'>                                   <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>       <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">string</span> <span class="o">:</span> <span class="n">allopts</span><span class="o">)</span>
-</span><span class='line'>       <span class="o">{</span>
-</span><span class='line'>           <span class="n">String</span> <span class="n">base</span> <span class="o">=</span> <span class="s">&quot;1x2x3x4x5x6x7x8x9&quot;</span><span class="o">;</span>
-</span><span class='line'>           <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span>
-</span><span class='line'>           <span class="o">{</span>
-</span><span class='line'>               <span class="n">String</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">getOpt</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">+</span><span class="n">string</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)));</span>
-</span><span class='line'>               <span class="n">base</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="na">replaceFirst</span><span class="o">(</span><span class="s">&quot;x&quot;</span><span class="o">,</span> <span class="n">tmp</span><span class="o">);</span>
-</span><span class='line'>           <span class="o">}</span>
-</span><span class='line'>           <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">getResult</span><span class="o">(</span><span class="n">base</span><span class="o">,</span> <span class="n">string</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;2&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">).</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;0&quot;</span><span class="o">,</span> <span class="s">&quot;+&quot;</span><span class="o">).</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;1&quot;</span><span class="o">,</span> <span class="s">&quot;-&quot;</span><span class="o">));</span><span class="c1">//2-&gt;null</span>
-</span><span class='line'>           <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">110</span><span class="o">)</span>
-</span><span class='line'>           <span class="o">{</span>
-</span><span class='line'>               <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">base</span><span class="o">);</span>
-</span><span class='line'>           <span class="o">}</span>
-</span><span class='line'>       <span class="o">}</span>
-</span><span class='line'>       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;All Run Time: &quot;</span> <span class="o">+</span> <span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">-</span> <span class="n">start</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;ms&quot;</span><span class="o">);</span>
-</span><span class='line'>   <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>   <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getOpt</span><span class="o">(</span><span class="kt">int</span> <span class="n">opt</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>       <span class="n">String</span> <span class="n">retString</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
-</span><span class='line'>       <span class="k">switch</span> <span class="o">(</span><span class="n">opt</span><span class="o">)</span>
-</span><span class='line'>       <span class="o">{</span>
-</span><span class='line'>           <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
-</span><span class='line'>               <span class="n">retString</span> <span class="o">=</span> <span class="s">&quot;+&quot;</span><span class="o">;</span>
-</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
-</span><span class='line'>           <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
-</span><span class='line'>               <span class="n">retString</span> <span class="o">=</span> <span class="s">&quot;-&quot;</span><span class="o">;</span>
-</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
-</span><span class='line'>           <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
-</span><span class='line'>               <span class="n">retString</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
-</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
-</span><span class='line'>           <span class="k">default</span><span class="o">:</span>
-</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
-</span><span class='line'>       <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>       <span class="k">return</span> <span class="n">retString</span><span class="o">;</span>
-</span><span class='line'>   <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getResult</span><span class="o">(</span><span class="n">String</span> <span class="n">calculatString</span><span class="o">,</span> <span class="n">String</span> <span class="n">optString</span><span class="o">)</span>
-</span><span class='line'>   <span class="o">{</span>
-</span><span class='line'>       <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">allNum</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
-</span><span class='line'>       <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">allOpt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
-</span><span class='line'>       <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">string</span> <span class="o">:</span> <span class="n">calculatString</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&quot;[+-]&quot;</span><span class="o">))</span>
-</span><span class='line'>       <span class="o">{</span>
-</span><span class='line'>           <span class="n">allNum</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">string</span><span class="o">));</span>
-</span><span class='line'>       <span class="o">}</span>
-</span><span class='line'>       <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">optString</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span>
-</span><span class='line'>       <span class="o">{</span>
-</span><span class='line'>           <span class="n">allOpt</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">optString</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
-</span><span class='line'>       <span class="o">}</span>
-</span><span class='line'>       <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">allNum</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
-</span><span class='line'>       <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">allNum</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span>
-</span><span class='line'>       <span class="o">{</span>
-</span><span class='line'>           <span class="kt">char</span> <span class="n">x</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="n">allOpt</span><span class="o">.</span><span class="na">size</span><span class="o">()?</span><span class="sc">&#39;+&#39;</span><span class="o">:</span><span class="n">allOpt</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">).</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
-</span><span class='line'>           <span class="kt">int</span> <span class="n">nextNum</span> <span class="o">=</span> <span class="n">i</span> <span class="o">==</span> <span class="n">allNum</span><span class="o">.</span><span class="na">size</span><span class="o">()?</span><span class="mi">0</span><span class="o">:</span><span class="n">allNum</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-</span><span class='line'>           <span class="n">result</span> <span class="o">=</span> <span class="n">getValue</span><span class="o">(</span><span class="n">result</span><span class="o">,</span> <span class="n">nextNum</span><span class="o">,</span> <span class="n">x</span><span class="o">);</span>
-</span><span class='line'>       <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>       <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>   <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getValue</span><span class="o">(</span><span class="n">Integer</span> <span class="n">num1</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">num2</span><span class="o">,</span> <span class="kt">char</span> <span class="n">opt</span><span class="o">)</span>
-</span><span class='line'>   <span class="o">{</span>
-</span><span class='line'>       <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class='line'>       <span class="k">switch</span> <span class="o">(</span><span class="n">opt</span><span class="o">)</span>
-</span><span class='line'>       <span class="o">{</span>
-</span><span class='line'>           <span class="k">case</span> <span class="sc">&#39;+&#39;</span><span class="o">:</span>
-</span><span class='line'>               <span class="n">ret</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="o">;</span>
-</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
-</span><span class='line'>           <span class="k">case</span> <span class="sc">&#39;-&#39;</span><span class="o">:</span>
-</span><span class='line'>               <span class="n">ret</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">-</span> <span class="n">num2</span><span class="o">;</span>
-</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
-</span><span class='line'>           <span class="k">default</span><span class="o">:</span>
-</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
-</span><span class='line'>       <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>       <span class="k">return</span> <span class="n">ret</span><span class="o">;</span>
-</span><span class='line'>   <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>结果是这样的：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>1+2+34+5+67-8+9
-</span><span class='line'>1+234-56-78+9
-</span><span class='line'>1-2+3+45-6+78-9
-</span><span class='line'>12+3+45+67-8-9
-</span><span class='line'>12+34+56+7-8+9
-</span><span class='line'>12-3+4-5+6+7+89
-</span><span class='line'>123+4+5+67-89
-</span><span class='line'>123+4-5-6-7-8+9
-</span><span class='line'>123-4+5-6-7+8-9
-</span><span class='line'>123-4-5+6+7-8-9
-</span><span class='line'>All Run Time: 496ms
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>最后我算了算运行时间，应该这就是很慢的了，幸好只有加减和空，要不然会更麻烦的……</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-08T14:20:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/algorithm/'>algorithm</a>
 
 
 </div>

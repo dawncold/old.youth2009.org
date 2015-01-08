@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="早就有这样的计划，要深入了解自己在用的工具，veil算一个，tornado算一个，flask算一个……当然还有好多，总得一个个看一番，好在这些库都写得足够简单，不至于一下子看不懂，而且借助pycharm这样优秀的工具，一步步跟踪代码也给深入理解框架极大的帮助，所以，开始吧。（ &hellip;">
+	<meta name="description" content="对于一个字符串做md5，例如："123456"做完md5后，比较常见的结果是：2e08539049ac0f6b5b4377ec20145c06，即十六进制的表示形式，长度一般是32位，有人也用16位的表示，就是把32位的字符串前后各去掉8位后的结果，但不多见。还有就是用md5的digest值， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,49 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/05/30/md5-digest/">
+		
+			Md5 Digest</a>
+	</h2>
+	<div class="entry-content">
+		<p>对于一个字符串做md5，例如：&#8221;<order></order>123456&#8221;做完md5后，比较常见的结果是：<code>2e08539049ac0f6b5b4377ec20145c06</code>，即十六进制的表示形式，长度一般是32位，有人也用16位的表示，就是把32位的字符串前后各去掉8位后的结果，但不多见。还有就是用md5的digest值，这是一个16字节的字符串，不容易看，但可以转换成ascii后观察，比如上面的digest就是：<code>[46, 8, 83, 144, 73, 172, 15, 107, 91, 67, 119, 236, 32, 20, 92, 6]</code>， 如果你还看不清的话，可以考虑把这些ascii转成十六进制再看看：<code>['2e', '08', '53', '90', '49', 'ac', '0f', '6b', '5b', '43', '77', 'ec', '20', '14', '5c', '06']</code>，是不是很熟悉了，对就是一开始那个32位长的字符串。</p>
+
+<p>在对某通的接口开发中遇到对发送数据校验，文档中说的是对数据进行md5再做base64，通常就是把那个32位长的字符串做base64，但怎么也对不上，后来再研究发现其实是用digest的结果做base64，太坑人了是吧，文档这个东西，能写详细就写详细点，没坏处。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-30T20:29:58+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -541,51 +584,6 @@
 
 
 	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/tcpip/'>tcpip</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/08/20/timestamp/">
-		
-			Timestamp</a>
-	</h2>
-	<div class="entry-content">
-		<p>今天在做批量导入图片功能的时候，发现一个问题，原先save image过程用timestamp当文件名，这样在一般使用的时候倒是没什么问题了，但让程序去做的时候，timestamp就显得不好用了，程序跑的很快，可能三四张图都在1s内处理完上传，这样就很难保证文件名不重复。</p>
-
-<p>传一张停1秒呢？问题不大，但看着还是不保险，而且变慢了，因为要等。。。</p>
-
-<p>纯粹uuid倒是问题不大，但日后管理起来确实就不爽了——看uuid根本不知道谁先谁后，所以就把tiemstamp和uuid4连起来当新文件名，这样程序批量传也不会有问题（其实概率已经低到这个时代可接受的程度吧），又在trade off了。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-20T21:56:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>

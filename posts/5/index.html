@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="今天用python写了个小程序检测网络是否通断，如果断了就弹出一个Notification，当然是Mac上的，并且弹出一个terminal，带着执行ping www.baidu.com。 一开始用Lingon加入到启动项中并且打算2分钟执行一次，几经折腾终于失败，弃之。打算用crontab弄。 &hellip;">
+	<meta name="description" content="昨天在一个table的第一行放了一个checkbox, 想做一个效果：一开始这个table的每一行都是冻结状态，点击这一行就激活了，顺便会把checkbox选中，当然直接点checkbox也会激活这一行。可惜在bind event的时候，分别给tr和checkbox加了click事件， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,51 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/07/26/use-change-event-on-checkbox/">
+		
+			Use-change-event-on-checkbox</a>
+	</h2>
+	<div class="entry-content">
+		<p>昨天在一个table的第一行放了一个checkbox, 想做一个效果：一开始这个table的每一行都是冻结状态，点击这一行就激活了，顺便会把checkbox选中，当然直接点checkbox也会激活这一行。可惜在bind event的时候，分别给tr和checkbox加了click事件，tr的click会trigger到checkbox上，这样导致的结果就是点tr会触发checkbox的click handler，但同时又触发了tr的click handler，循环导致最后js崩溃。</p>
+
+<p>后来发现在tr的click handler中检查event.target可以不触发这种死循环，但在checkbox click handler中使用prop判断checked状态不准，在stackoverflow中找到解答：jquery1.8中的 click()和真实的click是不一样的，应该在checkbox上用change event，然后一切ok。</p>
+
+<p>解答：<a href="http://stackoverflow.com/questions/7668826/jquery-triggerclick-not-firing-click-event-on-checkbox">http://stackoverflow.com/questions/7668826/jquery-triggerclick-not-firing-click-event-on-checkbox</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-26T09:07:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -564,51 +609,6 @@
 
 
 	<a class='category' href='/blog/categories/dev/'>dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/05/15/new-dev-env/">
-		
-			New-dev-env</a>
-	</h2>
-	<div class="entry-content">
-		<p>终于把windows开发环境给换成Ubuntu了，顺便也去掉了虚拟机，原生开发的性能真好，一点都没有IO延迟的感觉，只能说Linux更加低碳。</p>
-
-<p>很久没装过Ubuntu了，现在的安装过程越来越简单，而且体验也很好。需要注意的是，在安装时最好去掉下载更新这个选项，耽误时间不说，最后有个步骤，貌似是测试，超慢，我都睡着了。换成不下载更新，半小时内结束。</p>
-
-<p>系统关机的效率比win7简直快了好几光年。。。至少几十倍的速度提升，有在使用SSD的感觉，顺便说一句，在使用SSD的Mac下也没得到那样的关机速度。不过发现合上休眠功能不管用，风扇仍然在转，发热量很大，可能缺什么驱动？以前关机慢，所以就不关了，现在可以考虑关机带走。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-15T22:58:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>
