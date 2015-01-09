@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dev | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-08T19:23:08+08:00</updated>
+  <updated>2015-01-09T22:51:49+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -59,7 +59,9 @@
 
 <p><strong>2015年1月7日</strong>：后来和客服沟通，说是应用需要先上线，即便你还没有开始开发，这点虽然有点怪怪的，但只有这样才能申请到同步服务。应用上线挺简单，创建完应用只是第一步，完善基本信息后点下一步即可进入安全扫描阶段，再提交，瞬间说审核通过，这就上线运行了。</p>
 
-<p>后续请等待更新。</p>
+<p><strong>2015年1月9日</strong>：商家后台应用有web和客户端两种架构方式，就是你做出一个web应用，一般就是用web的架构方式，用户登陆、授权后，你能拿到用户session，然后就可以用了，和大多数oauth的方式一样，客户端类似。但有一点需要注意，商家后台应用拿到用户的session和refresh token后，文档记载session有效期1年，但这个refresh token无用，只能等session到期后重新授权。</p>
+
+<p>真正开始做了，发现API用起来也不那么爽，这个具体看个人的感觉了，但比拍拍强了不少。</p>
 
 <hr />
 
