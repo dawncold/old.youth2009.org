@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-09T22:51:49+08:00</updated>
+  <updated>2015-01-12T00:05:20+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[optimize shadowsocks NAT rules]]></title>
+    <link href="http://www.youth2009.org/blog/2015/01/11/optimize-shadowsocks-nat-rules/"/>
+    <updated>2015-01-11T23:46:08+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/01/11/optimize-shadowsocks-nat-rules</id>
+    <content type="html"><![CDATA[<p>Few days ago, I upgraded my OpenWrt box to latest version, there is a new style(Bootstrap) interface and I like it very much(too long lived old world).</p>
+
+<p>Also I found a shadowsocks <a href="https://github.com/shadowsocks/openwrt-shadowsocks">special version</a> for openwrt, it includs China main IP blocks, some requests within this IP range, you could bypass shadowsocks, and this IP blocks is from <code>apnic</code>, very precise but a little long for openwrt, 4000+lines.</p>
+
+<p>I think the most counted IP block I would use it in the future very soon, so I can sort them desc.</p>
+
+<p><code>iptables -t nat -xvnL SS_SPEC_WAN_AC | tail -n+12 | head -n -1 | sort -crnsk 1,1 | awk '{ print $NF }' &gt; /etc/shadowsocks/ignore.list</code></p>
+
+<p><code>tail -n+12</code> means display results from the first 12 row to the end, first 11 rows includes two lines heads, one line shadowsocks server IP, eight lines internal IP blocks;</p>
+
+<p><code>head -n -1</code> means display results except last line(doesn&rsquo;t work on MacOS), and last line is default shadowsocks redirect rule, so keep it at the same place.</p>
+
+<p><code>sort -crnsk 1,1</code> means <code>c</code>heck first, <code>r</code>everse result, <code>n</code>umerical value(converted from input string), <code>s</code>table sort, <code>k 1,1</code> sort key (start a key at POS1, end it at POS2 (origin 1))</p>
+
+<p><code>awk print $NF</code>, print the last column, that&rsquo;s very cool.</p>
+
+<p>rewrite the results to ignore.list, and restart shadowsocks, it will use the sorted IP blocks, maybe fast than before 0.xx ms!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[mailing list in postfix]]></title>
@@ -980,17 +1005,6 @@ GRANT wheel TO admin;</p>
 <p>找到内置键盘，我这里是那个叫&#8221;AT Translated Set 2 keyboard&#8221;的，id是10，禁用使用：<code>xinput float 10</code></p>
 
 <p>如果再启用使用<code>xinput reattach 10 3</code>，3标识这个设备的master的id，从list的结果很容易看到从属关系。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[log2n和log3n]]></title>
-    <link href="http://www.youth2009.org/blog/2014/05/30/log2n-log3n/"/>
-    <updated>2014-05-30T20:45:44+08:00</updated>
-    <id>http://www.youth2009.org/blog/2014/05/30/log2n-log3n</id>
-    <content type="html"><![CDATA[<p>merge sort的时间复杂度，log2n，曾经在算法书上看到过，相应的，merge sort也可以三分，复杂度变成log3n，好像还不错，但差多少呢？</p>
-
-<p>log3n=log2n/log2(3)，也就是只差了1/log2(3)对于看起来还更大。一般算法复杂度是log2n表示就是这个原因，loga(n)和log2n差不了太多，都是常数级别的差距，而且在复杂度分析的时候都会忽略常数，所以就简记为log2n复杂度了：）</p>
 ]]></content>
   </entry>
   
