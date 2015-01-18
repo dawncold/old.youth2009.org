@@ -4,7 +4,7 @@
   <title><![CDATA[Category: life | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/life/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-12T00:05:20+08:00</updated>
+  <updated>2015-01-18T12:33:26+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -33,9 +33,9 @@
 
 <p>如果想用camera捕捉视频，然后传到你这里看的话，需要在raspberry上先装netcat，我是用的Mac系统，系统本身有nc了，再用brew多装一个mplayer。</p>
 
-<p>raspberrrypi上捕捉视频用：<code>raspivid -t 1000000 -vs -w 800 -h 600 -o -| nc 172.19.1.124 5001</code>，其中t参数指定了捕捉多少毫秒的视频，后面的vs是防抖，w和h控制宽高，这样就得到一个800x600的画面。</p>
+<p>raspberrrypi上捕捉视频用：<code>raspivid -t 0 -vs -w 800 -h 600 -o -| nc 172.19.1.124 5001</code>，其中t参数指定了捕捉多少毫秒的视频，用0表示禁用这个选项，后面的vs是防抖，w和h控制宽高，这样就得到一个800x600的画面。</p>
 
-<p>Mac上用nc把发来的stream转到mplayer上：<code>nc -lp 5001 | mplayer -fps 31 -cache 512 -</code>，很无语的是<code>man nc</code>得到一句解释，l和p参数在一起用是个错误，但不加p就绝对在我这里不work！</p>
+<p>Mac上用nc把发来的stream转到mplayer上：<code>nc -lp 5001 | mplayer -fps 31 -cache 512 -</code>，很无语的是<code>man nc</code>得到一句解释，l和p参数在一起用是个错误，但只用l是不管用的，给作者发了封信问下，不知道会不会得到回信。</p>
 ]]></content>
   </entry>
   
