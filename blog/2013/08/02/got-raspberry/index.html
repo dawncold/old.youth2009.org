@@ -94,7 +94,11 @@
 
 <p>raspberrrypi上捕捉视频用：<code>raspivid -t 0 -vs -w 800 -h 600 -o -| nc 172.19.1.124 5001</code>，其中t参数指定了捕捉多少毫秒的视频，用0表示禁用这个选项，后面的vs是防抖，w和h控制宽高，这样就得到一个800x600的画面。</p>
 
-<p>Mac上用nc把发来的stream转到mplayer上：<code>nc -lp 5001 | mplayer -fps 31 -cache 512 -</code>，很无语的是<code>man nc</code>得到一句解释，l和p参数在一起用是个错误，但只用l是不管用的，给作者发了封信问下，不知道会不会得到回信。</p>
+<p>Mac上用nc把发来的stream转到mplayer上：<del><code>nc -lp 5001 | mplayer -fps 31 -cache 512 -</code></del>，很无语的是<code>man nc</code>得到一句解释，l和p参数在一起用是个错误，但只用l是不管用的，给作者发了封信问下，不知道会不会得到回信。</p>
+
+<p><strong>2015-01-18:</strong>今天有机会使用树莓派的视频功能，因为要监控看看麻麻什么时候从外面回家，于是找相关命令，想到自己以前用过这个，就找出来了，结尾算是遗留的一个尾巴，今天解决一下。</p>
+
+<p>我给原作者发了邮件，可惜邮件被退了，又给IPV6版本的实现作者发信，还没回，后来给Ubuntu-dev的组发了信（是不是很大胆？），管理员回了我，告诉我不能在这问这种问题，不过说了一些东西，虽然没什么帮助，但我确实在ubuntu上试了下<code>nc -l IPADDRESS 5000</code>这条命令是否管用，还真能用，确实不应该加<code>-p</code>参数，但为何我这里的就不对呢？实际Mac系统本身有nc，后来我用brew装了个netcat，然后系统里面就有点乱了，卸载掉netcat后，直接用系统的nc，就和man中说的一样了，不用加<code>-p</code>，参数，实际是不应该加那个参数，而是<code>nc -l IPADDRESS 5000</code>，文中提到的那种写法我标记删除了。</p>
 </div>
 
 
