@@ -4,7 +4,7 @@
   <title><![CDATA[Category: wodeyitian | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/wodeyitian/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -38,7 +38,7 @@
 <span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>useradd -m -s /bin/bash -d /home/git git
 </span><span class='line'>passwd git #给git用户加上密码
-</span><span class='line'>su &ndash; git
+</span><span class='line'>su - git
 </span><span class='line'>cd ~
 </span><span class='line'>gitosis-init &lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径</span></code></pre></td></tr></table></div></figure></p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -167,47 +167,47 @@
 </span><span class='line'>details.  You may need configuration options.&lt;/p&gt;
 </span><span class='line'>
 </span><span class='line'>&lt;p&gt;Provided configuration options:
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-opt-dir
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-opt-dir
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-opt-include
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-opt-include<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/include
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-opt-lib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-opt-lib<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/lib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-make-prog
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-make-prog
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span><span class="nv">srcdir</span><span class="o">=</span>.
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>curdir
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span><span class="nv">ruby</span><span class="o">=</span>/usr/local/Cellar/ruby/1.9.3-p0/bin/ruby
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-mysql-config
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-mysql-config
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-mysql-dir
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-mysql-dir
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-mysql-include
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-mysql-include<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/include
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-mysql-lib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-mysql-lib<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/lib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-mysqlclientlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-mysqlclientlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-mlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-mlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-mysqlclientlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-mysqlclientlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-zlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-zlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-mysqlclientlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-mysqlclientlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-socketlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-socketlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-mysqlclientlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-mysqlclientlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-nsllib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-nsllib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-mysqlclientlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-mysqlclientlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-mygcclib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-mygcclib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>with-mysqlclientlib
-</span><span class='line'><span class="p">&amp;</span>mdash<span class="p">;</span>without-mysqlclientlib&lt;/p&gt;
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-opt-dir
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-opt-dir
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-opt-include
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-opt-include<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/include
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-opt-lib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-opt-lib<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/lib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-make-prog
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-make-prog
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span><span class="nv">srcdir</span><span class="o">=</span>.
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>curdir
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span><span class="nv">ruby</span><span class="o">=</span>/usr/local/Cellar/ruby/1.9.3-p0/bin/ruby
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-mysql-config
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-mysql-config
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-mysql-dir
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-mysql-dir
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-mysql-include
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-mysql-include<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/include
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-mysql-lib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-mysql-lib<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/lib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-mysqlclientlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-mysqlclientlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-mlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-mlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-mysqlclientlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-mysqlclientlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-zlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-zlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-mysqlclientlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-mysqlclientlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-socketlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-socketlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-mysqlclientlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-mysqlclientlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-nsllib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-nsllib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-mysqlclientlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-mysqlclientlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-mygcclib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-mygcclib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>with-mysqlclientlib
+</span><span class='line'><span class="p">&amp;</span>ndash<span class="p">;</span>without-mysqlclientlib&lt;/p&gt;
 </span><span class='line'>
 </span><span class='line'>&lt;p&gt;Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 <span class="k">for</span> inspection.
 </span><span class='line'>Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out
@@ -216,10 +216,10 @@
 <p>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：</p>
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install mysql <span class="p">&amp;</span>mdash<span class="p">;</span> <span class="p">&amp;</span>mdash<span class="p">;</span>with-mysql-dir<span class="o">=</span>/usr/local/mysql
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install mysql <span class="p">&amp;</span>ndash<span class="p">;</span> <span class="p">&amp;</span>ndash<span class="p">;</span>with-mysql-dir<span class="o">=</span>/usr/local/mysql
 </span></code></pre></td></tr></table></div></figure></p>
 
-<p>一开始的那两个“&mdash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
+<p>一开始的那两个“&ndash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
 
 <p>我已经解决问题了，成功安装mysql的ruby驱动，如果仍然遇到问题，可以试试参考<a href="http://blog.bmn.name/2008/02/rails-gem-install-mysql-throws-error-extconfrb-failed/">这里</a>（同样感谢这里）。</p>
 ]]></content>

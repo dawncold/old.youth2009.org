@@ -4,7 +4,7 @@
   <title><![CDATA[Category: php | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/php/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -20,7 +20,7 @@
     <id>http://www.youth2009.org/blog/2011/07/09/best-content-in-include_path</id>
     <content type="html"><![CDATA[<p>刚刚用了下typecho博客插件——友情链接来添加一个友情链接，但发现很多php文件找不到了，很奇怪，以前是可以的，看到warning中的信息，有个include_path的相关东西，看看里面提到的路径是不是有需要的文件，结果没有，而在其中路径的下一级目录下有，这就怪了。</p>
 
-<p>Google说最好把include_path写成&#8221;./&ldquo;。是不是这样就是自动便利所有的内容了？我猜是的！当前的include_path中又pear的路径，我就先不删除了，linux系统下用冒号分隔各个路径，在前面加上一个点即可。</p>
+<p>Google说最好把include_path写成"./&ldquo;。是不是这样就是自动便利所有的内容了？我猜是的！当前的include_path中又pear的路径，我就先不删除了，linux系统下用冒号分隔各个路径，在前面加上一个点即可。</p>
 
 <p>重启php，再次访问，恢复正常！</p>
 ]]></content>
@@ -67,10 +67,10 @@
 </span><span class='line'><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'><span class="nv">$count</span> <span class="o">%=</span> <span class="nv">$num</span><span class="p">;</span>
 </span><span class='line'><span class="k">if</span><span class="p">(</span><span class="nv">$circle</span><span class="p">[</span><span class="nv">$count</span><span class="p">]</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'><span class="k">if</span><span class="p">((</span><span class="nv">$n</span> <span class="o">%</span> <span class="nv">$diff</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="nv">$diff</span> <span class="o">&amp;</span><span class="nx">ndash</span><span class="p">;</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'><span class="k">if</span><span class="p">((</span><span class="nv">$n</span> <span class="o">%</span> <span class="nv">$diff</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="nv">$diff</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
 </span><span class='line'><span class="nv">$circle</span><span class="p">[</span><span class="nv">$count</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 </span><span class='line'><span class="nv">$out</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="nv">$out</span> <span class="o">===</span> <span class="nv">$num</span> <span class="o">&amp;</span><span class="nx">ndash</span><span class="p">;</span> <span class="nv">$sur</span><span class="p">)</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="nv">$out</span> <span class="o">===</span> <span class="nv">$num</span> <span class="o">-</span> <span class="nv">$sur</span><span class="p">)</span>
 </span><span class='line'><span class="k">break</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'><span class="nv">$n</span><span class="o">++</span><span class="p">;</span>

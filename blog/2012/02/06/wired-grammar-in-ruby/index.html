@@ -1,83 +1,94 @@
 
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<title>奇怪的Ruby语法 - Trade Off</title>
-	<meta name="author" content="dawncold">
+  <meta charset="utf-8">
+  <title>奇怪的Ruby语法 - Trade Off</title>
+  <meta name="author" content="dawncold">
 
-	
-	<meta name="description" content="今天断断续续把昨天提到的那个Ruby编程入门看完了，原本打算按照教程中的例子做一遍，不过看得时候感觉这样做的话有些浪费时间，对于有一定编程经验的人来说按照例子做一遍没多大意义，很多内容看看就过了。 但很可惜，在Ruby这里，看看还不一定就能理解，要不然今天也不会单独写一篇日志了， &hellip;">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="description" content="今天断断续续把昨天提到的那个Ruby编程入门看完了，原本打算按照教程中的例子做一遍，不过看得时候感觉这样做的话有些浪费时间，对于有一定编程经验的人来说按照例子做一遍没多大意义，很多内容看看就过了。 但很可惜，在Ruby这里，看看还不一定就能理解，要不然今天也不会单独写一篇日志了， &hellip;">
+  
 
-	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
-	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/blog/2012/02/06/wired-grammar-in-ruby/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
 </head>
 
-
-<body>
-	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
-<nav id="main-nav"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-    <li><a href="/about">About</a></li>
-</ul>
-</nav>
-<nav id="mobile-nav">
-	<div class="alignleft menu">
-		<a class="button">Menu</a>
-		<div class="container"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-    <li><a href="/about">About</a></li>
-</ul>
-</div>
-	</div>
-	<div class="alignright search">
-		<a class="button"></a>
-		<div class="container">
-			<form action="http://google.com/search" method="get">
-				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org">
-			</form>
-		</div>
-	</div>
-</nav>
-<nav id="sub-nav" class="alignright">
-	<div class="social">
-		
-		
-		
-		
-    
-		
-		
-		
-		
-		
-		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-		
-    
-	</div>
-	<form class="search" action="http://google.com/search" method="get">
-		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org">
-	</form>
-</nav>
-
+<body   >
+  <header role="banner">
 </header>
-	
-		
-	
-	<div id="content" class="inner"><article class="post">
-	<h2 class="title">奇怪的Ruby语法</h2>
-	<div class="entry-content"><p>今天断断续续把昨天提到的那个Ruby编程入门看完了，原本打算按照教程中的例子做一遍，不过看得时候感觉这样做的话有些浪费时间，对于有一定编程经验的人来说按照例子做一遍没多大意义，很多内容看看就过了。</p>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="www.youth2009.org">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">奇怪的Ruby语法</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-02-06T22:19:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>10:19 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>今天断断续续把昨天提到的那个Ruby编程入门看完了，原本打算按照教程中的例子做一遍，不过看得时候感觉这样做的话有些浪费时间，对于有一定编程经验的人来说按照例子做一遍没多大意义，很多内容看看就过了。</p>
 
 <p>但很可惜，在Ruby这里，看看还不一定就能理解，要不然今天也不会单独写一篇日志了，真得有不少特性和其他编程语言不一样，概念上倒是还能理解，语法符号上就要重新接受了，想等过两天买的Ruby编程书来到后细细重头看。</p>
 
@@ -85,62 +96,102 @@
 </div>
 
 
-<div class="meta">
-	<div class="date">
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
+
+      
 
 
 
+
+<time class='entry-date' datetime='2012-02-06T22:19:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>10:19 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/02/06/firstly-study-ruby/" title="Previous Post: 开学Ruby">&laquo; 开学Ruby</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/02/07/some-issue-when-saving-rules-in-iptables/" title="Next Post: 保存iptables规则遇到的问题">保存iptables规则遇到的问题 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/04/19/exception-in-python/">Exception in Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/11/optimize-shadowsocks-nat-rules/">Optimize Shadowsocks NAT Rules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/08/mailing-list-in-postfix/">Mailing List in Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/07/be-careful-python-fdopen/">Be Careful Python Fdopen</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/05/unicom-blocked-80-8080/">联通封了80和8080 but 443 Is Ok</a>
+      </li>
+    
+  </ul>
+</section>
 
 
 
 
 
   
+</aside>
 
 
-<time datetime="2012-02-06T22:19:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-	<div class="share">
-	<div class="addthis_toolbox addthis_default_style ">
-		
-		
-		
-		
-	</div>
-	
-</div>
-
-
-
-<section id="comment">
-    <h2 class="title">Comments</h2>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-</section>
-</div>
-	<footer id="footer" class="inner">Copyright &copy; 2015
+    </div>
+  </div>
+  <footer role="contentinfo">Copyright &copy; 2015
 
     dawncold
 
-</footer>
-	<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-	$('.fancybox').fancybox();
-})(jQuery);
-</script> <!-- Delete or comment this line to disable Fancybox -->
 
+</footer>
+  
 
 <script type="text/javascript">
       var disqus_shortname = 'dawncoldtechblog';
@@ -153,24 +204,17 @@
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//go.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
 
 
 
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-8650400-5']);
-		_gaq.push(['_trackPageview']);
 
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
+
+
+
 
 
 

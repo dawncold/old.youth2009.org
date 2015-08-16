@@ -4,7 +4,7 @@
   <title><![CDATA[Category: chrome | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/chrome/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -38,9 +38,6 @@
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">{</span>
 </span><span class='line'> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">name</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">hide</span><span class="o">-</span><span class="nx">other</span><span class="o">-</span><span class="nx">bookmark</span><span class="o">-</span><span class="nx">button</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;,</span>
 </span><span class='line'> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">version</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="mf">1.0</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;,</span>
@@ -48,12 +45,9 @@
 </span><span class='line'> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">browser_action</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">:</span> <span class="p">{</span>
 </span><span class='line'>   <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">default_icon</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">icon</span><span class="p">.</span><span class="nx">ico</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span>
 </span><span class='line'> <span class="p">},</span>
-</span><span class='line'> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">permissions</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="s2">&quot;bookmarks&quot;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">],</span>
+</span><span class='line'> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">permissions</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">bookmarks</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">],</span>
 </span><span class='line'> <span class="o">&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">background_page</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span><span class="o">:&amp;</span><span class="nx">ldquo</span><span class="p">;</span><span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="o">&amp;</span><span class="nx">rdquo</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></p>

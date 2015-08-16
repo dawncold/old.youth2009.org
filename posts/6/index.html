@@ -1,92 +1,131 @@
 
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<title>Trade Off</title>
-	<meta name="author" content="dawncold">
+  <meta charset="utf-8">
+  <title>Trade Off</title>
+  <meta name="author" content="dawncold">
 
-	
-	<meta name="description" content="如果你的网站该去解决dog pile effect了，那应该有不小的PV了。今天看暴走漫画的架构设计，那是应对1000W PV的一个设计，当然架构这东西每家都不一样，可能这个就他们自己用着适合。里面提到了dog pile effect，这个的意思是：在多request去cache中拿数据的时候， &hellip;">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="description" content="amazoing的两个命令，pushd和popd 相关介绍：pushd &amp; popd pushd /etc可以到etc目录下，工作完了后再用popd就回到了刚刚离开的目录。
+">
+  
 
-	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
-	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/posts/6/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
 </head>
 
-
-<body>
-	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
-<nav id="main-nav"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-    <li><a href="/about">About</a></li>
-</ul>
-</nav>
-<nav id="mobile-nav">
-	<div class="alignleft menu">
-		<a class="button">Menu</a>
-		<div class="container"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-    <li><a href="/about">About</a></li>
-</ul>
-</div>
-	</div>
-	<div class="alignright search">
-		<a class="button"></a>
-		<div class="container">
-			<form action="http://google.com/search" method="get">
-				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.youth2009.org">
-			</form>
-		</div>
-	</div>
-</nav>
-<nav id="sub-nav" class="alignright">
-	<div class="social">
-		
-		
-		
-		
-    
-		
-		
-		
-		
-		
-		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-		
-    
-	</div>
-	<form class="search" action="http://google.com/search" method="get">
-		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.youth2009.org">
-	</form>
-</nav>
-
+<body   >
+  <header role="banner">
 </header>
-	
-		
-	
-	<div id="content" class="inner">
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="www.youth2009.org">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/13/pushd-and-popd/">Pushd-and-popd</a></h1>
+    
+    
+      <p class="meta">
+        
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/05/18/dog-pile-effect/">
-		
-			Dog-pile-effect</a>
-	</h2>
-	<div class="entry-content">
-		<p>如果你的网站该去解决dog pile effect了，那应该有不小的PV了。今天看暴走漫画的架构设计，那是应对1000W PV的一个设计，当然架构这东西每家都不一样，可能这个就他们自己用着适合。里面提到了dog pile effect，这个的意思是：在多request去cache中拿数据的时候，如果发现自己拿的数据是过期了的，那么就要去db中拿新的来。这么看好像没问题，但有前提的——request很多，真的很多，而且确实用cache了（反正我不相信request很多的时候某些数据你不用cache，那得是个多么bt的db才能支撑啊？！）本来用cache的作用就是降低对某些slow query的执行次数，缓解db压力。但过期了，再去db中取这就和没有cache一样了，db会死的。</p>
+
+
+<time class='entry-date' datetime='2013-06-13T19:50:00+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>7:50 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>amazoing的两个命令，pushd和popd</p>
+
+<p>相关介绍：<a href="http://en.wikipedia.org/wiki/Pushd_and_popd">pushd &amp; popd</a></p>
+
+<p><code>pushd /etc</code>可以到etc目录下，工作完了后再用<code>popd</code>就回到了刚刚离开的目录。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-18T22:48:00+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>10:48 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>如果你的网站该去解决dog pile effect了，那应该有不小的PV了。今天看暴走漫画的架构设计，那是应对1000W PV的一个设计，当然架构这东西每家都不一样，可能这个就他们自己用着适合。里面提到了dog pile effect，这个的意思是：在多request去cache中拿数据的时候，如果发现自己拿的数据是过期了的，那么就要去db中拿新的来。这么看好像没问题，但有前提的——request很多，真的很多，而且确实用cache了（反正我不相信request很多的时候某些数据你不用cache，那得是个多么bt的db才能支撑啊？！）本来用cache的作用就是降低对某些slow query的执行次数，缓解db压力。但过期了，再去db中取这就和没有cache一样了，db会死的。</p>
 
 <p>解决方法有这样的：</p>
 
@@ -97,92 +136,68 @@
 
 
 <p>引用自：<a href="http://hype-free.blogspot.jp/2008/05/avoiding-dogpile-effect.html">http://hype-free.blogspot.jp/2008/05/avoiding-dogpile-effect.html</a>，注意blogspot。。。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
+</div>
+  
   
 
 
-<time datetime="2013-05-18T22:48:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/15/new-dev-env/">New-dev-env</a></h1>
+    
+    
+      <p class="meta">
+        
 
 
-	<a class='category' href='/blog/categories/dev/'>dev</a>
 
 
-</div>
-	
-</div>
-</article>
+<time class='entry-date' datetime='2013-05-15T22:58:00+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>10:58 pm</span></time>
+        
+      </p>
+    
+  </header>
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/05/15/new-dev-env/">
-		
-			New-dev-env</a>
-	</h2>
-	<div class="entry-content">
-		<p>终于把windows开发环境给换成Ubuntu了，顺便也去掉了虚拟机，原生开发的性能真好，一点都没有IO延迟的感觉，只能说Linux更加低碳。</p>
+  <div class="entry-content"><p>终于把windows开发环境给换成Ubuntu了，顺便也去掉了虚拟机，原生开发的性能真好，一点都没有IO延迟的感觉，只能说Linux更加低碳。</p>
 
 <p>很久没装过Ubuntu了，现在的安装过程越来越简单，而且体验也很好。需要注意的是，在安装时最好去掉下载更新这个选项，耽误时间不说，最后有个步骤，貌似是测试，超慢，我都睡着了。换成不下载更新，半小时内结束。</p>
 
 <p>系统关机的效率比win7简直快了好几光年。。。至少几十倍的速度提升，有在使用SSD的感觉，顺便说一句，在使用SSD的Mac下也没得到那样的关机速度。不过发现合上休眠功能不管用，风扇仍然在转，发热量很大，可能缺什么驱动？以前关机慢，所以就不关了，现在可以考虑关机带走。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
+</div>
+  
   
 
 
-<time datetime="2013-05-15T22:58:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/11/ssh-proxy-with-autossh/">Ssh-proxy-with-autossh-in-mac</a></h1>
+    
+    
+      <p class="meta">
+        
 
 
-	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
-</div>
-	
-</div>
-</article>
+<time class='entry-date' datetime='2013-05-11T13:10:00+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:10 pm</span></time>
+        
+      </p>
+    
+  </header>
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/05/11/ssh-proxy-with-autossh/">
-		
-			Ssh-proxy-with-autossh-in-mac</a>
-	</h2>
-	<div class="entry-content">
-		<p>在Mac下原来一直用iSSH，好处是简单，功能够用，但有个缺点很致命，ssh有时候会断开，谁知道最终是什么原因导致的，但iSSH不会自动重连，只是提示你。在忍受了很久之后换成了autossh，它没有GUI，但可以在ssh断开后自动重连。</p>
+  <div class="entry-content"><p>在Mac下原来一直用iSSH，好处是简单，功能够用，但有个缺点很致命，ssh有时候会断开，谁知道最终是什么原因导致的，但iSSH不会自动重连，只是提示你。在忍受了很久之后换成了autossh，它没有GUI，但可以在ssh断开后自动重连。</p>
 
 <p>1.使用brew安装autossh，或者用其他工具安装autossh，包括手。</p>
 
@@ -255,90 +270,66 @@
 
 
 <p>至此，开机自动连接ssh，自由surfing吧。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
+</div>
+  
   
 
 
-<time datetime="2013-05-11T13:10:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/02/hhkb/">Hhkb</a></h1>
+    
+    
+      <p class="meta">
+        
 
 
-	<a class='category' href='/blog/categories/gfw/'>gfw</a>
 
 
-</div>
-	
-</div>
-</article>
+<time class='entry-date' datetime='2013-04-02T23:01:00+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>11:01 pm</span></time>
+        
+      </p>
+    
+  </header>
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/04/02/hhkb/">
-		
-			Hhkb</a>
-	</h2>
-	<div class="entry-content">
-		<p>终于，它来了。</p>
+  <div class="entry-content"><p>终于，它来了。</p>
 
 <p><img src="http://pic.yupoo.com/dawncold0/CL0AxKWr/medish.jpg" alt="HHKB" /></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
+</div>
+  
   
 
 
-<time datetime="2013-04-02T23:01:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/26/nonexistence/">Nonexistent Bug</a></h1>
+    
+    
+      <p class="meta">
+        
 
 
-	<a class='category' href='/blog/categories/dev/'>dev</a>
 
 
-</div>
-	
-</div>
-</article>
+<time class='entry-date' datetime='2013-03-26T21:57:00+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:57 pm</span></time>
+        
+      </p>
+    
+  </header>
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/03/26/nonexistence/">
-		
-			Nonexistent Bug</a>
-	</h2>
-	<div class="entry-content">
-		<p>问题表现：IE6下，$.ajax()出现error，内容：No Transport</p>
+  <div class="entry-content"><p>问题表现：IE6下，$.ajax()出现error，内容：No Transport</p>
 
 <p>大约花了3天修复了一个不存在的问题。</p>
 
@@ -351,135 +342,99 @@
 <p>第三天，开始回退版本，无奈这个过程比较麻烦，主要是一些配置文件和改动不可能完全无错的回退。我又找用户测试了一遍，发现没什么问题，已经开始怀疑当初的判断。另找了一批用户机器，发现果真是没问题的。</p>
 
 <p>重装了一台XP SP3，用里面的IE6测试，果然也没问题。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
+</div>
+  
   
 
 
-<time datetime="2013-03-26T21:57:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/20/be-blocked-by-gfw/">be-blocked-by-GFW</a></h1>
+    
+    
+      <p class="meta">
+        
 
 
-	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
-</div>
-	
-</div>
-</article>
+<time class='entry-date' datetime='2013-03-20T21:04:00+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:04 pm</span></time>
+        
+      </p>
+    
+  </header>
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/03/20/be-blocked-by-gfw/">
-		
-			be-blocked-by-GFW</a>
-	</h2>
-	<div class="entry-content">
-		<p>不知什么原因，我的VPS进入了全国路由监视节点。。。现实只要是谁打算ssh过去，就会被封锁一段时间。根据某人告知，这是进入短名单后的action，可以探测我换端口什么的操作，相信离IP被封已经不远了！</p>
+  <div class="entry-content"><p>不知什么原因，我的VPS进入了全国路由监视节点。。。现实只要是谁打算ssh过去，就会被封锁一段时间。根据某人告知，这是进入短名单后的action，可以探测我换端口什么的操作，相信离IP被封已经不远了！</p>
 
 <p>VPS啊，先提前和你说R.I.P.吧</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
+</div>
+  
   
 
 
-<time datetime="2013-03-20T21:04:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/18/end-sorted/">End-sorted</a></h1>
+    
+    
+      <p class="meta">
+        
 
 
-	<a class='category' href='/blog/categories/gfw/'>gfw</a>, <a class='category' href='/blog/categories/vps/'>vps</a>
 
 
-</div>
-	
-</div>
-</article>
+<time class='entry-date' datetime='2013-03-18T22:10:00+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>10:10 pm</span></time>
+        
+      </p>
+    
+  </header>
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/03/18/end-sorted/">
-		
-			End-sorted</a>
-	</h2>
-	<div class="entry-content">
-		<p>暂时终止sorted的开发，经历了两天痛苦的、没白没黑的、浑浑噩噩的探索后，还是没能搞定iPhone上一个icon的移动过程。实在不行我都打算直接去修改iconstate.plist文件了。。。但就是修改了不能马上响应，需要respring这点受不了！</p>
+  <div class="entry-content"><p>暂时终止sorted的开发，经历了两天痛苦的、没白没黑的、浑浑噩噩的探索后，还是没能搞定iPhone上一个icon的移动过程。实在不行我都打算直接去修改iconstate.plist文件了。。。但就是修改了不能马上响应，需要respring这点受不了！</p>
 
 <p>网上这方面的资料依然少的可怜，很多时间竟然是花在寻找headers文件了，最后才知道根本不需要。你只要有headers拿来看看就ok了，需要什么类的声明自己用@interface写在xm文件中就可以了。tweak的远离是做出dylib后加载，替代系统的api，headers文件对于你来说就是看，然后找需要哪些私有api即可。</p>
 
 <p>过两天兴致来了或许又再搞一下。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
+</div>
+  
   
 
 
-<time datetime="2013-03-18T22:10:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/17/big-break-in-tweak-app-build/">Big-break-in-tweak-app-build</a></h1>
+    
+    
+      <p class="meta">
+        
 
 
-	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>, <a class='category' href='/blog/categories/sortedapp/'>sortedapp</a>
 
 
-</div>
-	
-</div>
-</article>
+<time class='entry-date' datetime='2013-03-17T09:15:00+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:15 am</span></time>
+        
+      </p>
+    
+  </header>
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/03/17/big-break-in-tweak-app-build/">
-		
-			Big-break-in-tweak-app-build</a>
-	</h2>
-	<div class="entry-content">
-		<p>昨晚弄到1点多也没搞定iOSOpenDev，总是编译出问题，在irc上问了一下也没人回答我，看来还是有很多人在泡irc的！</p>
+  <div class="entry-content"><p>昨晚弄到1点多也没搞定iOSOpenDev，总是编译出问题，在irc上问了一下也没人回答我，看来还是有很多人在泡irc的！</p>
 
 <p>睡前又看了一下各种文章，等起床打算还是回归theos搞搞试试。</p>
 
@@ -538,192 +493,103 @@
 <p>OS:10.8.3，SDKVERSION：6.1</p>
 
 <p>另外昨天说的设置theos的环境变量，我今天又重新加到了bash_profile中，发现make package install都能自动部署了。。。看来真是昨天theos版本的问题？！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
+</div>
+  
   
 
 
-<time datetime="2013-03-17T09:15:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/16/open-development-env-for-xcode/">Open-development-env-for-xcode</a></h1>
+    
+    
+      <p class="meta">
+        
 
 
-	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>, <a class='category' href='/blog/categories/sortedapp/'>sortedapp</a>
 
 
-</div>
-	
-</div>
-</article>
+<time class='entry-date' datetime='2013-03-16T20:40:00+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:40 pm</span></time>
+        
+      </p>
+    
+  </header>
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/03/16/open-development-env-for-xcode/">
-		
-			Open-development-env-for-xcode</a>
-	</h2>
-	<div class="entry-content">
-		<p>发现一个问题，使用theos这个makefile工具做app有很大困难，就是headers不好管理，真希望能集成到xcode中开发tweak，结果发现了一个神器&mdash;&mdash;iOSOpenDev。</p>
+  <div class="entry-content"><p>发现一个问题，使用theos这个makefile工具做app有很大困难，就是headers不好管理，真希望能集成到xcode中开发tweak，结果发现了一个神器&mdash;-iOSOpenDev。</p>
 
 <p>安装好之后就能发现xcode中已经有很多可用的template了，对于tweak来说，有logos和CaptaionHook。logos就是theos，captainhook是另一个hook框架。</p>
 
 <p>不过很可惜，可能是sdk6.1的问题，结合上springboard和uialertview后就从来没build success，总说armv7中的springboard link error或者uialertview linker error，是在不知道怎么办了，仔细又看了别人的做法，发现他们还在用sdk5.1，估计就是这点差异吧？</p>
 
 <p>彻夜下载sdk5.1.。。。。。。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
+</div>
+  
+  
 
 
-
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/7">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/5">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/04/19/exception-in-python/">Exception in Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/11/optimize-shadowsocks-nat-rules/">Optimize Shadowsocks NAT Rules</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/08/mailing-list-in-postfix/">Mailing List in Postfix</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/07/be-careful-python-fdopen/">Be Careful Python Fdopen</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/05/unicom-blocked-80-8080/">联通封了80和8080 but 443 Is Ok</a>
+      </li>
+    
+  </ul>
+</section>
 
 
 
 
 
   
+</aside>
 
-
-<time datetime="2013-03-16T20:40:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>, <a class='category' href='/blog/categories/sortedapp/'>sortedapp</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/03/16/build-up-env-for-sorted/">
-		
-			Build-up-env-for-sorted</a>
-	</h2>
-	<div class="entry-content">
-		<p>找到了一篇教程，开始构建jailbreaken app的环境。</p>
-
-<p>基本需要的工具</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">THEOS</span><span class="o">=</span>/opt/theos
-</span><span class='line'>svn co http://svn.howett.net/svn/theos/trunk <span class="nv">$THEOS</span>
-</span><span class='line'>curl -s https://dl.dropboxusercontent.com/u/3157793/ldid &gt; <span class="nv">$THEOS</span>/bin/ldid<span class="p">;</span> chmod +x <span class="nv">$THEOS</span>/bin/ldid
-</span><span class='line'>brew install dpkg<span class="o">(</span>如果出错安不上dpkg，那就先update一下brew，我就遇到这么个问题<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>用theos模板创建项目，<code>$THEOS/bin/nic.pl</code>，这会在当前目录中创建你的项目，选择模板类型，然后起名字之类的，填好就ok。</p>
-
-<p>在创见出来的项目中有Makefile，里面有一个地方需要注意，就是<code>xxxx_FILES=</code>这里，后面的m和mm文件是你当前所有的，如果你自己加了新的，你需要手动添加进去。</p>
-
-<p>再加两个环境变量</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">SDKVERSION</span><span class="o">=</span>6.1
-</span><span class='line'><span class="nb">export </span><span class="nv">THEOS_DEVICE_IP</span><span class="o">=</span>10.0.0.101
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>目标sdk版本，我用6.1了，后一个是手机的ip，自己弄到一个wifi中吧，后面部署需要。</p>
-
-<p>make&amp;make package，在make的时候不加sudo我会无法make成功。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo make
-</span><span class='line'>sudo make package
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>本目录下的deb就可以放到设备上安装了，安装命令是<code>dpkg -i xxx.deb</code></p>
-
-<p>不过你可以用部署的方式，<code>make package install</code>，他会依赖你刚刚设置的IP部署，但我这里似乎有问题，估计是环境变量的问题，光提示我找不到THEOS_DEVICE_IP</p>
-
-<p>我就scp到了设备上，手动执行了dpkg的命令，然后respring竟然没效果，只好reboot了一下，看到了刚刚的app已经被安装上了！！！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-16T17:40:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>, <a class='category' href='/blog/categories/sortedapp/'>sortedapp</a>
-
-
-</div>
-	
-</div>
-</article>
-
-<nav id="pagenavi">
-    
-    
-        <a href="/posts/5" class="prev">Prev</a>
-    
-    
-    
-        <a href="/posts/7" class="next">Next</a>
-    
-    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
-</nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2015
+    </div>
+  </div>
+  <footer role="contentinfo">Copyright &copy; 2015
 
     dawncold
 
-</footer>
-	<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-	$('.fancybox').fancybox();
-})(jQuery);
-</script> <!-- Delete or comment this line to disable Fancybox -->
 
+</footer>
+  
 
 <script type="text/javascript">
       var disqus_shortname = 'dawncoldtechblog';
@@ -733,24 +599,17 @@
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//go.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
 
 
 
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-8650400-5']);
-		_gaq.push(['_trackPageview']);
 
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
+
+
+
 
 
 

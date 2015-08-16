@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -14,7 +14,88 @@
 
   
   <entry>
-    <title type="html"><![CDATA[optimize shadowsocks NAT rules]]></title>
+    <title type="html"><![CDATA[Exception in Python]]></title>
+    <link href="http://www.youth2009.org/blog/2015/04/19/exception-in-python/"/>
+    <updated>2015-04-19T17:05:31+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/04/19/exception-in-python</id>
+    <content type="html"><![CDATA[<p>My colleague remembered that if you pass some <code>kwargs</code> to an <code>Exception</code> subclass e.g. <code>class MyException(Exception): pass</code>, you will get a composed message when you catch the exception and call <code>e.message</code>. Unitil we got nothing from one place which it should display exception&rsquo;s message, python language part is implemented by C, so we downloaded python source code(2.7.9), and find these lines.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">static</span> <span class="kt">int</span>
+</span><span class='line'><span class="nf">BaseException_init</span><span class="p">(</span><span class="n">PyBaseExceptionObject</span> <span class="o">*</span><span class="n">self</span><span class="p">,</span> <span class="n">PyObject</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">PyObject</span> <span class="o">*</span><span class="n">kwds</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">_PyArg_NoKeywords</span><span class="p">(</span><span class="n">Py_TYPE</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">tp_name</span><span class="p">,</span> <span class="n">kwds</span><span class="p">))</span>
+</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">Py_DECREF</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">self</span><span class="o">-&gt;</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">Py_INCREF</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">PyTuple_GET_SIZE</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">Py_CLEAR</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">self</span><span class="o">-&gt;</span><span class="n">message</span> <span class="o">=</span> <span class="n">PyTuple_GET_ITEM</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">Py_INCREF</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is python BaseException&rsquo;s C implementation, I can understand logic but C syntax. The BaseException accepts <code>kwargs</code>, but if you pass a <code>kwargs</code> to Exception, you will get a warning, because of <code>_PyArg_NoKeywords</code>, maybe it needs compatibility with old code, but now, you can&rsquo;t use <code>kwargs</code>.</p>
+
+<p>Another notice, if you pass one argument to it, this argument will be the <code>e.message</code> value, if not, your args will be placed in <code>e.args</code>.</p>
+
+<p>We finally implemented <code>__str__</code> and <code>__unicode__</code> methods, because of we imported <code>unicode_literals</code>, so we think this is the best practice, we just use <code>str(e)</code> in those places.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">TmallAPIException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">sub_code</span><span class="p">,</span> <span class="n">sub_msg</span><span class="p">):</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">(</span><span class="n">TmallAPIException</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">sub_code</span><span class="p">,</span> <span class="n">sub_msg</span><span class="p">)</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">code</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">sub_code</span> <span class="o">=</span> <span class="n">sub_code</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">sub_msg</span> <span class="o">=</span> <span class="n">sub_msg</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c"># TODO: not necessary under python3</span>
+</span><span class='line'>        <span class="k">return</span> <span class="s">&#39;code: {}, msg: {}, sub_code: {}, sub_msg: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_msg</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__unicode__</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Optimize Shadowsocks NAT Rules]]></title>
     <link href="http://www.youth2009.org/blog/2015/01/11/optimize-shadowsocks-nat-rules/"/>
     <updated>2015-01-11T23:46:08+08:00</updated>
     <id>http://www.youth2009.org/blog/2015/01/11/optimize-shadowsocks-nat-rules</id>
@@ -39,7 +120,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[mailing list in postfix]]></title>
+    <title type="html"><![CDATA[Mailing List in Postfix]]></title>
     <link href="http://www.youth2009.org/blog/2015/01/08/mailing-list-in-postfix/"/>
     <updated>2015-01-08T19:20:14+08:00</updated>
     <id>http://www.youth2009.org/blog/2015/01/08/mailing-list-in-postfix</id>
@@ -52,7 +133,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[be careful python fdopen]]></title>
+    <title type="html"><![CDATA[Be Careful Python Fdopen]]></title>
     <link href="http://www.youth2009.org/blog/2015/01/07/be-careful-python-fdopen/"/>
     <updated>2015-01-07T23:13:39+08:00</updated>
     <id>http://www.youth2009.org/blog/2015/01/07/be-careful-python-fdopen</id>
@@ -67,7 +148,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[联通封了80和8080 but 443 is ok]]></title>
+    <title type="html"><![CDATA[联通封了80和8080 but 443 Is Ok]]></title>
     <link href="http://www.youth2009.org/blog/2015/01/05/unicom-blocked-80-8080/"/>
     <updated>2015-01-05T23:24:57+08:00</updated>
     <id>http://www.youth2009.org/blog/2015/01/05/unicom-blocked-80-8080</id>
@@ -132,7 +213,7 @@ ISP：中国联通
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[host-octopress-blog-on-raspberry-pi]]></title>
+    <title type="html"><![CDATA[Host-octopress-blog-on-raspberry-pi]]></title>
     <link href="http://www.youth2009.org/blog/2015/01/01/build-octopress-blog-on-raspberry-pi/"/>
     <updated>2015-01-01T20:25:24+08:00</updated>
     <id>http://www.youth2009.org/blog/2015/01/01/build-octopress-blog-on-raspberry-pi</id>
@@ -283,7 +364,7 @@ ISP：中国联通
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[safe characters of quote method in urllib]]></title>
+    <title type="html"><![CDATA[Safe Characters of Quote Method in Urllib]]></title>
     <link href="http://www.youth2009.org/blog/2014/12/20/quote-in-urllib/"/>
     <updated>2014-12-20T20:27:59+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/12/20/quote-in-urllib</id>
@@ -300,7 +381,7 @@ ISP：中国联通
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[linux-study]]></title>
+    <title type="html"><![CDATA[Linux-study]]></title>
     <link href="http://www.youth2009.org/blog/2014/11/22/linux-study/"/>
     <updated>2014-11-22T14:14:25+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/11/22/linux-study</id>
@@ -310,15 +391,15 @@ ISP：中国联通
 
 <p>usr = unix software resource</p>
 
-<p>&ldquo;&ndash;&rdquo; means last work directory(cd /mnt;cd;cd &ndash;)</p>
+<p>&ldquo;-&rdquo; means last work directory(cd /mnt;cd;cd -)</p>
 
-<p>umask means default permission minus this mask, e.g default new directory 777, if mask is 022, then you will get 777-022——>755 directory; default new file 666, is mask is 002, then you will get 666 &ndash; 002——>664 file. mask only can be set in (1, 2, 4) every bit, one bit means the sum of one permission group(current/group/others). umask is based on user, default root has a 0022 mask, normal user has a 0002 mask.</p>
+<p>umask means default permission minus this mask, e.g default new directory 777, if mask is 022, then you will get 777-022——>755 directory; default new file 666, is mask is 002, then you will get 666 - 002——>664 file. mask only can be set in (1, 2, 4) every bit, one bit means the sum of one permission group(current/group/others). umask is based on user, default root has a 0022 mask, normal user has a 0002 mask.</p>
 
 <p>lsattr/chattr is available on ext2/ext3 filesystem, add ‘+i’ attribute can lock one file, no edit or delete, even you are root, ‘+a’ attribute can let a file only accept append content, etc.</p>
 
 <p>SUID, SGID, SBIT special permission:
-there is a ’s’ on x position of user part, like ‘rws- &ndash; &ndash; &ndash; &ndash; -‘. SUID can only set to binary program, if user has x permission of this binary, it can temporarily get the owner permission of this binary, e.g binary ‘passwd’ and /etc/shadow file, shadow only can be updated by root, but every user can change their password via ‘passwd’, it means the user temporarily get owner(root) permission by SUID special permission.
-SGID similar as SUID, there will be a ’s’ on x position of group part like ‘rwx- &ndash; s &ndash; &ndash; x’. if a user can execute binary, he will temporarily get owner permission, e.g binary ‘locate’ and file ‘mlocate.db’. SGID can be set on a directory, it means if a user have r and x permission of one directory, and ’s’ set on this directory, this user can create a file which owner group is this directory’s.
+there is a ’s’ on x position of user part, like ‘rws- - - - - -‘. SUID can only set to binary program, if user has x permission of this binary, it can temporarily get the owner permission of this binary, e.g binary ‘passwd’ and /etc/shadow file, shadow only can be updated by root, but every user can change their password via ‘passwd’, it means the user temporarily get owner(root) permission by SUID special permission.
+SGID similar as SUID, there will be a ’s’ on x position of group part like ‘rwx- - s - - x’. if a user can execute binary, he will temporarily get owner permission, e.g binary ‘locate’ and file ‘mlocate.db’. SGID can be set on a directory, it means if a user have r and x permission of one directory, and ’s’ set on this directory, this user can create a file which owner group is this directory’s.
 SBIT(Sticky BIT) only set to directory, if a directory has this permission, a user who can create file or directory on this directory, the new file or new directory can only delete by root or himself, e.g /tmp directory, root can delete your new file, and you can also delete it, but others can not.
 SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SBIT, if omit, this bit is zero, if you set a invalid SUID/SGID/SBIT, there will be upper case S/T, lower case is valid.</p>
 
@@ -327,7 +408,7 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[aix-security]]></title>
+    <title type="html"><![CDATA[Aix-security]]></title>
     <link href="http://www.youth2009.org/blog/2014/11/22/aix-security/"/>
     <updated>2014-11-22T14:04:41+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/11/22/aix-security</id>
@@ -640,7 +721,7 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[developing-on-blackberry]]></title>
+    <title type="html"><![CDATA[Developing-on-blackberry]]></title>
     <link href="http://www.youth2009.org/blog/2014/09/05/developing-on-blackberry/"/>
     <updated>2014-09-05T21:58:07+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/09/05/developing-on-blackberry</id>
@@ -749,7 +830,7 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[external disk with openwrt]]></title>
+    <title type="html"><![CDATA[External Disk With Openwrt]]></title>
     <link href="http://www.youth2009.org/blog/2014/08/22/external-disk-with-openwrt/"/>
     <updated>2014-08-22T23:05:57+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/08/22/external-disk-with-openwrt</id>
@@ -828,7 +909,7 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[role in postgresql]]></title>
+    <title type="html"><![CDATA[Role in Postgresql]]></title>
     <link href="http://www.youth2009.org/blog/2014/08/14/role-in-postgresql/"/>
     <updated>2014-08-14T22:08:20+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/08/14/role-in-postgresql</id>
@@ -857,7 +938,7 @@ GRANT wheel TO admin;</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[else clause in python loop]]></title>
+    <title type="html"><![CDATA[Else Clause in Python Loop]]></title>
     <link href="http://www.youth2009.org/blog/2014/08/14/else-clause-in-python-loop/"/>
     <updated>2014-08-14T22:07:09+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/08/14/else-clause-in-python-loop</id>
@@ -878,13 +959,13 @@ GRANT wheel TO admin;</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[iptables -A INPUT -i eth0 -p tcp -m tcp --dport 80 -j ACCEPT]]></title>
+    <title type="html"><![CDATA[Iptables -a INPUT -i Eth0 -p Tcp -m Tcp --dport 80 -j ACCEPT]]></title>
     <link href="http://www.youth2009.org/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept/"/>
     <updated>2014-08-14T22:05:46+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept</id>
     <content type="html"><![CDATA[<p>what’s the agreement of -m?</p>
 
-<p>not tcp, it’s “tcp &mdash;dport 80”</p>
+<p>not tcp, it’s “tcp &ndash;dport 80”</p>
 
 <p>-m matches, using a somewhat complicated &ldquo;module matching&rdquo; mechanism.  There are a bunch of pretty cool modules in iptables, for example &ldquo;recent&rdquo;.</p>
 ]]></content>
@@ -902,7 +983,7 @@ GRANT wheel TO admin;</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[iptables MASQUERADE]]></title>
+    <title type="html"><![CDATA[Iptables MASQUERADE]]></title>
     <link href="http://www.youth2009.org/blog/2014/06/13/iptables-MASQUERADE/"/>
     <updated>2014-06-13T20:50:30+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/06/13/iptables-MASQUERADE</id>
@@ -917,7 +998,7 @@ GRANT wheel TO admin;</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[postgresql indexes]]></title>
+    <title type="html"><![CDATA[Postgresql Indexes]]></title>
     <link href="http://www.youth2009.org/blog/2014/06/01/postgresql-indexes/"/>
     <updated>2014-06-01T10:18:27+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/06/01/postgresql-indexes</id>
@@ -958,53 +1039,11 @@ GRANT wheel TO admin;</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[python-main-py]]></title>
+    <title type="html"><![CDATA[Python-main-py]]></title>
     <link href="http://www.youth2009.org/blog/2014/05/30/python-main-py/"/>
     <updated>2014-05-30T21:05:20+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/05/30/python-main-py</id>
     <content type="html"><![CDATA[<p>python的<code>__main__.py</code>文件，通常，一个package下有一个<code>__init__.py</code>文件标识这是package，同样可以有一个<code>__main__.py</code>文件，有了后你就可以这样运行一个脚本：<code>python script_dir</code>或者把这个dir打包成zip，可以使用<code>python zipball.zip</code>来执行，python会执行<code>__main__.py</code>中的语句。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[disable-keyboard-on-ubuntu]]></title>
-    <link href="http://www.youth2009.org/blog/2014/05/30/disable-keyboard-on-ubuntu/"/>
-    <updated>2014-05-30T20:54:45+08:00</updated>
-    <id>http://www.youth2009.org/blog/2014/05/30/disable-keyboard-on-ubuntu</id>
-    <content type="html"><![CDATA[<p>有时候不接外置显示器的时候，喜欢把键盘压在笔记本键盘上方使用，但如果不禁用内置键盘的话就会有误操作的风险，所以这样做，利用ubuntu中的xinput</p>
-
-<p>查看设备使用<code>xinput list</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>⎡ Virtual core pointer                      <span class="nv">id</span><span class="o">=</span><span class="m">2</span>    <span class="o">[</span>master pointer  <span class="o">(</span>3<span class="o">)]</span>
-</span><span class='line'>⎜   ↳ Virtual core XTEST pointer                <span class="nv">id</span><span class="o">=</span><span class="m">4</span>    <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
-</span><span class='line'>⎜   ↳ SynPS/2 Synaptics TouchPad                <span class="nv">id</span><span class="o">=</span><span class="m">11</span>   <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
-</span><span class='line'>⎜   ↳ Logitech USB-PS/2 Optical Mouse           <span class="nv">id</span><span class="o">=</span><span class="m">12</span>   <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
-</span><span class='line'>⎜   ↳ Logitech Unifying Device. Wireless PID:4004   <span class="nv">id</span><span class="o">=</span><span class="m">13</span>   <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
-</span><span class='line'>⎣ Virtual core keyboard                     <span class="nv">id</span><span class="o">=</span><span class="m">3</span>    <span class="o">[</span>master keyboard <span class="o">(</span>2<span class="o">)]</span>
-</span><span class='line'>    ↳ Virtual core XTEST keyboard               <span class="nv">id</span><span class="o">=</span><span class="m">5</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
-</span><span class='line'>    ↳ Power Button                              <span class="nv">id</span><span class="o">=</span><span class="m">6</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
-</span><span class='line'>    ↳ Video Bus                                 <span class="nv">id</span><span class="o">=</span><span class="m">7</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
-</span><span class='line'>    ↳ Sleep Button                              <span class="nv">id</span><span class="o">=</span><span class="m">8</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
-</span><span class='line'>    ↳ Acer CrystalEye webcam                    <span class="nv">id</span><span class="o">=</span><span class="m">9</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
-</span><span class='line'>    ↳ AT Translated Set <span class="m">2</span> keyboard              <span class="nv">id</span><span class="o">=</span><span class="m">10</span>   <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>找到内置键盘，我这里是那个叫&#8221;AT Translated Set 2 keyboard&#8221;的，id是10，禁用使用：<code>xinput float 10</code></p>
-
-<p>如果再启用使用<code>xinput reattach 10 3</code>，3标识这个设备的master的id，从list的结果很容易看到从属关系。</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sortedapp | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/sortedapp/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -52,7 +52,7 @@
 <span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://git.saurik.com/ldid.git
 </span><span class='line'><span class="nb">cd </span>ldid
-</span><span class='line'>git submodule update <span class="p">&amp;</span>mdash<span class="p">;</span>init
+</span><span class='line'>git submodule update <span class="p">&amp;</span>ndash<span class="p">;</span>init
 </span><span class='line'>./make.sh
 </span><span class='line'>cp -f ./ldid <span class="nv">$THEOS</span>/bin/ldid
 </span></code></pre></td></tr></table></div></figure></p>
@@ -93,7 +93,7 @@
     <link href="http://www.youth2009.org/blog/2013/03/16/open-development-env-for-xcode/"/>
     <updated>2013-03-16T20:40:00+08:00</updated>
     <id>http://www.youth2009.org/blog/2013/03/16/open-development-env-for-xcode</id>
-    <content type="html"><![CDATA[<p>发现一个问题，使用theos这个makefile工具做app有很大困难，就是headers不好管理，真希望能集成到xcode中开发tweak，结果发现了一个神器&mdash;&mdash;iOSOpenDev。</p>
+    <content type="html"><![CDATA[<p>发现一个问题，使用theos这个makefile工具做app有很大困难，就是headers不好管理，真希望能集成到xcode中开发tweak，结果发现了一个神器&mdash;-iOSOpenDev。</p>
 
 <p>安装好之后就能发现xcode中已经有很多可用的template了，对于tweak来说，有logos和CaptaionHook。logos就是theos，captainhook是另一个hook框架。</p>
 

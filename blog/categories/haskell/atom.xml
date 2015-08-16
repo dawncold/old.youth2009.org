@@ -4,7 +4,7 @@
   <title><![CDATA[Category: haskell | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/haskell/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -77,9 +77,9 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>class (Eq a, Show a) => Num a where
-</span><span class='line'> (+) :: a &ndash;> a &ndash;> a
+</span><span class='line'> (+) :: a -> a -> a
 </span><span class='line'> &hellip;
-</span><span class='line'> &mdash; Defined in GHC.Num
+</span><span class='line'> &ndash; Defined in GHC.Num
 </span><span class='line'>infixl 6 +</span></code></pre></td></tr></table></div></figure></p>
 
 <p>最后一样的6表示加号的优先级是6，在haskell中优先级是1～9不等，最高的是9.从这个结果中我们还能看出来如果相同的加号连接表达式的处理方法，是从左到右（在第二行中的三个a，顺次向右箭头）</p>

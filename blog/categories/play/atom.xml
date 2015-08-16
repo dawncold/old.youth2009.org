@@ -4,7 +4,7 @@
   <title><![CDATA[Category: play | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/play/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -106,27 +106,19 @@ ISP：中国联通
 <span class='line-number'>29</span>
 <span class='line-number'>30</span>
 <span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>server {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>listen 80;
-</span><span class='line'>server_name dawncold.me;
-</span><span class='line'>return 301 https://$server_name$request_uri;
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>}&lt;/p>
+</pre></td><td class='code'><pre><code class=''><span class='line'>server {
+</span><span class='line'>    listen 80;
+</span><span class='line'>    server_name dawncold.me;
+</span><span class='line'>    return 301 &lt;a href="https://$server_name$request_uri;">https://$server_name$request_uri;&lt;/a>
+</span><span class='line'>}&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;h1>HTTPS server&lt;/h1>
 </span><span class='line'>
-</span><span class='line'>&lt;p>server {&lt;/p>
+</span><span class='line'>&lt;p>server {
+</span><span class='line'>    listen 443 ssl;
+</span><span class='line'>    server_name dawncold.me;&lt;/p>
 </span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>listen 443 ssl;
-</span><span class='line'>server_name dawncold.me;
-</span><span class='line'>
-</span><span class='line'>root /usr/share/nginx/dawncold.me;
+</span><span class='line'>&lt;pre>&lt;code>root /usr/share/nginx/dawncold.me;
 </span><span class='line'>index index.html index.htm;
 </span><span class='line'>
 </span><span class='line'>ssl on;

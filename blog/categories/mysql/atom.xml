@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mysql | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -128,7 +128,7 @@
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">backup_all_databases</span><span class="p">():</span>
 </span><span class='line'><span class="n">filename</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">all_</span><span class="o">%</span><span class="n">s</span><span class="o">.</span><span class="n">sql</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">%</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()))</span>
-</span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="o">%</span><span class="n">smysqldump</span> <span class="o">-</span><span class="n">u</span><span class="o">%</span><span class="n">s</span> <span class="o">-</span><span class="n">p</span><span class="o">%</span><span class="n">s</span> <span class="o">&amp;</span><span class="n">mdash</span><span class="p">;</span><span class="nb">all</span><span class="o">-</span><span class="n">databases</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">%</span><span class="n">s</span><span class="o">%</span><span class="n">s</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mysql_path</span><span class="p">,</span> <span class="n">mysql_username</span><span class="p">,</span> <span class="n">mysql_password</span><span class="p">,</span> <span class="n">backup_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="o">%</span><span class="n">smysqldump</span> <span class="o">-</span><span class="n">u</span><span class="o">%</span><span class="n">s</span> <span class="o">-</span><span class="n">p</span><span class="o">%</span><span class="n">s</span> <span class="o">&amp;</span><span class="n">ndash</span><span class="p">;</span><span class="nb">all</span><span class="o">-</span><span class="n">databases</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">%</span><span class="n">s</span><span class="o">%</span><span class="n">s</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mysql_path</span><span class="p">,</span> <span class="n">mysql_username</span><span class="p">,</span> <span class="n">mysql_password</span><span class="p">,</span> <span class="n">backup_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">name</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">main</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;&amp;</span><span class="n">rdquo</span><span class="p">;:</span>
 </span><span class='line'><span class="n">validate_backup_path</span><span class="p">()</span>
@@ -160,7 +160,7 @@
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysqld_safe</span> <span class="o">&amp;</span><span class="n">mdash</span><span class="p">;</span><span class="n">skip</span><span class="o">-</span><span class="k">grant</span><span class="o">-</span><span class="n">tables</span> <span class="o">&amp;</span><span class="n">mdash</span><span class="p">;</span><span class="n">skip</span><span class="o">-</span><span class="n">networking</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mysqld_safe</span> <span class="o">&amp;</span><span class="n">ndash</span><span class="p">;</span><span class="n">skip</span><span class="o">-</span><span class="k">grant</span><span class="o">-</span><span class="n">tables</span> <span class="o">&amp;</span><span class="n">ndash</span><span class="p">;</span><span class="n">skip</span><span class="o">-</span><span class="n">networking</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></p>
@@ -214,9 +214,6 @@
 <span class='line-number'>28</span>
 <span class='line-number'>29</span>
 <span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@wodeyitian MySQL-python-1.2.3<span class="o">]</span><span class="c"># python setup.py install</span>
 </span><span class='line'>running install
 </span><span class='line'>running bdist_egg
@@ -233,20 +230,17 @@
 </span><span class='line'>installing library code to build/bdist.linux-x86_64/egg
 </span><span class='line'>running install_lib
 </span><span class='line'>running build_py
-</span><span class='line'>copying MySQLdb/release.py <span class="p">&amp;</span>ndash<span class="p">;</span>&gt; build/lib.linux-x86_64-2.7/MySQLdb
+</span><span class='line'>copying MySQLdb/release.py -&gt; build/lib.linux-x86_64-2.7/MySQLdb
 </span><span class='line'>running build_ext
 </span><span class='line'>building <span class="p">&amp;</span>lsquo<span class="p">;</span>&lt;em&gt;mysql<span class="p">&amp;</span>rsquo<span class="p">;</span> extension
-</span><span class='line'>gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info<span class="o">=(</span>1,2,3,<span class="p">&amp;</span>lsquo<span class="p">;</span>final<span class="p">&amp;</span>rsquo<span class="p">;</span>,0<span class="o">)</span> -D&lt;strong&gt;version&lt;/strong&gt;<span class="o">=</span>1.2.3 -I/usr/include/mysql -I/usr/local/include/python2.7 -c &lt;/em&gt;mysql.c -o build/temp.linux-x86_64-2.7/&lt;em&gt;mysql.o -g -pipe -Wp,-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span> -fexceptions -fstack-protector <span class="p">&amp;</span>mdash<span class="p">;</span><span class="nv">param</span><span class="o">=</span>ssp-buffer-size<span class="o">=</span><span class="m">4</span> -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS<span class="o">=</span><span class="m">64</span> -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv
+</span><span class='line'>gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Dversion_info<span class="o">=(</span>1,2,3,<span class="p">&amp;</span>lsquo<span class="p">;</span>final<span class="p">&amp;</span>rsquo<span class="p">;</span>,0<span class="o">)</span> -D&lt;strong&gt;version&lt;/strong&gt;<span class="o">=</span>1.2.3 -I/usr/include/mysql -I/usr/local/include/python2.7 -c &lt;/em&gt;mysql.c -o build/temp.linux-x86_64-2.7/&lt;em&gt;mysql.o -g -pipe -Wp,-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span> -fexceptions -fstack-protector <span class="p">&amp;</span>ndash<span class="p">;</span><span class="nv">param</span><span class="o">=</span>ssp-buffer-size<span class="o">=</span><span class="m">4</span> -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS<span class="o">=</span><span class="m">64</span> -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv
 </span><span class='line'>在包含自 &lt;/em&gt;mysql.c：36 的文件中:
 </span><span class='line'>/usr/include/mysql/my_config.h:1062:1: 警告：“HAVE_WCSCOLL”重定义
-</span><span class='line'>在包含自 /usr/local/include/python2.7/Python.h：8 的文件中，&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;            从 pymemcompat.h：10，
-</span><span class='line'>            从 _mysql.c：29:
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;/usr/local/include/python2.7/pyconfig.h:887:1: 警告：这是先前定义的位置
-</span><span class='line'>gcc -pthread -shared build/temp.linux-x86_64-2.7/&lt;em&gt;mysql.o -L/usr/lib64/mysql -L/usr/lib64 -lmysqlclient_r -lz -lpthread -lcrypt -lnsl -lm -lpthread -lssl -lcrypto -o build/lib.linux-x86_64-2.7/&lt;/em&gt;mysql.so
+</span><span class='line'>在包含自 /usr/local/include/python2.7/Python.h：8 的文件中，
+</span><span class='line'>                从 pymemcompat.h：10，
+</span><span class='line'>                从 &lt;em&gt;mysql.c：29:
+</span><span class='line'>/usr/local/include/python2.7/pyconfig.h:887:1: 警告：这是先前定义的位置
+</span><span class='line'>gcc -pthread -shared build/temp.linux-x86_64-2.7/&lt;/em&gt;mysql.o -L/usr/lib64/mysql -L/usr/lib64 -lmysqlclient_r -lz -lpthread -lcrypt -lnsl -lm -lpthread -lssl -lcrypto -o build/lib.linux-x86_64-2.7/_mysql.so
 </span><span class='line'>/usr/bin/ld: cannot find -lmysqlclient_r
 </span><span class='line'>collect2: ld 返回 1
 </span><span class='line'>error: <span class="nb">command</span> <span class="p">&amp;</span>lsquo<span class="p">;</span>gcc<span class="p">&amp;</span>rsquo<span class="p">;</span> failed with <span class="nb">exit </span>status 1

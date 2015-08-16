@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sql | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/sql/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -129,15 +129,15 @@
 </span><span class='line'>uids = [0, 1, 2, 3, 4, 5]
 </span><span class='line'>insert_time_start = time.time()
 </span><span class='line'>insertManyData(connect())
-</span><span class='line'>print &ldquo;Insert Time: %f&rdquo; % (time.time() &ndash; insert_time_start)
+</span><span class='line'>print &ldquo;Insert Time: %f&rdquo; % (time.time() - insert_time_start)
 </span><span class='line'>select_ULOJ_start = time.time()
 </span><span class='line'>for uid in uids:
 </span><span class='line'>selectUsingLeftOuterJoin(connect(), uid)
-</span><span class='line'>print &ldquo;Select Using Left Outer Join time: %f&rdquo; % (time.time() &ndash; select_ULOJ_start)
+</span><span class='line'>print &ldquo;Select Using Left Outer Join time: %f&rdquo; % (time.time() - select_ULOJ_start)
 </span><span class='line'>select_two_times = time.time()
 </span><span class='line'>for uid in uids:
 </span><span class='line'>selectTwoTimes(connect(), uid)
-</span><span class='line'>print &ldquo;Select Two Times time: %f&rdquo; % (time.time() &ndash; select_two_times)</span></code></pre></td></tr></table></div></figure></p>
+</span><span class='line'>print &ldquo;Select Two Times time: %f&rdquo; % (time.time() - select_two_times)</span></code></pre></td></tr></table></div></figure></p>
 
 <p>schema：</p>
 

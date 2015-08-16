@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lxc | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/lxc/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -22,8 +22,8 @@
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo iptables -t nat -A PREROUTING -i eth1 -p tcp <span class="p">&amp;</span>mdash<span class="p">;</span>dport <span class="m">80</span> -j DNAT <span class="p">&amp;</span>mdash<span class="p">;</span>to 10.0.3.20
-</span><span class='line'>sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT <span class="p">&amp;</span>mdash<span class="p">;</span>to 200.200.200.25
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo iptables -t nat -A PREROUTING -i eth1 -p tcp <span class="p">&amp;</span>ndash<span class="p">;</span>dport <span class="m">80</span> -j DNAT <span class="p">&amp;</span>ndash<span class="p">;</span>to 10.0.3.20
+</span><span class='line'>sudo iptables -t nat -A POSTROUTING -o eth1 -s 10.0.3.20 -j SNAT <span class="p">&amp;</span>ndash<span class="p">;</span>to 200.200.200.25
 </span></code></pre></td></tr></table></div></figure></p>
 
 <p>这样就把进入的请求都发到了10.0.3.20这台container上去处理。</p>

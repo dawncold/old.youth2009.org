@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nginx | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/nginx/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -78,16 +78,10 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>location ~.*.(php|php5)?$
-</span><span class='line'>{&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>处理php
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>}</span></code></pre></td></tr></table></div></figure></p>
+</span><span class='line'>{
+</span><span class='line'>    处理php
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></p>
 
 <p>这样之后，发现直接访问目录或者域名的时候不能正常显示了，必须跟上index.php这样的才可以。</p>
 
@@ -100,16 +94,10 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>location / {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>           root html;
-</span><span class='line'>           index index.html index.php;
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>}
+</pre></td><td class='code'><pre><code class=''><span class='line'>location / {
+</span><span class='line'>               root html;
+</span><span class='line'>               index index.html index.php;
+</span><span class='line'>}
 </span><span class='line'>location ~.*.(php|php5)?$ {
 </span><span class='line'>处理php
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure></p>

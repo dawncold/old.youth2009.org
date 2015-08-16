@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dev | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/dev/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,56 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[exception in python]]></title>
+    <link href="http://www.youth2009.org/blog/2015/04/19/exception-in-python/"/>
+    <updated>2015-04-19T17:05:31+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/04/19/exception-in-python</id>
+    <content type="html"><![CDATA[<p>My colleague remembered that if you pass some <code>kwargs</code> to an <code>Exception</code> subclass e.g. <code>class MyException(Exception): pass</code>, you will get a composed message when you catch the exception and call <code>e.message</code>. Unitil we got nothing from one place which it should display exception&rsquo;s message, python language part is implemented by C, so we downloaded python source code(2.7.9), and find these lines.</p>
+
+<pre><code class="c">static int
+BaseException_init(PyBaseExceptionObject *self, PyObject *args, PyObject *kwds)
+{
+    if (!_PyArg_NoKeywords(Py_TYPE(self)-&gt;tp_name, kwds))
+        return -1;
+
+    Py_DECREF(self-&gt;args);
+    self-&gt;args = args;
+    Py_INCREF(self-&gt;args);
+
+    if (PyTuple_GET_SIZE(self-&gt;args) == 1) {
+        Py_CLEAR(self-&gt;message);
+        self-&gt;message = PyTuple_GET_ITEM(self-&gt;args, 0);
+        Py_INCREF(self-&gt;message);
+    }
+    return 0;
+}
+</code></pre>
+
+<p>This is python BaseException&rsquo;s C implementation, I can understand logic but C syntax. The BaseException accepts <code>kwargs</code>, but if you pass a <code>kwargs</code> to Exception, you will get a warning, because of <code>_PyArg_NoKeywords</code>, maybe it needs compatibility with old code, but now, you can&rsquo;t use <code>kwargs</code>.</p>
+
+<p>Another notice, if you pass one argument to it, this argument will be the <code>e.message</code> value, if not, your args will be placed in <code>e.args</code>.</p>
+
+<p>We finally implemented <code>__str__</code> and <code>__unicode__</code> methods, because of we imported <code>unicode_literals</code>, so we think this is the best practice, we just use <code>str(e)</code> in those places.</p>
+
+<pre><code class="python">
+class TmallAPIException(Exception):
+    def __init__(self, code, msg, sub_code, sub_msg):
+        super(TmallAPIException, self).__init__(code, msg, sub_code, sub_msg)
+        self.code = code
+        self.msg = msg
+        self.sub_code = sub_code
+        self.sub_msg = sub_msg
+
+    def __unicode__(self):  # TODO: not necessary under python3
+        return 'code: {}, msg: {}, sub_code: {}, sub_msg: {}'.format(self.code, self.msg, self.sub_code, self.sub_msg)
+
+    def __str__(self):
+        return self.__unicode__().encode('utf-8')
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[be careful python fdopen]]></title>
@@ -188,35 +238,6 @@ Then your device development info has changed, &ldquo;Debug Token Installed&rdqu
 </span><span class='line'>[INFO]    done</span></code></pre></td></tr></table></div></figure>
 Meanwhile, your app will be opened on your device!
 <img src="http://pic.yupoo.com/dawncold0/E2fQtBuX/small.jpg" alt="webworks launch screen" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[role in postgresql]]></title>
-    <link href="http://www.youth2009.org/blog/2014/08/14/role-in-postgresql/"/>
-    <updated>2014-08-14T22:08:20+08:00</updated>
-    <id>http://www.youth2009.org/blog/2014/08/14/role-in-postgresql</id>
-    <content type="html"><![CDATA[<p>In PostgreSQL versions before 8.1, users and groups were distinct kinds of entities, but now only role, it is user or group or both.</p>
-
-<p>if you create a role using “CREATE ROLE r1”, r1 is not a user, only a generic role, it is likely a group, you can not find it in pg_user, only in pg_roles table, but if you grant LOGIN privilege to r1, it will be appear in pg_user table.</p>
-
-<p>After installed postgresql cluster, you need execute initdb, and it will create a default role with superuser privilege, costomarily this role(user) named postgres</p>
-
-<p>Role’s attributes: login, superuser, database creation, role creation, initiating replication, password</p>
-
-<p>CREATE USER r1 == CREATE ROLE r1 LOGIN</p>
-
-<p>Tip: It is good practice to create a role that has the CREATEDB and CREATEROLE privileges, but is not a superuser, and then use this role for all routine management of databases and roles. This approach avoids the dangers of operating as a superuser for tasks that do not really require it.</p>
-
-<p>examples:</p>
-
-<p>CREATE ROLE joe LOGIN INHERIT;
-CREATE ROLE admin NOINHERIT;
-CREATE ROLE wheel NOINHERIT;
-GRANT admin TO joe;
-GRANT wheel TO admin;</p>
-
-<p>joe can access admin privilege by using “SET ROLE admin”, or if joe has the INHERIT, joe can access privilege directly from admin, if joe want to use these privileges, joe must “SET ROLE admin”. Joe can not access privilege from wheel, because admin has the NOINHERIT, admin can not get these privileges, so as joe.</p>
 ]]></content>
   </entry>
   

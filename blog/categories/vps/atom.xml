@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vps | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/vps/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -71,23 +71,17 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>server <span class="o">{</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt; listen       80<span class="p">;</span>
-</span><span class='line'> server_name  todo.wodeyitian.com<span class="p">;</span>
-</span><span class='line'> location / <span class="o">{</span>
-</span><span class='line'>           include uwsgi_params<span class="p">;</span>
-</span><span class='line'>           uwsgi_pass 127.0.0.1:9090<span class="p">;</span>
-</span><span class='line'>           uwsgi_param UWSGI_PYHOME /home/wwwroot/python_app_todo<span class="p">;</span>
-</span><span class='line'>           uwsgi_param UWSGI_CHDIR /home/wwwroot/python_app_todo/app_dir<span class="p">;</span>
-</span><span class='line'>           uwsgi_param UWSGI_SCRIPT todoApp:app<span class="p">;</span>
-</span><span class='line'> <span class="o">}</span>
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="o">}</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>server <span class="o">{</span>
+</span><span class='line'>     listen       80<span class="p">;</span>
+</span><span class='line'>     server_name  todo.wodeyitian.com<span class="p">;</span>
+</span><span class='line'>     location / <span class="o">{</span>
+</span><span class='line'>               include uwsgi_params<span class="p">;</span>
+</span><span class='line'>               uwsgi_pass 127.0.0.1:9090<span class="p">;</span>
+</span><span class='line'>               uwsgi_param UWSGI_PYHOME /home/wwwroot/python_app_todo<span class="p">;</span>
+</span><span class='line'>               uwsgi_param UWSGI_CHDIR /home/wwwroot/python_app_todo/app_dir<span class="p">;</span>
+</span><span class='line'>               uwsgi_param UWSGI_SCRIPT todoApp:app<span class="p">;</span>
+</span><span class='line'>     <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
 <p>UWSGI_PYHOME是app的主目录，下面的CHDIR是app中py文件所在的目录，这个可以自己设置，下面的SCRIPT是入口脚本模块名和变量名，模块就是文件名喽，变量一般在flask都是用app作为整个网站的入口变量，写过python基本都能明白这个。</p>
@@ -95,10 +89,10 @@
 <p>安装好uwsgi后可以配置开启：</p>
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>uwsgi -s :9090 -M -p <span class="m">4</span> -t <span class="m">30</span> <span class="p">&amp;</span>mdash<span class="p">;</span>limit-as <span class="m">128</span> -R <span class="m">10000</span> -d uwsgi.log <span class="p">&amp;</span>mdash<span class="p">;</span>vhost
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>uwsgi -s :9090 -M -p <span class="m">4</span> -t <span class="m">30</span> <span class="p">&amp;</span>ndash<span class="p">;</span>limit-as <span class="m">128</span> -R <span class="m">10000</span> -d uwsgi.log <span class="p">&amp;</span>ndash<span class="p">;</span>vhost
 </span></code></pre></td></tr></table></div></figure></p>
 
-<p>使用9090端口监听，-M开启主控线程，-p 4是开启4个线程，-t 30是超过30秒不响应丢弃，limit-as 128是限制128Mb的内存占用，-R 10000是超过10000的请求就自动respawn（似乎是自动复制？重启？之类的），-d是日志，&mdash;vhost这个可以让多个app共用一个uwsgi，很好用的！</p>
+<p>使用9090端口监听，-M开启主控线程，-p 4是开启4个线程，-t 30是超过30秒不响应丢弃，limit-as 128是限制128Mb的内存占用，-R 10000是超过10000的请求就自动respawn（似乎是自动复制？重启？之类的），-d是日志，&ndash;vhost这个可以让多个app共用一个uwsgi，很好用的！</p>
 ]]></content>
   </entry>
   

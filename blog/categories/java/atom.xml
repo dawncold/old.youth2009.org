@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -21,7 +21,7 @@
     <content type="html"><![CDATA[<p>今天基本完成了LoveSMS，想checkout一下jdrcom来看看，所以就安装上了svn for eclipse，然后在导入的时候提示缺少javahl库，去了官方查看了一下，说是对于Mac用户，只需要下载他们的bin文件就能解决，我一看才给到1.6.5的版本，而我自己用brew都装到了1.7.5，而且svn插件用的是1.8.x，需要1.7+的svn支持才行，所以就自己重新安装了svn：</p>
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install subversion <span class="p">&amp;</span>mdash<span class="p">;</span>universal <span class="p">&amp;</span>mdash<span class="p">;</span>java
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install subversion <span class="p">&amp;</span>ndash<span class="p">;</span>universal <span class="p">&amp;</span>ndash<span class="p">;</span>java
 </span></code></pre></td></tr></table></div></figure></p>
 
 <p>这句是关键哦，当然你得先uninstall已经安装的svn才行。加了java开关就可以告诉svn需要java IDE的库，编译的完成后会继续编译javahl～</p>
@@ -40,8 +40,8 @@
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>To use Java bindings with various Java IDEs, you might need a universal build:
-</span><span class='line'> brew install subversion <span class="p">&amp;</span>mdash<span class="p">;</span>universal <span class="p">&amp;</span>mdash<span class="p">;</span><span class="nv">java</span>
-</span><span class='line'><span class="o">==</span>&gt; ./configure <span class="p">&amp;</span>mdash<span class="p">;</span>disable-debug <span class="p">&amp;</span>mdash<span class="p">;</span><span class="nv">prefix</span><span class="o">=</span>/usr/local/Cellar/subversion/1.7.5 <span class="p">&amp;</span>mdash<span class="p">;</span>with-ssl <span class="p">&amp;</span>mdash<span class="p">;</span>with-zlib<span class="o">=</span>/usr <span class="p">&amp;</span>mdash<span class="p">;</span>with-sqlite<span class="o">=</span>/usr/local <span class="p">&amp;</span>mdash<span class="p">;</span>disable-neon-version-chec
+</span><span class='line'> brew install subversion <span class="p">&amp;</span>ndash<span class="p">;</span>universal <span class="p">&amp;</span>ndash<span class="p">;</span><span class="nv">java</span>
+</span><span class='line'><span class="o">==</span>&gt; ./configure <span class="p">&amp;</span>ndash<span class="p">;</span>disable-debug <span class="p">&amp;</span>ndash<span class="p">;</span><span class="nv">prefix</span><span class="o">=</span>/usr/local/Cellar/subversion/1.7.5 <span class="p">&amp;</span>ndash<span class="p">;</span>with-ssl <span class="p">&amp;</span>ndash<span class="p">;</span>with-zlib<span class="o">=</span>/usr <span class="p">&amp;</span>ndash<span class="p">;</span>with-sqlite<span class="o">=</span>/usr/local <span class="p">&amp;</span>ndash<span class="p">;</span>disable-neon-version-chec
 </span><span class='line'><span class="o">==</span>&gt; <span class="nv">make</span>
 </span><span class='line'><span class="o">==</span>&gt; make <span class="nv">install</span>
 </span><span class='line'><span class="o">==</span>&gt; make <span class="nv">javahl</span>
@@ -83,9 +83,6 @@
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.awt.Toolkit</span><span class="o">;</span>
 </span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.event.ActionEvent</span><span class="o">;</span>
 </span><span class='line'><span class="kn">import</span> <span class="nn">java.awt.event.ActionListener</span><span class="o">;</span>
@@ -96,14 +93,11 @@
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>   <span class="nd">@Override</span>
 </span><span class='line'>   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span>
-</span><span class='line'>   <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>   <span class="c1">// TODO Auto-generated method stub</span>
-</span><span class='line'>   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;date is: &quot;</span> <span class="o">+</span> <span class="o">(</span><span class="k">new</span> <span class="nf">Date</span><span class="o">()));</span>
-</span><span class='line'>   <span class="n">Toolkit</span><span class="o">.</span><span class="na">getDefaultToolkit</span><span class="o">().</span><span class="na">beep</span><span class="o">();</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>   <span class="o">}</span>
+</span><span class='line'>   <span class="o">{</span>
+</span><span class='line'>       <span class="c1">// TODO Auto-generated method stub</span>
+</span><span class='line'>       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(&amp;</span><span class="n">ldquo</span><span class="o">;</span><span class="n">date</span> <span class="nl">is:</span> <span class="o">&amp;</span><span class="n">rdquo</span><span class="o">;</span> <span class="o">+</span> <span class="o">(</span><span class="k">new</span> <span class="nf">Date</span><span class="o">()));</span>
+</span><span class='line'>       <span class="n">Toolkit</span><span class="o">.</span><span class="na">getDefaultToolkit</span><span class="o">().</span><span class="na">beep</span><span class="o">();</span>
+</span><span class='line'>   <span class="o">}</span>
 </span><span class='line'><span class="o">}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
@@ -130,9 +124,6 @@
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>import java.awt.event.ActionListener<span class="p">;</span>&lt;/p&gt;
 </span><span class='line'>
 </span><span class='line'>&lt;p&gt;import javax.swing.Timer<span class="p">;</span>&lt;/p&gt;
@@ -140,16 +131,13 @@
 </span><span class='line'>&lt;p&gt;public class TimerPrintTest
 </span><span class='line'><span class="o">{</span>
 </span><span class='line'>   public static void main<span class="o">(</span>String<span class="o">[]</span> argStrings<span class="o">)</span> throws InterruptedException
-</span><span class='line'>   <span class="o">{</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;   System.out.println<span class="o">(</span><span class="s2">&quot;Running...&quot;</span><span class="o">)</span><span class="p">;</span>
-</span><span class='line'>   ActionListener <span class="nv">listener</span> <span class="o">=</span> new TimePrint<span class="o">()</span><span class="p">;</span>
-</span><span class='line'>   Timer <span class="nv">timer</span> <span class="o">=</span> new Timer<span class="o">(</span>1000, listener<span class="o">)</span><span class="p">;</span>
-</span><span class='line'>   timer.start<span class="o">()</span><span class="p">;</span>
-</span><span class='line'>   Thread.sleep<span class="o">(</span>4000<span class="o">)</span><span class="p">;</span>
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;   <span class="o">}</span>
+</span><span class='line'>   <span class="o">{</span>
+</span><span class='line'>       System.out.println<span class="o">(</span><span class="p">&amp;</span>ldquo<span class="p">;</span>Running<span class="p">&amp;</span>hellip<span class="p">;&amp;</span>rdquo<span class="p">;</span><span class="o">)</span><span class="p">;</span>
+</span><span class='line'>       ActionListener <span class="nv">listener</span> <span class="o">=</span> new TimePrint<span class="o">()</span><span class="p">;</span>
+</span><span class='line'>       Timer <span class="nv">timer</span> <span class="o">=</span> new Timer<span class="o">(</span>1000, listener<span class="o">)</span><span class="p">;</span>
+</span><span class='line'>       timer.start<span class="o">()</span><span class="p">;</span>
+</span><span class='line'>       Thread.sleep<span class="o">(</span>4000<span class="o">)</span><span class="p">;</span>
+</span><span class='line'>   <span class="o">}</span>
 </span><span class='line'><span class="o">}</span>&lt;/p&gt;
 </span><span class='line'>
 </span><span class='line'>&lt;p&gt;

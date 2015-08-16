@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jquery | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/jquery/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -27,16 +27,10 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>var options = {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>data:1,
-</span><span class='line'>data2:2
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>};&lt;/p>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var options = {
+</span><span class='line'>    data:1,
+</span><span class='line'>    data2:2
+</span><span class='line'>};&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>console.log($.extend(options, {data3:3}));
 </span><span class='line'>console.log(options);</span></code></pre></td></tr></table></div></figure>

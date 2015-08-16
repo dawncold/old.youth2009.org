@@ -4,7 +4,7 @@
   <title><![CDATA[Category: csapp | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/csapp/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -93,9 +93,9 @@
     <content type="html"><![CDATA[<h1>第一章</h1>
 
 <p>一个C语言程序从源代码阶段到可执行阶段需要经历这几个步骤：
-源文件&mdash;&mdash;>经过预处理器（cpp）成为.i文件&mdash;&mdash;>经过编译器（cc1）成为.s文件&mdash;&mdash;>经过汇编器（as）成为.o文件，所有函数调用都成为.o这样可重定向的目标程序&mdash;&mdash;>最后由连接器（ld）链接成成为可执行文件。cc1这名字真好听：）</p>
+源文件&mdash;->经过预处理器（cpp）成为.i文件&mdash;->经过编译器（cc1）成为.s文件&mdash;->经过汇编器（as）成为.o文件，所有函数调用都成为.o这样可重定向的目标程序&mdash;->最后由连接器（ld）链接成成为可执行文件。cc1这名字真好听：）</p>
 
-<p>系统设计者的主要目标就是让信息在各种设备之间“拷贝速度”尽量快。显示一行“hello，world”的过程主要是从磁盘&mdash;&mdash;>主存&mdash;&mdash;>显示设备传递。</p>
+<p>系统设计者的主要目标就是让信息在各种设备之间“拷贝速度”尽量快。显示一行“hello，world”的过程主要是从磁盘&mdash;->主存&mdash;->显示设备传递。</p>
 
 <p>文件是对I/O设备的抽象表示，虚拟内存主要是对贮存和磁盘I/O设备的抽象表示，进程则是对处理器、主存和I/O设备的抽象表示。</p>
 

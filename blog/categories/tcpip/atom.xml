@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tcpip | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/tcpip/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-01-18T18:17:38+08:00</updated>
+  <updated>2015-08-16T15:01:54+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -121,17 +121,17 @@
 
 <h2>SLIP: Serial Line IP</h2>
 
-<p>END &mdash; 0xc0</p>
+<p>END &ndash; 0xc0</p>
 
-<p>SLIP ESC &mdash; 0xdb</p>
+<p>SLIP ESC &ndash; 0xdb</p>
 
 <p>IP datagram will be terminated by a special character called END(0xc0), most implementations transmit an END at the beginning of the datagram.</p>
 
 <p>if a byte of IP datagram equals:</p>
 
-<p>0xc0 &mdash;> 0xdb, 0xdc</p>
+<p>0xc0 &ndash;> 0xdb, 0xdc</p>
 
-<p>0xdb&mdash;>0xdb, 0xdd</p>
+<p>0xdb&ndash;>0xdb, 0xdd</p>
 
 <h2>PPP</h2>
 
