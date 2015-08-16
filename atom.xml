@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-08-16T15:01:54+08:00</updated>
+  <updated>2015-08-16T15:06:22+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Exception in Python]]></title>
+    <title type="html"><![CDATA[exception in python]]></title>
     <link href="http://www.youth2009.org/blog/2015/04/19/exception-in-python/"/>
     <updated>2015-04-19T17:05:31+08:00</updated>
     <id>http://www.youth2009.org/blog/2015/04/19/exception-in-python</id>
@@ -95,7 +95,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Optimize Shadowsocks NAT Rules]]></title>
+    <title type="html"><![CDATA[optimize shadowsocks NAT rules]]></title>
     <link href="http://www.youth2009.org/blog/2015/01/11/optimize-shadowsocks-nat-rules/"/>
     <updated>2015-01-11T23:46:08+08:00</updated>
     <id>http://www.youth2009.org/blog/2015/01/11/optimize-shadowsocks-nat-rules</id>
@@ -120,7 +120,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Mailing List in Postfix]]></title>
+    <title type="html"><![CDATA[mailing list in postfix]]></title>
     <link href="http://www.youth2009.org/blog/2015/01/08/mailing-list-in-postfix/"/>
     <updated>2015-01-08T19:20:14+08:00</updated>
     <id>http://www.youth2009.org/blog/2015/01/08/mailing-list-in-postfix</id>
@@ -133,7 +133,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Be Careful Python Fdopen]]></title>
+    <title type="html"><![CDATA[be careful python fdopen]]></title>
     <link href="http://www.youth2009.org/blog/2015/01/07/be-careful-python-fdopen/"/>
     <updated>2015-01-07T23:13:39+08:00</updated>
     <id>http://www.youth2009.org/blog/2015/01/07/be-careful-python-fdopen</id>
@@ -148,7 +148,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[联通封了80和8080 but 443 Is Ok]]></title>
+    <title type="html"><![CDATA[联通封了80和8080 but 443 is ok]]></title>
     <link href="http://www.youth2009.org/blog/2015/01/05/unicom-blocked-80-8080/"/>
     <updated>2015-01-05T23:24:57+08:00</updated>
     <id>http://www.youth2009.org/blog/2015/01/05/unicom-blocked-80-8080</id>
@@ -213,7 +213,7 @@ ISP：中国联通
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Host-octopress-blog-on-raspberry-pi]]></title>
+    <title type="html"><![CDATA[host-octopress-blog-on-raspberry-pi]]></title>
     <link href="http://www.youth2009.org/blog/2015/01/01/build-octopress-blog-on-raspberry-pi/"/>
     <updated>2015-01-01T20:25:24+08:00</updated>
     <id>http://www.youth2009.org/blog/2015/01/01/build-octopress-blog-on-raspberry-pi</id>
@@ -364,7 +364,7 @@ ISP：中国联通
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Safe Characters of Quote Method in Urllib]]></title>
+    <title type="html"><![CDATA[safe characters of quote method in urllib]]></title>
     <link href="http://www.youth2009.org/blog/2014/12/20/quote-in-urllib/"/>
     <updated>2014-12-20T20:27:59+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/12/20/quote-in-urllib</id>
@@ -381,7 +381,7 @@ ISP：中国联通
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Linux-study]]></title>
+    <title type="html"><![CDATA[linux-study]]></title>
     <link href="http://www.youth2009.org/blog/2014/11/22/linux-study/"/>
     <updated>2014-11-22T14:14:25+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/11/22/linux-study</id>
@@ -408,7 +408,7 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Aix-security]]></title>
+    <title type="html"><![CDATA[aix-security]]></title>
     <link href="http://www.youth2009.org/blog/2014/11/22/aix-security/"/>
     <updated>2014-11-22T14:04:41+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/11/22/aix-security</id>
@@ -721,7 +721,7 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Developing-on-blackberry]]></title>
+    <title type="html"><![CDATA[developing-on-blackberry]]></title>
     <link href="http://www.youth2009.org/blog/2014/09/05/developing-on-blackberry/"/>
     <updated>2014-09-05T21:58:07+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/09/05/developing-on-blackberry</id>
@@ -830,7 +830,7 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[External Disk With Openwrt]]></title>
+    <title type="html"><![CDATA[external disk with openwrt]]></title>
     <link href="http://www.youth2009.org/blog/2014/08/22/external-disk-with-openwrt/"/>
     <updated>2014-08-22T23:05:57+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/08/22/external-disk-with-openwrt</id>
@@ -909,7 +909,7 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Role in Postgresql]]></title>
+    <title type="html"><![CDATA[role in postgresql]]></title>
     <link href="http://www.youth2009.org/blog/2014/08/14/role-in-postgresql/"/>
     <updated>2014-08-14T22:08:20+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/08/14/role-in-postgresql</id>
@@ -938,7 +938,7 @@ GRANT wheel TO admin;</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Else Clause in Python Loop]]></title>
+    <title type="html"><![CDATA[else clause in python loop]]></title>
     <link href="http://www.youth2009.org/blog/2014/08/14/else-clause-in-python-loop/"/>
     <updated>2014-08-14T22:07:09+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/08/14/else-clause-in-python-loop</id>
@@ -959,7 +959,7 @@ GRANT wheel TO admin;</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Iptables -a INPUT -i Eth0 -p Tcp -m Tcp --dport 80 -j ACCEPT]]></title>
+    <title type="html"><![CDATA[iptables -A INPUT -i eth0 -p tcp -m tcp --dport 80 -j ACCEPT]]></title>
     <link href="http://www.youth2009.org/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept/"/>
     <updated>2014-08-14T22:05:46+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept</id>
@@ -983,7 +983,7 @@ GRANT wheel TO admin;</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Iptables MASQUERADE]]></title>
+    <title type="html"><![CDATA[iptables MASQUERADE]]></title>
     <link href="http://www.youth2009.org/blog/2014/06/13/iptables-MASQUERADE/"/>
     <updated>2014-06-13T20:50:30+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/06/13/iptables-MASQUERADE</id>
@@ -998,7 +998,7 @@ GRANT wheel TO admin;</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Postgresql Indexes]]></title>
+    <title type="html"><![CDATA[postgresql indexes]]></title>
     <link href="http://www.youth2009.org/blog/2014/06/01/postgresql-indexes/"/>
     <updated>2014-06-01T10:18:27+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/06/01/postgresql-indexes</id>
@@ -1039,7 +1039,7 @@ GRANT wheel TO admin;</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Python-main-py]]></title>
+    <title type="html"><![CDATA[python-main-py]]></title>
     <link href="http://www.youth2009.org/blog/2014/05/30/python-main-py/"/>
     <updated>2014-05-30T21:05:20+08:00</updated>
     <id>http://www.youth2009.org/blog/2014/05/30/python-main-py</id>

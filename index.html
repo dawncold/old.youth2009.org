@@ -1,97 +1,92 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Trade Off</title>
-  <meta name="author" content="dawncold">
+	<meta charset="utf-8">
+	<title>Trade Off</title>
+	<meta name="author" content="dawncold">
 
-  
-  <meta name="description" content="My colleague remembered that if you pass some kwargs to an Exception subclass e.g. class MyException(Exception): pass, you will get a composed &hellip;">
-  
+	
+	<meta name="description" content="My colleague remembered that if you pass some kwargs to an Exception subclass e.g. class MyException(Exception): pass, you will get a composed &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://www.youth2009.org/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-8650400-5']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
 </head>
 
-<body   >
-  <header role="banner">
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="sitesearch" value="www.youth2009.org">
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main">
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
+<nav id="main-nav"><ul class="main">
 	<li><a href="/">Blog</a></li>
 	<li><a href="/blog/archives">Archives</a></li>
     <li><a href="/about">About</a></li>
 </ul>
-
 </nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
     
-      <h1 class="entry-title"><a href="/blog/2015/04/19/exception-in-python/">Exception in Python</a></h1>
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
     
-    
-      <p class="meta">
-        
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner">
 
 
-
-
-<time class='entry-date' datetime='2015-04-19T17:05:31+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:05 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>My colleague remembered that if you pass some <code>kwargs</code> to an <code>Exception</code> subclass e.g. <code>class MyException(Exception): pass</code>, you will get a composed message when you catch the exception and call <code>e.message</code>. Unitil we got nothing from one place which it should display exception&rsquo;s message, python language part is implemented by C, so we downloaded python source code(2.7.9), and find these lines.</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/04/19/exception-in-python/">
+		
+			Exception in Python</a>
+	</h2>
+	<div class="entry-content">
+		<p>My colleague remembered that if you pass some <code>kwargs</code> to an <code>Exception</code> subclass e.g. <code>class MyException(Exception): pass</code>, you will get a composed message when you catch the exception and call <code>e.message</code>. Unitil we got nothing from one place which it should display exception&rsquo;s message, python language part is implemented by C, so we downloaded python source code(2.7.9), and find these lines.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -164,35 +159,47 @@
 </span><span class='line'>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__unicode__</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-04-19T17:05:31+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
 </div>
-  
-  
+	
+</div>
+</article>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/01/11/optimize-shadowsocks-nat-rules/">Optimize Shadowsocks NAT Rules</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-01-11T23:46:08+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:46 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Few days ago, I upgraded my OpenWrt box to latest version, there is a new style(Bootstrap) interface and I like it very much(too long lived old world).</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/01/11/optimize-shadowsocks-nat-rules/">
+		
+			Optimize Shadowsocks NAT Rules</a>
+	</h2>
+	<div class="entry-content">
+		<p>Few days ago, I upgraded my OpenWrt box to latest version, there is a new style(Bootstrap) interface and I like it very much(too long lived old world).</p>
 
 <p>Also I found a shadowsocks <a href="https://github.com/shadowsocks/openwrt-shadowsocks">special version</a> for openwrt, it includs China main IP blocks, some requests within this IP range, you could bypass shadowsocks, and this IP blocks is from <code>apnic</code>, very precise but a little long for openwrt, 4000+lines.</p>
 
@@ -209,103 +216,139 @@
 <p><code>awk print $NF</code>, print the last column, that&rsquo;s very cool.</p>
 
 <p>rewrite the results to ignore.list, and restart shadowsocks, it will use the sorted IP blocks, maybe fast than before 0.xx ms!</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-11T23:46:08+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/play/'>play</a>
+
+
 </div>
-  
-  
+	
+</div>
+</article>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/01/08/mailing-list-in-postfix/">Mailing List in Postfix</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-01-08T19:20:14+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:20 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Too simple to making a mailing list in postfix, just define a mailing list name and recipients in <code>/etc/postfix/virtual</code>, like this: <code>dev-group dev1@company.com dev2@company.com dev3@company.com</code>, after that, generate the virtual db by <code>postmap /etc/postfix/virtual</code>.</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/01/08/mailing-list-in-postfix/">
+		
+			Mailing List in Postfix</a>
+	</h2>
+	<div class="entry-content">
+		<p>Too simple to making a mailing list in postfix, just define a mailing list name and recipients in <code>/etc/postfix/virtual</code>, like this: <code>dev-group dev1@company.com dev2@company.com dev3@company.com</code>, after that, generate the virtual db by <code>postmap /etc/postfix/virtual</code>.</p>
 
 <p>Don&rsquo;t forget add <code>virtual_alias_maps=hash:/etc/postfix/virtual</code> in your <code>main.cf</code> file, and restart postfix finally.</p>
 
 <p>I think I need study postfix systemally, just build a private smtp/imap server.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-08T19:20:14+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/parttime/'>parttime</a>
+
+
 </div>
-  
-  
+	
+</div>
+</article>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/01/07/be-careful-python-fdopen/">Be Careful Python Fdopen</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-01-07T23:13:39+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:13 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have got a bug when I <code>print</code> something to <code>stdout</code>, I got <code>Bad file descriptor</code>, it means my stdout is a bad descriptor, what?!</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/01/07/be-careful-python-fdopen/">
+		
+			Be Careful Python Fdopen</a>
+	</h2>
+	<div class="entry-content">
+		<p>I have got a bug when I <code>print</code> something to <code>stdout</code>, I got <code>Bad file descriptor</code>, it means my stdout is a bad descriptor, what?!</p>
 
 <p>Core code like this: <code>logger.StreamHandler(os.fdopen(sys.stdout.fileno(), 'w', 0))</code>, I want to a unbuffered stdout, so I reopen it by <code>fdopen</code>, and reset the buffer size to 0, I still also did same thing to <code>stderr</code>, but that is no sense, because of <code>stderr</code> is unbuffered normally(but in Python3, it maybe line buffered, in MacOS).</p>
 
 <p>If your <code>stdout</code> is reopened by <code>fdopen</code>, and its reference count hits zero, it will be collected by Python GC, also your <code>stdout</code> will be ate by GC, something wrong will happen after that.</p>
 
 <p>So, be careful with <code>fdopen</code> for <code>stdin</code>, <code>stderr</code>, <code>stdin</code>:)</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-07T23:13:39+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
 </div>
-  
-  
+	
+</div>
+</article>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/01/05/unicom-blocked-80-8080/">联通封了80和8080 but 443 Is Ok</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-01-05T23:24:57+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:24 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><pre><code>地点：北京
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/01/05/unicom-blocked-80-8080/">
+		
+			联通封了80和8080 but 443 Is Ok</a>
+	</h2>
+	<div class="entry-content">
+		<pre><code>地点：北京
 ISP：中国联通
 接入方式：光纤入户
 </code></pre>
@@ -321,35 +364,47 @@ ISP：中国联通
 <p>今晚直接在PREROUTING的第一行加了log，从外部服务器请求80直接看不到，但443的没问题，而且PREROUTING是第一个被执行的，只能说80的请求就没到这里，可这都是公网对公网的访问了，难道这个请求被某个路由截获然后丢弃了？Google了一下发现几年前几大运营商的能提供公网IP的服务里80和8080端口被封了，说是不能随意搭建网站，想想也是啊，现在国内都得备案才行。</p>
 
 <p>BUT PORT 443 IS OK&hellip;</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-05T23:24:57+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/play/'>play</a>
+
+
 </div>
-  
-  
+	
+</div>
+</article>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/01/05/traps-of-jushita/">聚石塔里面的坑</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-01-05T22:56:42+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:56 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今天开始全面接触聚石塔，就是天猫的云平台，上面服务众多，全都能收费，第一次听说了API调用也是可以收费的。下面记录一些可能成为坑的东西，希望有人看到后可以小心躲避。</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/01/05/traps-of-jushita/">
+		
+			聚石塔里面的坑</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天开始全面接触聚石塔，就是天猫的云平台，上面服务众多，全都能收费，第一次听说了API调用也是可以收费的。下面记录一些可能成为坑的东西，希望有人看到后可以小心躲避。</p>
 
 <h2>创建应用要先报备</h2>
 
@@ -382,35 +437,47 @@ ISP：中国联通
 <hr />
 
 <p>目前就遇到这些坑，欢迎更新坑们。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-05T22:56:42+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
 </div>
-  
-  
+	
+</div>
+</article>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/01/01/build-octopress-blog-on-raspberry-pi/">Host-octopress-blog-on-raspberry-pi</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-01-01T20:25:24+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>8:25 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>First post on 2015!</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/01/01/build-octopress-blog-on-raspberry-pi/">
+		
+			Host-octopress-blog-on-raspberry-pi</a>
+	</h2>
+	<div class="entry-content">
+		<p>First post on 2015!</p>
 
 <p>I have a raspberry pi several months ago, and I often use it to recording temp and humidity, uploading to a cloud host, but after a home movement, it had been stored in my drawer. Last day of 2014, while waiting 2015, I want build it and host an external disk for MacBookPro backup(Time Machine), but failed for power supply, normal power supply is not enough for raspi, so I should buy another USB Hub powered by itself.</p>
 
@@ -487,35 +554,47 @@ ISP：中国联通
 <p>Octopress supported rsync publishment, so edit your Rakefile and enter your raspi ssh account and nginx html root path, like <code>/usr/share/nginx/www</code>.</p>
 
 <p>publish to github and rasp: <code>rake gen_deploy rsync</code> or only to raspi: <code>rake rsync</code>.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-01T20:25:24+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/play/'>play</a>
+
+
 </div>
-  
-  
+	
+</div>
+</article>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/12/26/notimplemented-in-python/">NotImplemented-in-python</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-12-26T21:03:20+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:03 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>It&rsquo;s best to return <code>NotImplemented</code> in magic method(e.g. <code>__eq__</code>, <code>__ne__</code>, etc), see <a href="http://shahriar.svbtle.com/python-notimplemented-type">here</a> for details.</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/12/26/notimplemented-in-python/">
+		
+			NotImplemented-in-python</a>
+	</h2>
+	<div class="entry-content">
+		<p>It&rsquo;s best to return <code>NotImplemented</code> in magic method(e.g. <code>__eq__</code>, <code>__ne__</code>, etc), see <a href="http://shahriar.svbtle.com/python-notimplemented-type">here</a> for details.</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -573,35 +652,47 @@ ISP：中国联通
 
 
 <p><code>a</code> is instance of ClassA, and <code>b</code> is instance of ClassB, if we invoke <code>a == b</code>, we will get the result, True or False, but if we invoke <code>b == a</code>, we will also get the result! Because of we return <code>NotImplemented</code> in Class B&rsquo;s <code>__eq__</code> method, runtime could invoke Class A&rsquo;s <code>__eq__</code>, that method can compare A and B.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-26T21:03:20+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
 </div>
-  
-  
+	
+</div>
+</article>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/12/20/quote-in-urllib/">Safe Characters of Quote Method in Urllib</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-12-20T20:27:59+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:27 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>quote accept two arguments: a string and safe characters. If you pass empty to <code>quote</code> as the second parameter, it means every characters except preserved characters will be replaced by a % leading characters, e.g. space will be replaced by %20, etc.</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/12/20/quote-in-urllib/">
+		
+			Safe Characters of Quote Method in Urllib</a>
+	</h2>
+	<div class="entry-content">
+		<p>quote accept two arguments: a string and safe characters. If you pass empty to <code>quote</code> as the second parameter, it means every characters except preserved characters will be replaced by a % leading characters, e.g. space will be replaced by %20, etc.</p>
 
 <p>In my project, I invoke quote like <code>quote(params, '')</code>, and I have imported <code>unicode_literals</code>, so I passed a unicode parameter to <code>quote</code> method.</p>
 
@@ -610,35 +701,47 @@ ISP：中国联通
 <p>Next time you invoke quote with the same <code>safe</code> parameter you used before, you may get an error like <code>UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)</code>, urllib will cache the safe parameter(urllib.py 1277 line), it expects a byte type parameter but you pass an unicode one, also, that library didn&rsquo;t check or convert it before it uses.</p>
 
 <p>Best practice, pass a byte parameter like <code>b''</code> to <code>quote</code> if you have same usage(unicode literals) like me.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-20T20:27:59+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
 </div>
-  
-  
+	
+</div>
+</article>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/22/linux-study/">Linux-study</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-22T14:14:25+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>2:14 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>directory permission x means this directory can be work directory, if you want to write or read a file behind this directory, you must have permission x of this directory.</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/11/22/linux-study/">
+		
+			Linux-study</a>
+	</h2>
+	<div class="entry-content">
+		<p>directory permission x means this directory can be work directory, if you want to write or read a file behind this directory, you must have permission x of this directory.</p>
 
 <p>directory permission w means you can delete or create files or directories behind this</p>
 
@@ -657,66 +760,57 @@ SBIT(Sticky BIT) only set to directory, if a directory has this permission, a us
 SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SBIT, if omit, this bit is zero, if you set a invalid SUID/SGID/SBIT, there will be upper case S/T, lower case is valid.</p>
 
 <p>find / -size 1M -exec ls -l {} \;     {} means the args from find, “\;” means the end of “exec”, commands in exec can not use alias.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-11-22T14:14:25+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
 </div>
-  
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/posts/2">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+	
 </div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2015/04/19/exception-in-python/">Exception in Python</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/11/optimize-shadowsocks-nat-rules/">Optimize Shadowsocks NAT Rules</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/08/mailing-list-in-postfix/">Mailing List in Postfix</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/07/be-careful-python-fdopen/">Be Careful Python Fdopen</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/05/unicom-blocked-80-8080/">联通封了80和8080 but 443 Is Ok</a>
-      </li>
-    
-  </ul>
-</section>
+</article>
 
-
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo">Copyright &copy; 2015
+<nav id="pagenavi">
+    
+    
+        <a href="/posts/2" class="next">Next</a>
+    
+    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
+</nav></div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
 
     dawncold
 
-
 </footer>
-  
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
 
 <script type="text/javascript">
       var disqus_shortname = 'dawncoldtechblog';
@@ -726,17 +820,24 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//go.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
 
 
 
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-8650400-5']);
+		_gaq.push(['_trackPageview']);
 
-
-
-
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 
 
 

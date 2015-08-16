@@ -1,94 +1,83 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Daemon-in-nginx - Trade Off</title>
-  <meta name="author" content="dawncold">
+	<meta charset="utf-8">
+	<title>daemon-in-nginx - Trade Off</title>
+	<meta name="author" content="dawncold">
 
-  
-  <meta name="description" content="最近要把bnly重新运行起来，前两天整理了cli版本的程序，放到https://github.com/dawncold/bnly-cli，另一个web版的放到了bitbucket上的私有仓库，准备做部署的时候用，没想到bitbucket最近没有被kill，难道放开了？ &hellip;">
-  
+	
+	<meta name="description" content="最近要把bnly重新运行起来，前两天整理了cli版本的程序，放到https://github.com/dawncold/bnly-cli，另一个web版的放到了bitbucket上的私有仓库，准备做部署的时候用，没想到bitbucket最近没有被kill，难道放开了？ &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://www.youth2009.org/blog/2014/01/06/daemon-in-nginx/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-8650400-5']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
 </head>
 
-<body   >
-  <header role="banner">
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="sitesearch" value="www.youth2009.org">
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main">
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
+<nav id="main-nav"><ul class="main">
 	<li><a href="/">Blog</a></li>
 	<li><a href="/blog/archives">Archives</a></li>
     <li><a href="/about">About</a></li>
 </ul>
-
 </nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
     
-      <h1 class="entry-title">Daemon-in-nginx</h1>
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
     
-    
-      <p class="meta">
-        
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
+	</form>
+</nav>
 
-
-
-
-<time class='entry-date' datetime='2014-01-06T21:57:39+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:57 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-<div class="entry-content"><p>最近要把bnly重新运行起来，前两天整理了cli版本的程序，放到<a href="GitHub">https://github.com/dawncold/bnly-cli</a>，另一个web版的放到了bitbucket上的私有仓库，准备做部署的时候用，没想到bitbucket最近没有被kill，难道放开了？</p>
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Daemon-in-nginx</h2>
+	<div class="entry-content"><p>最近要把bnly重新运行起来，前两天整理了cli版本的程序，放到<a href="GitHub">https://github.com/dawncold/bnly-cli</a>，另一个web版的放到了bitbucket上的私有仓库，准备做部署的时候用，没想到bitbucket最近没有被kill，难道放开了？</p>
 
 <p>用supervisor做进程管理的时候被nginx坑了，由于nginx的配置很强大，现在还处在搭建环境的初期，很多配置写不完整，导致了nginx总是在频繁启动，log中看到的是80端口已经被占用。。。找了半天只有nginx占着80，而且又不会开多个nginx（supervisor的配置中没有明确说开多个程序，默认一个），搜了挺长时间都没有结果。</p>
 
@@ -100,102 +89,62 @@
 </div>
 
 
-  <footer>
-    <p class="meta">
-      
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
   
 
-<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
 
-      
-
-
+<time datetime="2014-01-06T21:57:39+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
 
 
-<time class='entry-date' datetime='2014-01-06T21:57:39+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:57 pm</span></time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/bnly/'>bnly</a>
-  
-</span>
+	<a class='category' href='/blog/categories/bnly/'>bnly</a>
 
 
-    </p>
-    
-      <div class="sharing">
-  
-  
-  
 </div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/12/08/object-dot-keys-and-json-in-ie6/" title="Previous Post: Object.keys-and-JSON-in-IE6">&laquo; Object.keys-and-JSON-in-IE6</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2014/01/16/lxml-and-dependences/" title="Next Post: lxml-and-dependences">lxml-and-dependences &raquo;</a>
-      
-    </p>
-  </footer>
+	
+</div>
 </article>
 
-  <section>
-    <h1>Comments</h1>
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
     <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  </section>
-
-</div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2015/04/19/exception-in-python/">Exception in Python</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/11/optimize-shadowsocks-nat-rules/">Optimize Shadowsocks NAT Rules</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/08/mailing-list-in-postfix/">Mailing List in Postfix</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/07/be-careful-python-fdopen/">Be Careful Python Fdopen</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/05/unicom-blocked-80-8080/">联通封了80和8080 but 443 Is Ok</a>
-      </li>
-    
-  </ul>
 </section>
-
-
-
-
-
-  
-</aside>
-
-
-    </div>
-  </div>
-  <footer role="contentinfo">Copyright &copy; 2015
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
 
     dawncold
 
-
 </footer>
-  
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
 
 <script type="text/javascript">
       var disqus_shortname = 'dawncoldtechblog';
@@ -208,17 +157,24 @@
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//go.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
 
 
 
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-8650400-5']);
+		_gaq.push(['_trackPageview']);
 
-
-
-
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 
 
 
