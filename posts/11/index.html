@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="终于把erp的所有接口测试完了，其中仍然不乏几个要命错误，只好记录下来发给开发方，又将是漫长的等待。 王总终于还是看不惯我们专业人士用的一些词汇和设计出来的使用流程，他似乎希望身边即便是初中毕业的员工都能自由使用我们开发的系统，这点有些像Jobs不是么，很可惜我们在做的产品不是面向广大用户， &hellip;">
+	<meta name="description" content="我们今天终于上线了，给编辑们用了一下，我还不知道他们的反馈如何，应该还不错吧，但很可惜由于公司内部网络的问题，我们的服务器不是所有人都能访问到，好像听说有个部门访问不到，具体问了一下工程部说改个gateway就能行了，当时正在抓图，就没动，下周再修改一下试试吧。 据说下周要开始主攻特辑这部分了， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,151 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/02/online/">
+		
+			Online</a>
+	</h2>
+	<div class="entry-content">
+		<p>我们今天终于上线了，给编辑们用了一下，我还不知道他们的反馈如何，应该还不错吧，但很可惜由于公司内部网络的问题，我们的服务器不是所有人都能访问到，好像听说有个部门访问不到，具体问了一下工程部说改个gateway就能行了，当时正在抓图，就没动，下周再修改一下试试吧。</p>
+
+<p>据说下周要开始主攻特辑这部分了，eric说我可能会很忙了，因为一直是我再搞特辑，哎，说特辑真别扭，原来我们一直在用topic，现在竟然换一个说法。</p>
+
+<p>明天打算吃火锅，早晨早去买点菜，晚上happy一把。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-02T20:17:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/life/'>life</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/01/git-mass/">
+		
+			Git Mass</a>
+	</h2>
+	<div class="entry-content">
+		<p>原本以为今天能上线给编辑们使用，结果只是找了编辑部的几个人来现场的开发环境中玩了玩，提了提意见，明天下午1点我们正式开始用生产环境。</p>
+
+<p>今天我又部署了好几次，期间也出现过一些问题，但都一一修复了，比较大的就是我把Git搞乱了，让周围几个人突然陷入困境。其实是我在生产分支上做了改动，发现应该去master做，结果我就跳到master上想要合并生产分支，后来被我不断rebase弄坏了，处于一种无分支所在的状况，taowen帮我reset到了之前的地方，还好改动不多，又凭记忆修复过来了。看来部署这个东西真不能让一个人来搞定，一合并就会出现不少冲突，有的你能解决，有的解决不了（现在还没遇到解决不了的）。</p>
+
+<p>上午的standup持续了好久，大概又是在讨论需不需要这么多生产环境的纪律，昨天taowen只是加了commit前需要self-check，现在又出现了一个component不能超过xxx行的纪律，而且自动算出来，如果超了你就无法commit，wanglei今天早晨中招，顺便就开始说这个事儿了，我猜等我要做别的东西的时候也会这样吧。</p>
+
+<p>backup、restore、restore-from-baseline这几个虽然看起来简单，但调试起来缺不怎么容易，而且在调试过程中还出现了不少突发问题，解决起来也是相当费时间的，现在部署后再做这些工作应该都没什么问题了。</p>
+
+<p>晚上回来后我把web service的检查加入到了setting中，把部署打tag加入到了deploy流程中。明天去了打算把部署前lock所有sql脚本加入进去，这样每次部署就需要和大家说一下了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-01T21:56:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/10/31/tomorrow-internal-test/">
+		
+			Tomorrow Internal Test</a>
+	</h2>
+	<div class="entry-content">
+		<p>也不知道怎么的，明天竟然就要内部测试了，首先是让编辑们录入商品，然后逐渐开始上一些主题、促销什么的东西，后者还没有时间表，不过从星期一就知道了星期四开始正式录入商品，也就是说我们的数据库从星期四就不能再drop了，只能migrate。</p>
+
+<p>今天我们每个人都开始了带生产环境下的开发，一切操作都和上线了一样，包括提交之前必须有测试跑过才可以提交，这里被taowen监视着安装了一个hook，如果不跑一遍测试，根本没办法commit。还有数据库的baseline无法再被修改，这里也有一个licked文件管理着，如果需要修改只能migrate到baseline才可以。</p>
+
+<p>部署方面今天我做了几个脚本方便使用——backup、restore、restore-from-baseline，分别是备份、恢复、远程恢复，备份既可以是server来做，也可以自己来做，只是自己做这个似乎没什么必要，server会自动在4点的时候备份一下var目录，远程恢复就是回复一个server的备份到本地开发使用。</p>
+
+<p>今天还熟悉了一下tar的使用，现在是用tar打包，顺便压缩成了gz，所以打包需要czf参数，之所以这样排序是因为f参数后面是要跟着tar.gz文件名作为参数的，以前我以为随便排序，现在想想好傻啊。今天还遇到一个小问题，tar打包的时候如果你给出的路径是绝对的，那么打包也会从头开始帮你打包，比如你给了一个从根分区到你要打包目录的路径，那么打包完了，也是从根分区开始，恢复起来比较讨厌，此时需要一个C参数，大写C，Ta可以让你的工作目录Change到一个地方去，这样你就能在打包的时候把工作目录移动到需要的地方，这样就能不带那么长的路径了，当然解包的时候同样需要C参数指定好位置。</p>
+
+<p>restore-from-baseline那里还有点问题，没有做测试找出漏洞，只能明天再去试试了，还有就是在部署的时候supervisor的配置文件有错误，导致web部署出问题，我看了看改起来比较费劲，让taowen干掉吧明天。</p>
+
+<p>明天，可能会很紧张吧：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-31T21:35:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -467,179 +612,6 @@
 
 
 	<a class='category' href='/blog/categories/lxc/'>lxc</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/08/lvm-and-raid1/">
-		
-			LVM+RAID实践</a>
-	</h2>
-	<div class="entry-content">
-		<p>两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。</p>
-
-<p>0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>fdisk /dev/sda
-</span><span class='line'>fdisk /dev/sdb
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>1.创建PV</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pvcreate /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2.创建VG</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vgcreate -s 16M vg0 /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3.创建LV</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m <span class="m">1</span> -lxxxx --corelog
-</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-08T14:09:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/lvm/'>lvm</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/04/dict-formatting-in-python/">
-		
-			Python中dict格式化</a>
-	</h2>
-	<div class="entry-content">
-		<p>最近在工作中遇到过写SQL的问题，参数是直接传递进去的，比如这样：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>db().execute('SELECT * FROM xxx WHERE id = %(id)s', id=get_id())</span></code></pre></td></tr></table></div></figure>
-
-
-<p>今天细看Google提供的Python课程发现一个叫DictFormatting的部分，里面就有类似这样的语法，现在才明白。以前用过Python的格式化输出，其实这个dict的格式化和字符串的类似，就是在字符串格式化的基础之上加入了dict的key，%s是表示这里有字符串，而%(xxx)s是表示字符串，而且是以xxx为key的字符串，这个value就是从字典中给出。一半会在这样一个字符串后加“% dictname”表示值从dictname这个字典中给出，这不就是和字符串格式化一样么。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-04T17:54:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/04/sort-method-in-python/">
-		
-			Python中的sort方法</a>
-	</h2>
-	<div class="entry-content">
-		<p>打算从今天开始自习再学学Python的基础，选了Google提供的Python课程，学到list部分，有个练习题目要求针对一组tuples排序，根据tuples的最后一个元素排序，有个hint，可以用key=function这种方法，于是搜索了一番，在Python的wiki中找到这个key方法的描述：</p>
-
-<p>从Python2.4以后list.sort()和sorted()方法都提供了一个key可选参数，传入一个function用来决定排序需要的key。这个key就是所排序元素的权值，最终就是根据权值来排序了。你也可以自己写一个方法，就是那种用def来定义的方法，不过要求接受一个参数，返回一个值，接受的参数就是这个集合（list、dict、tuple）中的某个元素。我是这样写的，it works：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>def sort_last(tuples):
-</span><span class='line'> # +++your code here+++
-</span><span class='line'> tuples.sort(key = lambda t: t[-1])
-</span><span class='line'> return tuples</span></code></pre></td></tr></table></div></figure>
-
-
-<p>根据tuple中最后一个排序。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-04T14:58:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>

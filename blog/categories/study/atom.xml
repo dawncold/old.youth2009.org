@@ -4,7 +4,7 @@
   <title><![CDATA[Category: study | Trade Off]]></title>
   <link href="http://www.youth2009.org/blog/categories/study/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-08-16T15:06:22+08:00</updated>
+  <updated>2015-08-23T20:40:24+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,78 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[tornado-2]]></title>
+    <link href="http://www.youth2009.org/blog/2015/08/21/tornado-2/"/>
+    <updated>2015-08-21T22:17:23+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/08/21/tornado-2</id>
+    <content type="html"><![CDATA[<p>write some subclasses of <code>RequestHandler</code> and mapped these with routers, pass these routers to <code>Application</code>, run <code>Application</code>.</p>
+
+<pre><code class="python">from tornado.ioloop import IOLoop
+from tornado.web import RequestHandler, Application, url
+
+class HelloHandler(RequestHandler):
+    def get(self):
+        self.write("Hello, world")
+
+def make_app():
+    return Application([
+        url(r"/", HelloHandler),
+        ])
+
+def main():
+    app = make_app()
+    app.listen(8888)
+    IOLoop.current().start()
+</code></pre>
+
+<p>Tornado supports strings, bytes, and dictionaries as response, you can use Template to building strings and bytes, also you can write response by hand. If you pass a dictionary to response, it will be encoded as JSON.</p>
+
+<p>Tornado will not parse other types request arguments, e.g. Tornado will not parse JSON request bodies, you need to parse these by yourself(override <code>prepare</code> method)</p>
+
+<p>CSRF/XSRF prevent: the session cookie from SiteA is not expired, there is a form in SiteB, the form aims doing something to SiteA, if SiteA don&rsquo;t support XSRF prevent, it will allow submitting if you constructed valid form arguments. If SiteA supports XSRF prevent, it will set a cookie with token to user, and that token will filled in any action form(POST,PUT,DELETE), if these two values are not equal, that request will be prevented, because SiteB can&rsquo;t retrive SiteA&rsquo;s cookie, so that form can&rsquo;t submit with valid cookie value.</p>
+
+<p>Due to the Python GIL (Global Interpreter Lock), it is necessary to run multiple Python processes to take full advantage of multi-CPU machines. Typically it is best to run one process per CPU.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[tornado-1]]></title>
+    <link href="http://www.youth2009.org/blog/2015/08/16/tornado-1/"/>
+    <updated>2015-08-16T16:16:51+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/08/16/tornado-1</id>
+    <content type="html"><![CDATA[<p>This is the first part of Tornado studying project.</p>
+
+<p>Tornado can be roughly divided into four major components:</p>
+
+<ul>
+<li>A web framework (including RequestHandler which is subclassed to create web applications, and various supporting classes).</li>
+<li>Client- and server-side implementions of HTTP (HTTPServer and AsyncHTTPClient).</li>
+<li>An asynchronous networking library (IOLoop and IOStream), which serve as the building blocks for the HTTP components and can also be used to implement other protocols.</li>
+<li>A coroutine library (tornado.gen) which allows asynchronous code to be written in a more straightforward way than chaining callbacks.</li>
+</ul>
+
+
+<p>Tornado uses a signle-threaded event loop.This means that all application code should aim to be asynchronous and non-blocking because only one operation can be active at a time.</p>
+
+<p>There are many styles of asynchronous interfaces:</p>
+
+<ul>
+<li>Callback argument</li>
+<li>Return a placeholder (Future, Promise, Deferred)</li>
+<li>Deliver to a queue</li>
+<li>Callback registry (e.g. POSIX signals)</li>
+</ul>
+
+
+<p>There is no free way to make a synchronous function asynchronous in a way that is transparent to its callers.</p>
+
+<p>Coroutines are the recommended way to write asynchronous code in Tornado</p>
+
+<p>A function containing yield is a generator. All generators are asynchronous; when called they return a generator object instead of running to completion.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[NotImplemented-in-python]]></title>
@@ -184,58 +256,6 @@ SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SB
 具体的/mnt和/dev/sda1、ext4根据你的情况做修改，enabled为1就是启动时加载。</p>
 
 <p>没想到的是装了vsftpd，又挂了个磁盘，小路由器还能撑得住，也许还没开始用，等往里写文件的时候再看看。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[postgresql indexes]]></title>
-    <link href="http://www.youth2009.org/blog/2014/06/01/postgresql-indexes/"/>
-    <updated>2014-06-01T10:18:27+08:00</updated>
-    <id>http://www.youth2009.org/blog/2014/06/01/postgresql-indexes</id>
-    <content type="html"><![CDATA[<h1>Introduction</h1>
-
-<p>Indexes will speed up your read(SELECT) and write(INSERT, UPDATE, DELETE) operation on a table, but they should by removed when a query seldom or never used. Create a bit table&rsquo;s index will spend lot of time. By default, PostgreSQL allows reads (SELECT statements) to occur on the table in parallel with index creation, but writes (INSERT, UPDATE, DELETE) are blocked until the index build is finished. In production environments this is often unacceptable. It is possible to allow writes to occur in parallel with index creation, but there are several caveats to be aware of — for more information see <a href="http://www.postgresql.org/docs/9.3/static/sql-createindex.html#SQL-CREATEINDEX-CONCURRENTLY">Building Indexes Concurrently</a>.</p>
-
-<h1>Index Types</h1>
-
-<p>PostgreSQL provides several index types: B-tree, Hash, GiST, SP-GiST and GIN. By default, the CREATE INDEX command creates B-tree indexes, which fit the most common situations.</p>
-
-<h1>Multicolumn index</h1>
-
-<p>Currently, only the B-tree, GiST and GIN index types support multicolumn indexes. Up to 32 columns can be specified. (This limit can be altered when building PostgreSQL; see the file pg_config_manual.h.)</p>
-
-<p>if your frequently query is like this: <code>SELECT name FROM test2 WHERE major = constant AND minor = constant;</code>, your need create an index on table test2 with <code>major</code>, <code>minor</code> columns: <code>CREATE INDEX test2_mm_idx ON test2 (major, minor);</code></p>
-
-<p>The order is important in multicolumn index:</p>
-
-<blockquote><p>A multicolumn B-tree index can be used with query conditions that involve any subset of the index&rsquo;s columns, but the index is most efficient when there are constraints on the leading (leftmost) columns. The exact rule is that equality constraints on leading columns, plus any inequality constraints on the first column that does not have an equality constraint, will be used to limit the portion of the index that is scanned. Constraints on columns to the right of these columns are checked in the index, so they save visits to the table proper, but they do not reduce the portion of the index that has to be scanned. For example, given an index on (a, b, c) and a query condition WHERE a = 5 AND b >= 42 AND c &lt; 77, the index would have to be scanned from the first entry with a = 5 and b = 42 up through the last entry with a = 5. Index entries with c >= 77 would be skipped, but they&rsquo;d still have to be scanned through. This index could in principle be used for queries that have constraints on b and/or c with no constraint on a — but the entire index would have to be scanned, so in most cases the planner would prefer a sequential table scan over using the index.</p></blockquote>
-
-<h1>Order By</h1>
-
-<p>By default, B-tree indexes store their entries in ascending order with nulls last.</p>
-
-<h1>Combining Multiple Indexes</h1>
-
-<p>little difficult just trade off to decide which indexes to provide. Sometimes multicolumn indexes are best, but sometimes it&rsquo;s better to create separate indexes and rely on the index-combination feature.</p>
-
-<h1>Index on Expressions</h1>
-
-<p>This kind of index, not a specific column, it&rsquo;s an expression: <code>CREATE INDEX people_names ON people ((first_name || ' ' || last_name));</code></p>
-
-<h1>Partial Index</h1>
-
-<p><code>CREATE INDEX idx_xxx ON table(name) WHERE NOT deleted</code> this index only enables to rows which deleted is <code>TRUE</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[log2n和log3n]]></title>
-    <link href="http://www.youth2009.org/blog/2014/05/30/log2n-log3n/"/>
-    <updated>2014-05-30T20:45:44+08:00</updated>
-    <id>http://www.youth2009.org/blog/2014/05/30/log2n-log3n</id>
-    <content type="html"><![CDATA[<p>merge sort的时间复杂度，log2n，曾经在算法书上看到过，相应的，merge sort也可以三分，复杂度变成log3n，好像还不错，但差多少呢？</p>
-
-<p>log3n=log2n/log2(3)，也就是只差了1/log2(3)对于看起来还更大。一般算法复杂度是log2n表示就是这个原因，loga(n)和log2n差不了太多，都是常数级别的差距，而且在复杂度分析的时候都会忽略常数，所以就简记为log2n复杂度了：）</p>
 ]]></content>
   </entry>
   

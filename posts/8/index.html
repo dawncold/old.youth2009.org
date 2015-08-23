@@ -7,7 +7,16 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="以前搜到过octpress的isolate功能，今天终于用上了，真TMD好用（除了操作稍微麻烦一点） 使用isolate的注意：filename是除了日期外的名字，有空格得用短杠隔开，比如我的这篇就得用rake isolate[use-octopress-isolate-function]才可以 &hellip;">
+	<meta name="description" content="jquery中的extend方法可以扩展一个{}，今天用到了。写了一组配置文件： 1
+2
+3
+4
+5
+6
+7
+var options = { data:1, data2:2
+}; console.log($.extend(options, {data3:3}));
+console.log( &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +85,151 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/02/16/extend-in-jquery/">
+		
+			Extend in Jquery</a>
+	</h2>
+	<div class="entry-content">
+		<p>jquery中的extend方法可以扩展一个{}，今天用到了。写了一组配置文件：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var options = {
+</span><span class='line'>  data:1,
+</span><span class='line'>  data2:2
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>console.log($.extend(options, {data3:3}));
+</span><span class='line'>console.log(options);</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样的结果就是在extend之后optons已经被加入了data3这个key-value，因为默认extend使用的是deep copy，你可以<code>$.extend(false, options, {data3:3})</code>，这样就能够得到暂时的并且扩展了的options。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-16T20:02:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/jquery/'>jquery</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/02/03/do-something-using-refactor/">
+		
+			Do Something Using Refactor</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近在做发送短信的时候犯了个错误——修改配置文件没有使用重构方式。dev环境和pro环境中有相同名字的配置，只是值不一样，再修改了dev中的配置name做开发，但pro环境中的name还是原来的，导致上线后拿不到配置，发不出短信去。。。</p>
+
+<p>以后为了防止遗忘，还是用重构吧！！！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-03T11:22:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/02/02/incrby-in-redis/">
+		
+			Incrby in Redis</a>
+	</h2>
+	<div class="entry-content">
+		<p>redis中的incrby可以让value+1，用这个的好处是：当你用setex给一个key设置了timeout之后，如果要再改变里面的值，比如加1，你再set回去的话就会丢掉timeout，这时用incrby就可以喽。</p>
+
+<p>再没用incrby的时候我用了ttl先取出timeout的值，再用一遍setex附带上ttl，显得好傻。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-02T13:26:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/redis/'>redis</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -445,143 +599,6 @@ synchronous：  美 ['sɪŋkrənəs]
 
 
 	<a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/01/01/some-ruby-study-log/">
-		
-			Ruby学习记录</a>
-	</h2>
-	<div class="entry-content">
-		<p>在wanglei的鼓动下，我开始了探寻Ruby这款被他成为做产品的语言，同时，Ruby对我来说也是上天的安排——我的生日石就是Ruby～虽然如此，其实我早就开始了Ruby的探索，曾经买过《松本行弘的程序世界》、《Ruby变成语言》这两本很好的书，无奈当时怎么看也看不进去，就暂且放弃了，相反，更喜欢了Python。</p>
-
-<p>最近的工作语言一直是Python，感觉很好，不过Ruby对我来说更显得优美一点，主要是喜欢他们的文档，非常全面，但不喜欢TA的快速变更，特别是ROR，当时买的书和网上的版本很难契合，我又不那么喜欢用低版本的ROR，学起来就痛苦一点，最终还是放弃了。</p>
-
-<p>前几天看到Learn Python the Hard Way发布了3.0版，同时网站也更名为Learn Code the Hard Way，十分符合技术人士的胃口，当然用来入门还是可以的，深入的话还是得靠自己阅读更高级的书和工作实践。这个网站现在也有Ruby、C、Regex、SQL等等教程，于是在没有书的情况下，我就从这里学习Ruby了。</p>
-
-<p>现在已经学了基本的puts和gets，能写超小的CLI了，不过还得学点loop什么的才可以，而且各种object的method也得熟悉，否则很痛苦：（</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-01T08:22:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/tuby/'>tuby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/12/29/less-debug/">
-		
-			LESS Debug</a>
-	</h2>
-	<div class="entry-content">
-		<p>默认less使用production的env，但有时候出现语法错误不能正常编译下去很难调试，所以一般使用development的env开发。</p>
-
-<p>在引用less之前加入：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>var less={env: "development"};</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样就让less成为development环境了。如果不行的话可以使用Chrome的console，直接给less.env赋值，这只是针对上面方法不能用的时候。赋值好后调用<code>less.refresh()</code>，可以让less做一次刷新，如果有错误就会在页面顶部出现。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-29T18:04:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/12/20/ie6/">
-		
-			Ie6</a>
-	</h2>
-	<div class="entry-content">
-		<p>这几天都卡在ie6的兼容问题上了，都要上线了才想到要去用ie来看下效果，前一次看的时候没什么问题，还很欣慰，怎么会这么安全？最近用ie6、360、搜狗一看，直接无法接受了，但原网站的最大用户群就是360，现在搞不清楚360用的是不是ie6的内核，虽然它自称是ie8的内核了，但我今天下载了用仍然是ie6，然后他又会提示你可以升级到ie8内核，真是流氓啊。我们现在如果能够把网站调整到ie6下也正常显示，就基本不怕ie7、8、9了，相信不管一款软件多么垃圾，随着版本的提升，也会越来越好，要不然根本都不可能升级，也违背社会的发展啊。。。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-20T23:26:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>

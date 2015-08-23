@@ -7,19 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="有时候不接外置显示器的时候，喜欢把键盘压在笔记本键盘上方使用，但如果不禁用内置键盘的话就会有误操作的风险，所以这样做，利用ubuntu中的xinput 查看设备使用xinput list 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-⎡ Virtual core pointer id=2 &hellip;">
+	<meta name="description" content="If you need private hosts communicate with external network, maybe some LXC contaners want to using apt-get, you need add a iptables rule like this &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -88,6 +76,167 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/06/13/iptables-MASQUERADE/">
+		
+			Iptables MASQUERADE</a>
+	</h2>
+	<div class="entry-content">
+		<p>If you need private hosts communicate with external network, maybe some LXC contaners want to using apt-get, you need add a iptables rule like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>iptables -t nat -A POSTROUTING -s 10.24.1.0/24 ! -d 10.24.1.0/24 -j MASQUERADE</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This rule allows network traffic from 10.24.1.x, and destination is not 10.24.1.x, maybe it wants to communicating with 10.24.2.x, but that doesn&rsquo;t cover in this post, we assumed it want to communicating with Google, the host has an external ip like 200.200.200.200, iptables can convert IP from 10.24.1.x to IP from 200.200.200.200, like the host request Google.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-13T20:50:30+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/06/01/postgresql-indexes/">
+		
+			Postgresql Indexes</a>
+	</h2>
+	<div class="entry-content">
+		<h1>Introduction</h1>
+
+<p>Indexes will speed up your read(SELECT) and write(INSERT, UPDATE, DELETE) operation on a table, but they should by removed when a query seldom or never used. Create a bit table&rsquo;s index will spend lot of time. By default, PostgreSQL allows reads (SELECT statements) to occur on the table in parallel with index creation, but writes (INSERT, UPDATE, DELETE) are blocked until the index build is finished. In production environments this is often unacceptable. It is possible to allow writes to occur in parallel with index creation, but there are several caveats to be aware of — for more information see <a href="http://www.postgresql.org/docs/9.3/static/sql-createindex.html#SQL-CREATEINDEX-CONCURRENTLY">Building Indexes Concurrently</a>.</p>
+
+<h1>Index Types</h1>
+
+<p>PostgreSQL provides several index types: B-tree, Hash, GiST, SP-GiST and GIN. By default, the CREATE INDEX command creates B-tree indexes, which fit the most common situations.</p>
+
+<h1>Multicolumn index</h1>
+
+<p>Currently, only the B-tree, GiST and GIN index types support multicolumn indexes. Up to 32 columns can be specified. (This limit can be altered when building PostgreSQL; see the file pg_config_manual.h.)</p>
+
+<p>if your frequently query is like this: <code>SELECT name FROM test2 WHERE major = constant AND minor = constant;</code>, your need create an index on table test2 with <code>major</code>, <code>minor</code> columns: <code>CREATE INDEX test2_mm_idx ON test2 (major, minor);</code></p>
+
+<p>The order is important in multicolumn index:</p>
+
+<blockquote><p>A multicolumn B-tree index can be used with query conditions that involve any subset of the index&rsquo;s columns, but the index is most efficient when there are constraints on the leading (leftmost) columns. The exact rule is that equality constraints on leading columns, plus any inequality constraints on the first column that does not have an equality constraint, will be used to limit the portion of the index that is scanned. Constraints on columns to the right of these columns are checked in the index, so they save visits to the table proper, but they do not reduce the portion of the index that has to be scanned. For example, given an index on (a, b, c) and a query condition WHERE a = 5 AND b >= 42 AND c &lt; 77, the index would have to be scanned from the first entry with a = 5 and b = 42 up through the last entry with a = 5. Index entries with c >= 77 would be skipped, but they&rsquo;d still have to be scanned through. This index could in principle be used for queries that have constraints on b and/or c with no constraint on a — but the entire index would have to be scanned, so in most cases the planner would prefer a sequential table scan over using the index.</p></blockquote>
+
+<h1>Order By</h1>
+
+<p>By default, B-tree indexes store their entries in ascending order with nulls last.</p>
+
+<h1>Combining Multiple Indexes</h1>
+
+<p>little difficult just trade off to decide which indexes to provide. Sometimes multicolumn indexes are best, but sometimes it&rsquo;s better to create separate indexes and rely on the index-combination feature.</p>
+
+<h1>Index on Expressions</h1>
+
+<p>This kind of index, not a specific column, it&rsquo;s an expression: <code>CREATE INDEX people_names ON people ((first_name || ' ' || last_name));</code></p>
+
+<h1>Partial Index</h1>
+
+<p><code>CREATE INDEX idx_xxx ON table(name) WHERE NOT deleted</code> this index only enables to rows which deleted is <code>TRUE</code></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-01T10:18:27+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/05/30/python-main-py/">
+		
+			Python-main-py</a>
+	</h2>
+	<div class="entry-content">
+		<p>python的<code>__main__.py</code>文件，通常，一个package下有一个<code>__init__.py</code>文件标识这是package，同样可以有一个<code>__main__.py</code>文件，有了后你就可以这样运行一个脚本：<code>python script_dir</code>或者把这个dir打包成zip，可以使用<code>python zipball.zip</code>来执行，python会执行<code>__main__.py</code>中的语句。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-30T21:05:20+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -450,165 +599,6 @@
 
 
 	<a class='category' href='/blog/categories/dev/'>dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/01/06/daemon-in-nginx/">
-		
-			Daemon-in-nginx</a>
-	</h2>
-	<div class="entry-content">
-		<p>最近要把bnly重新运行起来，前两天整理了cli版本的程序，放到<a href="GitHub">https://github.com/dawncold/bnly-cli</a>，另一个web版的放到了bitbucket上的私有仓库，准备做部署的时候用，没想到bitbucket最近没有被kill，难道放开了？</p>
-
-<p>用supervisor做进程管理的时候被nginx坑了，由于nginx的配置很强大，现在还处在搭建环境的初期，很多配置写不完整，导致了nginx总是在频繁启动，log中看到的是80端口已经被占用。。。找了半天只有nginx占着80，而且又不会开多个nginx（supervisor的配置中没有明确说开多个程序，默认一个），搜了挺长时间都没有结果。</p>
-
-<p>突然想到了daemon。</p>
-
-<p>nginx的文档建议生产环境应该off，但这个和我遇到的问题无关。默认daemon开了，supervisor运行后会认为nginx退出了，再启动一个，其实上一个已经启动成功，所以就总看到80端口被占用，于是在nginx的配置上加<code>deamon off</code>即可。</p>
-
-<p>是不是很坑？</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-06T21:57:39+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/bnly/'>bnly</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/12/08/object-dot-keys-and-json-in-ie6/">
-		
-			Object.keys-and-JSON-in-IE6</a>
-	</h2>
-	<div class="entry-content">
-		<p>下单页面用到了js中的JSON和Object.keys，都是坑。</p>
-
-<p>JSON虽然是build-in的JSON parser和stringify方法，但IE6，7，8(Q)都是无法使用的，如果用jQuery的话，可以用jQuery的parseJSON来解析，但stringify的话需要依赖第三方库或者自己实现，我用了JSON3.js这个库。首选build-in的parse和stringify方法，如果没有就实现。github地址：<a href="https://github.com/bestiejs/json3">https://github.com/bestiejs/json3</a></p>
-
-<p>同样的Object.keys()因为不能在IE9下使用，因为要取一个Object的keys数量，有的时候是用Object的keys列表，所以以后为了兼容，就只能：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="p">[];</span>
-</span><span class='line'><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">p</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">p</span><span class="p">))</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">keys</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-08T14:52:12+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/12/07/useful-shell-command/">
-		
-			Useful-shell-command</a>
-	</h2>
-	<div class="entry-content">
-		<p>找到size为0的文件，并删除：<code>find -type f -size 0 | xargs rm</code></p>
-
-<p>替换Linux的换行成windows的：<code>ls | xargs perl -i -pe 's/\n/\r\n/g'</code></p>
-
-<p>批量改名哦（把<em>.md改为</em>.markdown）：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">for</span> i in <span class="sb">`</span>ls *.md<span class="sb">`</span><span class="p">;</span><span class="k">do</span> mv <span class="nv">$i</span> <span class="sb">`</span><span class="nb">echo</span> <span class="nv">$i</span> <span class="p">|</span> sed <span class="s1">&#39;s/.md/.markdown/&#39;</span><span class="sb">`</span><span class="p">;</span><span class="k">done</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-07T22:28:53+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/shell/'>shell</a>
 
 
 </div>

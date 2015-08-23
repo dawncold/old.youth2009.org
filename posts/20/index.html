@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="经过近1天的实践才摸清了这两个控件的搭配使用方法，网上介绍的不算多，我就把自己的经验说说： 首先这两个的搭配是这样的，基础是UITabBarController，你完全可以在Xcode中选一个以Tabbar为基础的工程，用Tabbar来划分程序的大功能，每个功能中再用Navigation来做导航 &hellip;">
+	<meta name="description" content="最近在用Box2d开发小游戏，不可避免用到多边形物体，当然有的形状还好描述，但大多数是那种难以描述的物体，所以这个VertexHelper就是不可或缺的武器了，它能够让你把需要的物体边界描出来，自动生成Box2d需要的边界代码。 没想到作者把软件放到app store上卖，但还提供源代码， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,146 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/08/04/use-vertexhelper/">
+		
+			VertexHelper的使用</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近在用Box2d开发小游戏，不可避免用到多边形物体，当然有的形状还好描述，但大多数是那种难以描述的物体，所以这个VertexHelper就是不可或缺的武器了，它能够让你把需要的物体边界描出来，自动生成Box2d需要的边界代码。</p>
+
+<p>没想到作者把软件放到app store上卖，但还提供源代码，不知道他们之间是什么不一样……</p>
+
+<p>从GitHub那里得到源代码，打开xcode编译一下就能用了。</p>
+
+<p>有一点需要说明，得到的源代码中Project的Base SDK是10.5，在我编译的时候提示了一个警告，现在找不到了。只需要把Target中VertexHelper的BaseSDK改为10.7就可以了，当然如果你没有10.7就只能用10.6了。可能是因为我没有10.5SDK才出现的错误吧。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-04T23:02:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/gameapp/'>gameapp</a>, <a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/31/alignment-of-uitableviewcell/">
+		
+			UITableViewCell的对齐方式</a>
+	</h2>
+	<div class="entry-content">
+		<p>如果你用了Subtitle的Style，那么设置textAlignment为center就没用了，当然设置textAlignment目前只能针对textLabel来设置，听说在3.0以后的版本对于cell的textAlignment的设置方法废弃了。</p>
+
+<p>刚刚我把cell的style改成了default，然后再设置这些alignment，就能用了，真奇怪用subtitle的方式即使重建了cell，都不能设置alignment到center。但原因是这样的，我引用下官方reference：</p>
+
+<blockquote><p>UITableViewCellStyleSubtitle
+A style for a cell with a left-aligned label across the top and a left-aligned label below it in smaller gray text. The iPod application uses cells in this style.</p></blockquote>
+
+<p>很明确了吧，subtitle就是left-aligned的label，再改也没用。当然还有个value1和value2的style，似乎是专门left-aligned和right-aligned的，不过在他们各自的反方向还有另外的label，最好看官方的说明和多多实践。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-31T10:05:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/07/29/some-config-about-uitableview-cell/">
+		
+			关于UITableView中的cell配置</a>
+	</h2>
+	<div class="entry-content">
+		<p>都是关于cell的，不知道值得写出来么：</p>
+
+<p>1。在定义cell样式的时候，如果你用UITableViewCellStyleSubtitle来初始化cell，那么设置cell的detailTextLabel的text属性就能看到详细的内容，在textLable的下一行显示着。</p>
+
+<p>2。设定cell：<code>[cell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];</code>这样在每个cell右侧会有小箭头提示，很漂亮。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-29T13:28:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/iphone-dev/'>iphone-dev</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -443,211 +583,6 @@
 
 
 	<a class='category' href='/blog/categories/git/'>git</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/09/best-content-in-include_path/">
-		
-			最好在include_path中加上根</a>
-	</h2>
-	<div class="entry-content">
-		<p>刚刚用了下typecho博客插件——友情链接来添加一个友情链接，但发现很多php文件找不到了，很奇怪，以前是可以的，看到warning中的信息，有个include_path的相关东西，看看里面提到的路径是不是有需要的文件，结果没有，而在其中路径的下一级目录下有，这就怪了。</p>
-
-<p>Google说最好把include_path写成"./&ldquo;。是不是这样就是自动便利所有的内容了？我猜是的！当前的include_path中又pear的路径，我就先不删除了，linux系统下用冒号分隔各个路径，在前面加上一个点即可。</p>
-
-<p>重启php，再次访问，恢复正常！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-09T16:54:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/php/'>php</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/09/seek-and-tell-in-python/">
-		
-			简要写写python的file中的tell和seek</a>
-	</h2>
-	<div class="entry-content">
-		<p>对于一个file，调用tell()能够知道现在的文件位置。seek()是改变文件位置。  比如文件中有3行句子，readline后位置就到了第一行的最后，再readline就到了第二行的最后，readline后我调用了tell，看到的结果就是这样的。输出完tell()我又使用了seek(0),这样文件位置就回到开头了，下次再调用readline就会输出原来第一行的内容了，这应该是很容易理解的。不明白可以亲自试试。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>from sys import argv
-</span><span class='line'>
-</span><span class='line'>script, input_file = argv
-</span><span class='line'>
-</span><span class='line'>def print_all(f):
-</span><span class='line'>   print f.read()
-</span><span class='line'>
-</span><span class='line'>def rewind(f):
-</span><span class='line'>   f.seek(0)
-</span><span class='line'>
-</span><span class='line'>def print_a_line(line_count, f):
-</span><span class='line'>   print line_count, f.readline()
-</span><span class='line'>
-</span><span class='line'>current_file = open(input_file)
-</span><span class='line'>
-</span><span class='line'>print "First let's print the while file:\n"
-</span><span class='line'>print_all(current_file)
-</span><span class='line'>
-</span><span class='line'>print "Now let's rewind, kind of like a tape."
-</span><span class='line'>rewind(current_file)
-</span><span class='line'>
-</span><span class='line'>print "Let's print three lines:"
-</span><span class='line'>
-</span><span class='line'>current_line = 1
-</span><span class='line'>print_a_line(current_line, current_file)
-</span><span class='line'>print "current_pos:%d" % current_file.tell()
-</span><span class='line'>rewind(current_file)
-</span><span class='line'>
-</span><span class='line'>current_line += 1
-</span><span class='line'>print_a_line(current_line, current_file)
-</span><span class='line'>print "current_pos:%d" % current_file.tell()
-</span><span class='line'>
-</span><span class='line'>current_line += 1
-</span><span class='line'>print_a_line(current_line, current_file)
-</span><span class='line'>print "current_pos:%d" % current_file.tell()</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-09T15:12:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/07/09/python-one-star-and-two-star/">
-		
-			Python中的*和**</a>
-	</h2>
-	<div class="entry-content">
-		<p>在python的函数参数中，可以在变量名称前面加一个或者两个星号代表不一样的变量类型：</p>
-
-<p>在stack overflow上看到有人问这两个的区别了，就转载过来答案吧：</p>
-
-<blockquote><p>If the form *identifier is present, it is initialized to a tuple receiving any excess positional parameters, defaulting to the empty tuple. If the form **identifier is present, it is initialized to a new dictionary receiving any excess keyword arguments, defaulting to a new empty dictionary.</p></blockquote>
-
-<p>加一个星号代表这个参数是一个tuple类型；加两个则是一个dictionary类型，很好用。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-09T14:44:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
 
 
 </div>

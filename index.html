@@ -7,7 +7,17 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="My colleague remembered that if you pass some kwargs to an Exception subclass e.g. class MyException(Exception): pass, you will get a composed &hellip;">
+	<meta name="description" content="write some subclasses of RequestHandler and mapped these with routers, pass these routers to Application, run Application. 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +86,221 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/08/21/tornado-2/">
+		
+			Tornado-2</a>
+	</h2>
+	<div class="entry-content">
+		<p>write some subclasses of <code>RequestHandler</code> and mapped these with routers, pass these routers to <code>Application</code>, run <code>Application</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">tornado.ioloop</span> <span class="kn">import</span> <span class="n">IOLoop</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">tornado.web</span> <span class="kn">import</span> <span class="n">RequestHandler</span><span class="p">,</span> <span class="n">Application</span><span class="p">,</span> <span class="n">url</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">HelloHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;Hello, world&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">make_app</span><span class="p">():</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">Application</span><span class="p">([</span>
+</span><span class='line'>        <span class="n">url</span><span class="p">(</span><span class="s">r&quot;/&quot;</span><span class="p">,</span> <span class="n">HelloHandler</span><span class="p">),</span>
+</span><span class='line'>        <span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span><span class='line'>    <span class="n">app</span> <span class="o">=</span> <span class="n">make_app</span><span class="p">()</span>
+</span><span class='line'>    <span class="n">app</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">8888</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">IOLoop</span><span class="o">.</span><span class="n">current</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Tornado supports strings, bytes, and dictionaries as response, you can use Template to building strings and bytes, also you can write response by hand. If you pass a dictionary to response, it will be encoded as JSON.</p>
+
+<p>Tornado will not parse other types request arguments, e.g. Tornado will not parse JSON request bodies, you need to parse these by yourself(override <code>prepare</code> method)</p>
+
+<p>CSRF/XSRF prevent: the session cookie from SiteA is not expired, there is a form in SiteB, the form aims doing something to SiteA, if SiteA don&rsquo;t support XSRF prevent, it will allow submitting if you constructed valid form arguments. If SiteA supports XSRF prevent, it will set a cookie with token to user, and that token will filled in any action form(POST,PUT,DELETE), if these two values are not equal, that request will be prevented, because SiteB can&rsquo;t retrive SiteA&rsquo;s cookie, so that form can&rsquo;t submit with valid cookie value.</p>
+
+<p>Due to the Python GIL (Global Interpreter Lock), it is necessary to run multiple Python processes to take full advantage of multi-CPU machines. Typically it is best to run one process per CPU.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-08-21T22:17:23+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/08/16/tornado-1/">
+		
+			Tornado-1</a>
+	</h2>
+	<div class="entry-content">
+		<p>This is the first part of Tornado studying project.</p>
+
+<p>Tornado can be roughly divided into four major components:</p>
+
+<ul>
+<li>A web framework (including RequestHandler which is subclassed to create web applications, and various supporting classes).</li>
+<li>Client- and server-side implementions of HTTP (HTTPServer and AsyncHTTPClient).</li>
+<li>An asynchronous networking library (IOLoop and IOStream), which serve as the building blocks for the HTTP components and can also be used to implement other protocols.</li>
+<li>A coroutine library (tornado.gen) which allows asynchronous code to be written in a more straightforward way than chaining callbacks.</li>
+</ul>
+
+
+<p>Tornado uses a signle-threaded event loop.This means that all application code should aim to be asynchronous and non-blocking because only one operation can be active at a time.</p>
+
+<p>There are many styles of asynchronous interfaces:</p>
+
+<ul>
+<li>Callback argument</li>
+<li>Return a placeholder (Future, Promise, Deferred)</li>
+<li>Deliver to a queue</li>
+<li>Callback registry (e.g. POSIX signals)</li>
+</ul>
+
+
+<p>There is no free way to make a synchronous function asynchronous in a way that is transparent to its callers.</p>
+
+<p>Coroutines are the recommended way to write asynchronous code in Tornado</p>
+
+<p>A function containing yield is a generator. All generators are asynchronous; when called they return a generator object instead of running to completion.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-08-16T16:16:51+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/08/16/checksums-function-in-macos/">
+		
+			Checksum Functions in MacOs</a>
+	</h2>
+	<div class="entry-content">
+		<p>It&rsquo;s better to calculate checksum for your downloaded files, it can make sure you download that real file from server, not from the ISP proxy server.</p>
+
+<p>In MacOS, you can use <code>md5</code> and <code>shasum</code> to calculate file checksums.</p>
+
+<ul>
+<li>calculate a MD5 checksum</li>
+</ul>
+
+
+<p><code>md5 xxx.data</code></p>
+
+<ul>
+<li>calculate a SHA-1 checksum</li>
+</ul>
+
+
+<p><code>shasum -a 1 xxx.data</code></p>
+
+<ul>
+<li>calcuate a SHA-256 checksum</li>
+</ul>
+
+
+<p><code>shasum -a 256 xxx.data</code></p>
+
+<p>Thanks for <a href="http://notepad2.blogspot.jp/2012/07/mac-os-x-how-to-generate-md5-sha1.html">here</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-08-16T15:22:06+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -578,212 +803,6 @@ ISP：中国联通
 
 
 	<a class='category' href='/blog/categories/play/'>play</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/12/26/notimplemented-in-python/">
-		
-			NotImplemented-in-python</a>
-	</h2>
-	<div class="entry-content">
-		<p>It&rsquo;s best to return <code>NotImplemented</code> in magic method(e.g. <code>__eq__</code>, <code>__ne__</code>, etc), see <a href="http://shahriar.svbtle.com/python-notimplemented-type">here</a> for details.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># example.py</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
-</span><span class='line'>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;Comparing an A with an A&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
-</span><span class='line'>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
-</span><span class='line'>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;Comparing an A with a B&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
-</span><span class='line'>        <span class="k">print</span><span class="p">(</span><span class="s">&#39;Could not compare A with the other class&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">return</span> <span class="bp">NotImplemented</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
-</span><span class='line'>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;Comparing a B with another B&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
-</span><span class='line'>        <span class="k">print</span><span class="p">(</span><span class="s">&#39;Could not compare B with the other class&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">return</span> <span class="bp">NotImplemented</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>a</code> is instance of ClassA, and <code>b</code> is instance of ClassB, if we invoke <code>a == b</code>, we will get the result, True or False, but if we invoke <code>b == a</code>, we will also get the result! Because of we return <code>NotImplemented</code> in Class B&rsquo;s <code>__eq__</code> method, runtime could invoke Class A&rsquo;s <code>__eq__</code>, that method can compare A and B.</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-12-26T21:03:20+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/12/20/quote-in-urllib/">
-		
-			Safe Characters of Quote Method in Urllib</a>
-	</h2>
-	<div class="entry-content">
-		<p>quote accept two arguments: a string and safe characters. If you pass empty to <code>quote</code> as the second parameter, it means every characters except preserved characters will be replaced by a % leading characters, e.g. space will be replaced by %20, etc.</p>
-
-<p>In my project, I invoke quote like <code>quote(params, '')</code>, and I have imported <code>unicode_literals</code>, so I passed a unicode parameter to <code>quote</code> method.</p>
-
-<p>What will happen?</p>
-
-<p>Next time you invoke quote with the same <code>safe</code> parameter you used before, you may get an error like <code>UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)</code>, urllib will cache the safe parameter(urllib.py 1277 line), it expects a byte type parameter but you pass an unicode one, also, that library didn&rsquo;t check or convert it before it uses.</p>
-
-<p>Best practice, pass a byte parameter like <code>b''</code> to <code>quote</code> if you have same usage(unicode literals) like me.</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-12-20T20:27:59+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/11/22/linux-study/">
-		
-			Linux-study</a>
-	</h2>
-	<div class="entry-content">
-		<p>directory permission x means this directory can be work directory, if you want to write or read a file behind this directory, you must have permission x of this directory.</p>
-
-<p>directory permission w means you can delete or create files or directories behind this</p>
-
-<p>usr = unix software resource</p>
-
-<p>&ldquo;-&rdquo; means last work directory(cd /mnt;cd;cd -)</p>
-
-<p>umask means default permission minus this mask, e.g default new directory 777, if mask is 022, then you will get 777-022——>755 directory; default new file 666, is mask is 002, then you will get 666 - 002——>664 file. mask only can be set in (1, 2, 4) every bit, one bit means the sum of one permission group(current/group/others). umask is based on user, default root has a 0022 mask, normal user has a 0002 mask.</p>
-
-<p>lsattr/chattr is available on ext2/ext3 filesystem, add ‘+i’ attribute can lock one file, no edit or delete, even you are root, ‘+a’ attribute can let a file only accept append content, etc.</p>
-
-<p>SUID, SGID, SBIT special permission:
-there is a ’s’ on x position of user part, like ‘rws- - - - - -‘. SUID can only set to binary program, if user has x permission of this binary, it can temporarily get the owner permission of this binary, e.g binary ‘passwd’ and /etc/shadow file, shadow only can be updated by root, but every user can change their password via ‘passwd’, it means the user temporarily get owner(root) permission by SUID special permission.
-SGID similar as SUID, there will be a ’s’ on x position of group part like ‘rwx- - s - - x’. if a user can execute binary, he will temporarily get owner permission, e.g binary ‘locate’ and file ‘mlocate.db’. SGID can be set on a directory, it means if a user have r and x permission of one directory, and ’s’ set on this directory, this user can create a file which owner group is this directory’s.
-SBIT(Sticky BIT) only set to directory, if a directory has this permission, a user who can create file or directory on this directory, the new file or new directory can only delete by root or himself, e.g /tmp directory, root can delete your new file, and you can also delete it, but others can not.
-SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SBIT, if omit, this bit is zero, if you set a invalid SUID/SGID/SBIT, there will be upper case S/T, lower case is valid.</p>
-
-<p>find / -size 1M -exec ls -l {} \;     {} means the args from find, “\;” means the end of “exec”, commands in exec can not use alias.</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-11-22T14:14:25+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>

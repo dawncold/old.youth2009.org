@@ -7,7 +7,11 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="1.关闭紧急运动传感器 mac系统没有把这些传感器的设置、界面什么的体现到UI里，让我一度以为mbp没有这种设备，实际这也算是mac系统的设计理念吧，把普通用户无须知晓的东西屏蔽掉，让用户看起来、用起来异常简单，不像thinkpad那样，直接把硬盘活动保护啥的做成一个功能给用户展示。。。你看， &hellip;">
+	<meta name="description" content="两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。 0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响： 1
+2
+fdisk /dev/sda
+fdisk /dev/sdb 1.创建PV 1
+sudo pvcreate /dev/sd{a1,b1 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +80,179 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/10/08/lvm-and-raid1/">
+		
+			LVM+RAID实践</a>
+	</h2>
+	<div class="entry-content">
+		<p>两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。</p>
+
+<p>0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>fdisk /dev/sda
+</span><span class='line'>fdisk /dev/sdb
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>1.创建PV</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pvcreate /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.创建VG</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vgcreate -s 16M vg0 /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.创建LV</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m <span class="m">1</span> -lxxxx --corelog
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-08T14:09:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/lvm/'>lvm</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/10/04/dict-formatting-in-python/">
+		
+			Python中dict格式化</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近在工作中遇到过写SQL的问题，参数是直接传递进去的，比如这样：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>db().execute('SELECT * FROM xxx WHERE id = %(id)s', id=get_id())</span></code></pre></td></tr></table></div></figure>
+
+
+<p>今天细看Google提供的Python课程发现一个叫DictFormatting的部分，里面就有类似这样的语法，现在才明白。以前用过Python的格式化输出，其实这个dict的格式化和字符串的类似，就是在字符串格式化的基础之上加入了dict的key，%s是表示这里有字符串，而%(xxx)s是表示字符串，而且是以xxx为key的字符串，这个value就是从字典中给出。一半会在这样一个字符串后加“% dictname”表示值从dictname这个字典中给出，这不就是和字符串格式化一样么。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-04T17:54:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/10/04/sort-method-in-python/">
+		
+			Python中的sort方法</a>
+	</h2>
+	<div class="entry-content">
+		<p>打算从今天开始自习再学学Python的基础，选了Google提供的Python课程，学到list部分，有个练习题目要求针对一组tuples排序，根据tuples的最后一个元素排序，有个hint，可以用key=function这种方法，于是搜索了一番，在Python的wiki中找到这个key方法的描述：</p>
+
+<p>从Python2.4以后list.sort()和sorted()方法都提供了一个key可选参数，传入一个function用来决定排序需要的key。这个key就是所排序元素的权值，最终就是根据权值来排序了。你也可以自己写一个方法，就是那种用def来定义的方法，不过要求接受一个参数，返回一个值，接受的参数就是这个集合（list、dict、tuple）中的某个元素。我是这样写的，it works：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def sort_last(tuples):
+</span><span class='line'> # +++your code here+++
+</span><span class='line'> tuples.sort(key = lambda t: t[-1])
+</span><span class='line'> return tuples</span></code></pre></td></tr></table></div></figure>
+
+
+<p>根据tuple中最后一个排序。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-04T14:58:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -566,205 +743,6 @@
 
 
 	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/07/05/validation-of-filefield-in-wtforms/">
-		
-			WTForms中的FileField验证</a>
-	</h2>
-	<div class="entry-content">
-		<p>本来打算针对上传的图片进行验证，不过发现在form中加入enctype属性之后原本针对FileField的验证就不管用了，field.data始终是None，但是去掉enctype属性就ok，不过去掉之后不能上传文件了，所以最终只好去掉验证，在request中进行验证。</p>
-
-<p>比如我是这样验证没有选择图片的：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>form = xxxForm(request.form)
-</span><span class='line'>f = request.files["image"]
-</span><span class='line'>if len(f.filename) == 0:
-</span><span class='line'> form.image.errors = ValidationError(u"need a pic file!!!")
-</span><span class='line'> return render_template("xxx", form = form)
-</span><span class='line'>......</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果有不同的见解请告诉我哦！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-05T20:17:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/07/02/deploy-flask-on-my-vps/">
-		
-			VPS中部署了Flask框架</a>
-	</h2>
-	<div class="entry-content">
-		<p>一开始我也是用web.py的，不料接受不了它的session处理，然后离开，Django这种庞大的东西我是没精力去研究了，当然开始也伴随激情看过文档，没坚持下去，后来和强锅一起找了不少框架做东西，我实践性比较强，就找到了Flask，感觉还挺好用的，做了一个todo，有兴趣可以看：<a href="http://todo.wodeyitian.com%E3%80%82">http://todo.wodeyitian.com%E3%80%82</a></p>
-
-<p>原先部署在dotcloud上，刚刚在自己的VPS上完成了nginx+uwsgi+flask的集成，当然还是没有废弃掉php，为了好几个博客嘛～</p>
-
-<p>总的来说就是用virtualenv来创建各个app的目录，在里面安装需要的环境（flask、mysql-python、beautifulsoup4等等吧），nginx的配置大概如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>server <span class="o">{</span>
-</span><span class='line'>     listen       80<span class="p">;</span>
-</span><span class='line'>     server_name  todo.wodeyitian.com<span class="p">;</span>
-</span><span class='line'>     location / <span class="o">{</span>
-</span><span class='line'>               include uwsgi_params<span class="p">;</span>
-</span><span class='line'>               uwsgi_pass 127.0.0.1:9090<span class="p">;</span>
-</span><span class='line'>               uwsgi_param UWSGI_PYHOME /home/wwwroot/python_app_todo<span class="p">;</span>
-</span><span class='line'>               uwsgi_param UWSGI_CHDIR /home/wwwroot/python_app_todo/app_dir<span class="p">;</span>
-</span><span class='line'>               uwsgi_param UWSGI_SCRIPT todoApp:app<span class="p">;</span>
-</span><span class='line'>     <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>UWSGI_PYHOME是app的主目录，下面的CHDIR是app中py文件所在的目录，这个可以自己设置，下面的SCRIPT是入口脚本模块名和变量名，模块就是文件名喽，变量一般在flask都是用app作为整个网站的入口变量，写过python基本都能明白这个。</p>
-
-<p>安装好uwsgi后可以配置开启：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>uwsgi -s :9090 -M -p <span class="m">4</span> -t <span class="m">30</span> --limit-as <span class="m">128</span> -R <span class="m">10000</span> -d uwsgi.log --vhost
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>使用9090端口监听，-M开启主控线程，-p 4是开启4个线程，-t 30是超过30秒不响应丢弃，limit-as 128是限制128Mb的内存占用，-R 10000是超过10000的请求就自动respawn（似乎是自动复制？重启？之类的），-d是日志，&ndash;vhost这个可以让多个app共用一个uwsgi，很好用的！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-02T20:46:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/vps/'>vps</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/06/25/property-not-found-in-el-expression/">
-		
-			关于EL表达式中的Property 'Name' Not Found on Type java.lang.String错误</a>
-	</h2>
-	<div class="entry-content">
-		<p>好了，我直接说自己遇到的情况，就是上面这行提示，找不到name属性，在java.lang.String中，仔细看哦，这句话的意思是你在一个String类型中找name属性，当然不会找到了！！！因为本来String中就没有name属性。</p>
-
-<p>初衷是一个list中，里面的每个元素都有name属性，但是经过JPQL查询后的list给了jsp页面，在输出的时候就得到了这样的提示。实际上我是JPQL写错了，我直接得到了具体的值，所以是String类型的一个list，应该用JPQL得到实体，这样就OK了。</p>
-
-<p>比如：得到的是Student实体，可以用里面的name属性。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>SELECT s FROM Student s, School sc WHERE sc.city <span class="o">=</span> <span class="s1">&#39;北京&#39;</span> AND s.school.id <span class="o">=</span> sc.id AND s.name LIKE <span class="s1">&#39;张%&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>但是：得到的就是具体的name了，再用name属性就会出现上面的错误</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>SELECT s.name FROM Student s, School sc WHERE sc.city <span class="o">=</span> <span class="s1">&#39;北京&#39;</span> AND s.school.id <span class="o">=</span> sc.id AND s.name LIKE <span class="s1">&#39;张%&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这种错误很难搞的！！！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-25T09:00:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/s2sh/'>s2sh</a>
 
 
 </div>

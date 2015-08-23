@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="stone soup 和 boiled forgs是两种不同的引导，一种是良性的，一种是”恶性”的。恶性的意思是，你对forg有伤害，最后被你煮死了。而stone soup只是借助其他人的力量达到自己的愿望，所以，boiled forgs主要还是提醒我们要有一个big picture的概念， &hellip;">
+	<meta name="description" content="今天开始学学Shell编程，不光是因为需要在惯例服务器的时候使用到，平常作为一门必须掌握的脚本语言也是很有必要的，所以就学吧，况且那本《Shell脚本学习指南》已经买了放那里好久了，就书刚到的时候看了两页，真的就像是两页，后来光看《The Pragmatic Programmer》和《1Q84》 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,228 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/21/shell-study/">
+		
+			Shell Study</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天开始学学Shell编程，不光是因为需要在惯例服务器的时候使用到，平常作为一门必须掌握的脚本语言也是很有必要的，所以就学吧，况且那本《Shell脚本学习指南》已经买了放那里好久了，就书刚到的时候看了两页，真的就像是两页，后来光看《The Pragmatic Programmer》和《1Q84》了。</p>
+
+<p>shell脚本的第一行一般写明这个脚本使用哪种脚本解释器运行，以"#!&ldquo;开头，后面加脚本解释器的名字和相应参数，如果不需要什么参数就写上“-”，这是出于安全考虑，可以避免某种程度上的欺骗式攻击（spoofing attack）。</p>
+
+<pre><code>选项：命令后面用一个“-”开头书写的内容，如：ls -l，那么“-l”就是选项。
+参数：有的选项需要传入参数，那么就要紧跟着那个需要参数的“选项”，如：cc -o exp exp.c
+没参数的选项合并，例如：ls -al = ls -a -l，书写非常方便吧。
+分号分隔开几条命令，会逐一执行；如果用“&amp;”的话，就会让命令进入后台执行，可以立刻相应你的下一条命令。
+</code></pre>
+
+<p>shell中的变量赋值有个要求，变量名后，到等号，到值都不能有空格：“var=1”这是正确的，“var = 1、var= 1等等都不对”，这点有些别扭，我喜欢多加空格。。。而且大多数coder也是如此吧？</p>
+
+<p>取出刚刚你创建的变量需要在变量名前面加"$&ldquo;符号，看来和取钱的感觉差不多哈哈，或许以前认为变量中的值放在内存或者磁盘上都是昂贵的，如同取钱。</p>
+
+<p>变量赋值这里还有些东西值得说一下：</p>
+
+<pre><code>可以一行多次赋值，比如，first=1 second=2 third=3
+如果有空格就加双引号: var="1 2 3"，这看起来像string
+还可以这样，var="$first $second $third"，最后var的值里面会包含first、second、third的值，这点就不太像string了，需要注意！！！
+</code></pre>
+
+<p>由于echo命令在Unix多个发行版之间有差异，所以输出的话还是用printf好了：—）</p>
+
+<p>今天就先到这。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-21T21:50:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/11/pragmatic-programmer-log/">
+		
+			Pragmatic Programmer Log</a>
+	</h2>
+	<div class="entry-content">
+		<p>昨晚看完了第一章，顿时感觉十分充实，因为在过去的一个星期里每晚都在看书而不是把时间花在weibo上。Your Knowledge Protfolio讲的是为自己的知识不断投资，你现在钟爱的或者正在使用的技术可能只是当前这个时期火热的，他们会随着时间的推演发生巨变，如果你不不断为自己的知识投资，那很难适应社会的发展需要。我们搞编程的感受应该非常丰富，可以说每天都有新技术出现老技术衰亡，应对这种挑战就应该定期学习新技术，更多的掌握技术从而面对一个问题你能有很多种解决方案。</p>
+
+<p>后面讲了要批判性思维，海量信息涌入的时候不要乱了阵脚，思考哪些是真的哪些是假的，对于信息社会这点已经很平常了。</p>
+
+<p>交流。我们不能闭门造车，人与人之间的交流永远大于人与机器间的交流。作者介绍了一些交流方面的技巧，其实不必太在乎这么多，只要合理处理好人际关系，跟着感觉走就不会有问题。</p>
+
+<p>补充很多单词：</p>
+
+<pre><code>interest:           投资
+pithy:              简称的
+homily:             训诫
+irrlelvant:         不恰当的、不想干的
+obsolete:           过时的
+regularly:          定期的，有规律的
+diversification:    多元化
+spectrum:           范围
+potentially:        潜在的
+high-reward:        高回报
+conservatively:     保守地
+miss out:           错过机会
+emerging:           正在浮现的
+payoff:             收益
+intellectual:       智力的
+capital:            资本
+rut:                常规
+equation:           相等、均衡
+vice:               代替
+versa:              反
+cross-pollination:  交叉授粉
+voraciously:        贪婪地
+faintest:           模糊的
+guru:               专家
+thumbing:           翻阅
+vendor:             小贩
+beware:             小心
+unswayed:           不受影响的
+zealot:             狂热者
+underestimate:      低估
+commercialism:      商业主义
+dogma:              教条
+insist:             坚持
+torrent:            激流
+sterile:            无结果的
+proposal:           提议
+advocate:           主张
+justify:            证明
+convey:             表达
+</code></pre>
+
+<p>“出来混总是要还的”，这句话已经被很多人认定是亘古不变的真理了，呵呵。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-11T14:19:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/09/pragmatic-programmer-log/">
+		
+			Pragmatic Programmer Log</a>
+	</h2>
+	<div class="entry-content">
+		<p>比较喜欢的一章，讲软件的足够完美性。世间几乎所有东西都不是完美的，当然有完美的——“不完美”就是完美的，就像“永远不变的只有变化”一样。</p>
+
+<p>似乎和昨天的有些关联，要先给用户们一个不够完美的东西用，他们就会给出意见，你再逐渐完美这个软件，当然这也不可能达到完美的标准，只是更接近用户的需求了，其实这已经足够了，你为了用户制定出软件，满足了他们的需求不就是完美的了么？那些什么良好的UI、UE，如果end user根本都没能感到你的用心良苦，那只能算是你的蛋疼设计了（为用户创造出需求的除外）。</p>
+
+<p>质量算是需求的一部分么？</p>
+
+<p>我们的需求文档会包含质量的规约么？乍一看似乎有不同声音，需求文档只要满足需求，需求又是什么呢？人们在描述自己需求的时候会加入质量这个衡量标准么？还是找大牛们交流去吧。</p>
+
+<p>何时stop。这个问题在我这里常常出现，似乎coder都免不了带点完美主义，做一个feature会不断refine it，最终overrefinement，make a solution becomes academic research。作者没明确说when，只是说for a while，然后慢慢完善就好了。。。不负责的作者。</p>
+
+<p>补充几个单词：</p>
+
+<pre><code>overembellishment:      过于美化
+sketch out:             拟订
+preferable:             更好的
+tight:                  紧的
+polish up:              改善
+advocate:               提倡
+stringent:              紧迫的
+pacemaker:              心脏起搏器
+space shuttle:          航天飞机
+disseminate:            公开的
+shorter incubation:     短潜伏期
+conspire:               阴谋
+oft:                    常常
+mar:                    破坏
+strive:                 努力
+</code></pre>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-09T00:05:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -500,151 +722,6 @@ cornerstone:    奠基石
 
 
 	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/life/'>life</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/02/online/">
-		
-			Online</a>
-	</h2>
-	<div class="entry-content">
-		<p>我们今天终于上线了，给编辑们用了一下，我还不知道他们的反馈如何，应该还不错吧，但很可惜由于公司内部网络的问题，我们的服务器不是所有人都能访问到，好像听说有个部门访问不到，具体问了一下工程部说改个gateway就能行了，当时正在抓图，就没动，下周再修改一下试试吧。</p>
-
-<p>据说下周要开始主攻特辑这部分了，eric说我可能会很忙了，因为一直是我再搞特辑，哎，说特辑真别扭，原来我们一直在用topic，现在竟然换一个说法。</p>
-
-<p>明天打算吃火锅，早晨早去买点菜，晚上happy一把。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-02T20:17:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/life/'>life</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/01/git-mass/">
-		
-			Git Mass</a>
-	</h2>
-	<div class="entry-content">
-		<p>原本以为今天能上线给编辑们使用，结果只是找了编辑部的几个人来现场的开发环境中玩了玩，提了提意见，明天下午1点我们正式开始用生产环境。</p>
-
-<p>今天我又部署了好几次，期间也出现过一些问题，但都一一修复了，比较大的就是我把Git搞乱了，让周围几个人突然陷入困境。其实是我在生产分支上做了改动，发现应该去master做，结果我就跳到master上想要合并生产分支，后来被我不断rebase弄坏了，处于一种无分支所在的状况，taowen帮我reset到了之前的地方，还好改动不多，又凭记忆修复过来了。看来部署这个东西真不能让一个人来搞定，一合并就会出现不少冲突，有的你能解决，有的解决不了（现在还没遇到解决不了的）。</p>
-
-<p>上午的standup持续了好久，大概又是在讨论需不需要这么多生产环境的纪律，昨天taowen只是加了commit前需要self-check，现在又出现了一个component不能超过xxx行的纪律，而且自动算出来，如果超了你就无法commit，wanglei今天早晨中招，顺便就开始说这个事儿了，我猜等我要做别的东西的时候也会这样吧。</p>
-
-<p>backup、restore、restore-from-baseline这几个虽然看起来简单，但调试起来缺不怎么容易，而且在调试过程中还出现了不少突发问题，解决起来也是相当费时间的，现在部署后再做这些工作应该都没什么问题了。</p>
-
-<p>晚上回来后我把web service的检查加入到了setting中，把部署打tag加入到了deploy流程中。明天去了打算把部署前lock所有sql脚本加入进去，这样每次部署就需要和大家说一下了。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-01T21:56:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/31/tomorrow-internal-test/">
-		
-			Tomorrow Internal Test</a>
-	</h2>
-	<div class="entry-content">
-		<p>也不知道怎么的，明天竟然就要内部测试了，首先是让编辑们录入商品，然后逐渐开始上一些主题、促销什么的东西，后者还没有时间表，不过从星期一就知道了星期四开始正式录入商品，也就是说我们的数据库从星期四就不能再drop了，只能migrate。</p>
-
-<p>今天我们每个人都开始了带生产环境下的开发，一切操作都和上线了一样，包括提交之前必须有测试跑过才可以提交，这里被taowen监视着安装了一个hook，如果不跑一遍测试，根本没办法commit。还有数据库的baseline无法再被修改，这里也有一个licked文件管理着，如果需要修改只能migrate到baseline才可以。</p>
-
-<p>部署方面今天我做了几个脚本方便使用——backup、restore、restore-from-baseline，分别是备份、恢复、远程恢复，备份既可以是server来做，也可以自己来做，只是自己做这个似乎没什么必要，server会自动在4点的时候备份一下var目录，远程恢复就是回复一个server的备份到本地开发使用。</p>
-
-<p>今天还熟悉了一下tar的使用，现在是用tar打包，顺便压缩成了gz，所以打包需要czf参数，之所以这样排序是因为f参数后面是要跟着tar.gz文件名作为参数的，以前我以为随便排序，现在想想好傻啊。今天还遇到一个小问题，tar打包的时候如果你给出的路径是绝对的，那么打包也会从头开始帮你打包，比如你给了一个从根分区到你要打包目录的路径，那么打包完了，也是从根分区开始，恢复起来比较讨厌，此时需要一个C参数，大写C，Ta可以让你的工作目录Change到一个地方去，这样你就能在打包的时候把工作目录移动到需要的地方，这样就能不带那么长的路径了，当然解包的时候同样需要C参数指定好位置。</p>
-
-<p>restore-from-baseline那里还有点问题，没有做测试找出漏洞，只能明天再去试试了，还有就是在部署的时候supervisor的配置文件有错误，导致web部署出问题，我看了看改起来比较费劲，让taowen干掉吧明天。</p>
-
-<p>明天，可能会很紧张吧：）</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-31T21:35:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>

@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="惭愧，第一次给开源项目做贡献竟然是现在，其实早就想帮着做点啥了，无奈技术能力不足，终于发现一个机会，给progit的README文档添加MacOS用户的使用方式，可惜噩梦也是这样开始的。 一开始添加了usage for macos users，commit然后push，作者和我说少一个blank &hellip;">
+	<meta name="description" content="在wanglei的鼓动下，我开始了探寻Ruby这款被他成为做产品的语言，同时，Ruby对我来说也是上天的安排——我的生日石就是Ruby～虽然如此，其实我早就开始了Ruby的探索，曾经买过《松本行弘的程序世界》、《Ruby变成语言》这两本很好的书，无奈当时怎么看也看不进去，就暂且放弃了，相反， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,143 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/01/some-ruby-study-log/">
+		
+			Ruby学习记录</a>
+	</h2>
+	<div class="entry-content">
+		<p>在wanglei的鼓动下，我开始了探寻Ruby这款被他成为做产品的语言，同时，Ruby对我来说也是上天的安排——我的生日石就是Ruby～虽然如此，其实我早就开始了Ruby的探索，曾经买过《松本行弘的程序世界》、《Ruby变成语言》这两本很好的书，无奈当时怎么看也看不进去，就暂且放弃了，相反，更喜欢了Python。</p>
+
+<p>最近的工作语言一直是Python，感觉很好，不过Ruby对我来说更显得优美一点，主要是喜欢他们的文档，非常全面，但不喜欢TA的快速变更，特别是ROR，当时买的书和网上的版本很难契合，我又不那么喜欢用低版本的ROR，学起来就痛苦一点，最终还是放弃了。</p>
+
+<p>前几天看到Learn Python the Hard Way发布了3.0版，同时网站也更名为Learn Code the Hard Way，十分符合技术人士的胃口，当然用来入门还是可以的，深入的话还是得靠自己阅读更高级的书和工作实践。这个网站现在也有Ruby、C、Regex、SQL等等教程，于是在没有书的情况下，我就从这里学习Ruby了。</p>
+
+<p>现在已经学了基本的puts和gets，能写超小的CLI了，不过还得学点loop什么的才可以，而且各种object的method也得熟悉，否则很痛苦：（</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-01T08:22:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/tuby/'>tuby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/12/29/less-debug/">
+		
+			LESS Debug</a>
+	</h2>
+	<div class="entry-content">
+		<p>默认less使用production的env，但有时候出现语法错误不能正常编译下去很难调试，所以一般使用development的env开发。</p>
+
+<p>在引用less之前加入：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var less={env: "development"};</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就让less成为development环境了。如果不行的话可以使用Chrome的console，直接给less.env赋值，这只是针对上面方法不能用的时候。赋值好后调用<code>less.refresh()</code>，可以让less做一次刷新，如果有错误就会在页面顶部出现。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-29T18:04:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/12/20/ie6/">
+		
+			Ie6</a>
+	</h2>
+	<div class="entry-content">
+		<p>这几天都卡在ie6的兼容问题上了，都要上线了才想到要去用ie来看下效果，前一次看的时候没什么问题，还很欣慰，怎么会这么安全？最近用ie6、360、搜狗一看，直接无法接受了，但原网站的最大用户群就是360，现在搞不清楚360用的是不是ie6的内核，虽然它自称是ie8的内核了，但我今天下载了用仍然是ie6，然后他又会提示你可以升级到ie8内核，真是流氓啊。我们现在如果能够把网站调整到ie6下也正常显示，就基本不怕ie7、8、9了，相信不管一款软件多么垃圾，随着版本的提升，也会越来越好，要不然根本都不可能升级，也违背社会的发展啊。。。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-20T23:26:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -486,228 +623,6 @@ foster:                 培养
 
 
 	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/21/shell-study/">
-		
-			Shell Study</a>
-	</h2>
-	<div class="entry-content">
-		<p>今天开始学学Shell编程，不光是因为需要在惯例服务器的时候使用到，平常作为一门必须掌握的脚本语言也是很有必要的，所以就学吧，况且那本《Shell脚本学习指南》已经买了放那里好久了，就书刚到的时候看了两页，真的就像是两页，后来光看《The Pragmatic Programmer》和《1Q84》了。</p>
-
-<p>shell脚本的第一行一般写明这个脚本使用哪种脚本解释器运行，以"#!&ldquo;开头，后面加脚本解释器的名字和相应参数，如果不需要什么参数就写上“-”，这是出于安全考虑，可以避免某种程度上的欺骗式攻击（spoofing attack）。</p>
-
-<pre><code>选项：命令后面用一个“-”开头书写的内容，如：ls -l，那么“-l”就是选项。
-参数：有的选项需要传入参数，那么就要紧跟着那个需要参数的“选项”，如：cc -o exp exp.c
-没参数的选项合并，例如：ls -al = ls -a -l，书写非常方便吧。
-分号分隔开几条命令，会逐一执行；如果用“&amp;”的话，就会让命令进入后台执行，可以立刻相应你的下一条命令。
-</code></pre>
-
-<p>shell中的变量赋值有个要求，变量名后，到等号，到值都不能有空格：“var=1”这是正确的，“var = 1、var= 1等等都不对”，这点有些别扭，我喜欢多加空格。。。而且大多数coder也是如此吧？</p>
-
-<p>取出刚刚你创建的变量需要在变量名前面加"$&ldquo;符号，看来和取钱的感觉差不多哈哈，或许以前认为变量中的值放在内存或者磁盘上都是昂贵的，如同取钱。</p>
-
-<p>变量赋值这里还有些东西值得说一下：</p>
-
-<pre><code>可以一行多次赋值，比如，first=1 second=2 third=3
-如果有空格就加双引号: var="1 2 3"，这看起来像string
-还可以这样，var="$first $second $third"，最后var的值里面会包含first、second、third的值，这点就不太像string了，需要注意！！！
-</code></pre>
-
-<p>由于echo命令在Unix多个发行版之间有差异，所以输出的话还是用printf好了：—）</p>
-
-<p>今天就先到这。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-21T21:50:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/11/pragmatic-programmer-log/">
-		
-			Pragmatic Programmer Log</a>
-	</h2>
-	<div class="entry-content">
-		<p>昨晚看完了第一章，顿时感觉十分充实，因为在过去的一个星期里每晚都在看书而不是把时间花在weibo上。Your Knowledge Protfolio讲的是为自己的知识不断投资，你现在钟爱的或者正在使用的技术可能只是当前这个时期火热的，他们会随着时间的推演发生巨变，如果你不不断为自己的知识投资，那很难适应社会的发展需要。我们搞编程的感受应该非常丰富，可以说每天都有新技术出现老技术衰亡，应对这种挑战就应该定期学习新技术，更多的掌握技术从而面对一个问题你能有很多种解决方案。</p>
-
-<p>后面讲了要批判性思维，海量信息涌入的时候不要乱了阵脚，思考哪些是真的哪些是假的，对于信息社会这点已经很平常了。</p>
-
-<p>交流。我们不能闭门造车，人与人之间的交流永远大于人与机器间的交流。作者介绍了一些交流方面的技巧，其实不必太在乎这么多，只要合理处理好人际关系，跟着感觉走就不会有问题。</p>
-
-<p>补充很多单词：</p>
-
-<pre><code>interest:           投资
-pithy:              简称的
-homily:             训诫
-irrlelvant:         不恰当的、不想干的
-obsolete:           过时的
-regularly:          定期的，有规律的
-diversification:    多元化
-spectrum:           范围
-potentially:        潜在的
-high-reward:        高回报
-conservatively:     保守地
-miss out:           错过机会
-emerging:           正在浮现的
-payoff:             收益
-intellectual:       智力的
-capital:            资本
-rut:                常规
-equation:           相等、均衡
-vice:               代替
-versa:              反
-cross-pollination:  交叉授粉
-voraciously:        贪婪地
-faintest:           模糊的
-guru:               专家
-thumbing:           翻阅
-vendor:             小贩
-beware:             小心
-unswayed:           不受影响的
-zealot:             狂热者
-underestimate:      低估
-commercialism:      商业主义
-dogma:              教条
-insist:             坚持
-torrent:            激流
-sterile:            无结果的
-proposal:           提议
-advocate:           主张
-justify:            证明
-convey:             表达
-</code></pre>
-
-<p>“出来混总是要还的”，这句话已经被很多人认定是亘古不变的真理了，呵呵。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-11T14:19:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/09/pragmatic-programmer-log/">
-		
-			Pragmatic Programmer Log</a>
-	</h2>
-	<div class="entry-content">
-		<p>比较喜欢的一章，讲软件的足够完美性。世间几乎所有东西都不是完美的，当然有完美的——“不完美”就是完美的，就像“永远不变的只有变化”一样。</p>
-
-<p>似乎和昨天的有些关联，要先给用户们一个不够完美的东西用，他们就会给出意见，你再逐渐完美这个软件，当然这也不可能达到完美的标准，只是更接近用户的需求了，其实这已经足够了，你为了用户制定出软件，满足了他们的需求不就是完美的了么？那些什么良好的UI、UE，如果end user根本都没能感到你的用心良苦，那只能算是你的蛋疼设计了（为用户创造出需求的除外）。</p>
-
-<p>质量算是需求的一部分么？</p>
-
-<p>我们的需求文档会包含质量的规约么？乍一看似乎有不同声音，需求文档只要满足需求，需求又是什么呢？人们在描述自己需求的时候会加入质量这个衡量标准么？还是找大牛们交流去吧。</p>
-
-<p>何时stop。这个问题在我这里常常出现，似乎coder都免不了带点完美主义，做一个feature会不断refine it，最终overrefinement，make a solution becomes academic research。作者没明确说when，只是说for a while，然后慢慢完善就好了。。。不负责的作者。</p>
-
-<p>补充几个单词：</p>
-
-<pre><code>overembellishment:      过于美化
-sketch out:             拟订
-preferable:             更好的
-tight:                  紧的
-polish up:              改善
-advocate:               提倡
-stringent:              紧迫的
-pacemaker:              心脏起搏器
-space shuttle:          航天飞机
-disseminate:            公开的
-shorter incubation:     短潜伏期
-conspire:               阴谋
-oft:                    常常
-mar:                    破坏
-strive:                 努力
-</code></pre>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-09T00:05:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>

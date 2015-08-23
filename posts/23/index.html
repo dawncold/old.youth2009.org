@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="对手篇 「拒绝照搬」中提到： 怎样判断自己是否在盲目模仿别人？如果同一种产品，别人已经完成了绝大部分的工作，那你就是在模仿。你可以受别人影响，但不要去剽窃。 「将你的产品去商业化」中提到： 一旦你扬名立万，模仿者便会蜂拥而上，这就是生活。但是你可以用一种绝佳的方法来保护自己不被盲从者们吞没： &hellip;">
+	<meta name="description" content="昨晚还在忙碌网站，一个同学发来短信问了这样一个算法问题：一些人手拉手围成一个圈，从一个人开始报数，数到3的人退出，然后下一个人再开始报数，依然是数到3者退出，问最后剩下2个人是哪两个？ 这题目看起来不算难，但这要是不靠一个语言的特性来解决，还是有些麻烦的。我说的语言特性就是一个bt数组方法， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,281 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/04/23/algo-circle-count-quit/">
+		
+			约瑟夫问题算法</a>
+	</h2>
+	<div class="entry-content">
+		<p>昨晚还在忙碌网站，一个同学发来短信问了这样一个算法问题：一些人手拉手围成一个圈，从一个人开始报数，数到3的人退出，然后下一个人再开始报数，依然是数到3者退出，问最后剩下2个人是哪两个？</p>
+
+<p>这题目看起来不算难，但这要是不靠一个语言的特性来解决，还是有些麻烦的。我说的语言特性就是一个bt数组方法，比如说移除元素啊这样的方法，用纯粹的C语言来写最好了。不过我那位同学是在雪VB.net不知道那里有没有语言特性。我手头上正在写PHP网页，就干脆用PHP写一个出来试试吧：）  </p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="nv">$circle</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+</span><span class='line'><span class="nv">$out</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$num</span><span class="p">;</span><span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="nv">$circle</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$i</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="nv">$count</span> <span class="o">%=</span> <span class="nv">$num</span><span class="p">;</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="nv">$circle</span><span class="p">[</span><span class="nv">$count</span><span class="p">]</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="k">if</span><span class="p">((</span><span class="nv">$n</span> <span class="o">%</span> <span class="nv">$diff</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="nv">$diff</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'><span class="nv">$circle</span><span class="p">[</span><span class="nv">$count</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$out</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="nv">$out</span> <span class="o">===</span> <span class="nv">$num</span> <span class="o">-</span> <span class="nv">$sur</span><span class="p">)</span>
+</span><span class='line'><span class="k">break</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nv">$n</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nv">$count</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这就是主要代码了，还算是简单吧？去Google了一下，看到有些人的解法都用了好麻烦的链表来抽象，用链表确实更符合客观事实，不过那样写起来，是不是给别人看的呢？！</p>
+
+<p>算法的负责度显然是线性的，感觉还可以吧。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-23T09:54:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/algorithm/'>algorithm</a>, <a class='category' href='/blog/categories/php/'>php</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/04/20/rework-study-final/">
+		
+			《REWORK》学习笔记之完结篇</a>
+	</h2>
+	<div class="entry-content">
+		<h1>「亲力亲为」中提到：</h1>
+
+<p>在你亲自尝试做这份工作之前，永远不要雇人去做。只有这样，你才能了解这项工作的本质。你才会懂得如何判断工作完成的好坏，才会知道怎样写出符合实际的岗位招聘要求，也才会清除在面试中该问什么问题。你才能之道该雇佣全职职员还是兼职职员，是将工作直接外包还是坚持自己搞定（强烈推荐后者，如果可能的话. 。</p>
+
+<p>你也会成为以为更加优秀的经理人，因为你是在指导人们完成你已经做过的工作，你知道何时该批评，何时该鼓励。</p>
+
+<p>有时候你可能觉得力有不逮，甚至可能觉得精疲力尽。这很正常。你可以通过招人来摆脱这种感受，也可以通过学习正确的处理方法来解决问题。先试着学习吧。在最初的运营中付出的所有努力，都会变成无数倍的管理只会，最终回报给你。</p>
+
+<p>另外，你应该让自己密切融入业务的方方面面。否则你就会陷入一片茫然，把自己的命运交到别人的手上，这是非常危险的。</p>
+
+<h1>「受不了时再招人」中提到：</h1>
+
+<p>当你在很长一段时间内都被超负荷的工作所困扰，这才是招人的正确时机。此时出现了一些你无法再亲力亲为的事情，你发现工作质量有所下滑，令你感到受不了了，这时才是招人的最佳时机，不要提前招人。</p>
+
+<h1>「放弃牛人」中提到：</h1>
+
+<p>放弃那些你并不需要的牛人，即使你觉得这是个人才。把有能力的人招进来，却让其无所事事，这对公司来说是有害无益的。</p>
+
+<p>牛与不牛没有任何意义，不需要就是不需要。</p>
+
+<h1>「鸡尾酒会上的陌生人」中提到：</h1>
+
+<p>短期内大批招人的后果就如同陷入“全市陌生人的鸡尾酒会”一样。你身边充斥着新面孔，美国儿呢都彬彬有礼，每个人都努力避免矛盾或冲突，没有人说：“这点子真烂。”人们一团和气，互不攻击。</p>
+
+<p>这种一团和气的氛围就是公司陷入麻烦的根源。当有人把事情弄得一团糟时，总得有人直言不讳地说出来。否则，你就是在经营一个既不惹人恨、又不招人爱的公司。</p>
+
+<p>要营造一个能让人直言不讳并且有安全感的环境。你得清楚自己能把别人推多远，你得知道人们话里的真正含义。</p>
+
+<h1>「可笑的求职简历」中提到：</h1>
+
+<p>一个具有6个月工作经验的应聘者和一个具有6年工作经验的应聘者相比，其差别小得令人吃惊。真正的差别来自于个人的努力程度、性格差异以及智力水平。</p>
+
+<p>现在已经不是以时间长短论英雄的时候了，真正重要的是他们到底做得有多好。</p>
+
+<h1>「人人都得干活」中提到：</h1>
+
+<p>在一个小团队里，你需要的是干活的人，而不是监工。每个人都得做事，没有人可以袖手旁观。</p>
+
+<p>救灾篇</p>
+
+<h1>「主动掌控负面新闻」中提到：</h1>
+
+<p>如果你够坦荡，够诚实，够公开，危机应变速度够快，人们就会更加尊重你。不要把头缩回去，也不要苦苦压制坏消息，应该让你的顾客尽可能地拥有知情权。</p>
+
+<p>掌控负面新闻的小贴士：</p>
+
+<ol>
+<li><p>要由公司高层来发布消息，而且要由公司内职位最高的人来强有力地控制局面。</p></li>
+<li><p>消息要广为传播，想尽一切办法将消息传递出去，别尝试隐瞒事实真相。</p></li>
+<li><p>千万别说“无可奉告”。</p></li>
+<li><p>要真情实意地表达歉意，要尽量详细地说明情况。</p></li>
+<li><p>要真切地关心客户的遭遇──然后要证明自己真的在为客户负责。</p></li>
+</ol>
+
+
+<h1>「文化不是由谁创造的」中提到：</h1>
+
+<p>不要过多担心企业文化的事情，不要去强求，你无法给企业安装一种文化。企业文化就像上好的苏格兰威士忌一样，你得给它时间去酝酿。</p>
+
+<h1>「灵感稍纵即逝」中提到：</h1>
+
+<p>灵感是个奇妙的东西，是效率放大器，是推进器。但是它不会停下来等你。灵感转瞬即逝，当它来找你时，要立即把它捕捉住，将其投入工作中去。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-20T23:02:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/rework/'>rework</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/04/19/rework-study-part5/">
+		
+			《REWORK》学习笔记之推广篇</a>
+	</h2>
+	<div class="entry-content">
+		<h1>「甘于低微」中提到：</h1>
+
+<p>要牢牢记住，一旦你把事业做大、深入人心之后，就不可避免地要走稳健路线。当你成为传奇人物，你就必须保持预见性、建立相容性，你将变得更为保守、更难去冒险。这就是僵化的起点、变革的终点。</p>
+
+<h1>「培养自己的拥趸」中提到：</h1>
+
+<p>所有的公司都有顾客，幸运的公司有粉丝，而最幸运的公司则有一帮观众。观众能成为你的秘密武器。</p>
+
+<h1>「普及知识，赢得竞争」中提到：</h1>
+
+<p>不要在消费、销售或者赞助上和竞争对手去攀比。也许你的竞争对手根本还没考虑去传授别人些什么呢。绝大多数公司都在关注销售或服务，但是从未想过传授知识。</p>
+
+<p>个人和小企业适合去传授知识，而大公司不适合。大公司支付得起巨额广告费，而你不能。你能在传授知识方面大力投入，而大公司不能。因为大公司受制于保密政策，公司里的每一款条文都得经由律师过目，并且再经层层严格审查。传授客户只是是专属于你的绝佳制胜机会。</p>
+
+<h1>「效仿大厨」中提到：</h1>
+
+<p>作为一家公司的老板，你也应该分享自己之道的一切。这一点在商业世界中尚属禁区。商业活动总是带有偏执和隐秘的性质。人们认为自己在这方面拥有专利或在那方面又有竞争优势。也许这样想的只是少部分人，不是大部分人。大度的人不应该继续模仿小气者的行为，不要惧怕分享。</p>
+
+<h1>「转到幕后看看」中提到：</h1>
+
+<p>让人们走入幕后，能改善你和他们之间的关系。他们会感到与你亲近起来，将你视为一个常人，而不是一个面目模糊的公司。他们将在你的产品中看到你在后台淌下的汗水和付出的努力。他们会对你的工作产生更深刻的理解和更诚挚的感激。</p>
+
+<h1>「没人喜欢塑料花」中提到：</h1>
+
+<p>不要害怕你的缺点，不完美才真实，真实才能激起人们的共鸣。因此我们喜欢会凋零的真花，而不是那些用不变色的完美的塑料花。不要担心自己应该如何说、如何做。向世界展示你本来的面目、你的缺点、你的全部。</p>
+
+<p>Leonard Koren在他的《侘寂》一书中说道：削减到本质，但不要剥离它的韵；保持干净纯洁，但不要剥夺它的生命力。</p>
+
+<p>所以，你大可直言不讳，畅谈那些别人不愿意讨论的东西。直面你的弱点，向人们展示你最近的工作状况，即使你还没完全搞定它。不完美没关系，也许你看起来不专业，但你却更真实。</p>
+
+<h1>「药贩子最精明」中提到：</h1>
+
+<p>只要你东西可卖，就不要怕给人一点点让其试用。要对自己的产品抱有信心。你应该知道人们会回来购买更多，如果你连这样的信心都没有，只能说明你的产品做得不够好。</p>
+
+<h1>「一夜成名只是传说」中提到：</h1>
+
+<p>你了解那些道听途说来的“一夜成名”的故事吗？往里深挖一点，你就能发现这些成功人士在到达引爆点之前，都已经在这个方向苦熬了很长时间。也有凤毛麟角的几家突然成功的公司，但这种公司往往不能持久──没有牢固的基础去支撑。</p>
+
+<p>把一夜成名的迷梦换成一步一个脚印的成长行动吧。道路很艰难，但你必须充满耐心。你得用功去做，在遇到伯乐之前，你得努力很长时间。</p>
+
+<p>今天就开始培养你的观众，开始聚集那些对你有兴趣的人，然后一直保持下去。多年后，你也回在人们谈论你的“一夜成名”的故事时付之一笑。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-19T18:54:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/rework/'>rework</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -820,151 +1095,6 @@
 
 
 	<a class='category' href='/blog/categories/google/'>google</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/03/22/study-time-mangement-from-os/">
-		
-			从OS的角度学习时间管理</a>
-	</h2>
-	<div class="entry-content">
-		<p>OS的重要性不想再赘述，不过对于一个物理硬件，好的OS能够更大程度发挥其性能，这其中绝对不能缺乏好的设计模式以及优秀的各种调度算法。这里的一切几乎都是编程的理想学习材料，不过对于这样庞大的材料需要好好解读，否则可能根本领悟不到其中的真谛。</p>
-
-<p>时间管理是我个人一直推崇的一种必备技能，自己也看过几本这方面的书，不过都不得要领，感觉书中讲得很多都无法在现在社会环境中普遍适应，所以读着读着就感觉那是作者在说教了。</p>
-
-<p>那么在优秀的OS架构中我们除了能够学到高超的编程技巧外，还可以对里面的一些概念进行抽象，使其能够应用到更多的方面中来，比如我感觉有些东西就能够应用到时间管理上！</p>
-
-<p>这里先说一点，以后如果有新的体会再分享。</p>
-
-<p>目前在单核心的CPU中，OS还是只让CPU在某个时刻只允许处理1条指令，那么我们人也应该如此。你每天要做很多事情，但你只有一个大脑，虽然这个大脑的工作效率非常高，复杂度也远远高于OS的任何调度算法之和，但一次只处理一件事的思想还是应该采纳的。传说有人做过实验，当然是传说，不知道出处。如果同时做多件事情，所需要的时间会比一件件做多出30%，这已经不是一个小数目了。这条经验告诉我们，日常工作中应该集中力量完成当前的这件事情，然后才是下一件，否则你看上去像是在并发执行多项任务，最后实际算下来多花了很多时间，这样就很难保证质量了。而且人类和机器不太一样，人类容易遗忘，机器和我们一样需要记住某些已经计算过的数据，不过机器有PCB，我们有什么呢？读书的话应该是读书笔记吧，其他方面就是备忘录了，总之要保持单一工作就好了！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-03-22T22:51:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/03/19/function-interface-evolvement/">
-		
-			一个函数的接口演化</a>
-	</h2>
-	<div class="entry-content">
-		<p>那天下午打算做个推荐饭菜的应用出来，上机课期间把雏形做好了，现在除了不能自由添加数据以外别的我还都满意，当然不谈UI设计。</p>
-
-<p>介绍一下其中有一个地方的函数接口，就是用来显示“已经有的主食和菜”的两列列表，数据库中分成两个表，一个是主食，一个是菜，相关字段都是一样的──id,name,price加入price是为了提前设计下一个版本，似乎稍微有点过度设计？一开始这样设计没什么问题，相应的PHP函数是available($foodtype,&amp;$array_xx)；这样传递的数组进入后把数据push到数组中，再利用数组显示到网页上，这个函数本来并不负责echo，foodtype分别是数据库中的表名，这样传递进mainfood或者dish就能分别抓取相应表的数据。</p>
-
-<p>接着发现主食中有些可以作为单独一顿饭的东西，比如西红柿鸡蛋面这个，光吃这一种就可以了，再推荐饭菜不合理，于是考虑了主食分级，加入面条类、包子类等，这样数据库中就增加了两个字段──parent、occupy。parent是保存它上级的id，occupy是标记是否可独占，如果独占就不会再推荐菜了。相应的函数就演化成了两个，因为目前不想让dish中的数据分级，所以原来的处理dish表中的数据还是可以的，mainfood中的数据需要一个单独的处理函数，索性叫echo_mf吧，参数还是传递进去一个数组，这个函数有两个主要功能──一个是把这个分级结构显示到页面上，另一个是把所有的子项目和没有子项目的父项目添加到数组中，前台shuffle这个数组来随机显示一个。</p>
-
-<p>我想下一步很可能是这两个函数的整合，即dish也分级后，这两个函数就都可以整合成第二个的样子，因为他们的工作就是一样的了。</p>
-
-<p>现在的mainfood输出还有些问题，原本想的是这样──有米饭、包子等类别，其中包子类中还有各种各样的包子，而米饭就是这一种，所以按照概率来算，父类（米饭、包子）被选择的概率应该是一样的，而只有选到了包子才会去各种包子中选择一个，就是所有选择各种包子的概率之和应该与米饭同样大，现在却不是这样，我把最末端的数据和没有子项目的数据一并放在一起，这样显得冷落了米饭等没有子项目的父类……到底要不要改回来呢？再看看吧。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-03-19T07:50:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/food/'>food</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/03/05/agile-develop-simple-bad-smell-analytics/">
-		
-			坏味的简单分析</a>
-	</h2>
-	<div class="entry-content">
-		<p>软件工程的设计是一种抽象概念，设计的最终体现是源代码。</p>
-
-<p>软件需求总在变化，本来一个简单的程序，经过几次需求变化就需要添加上很多额外的参数来控制流程，这时根本不可能期望修改接口，因为这时很多模块可能已经在使用你，如果你进行了更改，依赖你的所有代码都需要重新编译，这在一个庞大的项目中简直就是灾难！</p>
-
-<p>所以，出现坏味的根本原因就是一开始的轻视设计，又加上不断的需求变化，项目中不可避免的一些依赖，导致需要利用hacks这类方法来躲避灾难，而越是hacks，越是在让项目腐烂！！！</p>
-
-<p>那么敏捷开发者这帮神人是如何做的呢？他们遵循原则、模式等等。敏捷设计是一个过程，而不是事件。在不断变化中，他们能够利用变化，而其他人却被变化弄得不知所措。那么我们期待以后的敏捷原则介绍吧！我总感觉这和Unix里面的KISS有相同的意思。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-03-05T22:10:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/agile/'>agile</a>
 
 
 </div>

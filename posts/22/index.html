@@ -7,7 +7,18 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="用了不少时间PHP，也有些喜欢这种开发语言，但我仍然对Python有强烈的热情，但支持Python的主机服务还不算多，很想体验GAE，但由于在国内嘛，只能这样忍受了。 原本想在Emacs中配置Python的环境，但……有些过于复杂了。安装了很久的emacs，到头来不知道该怎么用，打算卸载掉算了， &hellip;">
+	<meta name="description" content="又是一个bt功能：创建一种函数规则 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+#!/usr/bin/python
+# Filename: lambda.py def make_repeater(n): return lambda s: s*n twice = make_repeater(2) &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +87,253 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/05/lambda-in-python/">
+		
+			用lambda创建函数</a>
+	</h2>
+	<div class="entry-content">
+		<p>又是一个bt功能：创建一种函数规则</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/usr/bin/python
+</span><span class='line'># Filename: lambda.py
+</span><span class='line'>
+</span><span class='line'>def make_repeater(n):
+</span><span class='line'>   return lambda s: s*n
+</span><span class='line'>
+</span><span class='line'>twice = make_repeater(2)
+</span><span class='line'>
+</span><span class='line'>print twice('word')
+</span><span class='line'>print twice(5)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>twice就是创建出来的函数规则，参数2传进入构建了lambda表达式中的n，s值需要再指定，于是后面的word字符串和数字5就算是这个s了吧。了解到这种bt方法很有用，不过对于我这样的初学者来说，暂时还看不到前景：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-05T19:51:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/05/pickle-in-python/">
+		
+			Python中的泡菜</a>
+	</h2>
+	<div class="entry-content">
+		<p>刚刚得知pickle的意思是泡菜，而这篇文章可不打算讲解泡菜的制作方法，只是说明一下python语言中的pickle模块。 这个模块说是能够存储任何python对象，而且还能取出来再使用，有pickle和cPickle两个模块，功能是一样的，只是后者用C语言实现，据说速度比前者快1000倍。那么我们就用后者吧！！！</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#! /usr/bin/python
+</span><span class='line'># -*- coding:utf-8 -*-
+</span><span class='line'># Filename : pickling.py
+</span><span class='line'>
+</span><span class='line'>import cPickle as p
+</span><span class='line'>
+</span><span class='line'>shoplistfile = 'shoplist.dat'
+</span><span class='line'>
+</span><span class='line'>shoplist = ['apple mac book pro','iphone4']
+</span><span class='line'>
+</span><span class='line'>f = file(shoplistfile,'w')
+</span><span class='line'>p.dump(shoplist, f)
+</span><span class='line'>f.close()
+</span><span class='line'>
+</span><span class='line'>print 'ok,we can read the data from '+shoplistfile+':'
+</span><span class='line'>
+</span><span class='line'>f = file(shoplistfile)
+</span><span class='line'>from_file = p.load(f)
+</span><span class='line'>print from_file</span></code></pre></td></tr></table></div></figure>
+
+
+<p>首先定义了一个列表，想要把列表存储到文件中，再打开取出列表。 p作为cPickle的别名了。用dump方法把shoplist存储到f指向的文件中。 后面用load方法从f指向的文件取出数据给了from_file这个变量，而取出的就是我们存起来的那个列表，于是再输出。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-05T18:59:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2011/06/05/inherit-in-python/">
+		
+			Python的继承</a>
+	</h2>
+	<div class="entry-content">
+		<p>python继承过来的子类在初始化的时候不会自动调用父类的构造函数，得自己手动调用。 这里给一点简单的示例代码:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#! /usr/bin/python
+</span><span class='line'># -*- coding:utf-8 -*-
+</span><span class='line'># Filename : inherit.py
+</span><span class='line'>
+</span><span class='line'>class Person:
+</span><span class='line'>   def __init__(self,name,age):
+</span><span class='line'>       self.name = name
+</span><span class='line'>       self.age = age
+</span><span class='line'>       print "init for %s" % self.name
+</span><span class='line'>
+</span><span class='line'>   def tell(self):
+</span><span class='line'>       print "name:%s age:%d" % (self.name,self.age)
+</span><span class='line'>
+</span><span class='line'>class Teacher(Person):
+</span><span class='line'>   def __init__(self,name,age,salary):
+</span><span class='line'>       Person.__init__(self,name,age)
+</span><span class='line'>       self.salary = salary
+</span><span class='line'>       print "init for teacher %s" % self.name
+</span><span class='line'>
+</span><span class='line'>   def tell(self):
+</span><span class='line'>       Person.tell(self)
+</span><span class='line'>       print "salary:%d" % self.salary
+</span><span class='line'>
+</span><span class='line'>p = Person('tianzhen',20)
+</span><span class='line'>p.tell()
+</span><span class='line'>
+</span><span class='line'>tea_p = Teacher('zhenzhen',20,1010000000)
+</span><span class='line'>tea_p.tell()</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-05T18:41:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -402,281 +660,6 @@
 
 
 	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/mapapp/'>mapapp</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/04/23/algo-circle-count-quit/">
-		
-			约瑟夫问题算法</a>
-	</h2>
-	<div class="entry-content">
-		<p>昨晚还在忙碌网站，一个同学发来短信问了这样一个算法问题：一些人手拉手围成一个圈，从一个人开始报数，数到3的人退出，然后下一个人再开始报数，依然是数到3者退出，问最后剩下2个人是哪两个？</p>
-
-<p>这题目看起来不算难，但这要是不靠一个语言的特性来解决，还是有些麻烦的。我说的语言特性就是一个bt数组方法，比如说移除元素啊这样的方法，用纯粹的C语言来写最好了。不过我那位同学是在雪VB.net不知道那里有没有语言特性。我手头上正在写PHP网页，就干脆用PHP写一个出来试试吧：）  </p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="nv">$circle</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
-</span><span class='line'><span class="nv">$out</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="nv">$count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="nv">$n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$num</span><span class="p">;</span><span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'><span class="nv">$circle</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$i</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'><span class="nv">$count</span> <span class="o">%=</span> <span class="nv">$num</span><span class="p">;</span>
-</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="nv">$circle</span><span class="p">[</span><span class="nv">$count</span><span class="p">]</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'><span class="k">if</span><span class="p">((</span><span class="nv">$n</span> <span class="o">%</span> <span class="nv">$diff</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="nv">$diff</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
-</span><span class='line'><span class="nv">$circle</span><span class="p">[</span><span class="nv">$count</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'><span class="nv">$out</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="nv">$out</span> <span class="o">===</span> <span class="nv">$num</span> <span class="o">-</span> <span class="nv">$sur</span><span class="p">)</span>
-</span><span class='line'><span class="k">break</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nv">$n</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nv">$count</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这就是主要代码了，还算是简单吧？去Google了一下，看到有些人的解法都用了好麻烦的链表来抽象，用链表确实更符合客观事实，不过那样写起来，是不是给别人看的呢？！</p>
-
-<p>算法的负责度显然是线性的，感觉还可以吧。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-23T09:54:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/algorithm/'>algorithm</a>, <a class='category' href='/blog/categories/php/'>php</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/04/20/rework-study-final/">
-		
-			《REWORK》学习笔记之完结篇</a>
-	</h2>
-	<div class="entry-content">
-		<h1>「亲力亲为」中提到：</h1>
-
-<p>在你亲自尝试做这份工作之前，永远不要雇人去做。只有这样，你才能了解这项工作的本质。你才会懂得如何判断工作完成的好坏，才会知道怎样写出符合实际的岗位招聘要求，也才会清除在面试中该问什么问题。你才能之道该雇佣全职职员还是兼职职员，是将工作直接外包还是坚持自己搞定（强烈推荐后者，如果可能的话. 。</p>
-
-<p>你也会成为以为更加优秀的经理人，因为你是在指导人们完成你已经做过的工作，你知道何时该批评，何时该鼓励。</p>
-
-<p>有时候你可能觉得力有不逮，甚至可能觉得精疲力尽。这很正常。你可以通过招人来摆脱这种感受，也可以通过学习正确的处理方法来解决问题。先试着学习吧。在最初的运营中付出的所有努力，都会变成无数倍的管理只会，最终回报给你。</p>
-
-<p>另外，你应该让自己密切融入业务的方方面面。否则你就会陷入一片茫然，把自己的命运交到别人的手上，这是非常危险的。</p>
-
-<h1>「受不了时再招人」中提到：</h1>
-
-<p>当你在很长一段时间内都被超负荷的工作所困扰，这才是招人的正确时机。此时出现了一些你无法再亲力亲为的事情，你发现工作质量有所下滑，令你感到受不了了，这时才是招人的最佳时机，不要提前招人。</p>
-
-<h1>「放弃牛人」中提到：</h1>
-
-<p>放弃那些你并不需要的牛人，即使你觉得这是个人才。把有能力的人招进来，却让其无所事事，这对公司来说是有害无益的。</p>
-
-<p>牛与不牛没有任何意义，不需要就是不需要。</p>
-
-<h1>「鸡尾酒会上的陌生人」中提到：</h1>
-
-<p>短期内大批招人的后果就如同陷入“全市陌生人的鸡尾酒会”一样。你身边充斥着新面孔，美国儿呢都彬彬有礼，每个人都努力避免矛盾或冲突，没有人说：“这点子真烂。”人们一团和气，互不攻击。</p>
-
-<p>这种一团和气的氛围就是公司陷入麻烦的根源。当有人把事情弄得一团糟时，总得有人直言不讳地说出来。否则，你就是在经营一个既不惹人恨、又不招人爱的公司。</p>
-
-<p>要营造一个能让人直言不讳并且有安全感的环境。你得清楚自己能把别人推多远，你得知道人们话里的真正含义。</p>
-
-<h1>「可笑的求职简历」中提到：</h1>
-
-<p>一个具有6个月工作经验的应聘者和一个具有6年工作经验的应聘者相比，其差别小得令人吃惊。真正的差别来自于个人的努力程度、性格差异以及智力水平。</p>
-
-<p>现在已经不是以时间长短论英雄的时候了，真正重要的是他们到底做得有多好。</p>
-
-<h1>「人人都得干活」中提到：</h1>
-
-<p>在一个小团队里，你需要的是干活的人，而不是监工。每个人都得做事，没有人可以袖手旁观。</p>
-
-<p>救灾篇</p>
-
-<h1>「主动掌控负面新闻」中提到：</h1>
-
-<p>如果你够坦荡，够诚实，够公开，危机应变速度够快，人们就会更加尊重你。不要把头缩回去，也不要苦苦压制坏消息，应该让你的顾客尽可能地拥有知情权。</p>
-
-<p>掌控负面新闻的小贴士：</p>
-
-<ol>
-<li><p>要由公司高层来发布消息，而且要由公司内职位最高的人来强有力地控制局面。</p></li>
-<li><p>消息要广为传播，想尽一切办法将消息传递出去，别尝试隐瞒事实真相。</p></li>
-<li><p>千万别说“无可奉告”。</p></li>
-<li><p>要真情实意地表达歉意，要尽量详细地说明情况。</p></li>
-<li><p>要真切地关心客户的遭遇──然后要证明自己真的在为客户负责。</p></li>
-</ol>
-
-
-<h1>「文化不是由谁创造的」中提到：</h1>
-
-<p>不要过多担心企业文化的事情，不要去强求，你无法给企业安装一种文化。企业文化就像上好的苏格兰威士忌一样，你得给它时间去酝酿。</p>
-
-<h1>「灵感稍纵即逝」中提到：</h1>
-
-<p>灵感是个奇妙的东西，是效率放大器，是推进器。但是它不会停下来等你。灵感转瞬即逝，当它来找你时，要立即把它捕捉住，将其投入工作中去。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-20T23:02:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/rework/'>rework</a>, <a class='category' href='/blog/categories/study/'>study</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2011/04/19/rework-study-part5/">
-		
-			《REWORK》学习笔记之推广篇</a>
-	</h2>
-	<div class="entry-content">
-		<h1>「甘于低微」中提到：</h1>
-
-<p>要牢牢记住，一旦你把事业做大、深入人心之后，就不可避免地要走稳健路线。当你成为传奇人物，你就必须保持预见性、建立相容性，你将变得更为保守、更难去冒险。这就是僵化的起点、变革的终点。</p>
-
-<h1>「培养自己的拥趸」中提到：</h1>
-
-<p>所有的公司都有顾客，幸运的公司有粉丝，而最幸运的公司则有一帮观众。观众能成为你的秘密武器。</p>
-
-<h1>「普及知识，赢得竞争」中提到：</h1>
-
-<p>不要在消费、销售或者赞助上和竞争对手去攀比。也许你的竞争对手根本还没考虑去传授别人些什么呢。绝大多数公司都在关注销售或服务，但是从未想过传授知识。</p>
-
-<p>个人和小企业适合去传授知识，而大公司不适合。大公司支付得起巨额广告费，而你不能。你能在传授知识方面大力投入，而大公司不能。因为大公司受制于保密政策，公司里的每一款条文都得经由律师过目，并且再经层层严格审查。传授客户只是是专属于你的绝佳制胜机会。</p>
-
-<h1>「效仿大厨」中提到：</h1>
-
-<p>作为一家公司的老板，你也应该分享自己之道的一切。这一点在商业世界中尚属禁区。商业活动总是带有偏执和隐秘的性质。人们认为自己在这方面拥有专利或在那方面又有竞争优势。也许这样想的只是少部分人，不是大部分人。大度的人不应该继续模仿小气者的行为，不要惧怕分享。</p>
-
-<h1>「转到幕后看看」中提到：</h1>
-
-<p>让人们走入幕后，能改善你和他们之间的关系。他们会感到与你亲近起来，将你视为一个常人，而不是一个面目模糊的公司。他们将在你的产品中看到你在后台淌下的汗水和付出的努力。他们会对你的工作产生更深刻的理解和更诚挚的感激。</p>
-
-<h1>「没人喜欢塑料花」中提到：</h1>
-
-<p>不要害怕你的缺点，不完美才真实，真实才能激起人们的共鸣。因此我们喜欢会凋零的真花，而不是那些用不变色的完美的塑料花。不要担心自己应该如何说、如何做。向世界展示你本来的面目、你的缺点、你的全部。</p>
-
-<p>Leonard Koren在他的《侘寂》一书中说道：削减到本质，但不要剥离它的韵；保持干净纯洁，但不要剥夺它的生命力。</p>
-
-<p>所以，你大可直言不讳，畅谈那些别人不愿意讨论的东西。直面你的弱点，向人们展示你最近的工作状况，即使你还没完全搞定它。不完美没关系，也许你看起来不专业，但你却更真实。</p>
-
-<h1>「药贩子最精明」中提到：</h1>
-
-<p>只要你东西可卖，就不要怕给人一点点让其试用。要对自己的产品抱有信心。你应该知道人们会回来购买更多，如果你连这样的信心都没有，只能说明你的产品做得不够好。</p>
-
-<h1>「一夜成名只是传说」中提到：</h1>
-
-<p>你了解那些道听途说来的“一夜成名”的故事吗？往里深挖一点，你就能发现这些成功人士在到达引爆点之前，都已经在这个方向苦熬了很长时间。也有凤毛麟角的几家突然成功的公司，但这种公司往往不能持久──没有牢固的基础去支撑。</p>
-
-<p>把一夜成名的迷梦换成一步一个脚印的成长行动吧。道路很艰难，但你必须充满耐心。你得用功去做，在遇到伯乐之前，你得努力很长时间。</p>
-
-<p>今天就开始培养你的观众，开始聚集那些对你有兴趣的人，然后一直保持下去。多年后，你也回在人们谈论你的“一夜成名”的故事时付之一笑。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-19T18:54:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/rework/'>rework</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
