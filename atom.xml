@@ -4,7 +4,7 @@
   <title><![CDATA[Trade Off]]></title>
   <link href="http://www.youth2009.org/atom.xml" rel="self"/>
   <link href="http://www.youth2009.org/"/>
-  <updated>2015-08-23T20:40:24+08:00</updated>
+  <updated>2015-08-27T20:52:27+08:00</updated>
   <id>http://www.youth2009.org/</id>
   <author>
     <name><![CDATA[dawncold]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[sort and uniq count]]></title>
+    <link href="http://www.youth2009.org/blog/2015/08/27/sort-and-uniq-count/"/>
+    <updated>2015-08-27T19:41:46+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/08/27/sort-and-uniq-count</id>
+    <content type="html"><![CDATA[<p>I got some logs which recorded someone IP address and the URL it requests, I want to summary how many unique IP addresses request some specified URL, and request counts for one IP address.</p>
+
+<p>so I filter out specified URL rows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>grep URL_PATH *.log</span></code></pre></td></tr></table></div></figure>
+
+
+<p>then I got these rows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>...
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>...</span></code></pre></td></tr></table></div></figure>
+
+
+<p>then I use <code>awk</code> print the fourth column:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>grep URL_PATH *.log | awk '{print $4}'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>then I got these IPs, I stored these IPs to a file, then <code>sort</code> and <code>uniq</code>, the <code>uniq</code> excepts a sorted file, the <code>-c</code> option means count these rows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sort ips | uniq -c</span></code></pre></td></tr></table></div></figure>
+
+
+<p>then I got some unique rows with counts, but I want sort these rows order by counts desc:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sort ips | uniq -c | sort -k1nr -k2</span></code></pre></td></tr></table></div></figure>
+
+
+<p>the <code>-k1nr</code> means the KEY starts with first field, and as (n)umber, and &reg;everse, the <code>-k2</code> means ends with second field. The <code>field</code> means the column in your data.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[tornado-2]]></title>
@@ -1091,17 +1146,6 @@ GRANT wheel TO admin;</p>
 <p>not tcp, it’s “tcp &ndash;dport 80”</p>
 
 <p>-m matches, using a somewhat complicated &ldquo;module matching&rdquo; mechanism.  There are a bunch of pretty cool modules in iptables, for example &ldquo;recent&rdquo;.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Absolute Positioning Inside Relative Positioning]]></title>
-    <link href="http://www.youth2009.org/blog/2014/08/14/absolute-positioning-inside-relative-positioning/"/>
-    <updated>2014-08-14T22:00:36+08:00</updated>
-    <id>http://www.youth2009.org/blog/2014/08/14/absolute-positioning-inside-relative-positioning</id>
-    <content type="html"><![CDATA[<p>if you want a div with absolute position relative its parent, not body, the parent div must be relative position.</p>
-
-<p>see details <a href="http://css-tricks.com/absolute-positioning-inside-relative-positioning/">http://css-tricks.com/absolute-positioning-inside-relative-positioning/</a></p>
 ]]></content>
   </entry>
   

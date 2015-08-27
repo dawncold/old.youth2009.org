@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="暂时终止sorted的开发，经历了两天痛苦的、没白没黑的、浑浑噩噩的探索后，还是没能搞定iPhone上一个icon的移动过程。实在不行我都打算直接去修改iconstate.plist文件了。。。但就是修改了不能马上响应，需要respring这点受不了！ 网上这方面的资料依然少的可怜， &hellip;">
+	<meta name="description" content=" 不知什么原因，我的VPS进入了全国路由监视节点。。。现实只要是谁打算ssh过去，就会被封锁一段时间。根据某人告知，这是进入短名单后的action，可以探测我换端口什么的操作，相信离IP被封已经不远了！ VPS啊，先提前和你说R.I.P.吧 gfw, vps ">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,49 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/03/20/be-blocked-by-gfw/">
+		
+			be-blocked-by-GFW</a>
+	</h2>
+	<div class="entry-content">
+		<p>不知什么原因，我的VPS进入了全国路由监视节点。。。现实只要是谁打算ssh过去，就会被封锁一段时间。根据某人告知，这是进入短名单后的action，可以探测我换端口什么的操作，相信离IP被封已经不远了！</p>
+
+<p>VPS啊，先提前和你说R.I.P.吧</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-20T21:04:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/gfw/'>gfw</a>, <a class='category' href='/blog/categories/vps/'>vps</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -702,69 +745,6 @@
 
 
 	<a class='category' href='/blog/categories/postgresql/'>postgresql</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/02/17/encoder-error-2-when-writing-image-file-error/">
-		
-			Encoder Error -2 When Writing Image File Error</a>
-	</h2>
-	<div class="entry-content">
-		<p>今天编辑们在上传一张图的时候出了500错误，他们觉得是图片太大了，传给我看了下果然很大，高度13000+，大约7Mb，本地调试确实是在save的时候出问题，具体错误就是<code>Encoder error -2 when writing image file Error</code>，github上的pilkit中有这个issue，是因为默认的maxblock不够大了，其实PIL中还有个SAFEMAXBLOCK，但那也只是1024*1024，对于这张图仍然不够大。具体的方法就是取出图片width和height的最大值，再来个平方。。。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>try:
-</span><span class='line'>  save porcess
-</span><span class='line'>except IOError:
-</span><span class='line'>  old_block = PIL.ImageFile.MAXBLOCK
-</span><span class='line'>  PIL.ImageFile.MAXBLOCK = max(image.size) ** 2
-</span><span class='line'>  try:
-</span><span class='line'>      save process
-</span><span class='line'>  finally:
-</span><span class='line'>      PIL.ImageFile.MAXBLOCK = old_block</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样试过后就好了。。。真要命啊这个max block</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-17T23:25:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
 
 
 </div>

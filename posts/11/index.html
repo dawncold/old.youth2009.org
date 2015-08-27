@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="我们今天终于上线了，给编辑们用了一下，我还不知道他们的反馈如何，应该还不错吧，但很可惜由于公司内部网络的问题，我们的服务器不是所有人都能访问到，好像听说有个部门访问不到，具体问了一下工程部说改个gateway就能行了，当时正在抓图，就没动，下周再修改一下试试吧。 据说下周要开始主攻特辑这部分了， &hellip;">
+	<meta name="description" content="昨晚竟然下了第一场雪，看着不怎么大，但确实是第一场。 这种天本来就是吃火锅的时候。 这篇日志几乎和y.youth2009.org上的发重复了，以后我也在想，这种重复该怎么办呢？ 大晚上的将要睡下，不料看了《饮食男女2012》，真的很好，而且我也感动的哭，心情大为激动，起来coding了， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,59 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/04/first-snow/">
+		
+			First Snow</a>
+	</h2>
+	<div class="entry-content">
+		<p>昨晚竟然下了第一场雪，看着不怎么大，但确实是第一场。</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/Cok3e7iE/medish.jpg" alt="first snow" /></p>
+
+<p>这种天本来就是吃火锅的时候。</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/Cok38geE/medish.jpg" alt="meal" /></p>
+
+<p>这篇日志几乎和y.youth2009.org上的发重复了，以后我也在想，这种重复该怎么办呢？</p>
+
+<p>大晚上的将要睡下，不料看了《饮食男女2012》，真的很好，而且我也感动的哭，心情大为激动，起来coding了，把taowen说的product link block和product list block问题都fix了。由于白天我把添加额外展示的小类功能给做完了，现在手上没工作了，下星期有我要做的特辑，可能要去忙那边了。taowen让我找本git书看看，想了半天也没买《Git权威指南》，估计暂时用不到那么深入的技巧，只要小心点在master上修改，到prod分支合并就好了都是fast-forward，没问题的，但最主要的不买的原因是，我怕买了后和那本《Shell编程指南》一样，躺在那里不知道干嘛。</p>
+
+<p>转眼望去，床头一堆没怎么翻看的《程序员》杂志，《设计模式》、《重构》、《极限编程》、《Clean code》这样足够好的书都没怎么被我青睐，现在主要看《1Q84》，比较有吸引力。不怎么看技术书的原因我仍然不知道：（</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-04T20:24:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>, <a class='category' href='/blog/categories/life/'>life</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -533,81 +586,6 @@
 
 
 <time datetime="2012-10-09T14:09:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/lxc/'>lxc</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/10/08/lxc-practical/">
-		
-			LXC实践</a>
-	</h2>
-	<div class="entry-content">
-		<p>这里的LXC是基于Ubuntu12.04的，在其他系统下可能不太一样。</p>
-
-<p>0.安装lxc</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install lxc
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>1.修改lxc的mirror，不修改的话下载一个ubuntu景象会非常慢！！！</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo emacs /etc/default/lxc
-</span><span class='line'>第三行的mirror注释去掉，并修改为cn.archive.ubuntu.com，这样就非常快了
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2.创建lxc容器，t表示模板中的名字，n表示这个容器的名字（可自定义）</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-create -t ubuntu -n ubuntu_container
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3.启动容器</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lxc-start -n ubuntu_container
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>启动后就会出现登录ubuntu的界面，刚刚创建好容器后会给出一个提示，帐号密码都是ubuntu，登录进去就可以使用了。</p>
-
-<p>猜想lxc的用法可能是对于部署的某个进程使用lxc隔离，这并不能做vps用，lxc只是轻量虚拟化，针对进程来的，所以还是单机在使用，如果做vps就得用vmware、xen、openvz这样的东西了。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-08T20:46:00+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

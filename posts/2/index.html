@@ -7,23 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="It&rsquo;s best to return NotImplemented in magic method(e.g. __eq__, __ne__, etc), see here for details. 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17 &hellip;">
+	<meta name="description" content="First post on 2015! I have a raspberry pi several months ago, and I often use it to recording temp and humidity, uploading to a cloud host, but &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -92,6 +76,123 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/01/01/build-octopress-blog-on-raspberry-pi/">
+		
+			Host-octopress-blog-on-raspberry-pi</a>
+	</h2>
+	<div class="entry-content">
+		<p>First post on 2015!</p>
+
+<p>I have a raspberry pi several months ago, and I often use it to recording temp and humidity, uploading to a cloud host, but after a home movement, it had been stored in my drawer. Last day of 2014, while waiting 2015, I want build it and host an external disk for MacBookPro backup(Time Machine), but failed for power supply, normal power supply is not enough for raspi, so I should buy another USB Hub powered by itself.</p>
+
+<p>My raspi used a wireless NIC to connecting with my router(OpenWrt), but I want use a ethernet cable for it, so it can get a unique IP on Internet, but when I pluged it, the wireless NIC would down, because of ifplugd or something else, so I keep the wireless NIC working and add some rules on route, port forward, WAN 80 to rasp 80, WAN 443 to rasp 443.</p>
+
+<p>Install nginx via<code>sudo apt-get install nginx</code>, remove default site<code>rm /etc/nginx/sites-enable/default</code>, add conf in <code>/etc/nginx/conf.d</code>, like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>server {
+</span><span class='line'>  listen 80;
+</span><span class='line'>  server_name dawncold.me;
+</span><span class='line'>  return 301 https://$server_name$request_uri;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'># HTTPS server
+</span><span class='line'>
+</span><span class='line'>server {
+</span><span class='line'>  listen 443 ssl;
+</span><span class='line'>  server_name dawncold.me;
+</span><span class='line'>
+</span><span class='line'>  root /usr/share/nginx/dawncold.me;
+</span><span class='line'>  index index.html index.htm;
+</span><span class='line'>
+</span><span class='line'>  ssl on;
+</span><span class='line'>  ssl_certificate /usr/share/nginx/dawncold.me/dawncold.me.crt;
+</span><span class='line'>  ssl_certificate_key /usr/share/nginx/dawncold.me/dawncold.me.key;
+</span><span class='line'>
+</span><span class='line'>  ssl_session_timeout 5m;
+</span><span class='line'>
+</span><span class='line'>  ssl_protocols SSLv3 TLSv1;
+</span><span class='line'>  ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv3:+EXP;
+</span><span class='line'>  ssl_prefer_server_ciphers on;
+</span><span class='line'>
+</span><span class='line'>  location / {
+</span><span class='line'>      try_files $uri $uri/ =404;
+</span><span class='line'>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I got a SSL certificate from nc.me(github student pack), so I rewrite HTTP to HTTPS.</p>
+
+<p>start nginx via <code>sudo nginx</code> or reload config via <code>sudo nginx -s reload</code>.</p>
+
+<p>Oh, your should update your domain A record to your router WAN ip address, you can write a script or use your router buildin DDNS function.</p>
+
+<p>Octopress supported rsync publishment, so edit your Rakefile and enter your raspi ssh account and nginx html root path, like <code>/usr/share/nginx/www</code>.</p>
+
+<p>publish to github and rasp: <code>rake gen_deploy rsync</code> or only to raspi: <code>rake rsync</code>.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-01T20:25:24+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/play/'>play</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -1044,49 +1145,6 @@ GRANT wheel TO admin;</p>
 
 
 <time datetime="2014-08-14T22:05:46+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/dev/'>dev</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/08/14/absolute-positioning-inside-relative-positioning/">
-		
-			Absolute Positioning Inside Relative Positioning</a>
-	</h2>
-	<div class="entry-content">
-		<p>if you want a div with absolute position relative its parent, not body, the parent div must be relative position.</p>
-
-<p>see details <a href="http://css-tricks.com/absolute-positioning-inside-relative-positioning/">http://css-tricks.com/absolute-positioning-inside-relative-positioning/</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-14T22:00:36+08:00" pubdate data-updated="true"></time></div>
 	<div class="tags">
 
 

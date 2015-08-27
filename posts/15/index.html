@@ -7,7 +7,7 @@
 	<meta name="author" content="dawncold">
 
 	
-	<meta name="description" content="本来做了个一个todo的app感觉python写web app真得好快啊，于是想加入一个user的功能，这样注册的用户就可以写自己的todo了，不过这么一加才感觉到web.py真不好用了，特别是session，还有templates也不怎么好用，官方的文档不知道为何也不给个完整版的， &hellip;">
+	<meta name="description" content="资格赛晋级之后还稍稍得到了点自信，起码原来只能远观CodeJam的我现在也能继续走进看看了，不过家下来的Round1三场比赛直接被虐杀了，每一场都是最后，每个题都做不出来，说出来也是很惭愧的，但得承认自己这点能力，有人不到5分钟就能做对一个大题，而我5分钟可能都没读完题，更别说写代码了。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,53 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/05/06/miserable-code-jam-2012/">
+		
+			悲惨的CodeJam2012</a>
+	</h2>
+	<div class="entry-content">
+		<p>资格赛晋级之后还稍稍得到了点自信，起码原来只能远观CodeJam的我现在也能继续走进看看了，不过家下来的Round1三场比赛直接被虐杀了，每一场都是最后，每个题都做不出来，说出来也是很惭愧的，但得承认自己这点能力，有人不到5分钟就能做对一个大题，而我5分钟可能都没读完题，更别说写代码了。</p>
+
+<p>但最重要的是理解题目，能够理解了也就完成了90%，剩下的工作就是coding的过程，参加比赛的人基本都是有备而来，各种模版、脚本都准备好了，写起来非常快。对于非英语系国家的选手来说，读题似乎是很大的障碍，起码会比别人慢好多倍，这点只能多多看英文的资料来弥补了！</p>
+
+<p>今天的Round1第三场出现了两个动态规划的题，感觉知道了怎么做可就是不会写，我也就是停留在知道有动态规划这种变态方法的层面上，真让我写出来可不行，抱着《算法导论》看了半天也是毫无头绪……</p>
+
+<p>毕竟不是Acmer，咱也就只能止步于此啦！希望进入下一轮的国人们继续加油！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-06T21:49:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/google/'>google</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -1173,79 +1220,6 @@
 
 
 	<a class='category' href='/blog/categories/mac/'>mac</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/02/15/set-timezone-in-rails/">
-		
-			设置Rails中的timezone</a>
-	</h2>
-	<div class="entry-content">
-		<p>Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。</p>
-
-<p>没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">active_record</span><span class="o">.</span><span class="n">default_timezone</span> <span class="o">=</span> <span class="ss">:local</span>
-</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">time_zone</span> <span class="o">=</span> <span class="s1">&#39;Beijing&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>为何我说差不多呢，原因如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">irb</span><span class="p">(</span><span class="n">main</span><span class="p">):</span><span class="mo">001</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span> <span class="no">Fpwd</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'> <span class="no">Fpwd</span> <span class="no">Load</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">&quot;fpwds&quot;</span><span class="o">.</span><span class="n">*</span> <span class="no">FROM</span> <span class="s2">&quot;fpwds&quot;</span> <span class="no">WHERE</span> <span class="s2">&quot;fpwds&quot;</span><span class="o">.</span><span class="s2">&quot;user_id&quot;</span> <span class="o">=</span> <span class="mi">1</span> <span class="no">LIMIT</span> <span class="mi">1</span>
-</span><span class='line'> <span class="no">SQL</span> <span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="mi">7</span><span class="n">ms</span><span class="p">)</span>  <span class="no">DELETE</span> <span class="no">FROM</span> <span class="s2">&quot;fpwds&quot;</span> <span class="no">WHERE</span> <span class="s2">&quot;fpwds&quot;</span><span class="o">.</span><span class="s2">&quot;user_id&quot;</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'>  <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="n">ms</span><span class="p">)</span>  <span class="k">begin</span> <span class="n">transaction</span>
-</span><span class='line'><span class="no">Binary</span> <span class="n">data</span> <span class="n">inserted</span> <span class="k">for</span> <span class="sb">`string`</span> <span class="n">type</span> <span class="n">on</span> <span class="n">column</span> <span class="sb">`randstring`</span>
-</span><span class='line'> <span class="no">SQL</span> <span class="p">(</span><span class="mi">429</span><span class="o">.</span><span class="mi">6</span><span class="n">ms</span><span class="p">)</span>  <span class="no">INSERT</span> <span class="no">INTO</span> <span class="s2">&quot;fpwds&quot;</span> <span class="p">(</span><span class="s2">&quot;created_at&quot;</span><span class="p">,</span> <span class="s2">&quot;randstring&quot;</span><span class="p">,</span> <span class="s2">&quot;updated_at&quot;</span><span class="p">,</span> <span class="s2">&quot;user_id&quot;</span><span class="p">)</span> <span class="no">VALUES</span> <span class="p">(</span><span class="sc">?,</span> <span class="sc">?,</span> <span class="sc">?,</span> <span class="sc">?)</span>  <span class="o">[[</span><span class="s2">&quot;created_at&quot;</span><span class="p">,</span> <span class="no">Wed</span><span class="p">,</span> <span class="mi">15</span> <span class="no">Feb</span> <span class="mi">2012</span> <span class="mi">14</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">35</span> <span class="no">CST</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;randstring&quot;</span><span class="p">,</span> <span class="s2">&quot;87e685e0d2ab37143fae248083822ffea600f577&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;updated_at&quot;</span><span class="p">,</span> <span class="no">Wed</span><span class="p">,</span> <span class="mi">15</span> <span class="no">Feb</span> <span class="mi">2012</span> <span class="mi">14</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">35</span> <span class="no">CST</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="o">]]</span>
-</span><span class='line'>  <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="n">commit</span> <span class="n">transaction</span>
-</span><span class='line'><span class="o">=&lt;</span><span class="no">Fpwd</span> <span class="ss">user_id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">randstring</span><span class="p">:</span> <span class="s2">&quot;87e685e0d2ab37143fae248083822ffea600f577&quot;</span><span class="p">,</span> <span class="ss">created_at</span><span class="p">:</span> <span class="s2">&quot;2012-02-15 06:29:35&quot;</span><span class="p">,</span> <span class="ss">updated_at</span><span class="p">:</span> <span class="s2">&quot;2012-02-15 06:29:35&quot;</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>最后的返回值那里还是晚了8小时，我用sqlite3查看的时候时间是正常的，所以这里怀疑是ruby的时间问题了，好在app中已经正常！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-15T14:37:00+08:00" pubdate data-updated="true"></time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ror/'>ror</a>, <a class='category' href='/blog/categories/study/'>study</a>
 
 
 </div>
