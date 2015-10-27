@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: dev | Trade Off]]></title>
+  <link href="http://www.youth2009.org/blog/categories/dev/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2015-08-27T20:52:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[exception in python]]></title>
+    <link href="http://www.youth2009.org/blog/2015/04/19/exception-in-python/"/>
+    <updated>2015-04-19T17:05:31+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/04/19/exception-in-python</id>
+    <content type="html"><![CDATA[<p>My colleague remembered that if you pass some <code>kwargs</code> to an <code>Exception</code> subclass e.g. <code>class MyException(Exception): pass</code>, you will get a composed message when you catch the exception and call <code>e.message</code>. Unitil we got nothing from one place which it should display exception&rsquo;s message, python language part is implemented by C, so we downloaded python source code(2.7.9), and find these lines.</p>
+
+<pre><code class="c">static int
+BaseException_init(PyBaseExceptionObject *self, PyObject *args, PyObject *kwds)
+{
+    if (!_PyArg_NoKeywords(Py_TYPE(self)-&gt;tp_name, kwds))
+        return -1;
+
+    Py_DECREF(self-&gt;args);
+    self-&gt;args = args;
+    Py_INCREF(self-&gt;args);
+
+    if (PyTuple_GET_SIZE(self-&gt;args) == 1) {
+        Py_CLEAR(self-&gt;message);
+        self-&gt;message = PyTuple_GET_ITEM(self-&gt;args, 0);
+        Py_INCREF(self-&gt;message);
+    }
+    return 0;
+}
+</code></pre>
+
+<p>This is python BaseException&rsquo;s C implementation, I can understand logic but C syntax. The BaseException accepts <code>kwargs</code>, but if you pass a <code>kwargs</code> to Exception, you will get a warning, because of <code>_PyArg_NoKeywords</code>, maybe it needs compatibility with old code, but now, you can&rsquo;t use <code>kwargs</code>.</p>
+
+<p>Another notice, if you pass one argument to it, this argument will be the <code>e.message</code> value, if not, your args will be placed in <code>e.args</code>.</p>
+
+<p>We finally implemented <code>__str__</code> and <code>__unicode__</code> methods, because of we imported <code>unicode_literals</code>, so we think this is the best practice, we just use <code>str(e)</code> in those places.</p>
+
+<pre><code class="python">
+class TmallAPIException(Exception):
+    def __init__(self, code, msg, sub_code, sub_msg):
+        super(TmallAPIException, self).__init__(code, msg, sub_code, sub_msg)
+        self.code = code
+        self.msg = msg
+        self.sub_code = sub_code
+        self.sub_msg = sub_msg
+
+    def __unicode__(self):  # TODO: not necessary under python3
+        return 'code: {}, msg: {}, sub_code: {}, sub_msg: {}'.format(self.code, self.msg, self.sub_code, self.sub_msg)
+
+    def __str__(self):
+        return self.__unicode__().encode('utf-8')
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[be careful python fdopen]]></title>
+    <link href="http://www.youth2009.org/blog/2015/01/07/be-careful-python-fdopen/"/>
+    <updated>2015-01-07T23:13:39+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/01/07/be-careful-python-fdopen</id>
+    <content type="html"><![CDATA[<p>I have got a bug when I <code>print</code> something to <code>stdout</code>, I got <code>Bad file descriptor</code>, it means my stdout is a bad descriptor, what?!</p>
+
+<p>Core code like this: <code>logger.StreamHandler(os.fdopen(sys.stdout.fileno(), 'w', 0))</code>, I want to a unbuffered stdout, so I reopen it by <code>fdopen</code>, and reset the buffer size to 0, I still also did same thing to <code>stderr</code>, but that is no sense, because of <code>stderr</code> is unbuffered normally(but in Python3, it maybe line buffered, in MacOS).</p>
+
+<p>If your <code>stdout</code> is reopened by <code>fdopen</code>, and its reference count hits zero, it will be collected by Python GC, also your <code>stdout</code> will be ate by GC, something wrong will happen after that.</p>
+
+<p>So, be careful with <code>fdopen</code> for <code>stdin</code>, <code>stderr</code>, <code>stdin</code>:)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[聚石塔里面的坑]]></title>
+    <link href="http://www.youth2009.org/blog/2015/01/05/traps-of-jushita/"/>
+    <updated>2015-01-05T22:56:42+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/01/05/traps-of-jushita</id>
+    <content type="html"><![CDATA[<p>今天开始全面接触聚石塔，就是天猫的云平台，上面服务众多，全都能收费，第一次听说了API调用也是可以收费的。下面记录一些可能成为坑的东西，希望有人看到后可以小心躲避。</p>
+
+<h2>创建应用要先报备</h2>
+
+<p>说明书要按照模版写，模板有下载，看说明就能找到，其中里面有个架构图，这个要仔细画，基本思想（阿里思想）就是把你所有的业务系统都放到ECS上，如果在ECS外出现了一个你们自己的平台，他们就怀疑你用ECS做了一个代理来调用API，因为收费API只能是塔内调用，其他没有遇到特别的，时间大概是3天出结果。</p>
+
+<h2>创建应用</h2>
+
+<p>报备通过就可以创建应用了，创建成功后可以去买ECS和RDS等服务，别的服务暂时没用到，这两个服务都是绑定应用的，所以要先有应用。ECS的配置可选的比较少，我在北京，但机房目前只有杭州，所以你写了你的位置也没用，据说杭州那个机房是6线接入，出口质量和淘宝一样，但拿到ECS后ping了一下，31ms左右，第二天ping到了70ms左右，虽然ping不代表什么，但总感觉怪怪的。。。价格和阿里云的ECS相比有些贵。</p>
+
+<h2>ECS</h2>
+
+<p>管理终端有个密码，要改的话记得改完重启机器，否则不生效，而且重启后自己再用管理终端连接一下看看是不是生效了。</p>
+
+<p>他们把10和172.16网段都用了，自己要用内网的话可以考虑多租几个ECS实例，但想玩LXC的话，可以考虑用192.168网段。</p>
+
+<p>DNS不要换别的，就用ECS配置好的，据说改了影响内部访问和RDS通信，我改成114dns后直接无法使用。</p>
+
+<p>我买的是最便宜的ECS，但不知道为何没有SWAP分区，512Mb内存在起了LXC后又编译了一个东西就超了，那里怎么都不行，于是加了SWAP，可以。</p>
+
+<h2>RDS</h2>
+
+<p>我想用聚石塔的推送服务，就是可以把订单、商品等数据推送到买的RDS中，但今天申请的时候对方说应用未上线，不能申请。。。我就是需要这些数据才能开发应用，这不就变成死锁了？</p>
+
+<p><strong>2015年1月7日</strong>：后来和客服沟通，说是应用需要先上线，即便你还没有开始开发，这点虽然有点怪怪的，但只有这样才能申请到同步服务。应用上线挺简单，创建完应用只是第一步，完善基本信息后点下一步即可进入安全扫描阶段，再提交，瞬间说审核通过，这就上线运行了。</p>
+
+<p><strong>2015年1月9日</strong>：商家后台应用有web和客户端两种架构方式，就是你做出一个web应用，一般就是用web的架构方式，用户登陆、授权后，你能拿到用户session，然后就可以用了，和大多数oauth的方式一样，客户端类似。但有一点需要注意，商家后台应用拿到用户的session和refresh token后，文档记载session有效期1年，但这个refresh token无用，只能等session到期后重新授权。</p>
+
+<p>真正开始做了，发现API用起来也不那么爽，这个具体看个人的感觉了，但比拍拍强了不少。</p>
+
+<hr />
+
+<p>目前就遇到这些坑，欢迎更新坑们。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[safe characters of quote method in urllib]]></title>
+    <link href="http://www.youth2009.org/blog/2014/12/20/quote-in-urllib/"/>
+    <updated>2014-12-20T20:27:59+08:00</updated>
+    <id>http://www.youth2009.org/blog/2014/12/20/quote-in-urllib</id>
+    <content type="html"><![CDATA[<p>quote accept two arguments: a string and safe characters. If you pass empty to <code>quote</code> as the second parameter, it means every characters except preserved characters will be replaced by a % leading characters, e.g. space will be replaced by %20, etc.</p>
+
+<p>In my project, I invoke quote like <code>quote(params, '')</code>, and I have imported <code>unicode_literals</code>, so I passed a unicode parameter to <code>quote</code> method.</p>
+
+<p>What will happen?</p>
+
+<p>Next time you invoke quote with the same <code>safe</code> parameter you used before, you may get an error like <code>UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)</code>, urllib will cache the safe parameter(urllib.py 1277 line), it expects a byte type parameter but you pass an unicode one, also, that library didn&rsquo;t check or convert it before it uses.</p>
+
+<p>Best practice, pass a byte parameter like <code>b''</code> to <code>quote</code> if you have same usage(unicode literals) like me.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[developing-on-blackberry]]></title>
+    <link href="http://www.youth2009.org/blog/2014/09/05/developing-on-blackberry/"/>
+    <updated>2014-09-05T21:58:07+08:00</updated>
+    <id>http://www.youth2009.org/blog/2014/09/05/developing-on-blackberry</id>
+    <content type="html"><![CDATA[<h1>Create BlackBerry ID token</h1>
+
+<p>here:
+<strong> <a href="https://www.blackberry.com/SignedKeys/">https://www.blackberry.com/SignedKeys/</a> </strong></p>
+
+<p>If you will develop an app on BlackBerry OS 10 or some new plateform, choose the first checkbox, and you will be requested your BlackBerry ID username and password, other choices I haven&rsquo;t tried. Then fill a storepass for the key, you can download a file like <code>bbidtoken.csk</code>, save this file to <code>~/Library/Research In Motion</code>, if you are on Windows or Linux, save this file to where website mentioned.</p>
+
+<h1>Create developer certificate file</h1>
+
+<p>developer certificate file is a file named author.p12</p>
+
+<p>I have installed a WebWorks SDK, so I can access blackberry tools on <code>/Applications/BB10 WebWorks SDK 2.1.0.13/cordova-blackberry/bin/dependencies/bb-tools/bin</code>, you should change this path as your SDK type, the target file is <code>blackberry-keytool</code>.</p>
+
+<p><code>blackberry-keytool -genkeypair -storepass &lt;keystore_pw&gt; -author &lt;YOUR_NAME&gt;</code></p>
+
+<p>This will create the author.p12 file on the same directory described below:<code>~/Library/Research In Mothion</code></p>
+
+<h1>Create debug token</h1>
+
+<p><code>blackberry-debugtokenrequest -storepass &lt;KeystorePassword&gt; -devicepin &lt;YOUR_DEVICE_PIN&gt; ~/Library/Research In Motion/debug_token.bar</code></p>
+
+<p>This will create debug token bar file on <code>~/Library/Research In Motion</code>, caution: debug token file must be a *.bar file.</p>
+
+<h1>Install debug token on your device</h1>
+
+<p>Enable your development mode on your device first (Settings > Security and Privacy > Development Mode)</p>
+
+<p><code>blackberry-deploy -installDebugToken &lt;path to debug token&gt; -device &lt;DEVICE_IP_ADDRESS&gt; -password &lt;DEVICE_PIN&gt;</code></p>
+
+<p>Your should get output like these:</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Info: Sending request: INSTALL_DEBUG_TOKEN
+</span><span class='line'>Info: Action: Install Debug Token
+</span><span class='line'>Info: File size: 2607
+</span><span class='line'>result::success</span></code></pre></td></tr></table></div></figure>
+Then your device development info has changed, &ldquo;Debug Token Installed&rdquo;</p>
+
+<h1>deploy an hello world to your device</h1>
+
+<p>I use WebWorks SDK, so I launched this app on Mac, and fill some info about project on <code>localhost:3123</code>, a web management for development. After created the app, choose &ldquo;Build&rdquo; on left hand, fill your device password and keystore password, choose BUILD &amp; INSTALL, you may get output like these:</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[INFO]    Target Q10-2b1e42dc selected
+</span><span class='line'>[INFO]    Generating debug token
+</span><span class='line'>[INFO]    Debug token created.
+</span><span class='line'>[INFO]    Deploying debug token to target &ldquo;Q10-2b1e42dc&rdquo;
+</span><span class='line'>[INFO]    Sending request: INSTALL_DEBUG_TOKEN
+</span><span class='line'>[INFO]    Action: Install Debug Token
+</span><span class='line'>[INFO]    File size: 2605
+</span><span class='line'>[INFO]    result::success
+</span><span class='line'>[INFO]    Populating application source
+</span><span class='line'>[INFO]    Parsing config.xml
+</span><span class='line'>[INFO]    Generating output files
+</span><span class='line'>[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/simulator/bb10app.bar
+</span><span class='line'>[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/device/bb10app.bar
+</span><span class='line'>[INFO]    BAR packaging complete
+</span><span class='line'>[INFO]    Sending request: INSTALL_AND_LAUNCH
+</span><span class='line'>[INFO]    Action: Install and Launch
+</span><span class='line'>[INFO]    File size: 69497
+</span><span class='line'>[INFO]    Installing Project1.testDev_Project1&lt;strong>&lt;em>c8537c58&hellip;
+</span><span class='line'>[INFO]    Processing 69497 bytes
+</span><span class='line'>[INFO]    Progress 100%&hellip;
+</span><span class='line'>[INFO]    Progress 100%&hellip;
+</span><span class='line'>[INFO]    actual_dname::Project1.testDev_Project1&lt;/em>&lt;/strong>c8537c58actual_id::testDev_Project1&lt;strong>&lt;em>c8537c58
+</span><span class='line'>[INFO]    actual_version::0.0.1.1result::successLaunching Project1.testDev_Project1&lt;/em>&lt;/strong>c8537c58&hellip;
+</span><span class='line'>[INFO]    result::19132657
+</span><span class='line'>[INFO]    done</span></code></pre></td></tr></table></div></figure>
+Meanwhile, your app will be opened on your device!
+<img src="http://pic.yupoo.com/dawncold0/E2fQtBuX/small.jpg" alt="webworks launch screen" /></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,1 +1,824 @@
-My Octopress Page is coming soon &hellip;
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Trade Off</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="I got some logs which recorded someone IP address and the URL it requests, I want to summary how many unique IP addresses request some specified URL &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/08/27/sort-and-uniq-count/">
+		
+			Sort and Uniq Count</a>
+	</h2>
+	<div class="entry-content">
+		<p>I got some logs which recorded someone IP address and the URL it requests, I want to summary how many unique IP addresses request some specified URL, and request counts for one IP address.</p>
+
+<p>so I filter out specified URL rows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>grep URL_PATH *.log</span></code></pre></td></tr></table></div></figure>
+
+
+<p>then I got these rows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>...
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>...</span></code></pre></td></tr></table></div></figure>
+
+
+<p>then I use <code>awk</code> print the fourth column:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>grep URL_PATH *.log | awk '{print $4}'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>then I got these IPs, I stored these IPs to a file, then <code>sort</code> and <code>uniq</code>, the <code>uniq</code> excepts a sorted file, the <code>-c</code> option means count these rows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sort ips | uniq -c</span></code></pre></td></tr></table></div></figure>
+
+
+<p>then I got some unique rows with counts, but I want sort these rows order by counts desc:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sort ips | uniq -c | sort -k1nr -k2</span></code></pre></td></tr></table></div></figure>
+
+
+<p>the <code>-k1nr</code> means the KEY starts with first field, and as (n)umber, and &reg;everse, the <code>-k2</code> means ends with second field. The <code>field</code> means the column in your data.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-08-27T19:41:46+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/08/21/tornado-2/">
+		
+			Tornado-2</a>
+	</h2>
+	<div class="entry-content">
+		<p>write some subclasses of <code>RequestHandler</code> and mapped these with routers, pass these routers to <code>Application</code>, run <code>Application</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">tornado.ioloop</span> <span class="kn">import</span> <span class="n">IOLoop</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">tornado.web</span> <span class="kn">import</span> <span class="n">RequestHandler</span><span class="p">,</span> <span class="n">Application</span><span class="p">,</span> <span class="n">url</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">HelloHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;Hello, world&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">make_app</span><span class="p">():</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">Application</span><span class="p">([</span>
+</span><span class='line'>        <span class="n">url</span><span class="p">(</span><span class="s">r&quot;/&quot;</span><span class="p">,</span> <span class="n">HelloHandler</span><span class="p">),</span>
+</span><span class='line'>        <span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span><span class='line'>    <span class="n">app</span> <span class="o">=</span> <span class="n">make_app</span><span class="p">()</span>
+</span><span class='line'>    <span class="n">app</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">8888</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">IOLoop</span><span class="o">.</span><span class="n">current</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Tornado supports strings, bytes, and dictionaries as response, you can use Template to building strings and bytes, also you can write response by hand. If you pass a dictionary to response, it will be encoded as JSON.</p>
+
+<p>Tornado will not parse other types request arguments, e.g. Tornado will not parse JSON request bodies, you need to parse these by yourself(override <code>prepare</code> method)</p>
+
+<p>CSRF/XSRF prevent: the session cookie from SiteA is not expired, there is a form in SiteB, the form aims doing something to SiteA, if SiteA don&rsquo;t support XSRF prevent, it will allow submitting if you constructed valid form arguments. If SiteA supports XSRF prevent, it will set a cookie with token to user, and that token will filled in any action form(POST,PUT,DELETE), if these two values are not equal, that request will be prevented, because SiteB can&rsquo;t retrive SiteA&rsquo;s cookie, so that form can&rsquo;t submit with valid cookie value.</p>
+
+<p>Due to the Python GIL (Global Interpreter Lock), it is necessary to run multiple Python processes to take full advantage of multi-CPU machines. Typically it is best to run one process per CPU.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-08-21T22:17:23+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/08/16/tornado-1/">
+		
+			Tornado-1</a>
+	</h2>
+	<div class="entry-content">
+		<p>This is the first part of Tornado studying project.</p>
+
+<p>Tornado can be roughly divided into four major components:</p>
+
+<ul>
+<li>A web framework (including RequestHandler which is subclassed to create web applications, and various supporting classes).</li>
+<li>Client- and server-side implementions of HTTP (HTTPServer and AsyncHTTPClient).</li>
+<li>An asynchronous networking library (IOLoop and IOStream), which serve as the building blocks for the HTTP components and can also be used to implement other protocols.</li>
+<li>A coroutine library (tornado.gen) which allows asynchronous code to be written in a more straightforward way than chaining callbacks.</li>
+</ul>
+
+
+<p>Tornado uses a signle-threaded event loop.This means that all application code should aim to be asynchronous and non-blocking because only one operation can be active at a time.</p>
+
+<p>There are many styles of asynchronous interfaces:</p>
+
+<ul>
+<li>Callback argument</li>
+<li>Return a placeholder (Future, Promise, Deferred)</li>
+<li>Deliver to a queue</li>
+<li>Callback registry (e.g. POSIX signals)</li>
+</ul>
+
+
+<p>There is no free way to make a synchronous function asynchronous in a way that is transparent to its callers.</p>
+
+<p>Coroutines are the recommended way to write asynchronous code in Tornado</p>
+
+<p>A function containing yield is a generator. All generators are asynchronous; when called they return a generator object instead of running to completion.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-08-16T16:16:51+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/08/16/checksums-function-in-macos/">
+		
+			Checksum Functions in MacOs</a>
+	</h2>
+	<div class="entry-content">
+		<p>It&rsquo;s better to calculate checksum for your downloaded files, it can make sure you download that real file from server, not from the ISP proxy server.</p>
+
+<p>In MacOS, you can use <code>md5</code> and <code>shasum</code> to calculate file checksums.</p>
+
+<ul>
+<li>calculate a MD5 checksum</li>
+</ul>
+
+
+<p><code>md5 xxx.data</code></p>
+
+<ul>
+<li>calculate a SHA-1 checksum</li>
+</ul>
+
+
+<p><code>shasum -a 1 xxx.data</code></p>
+
+<ul>
+<li>calcuate a SHA-256 checksum</li>
+</ul>
+
+
+<p><code>shasum -a 256 xxx.data</code></p>
+
+<p>Thanks for <a href="http://notepad2.blogspot.jp/2012/07/mac-os-x-how-to-generate-md5-sha1.html">here</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-08-16T15:22:06+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/04/19/exception-in-python/">
+		
+			Exception in Python</a>
+	</h2>
+	<div class="entry-content">
+		<p>My colleague remembered that if you pass some <code>kwargs</code> to an <code>Exception</code> subclass e.g. <code>class MyException(Exception): pass</code>, you will get a composed message when you catch the exception and call <code>e.message</code>. Unitil we got nothing from one place which it should display exception&rsquo;s message, python language part is implemented by C, so we downloaded python source code(2.7.9), and find these lines.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">static</span> <span class="kt">int</span>
+</span><span class='line'><span class="nf">BaseException_init</span><span class="p">(</span><span class="n">PyBaseExceptionObject</span> <span class="o">*</span><span class="n">self</span><span class="p">,</span> <span class="n">PyObject</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">PyObject</span> <span class="o">*</span><span class="n">kwds</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">_PyArg_NoKeywords</span><span class="p">(</span><span class="n">Py_TYPE</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">tp_name</span><span class="p">,</span> <span class="n">kwds</span><span class="p">))</span>
+</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">Py_DECREF</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">self</span><span class="o">-&gt;</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">Py_INCREF</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">PyTuple_GET_SIZE</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">Py_CLEAR</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">self</span><span class="o">-&gt;</span><span class="n">message</span> <span class="o">=</span> <span class="n">PyTuple_GET_ITEM</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">Py_INCREF</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is python BaseException&rsquo;s C implementation, I can understand logic but C syntax. The BaseException accepts <code>kwargs</code>, but if you pass a <code>kwargs</code> to Exception, you will get a warning, because of <code>_PyArg_NoKeywords</code>, maybe it needs compatibility with old code, but now, you can&rsquo;t use <code>kwargs</code>.</p>
+
+<p>Another notice, if you pass one argument to it, this argument will be the <code>e.message</code> value, if not, your args will be placed in <code>e.args</code>.</p>
+
+<p>We finally implemented <code>__str__</code> and <code>__unicode__</code> methods, because of we imported <code>unicode_literals</code>, so we think this is the best practice, we just use <code>str(e)</code> in those places.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">TmallAPIException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">sub_code</span><span class="p">,</span> <span class="n">sub_msg</span><span class="p">):</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">(</span><span class="n">TmallAPIException</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">sub_code</span><span class="p">,</span> <span class="n">sub_msg</span><span class="p">)</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">code</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">sub_code</span> <span class="o">=</span> <span class="n">sub_code</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">sub_msg</span> <span class="o">=</span> <span class="n">sub_msg</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c"># TODO: not necessary under python3</span>
+</span><span class='line'>        <span class="k">return</span> <span class="s">&#39;code: {}, msg: {}, sub_code: {}, sub_msg: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_msg</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__unicode__</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-04-19T17:05:31+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/01/11/optimize-shadowsocks-nat-rules/">
+		
+			Optimize Shadowsocks NAT Rules</a>
+	</h2>
+	<div class="entry-content">
+		<p>Few days ago, I upgraded my OpenWrt box to latest version, there is a new style(Bootstrap) interface and I like it very much(too long lived old world).</p>
+
+<p>Also I found a shadowsocks <a href="https://github.com/shadowsocks/openwrt-shadowsocks">special version</a> for openwrt, it includs China main IP blocks, some requests within this IP range, you could bypass shadowsocks, and this IP blocks is from <code>apnic</code>, very precise but a little long for openwrt, 4000+lines.</p>
+
+<p>I think the most counted IP block I would use it in the future very soon, so I can sort them desc.</p>
+
+<p><code>iptables -t nat -xvnL SS_SPEC_WAN_AC | tail -n+12 | head -n -1 | sort -crnsk 1,1 | awk '{ print $NF }' &gt; /etc/shadowsocks/ignore.list</code></p>
+
+<p><code>tail -n+12</code> means display results from the first 12 row to the end, first 11 rows includes two lines heads, one line shadowsocks server IP, eight lines internal IP blocks;</p>
+
+<p><code>head -n -1</code> means display results except last line(doesn&rsquo;t work on MacOS), and last line is default shadowsocks redirect rule, so keep it at the same place.</p>
+
+<p><code>sort -crnsk 1,1</code> means <code>c</code>heck first, <code>r</code>everse result, <code>n</code>umerical value(converted from input string), <code>s</code>table sort, <code>k 1,1</code> sort key (start a key at POS1, end it at POS2 (origin 1))</p>
+
+<p><code>awk print $NF</code>, print the last column, that&rsquo;s very cool.</p>
+
+<p>rewrite the results to ignore.list, and restart shadowsocks, it will use the sorted IP blocks, maybe fast than before 0.xx ms!</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-11T23:46:08+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/play/'>play</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/01/08/mailing-list-in-postfix/">
+		
+			Mailing List in Postfix</a>
+	</h2>
+	<div class="entry-content">
+		<p>Too simple to making a mailing list in postfix, just define a mailing list name and recipients in <code>/etc/postfix/virtual</code>, like this: <code>dev-group dev1@company.com dev2@company.com dev3@company.com</code>, after that, generate the virtual db by <code>postmap /etc/postfix/virtual</code>.</p>
+
+<p>Don&rsquo;t forget add <code>virtual_alias_maps=hash:/etc/postfix/virtual</code> in your <code>main.cf</code> file, and restart postfix finally.</p>
+
+<p>I think I need study postfix systemally, just build a private smtp/imap server.</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-08T19:20:14+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/parttime/'>parttime</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/01/07/be-careful-python-fdopen/">
+		
+			Be Careful Python Fdopen</a>
+	</h2>
+	<div class="entry-content">
+		<p>I have got a bug when I <code>print</code> something to <code>stdout</code>, I got <code>Bad file descriptor</code>, it means my stdout is a bad descriptor, what?!</p>
+
+<p>Core code like this: <code>logger.StreamHandler(os.fdopen(sys.stdout.fileno(), 'w', 0))</code>, I want to a unbuffered stdout, so I reopen it by <code>fdopen</code>, and reset the buffer size to 0, I still also did same thing to <code>stderr</code>, but that is no sense, because of <code>stderr</code> is unbuffered normally(but in Python3, it maybe line buffered, in MacOS).</p>
+
+<p>If your <code>stdout</code> is reopened by <code>fdopen</code>, and its reference count hits zero, it will be collected by Python GC, also your <code>stdout</code> will be ate by GC, something wrong will happen after that.</p>
+
+<p>So, be careful with <code>fdopen</code> for <code>stdin</code>, <code>stderr</code>, <code>stdin</code>:)</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-07T23:13:39+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/01/05/unicom-blocked-80-8080/">
+		
+			联通封了80和8080 but 443 Is Ok</a>
+	</h2>
+	<div class="entry-content">
+		<pre><code>地点：北京
+ISP：中国联通
+接入方式：光纤入户
+</code></pre>
+
+<p>换联通宽带几个月了，感觉良好，但觉得BT下载不够快，因为下的少，也没深究，而且多用迅雷离线下载，基本就是直连迅雷CDN的速度，都能跑满带宽。</p>
+
+<p>OpenWrt多拨尝试过，没有效果，据说早就被封了，所以不再尝试。</p>
+
+<p>前段时间打算把openwrt的管理界面移到WAN和LAN上，即在外面也能访问路由器，默认我就放到了WAN的80上，很可惜失败了，内部访问没问题，外面不行，当时也没多想，总觉得是iptables有问题，一看openwrt的规则，好可怕，嵌套了几层，不看了，改成了别的端口，比如9999，竟然内外都可以，因为后来很少从外面访问，所以这个需求基本是为需求，不管了。</p>
+
+<p>最近把一个网站放到raspberry pi上，路由器做端口映射到内部的80，当时在内网里测试的没问题，还把https也一并做好了。碰巧在公司访问了一下，80不能访问，但443没问题。</p>
+
+<p>今晚直接在PREROUTING的第一行加了log，从外部服务器请求80直接看不到，但443的没问题，而且PREROUTING是第一个被执行的，只能说80的请求就没到这里，可这都是公网对公网的访问了，难道这个请求被某个路由截获然后丢弃了？Google了一下发现几年前几大运营商的能提供公网IP的服务里80和8080端口被封了，说是不能随意搭建网站，想想也是啊，现在国内都得备案才行。</p>
+
+<p>BUT PORT 443 IS OK&hellip;</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-05T23:24:57+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/play/'>play</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/01/05/traps-of-jushita/">
+		
+			聚石塔里面的坑</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天开始全面接触聚石塔，就是天猫的云平台，上面服务众多，全都能收费，第一次听说了API调用也是可以收费的。下面记录一些可能成为坑的东西，希望有人看到后可以小心躲避。</p>
+
+<h2>创建应用要先报备</h2>
+
+<p>说明书要按照模版写，模板有下载，看说明就能找到，其中里面有个架构图，这个要仔细画，基本思想（阿里思想）就是把你所有的业务系统都放到ECS上，如果在ECS外出现了一个你们自己的平台，他们就怀疑你用ECS做了一个代理来调用API，因为收费API只能是塔内调用，其他没有遇到特别的，时间大概是3天出结果。</p>
+
+<h2>创建应用</h2>
+
+<p>报备通过就可以创建应用了，创建成功后可以去买ECS和RDS等服务，别的服务暂时没用到，这两个服务都是绑定应用的，所以要先有应用。ECS的配置可选的比较少，我在北京，但机房目前只有杭州，所以你写了你的位置也没用，据说杭州那个机房是6线接入，出口质量和淘宝一样，但拿到ECS后ping了一下，31ms左右，第二天ping到了70ms左右，虽然ping不代表什么，但总感觉怪怪的。。。价格和阿里云的ECS相比有些贵。</p>
+
+<h2>ECS</h2>
+
+<p>管理终端有个密码，要改的话记得改完重启机器，否则不生效，而且重启后自己再用管理终端连接一下看看是不是生效了。</p>
+
+<p>他们把10和172.16网段都用了，自己要用内网的话可以考虑多租几个ECS实例，但想玩LXC的话，可以考虑用192.168网段。</p>
+
+<p>DNS不要换别的，就用ECS配置好的，据说改了影响内部访问和RDS通信，我改成114dns后直接无法使用。</p>
+
+<p>我买的是最便宜的ECS，但不知道为何没有SWAP分区，512Mb内存在起了LXC后又编译了一个东西就超了，那里怎么都不行，于是加了SWAP，可以。</p>
+
+<h2>RDS</h2>
+
+<p>我想用聚石塔的推送服务，就是可以把订单、商品等数据推送到买的RDS中，但今天申请的时候对方说应用未上线，不能申请。。。我就是需要这些数据才能开发应用，这不就变成死锁了？</p>
+
+<p><strong>2015年1月7日</strong>：后来和客服沟通，说是应用需要先上线，即便你还没有开始开发，这点虽然有点怪怪的，但只有这样才能申请到同步服务。应用上线挺简单，创建完应用只是第一步，完善基本信息后点下一步即可进入安全扫描阶段，再提交，瞬间说审核通过，这就上线运行了。</p>
+
+<p><strong>2015年1月9日</strong>：商家后台应用有web和客户端两种架构方式，就是你做出一个web应用，一般就是用web的架构方式，用户登陆、授权后，你能拿到用户session，然后就可以用了，和大多数oauth的方式一样，客户端类似。但有一点需要注意，商家后台应用拿到用户的session和refresh token后，文档记载session有效期1年，但这个refresh token无用，只能等session到期后重新授权。</p>
+
+<p>真正开始做了，发现API用起来也不那么爽，这个具体看个人的感觉了，但比拍拍强了不少。</p>
+
+<hr />
+
+<p>目前就遇到这些坑，欢迎更新坑们。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-05T22:56:42+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dev/'>dev</a>
+
+
+</div>
+	
+</div>
+</article>
+
+<nav id="pagenavi">
+    
+    
+        <a href="/posts/2" class="next">Next</a>
+    
+    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
+</nav></div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    dawncold
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-8650400-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

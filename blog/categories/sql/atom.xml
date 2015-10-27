@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: sql | Trade Off]]></title>
+  <link href="http://www.youth2009.org/blog/categories/sql/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2015-08-27T20:52:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[sqlite3连接查询和多次select的对比]]></title>
+    <link href="http://www.youth2009.org/blog/2012/05/14/left-outer-join-and-multiply-select-in-sqlite3/"/>
+    <updated>2012-05-14T23:23:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/05/14/left-outer-join-and-multiply-select-in-sqlite3</id>
+    <content type="html"><![CDATA[<p>通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。</p>
+
+<p>左外连接查询比两次select快10～20%左右。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>! /usr/bin/env python&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>coding: utf-8&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>import sqlite3
+</span><span class='line'>import os
+</span><span class='line'>import time
+</span><span class='line'>import random&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>def connect():
+</span><span class='line'>return sqlite3.connect(&lsquo;./test.db&rsquo;)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>def insertProgress(conn, user_id):
+</span><span class='line'>cur = conn.execute(&lsquo;INSERT INTO todo(title, date) VALUES(?,?)&rsquo;, [&lsquo;just test!!!&rsquo;, time.strftime(&ldquo;%Y-%m-%d %H:%M:%S&rdquo;, time.localtime())])
+</span><span class='line'>conn.execute(&lsquo;INSERT INTO todo_meta(todo_id, user_id) VALUES(?,?)&rsquo;, [cur.lastrowid, user_id])&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>def insertManyData(conn):&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>reset database&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>os.system(&lsquo;sqlite3 test.db &lt; schema.sql&rsquo;)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>conn.cursor()
+</span><span class='line'>counts = [0,0,0,0,0,0]
+</span><span class='line'>for i in xrange(100000):
+</span><span class='line'>userid = random.choice([0, 1, 2, 3, 4, 5])
+</span><span class='line'>counts[userid] += 1
+</span><span class='line'>insertProgress(conn, userid)
+</span><span class='line'>conn.commit()
+</span><span class='line'>conn.close()
+</span><span class='line'>print counts&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>def selectUsingLeftOuterJoin(conn, user_id):
+</span><span class='line'>conn.cursor()
+</span><span class='line'>cur = conn.execute(&lsquo;SELECT t.title, t.date \
+</span><span class='line'>FROM todo t LEFT OUTER JOIN todo_meta tm \
+</span><span class='line'>ON tm.todo_id = t.id\WHERE tm.user_id = ?&rsquo;, [user_id])
+</span><span class='line'>def selectTwoTimes(conn, user_id):
+</span><span class='line'>conn.cursor()
+</span><span class='line'>cur = conn.execute(&lsquo;SELECT todo_id FROM todo_meta WHERE user_id = ?&rsquo;, [user_id])
+</span><span class='line'>for tid in [row[0] for row in cur.fetchall()]:
+</span><span class='line'>cur = conn.execute(&lsquo;SELECT title, date FROM todo WHERE id = ?&rsquo;, [tid])&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>if &lt;strong>name&lt;/strong> == &ldquo;&lt;strong>main&lt;/strong>&rdquo;:
+</span><span class='line'>uids = [0, 1, 2, 3, 4, 5]
+</span><span class='line'>insert_time_start = time.time()
+</span><span class='line'>insertManyData(connect())
+</span><span class='line'>print &ldquo;Insert Time: %f&rdquo; % (time.time() - insert_time_start)
+</span><span class='line'>select_ULOJ_start = time.time()
+</span><span class='line'>for uid in uids:
+</span><span class='line'>selectUsingLeftOuterJoin(connect(), uid)
+</span><span class='line'>print &ldquo;Select Using Left Outer Join time: %f&rdquo; % (time.time() - select_ULOJ_start)
+</span><span class='line'>select_two_times = time.time()
+</span><span class='line'>for uid in uids:
+</span><span class='line'>selectTwoTimes(connect(), uid)
+</span><span class='line'>print &ldquo;Select Two Times time: %f&rdquo; % (time.time() - select_two_times)</span></code></pre></td></tr></table></div></figure></p>
+
+<p>schema：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">todo</span><span class="p">;</span>
+</span><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="k">user</span><span class="p">;</span>
+</span><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">todo_meta</span><span class="p">;</span>
+</span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="n">todo</span> <span class="p">(</span>
+</span><span class='line'><span class="n">id</span> <span class="nb">integer</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">autoincrement</span><span class="p">,</span>
+</span><span class='line'><span class="n">title</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="nb">date</span> <span class="n">datetime</span> <span class="k">not</span> <span class="k">null</span>
+</span><span class='line'><span class="p">);</span>
+</span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="k">user</span> <span class="p">(</span>
+</span><span class='line'><span class="n">id</span> <span class="nb">integer</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">autoincrement</span><span class="p">,</span>
+</span><span class='line'><span class="n">email</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="n">password</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="n">nickname</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="n">salt</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span>
+</span><span class='line'><span class="p">);</span>
+</span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="n">todo_meta</span> <span class="p">(</span>
+</span><span class='line'><span class="n">todo_id</span> <span class="nb">integer</span><span class="p">,</span>
+</span><span class='line'><span class="n">user_id</span> <span class="nb">integer</span><span class="p">,</span>
+</span><span class='line'><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">todo_id</span><span class="p">)</span> <span class="k">references</span> <span class="n">todo</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+</span><span class='line'><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span> <span class="k">references</span> <span class="k">user</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>启动脚本就会创建数据库并开始测试。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[sqlite3的rowcount]]></title>
+    <link href="http://www.youth2009.org/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3/"/>
+    <updated>2012-05-14T17:00:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/05/14/the-rowcount-of-cursor-in-sqlite3</id>
+    <content type="html"><![CDATA[<p>最近写了一个todo的webapp，在用户登陆的时候是select数据库中的内容进行对比判断，当然如果select的内容是0那就表示用户登陆失败了，可能账号或者密码写错了，数据库用的sqlite3，在python的api中发现有cursor.rowcount可用，于是就这么判断一下是不是有数据被select出来了，没想到这样判断是错误的。</p>
+
+<p>select的rowcount永远为-1，哎，这里着实坑了我一番啊～</p>
+
+<p>只好cursor.fetchone()先，然后判断得到的内容是不是None。</p>
+
+<p>从<a href="http://stackoverflow.com/questions/839069/cursor-rowcount-always-1-in-sqlite3-in-python3k">这里</a>得到的答案。</p>
+]]></content>
+  </entry>
+  
+</feed>

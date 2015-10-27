@@ -1,0 +1,819 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Trade Off</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="上次说到了echo有可能出现标准不一致的情况，所以建议使用printf，但如果你只是使用最简单的echo输出一段话，那还是没问题的。printf更加复杂，功能和C语言中的printf基本相同。 IO重定向默认在你登录的时候就把standard input/output绑定到了terminal中， &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/25/shell-study/">
+		
+			Shell Study</a>
+	</h2>
+	<div class="entry-content">
+		<p>上次说到了echo有可能出现标准不一致的情况，所以建议使用printf，但如果你只是使用最简单的echo输出一段话，那还是没问题的。printf更加复杂，功能和C语言中的printf基本相同。</p>
+
+<p>IO重定向默认在你登录的时候就把standard input/output绑定到了terminal中，所以你可以在terminal中完成很多工作。</p>
+
+<p>简单的重定向：“>”、“&lt;”、“>>”，分别是改变重定向input、output，最后一个是附加到某个文件，如果你在使用">&ldquo;的时候不存在目标文件，那么会被创建出来，如果已经存在就会被覆盖掉，原有数据丢失，如果使用&rdquo;>>&ldquo;则会追加到目标文件中，原有数据依然存在。</p>
+
+<p>管道也是重定向的一部分，prog1 | prog2，可以把prog1的标准输出重定向到prog2的标准输入上，如果你需要连接多个程序的时候，最好用管道方式，这样比临时文件效率高很多（据说10倍）。在使用管道的时候应该逐级让数据量减少，这样能够提高脚本的整体性能，例如在sort之前，你可以grep出需要sort的行，这样会好一些：）</p>
+
+<p>特殊文件：/dev/null 和 /dev/tty。null这个被称为bit bucket，传输到这里的东西都会被丢弃，就如同黑洞一般：）程序把文件写入到这里就会被认为是成功的，但实际什么都没做，例如：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">if</span> grep pattern myfile &gt; /dev/null
+</span><span class='line'><span class="k">then</span>
+</span><span class='line'>…
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>…
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以做一个探测，是否myfile有pattern，这样不会产生输出。</p>
+
+<p>/dev/tty的功能是，当程序打开这个文件时会重定向到一个terminal，在需要输入密码的时候用的到：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">printf</span> <span class="s2">&quot;Enter password: &quot;</span>
+</span><span class='line'>stty -echo <span class="c">#关闭自动回显输入的字符功能</span>
+</span><span class='line'><span class="nb">read </span>pass &lt; /dev/tty
+</span><span class='line'><span class="nb">printf</span> <span class="s2">&quot;Enter Again: &quot;</span>
+</span><span class='line'><span class="nb">read </span>pass2 &lt; /dev/tty
+</span><span class='line'>stty <span class="nb">echo</span> <span class="c">#打开自动回显输入的字符功能</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>shell的PATH中最好不要放入当前目录这一选项，这会带来安全问题，所以干脆就不要这么想了：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-25T10:24:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/21/shell-study/">
+		
+			Shell Study</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天开始学学Shell编程，不光是因为需要在惯例服务器的时候使用到，平常作为一门必须掌握的脚本语言也是很有必要的，所以就学吧，况且那本《Shell脚本学习指南》已经买了放那里好久了，就书刚到的时候看了两页，真的就像是两页，后来光看《The Pragmatic Programmer》和《1Q84》了。</p>
+
+<p>shell脚本的第一行一般写明这个脚本使用哪种脚本解释器运行，以"#!&ldquo;开头，后面加脚本解释器的名字和相应参数，如果不需要什么参数就写上“-”，这是出于安全考虑，可以避免某种程度上的欺骗式攻击（spoofing attack）。</p>
+
+<pre><code>选项：命令后面用一个“-”开头书写的内容，如：ls -l，那么“-l”就是选项。
+参数：有的选项需要传入参数，那么就要紧跟着那个需要参数的“选项”，如：cc -o exp exp.c
+没参数的选项合并，例如：ls -al = ls -a -l，书写非常方便吧。
+分号分隔开几条命令，会逐一执行；如果用“&amp;”的话，就会让命令进入后台执行，可以立刻相应你的下一条命令。
+</code></pre>
+
+<p>shell中的变量赋值有个要求，变量名后，到等号，到值都不能有空格：“var=1”这是正确的，“var = 1、var= 1等等都不对”，这点有些别扭，我喜欢多加空格。。。而且大多数coder也是如此吧？</p>
+
+<p>取出刚刚你创建的变量需要在变量名前面加"$&ldquo;符号，看来和取钱的感觉差不多哈哈，或许以前认为变量中的值放在内存或者磁盘上都是昂贵的，如同取钱。</p>
+
+<p>变量赋值这里还有些东西值得说一下：</p>
+
+<pre><code>可以一行多次赋值，比如，first=1 second=2 third=3
+如果有空格就加双引号: var="1 2 3"，这看起来像string
+还可以这样，var="$first $second $third"，最后var的值里面会包含first、second、third的值，这点就不太像string了，需要注意！！！
+</code></pre>
+
+<p>由于echo命令在Unix多个发行版之间有差异，所以输出的话还是用printf好了：—）</p>
+
+<p>今天就先到这。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-21T21:50:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/shell/'>shell</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/11/pragmatic-programmer-log/">
+		
+			Pragmatic Programmer Log</a>
+	</h2>
+	<div class="entry-content">
+		<p>昨晚看完了第一章，顿时感觉十分充实，因为在过去的一个星期里每晚都在看书而不是把时间花在weibo上。Your Knowledge Protfolio讲的是为自己的知识不断投资，你现在钟爱的或者正在使用的技术可能只是当前这个时期火热的，他们会随着时间的推演发生巨变，如果你不不断为自己的知识投资，那很难适应社会的发展需要。我们搞编程的感受应该非常丰富，可以说每天都有新技术出现老技术衰亡，应对这种挑战就应该定期学习新技术，更多的掌握技术从而面对一个问题你能有很多种解决方案。</p>
+
+<p>后面讲了要批判性思维，海量信息涌入的时候不要乱了阵脚，思考哪些是真的哪些是假的，对于信息社会这点已经很平常了。</p>
+
+<p>交流。我们不能闭门造车，人与人之间的交流永远大于人与机器间的交流。作者介绍了一些交流方面的技巧，其实不必太在乎这么多，只要合理处理好人际关系，跟着感觉走就不会有问题。</p>
+
+<p>补充很多单词：</p>
+
+<pre><code>interest:           投资
+pithy:              简称的
+homily:             训诫
+irrlelvant:         不恰当的、不想干的
+obsolete:           过时的
+regularly:          定期的，有规律的
+diversification:    多元化
+spectrum:           范围
+potentially:        潜在的
+high-reward:        高回报
+conservatively:     保守地
+miss out:           错过机会
+emerging:           正在浮现的
+payoff:             收益
+intellectual:       智力的
+capital:            资本
+rut:                常规
+equation:           相等、均衡
+vice:               代替
+versa:              反
+cross-pollination:  交叉授粉
+voraciously:        贪婪地
+faintest:           模糊的
+guru:               专家
+thumbing:           翻阅
+vendor:             小贩
+beware:             小心
+unswayed:           不受影响的
+zealot:             狂热者
+underestimate:      低估
+commercialism:      商业主义
+dogma:              教条
+insist:             坚持
+torrent:            激流
+sterile:            无结果的
+proposal:           提议
+advocate:           主张
+justify:            证明
+convey:             表达
+</code></pre>
+
+<p>“出来混总是要还的”，这句话已经被很多人认定是亘古不变的真理了，呵呵。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-11T14:19:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/09/pragmatic-programmer-log/">
+		
+			Pragmatic Programmer Log</a>
+	</h2>
+	<div class="entry-content">
+		<p>比较喜欢的一章，讲软件的足够完美性。世间几乎所有东西都不是完美的，当然有完美的——“不完美”就是完美的，就像“永远不变的只有变化”一样。</p>
+
+<p>似乎和昨天的有些关联，要先给用户们一个不够完美的东西用，他们就会给出意见，你再逐渐完美这个软件，当然这也不可能达到完美的标准，只是更接近用户的需求了，其实这已经足够了，你为了用户制定出软件，满足了他们的需求不就是完美的了么？那些什么良好的UI、UE，如果end user根本都没能感到你的用心良苦，那只能算是你的蛋疼设计了（为用户创造出需求的除外）。</p>
+
+<p>质量算是需求的一部分么？</p>
+
+<p>我们的需求文档会包含质量的规约么？乍一看似乎有不同声音，需求文档只要满足需求，需求又是什么呢？人们在描述自己需求的时候会加入质量这个衡量标准么？还是找大牛们交流去吧。</p>
+
+<p>何时stop。这个问题在我这里常常出现，似乎coder都免不了带点完美主义，做一个feature会不断refine it，最终overrefinement，make a solution becomes academic research。作者没明确说when，只是说for a while，然后慢慢完善就好了。。。不负责的作者。</p>
+
+<p>补充几个单词：</p>
+
+<pre><code>overembellishment:      过于美化
+sketch out:             拟订
+preferable:             更好的
+tight:                  紧的
+polish up:              改善
+advocate:               提倡
+stringent:              紧迫的
+pacemaker:              心脏起搏器
+space shuttle:          航天飞机
+disseminate:            公开的
+shorter incubation:     短潜伏期
+conspire:               阴谋
+oft:                    常常
+mar:                    破坏
+strive:                 努力
+</code></pre>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-09T00:05:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/07/pragmatic-programmer-log/">
+		
+			Pragmatic Programmer Log</a>
+	</h2>
+	<div class="entry-content">
+		<p>stone soup 和 boiled forgs是两种不同的引导，一种是良性的，一种是”恶性”的。恶性的意思是，你对forg有伤害，最后被你煮死了。而stone soup只是借助其他人的力量达到自己的愿望，所以，boiled forgs主要还是提醒我们要有一个big picture的概念，时刻拥有，感知周围的changes，否则你只有被cook了。</p>
+
+<p>我们似乎正处在stone soup这个环境里，做出的产品正在给编辑们用，还有一些别的部门后期也会参与进来，让他们使用这个并不完善的系统，然后得到那种“如果加上xxx就会更好用”了的建议，我们再改进，最终能够做一个让用户满意的系统，那也是我们的愿望。</p>
+
+<p>来几个单词：</p>
+
+<pre><code>hoard:          贮存
+undeterred:     未受损的
+ingredient:     作料
+moral:          道德
+trick:          戏弄
+catalyst:       催化剂
+synergistic:    协同的
+tackle:         处理
+stare:          凝视
+fatigue:        疲劳
+reasonably:     适当地
+marvel:         惊异
+glimpse:        一瞥
+gradual:        逐渐
+progressively:  逐渐地
+deception:      骗局
+tightly:        紧紧地
+creep up on:    爬向
+inexorably:     不可阻挡地
+disaster:       灾难
+morale:         斗志
+perceive:       注意到
+will:           决心，意志
+</code></pre>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-07T23:38:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/07/beautiful-ps1/">
+		
+			Beautiful PS1</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天又加了不少红绿颜色的字在各种输出上，看起来更加顺眼了，无奈server的网关被人修改了，我们也不敢轻易改动，因为编辑们正在使用，怕改了他们不能访问了。。。那个负责人到我们下班都没回来，真不知道干嘛去了。</p>
+
+<p>研究了一下这种颜色是怎么回事，原来是在一个字符串前后加上颜色标记，就和html的标记一样，只不过颜色标记更加让人难以理解。临下班我想研究一下如何做一个autocomplete的veil出来，可惜都搜不到什么资料，可能这不是什么很值得人们写的东西吧，竟是些讲按Tab可以complete，但不说你怎么写code可以实现这种，猜想是有什么hook可以监听tab事件吧：）后来在<a href="http://hi.baidu.com/widebright/item/5f92a4cf65c79709c710b2ac">这里</a>找到一篇文章，介绍了一点原理和写法，准备翻翻我那本《Shell脚本学习指南》看看有没有帮助。</p>
+
+<p>研究这个的副产品就是看到了PS1的介绍，可以搭配出漂亮而功能强大的PS1。</p>
+
+<p>其实PS1就是一个字符串，Ta规定了提示符的那一行会怎么显示出来以及显示什么，这里面你可以写一些函数调用、配色什么的，terminal会自动帮你调用，然后就是显示出来。给你看个展示效果：</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/CoN0yCPa/medish.jpg" alt="PS1 pic" /></p>
+
+<p>是不是很好看呢？再看看让Ta显示成这个样的PS1字符串长什么样吧：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;\[$(tput bold)\]\[$(tput setaf 3)\]\u\[$(tput setaf 2)\] [\t] \[$(tput setaf 1)\]\W=&gt;\\$\[$(tput sgr0)\] &#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>相关颜色可不是那么好记忆的如果你用\033、\032这样标记的话，推荐个网站，你可以直接设置好效果，然后复制过来就可以了：<a href="http://www.kirsle.net/wizards/ps1.html">http://www.kirsle.net/wizards/ps1.html</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-07T21:12:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/shell/'>shell</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/06/pragmatic-programmer-log2/">
+		
+			Pragmatic Programmer Log2</a>
+	</h2>
+	<div class="entry-content">
+		<p>Software Entropy主要讲了软件遵循物理中的熵增大原理，软件会逐渐变得rot，而这里面还存在一个broken window的问题，一旦开始rot了，到了一定程度，可以说是有了broken window，然后会有越来越多的broken window，因为人们已经不觉得clean code在现在有多么重要，一旦这样的想法形成，就会有跟多这样的想法，最终积累起来就把软件毁掉了。其实这看起来很想是马太效应不是么？</p>
+
+<p>补充几个新单词：</p>
+
+<pre><code>immune:         免疫
+delicate:       微妙的
+decay:          腐化
+hulk:           笨重的东西
+crime:          犯罪
+substantial:    大量的
+graffiti:       涂鸦
+infraction:     违法
+offending:      冒犯的，违法的
+substitite:     用…代替
+deteriorate:    恶化
+dumpster:       大型垃圾箱
+obscenely:      猥亵的，淫秽的
+acquaintance:   熟人
+tapestry:       挂毯
+antique:        古董
+hoses:          水管
+slip into:      陷入
+crap:           粪便
+pristinely:     未受损的
+</code></pre>
+
+<p>The most important factor that can contribute to software rot seems to be the psychology, or culture, at work on a project</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-06T22:58:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/06/staging-server/">
+		
+			Staging Server</a>
+	</h2>
+	<div class="entry-content">
+		<p>加了一台staging server，这个就相当于有了生产环境后的测试环境，先在这里测试完毕后才会部署到真正的生产环境，本来我们是有测试环境的，但现在给了编辑们使用后那个环境就变成生产环境了，不能轻易改动，但还有不少部署相关的东西需要开发、测试，比如我要完善备份过程，还有灾难恢复什么的。今天把原来的两个不用的lxc容器开起来了当staging环境来用。</p>
+
+<p>部署staging的时候出现了不少奇怪问题，taowen说installer过程很脆弱，要重写，有些东西就收工fix掉，能正常使用就好了。没想到部署staging花去了很长时间，差不多三四点才正常使用。</p>
+
+<p>明天就要加固backup过程了，相信不会特别容易。还有一些小问题需要fix，虽然不影响使用，但积少成多会很难对付。</p>
+
+<p>wanglei爆了一个autocomplete的插件的漏洞——先隐藏autocomplete后显示出来，输入要查询的内容时候提示div会跑到（0，0）这个位置，加我去pair了一段时间一下子没思路，让他push了代码我回到自己座位上凭着猜测加测试，发现问题——隐藏后再显示出来没有重新获取DOM的positon，这样可能取到空，然后默认放到了（0，0），幸好liufan把autocomplete写得够模块化，在适当位置调用一下initUI()即可解决问题。但。。。在我push代码的时候发现branch出乱子了，真是奇怪。照这个情况看下去，很有必要买本Git书看看了！</p>
+
+<p>临下班的时候eric部署了代码到最新的生产环境，同时也能测试一下长数据库连接问题有没有被真正修复，早晨一去应该就有答案了。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-06T22:05:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/06/pragmatic-programmer-log/">
+		
+			Pragmatic Programmer Log</a>
+	</h2>
+	<div class="entry-content">
+		<p>为了强制自己学习，每天晚上都要读书，如果时间允许就多读几种。今晚开始重读《The Pragmatic Programmer》（其实自己本来也没看多少）</p>
+
+<p>强化几个英语单词吧：</p>
+
+<pre><code>picture:        描述
+neglect:        忽视
+responsible:    负责任的
+inertia:        惯性
+instigating:    鼓动
+cautionary:     警告、注意
+tale:           传说
+amphibian:      两栖类
+involved:       有密切关系的
+pull...off:     努力实现
+ongoing:        不断发展的
+portfolio:      文件夹、公文包
+keep...up:      保持
+momentum:       动力
+vacuum:         真空
+unforeseen:     无法预料的
+ethics:         道德标准
+accountable:    负有责任的
+contingency:    偶发事件
+salvage:        抢救
+in term of:     在任期内
+cornerstone:    奠基石
+</code></pre>
+
+<p>pragmatic 哲学的奠基石之一：the idea of taking responsibility for youself and your actions in terms of your career advancement, your project, and your day-to-day work.</p>
+
+<p>一开篇就在讲责任，这个无论是在个人生活还是工作中看来都占了很大的地位，要不然也不会开头就灌输这个，如果是一开始讲什么具体技术那这本书也就不会成为经典了，其实计算机方面很多的书都是在讲人生，只有到了那个高度，才会出现固话的精髓，才能传播。某种技术、语言，也就是几年、几十年的生命力（C除外，这是个未知对象），我一直期望能够从coding这方面找到一些人生中可用的哲学出来。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-06T00:24:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/05/ubuntu-network-configuration/">
+		
+			Ubuntu Network Configuration</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天去机房配置了一下测试服务器的network，以便于让所有编辑部的人都能用上新的产品录入功能，据说我们只需要修改gateway到200.200.200.204就可以了，但奇怪的是，今天我登录到了主机上发现gateway就是204了，好奇怪啊。</p>
+
+<p>起初是用GUI来配置的network，但找不到Network Manager的配置文件在哪里，远程的话我们又没有装VNC只有命令行，索性跑去机房搞定。</p>
+
+<p>ubuntu的netwok配置在/etc/network/interfaces中。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>auto eth0 <span class="c">##这个应该是决定是否启用这个端口 </span>
+</span><span class='line'>iface eth0 inet static <span class="c">##静态设置IP </span>
+</span><span class='line'>hwaddress ether 52:54:xx:51:xx:xx <span class="c">##加入MAC地址，记得要放在IP地址之前 </span>
+</span><span class='line'>address 202.198.151.17
+</span><span class='line'>netmask 255.255.255.0
+</span><span class='line'>gateway 202.198.151.254
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这个样基本够我们现在用的了，据说配置好了要用sudo service networking restart，但我每次搞网络都发现重启这个不管用，似乎配置完了就生效了，不要忘记把原先Network Manager中的配置删除掉哦。今天我忘记加第一行auto eth0导致怎么启动都没效果：）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-05T20:41:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+<nav id="pagenavi">
+    
+    
+        <a href="/posts/9" class="prev">Prev</a>
+    
+    
+    
+        <a href="/posts/11" class="next">Next</a>
+    
+    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
+</nav></div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    dawncold
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-8650400-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

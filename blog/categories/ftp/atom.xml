@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ftp | Trade Off]]></title>
+  <link href="http://www.youth2009.org/blog/categories/ftp/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2015-08-27T20:52:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ftp出现421错误]]></title>
+    <link href="http://www.youth2009.org/blog/2011/05/17/no421-error-in-ftp/"/>
+    <updated>2011-05-17T13:09:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/05/17/no421-error-in-ftp</id>
+    <content type="html"><![CDATA[<p>由于编码问题，只能看清楚反馈回来的错误号是421，查询之后了解到这是因为ftp服务器限制同一个ip的连接数导致，于是在ftp的配置文件中找到最大连接数这个设置，由原来的5改成了500，重启ftp，没问题了。实际上我猜重启一下ftp也能解决问题的，5个最大连接数对于我自己来说也许就够用了吧。</p>
+]]></content>
+  </entry>
+  
+</feed>
