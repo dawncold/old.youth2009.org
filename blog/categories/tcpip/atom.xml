@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: tcpip | Trade Off]]></title>
+  <link href="http://www.youth2009.org/blog/categories/tcpip/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2015-08-27T20:52:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[rarp]]></title>
+    <link href="http://www.youth2009.org/blog/2013/08/25/rarp/"/>
+    <updated>2013-08-25T12:01:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/08/25/rarp</id>
+    <content type="html"><![CDATA[<h2>Packet Format</h2>
+
+<p>RARP packet is identical to ARP packet, differences: RARP &lsquo;type&rsquo; field is 0x8035 for request and reply and &lsquo;op&rsquo; field is 3 for RARP request and 4 for RARP reply.</p>
+
+<p>RARP&rsquo;s reply is unicast.</p>
+
+<p>The implementation of RARP server is complex&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[arp]]></title>
+    <link href="http://www.youth2009.org/blog/2013/08/18/arp/"/>
+    <updated>2013-08-18T20:38:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/08/18/arp</id>
+    <content type="html"><![CDATA[<pre><code>32 bits Internet address
+|                   /|
+|ARP                 |RARP
+|/                   |
+48 bits Ethernet address
+</code></pre>
+
+<h1>Gratuitous ARP</h1>
+
+<ol>
+<li>send its own IP to verify whether someone has used this.</li>
+<li>update old MAC address in ARP cache</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[internet protocol]]></title>
+    <link href="http://www.youth2009.org/blog/2013/07/27/internet-protocol/"/>
+    <updated>2013-07-27T23:02:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/07/27/internet-protocol</id>
+    <content type="html"><![CDATA[<p>TCP, UDP, ICMP, IGMP need IP datagrams as data transmitting method.</p>
+
+<p>IP is a unrealiable and connectionless delivery service.</p>
+
+<ul>
+<li>unrealiable: no guarantee that an IP datagram successfully get to its destination.</li>
+<li>connectionless: IP doesn&rsquo;t maintain any state of successive datagrams, it means there is no order in IP datagrams, latter sent IP datagram may arrived before former sent.</li>
+</ul>
+
+
+<h2>Header</h2>
+
+<p>TOS: 3 bits precedence field(ignored today), 4 bits TOS(mini delay, max throughput, max relability, mini monetary cost), 1 bit always 0. TOS maynot supported by most TCP/IP implementations today, but some routing protocol such as OSPF and IS-IS are capable of making routing decisions based on this field.</p>
+
+<p>Furthermore, a host isn&rsquo;t required to receive a datagram larger than 576 bytes. TCP and UDP will divide user data into small pieces, so one IP datagram will below that limit.</p>
+
+<p>Some small IP datagram will be padded up to the mini length of frame, which maybe 46 or 38 bytes, so total length field is required when you want to know how long the IP datagram&rsquo;s length on earth.</p>
+
+<p>TTL: set by sender, if this datagram pass a router, it will decrease 1, when it reaches 0, this datagram will thrown away, and sender will received an ICMP message. prevent routing loop.</p>
+
+<p>Checksum: TCP, UDP, ICMP, IGMP use same algorithm to computing checksum. Since a router often cheages only TTL value, a router can incrementally update the checksum when it forwards a datagram, instead of calculating the checksum over the entire IP header again.</p>
+
+<h2>IP routing</h2>
+
+<p>The fundamental difference is that a host never forward a datagram from one of its interface to another, while a router forwards datagram.</p>
+
+<p>Router may reach a local optimum result, because every search route table, the router will get a closer next-hop router address, but it may not global optimum.</p>
+
+<p>Frame&rsquo;s destination address(MAC address) may not the really destination address, it may the next-hop router&rsquo;s MAC address, because when it is routing, it can&rsquo;t be found in the current network, it must be routed to a next-hop router, so the destination address is the next-hop router&rsquo;s.</p>
+
+<h2>Subnet addressing</h2>
+
+<p>Don&rsquo;t forget subtract 2, because all 0 bits and all 1 bits address for host address is invalid.</p>
+
+<p>The advantage to using s single class B address with 30 subnets, compared to 30 class C addresses, is that subnetting reduces the size of the Internet&rsquo;s routing tables entry.</p>
+
+<p>A special address: 127.x.x.x means loopback address, not only 127.0.0.1 can be loopback address!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[link-layer]]></title>
+    <link href="http://www.youth2009.org/blog/2013/07/27/link-layer/"/>
+    <updated>2013-07-27T00:03:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/07/27/link-layer</id>
+    <content type="html"><![CDATA[<h2>link layer</h2>
+
+<h3>link layer&rsquo;s usage</h3>
+
+<ol>
+<li>send and receive IP datagram</li>
+<li>ARP request and reply</li>
+<li>RARP request and reply</li>
+</ol>
+
+
+<p>many different link layers, depending on the type of networking: ethernet, token ring, FDDI, RS232 serial lines, etc.</p>
+
+<p>IEEE 802.2/3 format and Ethernet format</p>
+
+<p>in 802 format, after 2 bytes length field, there are 3 bytes LLC and 5 bytes SNAP and data field(38~1492) but in Ethernet format, there will be data field(46~1500), the end field is 4 bytes CRC.</p>
+
+<p>frame formats use 48-bits destination and source address</p>
+
+<h2>SLIP: Serial Line IP</h2>
+
+<p>END &ndash; 0xc0</p>
+
+<p>SLIP ESC &ndash; 0xdb</p>
+
+<p>IP datagram will be terminated by a special character called END(0xc0), most implementations transmit an END at the beginning of the datagram.</p>
+
+<p>if a byte of IP datagram equals:</p>
+
+<p>0xc0 &ndash;> 0xdb, 0xdc</p>
+
+<p>0xdb&ndash;>0xdb, 0xdd</p>
+
+<h2>PPP</h2>
+
+<ol>
+<li>async link with 8bits of data and no parity(no checksum)</li>
+<li>bit-oriented sync links</li>
+</ol>
+
+
+<p>start and end with a flag byte whose value is 0x7e, and if a byte value appears in information field, it should be escaped.</p>
+
+<p>batter than SLIP:(pay for 3 bytes addition)</p>
+
+<ol>
+<li>multiple protocols on a serial line</li>
+<li>CRC</li>
+<li>IP network control protocol negotiate IP address for each end</li>
+<li>header compress like CSLIP</li>
+<li>link control protocol negotiate many data-link options</li>
+</ol>
+
+
+<h2>Loopback</h2>
+
+<p>127.0.0.1 or localhost is the loopback interface, an IP datagram sent to this must not appear on any network.</p>
+
+<p>datagrams sent to broadcast and multicast addtess are copied to the loopback interface and sent out on the Ethernet.</p>
+
+<p>anything sent to one of the host&rsquo;s own IP addresses is ent to the loopback interface!</p>
+
+<h2>MTU</h2>
+
+<p>if the length of data field in IP datagram is larger than MTU(1500 or 1492 in Ethernet and 802 format), it will be fragmented.</p>
+]]></content>
+  </entry>
+  
+</feed>

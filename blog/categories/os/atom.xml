@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: os | Trade Off]]></title>
+  <link href="http://www.youth2009.org/blog/categories/os/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2015-08-27T20:52:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[最近在写OS]]></title>
+    <link href="http://www.youth2009.org/blog/2011/10/22/i-am-writting-an-os-recently/"/>
+    <updated>2011-10-22T08:10:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2011/10/22/i-am-writting-an-os-recently</id>
+    <content type="html"><![CDATA[<p>其实没有像标题中说的那么宏伟，只是需要写一个软件工程用的文档，就是一系列的需求分析、设计、开发、测试、维护文档，主题自定，我觉着看了很多国内的软件作品，动不动就是XXX系统，好象任何东西加上“系统”两个字之后都会变得无比金光闪闪，那我也来一个吧——“操作系统”。</p>
+
+<p>虽然不需要实际编码，但还是需要参考很多资料，不可能一句代码都不出现，主要参考的是《Orange's一个操作系统的实现》（《自己动手写操作系统》的第二版），里面最大的难点就是过多的汇编语言，其实C的程序我还是没大有问题的，只要不让我设计什么深奥算法就好：）</p>
+
+<p>学期末交上这个文档，已经分给了几个人去做，但他们可能感觉时间还早吧，到现在也没有动手，我不能等他们，我需要写好设计部分，现在就得深入阅读资料了。</p>
+]]></content>
+  </entry>
+  
+</feed>

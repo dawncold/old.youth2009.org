@@ -1,0 +1,359 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>sqlite3连接查询和多次select的对比 - Trade Off</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。 左外连接查询比两次select快10～20%左右。 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23 &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Sqlite3连接查询和多次select的对比</h2>
+	<div class="entry-content"><p>通过todo_meta把todo和user联系起来，要查出userid为0～6的所有todo。随机了10W条todo数据进去。</p>
+
+<p>左外连接查询比两次select快10～20%左右。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#! /usr/bin/env python
+</span><span class='line'># coding: utf-8
+</span><span class='line'>
+</span><span class='line'>import sqlite3
+</span><span class='line'>import os
+</span><span class='line'>import time
+</span><span class='line'>import random
+</span><span class='line'>
+</span><span class='line'>def connect():
+</span><span class='line'>return sqlite3.connect('./test.db')
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>def insertProgress(conn, user_id):
+</span><span class='line'>cur = conn.execute('INSERT INTO todo(title, date) VALUES(?,?)', ['just test!!!', time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())])
+</span><span class='line'>conn.execute('INSERT INTO todo_meta(todo_id, user_id) VALUES(?,?)', [cur.lastrowid, user_id])
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>def insertManyData(conn):
+</span><span class='line'>#reset database
+</span><span class='line'>os.system('sqlite3 test.db &lt; schema.sql')
+</span><span class='line'>
+</span><span class='line'>conn.cursor()
+</span><span class='line'>counts = [0,0,0,0,0,0]
+</span><span class='line'>for i in xrange(100000):
+</span><span class='line'>userid = random.choice([0, 1, 2, 3, 4, 5])
+</span><span class='line'>counts[userid] += 1
+</span><span class='line'>insertProgress(conn, userid)
+</span><span class='line'>conn.commit()
+</span><span class='line'>conn.close()
+</span><span class='line'>print counts
+</span><span class='line'>
+</span><span class='line'>def selectUsingLeftOuterJoin(conn, user_id):
+</span><span class='line'>conn.cursor()
+</span><span class='line'>cur = conn.execute('SELECT t.title, t.date \
+</span><span class='line'>FROM todo t LEFT OUTER JOIN todo_meta tm \
+</span><span class='line'>ON tm.todo_id = t.id\WHERE tm.user_id = ?', [user_id])
+</span><span class='line'>def selectTwoTimes(conn, user_id):
+</span><span class='line'>conn.cursor()
+</span><span class='line'>cur = conn.execute('SELECT todo_id FROM todo_meta WHERE user_id = ?', [user_id])
+</span><span class='line'>for tid in [row[0] for row in cur.fetchall()]:
+</span><span class='line'>cur = conn.execute('SELECT title, date FROM todo WHERE id = ?', [tid])
+</span><span class='line'>
+</span><span class='line'>if __name__ == "__main__":
+</span><span class='line'>uids = [0, 1, 2, 3, 4, 5]
+</span><span class='line'>insert_time_start = time.time()
+</span><span class='line'>insertManyData(connect())
+</span><span class='line'>print "Insert Time: %f" % (time.time() - insert_time_start)
+</span><span class='line'>select_ULOJ_start = time.time()
+</span><span class='line'>for uid in uids:
+</span><span class='line'>selectUsingLeftOuterJoin(connect(), uid)
+</span><span class='line'>print "Select Using Left Outer Join time: %f" % (time.time() - select_ULOJ_start)
+</span><span class='line'>select_two_times = time.time()
+</span><span class='line'>for uid in uids:
+</span><span class='line'>selectTwoTimes(connect(), uid)
+</span><span class='line'>print "Select Two Times time: %f" % (time.time() - select_two_times)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>schema：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">todo</span><span class="p">;</span>
+</span><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="k">user</span><span class="p">;</span>
+</span><span class='line'><span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">todo_meta</span><span class="p">;</span>
+</span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="n">todo</span> <span class="p">(</span>
+</span><span class='line'><span class="n">id</span> <span class="nb">integer</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">autoincrement</span><span class="p">,</span>
+</span><span class='line'><span class="n">title</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="nb">date</span> <span class="n">datetime</span> <span class="k">not</span> <span class="k">null</span>
+</span><span class='line'><span class="p">);</span>
+</span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="k">user</span> <span class="p">(</span>
+</span><span class='line'><span class="n">id</span> <span class="nb">integer</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">autoincrement</span><span class="p">,</span>
+</span><span class='line'><span class="n">email</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="n">password</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="n">nickname</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+</span><span class='line'><span class="n">salt</span> <span class="n">string</span> <span class="k">not</span> <span class="k">null</span>
+</span><span class='line'><span class="p">);</span>
+</span><span class='line'><span class="k">create</span> <span class="k">table</span> <span class="n">todo_meta</span> <span class="p">(</span>
+</span><span class='line'><span class="n">todo_id</span> <span class="nb">integer</span><span class="p">,</span>
+</span><span class='line'><span class="n">user_id</span> <span class="nb">integer</span><span class="p">,</span>
+</span><span class='line'><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">todo_id</span><span class="p">)</span> <span class="k">references</span> <span class="n">todo</span><span class="p">(</span><span class="n">id</span><span class="p">),</span>
+</span><span class='line'><span class="k">foreign</span> <span class="k">key</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span> <span class="k">references</span> <span class="k">user</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>启动脚本就会创建数据库并开始测试。</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-14T23:23:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/sql/'>sql</a>
+
+
+</div>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    dawncold
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2012/05/14/left-outer-join-and-multiply-select-in-sqlite3/';
+        var disqus_url = 'http://www.youth2009.org/blog/2012/05/14/left-outer-join-and-multiply-select-in-sqlite3/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-8650400-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

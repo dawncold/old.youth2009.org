@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: lvm | Trade Off]]></title>
+  <link href="http://www.youth2009.org/blog/categories/lvm/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2015-08-27T20:52:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[LVM+RAID实践]]></title>
+    <link href="http://www.youth2009.org/blog/2012/10/08/lvm-and-raid1/"/>
+    <updated>2012-10-08T14:09:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/10/08/lvm-and-raid1</id>
+    <content type="html"><![CDATA[<p>两块256Gb SSD，做RAID1，用LVM管理，方便日后动态扩容等。</p>
+
+<p>0.分区，因为是SSD，需要注意4K对齐问题，否则对SSD的寿命和性能有影响：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>fdisk /dev/sda
+</span><span class='line'>fdisk /dev/sdb
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>1.创建PV</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo pvcreate /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>2.创建VG</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vgcreate -s 16M vg0 /dev/sd<span class="o">{</span>a1,b1<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>3.创建LV
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo lvcreate -n lv0 vg0 -m <span class="m">1</span> -lxxxx <span class="p">&amp;</span>ndash<span class="p">;</span>corelog
+</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+</feed>

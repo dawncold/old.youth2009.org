@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: play | Trade Off]]></title>
+  <link href="http://www.youth2009.org/blog/categories/play/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2015-08-27T20:52:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[optimize shadowsocks NAT rules]]></title>
+    <link href="http://www.youth2009.org/blog/2015/01/11/optimize-shadowsocks-nat-rules/"/>
+    <updated>2015-01-11T23:46:08+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/01/11/optimize-shadowsocks-nat-rules</id>
+    <content type="html"><![CDATA[<p>Few days ago, I upgraded my OpenWrt box to latest version, there is a new style(Bootstrap) interface and I like it very much(too long lived old world).</p>
+
+<p>Also I found a shadowsocks <a href="https://github.com/shadowsocks/openwrt-shadowsocks">special version</a> for openwrt, it includs China main IP blocks, some requests within this IP range, you could bypass shadowsocks, and this IP blocks is from <code>apnic</code>, very precise but a little long for openwrt, 4000+lines.</p>
+
+<p>I think the most counted IP block I would use it in the future very soon, so I can sort them desc.</p>
+
+<p><code>iptables -t nat -xvnL SS_SPEC_WAN_AC | tail -n+12 | head -n -1 | sort -crnsk 1,1 | awk '{ print $NF }' &gt; /etc/shadowsocks/ignore.list</code></p>
+
+<p><code>tail -n+12</code> means display results from the first 12 row to the end, first 11 rows includes two lines heads, one line shadowsocks server IP, eight lines internal IP blocks;</p>
+
+<p><code>head -n -1</code> means display results except last line(doesn&rsquo;t work on MacOS), and last line is default shadowsocks redirect rule, so keep it at the same place.</p>
+
+<p><code>sort -crnsk 1,1</code> means <code>c</code>heck first, <code>r</code>everse result, <code>n</code>umerical value(converted from input string), <code>s</code>table sort, <code>k 1,1</code> sort key (start a key at POS1, end it at POS2 (origin 1))</p>
+
+<p><code>awk print $NF</code>, print the last column, that&rsquo;s very cool.</p>
+
+<p>rewrite the results to ignore.list, and restart shadowsocks, it will use the sorted IP blocks, maybe fast than before 0.xx ms!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[联通封了80和8080 but 443 is ok]]></title>
+    <link href="http://www.youth2009.org/blog/2015/01/05/unicom-blocked-80-8080/"/>
+    <updated>2015-01-05T23:24:57+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/01/05/unicom-blocked-80-8080</id>
+    <content type="html"><![CDATA[<pre><code>地点：北京
+ISP：中国联通
+接入方式：光纤入户
+</code></pre>
+
+<p>换联通宽带几个月了，感觉良好，但觉得BT下载不够快，因为下的少，也没深究，而且多用迅雷离线下载，基本就是直连迅雷CDN的速度，都能跑满带宽。</p>
+
+<p>OpenWrt多拨尝试过，没有效果，据说早就被封了，所以不再尝试。</p>
+
+<p>前段时间打算把openwrt的管理界面移到WAN和LAN上，即在外面也能访问路由器，默认我就放到了WAN的80上，很可惜失败了，内部访问没问题，外面不行，当时也没多想，总觉得是iptables有问题，一看openwrt的规则，好可怕，嵌套了几层，不看了，改成了别的端口，比如9999，竟然内外都可以，因为后来很少从外面访问，所以这个需求基本是为需求，不管了。</p>
+
+<p>最近把一个网站放到raspberry pi上，路由器做端口映射到内部的80，当时在内网里测试的没问题，还把https也一并做好了。碰巧在公司访问了一下，80不能访问，但443没问题。</p>
+
+<p>今晚直接在PREROUTING的第一行加了log，从外部服务器请求80直接看不到，但443的没问题，而且PREROUTING是第一个被执行的，只能说80的请求就没到这里，可这都是公网对公网的访问了，难道这个请求被某个路由截获然后丢弃了？Google了一下发现几年前几大运营商的能提供公网IP的服务里80和8080端口被封了，说是不能随意搭建网站，想想也是啊，现在国内都得备案才行。</p>
+
+<p>BUT PORT 443 IS OK&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[host-octopress-blog-on-raspberry-pi]]></title>
+    <link href="http://www.youth2009.org/blog/2015/01/01/build-octopress-blog-on-raspberry-pi/"/>
+    <updated>2015-01-01T20:25:24+08:00</updated>
+    <id>http://www.youth2009.org/blog/2015/01/01/build-octopress-blog-on-raspberry-pi</id>
+    <content type="html"><![CDATA[<p>First post on 2015!</p>
+
+<p>I have a raspberry pi several months ago, and I often use it to recording temp and humidity, uploading to a cloud host, but after a home movement, it had been stored in my drawer. Last day of 2014, while waiting 2015, I want build it and host an external disk for MacBookPro backup(Time Machine), but failed for power supply, normal power supply is not enough for raspi, so I should buy another USB Hub powered by itself.</p>
+
+<p>My raspi used a wireless NIC to connecting with my router(OpenWrt), but I want use a ethernet cable for it, so it can get a unique IP on Internet, but when I pluged it, the wireless NIC would down, because of ifplugd or something else, so I keep the wireless NIC working and add some rules on route, port forward, WAN 80 to rasp 80, WAN 443 to rasp 443.</p>
+
+<p>Install nginx via<code>sudo apt-get install nginx</code>, remove default site<code>rm /etc/nginx/sites-enable/default</code>, add conf in <code>/etc/nginx/conf.d</code>, like this:</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>server {
+</span><span class='line'>    listen 80;
+</span><span class='line'>    server_name dawncold.me;
+</span><span class='line'>    return 301 &lt;a href="https://$server_name$request_uri;">https://$server_name$request_uri;&lt;/a>
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>HTTPS server&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>server {
+</span><span class='line'>    listen 443 ssl;
+</span><span class='line'>    server_name dawncold.me;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>root /usr/share/nginx/dawncold.me;
+</span><span class='line'>index index.html index.htm;
+</span><span class='line'>
+</span><span class='line'>ssl on;
+</span><span class='line'>ssl_certificate /usr/share/nginx/dawncold.me/dawncold.me.crt;
+</span><span class='line'>ssl_certificate_key /usr/share/nginx/dawncold.me/dawncold.me.key;
+</span><span class='line'>
+</span><span class='line'>ssl_session_timeout 5m;
+</span><span class='line'>
+</span><span class='line'>ssl_protocols SSLv3 TLSv1;
+</span><span class='line'>ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv3:+EXP;
+</span><span class='line'>ssl_prefer_server_ciphers on;
+</span><span class='line'>
+</span><span class='line'>location / {
+</span><span class='line'>    try_files $uri $uri/ =404;
+</span><span class='line'>}
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>}</span></code></pre></td></tr></table></div></figure></p>
+
+<p>I got a SSL certificate from nc.me(github student pack), so I rewrite HTTP to HTTPS.</p>
+
+<p>start nginx via <code>sudo nginx</code> or reload config via <code>sudo nginx -s reload</code>.</p>
+
+<p>Oh, your should update your domain A record to your router WAN ip address, you can write a script or use your router buildin DDNS function.</p>
+
+<p>Octopress supported rsync publishment, so edit your Rakefile and enter your raspi ssh account and nginx html root path, like <code>/usr/share/nginx/www</code>.</p>
+
+<p>publish to github and rasp: <code>rake gen_deploy rsync</code> or only to raspi: <code>rake rsync</code>.</p>
+]]></content>
+  </entry>
+  
+</feed>

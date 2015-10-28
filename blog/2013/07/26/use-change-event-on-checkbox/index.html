@@ -1,0 +1,178 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>use-change-event-on-checkbox - Trade Off</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="昨天在一个table的第一行放了一个checkbox, 想做一个效果：一开始这个table的每一行都是冻结状态，点击这一行就激活了，顺便会把checkbox选中，当然直接点checkbox也会激活这一行。可惜在bind event的时候，分别给tr和checkbox加了click事件， &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Use-change-event-on-checkbox</h2>
+	<div class="entry-content"><p>昨天在一个table的第一行放了一个checkbox, 想做一个效果：一开始这个table的每一行都是冻结状态，点击这一行就激活了，顺便会把checkbox选中，当然直接点checkbox也会激活这一行。可惜在bind event的时候，分别给tr和checkbox加了click事件，tr的click会trigger到checkbox上，这样导致的结果就是点tr会触发checkbox的click handler，但同时又触发了tr的click handler，循环导致最后js崩溃。</p>
+
+<p>后来发现在tr的click handler中检查event.target可以不触发这种死循环，但在checkbox click handler中使用prop判断checked状态不准，在stackoverflow中找到解答：jquery1.8中的 click()和真实的click是不一样的，应该在checkbox上用change event，然后一切ok。</p>
+
+<p>解答：<a href="http://stackoverflow.com/questions/7668826/jquery-triggerclick-not-firing-click-event-on-checkbox">http://stackoverflow.com/questions/7668826/jquery-triggerclick-not-firing-click-event-on-checkbox</a></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-26T09:07:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+
+
+</div>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    dawncold
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2013/07/26/use-change-event-on-checkbox/';
+        var disqus_url = 'http://www.youth2009.org/blog/2013/07/26/use-change-event-on-checkbox/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-8650400-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

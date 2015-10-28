@@ -1,0 +1,188 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Git使用重新学习（分支） - Trade Off</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="在git中分支是一个变态技能！ 创建分支：git branch [branch-name]即可。 git中有个叫master的分支，这是默认的，刚刚创建了一个testing分支，所以这两个指向是一样的，因为刚刚就在master分支下。但是git为何知道我在master呢？ &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Git使用重新学习（分支）</h2>
+	<div class="entry-content"><p>在git中分支是一个变态技能！</p>
+
+<p>创建分支：git branch [branch-name]即可。</p>
+
+<p>git中有个叫master的分支，这是默认的，刚刚创建了一个testing分支，所以这两个指向是一样的，因为刚刚就在master分支下。但是git为何知道我在master呢？因为还有个叫HEAD的默认指针指向了当前正在使用的分支，所以当你切换分支的时候HEAD就会指向新的地方。</p>
+
+<p>切换分支：git checkout [branch-name]（git checkout -b [branch-name]可以实现新建并切换到此分支）切换分支时最好保持暂存区清洁，否则有可能产生冲突阻止你切换。</p>
+
+<p>当我们切换到了testing分支后，再做一些提交，我们的testing分支会继续往下走，但master分支还停留在刚才离开的地方，如果我们需要回去，只需要再切换回master分支即可屏蔽刚才所作的提交，保持文件的原始性。</p>
+
+<p>合并分支：git merge [branch-name]，把分支合并到你现在所在的那个分支中，可别合并反喽，当然我感觉反了也没关系，就是个名字的问题吧？</p>
+
+<p>分支删除用-d开关，git branch -d [branch-name]即可。</p>
+
+<p>合并分支的时候遇到冲突是不可避免的，有些冲突能够自动解决，但还有不少是需要我们手动解决的，此时git会在status中告诉我们，我们打开后就能看到由“=====”分割开的两部分，就是让我们选择，等手动修改好后需要再add进暂存区，此时就能提交了。</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T19:36:00+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    dawncold
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2012/01/26/git-study-branch/';
+        var disqus_url = 'http://www.youth2009.org/blog/2012/01/26/git-study-branch/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-8650400-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

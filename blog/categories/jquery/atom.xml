@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: jquery | Trade Off]]></title>
+  <link href="http://www.youth2009.org/blog/categories/jquery/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2015-08-27T20:52:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[extend in jquery]]></title>
+    <link href="http://www.youth2009.org/blog/2013/02/16/extend-in-jquery/"/>
+    <updated>2013-02-16T20:02:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/02/16/extend-in-jquery</id>
+    <content type="html"><![CDATA[<p>jquery中的extend方法可以扩展一个{}，今天用到了。写了一组配置文件：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var options = {
+</span><span class='line'>    data:1,
+</span><span class='line'>    data2:2
+</span><span class='line'>};&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>console.log($.extend(options, {data3:3}));
+</span><span class='line'>console.log(options);</span></code></pre></td></tr></table></div></figure>
+这样的结果就是在extend之后optons已经被加入了data3这个key-value，因为默认extend使用的是deep copy，你可以<code>$.extend(false, options, {data3:3})</code>，这样就能够得到暂时的并且扩展了的options。</p>
+]]></content>
+  </entry>
+  
+</feed>

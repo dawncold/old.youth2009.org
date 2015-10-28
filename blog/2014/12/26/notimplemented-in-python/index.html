@@ -1,0 +1,247 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>NotImplemented-in-python - Trade Off</title>
+	<meta name="author" content="dawncold">
+
+	
+	<meta name="description" content="It&rsquo;s best to return NotImplemented in magic method(e.g. __eq__, __ne__, etc), see here for details. 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17 &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Trade Off</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+    <li><a href="/about">About</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:www.youth2009.org">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:www.youth2009.org">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">NotImplemented-in-python</h2>
+	<div class="entry-content"><p>It&rsquo;s best to return <code>NotImplemented</code> in magic method(e.g. <code>__eq__</code>, <code>__ne__</code>, etc), see <a href="http://shahriar.svbtle.com/python-notimplemented-type">here</a> for details.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># example.py</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;Comparing an A with an A&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;Comparing an A with a B&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+</span><span class='line'>        <span class="k">print</span><span class="p">(</span><span class="s">&#39;Could not compare A with the other class&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="bp">NotImplemented</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;Comparing a B with another B&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+</span><span class='line'>        <span class="k">print</span><span class="p">(</span><span class="s">&#39;Could not compare B with the other class&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="bp">NotImplemented</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>a</code> is instance of ClassA, and <code>b</code> is instance of ClassB, if we invoke <code>a == b</code>, we will get the result, True or False, but if we invoke <code>b == a</code>, we will also get the result! Because of we return <code>NotImplemented</code> in Class B&rsquo;s <code>__eq__</code> method, runtime could invoke Class A&rsquo;s <code>__eq__</code>, that method can compare A and B.</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-26T21:03:20+08:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/study/'>study</a>
+
+
+</div>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    dawncold
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/blog/2014/12/26/notimplemented-in-python/';
+        var disqus_url = 'http://www.youth2009.org/blog/2014/12/26/notimplemented-in-python/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-8650400-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

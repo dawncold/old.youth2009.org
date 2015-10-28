@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: shell | Trade Off]]></title>
+  <link href="http://www.youth2009.org/blog/categories/shell/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2015-08-27T20:52:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[useful-shell-command]]></title>
+    <link href="http://www.youth2009.org/blog/2013/12/07/useful-shell-command/"/>
+    <updated>2013-12-07T22:28:53+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/12/07/useful-shell-command</id>
+    <content type="html"><![CDATA[<p>找到size为0的文件，并删除：<code>find -type f -size 0 | xargs rm</code></p>
+
+<p>替换Linux的换行成windows的：<code>ls | xargs perl -i -pe 's/\n/\r\n/g'</code></p>
+
+<p>批量改名哦（把<em>.md改为</em>.markdown）：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="k">for</span> i in &lt;code&gt;ls *.md&lt;/code&gt;<span class="p">;</span><span class="k">do</span> mv <span class="nv">$i</span> &lt;code&gt;echo <span class="nv">$i</span> <span class="p">|</span> sed <span class="s1">&#39;s/.md/.markdown/&#39;</span>&lt;/code&gt;<span class="p">;</span><span class="k">done</span>
+</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[some-sed-work]]></title>
+    <link href="http://www.youth2009.org/blog/2013/06/15/some-sed-work/"/>
+    <updated>2013-06-15T16:34:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/06/15/some-sed-work</id>
+    <content type="html"><![CDATA[<p>博客内容是从wordpress转过来的，不可避免有很多地方没转换好，当时懒得弄，今天得空学习Shell编程，讲到了sed，就又搞了一下，基本满意了。</p>
+
+<p>以前用sed替换过分类等简单的文字错误，今天主要是把一些html给替换掉了。</p>
+
+<p>把<code>&lt;p&gt;</code>删掉，在删掉<code>&lt;/p&gt;以及&lt;br /&gt;</code>后面加换行等：</p>
+
+<p><code>sed -i "" -e 's;&lt;/p&gt;;\'$'\n;g' *.markdown</code></p>
+
+<p><code>sed -i "" -e 's;&lt;br /&gt;;\'$'\n;g' *.markdown</code></p>
+
+<p>需要注意的是Mac OS中的sed和我看到的很不一样，所以这个替换都是特殊的，来自<a href="http://cafenate.wordpress.com/2010/12/05/newlines-in-sed-on-mac/">这里</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[pushd-and-popd]]></title>
+    <link href="http://www.youth2009.org/blog/2013/06/13/pushd-and-popd/"/>
+    <updated>2013-06-13T19:50:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2013/06/13/pushd-and-popd</id>
+    <content type="html"><![CDATA[<p>amazoing的两个命令，pushd和popd</p>
+
+<p>相关介绍：<a href="http://en.wikipedia.org/wiki/Pushd_and_popd">pushd &amp; popd</a></p>
+
+<p><code>pushd /etc</code>可以到etc目录下，工作完了后再用<code>popd</code>就回到了刚刚离开的目录。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[shell study]]></title>
+    <link href="http://www.youth2009.org/blog/2012/12/01/shell-study/"/>
+    <updated>2012-12-01T11:52:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/12/01/shell-study</id>
+    <content type="html"><![CDATA[<p>sed是个极其强大的东西，今天开始学习一点点：）</p>
+
+<p>以前的一个sed的命令终于明白了：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>find ./ -name <span class="p">&amp;</span>lsquo<span class="p">;</span>*.html<span class="p">&amp;</span>rsquo<span class="p">;</span> <span class="p">|</span> xargs sed -i <span class="p">&amp;</span>rsquo<span class="p">;</span>s/iso-8859-1/utf-8/g<span class="err">&#39;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>这是替换html编码用的一个语句，find出当前目录下的html文件名字，然后传给sed，当然这里用到了xrags中转，其实没有的话也ok（除非你不用-i模式），sed用了-i模式，可以编辑文件内容保存，并且存一个备份，当然你得传入一个扩展名字才能保存，没有的话就不存和没有-i效果一样。后面的一个字符串，s表示用正则匹配，s后面的是一个分隔符，可以用斜杠，可以换你喜欢的，但后面都要统一起来，上面的意思是iso-8859-1这个替换成utf-8，最后的加的/g是表示global替换，全部替换，否则就替换一次。</p>
+
+<p>后来看起别的书来了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[shell study 2]]></title>
+    <link href="http://www.youth2009.org/blog/2012/11/25/shell-study-2/"/>
+    <updated>2012-11-25T13:50:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/11/25/shell-study-2</id>
+    <content type="html"><![CDATA[<p>shell的参数很有意思，是用数字来命名的，从1~9，如果超过了9就应该这样写：${10}，以后就以此类推。</p>
+
+<p>跟踪shell的执行步骤：sh -x prog，这样就能看到prog的执行动作，如果是在脚本内部，使用set -x开启跟踪，使用set +x关闭跟踪。</p>
+
+<p>终于知道i18n和l10n的意思了：internationalization=i18n，起始字母和末尾字母之间有18个字母。。。同理，localization=l10n。</p>
+
+<p>UNIX中有几个环境变量和i18n,l10n相关：LANG、LC开头的很多个，LANG是默认值，没有任何LC_xxx设置的时候使用这个。这块内容实在太复杂了，还是用默认的英文简单，估计全球程序员也都看得懂。有时候不成熟反而是一种很好的解决方案：）</p>
+
+<p>至此书的前两章就结束了，后面就开始具体的工具学习，至少我自己看着后面章节的标题是这么想的——查找与替换。这些study完全是为了给自己强化知识用的，没打算让别人照着学下去，所以我也就不在乎章节的分隔了，感到应该断开的地方就断开，其他基本是一气呵成，要吃饭睡觉的时候就不写了。</p>
+
+<p>原来的grep有好几个版本，最终在01年被合并成了一个，通过不同的option来选择如何查找字符串。使用
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>grep -F xxx
+</span></code></pre></td></tr></table></div></figure>
+可以查找带有xxx的文本行，默认情况下如果你查找的xxx内容不含正则的mate字符就是使用了-F选项，所以简单的查找可以不加这个选项。</p>
+]]></content>
+  </entry>
+  
+</feed>

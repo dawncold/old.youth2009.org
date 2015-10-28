@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ror | Trade Off]]></title>
+  <link href="http://www.youth2009.org/blog/categories/ror/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/"/>
+  <updated>2015-08-27T20:52:27+08:00</updated>
+  <id>http://www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[设置Rails中的timezone]]></title>
+    <link href="http://www.youth2009.org/blog/2012/02/15/set-timezone-in-rails/"/>
+    <updated>2012-02-15T14:37:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/02/15/set-timezone-in-rails</id>
+    <content type="html"><![CDATA[<p>Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。</p>
+
+<p>没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">active_record</span><span class="o">.</span><span class="n">default_timezone</span> <span class="o">=</span> <span class="ss">:local</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">time_zone</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="no">Beijing</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>为何我说差不多呢，原因如下：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">irb</span><span class="p">(</span><span class="n">main</span><span class="p">):</span><span class="mo">001</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span> <span class="no">Fpwd</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'> <span class="no">Fpwd</span> <span class="no">Load</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">fpwds</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">.</span><span class="n">*</span> <span class="no">FROM</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">fpwds</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="no">WHERE</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">fpwds</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">.</span><span class="n">&amp;ldquo</span><span class="p">;</span><span class="n">user_id</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">=</span> <span class="mi">1</span> <span class="no">LIMIT</span> <span class="mi">1</span>
+</span><span class='line'> <span class="no">SQL</span> <span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="mi">7</span><span class="n">ms</span><span class="p">)</span>  <span class="no">DELETE</span> <span class="no">FROM</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">fpwds</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="no">WHERE</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">fpwds</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">.</span><span class="n">&amp;ldquo</span><span class="p">;</span><span class="n">user_id</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="n">ms</span><span class="p">)</span>  <span class="k">begin</span> <span class="n">transaction</span>
+</span><span class='line'><span class="no">Binary</span> <span class="n">data</span> <span class="n">inserted</span> <span class="k">for</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">string</span><span class="o">&lt;</span><span class="sr">/code&gt; type on column &lt;code&gt;randstring&lt;/</span><span class="n">code</span><span class="o">&gt;</span>
+</span><span class='line'> <span class="no">SQL</span> <span class="p">(</span><span class="mi">429</span><span class="o">.</span><span class="mi">6</span><span class="n">ms</span><span class="p">)</span>  <span class="no">INSERT</span> <span class="no">INTO</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">fpwds</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">created_at</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">randstring</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">updated_at</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">user_id</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;)</span> <span class="no">VALUES</span> <span class="p">(</span><span class="sc">?,</span> <span class="sc">?,</span> <span class="sc">?,</span> <span class="sc">?)</span>  <span class="o">[[&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">created_at</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="no">Wed</span><span class="p">,</span> <span class="mi">15</span> <span class="no">Feb</span> <span class="mi">2012</span> <span class="mi">14</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">35</span> <span class="no">CST</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span><span class="o">]</span><span class="p">,</span> <span class="o">[&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">randstring</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="mi">87</span><span class="n">e685e0d2ab37143fae248083822ffea600f577</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="o">]</span><span class="p">,</span> <span class="o">[&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">updated_at</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="no">Wed</span><span class="p">,</span> <span class="mi">15</span> <span class="no">Feb</span> <span class="mi">2012</span> <span class="mi">14</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">35</span> <span class="no">CST</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span><span class="o">]</span><span class="p">,</span> <span class="o">[&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">user_id</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span> <span class="mi">1</span><span class="o">]]</span>
+</span><span class='line'>  <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="n">commit</span> <span class="n">transaction</span>
+</span><span class='line'><span class="o">=&lt;</span><span class="no">Fpwd</span> <span class="ss">user_id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">randstring</span><span class="p">:</span> <span class="s2">&quot;87e685e0d2ab37143fae248083822ffea600f577&quot;</span><span class="p">,</span> <span class="ss">created_at</span><span class="p">:</span> <span class="s2">&quot;2012-02-15 06:29:35&quot;</span><span class="p">,</span> <span class="ss">updated_at</span><span class="p">:</span> <span class="s2">&quot;2012-02-15 06:29:35&quot;</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+最后的返回值那里还是晚了8小时，我用sqlite3查看的时候时间是正常的，所以这里怀疑是ruby的时间问题了，好在app中已经正常！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[分清form_for和form_tag]]></title>
+    <link href="http://www.youth2009.org/blog/2012/02/14/differentiate-form-for-and-form-tag/"/>
+    <updated>2012-02-14T19:34:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/02/14/differentiate-form-for-and-form-tag</id>
+    <content type="html"><![CDATA[<p>两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][:username]，前面的:user是我给form_for的第一个参数，这个form的所有信息都得加[:user]这样的前缀才能得到了，让我十分痛苦（又加上是个2.14）</p>
+
+<p>使用form_tag后对于它的action不太会控制，所幸不写参数了，正好action指向本地址，省事儿！</p>
+
+<p>感谢<a href="http://blog.csdn.net/babylon_0049/article/details/4730763">这里</a>写的内容</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[痛苦的rails]]></title>
+    <link href="http://www.youth2009.org/blog/2012/02/12/pain-rails/"/>
+    <updated>2012-02-12T22:03:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/02/12/pain-rails</id>
+    <content type="html"><![CDATA[<p>由于rails给我带来的痛苦，让我对ruby这门写着code for fun的语言产生了怀疑，真得有fun么？一开始就没有感觉，现在来看更是如此。</p>
+
+<p>rails是一个正在成长的框架，每一个小版本号的变动都可能会引入和废弃不少特性，而我又傻傻地在使用最新的rails（3.2.1），书上讲的都是rails2.2.2的内容，乍一看变动不应该太大啊，实际上并不是如此！！！</p>
+
+<p>对于一个新手来说，学习一个正在成长的框架是痛苦的：（</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[蛋疼的No route matches “/say/hello”]]></title>
+    <link href="http://www.youth2009.org/blog/2012/02/09/egg-ache-no-route-matches-say-hello/"/>
+    <updated>2012-02-09T23:01:00+08:00</updated>
+    <id>http://www.youth2009.org/blog/2012/02/09/egg-ache-no-route-matches-say-hello</id>
+    <content type="html"><![CDATA[<p>现在有些后悔买的那本书了，《web开发敏捷之道第三版》，那本书的代码使用的是rails2.2.2，真够2的，现在用的是3.2.1，作者说有不少代码已经更改了，但没想到会差得连我都能看出来，我只是个初学者啊！好在我还能稍稍应付自如，后面可能就会更加累了！</p>
+
+<p>一开始在helloworld部分就遇到一个问题，用rails generate controller say后根本不能自动添加一条routes，找了原作者的wiki更新发现这里已经需要自己修改routes的内容了，不过也好，消去一行注释即可：）</p>
+
+<p>感谢<a href="http://www.xiaoyangsheng.com/2011/02/routing-error-no-route-matches-sayhello/">这里</a></p>
+
+<p>如果还有谁遇到类似不兼容问题，请看<a href="http://pragprog.com/wikis/wiki/ChangesToRails">作者的wiki更新</a>吧，希望有帮助！</p>
+]]></content>
+  </entry>
+  
+</feed>
