@@ -1,0 +1,15 @@
+---
+layout: post
+title: 用python处理词汇
+comments: true
+date: 2011-07-19 14:06
+categories: python gameapp
+---
+
+要整理一些词汇，并且还要给每个词汇编码，我把所有的词汇分割称了独立的汉字，再把这些汉字压缩，去掉重复的汉字，最后把这些汉字导入数据库，得到了每个汉字的id，把这些id组合起来作为词的编码，这样还算是好用吧。
+
+用python写了7个脚本来做这些工作，最后得到了近7万条记录，包括单独的字和一些词。因为要用来做iphone应用，所以数据库用的是sqlite，大约4MB的数据，看来这些数据已经很够用了吧。
+
+代码实在不太美观，所幸就不粘贴了吧。
+
+哦，对了，在收集资料过程中，找到了一个用mdb包装的成语数据库，可惜mac下没有很好的浏览工具，就找找看有没有转换工具，在GoogleCode上找到了一个mdb转sqlite的工具，用java写的，下载下来后用了一下，出了一个warning，不过没有影响使用。很不错，感谢一下：[http://code.google.com/p/mdb-sqlite/](http://code.google.com/p/mdb-sqlite/)

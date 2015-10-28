@@ -1,0 +1,11 @@
+---
+layout: post
+title: "log2n和log3n"
+date: 2014-05-30 20:45:44 +0800
+comments: true
+categories: study
+---
+
+merge sort的时间复杂度，log2n，曾经在算法书上看到过，相应的，merge sort也可以三分，复杂度变成log3n，好像还不错，但差多少呢？
+
+log3n=log2n/log2(3)，也就是只差了1/log2(3)对于看起来还更大。一般算法复杂度是log2n表示就是这个原因，loga(n)和log2n差不了太多，都是常数级别的差距，而且在复杂度分析的时候都会忽略常数，所以就简记为log2n复杂度了：）
