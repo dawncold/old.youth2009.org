@@ -1,4 +1,7 @@
+---
+layout: null
+---
 User-agent: *
 Disallow: 
 
-Sitemap: http://www.youth2009.org/sitemap.xml
+Sitemap: {{ site.url }}/sitemap.xml 
