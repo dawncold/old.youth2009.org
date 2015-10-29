@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="真不太想写，因为写这篇日志应该比写一个程序都要复杂。 我介绍的是box2d引擎在iphone上的使用方法，网上也有不少介绍的，我再简单啰嗦一番： 首先我们需要一个物理世界：b2world *world;在世界中创造各种各样的body，当然这些body都是刚体，如同经济学中的刚性需求那样， &hellip;">
+  <meta name="description" content="说来也可笑，Box2d中有各种各样的Shape，有多边形，矩形，圆形。我就是在用圆形的时候遇到的这样的问题：需要设置圆形的半径，我就用了这样的表达式：26 / PTM_RADIO，后面的是一个宏定义，表示拿多少像素和box2d中的米作为兑换。我这样设置后总看着圆形很不正常，半径不对， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,41 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/23/sadly-box2d-expreiences/">惨痛的Box2d经验</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-07-23T11:30:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2011</span></span> <span class='time'>11:30 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>说来也可笑，Box2d中有各种各样的Shape，有多边形，矩形，圆形。我就是在用圆形的时候遇到的这样的问题：需要设置圆形的半径，我就用了这样的表达式：26 / PTM_RADIO，后面的是一个宏定义，表示拿多少像素和box2d中的米作为兑换。我这样设置后总看着圆形很不正常，半径不对，而且落到底边也不弹起来，为此还查找了API、Google等地方，看着别人的代码都没问题，就是自己的不正常。</p>
+
+<p>最终还是解决了这样的问题，真羞愧，原来半径需要一个float的值，但我的表达式算出来的应该是int，不过我也曾经写过 float radius = 26 / PTM_RADIO这样的，再把radius给半径，依然无果，感觉即便是类型不对也应该自动转换过去吧，没想到这里还就是不行了。</p>
+
+<p>可恶的！</p>
+
+<p><code>26.0 / PTM_RADIO</code></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -510,43 +545,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/05/techologist-always-want-to-buy-books/">是不是技术人员都喜欢买书？</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-07-05T21:50:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>9:50 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>自认为我也算是一个追求技术的人了，现在更加喜欢技术的世界了，那里没有一些弹性的东西，不像官场那样可以商量，严格地执行着计算机的语言——0、1。</p>
-
-<p>作为一个技术人员，我发现自己很喜欢买书，当然买的最多的可能就是技术方面的书籍，包括一些被称为计算机编程名著一类的书，当然这些书太多了，在网上混迹时间一长，经不住别人的鼓动、诱惑，终于也走上了收集名著的行列之中，买书之前总是希望自己能够通过这本书学到什么高深的技术，在职场、创业中屹立于不败之地。但买回来之后，并不像我期待的那样，终归还是有些好处的，只是要打些折扣了：）但总归还是比不看书荒废了那段时间好吧。</p>
-
-<p>除了买一些技术性的书籍之外，我还喜欢买一些哲学、心理学、散文等方面的书来看，这和个人的爱好有点关系，但哲学、心理学这类书买得很少，自己只是停留在喜欢的角度，不是非得去研究，所以就不太深入。</p>
-
-<p>不知怎么我又喜欢上了经济学的东西，原因很复杂，简单地说是事物之间那种千丝万缕的联系，而且我发现计算机系和经济系有着无法分割的联系，所以我还是喜欢点经济吧。</p>
-
-<p>今天稍微有点冲动买下了张小娴的一本新作——《想念》。首先声明一下，我不是因为这个名字才去买的，是我本身就喜欢张小娴写的一些文章，虽然自己没看过几篇，但有些耳熟能详的还是听过，比如“世上最远的距离不是⋯⋯而是⋯⋯”。一个计算机人士光是看技术书籍只能提高技术能力，而光靠技术，在这个社会中还是很难过上好日子的，如果你只是希望饿不着那就算啦。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/22">&larr; Older</a>
@@ -564,6 +562,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/10/30/push-notification/">Push Notification</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/10/27/build-hybla-for-ubuntu-14-dot-04/">Build Hybla for Ubuntu 14.04</a>
       </li>
     
@@ -577,10 +579,6 @@
     
       <li class="post">
         <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/21/tornado-2/">Tornado-2</a>
       </li>
     
   </ul>

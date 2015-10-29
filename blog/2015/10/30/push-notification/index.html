@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Push Notification - Trade Off</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="最近App工作接近尾声，还有几个接口没有完成，其中之一就是需要在某些事件发生的时候通知App的后台，继而由App后台通知App，比如“订单即将被关闭，请尽快付款”、“优惠券即将到期”这样的消息。因为这些消息最终是要在用户的App上出现的，一般的做法是以Push notification的形式出现， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/www.youth2009.org/blog/2015/10/30/push-notification/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Trade Off</a></h1>
+  
+    <h2>supercalifragilisticexpialidocious</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="www.youth2009.org/www.youth2009.org">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Push Notification</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-10-30T00:30:44+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:30 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>最近App工作接近尾声，还有几个接口没有完成，其中之一就是需要在某些事件发生的时候通知App的后台，继而由App后台通知App，比如“订单即将被关闭，请尽快付款”、“优惠券即将到期”这样的消息。因为这些消息最终是要在用户的App上出现的，一般的做法是以Push notification的形式出现，主流平台android和iOS都是在屏幕最上方出现一些提示，点击后可以进入App的某个地方。</p>
+
+<p>既然这样我们就直接集成第三方平台发送相应的消息好了，不过App做得实在很遗憾，用户点击消息后总会进入到App的消息中心，再点击某条消息才能看到具体内容，这样做可能是比较快，但体验不太好，至少和现有的主流App做法都不太一样，像上个时代的做法。</p>
+
+<p>以上是背景，基于此我们希望能够把App作为推送会员消息的渠道，因为短信渠道现在变得越来越不可用，仅限于发送验证码等transactional消息，其实以上说的消息都是transactional消息，区别于marketing消息，这些消息一般是由用户自主激活的或满足一定条件触发，最终是区别于用户的，一般不是群发性的，例如营销类信息就属于marketing。将用户的App作为消息推送渠道的前提是能够较准确地获取这个用户的App渠道是否可用，如果不可用还是得选择短信等。</p>
+
+<p>对于不同手机平台使用的技术差不多，但机制不太一样，不过这是有原因的。例如iOS上的推送机制：设备连接APNs，商户后端推送消息给APNs，再由APNs推送到最终用户的设备上；但android在国内不大一样，由于某些特殊的原因，android的GCM服务（类似APNs）无法使用，继而诞生了很多第三方推送服务商，这些服务商一方面做android的推送，另一方面也接管了到APNs的这块，其实接管APNs这块也不错，因为向APNs推送也并不容易实现——socket长连接，二进制消息等都增加了用户的开发成本，对于一般规模的App开发，使用第三方消息服务商几乎是没得选。</p>
+
+<p><strong>iOS的推送</strong>：在成功推送到APNs时服务商得不到任何响应，也不保证给你送达，用户不在线可以给你保留一段时间等用户上线了再推送，但长时间不在线的话推送消息也会被删除。除非消息格式有错等语法性的错误会得到响应，再就是如果APNs发现用户设备上没有这个App（被用户删除或被用户禁用了推送）会将该设备的ID记录下来，服务商可以通过APNs提供的反馈接口得到这些信息，也就是说只有再次给App推送消息后才有可能知道这条渠道还是不是可用。</p>
+
+<p><strong>android的推送</strong>：目前第三方服务商的做法是做出SDK，让开发App的人集成到App中，这个App安装到系统中后会出现一个Push Service在运行，当然不知道他们哪里来的智慧，如果多个App都用了某一家提供商，并不会启动多个Push Service，一般是一两个，这一两个服务所有App，从而实现了他们所描绘的多App共享长连接很省电什么的。某个设备后台的Push Service会自动和服务商的后端连接，等有消息过来时这些Service会知道该送给哪个App，到了具体的App再由用户的代码处理。由于机制的作用，android的消息服务商是可以实时知道某条消息能不能推送到设备上的，但这毕竟是一个不太常用的功能，所以服务商们一般不会公开这种API，我们用的这家在邮件中才告诉我们是有类似的API，但是VIP级别的，详情需要联系商务部门了解。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-10-30T00:30:44+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:30 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/dev/'>dev</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/10/27/build-hybla-for-ubuntu-14-dot-04/" title="Previous Post: build hybla for ubuntu 14.04">&laquo; build hybla for ubuntu 14.04</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/10/30/push-notification/">Push Notification</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/27/build-hybla-for-ubuntu-14-dot-04/">Build Hybla for Ubuntu 14.04</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/26/save-red-status-elasticsearch/">Save Red Status Elasticsearch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/29/msa-thoughts/">MSA Thoughts</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/www.youth2009.org/blog/2015/10/30/push-notification/';
+        var disqus_url = 'http://www.youth2009.org/www.youth2009.org/blog/2015/10/30/push-notification/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
