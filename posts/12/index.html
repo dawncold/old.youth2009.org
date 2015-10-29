@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="昨晚洗完澡后想继续把白天没做完的tag list block做完，没想到阿敏跳出来让我看她最近的摄影作品，看着真不像她拍得东西，整个画面已经不是全都清楚了，该清楚的地方清楚，其余地方模糊。我早就这样和她说过，她还总不相信，现在上了摄影课才知道。 渐渐发现我已经做完tag list的功能了， &hellip;">
+  <meta name="description" content="昨天就开始做user center这样一个功能，说简单也简单，至少是从表现上来看很简单，不过也挺重要的，几乎每个电商网站都有一个说得过去的user center，至少要让用户能在这里查询订单什么的。我们这个user center同样参考了不少网站的产品原型，但由于是上线初期，很多功能无法完善， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,41 +77,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/10/25/almost-fullfil/">Almost Fullfil</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2012-10-25T06:52:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>6:52 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>昨晚洗完澡后想继续把白天没做完的tag list block做完，没想到阿敏跳出来让我看她最近的摄影作品，看着真不像她拍得东西，整个画面已经不是全都清楚了，该清楚的地方清楚，其余地方模糊。我早就这样和她说过，她还总不相信，现在上了摄影课才知道。</p>
-
-<p>渐渐发现我已经做完tag list的功能了，只是现在给了一个固定的宽高，所以没有匹配到product list这个block，可以加图片或者幻灯片进去，好吧，现在工作似乎简单了不少，马上push了代码准备记录一下，一看已经过了10点。还是想养成早睡早起而不是晚睡早起的习惯，那就睡了吧。</p>
-
-<p>估计今天会和taowen先把昨天没做好的block隐藏功能做好，然后就能继续向着medium、small category开进。</p>
-
-<p>昨天中午看了一个视频，全英文，还是Domain Design，讲了一些在旧系统重构到新系统的技巧，并且如何使用Domain Design，大概能看懂20~30%，英语继续练习吧，实在不行我就把blog改成英文版！！！</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -593,6 +558,37 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/18/prop-method-in-jquery1-6-or-later/">jquery1.6+中的prop方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-08-18T19:27:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>7:27 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近有个网站需要一个简单的功能——全选一些checkbox，但用attr的方法总是出问题，主要问题如下：第一次全选没问题，如果此时取消选择一些checkbox，再用全选就不管用了，主要原因就是第一次全选的时候自动加入了checked属性，以后再强制attr(&ldquo;checked&rdquo;,true)就会没反应。在<a href="http://blog.csdn.net/yaerfeng/article/details/7792832">这里</a>看到一篇文章，里面提到了prop方法，是1.6以后才加入的，就是部分替换了attr的功能，用了prop就可以及时对操作做出反应（这里我不太理解），总之本来用attr的操作现在需要用prop才有效果，当然了，如果你用纯js肯定是没问题喽。</p>
+
+<p>换用prop之后，问题解决！</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/posts/13">&larr; Older</a>
@@ -610,10 +606,6 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/10/28/test/">Test</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2015/10/27/build-hybla-for-ubuntu-14-dot-04/">Build Hybla for Ubuntu 14.04</a>
       </li>
     
@@ -627,6 +619,10 @@
     
       <li class="post">
         <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/21/tornado-2/">Tornado-2</a>
       </li>
     
   </ul>

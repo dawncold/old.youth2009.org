@@ -9,8 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="just test
-">
+  <meta name="description" content="When I modify some ipv4 config for system I got an error like this: sysctl: setting key "net.ipv4.tcp_congestion_control": No such file or directory &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,35 +77,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/10/28/test/">Test</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-10-28T22:36:09+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:36 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>just test</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -627,6 +597,39 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/08/mailing-list-in-postfix/">Mailing List in Postfix</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-01-08T19:20:14+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:20 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Too simple to making a mailing list in postfix, just define a mailing list name and recipients in <code>/etc/postfix/virtual</code>, like this: <code>dev-group dev1@company.com dev2@company.com dev3@company.com</code>, after that, generate the virtual db by <code>postmap /etc/postfix/virtual</code>.</p>
+
+<p>Don&rsquo;t forget add <code>virtual_alias_maps=hash:/etc/postfix/virtual</code> in your <code>main.cf</code> file, and restart postfix finally.</p>
+
+<p>I think I need study postfix systemally, just build a private smtp/imap server.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -642,10 +645,6 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/10/28/test/">Test</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2015/10/27/build-hybla-for-ubuntu-14-dot-04/">Build Hybla for Ubuntu 14.04</a>
       </li>
     
@@ -659,6 +658,10 @@
     
       <li class="post">
         <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/21/tornado-2/">Tornado-2</a>
       </li>
     
   </ul>

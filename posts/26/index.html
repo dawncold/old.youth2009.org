@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="昨日写完hello,world之后，发现里面的中文显示出来都是乱码，于是找了几处资料，先是怀疑emacs作怪，M-x describe-coding-system查看后挺正常，于是开始怀疑apache和php的输出编码，再次查询后也发现是正常的：httpd. &hellip;">
+  <meta name="description" content="如果你是我的读者，当然是这里的读者（youth2009.org)就会发现现在已经无法访问了，经过我和服务商的交涉，发现我这次没有跻身白名单，所以国家就把我封掉了。在国内就得这样天天活在被封掉还是随机被封掉的日子里，再也不是以前那个轻松愉快的时代了，一方面能够证明我国的信息产业正一天天发展壮大， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,50 +77,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/18/charset-issue/">字符编码的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-01-18T08:36:00+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>8:36 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>昨日写完hello,world之后，发现里面的中文显示出来都是乱码，于是找了几处资料，先是怀疑emacs作怪，M-x describe-coding-system查看后挺正常，于是开始怀疑apache和php的输出编码，再次查询后也发现是正常的：httpd.conf中根本没有AddDefaultCharset” 内容，php.ini中的default_charset已经被注释掉了：（</p>
-
-<p>于是开始怀疑网页编码，改成了：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;meta</span> <span class="na">content=</span><span class="s">&quot;text/html;charset = utf-8&quot;</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span><span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>（第一次我写成了mate！！！）这下已经正常了！</p>
-
-<p>参考资料：<a href="http://www.cnblogs.com/RChen/archive/2007/08/27/871427.html">http://www.cnblogs.com/RChen/archive/2007/08/27/871427.html</a></p>
-
-<p>在调节emacs和ibus的时候参考了<a href="http://www.sciencenet.cn/m/user_content.aspx?id=325692">这里</a>，不过到现在我的ibus也不能在emacs中打开，除非用<code>LC_CTYPE=zh_CN.utf8 emacs</code>这样启动emacs。</p>
-
-<p>感谢<a href="http://www.yzznl.cn/archives/242.html">这里</a>下载了修改后的编辑界面和学习到了WP-Syntax的使用方法。</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -425,10 +381,6 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/10/28/test/">Test</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2015/10/27/build-hybla-for-ubuntu-14-dot-04/">Build Hybla for Ubuntu 14.04</a>
       </li>
     
@@ -442,6 +394,10 @@
     
       <li class="post">
         <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/21/tornado-2/">Tornado-2</a>
       </li>
     
   </ul>
