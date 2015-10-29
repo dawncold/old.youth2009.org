@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Gfw | Trade Off]]></title>
+  <link href="http://www.youth2009.org/www.youth2009.org/blog/categories/gfw/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www.youth2009.org/"/>
+  <updated>2015-10-29T23:29:16+08:00</updated>
+  <id>http://www.youth2009.org/www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ssh-proxy-with-autossh-in-mac]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2013/05/11/ssh-proxy-with-autossh/"/>
+    <updated>2013-05-11T13:10:00+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2013/05/11/ssh-proxy-with-autossh</id>
+    <content type="html"><![CDATA[<p>在Mac下原来一直用iSSH，好处是简单，功能够用，但有个缺点很致命，ssh有时候会断开，谁知道最终是什么原因导致的，但iSSH不会自动重连，只是提示你。在忍受了很久之后换成了autossh，它没有GUI，但可以在ssh断开后自动重连。</p>
+
+<p>1.使用brew安装autossh，或者用其他工具安装autossh，包括手。</p>
+
+<p><code>brew install autossh</code></p>
+
+<p>2.配置你的海外主机，保证你可以不用密码登陆。无非就是在authorized_keys中加入你的public key。自己用ssh登陆只要不用密码了就ok。</p>
+
+<p>3.用autossh连接。</p>
+
+<p><code>autossh -M 20000 -f -p REMOTEPORT -D LOCALPORT xxx@8.8.8.8 -N</code></p>
+
+<p>autossh就3个参数，-M、-f、-V，其中-V是显示版本，其余两个参数的意思看<a href="http://www.harding.motd.ca/autossh/README" title="autossh README">文档描述</a>吧。</p>
+
+<p>如果你没改远程主机ssh的默认端口，那就省略-p REMOTEPORT。</p>
+
+<p>指定一个LOCALPORT，一般用什么1080，我用9998。</p>
+
+<p>后面是ssh连接信息，最后-N表示port forward不用terminal交互。</p>
+
+<p>4.(可选操作)如果你比较懒，希望login系统的时候自动帮你连接上ssh，Mac下使用launchd来做，推荐使用Lingon这个app，是个launchd的GUI。</p>
+
+<p>添加一个My Agents就可以了，何时运行那里我勾选了at startup or login，生成的plist会放在~/Library/LaunchAgents/中，生成的内容如下：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?>
+</span><span class='line'>&lt;!DOCTYPE plist PUBLIC &ldquo;-//Apple//DTD PLIST 1.0//EN&rdquo; &ldquo;&lt;a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd&lt;/a>&rdquo;>
+</span><span class='line'>&lt;plist version="1.0">
+</span><span class='line'>&lt;dict>
+</span><span class='line'>&lt;key>Label&lt;/key>
+</span><span class='line'>&lt;string>autossh&lt;/string>
+</span><span class='line'>&lt;key>ProgramArguments&lt;/key>
+</span><span class='line'>&lt;array>
+</span><span class='line'>&lt;string>/usr/local/bin/autossh&lt;/string>
+</span><span class='line'>&lt;string>-M&lt;/string>
+</span><span class='line'>&lt;string>20000&lt;/string>
+</span><span class='line'>&lt;string>-f&lt;/string>
+</span><span class='line'>&lt;string>-p&lt;/string>
+</span><span class='line'>&lt;string>9999&lt;/string>
+</span><span class='line'>&lt;string>-D&lt;/string>
+</span><span class='line'>&lt;string>9998&lt;/string>
+</span><span class='line'>&lt;string>&lt;a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#x67;&#111;&#111;&#103;&#108;&#x65;&#x40;&#x38;&#46;&#56;&#46;&#x38;&#x2e;&#56;">&#103;&#111;&#x6f;&#x67;&#x6c;&#101;&#x40;&#x38;&#46;&#x38;&#46;&#x38;&#x2e;&#x38;&lt;/a>&lt;/string>
+</span><span class='line'>&lt;string>-N&lt;/string>
+</span><span class='line'>&lt;/array>
+</span><span class='line'>&lt;key>RunAtLoad&lt;/key>
+</span><span class='line'>&lt;true/>
+</span><span class='line'>&lt;/dict>
+</span><span class='line'>&lt;/plist></span></code></pre></td></tr></table></div></figure></p>
+
+<p>至此，开机自动连接ssh，自由surfing吧。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[be-blocked-by-GFW]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2013/03/20/be-blocked-by-gfw/"/>
+    <updated>2013-03-20T21:04:00+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2013/03/20/be-blocked-by-gfw</id>
+    <content type="html"><![CDATA[<p>不知什么原因，我的VPS进入了全国路由监视节点。。。现实只要是谁打算ssh过去，就会被封锁一段时间。根据某人告知，这是进入短名单后的action，可以探测我换端口什么的操作，相信离IP被封已经不远了！</p>
+
+<p>VPS啊，先提前和你说R.I.P.吧</p>
+]]></content>
+  </entry>
+  
+</feed>

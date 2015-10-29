@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Wodeyitian | Trade Off]]></title>
+  <link href="http://www.youth2009.org/www.youth2009.org/blog/categories/wodeyitian/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www.youth2009.org/"/>
+  <updated>2015-10-29T23:29:16+08:00</updated>
+  <id>http://www.youth2009.org/www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[为项目搭建git版本控制]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2011/02/24/git-for-project/"/>
+    <updated>2011-02-24T17:37:00+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2011/02/24/git-for-project</id>
+    <content type="html"><![CDATA[<p>这两天一直跟随网上的各路人马学习git的使用，也就是刚刚到了能够用一点git的命令而已的地步，这个东西还是得到了具体的项目中才能慢慢熟悉了解。本来打算好好学习svn，现在看来就不必了，学习一个更加有生命力的吧！ 在我的vps上搭建了git服务器环境，下面就记录一下过程： １.安装git就不再多说了，我似乎把redhat中的一个仓库加入了rpm，直接yum install -y git安装了，不如下载源代码安装的git版本高，我这里似乎只有１.５的版本。 ２.我使用了gitosis来管理所有的项目，所以：  </p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>yum install python-setuptools
+</span><span class='line'>git clone git://eagain.net/gitosis.git
+</span><span class='line'>cd gitosis
+</span><span class='line'>python setup.py install</span></code></pre></td></tr></table></div></figure></p>
+
+<p>３.安装好了就可以初始化gitosis，还得先建立一个git的用户来做一些工作：  </p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>useradd -m -s /bin/bash -d /home/git git
+</span><span class='line'>passwd git #给git用户加上密码
+</span><span class='line'>su - git
+</span><span class='line'>cd ~
+</span><span class='line'>gitosis-init &lt; /tmp/id_rsa.pub #这里是你的rsa共钥路径</span></code></pre></td></tr></table></div></figure></p>
+
+<p>４.修改一些权限，据说很重要，为了安全：  </p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod <span class="m">755</span> /home/git
+</span><span class='line'>chmod <span class="m">700</span> /home/git/.ssh
+</span><span class='line'>chmod <span class="m">644</span> /home/git/.ssh/authorized_keys
+</span><span class='line'>chmod <span class="m">755</span> /home/git/repositories/gitosis-admin.git/hooks/post-update
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>５.在本地用git做最后的工作，修改gitosis的配置文件并上传：  </p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone ssh://git@DOMAIN:8888/gitosis-admin.git
+</span><span class='line'><span class="nb">cd </span>gitosis-admin
+</span><span class='line'>vi gitosis.conf&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;增加新的项目名字和相关配置&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>group AWAD<span class="o">]</span><span class="c">#ＡＷＡＤ组</span>
+</span><span class='line'><span class="nv">writable</span> <span class="o">=</span> wodeyitian_web　　　#仓库中的名字
+</span><span class='line'><span class="nv">members</span> <span class="o">=</span> dawncold@tianzhenmatoMacBook-Pro.local　　#成员，这里的成员名字就是rsa共钥中最后的成员名字
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>好像和那个pub文件的名字要一样，那样的pub文件放在和这个conf文件在一起的keydir文件夹下.</p>
+
+<p>6.完成这里后提交一下再push到远程服务器上即可完成：  </p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git commit -a -m <span class="p">&amp;</span>lsquo<span class="p">;</span>建立了新的项目<span class="p">&amp;</span>rsquo<span class="p">;</span>
+</span><span class='line'>git push
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>7.已经全部完成，在本地已经可以用了，不过还想说一下，如果做开源项目，还是放到github上比较好玩！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[网站开发告一段落]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2011/02/19/pause-website-development/"/>
+    <updated>2011-02-19T13:26:00+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2011/02/19/pause-website-development</id>
+    <content type="html"><![CDATA[<p>刚刚把一个比较大的功能完成了——日历。还有一个星期就要回去了，我这次回家拿回来的几本书还没有看完，PHP的那本书看得差不多了，还没有回头细看，可能还需要再带回去。《深入理解计算机系统》那本书没有看，打算剩下的这一个星期全看那本书，能看多少是多少，不能总和PHP为伍，毕竟回去了有不少人还是能帮我继续做网站的！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[应用通过审核之后]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2011/02/16/after-app-approved/"/>
+    <updated>2011-02-16T21:35:00+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2011/02/16/after-app-approved</id>
+    <content type="html"><![CDATA[<p>这是第二次进行人人网的应用审核了，第一次只是把网站于人人网连接起来就草草申请审核，很快被打了回来，前天刚刚实现了发表新鲜事到人人网的功能，这次就有理由来申请了。今天下午我打开人人网，看到站内信中有开放平台发来的信件，告诉我已经上线了，至此，我的一天网站又一大功能实现了。</p>
+
+<p>其实我不是很想实现与这些网站的连接，只是因为开放API的方式已经渐渐成了国内网站的主流，相信这点在国外同类网站已经做得相当成熟了，在国内，就连Tencent都喊着要开放了。实现与这些网站得对接能够利用他们已经建立的用户资源，也就是分享他们的用户，这点对于一个新兴的、不完全靠创新的网站是很有必要的。</p>
+
+<p>本以为自己的点子是足够创新的，但在这个神奇的土地上，一个思想都快要变得神奇的人很难一下子突破这些禁锢达到真正创新的地步，不过我感觉现在我的这个网站还是足够创新的，至少还没大有这样做的。</p>
+
+<p>国内人多，想到的点子也就丰富，虽说其中创新的并不多，但至少能有一小部分吧，由于基数比较大，所以即使比率低一些也无妨，可我们身边这些SNS、论坛之类的东西并不多。关键还在对于一个点子的运营上吧！</p>
+]]></content>
+  </entry>
+  
+</feed>

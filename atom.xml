@@ -1,0 +1,1074 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Trade Off]]></title>
+  <link href="http://www.youth2009.org/www.youth2009.org/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www.youth2009.org/"/>
+  <updated>2015-10-29T23:29:16+08:00</updated>
+  <id>http://www.youth2009.org/www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Test]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/10/28/test/"/>
+    <updated>2015-10-28T22:36:09+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/10/28/test</id>
+    <content type="html"><![CDATA[<p>just test</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Build Hybla for Ubuntu 14.04]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/10/27/build-hybla-for-ubuntu-14-dot-04/"/>
+    <updated>2015-10-27T00:42:28+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/10/27/build-hybla-for-ubuntu-14-dot-04</id>
+    <content type="html"><![CDATA[<p>When I modify some ipv4 config for system I got an error like this: <code>sysctl: setting key "net.ipv4.tcp_congestion_control": No such file or directory</code>, so I followed <a href="http://v2ex.com/t/114788">this post</a> to build a kernel module for ubuntu 14.04</p>
+
+<p>The net/ipv4 hybla Makefile(bad script format in original post):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Makefile for tcp_hybla.ko
+</span><span class='line'>obj-m := tcp_hybla.o
+</span><span class='line'>KDIR := /home/dejavu/linux-4.1.5
+</span><span class='line'>PWD := $(shell pwd)
+</span><span class='line'>default:
+</span><span class='line'>  $(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I also got a warning during build modules: <code>No X.509 certificates found</code>, but it doesn&rsquo;t matter I think, I can build the <code>tcp_hybla.ko</code> and load in kernel.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Save Red Status Elasticsearch]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/10/26/save-red-status-elasticsearch/"/>
+    <updated>2015-10-26T22:49:13+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/10/26/save-red-status-elasticsearch</id>
+    <content type="html"><![CDATA[<p>Someday when I use Kibana, I got an error all shards failed, so I look through office guide and some posts on the Internet.</p>
+
+<p>Maybe the memory limit results in some primary shards can not be loaded by elasticsearch. If one or all primary shards are unsigned, your elasticsearch cluster will be in red status, if all primary shards are loaded, your cluster status will be yellow, if all shards are loaded, the green status you will be get.</p>
+
+<p>The data is stored in <code>index</code> in elasticsearch, the <code>index</code> will be divided into some shards, the shards are <code>primary</code> and <code>replica</code> kind, you can have no replica, but you can have no primary. replica shards will be stored on the other nodes in cluster, but in default setting, you have only two nodes, one is data store node, another one is a client node, and the default setting of index is 2 or 3 replicas for each primary shard, you can update all index setting to disabling this config.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MSA Thoughts]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/08/29/msa-thoughts/"/>
+    <updated>2015-08-29T21:51:24+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/08/29/msa-thoughts</id>
+    <content type="html"><![CDATA[<p>MSA (Micro Service Architecture) is a methodology of dependencies management. Its core thought is divided a large application into some independent small applications, these small applications can be deployed independent and use different programming language, etc.</p>
+
+<p>I think it&rsquo;s not a new methodology, but a new concept.</p>
+
+<p>We can think you make an application, used some libraries written by others, these libraries are some independent application, they expose some APIs for you, your application import them and call some APIs to fullfill some functions. Generally they will keep same APIs during update and fix bugs, so you can upgrade them and use latest version. You can also copy their codes to your application code base, just like you write all codes, but if they updated, you must copy new codes to your code base, that likes the development without MSA.</p>
+
+<p>So, MSA is a methodology of dependencies management, the example is a small scope of MSA, the real MSA means some independent application, for instance an order service, an logistics service, etc. We may name these order module, logistics module before, but now we name these xxx service.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Sort and Uniq Count]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/08/27/sort-and-uniq-count/"/>
+    <updated>2015-08-27T19:41:46+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/08/27/sort-and-uniq-count</id>
+    <content type="html"><![CDATA[<p>I got some logs which recorded someone IP address and the URL it requests, I want to summary how many unique IP addresses request some specified URL, and request counts for one IP address.</p>
+
+<p>so I filter out specified URL rows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>grep URL_PATH *.log</span></code></pre></td></tr></table></div></figure>
+
+
+<p>then I got these rows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>...
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>[ 2015-08-26T23:59:59+08:00 ] 14.219.202.241 /xx
+</span><span class='line'>...</span></code></pre></td></tr></table></div></figure>
+
+
+<p>then I use <code>awk</code> print the fourth column:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>grep URL_PATH *.log | awk '{print $4}'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>then I got these IPs, I stored these IPs to a file, then <code>sort</code> and <code>uniq</code>, the <code>uniq</code> excepts a sorted file, the <code>-c</code> option means count these rows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sort ips | uniq -c</span></code></pre></td></tr></table></div></figure>
+
+
+<p>then I got some unique rows with counts, but I want sort these rows order by counts desc:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sort ips | uniq -c | sort -k1nr -k2</span></code></pre></td></tr></table></div></figure>
+
+
+<p>the <code>-k1nr</code> means the KEY starts with first field, and as (n)umber, and &reg;everse, the <code>-k2</code> means ends with second field. The <code>field</code> means the column in your data.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Tornado-2]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/08/21/tornado-2/"/>
+    <updated>2015-08-21T22:17:23+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/08/21/tornado-2</id>
+    <content type="html"><![CDATA[<p>write some subclasses of <code>RequestHandler</code> and mapped these with routers, pass these routers to <code>Application</code>, run <code>Application</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">tornado.ioloop</span> <span class="kn">import</span> <span class="n">IOLoop</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">tornado.web</span> <span class="kn">import</span> <span class="n">RequestHandler</span><span class="p">,</span> <span class="n">Application</span><span class="p">,</span> <span class="n">url</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">HelloHandler</span><span class="p">(</span><span class="n">RequestHandler</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;Hello, world&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">make_app</span><span class="p">():</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">Application</span><span class="p">([</span>
+</span><span class='line'>        <span class="n">url</span><span class="p">(</span><span class="s">r&quot;/&quot;</span><span class="p">,</span> <span class="n">HelloHandler</span><span class="p">),</span>
+</span><span class='line'>        <span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span><span class='line'>    <span class="n">app</span> <span class="o">=</span> <span class="n">make_app</span><span class="p">()</span>
+</span><span class='line'>    <span class="n">app</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">8888</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">IOLoop</span><span class="o">.</span><span class="n">current</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Tornado supports strings, bytes, and dictionaries as response, you can use Template to building strings and bytes, also you can write response by hand. If you pass a dictionary to response, it will be encoded as JSON.</p>
+
+<p>Tornado will not parse other types request arguments, e.g. Tornado will not parse JSON request bodies, you need to parse these by yourself(override <code>prepare</code> method)</p>
+
+<p>CSRF/XSRF prevent: the session cookie from SiteA is not expired, there is a form in SiteB, the form aims doing something to SiteA, if SiteA don&rsquo;t support XSRF prevent, it will allow submitting if you constructed valid form arguments. If SiteA supports XSRF prevent, it will set a cookie with token to user, and that token will filled in any action form(POST,PUT,DELETE), if these two values are not equal, that request will be prevented, because SiteB can&rsquo;t retrive SiteA&rsquo;s cookie, so that form can&rsquo;t submit with valid cookie value.</p>
+
+<p>Due to the Python GIL (Global Interpreter Lock), it is necessary to run multiple Python processes to take full advantage of multi-CPU machines. Typically it is best to run one process per CPU.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Tornado-1]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/08/16/tornado-1/"/>
+    <updated>2015-08-16T16:16:51+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/08/16/tornado-1</id>
+    <content type="html"><![CDATA[<p>This is the first part of Tornado studying project.</p>
+
+<p>Tornado can be roughly divided into four major components:</p>
+
+<ul>
+<li>A web framework (including RequestHandler which is subclassed to create web applications, and various supporting classes).</li>
+<li>Client- and server-side implementions of HTTP (HTTPServer and AsyncHTTPClient).</li>
+<li>An asynchronous networking library (IOLoop and IOStream), which serve as the building blocks for the HTTP components and can also be used to implement other protocols.</li>
+<li>A coroutine library (tornado.gen) which allows asynchronous code to be written in a more straightforward way than chaining callbacks.</li>
+</ul>
+
+
+<p>Tornado uses a signle-threaded event loop.This means that all application code should aim to be asynchronous and non-blocking because only one operation can be active at a time.</p>
+
+<p>There are many styles of asynchronous interfaces:</p>
+
+<ul>
+<li>Callback argument</li>
+<li>Return a placeholder (Future, Promise, Deferred)</li>
+<li>Deliver to a queue</li>
+<li>Callback registry (e.g. POSIX signals)</li>
+</ul>
+
+
+<p>There is no free way to make a synchronous function asynchronous in a way that is transparent to its callers.</p>
+
+<p>Coroutines are the recommended way to write asynchronous code in Tornado</p>
+
+<p>A function containing yield is a generator. All generators are asynchronous; when called they return a generator object instead of running to completion.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Checksum Functions in MacOs]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/08/16/checksums-function-in-macos/"/>
+    <updated>2015-08-16T15:22:06+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/08/16/checksums-function-in-macos</id>
+    <content type="html"><![CDATA[<p>It&rsquo;s better to calculate checksum for your downloaded files, it can make sure you download that real file from server, not from the ISP proxy server.</p>
+
+<p>In MacOS, you can use <code>md5</code> and <code>shasum</code> to calculate file checksums.</p>
+
+<ul>
+<li>calculate a MD5 checksum</li>
+</ul>
+
+
+<p><code>md5 xxx.data</code></p>
+
+<ul>
+<li>calculate a SHA-1 checksum</li>
+</ul>
+
+
+<p><code>shasum -a 1 xxx.data</code></p>
+
+<ul>
+<li>calcuate a SHA-256 checksum</li>
+</ul>
+
+
+<p><code>shasum -a 256 xxx.data</code></p>
+
+<p>Thanks for <a href="http://notepad2.blogspot.jp/2012/07/mac-os-x-how-to-generate-md5-sha1.html">here</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Exception in Python]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/04/19/exception-in-python/"/>
+    <updated>2015-04-19T17:05:31+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/04/19/exception-in-python</id>
+    <content type="html"><![CDATA[<p>My colleague remembered that if you pass some <code>kwargs</code> to an <code>Exception</code> subclass e.g. <code>class MyException(Exception): pass</code>, you will get a composed message when you catch the exception and call <code>e.message</code>. Unitil we got nothing from one place which it should display exception&rsquo;s message, python language part is implemented by C, so we downloaded python source code(2.7.9), and find these lines.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">static</span> <span class="kt">int</span>
+</span><span class='line'><span class="nf">BaseException_init</span><span class="p">(</span><span class="n">PyBaseExceptionObject</span> <span class="o">*</span><span class="n">self</span><span class="p">,</span> <span class="n">PyObject</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">PyObject</span> <span class="o">*</span><span class="n">kwds</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">_PyArg_NoKeywords</span><span class="p">(</span><span class="n">Py_TYPE</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">tp_name</span><span class="p">,</span> <span class="n">kwds</span><span class="p">))</span>
+</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">Py_DECREF</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">self</span><span class="o">-&gt;</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">Py_INCREF</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">PyTuple_GET_SIZE</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">Py_CLEAR</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">self</span><span class="o">-&gt;</span><span class="n">message</span> <span class="o">=</span> <span class="n">PyTuple_GET_ITEM</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">Py_INCREF</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">message</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is python BaseException&rsquo;s C implementation, I can understand logic but C syntax. The BaseException accepts <code>kwargs</code>, but if you pass a <code>kwargs</code> to Exception, you will get a warning, because of <code>_PyArg_NoKeywords</code>, maybe it needs compatibility with old code, but now, you can&rsquo;t use <code>kwargs</code>.</p>
+
+<p>Another notice, if you pass one argument to it, this argument will be the <code>e.message</code> value, if not, your args will be placed in <code>e.args</code>.</p>
+
+<p>We finally implemented <code>__str__</code> and <code>__unicode__</code> methods, because of we imported <code>unicode_literals</code>, so we think this is the best practice, we just use <code>str(e)</code> in those places.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">TmallAPIException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">sub_code</span><span class="p">,</span> <span class="n">sub_msg</span><span class="p">):</span>
+</span><span class='line'>        <span class="nb">super</span><span class="p">(</span><span class="n">TmallAPIException</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">sub_code</span><span class="p">,</span> <span class="n">sub_msg</span><span class="p">)</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">code</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">sub_code</span> <span class="o">=</span> <span class="n">sub_code</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">sub_msg</span> <span class="o">=</span> <span class="n">sub_msg</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c"># TODO: not necessary under python3</span>
+</span><span class='line'>        <span class="k">return</span> <span class="s">&#39;code: {}, msg: {}, sub_code: {}, sub_msg: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_msg</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__unicode__</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Optimize Shadowsocks NAT Rules]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/01/11/optimize-shadowsocks-nat-rules/"/>
+    <updated>2015-01-11T23:46:08+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/01/11/optimize-shadowsocks-nat-rules</id>
+    <content type="html"><![CDATA[<p>Few days ago, I upgraded my OpenWrt box to latest version, there is a new style(Bootstrap) interface and I like it very much(too long lived old world).</p>
+
+<p>Also I found a shadowsocks <a href="https://github.com/shadowsocks/openwrt-shadowsocks">special version</a> for openwrt, it includs China main IP blocks, some requests within this IP range, you could bypass shadowsocks, and this IP blocks is from <code>apnic</code>, very precise but a little long for openwrt, 4000+lines.</p>
+
+<p>I think the most counted IP block I would use it in the future very soon, so I can sort them desc.</p>
+
+<p><code>iptables -t nat -xvnL SS_SPEC_WAN_AC | tail -n+12 | head -n -1 | sort -crnsk 1,1 | awk '{ print $NF }' &gt; /etc/shadowsocks/ignore.list</code></p>
+
+<p><code>tail -n+12</code> means display results from the first 12 row to the end, first 11 rows includes two lines heads, one line shadowsocks server IP, eight lines internal IP blocks;</p>
+
+<p><code>head -n -1</code> means display results except last line(doesn&rsquo;t work on MacOS), and last line is default shadowsocks redirect rule, so keep it at the same place.</p>
+
+<p><code>sort -crnsk 1,1</code> means <code>c</code>heck first, <code>r</code>everse result, <code>n</code>umerical value(converted from input string), <code>s</code>table sort, <code>k 1,1</code> sort key (start a key at POS1, end it at POS2 (origin 1))</p>
+
+<p><code>awk print $NF</code>, print the last column, that&rsquo;s very cool.</p>
+
+<p>rewrite the results to ignore.list, and restart shadowsocks, it will use the sorted IP blocks, maybe fast than before 0.xx ms!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mailing List in Postfix]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/01/08/mailing-list-in-postfix/"/>
+    <updated>2015-01-08T19:20:14+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/01/08/mailing-list-in-postfix</id>
+    <content type="html"><![CDATA[<p>Too simple to making a mailing list in postfix, just define a mailing list name and recipients in <code>/etc/postfix/virtual</code>, like this: <code>dev-group dev1@company.com dev2@company.com dev3@company.com</code>, after that, generate the virtual db by <code>postmap /etc/postfix/virtual</code>.</p>
+
+<p>Don&rsquo;t forget add <code>virtual_alias_maps=hash:/etc/postfix/virtual</code> in your <code>main.cf</code> file, and restart postfix finally.</p>
+
+<p>I think I need study postfix systemally, just build a private smtp/imap server.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Be Careful Python Fdopen]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/01/07/be-careful-python-fdopen/"/>
+    <updated>2015-01-07T23:13:39+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/01/07/be-careful-python-fdopen</id>
+    <content type="html"><![CDATA[<p>I have got a bug when I <code>print</code> something to <code>stdout</code>, I got <code>Bad file descriptor</code>, it means my stdout is a bad descriptor, what?!</p>
+
+<p>Core code like this: <code>logger.StreamHandler(os.fdopen(sys.stdout.fileno(), 'w', 0))</code>, I want to a unbuffered stdout, so I reopen it by <code>fdopen</code>, and reset the buffer size to 0, I still also did same thing to <code>stderr</code>, but that is no sense, because of <code>stderr</code> is unbuffered normally(but in Python3, it maybe line buffered, in MacOS).</p>
+
+<p>If your <code>stdout</code> is reopened by <code>fdopen</code>, and its reference count hits zero, it will be collected by Python GC, also your <code>stdout</code> will be ate by GC, something wrong will happen after that.</p>
+
+<p>So, be careful with <code>fdopen</code> for <code>stdin</code>, <code>stderr</code>, <code>stdin</code>:)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[联通封了80和8080 but 443 Is Ok]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/01/05/unicom-blocked-80-8080/"/>
+    <updated>2015-01-05T23:24:57+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/01/05/unicom-blocked-80-8080</id>
+    <content type="html"><![CDATA[<pre><code>地点：北京
+ISP：中国联通
+接入方式：光纤入户
+</code></pre>
+
+<p>换联通宽带几个月了，感觉良好，但觉得BT下载不够快，因为下的少，也没深究，而且多用迅雷离线下载，基本就是直连迅雷CDN的速度，都能跑满带宽。</p>
+
+<p>OpenWrt多拨尝试过，没有效果，据说早就被封了，所以不再尝试。</p>
+
+<p>前段时间打算把openwrt的管理界面移到WAN和LAN上，即在外面也能访问路由器，默认我就放到了WAN的80上，很可惜失败了，内部访问没问题，外面不行，当时也没多想，总觉得是iptables有问题，一看openwrt的规则，好可怕，嵌套了几层，不看了，改成了别的端口，比如9999，竟然内外都可以，因为后来很少从外面访问，所以这个需求基本是为需求，不管了。</p>
+
+<p>最近把一个网站放到raspberry pi上，路由器做端口映射到内部的80，当时在内网里测试的没问题，还把https也一并做好了。碰巧在公司访问了一下，80不能访问，但443没问题。</p>
+
+<p>今晚直接在PREROUTING的第一行加了log，从外部服务器请求80直接看不到，但443的没问题，而且PREROUTING是第一个被执行的，只能说80的请求就没到这里，可这都是公网对公网的访问了，难道这个请求被某个路由截获然后丢弃了？Google了一下发现几年前几大运营商的能提供公网IP的服务里80和8080端口被封了，说是不能随意搭建网站，想想也是啊，现在国内都得备案才行。</p>
+
+<p>BUT PORT 443 IS OK&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[聚石塔里面的坑]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/01/05/traps-of-jushita/"/>
+    <updated>2015-01-05T22:56:42+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/01/05/traps-of-jushita</id>
+    <content type="html"><![CDATA[<p>今天开始全面接触聚石塔，就是天猫的云平台，上面服务众多，全都能收费，第一次听说了API调用也是可以收费的。下面记录一些可能成为坑的东西，希望有人看到后可以小心躲避。</p>
+
+<h2>创建应用要先报备</h2>
+
+<p>说明书要按照模版写，模板有下载，看说明就能找到，其中里面有个架构图，这个要仔细画，基本思想（阿里思想）就是把你所有的业务系统都放到ECS上，如果在ECS外出现了一个你们自己的平台，他们就怀疑你用ECS做了一个代理来调用API，因为收费API只能是塔内调用，其他没有遇到特别的，时间大概是3天出结果。</p>
+
+<h2>创建应用</h2>
+
+<p>报备通过就可以创建应用了，创建成功后可以去买ECS和RDS等服务，别的服务暂时没用到，这两个服务都是绑定应用的，所以要先有应用。ECS的配置可选的比较少，我在北京，但机房目前只有杭州，所以你写了你的位置也没用，据说杭州那个机房是6线接入，出口质量和淘宝一样，但拿到ECS后ping了一下，31ms左右，第二天ping到了70ms左右，虽然ping不代表什么，但总感觉怪怪的。。。价格和阿里云的ECS相比有些贵。</p>
+
+<h2>ECS</h2>
+
+<p>管理终端有个密码，要改的话记得改完重启机器，否则不生效，而且重启后自己再用管理终端连接一下看看是不是生效了。</p>
+
+<p>他们把10和172.16网段都用了，自己要用内网的话可以考虑多租几个ECS实例，但想玩LXC的话，可以考虑用192.168网段。</p>
+
+<p>DNS不要换别的，就用ECS配置好的，据说改了影响内部访问和RDS通信，我改成114dns后直接无法使用。</p>
+
+<p>我买的是最便宜的ECS，但不知道为何没有SWAP分区，512Mb内存在起了LXC后又编译了一个东西就超了，那里怎么都不行，于是加了SWAP，可以。</p>
+
+<h2>RDS</h2>
+
+<p>我想用聚石塔的推送服务，就是可以把订单、商品等数据推送到买的RDS中，但今天申请的时候对方说应用未上线，不能申请。。。我就是需要这些数据才能开发应用，这不就变成死锁了？</p>
+
+<p><strong>2015年1月7日</strong>：后来和客服沟通，说是应用需要先上线，即便你还没有开始开发，这点虽然有点怪怪的，但只有这样才能申请到同步服务。应用上线挺简单，创建完应用只是第一步，完善基本信息后点下一步即可进入安全扫描阶段，再提交，瞬间说审核通过，这就上线运行了。</p>
+
+<p><strong>2015年1月9日</strong>：商家后台应用有web和客户端两种架构方式，就是你做出一个web应用，一般就是用web的架构方式，用户登陆、授权后，你能拿到用户session，然后就可以用了，和大多数oauth的方式一样，客户端类似。但有一点需要注意，商家后台应用拿到用户的session和refresh token后，文档记载session有效期1年，但这个refresh token无用，只能等session到期后重新授权。</p>
+
+<p>真正开始做了，发现API用起来也不那么爽，这个具体看个人的感觉了，但比拍拍强了不少。</p>
+
+<hr />
+
+<p>目前就遇到这些坑，欢迎更新坑们。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Host-octopress-blog-on-raspberry-pi]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/01/01/build-octopress-blog-on-raspberry-pi/"/>
+    <updated>2015-01-01T20:25:24+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/01/01/build-octopress-blog-on-raspberry-pi</id>
+    <content type="html"><![CDATA[<p>First post on 2015!</p>
+
+<p>I have a raspberry pi several months ago, and I often use it to recording temp and humidity, uploading to a cloud host, but after a home movement, it had been stored in my drawer. Last day of 2014, while waiting 2015, I want build it and host an external disk for MacBookPro backup(Time Machine), but failed for power supply, normal power supply is not enough for raspi, so I should buy another USB Hub powered by itself.</p>
+
+<p>My raspi used a wireless NIC to connecting with my router(OpenWrt), but I want use a ethernet cable for it, so it can get a unique IP on Internet, but when I pluged it, the wireless NIC would down, because of ifplugd or something else, so I keep the wireless NIC working and add some rules on route, port forward, WAN 80 to rasp 80, WAN 443 to rasp 443.</p>
+
+<p>Install nginx via<code>sudo apt-get install nginx</code>, remove default site<code>rm /etc/nginx/sites-enable/default</code>, add conf in <code>/etc/nginx/conf.d</code>, like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>server {
+</span><span class='line'>  listen 80;
+</span><span class='line'>  server_name dawncold.me;
+</span><span class='line'>  return 301 https://$server_name$request_uri;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'># HTTPS server
+</span><span class='line'>
+</span><span class='line'>server {
+</span><span class='line'>  listen 443 ssl;
+</span><span class='line'>  server_name dawncold.me;
+</span><span class='line'>
+</span><span class='line'>  root /usr/share/nginx/dawncold.me;
+</span><span class='line'>  index index.html index.htm;
+</span><span class='line'>
+</span><span class='line'>  ssl on;
+</span><span class='line'>  ssl_certificate /usr/share/nginx/dawncold.me/dawncold.me.crt;
+</span><span class='line'>  ssl_certificate_key /usr/share/nginx/dawncold.me/dawncold.me.key;
+</span><span class='line'>
+</span><span class='line'>  ssl_session_timeout 5m;
+</span><span class='line'>
+</span><span class='line'>  ssl_protocols SSLv3 TLSv1;
+</span><span class='line'>  ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv3:+EXP;
+</span><span class='line'>  ssl_prefer_server_ciphers on;
+</span><span class='line'>
+</span><span class='line'>  location / {
+</span><span class='line'>      try_files $uri $uri/ =404;
+</span><span class='line'>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I got a SSL certificate from nc.me(github student pack), so I rewrite HTTP to HTTPS.</p>
+
+<p>start nginx via <code>sudo nginx</code> or reload config via <code>sudo nginx -s reload</code>.</p>
+
+<p>Oh, your should update your domain A record to your router WAN ip address, you can write a script or use your router buildin DDNS function.</p>
+
+<p>Octopress supported rsync publishment, so edit your Rakefile and enter your raspi ssh account and nginx html root path, like <code>/usr/share/nginx/www</code>.</p>
+
+<p>publish to github and rasp: <code>rake gen_deploy rsync</code> or only to raspi: <code>rake rsync</code>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[NotImplemented-in-python]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2014/12/26/notimplemented-in-python/"/>
+    <updated>2014-12-26T21:03:20+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2014/12/26/notimplemented-in-python</id>
+    <content type="html"><![CDATA[<p>It&rsquo;s best to return <code>NotImplemented</code> in magic method(e.g. <code>__eq__</code>, <code>__ne__</code>, etc), see <a href="http://shahriar.svbtle.com/python-notimplemented-type">here</a> for details.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># example.py</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;Comparing an A with an A&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;Comparing an A with a B&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+</span><span class='line'>        <span class="k">print</span><span class="p">(</span><span class="s">&#39;Could not compare A with the other class&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="bp">NotImplemented</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">print</span><span class="p">(</span><span class="s">&#39;Comparing a B with another B&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+</span><span class='line'>        <span class="k">print</span><span class="p">(</span><span class="s">&#39;Could not compare B with the other class&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="bp">NotImplemented</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>a</code> is instance of ClassA, and <code>b</code> is instance of ClassB, if we invoke <code>a == b</code>, we will get the result, True or False, but if we invoke <code>b == a</code>, we will also get the result! Because of we return <code>NotImplemented</code> in Class B&rsquo;s <code>__eq__</code> method, runtime could invoke Class A&rsquo;s <code>__eq__</code>, that method can compare A and B.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Safe Characters of Quote Method in Urllib]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2014/12/20/quote-in-urllib/"/>
+    <updated>2014-12-20T20:27:59+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2014/12/20/quote-in-urllib</id>
+    <content type="html"><![CDATA[<p>quote accept two arguments: a string and safe characters. If you pass empty to <code>quote</code> as the second parameter, it means every characters except preserved characters will be replaced by a % leading characters, e.g. space will be replaced by %20, etc.</p>
+
+<p>In my project, I invoke quote like <code>quote(params, '')</code>, and I have imported <code>unicode_literals</code>, so I passed a unicode parameter to <code>quote</code> method.</p>
+
+<p>What will happen?</p>
+
+<p>Next time you invoke quote with the same <code>safe</code> parameter you used before, you may get an error like <code>UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)</code>, urllib will cache the safe parameter(urllib.py 1277 line), it expects a byte type parameter but you pass an unicode one, also, that library didn&rsquo;t check or convert it before it uses.</p>
+
+<p>Best practice, pass a byte parameter like <code>b''</code> to <code>quote</code> if you have same usage(unicode literals) like me.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux-study]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2014/11/22/linux-study/"/>
+    <updated>2014-11-22T14:14:25+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2014/11/22/linux-study</id>
+    <content type="html"><![CDATA[<p>directory permission x means this directory can be work directory, if you want to write or read a file behind this directory, you must have permission x of this directory.</p>
+
+<p>directory permission w means you can delete or create files or directories behind this</p>
+
+<p>usr = unix software resource</p>
+
+<p>&ldquo;-&rdquo; means last work directory(cd /mnt;cd;cd -)</p>
+
+<p>umask means default permission minus this mask, e.g default new directory 777, if mask is 022, then you will get 777-022——>755 directory; default new file 666, is mask is 002, then you will get 666 - 002——>664 file. mask only can be set in (1, 2, 4) every bit, one bit means the sum of one permission group(current/group/others). umask is based on user, default root has a 0022 mask, normal user has a 0002 mask.</p>
+
+<p>lsattr/chattr is available on ext2/ext3 filesystem, add ‘+i’ attribute can lock one file, no edit or delete, even you are root, ‘+a’ attribute can let a file only accept append content, etc.</p>
+
+<p>SUID, SGID, SBIT special permission:
+there is a ’s’ on x position of user part, like ‘rws- - - - - -‘. SUID can only set to binary program, if user has x permission of this binary, it can temporarily get the owner permission of this binary, e.g binary ‘passwd’ and /etc/shadow file, shadow only can be updated by root, but every user can change their password via ‘passwd’, it means the user temporarily get owner(root) permission by SUID special permission.
+SGID similar as SUID, there will be a ’s’ on x position of group part like ‘rwx- - s - - x’. if a user can execute binary, he will temporarily get owner permission, e.g binary ‘locate’ and file ‘mlocate.db’. SGID can be set on a directory, it means if a user have r and x permission of one directory, and ’s’ set on this directory, this user can create a file which owner group is this directory’s.
+SBIT(Sticky BIT) only set to directory, if a directory has this permission, a user who can create file or directory on this directory, the new file or new directory can only delete by root or himself, e.g /tmp directory, root can delete your new file, and you can also delete it, but others can not.
+SUID = 4, SGID = 2, SBIT = 1, chmod x755 xxx_file, x means sum of SUID, SGID, SBIT, if omit, this bit is zero, if you set a invalid SUID/SGID/SBIT, there will be upper case S/T, lower case is valid.</p>
+
+<p>find / -size 1M -exec ls -l {} \;     {} means the args from find, “\;” means the end of “exec”, commands in exec can not use alias.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Aix-security]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2014/11/22/aix-security/"/>
+    <updated>2014-11-22T14:04:41+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2014/11/22/aix-security</id>
+    <content type="html"><![CDATA[<p>some security configuration for AIX ssh and system services</p>
+
+<p>create a user group named rmt_acc, only allow this group user access ssh, don&rsquo;t allow root login and use public key authentication.</p>
+
+<h1>sshd_config content</h1>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># $OpenBSD: sshd_config,v 1.77 2008/02/08 23:24:07 djm Exp $
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># This is the sshd server system-wide configuration file. See
+</span><span class='line'># sshd_config(5) for more information.
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># This sshd was compiled with PATH=/usr/bin:/bin:/usr/sbin:/sbin
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># The strategy used for options in the default sshd_config shipped with
+</span><span class='line'># OpenSSH is to specify options with their default value where
+</span><span class='line'># possible, but leave them commented. Uncommented options change a
+</span><span class='line'># default value.
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>#Port 22
+</span><span class='line'>#AddressFamily any
+</span><span class='line'>#ListenAddress 0.0.0.0
+</span><span class='line'>#ListenAddress ::
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Disable legacy (protocol version 1) support in the server for new
+</span><span class='line'># installations. In future the default will change to require explicit
+</span><span class='line'># activation of protocol 1
+</span><span class='line'>Protocol 2
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># HostKey for protocol version 1
+</span><span class='line'>#HostKey /etc/ssh/ssh_host_key
+</span><span class='line'># HostKeys for protocol version 2
+</span><span class='line'>#HostKey /etc/ssh/ssh_host_rsa_key
+</span><span class='line'>#HostKey /etc/ssh/ssh_host_dsa_key
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Lifetime and size of ephemeral version 1 server key
+</span><span class='line'>#KeyRegenerationInterval 1h
+</span><span class='line'>#ServerKeyBits 768
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Logging
+</span><span class='line'># obsoletes QuietMode and FascistLogging
+</span><span class='line'>#SyslogFacility AUTH
+</span><span class='line'>#LogLevel INFO
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Authentication:
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>#LoginGraceTime 2m
+</span><span class='line'>PermitRootLogin no
+</span><span class='line'>StrictModes yes
+</span><span class='line'>#MaxAuthTries 6
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>#RSAAuthentication yes
+</span><span class='line'>PubkeyAuthentication yes
+</span><span class='line'>#AuthorizedKeysFile .ssh/authorized_keys
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+</span><span class='line'>#RhostsRSAAuthentication no
+</span><span class='line'># similar for protocol version 2
+</span><span class='line'>#HostbasedAuthentication no
+</span><span class='line'># Change to yes if you don't trust ~/.ssh/known_hosts for
+</span><span class='line'># RhostsRSAAuthentication and HostbasedAuthentication
+</span><span class='line'>#IgnoreUserKnownHosts no
+</span><span class='line'># Don't read the user's ~/.rhosts and ~/.shosts files
+</span><span class='line'>#IgnoreRhosts yes
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># To disable tunneled clear text passwords, change to no here!
+</span><span class='line'>PasswordAuthentication no
+</span><span class='line'>PermitEmptyPasswords no
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Change to no to disable s/key passwords
+</span><span class='line'>ChallengeResponseAuthentication no
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Kerberos options
+</span><span class='line'>#KerberosAuthentication no
+</span><span class='line'>#KerberosOrLocalPasswd yes
+</span><span class='line'>#KerberosTicketCleanup yes
+</span><span class='line'>#KerberosGetAFSToken no
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># GSSAPI options
+</span><span class='line'>#GSSAPIAuthentication no
+</span><span class='line'>#GSSAPICleanupCredentials yes
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Set this to 'yes' to enable PAM authentication, account processing,
+</span><span class='line'># and session processing. If this is enabled, PAM authentication will
+</span><span class='line'># be allowed through the ChallengeResponseAuthentication and
+</span><span class='line'># PasswordAuthentication. Depending on your PAM configuration,
+</span><span class='line'># PAM authentication via ChallengeResponseAuthentication may bypass
+</span><span class='line'># the setting of "PermitRootLogin without-password".
+</span><span class='line'># If you just want the PAM account and session checks to run without
+</span><span class='line'># PAM authentication, then enable this but set PasswordAuthentication
+</span><span class='line'># and ChallengeResponseAuthentication to 'no'.
+</span><span class='line'>UsePAM yes
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>#AllowTcpForwarding yes
+</span><span class='line'>#GatewayPorts no
+</span><span class='line'>#X11Forwarding no
+</span><span class='line'>#X11DisplayOffset 10
+</span><span class='line'>#X11UseLocalhost yes
+</span><span class='line'>#PrintMotd yes
+</span><span class='line'>#PrintLastLog yes
+</span><span class='line'>#TCPKeepAlive yes
+</span><span class='line'>#UseLogin no
+</span><span class='line'>UsePrivilegeSeparation yes
+</span><span class='line'>#PermitUserEnvironment no
+</span><span class='line'>#Compression delayed
+</span><span class='line'>ClientAliveInterval 600
+</span><span class='line'>ClientAliveCountMax 0
+</span><span class='line'>#UseDNS yes
+</span><span class='line'>#PidFile /var/run/sshd.pid
+</span><span class='line'>#MaxStartups 10
+</span><span class='line'>PermitTunnel no
+</span><span class='line'>#ChrootDirectory none
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># no default banner path
+</span><span class='line'>#Banner none
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># override default of no subsystems
+</span><span class='line'>Subsystem sftp /usr/sbin/sftp-server
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'># Example of overriding settings on a per-user basis
+</span><span class='line'>#Match User anoncvs
+</span><span class='line'># X11Forwarding no
+</span><span class='line'># AllowTcpForwarding no
+</span><span class='line'># ForceCommand cvs server
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>AllowGroups rmt_acc</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>install sudo for AIX</h1>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rpm -i sudo-for-aix.rpm</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>stop telnet/login/ftp/shell/exec service:</h1>
+
+<p>don&rsquo;t start telnet if reboot:</p>
+
+<p>comment the line starts with &lsquo;telnet&rsquo;/&lsquo;login&rsquo;/&lsquo;ftp&rsquo;/&lsquo;shell&rsquo;/&lsquo;exec&rsquo; in /etc/inetd.conf</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>stopsrc -t telnet</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Developing-on-blackberry]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2014/09/05/developing-on-blackberry/"/>
+    <updated>2014-09-05T21:58:07+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2014/09/05/developing-on-blackberry</id>
+    <content type="html"><![CDATA[<h1>Create BlackBerry ID token</h1>
+
+<p>here:
+<strong> <a href="https://www.blackberry.com/SignedKeys/">https://www.blackberry.com/SignedKeys/</a> </strong></p>
+
+<p>If you will develop an app on BlackBerry OS 10 or some new plateform, choose the first checkbox, and you will be requested your BlackBerry ID username and password, other choices I haven&rsquo;t tried. Then fill a storepass for the key, you can download a file like <code>bbidtoken.csk</code>, save this file to <code>~/Library/Research In Motion</code>, if you are on Windows or Linux, save this file to where website mentioned.</p>
+
+<h1>Create developer certificate file</h1>
+
+<p>developer certificate file is a file named author.p12</p>
+
+<p>I have installed a WebWorks SDK, so I can access blackberry tools on <code>/Applications/BB10 WebWorks SDK 2.1.0.13/cordova-blackberry/bin/dependencies/bb-tools/bin</code>, you should change this path as your SDK type, the target file is <code>blackberry-keytool</code>.</p>
+
+<p><code>blackberry-keytool -genkeypair -storepass &lt;keystore_pw&gt; -author &lt;YOUR_NAME&gt;</code></p>
+
+<p>This will create the author.p12 file on the same directory described below:<code>~/Library/Research In Mothion</code></p>
+
+<h1>Create debug token</h1>
+
+<p><code>blackberry-debugtokenrequest -storepass &lt;KeystorePassword&gt; -devicepin &lt;YOUR_DEVICE_PIN&gt; ~/Library/Research In Motion/debug_token.bar</code></p>
+
+<p>This will create debug token bar file on <code>~/Library/Research In Motion</code>, caution: debug token file must be a *.bar file.</p>
+
+<h1>Install debug token on your device</h1>
+
+<p>Enable your development mode on your device first (Settings > Security and Privacy > Development Mode)</p>
+
+<p><code>blackberry-deploy -installDebugToken &lt;path to debug token&gt; -device &lt;DEVICE_IP_ADDRESS&gt; -password &lt;DEVICE_PIN&gt;</code></p>
+
+<p>Your should get output like these:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Info: Sending request: INSTALL_DEBUG_TOKEN
+</span><span class='line'>Info: Action: Install Debug Token
+</span><span class='line'>Info: File size: 2607
+</span><span class='line'>result::success</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then your device development info has changed, &ldquo;Debug Token Installed&rdquo;</p>
+
+<h1>deploy an hello world to your device</h1>
+
+<p>I use WebWorks SDK, so I launched this app on Mac, and fill some info about project on <code>localhost:3123</code>, a web management for development. After created the app, choose &ldquo;Build&rdquo; on left hand, fill your device password and keystore password, choose BUILD &amp; INSTALL, you may get output like these:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[INFO]    Target Q10-2b1e42dc selected
+</span><span class='line'>[INFO]    Generating debug token
+</span><span class='line'>[INFO]    Debug token created.
+</span><span class='line'>[INFO]    Deploying debug token to target "Q10-2b1e42dc"
+</span><span class='line'>[INFO]    Sending request: INSTALL_DEBUG_TOKEN
+</span><span class='line'>[INFO]    Action: Install Debug Token
+</span><span class='line'>[INFO]    File size: 2605
+</span><span class='line'>[INFO]    result::success
+</span><span class='line'>[INFO]    Populating application source
+</span><span class='line'>[INFO]    Parsing config.xml
+</span><span class='line'>[INFO]    Generating output files
+</span><span class='line'>[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/simulator/bb10app.bar
+</span><span class='line'>[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/device/bb10app.bar
+</span><span class='line'>[INFO]    BAR packaging complete
+</span><span class='line'>[INFO]    Sending request: INSTALL_AND_LAUNCH
+</span><span class='line'>[INFO]    Action: Install and Launch
+</span><span class='line'>[INFO]    File size: 69497
+</span><span class='line'>[INFO]    Installing Project1.testDev_Project1___c8537c58...
+</span><span class='line'>[INFO]    Processing 69497 bytes
+</span><span class='line'>[INFO]    Progress 100%...
+</span><span class='line'>[INFO]    Progress 100%...
+</span><span class='line'>[INFO]    actual_dname::Project1.testDev_Project1___c8537c58actual_id::testDev_Project1___c8537c58
+</span><span class='line'>[INFO]    actual_version::0.0.1.1result::successLaunching Project1.testDev_Project1___c8537c58...
+</span><span class='line'>[INFO]    result::19132657
+</span><span class='line'>[INFO]    done</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Meanwhile, your app will be opened on your device!
+<img src="http://pic.yupoo.com/dawncold0/E2fQtBuX/small.jpg" alt="webworks launch screen" /></p>
+]]></content>
+  </entry>
+  
+</feed>

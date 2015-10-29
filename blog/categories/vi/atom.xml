@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Vi | Trade Off]]></title>
+  <link href="http://www.youth2009.org/www.youth2009.org/blog/categories/vi/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www.youth2009.org/"/>
+  <updated>2015-10-29T23:29:16+08:00</updated>
+  <id>http://www.youth2009.org/www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[简单配置一下vi]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2012/06/13/config-vi-simply/"/>
+    <updated>2012-06-13T22:26:00+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2012/06/13/config-vi-simply</id>
+    <content type="html"><![CDATA[<p>看到vpsee上的vi打开网页啥的都能自动高亮，原本一直用着纯文本方式vi的我动心了，搜索了一点点配置，加入这些配置到~/vimrc这样的文件中后，打开vi就能自动加载配置。</p>
+
+<p>下面的分别是：显示行号、自动缩进、开启语法高亮、编辑背景为暗色调、开启粘贴（传说复制过来的代码不会乱掉）</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">set </span>number
+</span><span class='line'><span class="nb">set </span>autoindent
+</span><span class='line'>syntax <span class="nb">enable</span>
+</span><span class='line'><span class="nb">set </span><span class="nv">background</span><span class="o">=</span>dark
+</span><span class='line'><span class="nb">set </span>paste
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>vim是和emace同样重量级的编辑器，如果你是一个Linux控你肯定明白那句话，vi是vim的前身（允许我这样描述吧），所以配置都是这些编辑器的看家本领，这几条简单配置仅仅是个入门，还可以根据自己的需要添加修改</p>
+]]></content>
+  </entry>
+  
+</feed>

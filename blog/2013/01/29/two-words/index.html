@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Two Words - Trade Off</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="看到python捕获SIGINT event的文档，上面说signal这个包里的东西的功能是set handler for asynchronous event，于是背了下这两个词——asynchronous和synchronous，简称分别是async和sync，由于这两个词比较长， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/www.youth2009.org/blog/2013/01/29/two-words/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Trade Off</a></h1>
+  
+    <h2>supercalifragilisticexpialidocious</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="www.youth2009.org/www.youth2009.org">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Two Words</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-01-29T08:15:00+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:15 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>看到python捕获SIGINT event的文档，上面说signal这个包里的东西的功能是set handler for asynchronous event，于是背了下这两个词——asynchronous和synchronous，简称分别是async和sync，由于这两个词比较长，我们通常都用简称，而且发音也都正好不会破坏。</p>
+
+<pre><code>asynchronous： 美 [eɪ'sɪŋkrənəs]
+synchronous：  美 ['sɪŋkrənəs]
+
+以上音标来自dict.cn
+</code></pre>
+
+<p>Here is a minimal example program. It uses the alarm() function to limit the time spent waiting to open a file; this is useful if the file is for a serial device that may not be turned on, which would normally cause the os.open() to hang indefinitely. The solution is to set a 5-second alarm before opening the file; if the operation takes too long, the alarm signal will be sent, and the handler raises an exception.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import signal, os
+</span><span class='line'>
+</span><span class='line'>def handler(signum, frame):
+</span><span class='line'>    print 'Signal handler called with signal', signum
+</span><span class='line'>    raise IOError("Couldn't open device!")
+</span><span class='line'>
+</span><span class='line'># Set the signal handler and a 5-second alarm
+</span><span class='line'>signal.signal(signal.SIGALRM, handler)
+</span><span class='line'>signal.alarm(5)
+</span><span class='line'>
+</span><span class='line'># This open() may hang indefinitely
+</span><span class='line'>fd = os.open('/dev/ttyS0', os.O_RDWR)
+</span><span class='line'>
+</span><span class='line'>signal.alarm(0)          # Disable the alarm</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2013-01-29T08:15:00+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:15 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/study/'>study</a>, <a class='category' href='/blog/categories/work-at-honovation/'>work@honovation</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/27/give-up-ruby/" title="Previous Post: give up ruby">&laquo; give up ruby</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/01/29/use-octopress-isolate-function/" title="Next Post: use octopress isolate function">use octopress isolate function &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/10/28/test/">Test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/27/build-hybla-for-ubuntu-14-dot-04/">Build Hybla for Ubuntu 14.04</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/26/save-red-status-elasticsearch/">Save Red Status Elasticsearch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/29/msa-thoughts/">MSA Thoughts</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/www.youth2009.org/blog/2013/01/29/two-words/';
+        var disqus_url = 'http://www.youth2009.org/www.youth2009.org/blog/2013/01/29/two-words/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

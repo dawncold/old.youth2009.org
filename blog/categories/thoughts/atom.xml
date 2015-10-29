@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Thoughts | Trade Off]]></title>
+  <link href="http://www.youth2009.org/www.youth2009.org/blog/categories/thoughts/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www.youth2009.org/"/>
+  <updated>2015-10-29T23:29:16+08:00</updated>
+  <id>http://www.youth2009.org/www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MSA Thoughts]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/08/29/msa-thoughts/"/>
+    <updated>2015-08-29T21:51:24+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/08/29/msa-thoughts</id>
+    <content type="html"><![CDATA[<p>MSA (Micro Service Architecture) is a methodology of dependencies management. Its core thought is divided a large application into some independent small applications, these small applications can be deployed independent and use different programming language, etc.</p>
+
+<p>I think it&rsquo;s not a new methodology, but a new concept.</p>
+
+<p>We can think you make an application, used some libraries written by others, these libraries are some independent application, they expose some APIs for you, your application import them and call some APIs to fullfill some functions. Generally they will keep same APIs during update and fix bugs, so you can upgrade them and use latest version. You can also copy their codes to your application code base, just like you write all codes, but if they updated, you must copy new codes to your code base, that likes the development without MSA.</p>
+
+<p>So, MSA is a methodology of dependencies management, the example is a small scope of MSA, the real MSA means some independent application, for instance an order service, an logistics service, etc. We may name these order module, logistics module before, but now we name these xxx service.</p>
+]]></content>
+  </entry>
+  
+</feed>

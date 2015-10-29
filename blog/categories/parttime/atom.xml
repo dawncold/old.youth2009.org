@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Parttime | Trade Off]]></title>
+  <link href="http://www.youth2009.org/www.youth2009.org/blog/categories/parttime/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www.youth2009.org/"/>
+  <updated>2015-10-29T23:29:16+08:00</updated>
+  <id>http://www.youth2009.org/www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Mailing List in Postfix]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2015/01/08/mailing-list-in-postfix/"/>
+    <updated>2015-01-08T19:20:14+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2015/01/08/mailing-list-in-postfix</id>
+    <content type="html"><![CDATA[<p>Too simple to making a mailing list in postfix, just define a mailing list name and recipients in <code>/etc/postfix/virtual</code>, like this: <code>dev-group dev1@company.com dev2@company.com dev3@company.com</code>, after that, generate the virtual db by <code>postmap /etc/postfix/virtual</code>.</p>
+
+<p>Don&rsquo;t forget add <code>virtual_alias_maps=hash:/etc/postfix/virtual</code> in your <code>main.cf</code> file, and restart postfix finally.</p>
+
+<p>I think I need study postfix systemally, just build a private smtp/imap server.</p>
+]]></content>
+  </entry>
+  
+</feed>

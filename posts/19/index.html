@@ -1,0 +1,525 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Trade Off</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="学计算机编程语言的人都有helloworld情节，不管学成什么样，他们写helloworld的能力都很强。 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+import web urls = ("/hello", "hello")
+app = web.application(urls, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/www.youth2009.org/posts/19/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Trade Off</a></h1>
+  
+    <h2>supercalifragilisticexpialidocious</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="www.youth2009.org/www.youth2009.org">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/11/20/also-helloworld-with-webpy/">又是helloworld</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-20T23:58:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>11:58 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>学计算机编程语言的人都有helloworld情节，不管学成什么样，他们写helloworld的能力都很强。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import web
+</span><span class='line'>
+</span><span class='line'>urls = ("/hello", "hello")
+</span><span class='line'>app = web.application(urls, globals())
+</span><span class='line'>
+</span><span class='line'>class hello:
+</span><span class='line'>   def GET(self):
+</span><span class='line'>       return "hello, world"
+</span><span class='line'>
+</span><span class='line'>if __name__ == "__main__":
+</span><span class='line'>   app.run()</span></code></pre></td></tr></table></div></figure>
+
+
+<p>今晚已经开始了Web.py的学习阶段。</p>
+
+<p>看官方介绍的在Mac系统下安装webpy有点特别，于是我直接使用了easy_install的安装方法，不知道自己以前安装过easy_install这个软件管理工具，直接使用就好了，不过最好加上sudo，否则会提示无法创建什么目录，权限不够吧。</p>
+
+<p>安装完web.py后就能使用框架来写东西了，上面的helloworld就算是。</p>
+
+<p>通过这个简单的helloworld能够学到一点框架的知识——在urls中一个url字符串对应一个处理的类对象，如果需要为这个app配置多个url和对应的处理类，就需要使用add_mapping方法，这些内容请参考<a href="http://webpy.org/docs/0.3/api#web.application">官方的api</a>，很是简单，具体不在此赘述。</p>
+
+<p>第一天就学到这里，以后就要变学习变开发了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/11/19/also-back-to-drcom-for-mac/">又回到了drcom上</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-19T14:33:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>2:33 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>如果在mac系统下没有可用的drcom客户端真是很难受的一件事情，虽然现在有了web登陆的账号，但还是有限制的——流量总数、速度，特别是速度限制，真是拿生锈的刀杀人的感觉。</p>
+
+<p>曾经两次打开了xcode来调试drcom4mac的源代码，但每次都感觉怎么这么复杂，我怎么能看得懂？里面的drcom库是用C写的，我个人一直对于C语言有好感，但就是不想接触。现在高级语言有的是，虽说从学术划分上来讲C也算是高级语言，但从语言上比较，C算是很底层的了。就这样拖延着，我想还是动力不够，如果有什么强大动力支持着我来做这个，可能会更好。</p>
+
+<p>再来一次吧，现在同时也在学着python，前段时间面试豆瓣的时候被问到是不是C的代码写得少，我只能正确回答是的，最终也没面试上，许是和这个有关，既然如此也算是给自己找了个理由——为了未来，还有广大生活在drcom阴影下的使用mac系统的人们。</p>
+
+<p>我来了！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/11/13/software-exam-is-finished/">软考结束了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-13T07:58:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>7:58 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>经过昨天一天的努力，软考终于结束了，不知为何昨晚没有写这些，可能是因为晚上给同学过生日玩得很好，也很累，回来没有静下来写这些。</p>
+
+<p>一共复习了2个月，算是挺长的了，很多同学都复习几天就去参加了，不知道他做得怎么样。我感觉这次考试是我做得最难的一套题了，当然有不少成分是紧张，本来不算太难的题目只要有了紧张就会变得不知从哪里下手。开始做的时候有种在蒙答案的感觉，由于后来做完不能提前上交，我只能又做了一遍，修改了几个题目的答案（虽然知道越改越错的原则），再次做的时候感觉没有那么多题目拿不准，就是只有几个。</p>
+
+<p>下午的考试和上午一样，本来不担心下午考试的，不过一发下试卷来我看看题目，有些害怕——最担心的题目出现了，01背包，我忽略了那个题目直接做了后面的，不过后面那个题目我也有些摸不着头脑——没做过State模式的程序题，但后来又做了一遍后，最后那个题目的意思大致清楚了，按照我的想法写上了答案。回到前面看那个01背包，似乎没有我想得那么难，比较快得做出了答案，还是有些担心的，因为这么重要的一个题怎么会如此简短的答案呢，再仔细看过，没什么大问题，就先这样写上吧。</p>
+
+<p>总的来说时间是很充足的，如果第一遍不大会，那再做一遍或许就会有思路了，希望大家都能考过，明年就能参加高级的试试了！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/11/06/print-exam-id-tomorrow/">明天打印准考证</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-06T11:07:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>11:07 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>前天下午和Yz谈论了一下软考内容，他很不屑于这次考试了，发现了不少问题，而我同样也遇到了类似的问题——出题不规范、答案不清楚等等，让这次考试变得不正式。但我们都已经报名，如果不好好对待就会感觉有些亏了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/28/software-exam-is-comming-soon/">马上就要软考了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-10-28T22:31:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>10:31 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>我充满了信心，但自己感觉准备周期有些长，每天都用准备软考的理由在上课的时候看软考的资料，导致很多门课现在还是比较陌生的，不过大学中这样并不是大问题，即便是都不怎么学，到了年底要是肯努力几天的话，成绩还是会很给面子的。但我并不喜欢这样突击，我更喜欢轻松自在一点。</p>
+
+<p>软考结束后本以为能够把丢下的知识拾起来，但国庆和光瑞都找我做些东西，我也想继续搞一些开发，一是能增加些经验，二是能够做一些真正的商业产品，产品和参赛作品毕竟有不少差别，参赛作品做了几个了，就那样放着，产品的话，目前还没有能拿得出手的：（</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/22/i-am-writting-an-os-recently/">最近在写OS</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-10-22T08:10:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2011</span></span> <span class='time'>8:10 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>其实没有像标题中说的那么宏伟，只是需要写一个软件工程用的文档，就是一系列的需求分析、设计、开发、测试、维护文档，主题自定，我觉着看了很多国内的软件作品，动不动就是XXX系统，好象任何东西加上“系统”两个字之后都会变得无比金光闪闪，那我也来一个吧——“操作系统”。</p>
+
+<p>虽然不需要实际编码，但还是需要参考很多资料，不可能一句代码都不出现，主要参考的是《Orange's一个操作系统的实现》（《自己动手写操作系统》的第二版），里面最大的难点就是过多的汇编语言，其实C的程序我还是没大有问题的，只要不让我设计什么深奥算法就好：）</p>
+
+<p>学期末交上这个文档，已经分给了几个人去做，但他们可能感觉时间还早吧，到现在也没有动手，我不能等他们，我需要写好设计部分，现在就得深入阅读资料了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/06/steve-jobs/">希望你依然能够领导我们的创新</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-10-06T17:19:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>5:19 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://pic.yupoo.com/dawncold0/BqdQPzJM/medish.jpg" alt="" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/12/3days-15hrs/">三天睡了十几个小时</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-09-12T18:17:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>6:17 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>为了这个数学建模啊，奋斗了3天，第一天是1点睡的，第二天4点睡的，第三天也是4点睡的，每天都是早上8点左右起来。稍微有点短，快要接近高中的生活，长时间没熬夜，突然一熬还真受不了，第二天我的两个同学可能要比我辛苦一些，我是感觉很累就去睡了，还是她们叫我起来。</p>
+
+<p>哎，计算机系的同学搞数学建模真得很痛苦，痛苦的主要来源是很多东西根本不了解，而且短时间根本学不会，是一种无奈，看着时间一点点过去自己却什么都做不了，就这样不断打击自己的信心，人们就这样被击垮了：（</p>
+
+<p>加了两个建模的讨论群，里面大多数（超过99%）人在要答案，很少有人是讨论的，而且即便是这样，我记得参赛时有个比赛注意事项——比赛期间不得与他人探讨，包括指导老师——这简直是不可能，我看到后都感觉新鲜，暂且不说和他人讨论，不能和指导老师讨论，都让我感觉不可思议，我反复读了几遍《承诺书》，确定了有这样一句——“<strong>我们完全明白，在竞赛开始后参赛队员不能以任何方式（包括电话、电子邮件、网上咨询等）与队外的任何人（包括指导教师）研究、讨论与赛题有关的问题。</strong>”有指导老师的一般都是指导老师在奋斗呢，怎么不能够讨论呢？！反正承诺书就这么写的，而且还是第一条。还好我们没有指导老师，只能全靠自己来做，可能做得不如别人的好，但至少不会感觉胆怯，我们也不会太敬佩夺得一二等奖的队伍，因为我们都明白这其中有多少代表了你们自己的能力，如果是你们自己完成的，那我们会佩服，可惜这样的队伍很少见，我只好当作没有了：（</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/05/ruankao-meiyong/">是不是国内软考都没用了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-09-05T17:52:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>5:52 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>去学校给报名表盖章也不怎么看表的内容，直接就盖上了，看来学校也不打算鼓励软考了，哪天考出系统架构师来也没人知道了：（不过这天应该不会很快到来，刚刚粗略看过系统架构师的题目，只看了最后论文题，没工作经验真难通过，而且还有大型系统的某种设计经验，哎我还是多看InfoQ的图文资料吧：）</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/31/i-havent-ready-for-mm2011/">MM2011我还没准备好</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-08-31T11:48:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2011</span></span> <span class='time'>11:48 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>真没想到MM2011（2011年的数学建模）的时间改在了9月9日～12日，直接覆盖了中秋节，不知道组委会那帮人是不是有问题只顾自己过中秋，当然9月12日才是中秋，而且那天上午8点就结束了，但假期可是提前开始的。</p>
+
+<p>本想在家看那本刚刚买来的书，但还有好多别的事情要做，就暂且搁置了看这本书的念头，而且每次看书都发现很简单，于是就不想继续看下去了。谁知难的东西都在后面，而且买的书是讲美国数学建模的，我们这个神奇的国家并不会太按照套路出牌，所以从这本书上找什么帮助看来渺茫了。</p>
+
+<p>报名前打算用Python代替Matlab来出些数据呢，现在也是渺茫了吧？！不是专门做这个的突然插足进来参赛都是这下场。索性也抛弃掉指导老师，这最后的救命稻草也没了（当然，我们一直就没找到）。</p>
+
+<p>MM2011，我还没准备好。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/20">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/18">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/10/28/test/">Test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/27/build-hybla-for-ubuntu-14-dot-04/">Build Hybla for Ubuntu 14.04</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/26/save-red-status-elasticsearch/">Save Red Status Elasticsearch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/29/msa-thoughts/">MSA Thoughts</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

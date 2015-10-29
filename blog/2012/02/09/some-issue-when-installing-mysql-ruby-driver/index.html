@@ -1,0 +1,429 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>安装mysql的Ruby驱动遇到的问题 - Trade Off</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/www.youth2009.org/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Trade Off</a></h1>
+  
+    <h2>supercalifragilisticexpialidocious</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="www.youth2009.org/www.youth2009.org">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">安装mysql的Ruby驱动遇到的问题</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-02-09T20:08:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>8:08 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold@tianzhenmatoMacBook-Pro ~<span class="nv">$ </span>gem install mysql
+</span><span class='line'>Fetching: mysql-2.8.1.gem <span class="o">(</span>100%<span class="o">)</span>
+</span><span class='line'>Building native extensions.  This could take a <span class="k">while</span>...
+</span><span class='line'>ERROR:  Error installing mysql:
+</span><span class='line'>ERROR: Failed to build gem native extension.
+</span><span class='line'>
+</span><span class='line'>       /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
+</span><span class='line'>checking <span class="k">for</span> mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for</span> main<span class="o">()</span> in -lm... yes
+</span><span class='line'>checking <span class="k">for</span> mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for</span> main<span class="o">()</span> in -lz... yes
+</span><span class='line'>checking <span class="k">for</span> mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for</span> main<span class="o">()</span> in -lsocket... no
+</span><span class='line'>checking <span class="k">for</span> mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for</span> main<span class="o">()</span> in -lnsl... no
+</span><span class='line'>checking <span class="k">for</span> mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for</span> main<span class="o">()</span> in -lmygcc... no
+</span><span class='line'>checking <span class="k">for</span> mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>*** extconf.rb failed ***
+</span><span class='line'>Could not create Makefile due to some reason, probably lack of
+</span><span class='line'>necessary libraries and/or headers.  Check the mkmf.log file <span class="k">for</span> more
+</span><span class='line'>details.  You may need configuration options.
+</span><span class='line'>
+</span><span class='line'>Provided configuration options:
+</span><span class='line'>--with-opt-dir
+</span><span class='line'>--without-opt-dir
+</span><span class='line'>--with-opt-include
+</span><span class='line'>--without-opt-include<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/include
+</span><span class='line'>--with-opt-lib
+</span><span class='line'>--without-opt-lib<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/lib
+</span><span class='line'>--with-make-prog
+</span><span class='line'>--without-make-prog
+</span><span class='line'>--srcdir<span class="o">=</span>.
+</span><span class='line'>--curdir
+</span><span class='line'>--ruby<span class="o">=</span>/usr/local/Cellar/ruby/1.9.3-p0/bin/ruby
+</span><span class='line'>--with-mysql-config
+</span><span class='line'>--without-mysql-config
+</span><span class='line'>--with-mysql-dir
+</span><span class='line'>--without-mysql-dir
+</span><span class='line'>--with-mysql-include
+</span><span class='line'>--without-mysql-include<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/include
+</span><span class='line'>--with-mysql-lib
+</span><span class='line'>--without-mysql-lib<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/lib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-mlib
+</span><span class='line'>--without-mlib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-zlib
+</span><span class='line'>--without-zlib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-socketlib
+</span><span class='line'>--without-socketlib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-nsllib
+</span><span class='line'>--without-nsllib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-mygcclib
+</span><span class='line'>--without-mygcclib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 <span class="k">for</span> inspection.
+</span><span class='line'>Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install mysql -- --with-mysql-dir<span class="o">=</span>/usr/local/mysql
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一开始的那两个“&ndash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
+
+<p>我已经解决问题了，成功安装mysql的ruby驱动，如果仍然遇到问题，可以试试参考<a href="http://blog.bmn.name/2008/02/rails-gem-install-mysql-throws-error-extconfrb-failed/">这里</a>（同样感谢这里）。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">dawncold</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2012-02-09T20:08:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>8:08 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/study/'>study</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/02/07/some-issue-when-saving-rules-in-iptables/" title="Previous Post: 保存iptables规则遇到的问题">&laquo; 保存iptables规则遇到的问题</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/02/09/egg-ache-no-route-matches-say-hello/" title="Next Post: 蛋疼的No route matches “/say/hello”">蛋疼的No route matches “/say/hello” &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/10/28/test/">Test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/27/build-hybla-for-ubuntu-14-dot-04/">Build Hybla for Ubuntu 14.04</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/26/save-red-status-elasticsearch/">Save Red Status Elasticsearch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/29/msa-thoughts/">MSA Thoughts</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.youth2009.org/www.youth2009.org/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/';
+        var disqus_url = 'http://www.youth2009.org/www.youth2009.org/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

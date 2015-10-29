@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Mapapp | Trade Off]]></title>
+  <link href="http://www.youth2009.org/www.youth2009.org/blog/categories/mapapp/atom.xml" rel="self"/>
+  <link href="http://www.youth2009.org/www.youth2009.org/"/>
+  <updated>2015-10-29T23:29:16+08:00</updated>
+  <id>http://www.youth2009.org/www.youth2009.org/</id>
+  <author>
+    <name><![CDATA[dawncold]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[项目要收工了]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2011/06/01/mapapp-approaches-end/"/>
+    <updated>2011-06-01T18:04:00+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2011/06/01/mapapp-approaches-end</id>
+    <content type="html"><![CDATA[<p>虽然最后的几个功能还没有完成，但总归目前已经能用了。如果说端午过后还有机会继续提交的话，可能最终就是完成这几个功能吧。不过最大的问题是现在已经到了考试前夕，如果不想承受考前突击带来的痛苦和自责，那必须得提前准备，何况今年还要考英语四级。按照Fnln的说法，按照正常退步速度就能通过，但我已经不清楚现在是不是正常退步速度了，应该还没有吧，仅仅是最近大家都在复习的时候我在做网站而已：）</p>
+
+<p>刚刚用phpDocumentor把文档生成出来了，还遇到了可恶的乱码问题，最终用了强大的替换工具，硬生生把字符集换成了utf8，总算是解决了吧，虽然解决方法不太好，但这是个看结果的事情：）</p>
+
+<p>不知道Yfan那边的css工作怎么样了，要是进展顺利，明天全线停止，开始写写计划书什么的文字材料，在最后一个工作日交上去。当然这算是理想的情况。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[项目在冲刺]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2011/05/29/project-is-rushing/"/>
+    <updated>2011-05-29T06:48:00+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2011/05/29/project-is-rushing</id>
+    <content type="html"><![CDATA[<p>看着日期就要到最后提交的日子了，这几天一直都在写最后的几个功能，昨天写的是活动功能，基本上完工了吧，只是没有一个很好的展示效果。今天主要做做基础通知功能，这个功能完成后就能把以前的很多模块产生的消息应用起来，首页也有一个不断抓取消息的语句。其实还是接口抓取啦，不知道那些大型网站，比如新浪微博是如何做这个的，可能也是如此吧。</p>
+
+<p>其实这样想来，做一个即使聊天的东西也就是这样吧，不断从一个接口抓取消息，不断向一个地方发送消息即可，只是若这样实现，会不会对数据库的压力非常大呢？也许还有更好的办法处理即时消息，比如NoSQL？</p>
+
+<p>这两天睡眠质量很不好，早上都是5点多起来，晚上差不多11点睡下，时长和高中的日子差不多了，不过白天竟然没有困意，只是偶尔感觉很饿，不知道该买些什么样的吃得放在身边：）</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[懒得写博客了]]></title>
+    <link href="http://www.youth2009.org/www.youth2009.org/blog/2011/05/14/i-am-tired-to-create-blog/"/>
+    <updated>2011-05-14T18:13:00+08:00</updated>
+    <id>http://www.youth2009.org/www.youth2009.org/blog/2011/05/14/i-am-tired-to-create-blog</id>
+    <content type="html"><![CDATA[<p>最近一直还在忙活学校的那个项目，还有自己要做的同学录，看着日子越来越紧张，我也变得越来越紧张：）</p>
+
+<p>学校的项目还有不多的工作了，我赶紧忙活一下，最后的几个功能也差不多没问题了，琐碎的工作交给另一个人了，这几天我没管，希望他做了些什么吧。同学录的工作写了不少代码，没去统计，外部引用的js库太多了，一统计都是别人的工作：（</p>
+
+<p>今天下午用了下jquery的表单验证插件，调试了好久的remote方法，现在分享点经验：</p>
+
+<p>1.远程的查询方法我接受了post的提交方法，不过我感觉get也是没问题的，只是没去测试，修改这个是在remote中传入type:&lsquo;post'即可。</p>
+
+<p>2.remote要提交上去的data用这样的方法：function(){return xxx;}</p>
+
+<p>3.remote对应的messages直接写remote即可，注意这里处理的是得到false结果显示的提示信息，所以查询数据库并返回值的那个页面要注意别写反了结果，当然要只能返回true或者false。我用php写的结果就是直接echo一个字符串，只有这样简单写才能让这个傻傻的remote认出来。一开始我还包装了一个json返回，现在想想根本就是奢望，根本不可能知道你的json是个什么东西！因为根本就没有告诉它去检查哪个元素的值：）</p>
+
+<p>如果按照这个速度做下去，可能到6月6日能够交上去作品：）希望其他人做得不太好吧，那样我就有机会去深圳旅游（答辩）啦：）</p>
+
+<p>最后在这里说一下QQMap的API，除了单一只能玩js的以外没什么太大的失误，用起来比较顺手，只是和Google的想比，还差很远，如果不是为了参赛，我可能会去用Google的，但那个相对用起来会很麻烦的：─（</p>
+]]></content>
+  </entry>
+  
+</feed>

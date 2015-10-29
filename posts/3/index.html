@@ -1,0 +1,632 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Trade Off</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="上次笔记本替换下来的硬盘闲在那里很久了，反正闲着没用，不如装点东西，比如监控的图片什么的，每分钟两张的速度拍，一个工作日，大约能有5G的数据，要是都传到七牛那么也就两天，免费的磁盘空间就满了，但绝大多数图片是没意义的，手动删的话，勤快些也行。 不过要是存到磁盘上的话，就无所谓了，500G的空间， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/www.youth2009.org/posts/3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Trade Off</a></h1>
+  
+    <h2>supercalifragilisticexpialidocious</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="www.youth2009.org/www.youth2009.org">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/22/external-disk-with-openwrt/">External Disk With Openwrt</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-08-22T23:05:57+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>11:05 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>上次笔记本替换下来的硬盘闲在那里很久了，反正闲着没用，不如装点东西，比如监控的图片什么的，每分钟两张的速度拍，一个工作日，大约能有5G的数据，要是都传到七牛那么也就两天，免费的磁盘空间就满了，但绝大多数图片是没意义的，手动删的话，勤快些也行。</p>
+
+<p>不过要是存到磁盘上的话，就无所谓了，500G的空间，怎么能等好几个月之后再考虑，程序员都是很懒很懒的。。。</p>
+
+<p>磁盘是笔记本的2.5英寸STAT接口，需要一根USB2STAT的线，接到已经很疲劳的路由器上（703N改装版），路由器刷了OpenWrt。</p>
+
+<p>登陆路由器后需要装几个软件，一是mount磁盘需要的，二是vsftpd，准备做成ftp供监控使用。把磁盘连接到路由器上而不是直接连到监控上的原因是：假如有人入侵，看到监控一定会破坏，有可能会把磁盘也带走，这样证据就木有了，而连接到路由器上的话，位置比较隐蔽，不容易察觉，会好一些，我就是这么邪恶。。。</p>
+
+<p>对于mount磁盘需要的软件可能是：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>opkg update
+</span><span class='line'>opkg install kmod-usb-storage block-mount kmod-fs-ext4</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可能不是必须的，但看了文档没怎么研究，反正装了这些能mount了，由于我就一块磁盘，直接mount到了/mnt中。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mount /dev/sda1 /mnt</span></code></pre></td></tr></table></div></figure>
+
+
+<p>能用后需要把/mnt的owner改为<code>root:root</code>，权限755，在/mnt下创建ftp目录，owner是<code>ftp:ftp</code>，权限755。（ftp用户是装了vsftpd后创建的，所以你需要先装一下vsftpd）</p>
+
+<p>vsftpd的配置：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>background=YES
+</span><span class='line'>listen=YES
+</span><span class='line'>anonymous_enable=NO
+</span><span class='line'>chroot_local_user=YES
+</span><span class='line'>local_enable=YES
+</span><span class='line'>local_root=/mnt
+</span><span class='line'>write_enable=YES
+</span><span class='line'>local_umask=022
+</span><span class='line'>check_shell=NO</span></code></pre></td></tr></table></div></figure>
+
+
+<p>研究了一段时间这些配置，第一个建议测试时候用NO，正式开始用就YES，否则会让路由器一直卡在启动vsftpd这里，网路会不可用。比较关键的是<code>local_root</code>，登陆后用户的root目录会在这里，但不能在里面的ftp中，原因和chroot有关，刚刚在/mnt中创建的ftp目录就是ftp用户登陆上去后可操作的地方，所有操作都需要在ftp目录下进行。其他配置具体不详述，具体含义可以看官方的man page，感觉前七行是比较重要的。</p>
+
+<p>ftp搭建过程中出现can not create file和permission方面的问题请检查local_root和里面目录的权限。另外vsftpd有本地用户和匿名用户、虚拟用户等不同的配置，我用的是本地用户的方法，其他两种，除了虚拟用户配置看起来比较麻烦我没有尝试外，匿名用户也配置过，不过后来一直卡在can not create file这里，没再尝试，应该还是权限问题。</p>
+
+<p>下面是OpenWrt启动mount的设置，在<code>/etc/config/fstab</code>中加入：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>config mount
+</span><span class='line'>  option target /mnt
+</span><span class='line'>  option device /dev/sda1
+</span><span class='line'>  option fstype ext4
+</span><span class='line'>  option options rw,sync
+</span><span class='line'>  option enabled 1
+</span><span class='line'>  option enabled_fsck 0</span></code></pre></td></tr></table></div></figure>
+
+
+<p>具体的/mnt和/dev/sda1、ext4根据你的情况做修改，enabled为1就是启动时加载。</p>
+
+<p>没想到的是装了vsftpd，又挂了个磁盘，小路由器还能撑得住，也许还没开始用，等往里写文件的时候再看看。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/14/role-in-postgresql/">Role in Postgresql</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-08-14T22:08:20+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:08 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In PostgreSQL versions before 8.1, users and groups were distinct kinds of entities, but now only role, it is user or group or both.</p>
+
+<p>if you create a role using “CREATE ROLE r1”, r1 is not a user, only a generic role, it is likely a group, you can not find it in pg_user, only in pg_roles table, but if you grant LOGIN privilege to r1, it will be appear in pg_user table.</p>
+
+<p>After installed postgresql cluster, you need execute initdb, and it will create a default role with superuser privilege, costomarily this role(user) named postgres</p>
+
+<p>Role’s attributes: login, superuser, database creation, role creation, initiating replication, password</p>
+
+<p>CREATE USER r1 == CREATE ROLE r1 LOGIN</p>
+
+<p>Tip: It is good practice to create a role that has the CREATEDB and CREATEROLE privileges, but is not a superuser, and then use this role for all routine management of databases and roles. This approach avoids the dangers of operating as a superuser for tasks that do not really require it.</p>
+
+<p>examples:</p>
+
+<p>CREATE ROLE joe LOGIN INHERIT;
+CREATE ROLE admin NOINHERIT;
+CREATE ROLE wheel NOINHERIT;
+GRANT admin TO joe;
+GRANT wheel TO admin;</p>
+
+<p>joe can access admin privilege by using “SET ROLE admin”, or if joe has the INHERIT, joe can access privilege directly from admin, if joe want to use these privileges, joe must “SET ROLE admin”. Joe can not access privilege from wheel, because admin has the NOINHERIT, admin can not get these privileges, so as joe.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/14/else-clause-in-python-loop/">Else Clause in Python Loop</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-08-14T22:07:09+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:07 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>both in while and for loop, if in loop body, no break, no return, no exception is raised, statements in else block will be executed.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>for x in []:
+</span><span class='line'>     print x
+</span><span class='line'>else:
+</span><span class='line'>     print ‘xxx’</span></code></pre></td></tr></table></div></figure>
+
+
+<p>this example will print ‘xxx’, even nothing in list and this loop is not executed.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/14/a-input-i-eth0-p-tcp-m-tcp-dport-80-j-accept/">Iptables -a INPUT -i Eth0 -p Tcp -m Tcp --dport 80 -j ACCEPT</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-08-14T22:05:46+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:05 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>what’s the agreement of -m?</p>
+
+<p>not tcp, it’s “tcp &ndash;dport 80”</p>
+
+<p>-m matches, using a somewhat complicated &ldquo;module matching&rdquo; mechanism.  There are a bunch of pretty cool modules in iptables, for example &ldquo;recent&rdquo;.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/14/absolute-positioning-inside-relative-positioning/">Absolute Positioning Inside Relative Positioning</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-08-14T22:00:36+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:00 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>if you want a div with absolute position relative its parent, not body, the parent div must be relative position.</p>
+
+<p>see details <a href="http://css-tricks.com/absolute-positioning-inside-relative-positioning/">http://css-tricks.com/absolute-positioning-inside-relative-positioning/</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/13/iptables-MASQUERADE/">Iptables MASQUERADE</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-06-13T20:50:30+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:50 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you need private hosts communicate with external network, maybe some LXC contaners want to using apt-get, you need add a iptables rule like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>iptables -t nat -A POSTROUTING -s 10.24.1.0/24 ! -d 10.24.1.0/24 -j MASQUERADE</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This rule allows network traffic from 10.24.1.x, and destination is not 10.24.1.x, maybe it wants to communicating with 10.24.2.x, but that doesn&rsquo;t cover in this post, we assumed it want to communicating with Google, the host has an external ip like 200.200.200.200, iptables can convert IP from 10.24.1.x to IP from 200.200.200.200, like the host request Google.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/01/postgresql-indexes/">Postgresql Indexes</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-06-01T10:18:27+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>10:18 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>Introduction</h1>
+
+<p>Indexes will speed up your read(SELECT) and write(INSERT, UPDATE, DELETE) operation on a table, but they should by removed when a query seldom or never used. Create a bit table&rsquo;s index will spend lot of time. By default, PostgreSQL allows reads (SELECT statements) to occur on the table in parallel with index creation, but writes (INSERT, UPDATE, DELETE) are blocked until the index build is finished. In production environments this is often unacceptable. It is possible to allow writes to occur in parallel with index creation, but there are several caveats to be aware of — for more information see <a href="http://www.postgresql.org/docs/9.3/static/sql-createindex.html#SQL-CREATEINDEX-CONCURRENTLY">Building Indexes Concurrently</a>.</p>
+
+<h1>Index Types</h1>
+
+<p>PostgreSQL provides several index types: B-tree, Hash, GiST, SP-GiST and GIN. By default, the CREATE INDEX command creates B-tree indexes, which fit the most common situations.</p>
+
+<h1>Multicolumn index</h1>
+
+<p>Currently, only the B-tree, GiST and GIN index types support multicolumn indexes. Up to 32 columns can be specified. (This limit can be altered when building PostgreSQL; see the file pg_config_manual.h.)</p>
+
+<p>if your frequently query is like this: <code>SELECT name FROM test2 WHERE major = constant AND minor = constant;</code>, your need create an index on table test2 with <code>major</code>, <code>minor</code> columns: <code>CREATE INDEX test2_mm_idx ON test2 (major, minor);</code></p>
+
+<p>The order is important in multicolumn index:</p>
+
+<blockquote><p>A multicolumn B-tree index can be used with query conditions that involve any subset of the index&rsquo;s columns, but the index is most efficient when there are constraints on the leading (leftmost) columns. The exact rule is that equality constraints on leading columns, plus any inequality constraints on the first column that does not have an equality constraint, will be used to limit the portion of the index that is scanned. Constraints on columns to the right of these columns are checked in the index, so they save visits to the table proper, but they do not reduce the portion of the index that has to be scanned. For example, given an index on (a, b, c) and a query condition WHERE a = 5 AND b >= 42 AND c &lt; 77, the index would have to be scanned from the first entry with a = 5 and b = 42 up through the last entry with a = 5. Index entries with c >= 77 would be skipped, but they&rsquo;d still have to be scanned through. This index could in principle be used for queries that have constraints on b and/or c with no constraint on a — but the entire index would have to be scanned, so in most cases the planner would prefer a sequential table scan over using the index.</p></blockquote>
+
+<h1>Order By</h1>
+
+<p>By default, B-tree indexes store their entries in ascending order with nulls last.</p>
+
+<h1>Combining Multiple Indexes</h1>
+
+<p>little difficult just trade off to decide which indexes to provide. Sometimes multicolumn indexes are best, but sometimes it&rsquo;s better to create separate indexes and rely on the index-combination feature.</p>
+
+<h1>Index on Expressions</h1>
+
+<p>This kind of index, not a specific column, it&rsquo;s an expression: <code>CREATE INDEX people_names ON people ((first_name || ' ' || last_name));</code></p>
+
+<h1>Partial Index</h1>
+
+<p><code>CREATE INDEX idx_xxx ON table(name) WHERE NOT deleted</code> this index only enables to rows which deleted is <code>TRUE</code></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/30/python-main-py/">Python-main-py</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-05-30T21:05:20+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:05 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>python的<code>__main__.py</code>文件，通常，一个package下有一个<code>__init__.py</code>文件标识这是package，同样可以有一个<code>__main__.py</code>文件，有了后你就可以这样运行一个脚本：<code>python script_dir</code>或者把这个dir打包成zip，可以使用<code>python zipball.zip</code>来执行，python会执行<code>__main__.py</code>中的语句。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/30/disable-keyboard-on-ubuntu/">Disable-keyboard-on-ubuntu</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-05-30T20:54:45+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:54 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>有时候不接外置显示器的时候，喜欢把键盘压在笔记本键盘上方使用，但如果不禁用内置键盘的话就会有误操作的风险，所以这样做，利用ubuntu中的xinput</p>
+
+<p>查看设备使用<code>xinput list</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>⎡ Virtual core pointer                      <span class="nv">id</span><span class="o">=</span><span class="m">2</span>    <span class="o">[</span>master pointer  <span class="o">(</span>3<span class="o">)]</span>
+</span><span class='line'>⎜   ↳ Virtual core XTEST pointer                <span class="nv">id</span><span class="o">=</span><span class="m">4</span>    <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
+</span><span class='line'>⎜   ↳ SynPS/2 Synaptics TouchPad                <span class="nv">id</span><span class="o">=</span><span class="m">11</span>   <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
+</span><span class='line'>⎜   ↳ Logitech USB-PS/2 Optical Mouse           <span class="nv">id</span><span class="o">=</span><span class="m">12</span>   <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
+</span><span class='line'>⎜   ↳ Logitech Unifying Device. Wireless PID:4004   <span class="nv">id</span><span class="o">=</span><span class="m">13</span>   <span class="o">[</span>slave  pointer  <span class="o">(</span>2<span class="o">)]</span>
+</span><span class='line'>⎣ Virtual core keyboard                     <span class="nv">id</span><span class="o">=</span><span class="m">3</span>    <span class="o">[</span>master keyboard <span class="o">(</span>2<span class="o">)]</span>
+</span><span class='line'>    ↳ Virtual core XTEST keyboard               <span class="nv">id</span><span class="o">=</span><span class="m">5</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span><span class='line'>    ↳ Power Button                              <span class="nv">id</span><span class="o">=</span><span class="m">6</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span><span class='line'>    ↳ Video Bus                                 <span class="nv">id</span><span class="o">=</span><span class="m">7</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span><span class='line'>    ↳ Sleep Button                              <span class="nv">id</span><span class="o">=</span><span class="m">8</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span><span class='line'>    ↳ Acer CrystalEye webcam                    <span class="nv">id</span><span class="o">=</span><span class="m">9</span>    <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span><span class='line'>    ↳ AT Translated Set <span class="m">2</span> keyboard              <span class="nv">id</span><span class="o">=</span><span class="m">10</span>   <span class="o">[</span>slave  keyboard <span class="o">(</span>3<span class="o">)]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>找到内置键盘，我这里是那个叫"AT Translated Set 2 keyboard"的，id是10，禁用使用：<code>xinput float 10</code></p>
+
+<p>如果再启用使用<code>xinput reattach 10 3</code>，3标识这个设备的master的id，从list的结果很容易看到从属关系。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/30/log2n-log3n/">Log2n和log3n</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-05-30T20:45:44+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:45 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>merge sort的时间复杂度，log2n，曾经在算法书上看到过，相应的，merge sort也可以三分，复杂度变成log3n，好像还不错，但差多少呢？</p>
+
+<p>log3n=log2n/log2(3)，也就是只差了1/log2(3)对于看起来还更大。一般算法复杂度是log2n表示就是这个原因，loga(n)和log2n差不了太多，都是常数级别的差距，而且在复杂度分析的时候都会忽略常数，所以就简记为log2n复杂度了：）</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/4">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/2">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/10/28/test/">Test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/27/build-hybla-for-ubuntu-14-dot-04/">Build Hybla for Ubuntu 14.04</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/26/save-red-status-elasticsearch/">Save Red Status Elasticsearch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/29/msa-thoughts/">MSA Thoughts</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

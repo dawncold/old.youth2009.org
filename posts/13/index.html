@@ -1,0 +1,639 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Trade Off</title>
+  <meta name="author" content="dawncold">
+
+  
+  <meta name="description" content="最近有个网站需要一个简单的功能——全选一些checkbox，但用attr的方法总是出问题，主要问题如下：第一次全选没问题，如果此时取消选择一些checkbox，再用全选就不管用了，主要原因就是第一次全选的时候自动加入了checked属性，以后再强制attr(&ldquo;checked&rdquo &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.youth2009.org/www.youth2009.org/posts/13/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Trade Off" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8650400-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Trade Off</a></h1>
+  
+    <h2>supercalifragilisticexpialidocious</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="www.youth2009.org/www.youth2009.org">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/18/prop-method-in-jquery1-6-or-later/">jquery1.6+中的prop方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-08-18T19:27:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>7:27 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近有个网站需要一个简单的功能——全选一些checkbox，但用attr的方法总是出问题，主要问题如下：第一次全选没问题，如果此时取消选择一些checkbox，再用全选就不管用了，主要原因就是第一次全选的时候自动加入了checked属性，以后再强制attr(&ldquo;checked&rdquo;,true)就会没反应。在<a href="http://blog.csdn.net/yaerfeng/article/details/7792832">这里</a>看到一篇文章，里面提到了prop方法，是1.6以后才加入的，就是部分替换了attr的功能，用了prop就可以及时对操作做出反应（这里我不太理解），总之本来用attr的操作现在需要用prop才有效果，当然了，如果你用纯js肯定是没问题喽。</p>
+
+<p>换用prop之后，问题解决！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/17/flask-debug-in-production-environment-with-uwsgi/">生产环境下的flask调试</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-07-17T09:36:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>9:36 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>生产环境是：nginx+uwsgi+flask+sqlalchemy等等等</p>
+
+<p>自带的调试功能比较好用，也能很方便的查看各种变量的值，不过在生产环境中调试并不是那么容易。需要在uwsgi开启的时候传入“&ndash;catch exceptions”：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>uwsgi -s :9090 -M -p <span class="m">4</span> -t <span class="m">30</span> --limit-as <span class="m">128</span> -R <span class="m">10000</span> -d uwsgi.log --vhost --catch-exceptions
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在flask的app中要设置config中的PROPAGATE_EXCEPTIONS = True才可以在遇到错误的时候直接输出到页面上。</p>
+
+<p>昨晚部署到服务器中，发现好多地方是500号错误，根本不知道在哪里出的错误，今天打开了这些才发现是jinja2模板中的do方法不识别，原来我把这个加载do操作放在了比较靠后的地方，在生产环境下不会去调用app了，所以原本写在<code>if __name__ == "__main__"</code>里面的东西就不会再调用了：）</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/14/bad-encoding-in-sqlalchemy/">SQLAlchemy中的乱码</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-07-14T09:47:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>9:47 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一开始没怎么关心这个问题，连接数据库的时候我直接这样用的：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql://root:@localhost/haolesong</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在插入数据的时候看到数据库中的内容是乱码，但网页中显示的时候正常，于是我就没怎么关心，不过前天在修改一个值的时候，就是用一段中文替换原先的值，提交数据后网页打不开了，提示unicode编码的xxx问题，相信用Python写网站的人应该会遇得到。</p>
+
+<p>后来在<a href="http://meizhini.iteye.com/blog/294691">这里</a>发现了解决方法，还有一段长长的分析。我很喜欢这样的文章，对于想直接知道问题答案的人来说一目了然，想知道原理的人也可以直接看下去。</p>
+
+<p>最终就是这样即可：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql://root:@localhost/haolesong?charset=utf8</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/06/load-jinja2-extension-in-flask/">Flask中Jinja2加载扩展</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-07-06T20:34:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>8:34 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>代码中我把jinja2的语法改成了这样的，{##}，因为这样就不会和blog生成html冲突了，大家改回来就可以。</p>
+
+<p>在Flask中接触到了jinja2，由于某个简单的需要——在模板系统中计算某些订单项的总价格，必须打开Jinja2的“do”扩展，用一种hack的方法来计算，十分不喜欢这样，但能用。</p>
+
+<p>在Flask的API中没有公开这样的方法，不过在邮件列表的索引里找到了：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>app.jinja_env.add_extension("jinja2.ext.do")</span></code></pre></td></tr></table></div></figure>
+
+
+<p>还想多说一下Jinja2的set方法，超级不爽的一个方法，原本以为set出来的变量就可以和python中的变量一样使用呢，结果在这里的set出来的变量也就是一个助记作用，根本不能保存新的值，也就是说这里的变量相当于我们通常意义上的常量！！！</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>......
+</span><span class='line'>{# set total_price = 0 #}
+</span><span class='line'>{# for item in order.items #}
+</span><span class='line'>{# total_price = item.meal.price * item.quantity #}
+</span><span class='line'><span class="nt">&lt;p</span> <span class="na">class =</span><span class="err"> </span><span class="s">&quot;order_list_item&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>{# endfor #}
+</span><span class='line'><span class="nt">&lt;/td&gt;</span>
+</span><span class='line'><span class="nt">&lt;td&gt;&lt;/td&gt;</span>
+</span><span class='line'>......
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>原本希望在for外面设置一个变量，然后在for中计算好total_price使用，结果根本不行，这样写的结果就是“找不到total_price变量”，如果去掉for中对total_price的引用就可以正常看到total_price，是0。总之，这里set出来的变量就是一个常量了！！！后来打开了do扩展，把total_price设置成一个list，然后在for中把没一项的价格都append进去，最终输出的地方用了jinja2的filter计算总和。大约会写成这样：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>......
+</span><span class='line'>{# set prices = [] #}
+</span><span class='line'>{# for item in order.items #}
+</span><span class='line'>{# do prices.append(item.meal.price * item.quantity) #}
+</span><span class='line'><span class="nt">&lt;p</span> <span class="na">class =</span><span class="err"> </span><span class="s">&quot;order_list_item&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>{# endfor #}
+</span><span class='line'><span class="nt">&lt;/td&gt;</span>
+</span><span class='line'><span class="nt">&lt;td&gt;&lt;/td&gt;</span>
+</span><span class='line'>......
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>相信jinja2改进set之后会是一个很不错的模板系统：）</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/05/onetomany-in-sqlalchemy/">SQLalchemy中的oneToMany</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-07-05T22:54:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>10:54 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天在这里遇到些问题，花了一段时间，后来看官方文档解决了，很管用！</p>
+
+<p>各个orm中的关系设置大同小异，一对多的关系中需要在“多”方的列中加入一个外键，指向“一”方，然后在“一”方加入一个存储“多”方的变量（这个orm中需要使用relationship方法声明）。</p>
+
+<p>至此一个单项的OneToMany就弄好了，如果需要加入“反向”，形成双向的关系，那就在刚才的“一”方中存储“多”方的变量中指明backref参数，值就是在“多”方的属性中存储“一”方的这个属性名。我在这里弄错了，受了EJB的影响，以为双方都需要设置，结果弄的重复了，还好看了官方文档。</p>
+
+<p>其他关系请参考<a href="http://docs.sqlalchemy.org/en/rel_0_7/orm/relationships.html#sqlalchemy.orm.relationship">官方文档</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/05/validation-of-filefield-in-wtforms/">WTForms中的FileField验证</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-07-05T20:17:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>8:17 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>本来打算针对上传的图片进行验证，不过发现在form中加入enctype属性之后原本针对FileField的验证就不管用了，field.data始终是None，但是去掉enctype属性就ok，不过去掉之后不能上传文件了，所以最终只好去掉验证，在request中进行验证。</p>
+
+<p>比如我是这样验证没有选择图片的：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>form = xxxForm(request.form)
+</span><span class='line'>f = request.files["image"]
+</span><span class='line'>if len(f.filename) == 0:
+</span><span class='line'> form.image.errors = ValidationError(u"need a pic file!!!")
+</span><span class='line'> return render_template("xxx", form = form)
+</span><span class='line'>......</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果有不同的见解请告诉我哦！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/02/deploy-flask-on-my-vps/">VPS中部署了Flask框架</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-07-02T20:46:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2012</span></span> <span class='time'>8:46 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一开始我也是用web.py的，不料接受不了它的session处理，然后离开，Django这种庞大的东西我是没精力去研究了，当然开始也伴随激情看过文档，没坚持下去，后来和强锅一起找了不少框架做东西，我实践性比较强，就找到了Flask，感觉还挺好用的，做了一个todo，有兴趣可以看：<a href="http://todo.wodeyitian.com%E3%80%82">http://todo.wodeyitian.com%E3%80%82</a></p>
+
+<p>原先部署在dotcloud上，刚刚在自己的VPS上完成了nginx+uwsgi+flask的集成，当然还是没有废弃掉php，为了好几个博客嘛～</p>
+
+<p>总的来说就是用virtualenv来创建各个app的目录，在里面安装需要的环境（flask、mysql-python、beautifulsoup4等等吧），nginx的配置大概如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>server <span class="o">{</span>
+</span><span class='line'>     listen       80<span class="p">;</span>
+</span><span class='line'>     server_name  todo.wodeyitian.com<span class="p">;</span>
+</span><span class='line'>     location / <span class="o">{</span>
+</span><span class='line'>               include uwsgi_params<span class="p">;</span>
+</span><span class='line'>               uwsgi_pass 127.0.0.1:9090<span class="p">;</span>
+</span><span class='line'>               uwsgi_param UWSGI_PYHOME /home/wwwroot/python_app_todo<span class="p">;</span>
+</span><span class='line'>               uwsgi_param UWSGI_CHDIR /home/wwwroot/python_app_todo/app_dir<span class="p">;</span>
+</span><span class='line'>               uwsgi_param UWSGI_SCRIPT todoApp:app<span class="p">;</span>
+</span><span class='line'>     <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>UWSGI_PYHOME是app的主目录，下面的CHDIR是app中py文件所在的目录，这个可以自己设置，下面的SCRIPT是入口脚本模块名和变量名，模块就是文件名喽，变量一般在flask都是用app作为整个网站的入口变量，写过python基本都能明白这个。</p>
+
+<p>安装好uwsgi后可以配置开启：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>uwsgi -s :9090 -M -p <span class="m">4</span> -t <span class="m">30</span> --limit-as <span class="m">128</span> -R <span class="m">10000</span> -d uwsgi.log --vhost
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使用9090端口监听，-M开启主控线程，-p 4是开启4个线程，-t 30是超过30秒不响应丢弃，limit-as 128是限制128Mb的内存占用，-R 10000是超过10000的请求就自动respawn（似乎是自动复制？重启？之类的），-d是日志，&ndash;vhost这个可以让多个app共用一个uwsgi，很好用的！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/25/property-not-found-in-el-expression/">关于EL表达式中的Property 'Name' Not Found on Type java.lang.String错误</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-06-25T09:00:00+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>9:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>好了，我直接说自己遇到的情况，就是上面这行提示，找不到name属性，在java.lang.String中，仔细看哦，这句话的意思是你在一个String类型中找name属性，当然不会找到了！！！因为本来String中就没有name属性。</p>
+
+<p>初衷是一个list中，里面的每个元素都有name属性，但是经过JPQL查询后的list给了jsp页面，在输出的时候就得到了这样的提示。实际上我是JPQL写错了，我直接得到了具体的值，所以是String类型的一个list，应该用JPQL得到实体，这样就OK了。</p>
+
+<p>比如：得到的是Student实体，可以用里面的name属性。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>SELECT s FROM Student s, School sc WHERE sc.city <span class="o">=</span> <span class="s1">&#39;北京&#39;</span> AND s.school.id <span class="o">=</span> sc.id AND s.name LIKE <span class="s1">&#39;张%&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但是：得到的就是具体的name了，再用name属性就会出现上面的错误</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>SELECT s.name FROM Student s, School sc WHERE sc.city <span class="o">=</span> <span class="s1">&#39;北京&#39;</span> AND s.school.id <span class="o">=</span> sc.id AND s.name LIKE <span class="s1">&#39;张%&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这种错误很难搞的！！！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/18/it-is-better-to-config-two-shortkeys-for-switch-tags--in-eclipse/">Eclipse中最好配置上切换tabs的快捷键</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-06-18T08:01:00+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>8:01 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在Terminal中用Command+Shift+[和Command+Shift+]来切换tabs太爽了，很多Mac下的程序都默认支持了这样的切换方式，不过eclipse中默认没支持，非常可惜，硬用这样切换倒是也有效果，不过你用两次就知道这不是你想要的那种！！</p>
+
+<p>于是配置快捷键，分别配置Privious Tag和Next Tag即可</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/13/config-vi-simply/">简单配置一下vi</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-06-13T22:26:00+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>10:26 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>看到vpsee上的vi打开网页啥的都能自动高亮，原本一直用着纯文本方式vi的我动心了，搜索了一点点配置，加入这些配置到~/vimrc这样的文件中后，打开vi就能自动加载配置。</p>
+
+<p>下面的分别是：显示行号、自动缩进、开启语法高亮、编辑背景为暗色调、开启粘贴（传说复制过来的代码不会乱掉）</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">set </span>number
+</span><span class='line'><span class="nb">set </span>autoindent
+</span><span class='line'>syntax <span class="nb">enable</span>
+</span><span class='line'><span class="nb">set </span><span class="nv">background</span><span class="o">=</span>dark
+</span><span class='line'><span class="nb">set </span>paste
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>vim是和emace同样重量级的编辑器，如果你是一个Linux控你肯定明白那句话，vi是vim的前身（允许我这样描述吧），所以配置都是这些编辑器的看家本领，这几条简单配置仅仅是个入门，还可以根据自己的需要添加修改</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/14">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/12">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/10/28/test/">Test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/27/build-hybla-for-ubuntu-14-dot-04/">Build Hybla for Ubuntu 14.04</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/26/save-red-status-elasticsearch/">Save Red Status Elasticsearch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/29/msa-thoughts/">MSA Thoughts</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - dawncold -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dawncoldtechblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
