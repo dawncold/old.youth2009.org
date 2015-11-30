@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="Software Entropy主要讲了软件遵循物理中的熵增大原理，软件会逐渐变得rot，而这里面还存在一个broken window的问题，一旦开始rot了，到了一定程度，可以说是有了broken window，然后会有越来越多的broken window，因为人们已经不觉得clean &hellip;">
+  <meta name="description" content="今天又加了不少红绿颜色的字在各种输出上，看起来更加顺眼了，无奈server的网关被人修改了，我们也不敢轻易改动，因为编辑们正在使用，怕改了他们不能访问了。。。那个负责人到我们下班都没回来，真不知道干嘛去了。 研究了一下这种颜色是怎么回事，原来是在一个字符串前后加上颜色标记，就和html的标记一样， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/11/07/beautiful-ps1/">Beautiful PS1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-11-07T21:12:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>9:12 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天又加了不少红绿颜色的字在各种输出上，看起来更加顺眼了，无奈server的网关被人修改了，我们也不敢轻易改动，因为编辑们正在使用，怕改了他们不能访问了。。。那个负责人到我们下班都没回来，真不知道干嘛去了。</p>
+
+<p>研究了一下这种颜色是怎么回事，原来是在一个字符串前后加上颜色标记，就和html的标记一样，只不过颜色标记更加让人难以理解。临下班我想研究一下如何做一个autocomplete的veil出来，可惜都搜不到什么资料，可能这不是什么很值得人们写的东西吧，竟是些讲按Tab可以complete，但不说你怎么写code可以实现这种，猜想是有什么hook可以监听tab事件吧：）后来在<a href="http://hi.baidu.com/widebright/item/5f92a4cf65c79709c710b2ac">这里</a>找到一篇文章，介绍了一点原理和写法，准备翻翻我那本《Shell脚本学习指南》看看有没有帮助。</p>
+
+<p>研究这个的副产品就是看到了PS1的介绍，可以搭配出漂亮而功能强大的PS1。</p>
+
+<p>其实PS1就是一个字符串，Ta规定了提示符的那一行会怎么显示出来以及显示什么，这里面你可以写一些函数调用、配色什么的，terminal会自动帮你调用，然后就是显示出来。给你看个展示效果：</p>
+
+<p><img src="http://pic.yupoo.com/dawncold0/CoN0yCPa/medish.jpg" alt="PS1 pic" /></p>
+
+<p>是不是很好看呢？再看看让Ta显示成这个样的PS1字符串长什么样吧：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;\[$(tput bold)\]\[$(tput setaf 3)\]\u\[$(tput setaf 2)\] [\t] \[$(tput setaf 1)\]\W=&gt;\\$\[$(tput sgr0)\] &#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>相关颜色可不是那么好记忆的如果你用\033、\032这样标记的话，推荐个网站，你可以直接设置好效果，然后复制过来就可以了：<a href="http://www.kirsle.net/wizards/ps1.html">http://www.kirsle.net/wizards/ps1.html</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -464,80 +510,6 @@ cornerstone:    奠基石
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/10/25/orange-has-been-sweet/">Orange Has Been Sweet</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2012-10-25T21:04:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>9:04 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今天早晨买了一些水果，也买了几个橙子，虽然不便宜，但今晚上吃起来感觉还不错，挺甜的。</p>
-
-<p>怎么总感觉今天有点儿不稳呢，听说ERP的接口搞定了就要去测试了，测试过程不怎么顺利，让别人做事情，而且相隔很远，再加上对方不怎么关心这个有点陈旧的系统，工作就会很难同步，我们一测试就出问题，报告过去后好久才给我改改，再测试，又出问题。目前来看虽然没有完全测试好，但已经暴露出几个问题了，还是比较重要的。</p>
-
-<p>明天需要继续测试剩下的接口，并且要总结问题，发给郑工处理处理，又是漫长的等待，这是必然的，不仅仅是一个周末，估计这块在上线前都会是很紧张的。</p>
-
-<p>这篇文章发表得不容易，generate的时候总出现一个错误:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:203:in <span class="sb">`</span>parse<span class="s1">&#39;: (&lt;unknown&gt;): control characters are not allowed at line 1 column 1 (Psych::SyntaxError)</span>
-</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:203:in `parse_stream&#39;</span>
-</span><span class='line'>  from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:151:in <span class="sb">`</span>parse<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/psych.rb:127:in `load&#39;</span>
-</span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/convertible.rb:33:in <span class="sb">`</span>read_yaml<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/post.rb:39:in `initialize&#39;</span>
-</span><span class='line'>  from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:23:in <span class="sb">`</span>new<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1"> from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:23:in `block in read_posts&#39;</span>
-</span><span class='line'>  from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:21:in <span class="sb">`</span>each<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1"> from /Users/dawncold/Documents/Project/work_at_honovation/plugins/preview_unpublished.rb:21:in `read_posts&#39;</span>
-</span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/site.rb:128:in <span class="sb">`</span>read_directories<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/site.rb:98:in `read&#39;</span>
-</span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/lib/jekyll/site.rb:38:in <span class="sb">`</span>process<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/gems/jekyll-0.11.2/bin/jekyll:250:in `&lt;top (required)&gt;&#39;</span>
-</span><span class='line'>  from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin/jekyll:23:in <span class="sb">`</span>load<span class="s1">&#39;</span>
-</span><span class='line'><span class="s1"> from /Users/dawncold/.rvm/gems/ruby-1.9.3-p286/bin/jekyll:23:in `&lt;main&gt;&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这种错误找起来真是蛋疼，最终是在dev这个字符开始的地方找到的，有个奇怪的字符出现了，看不到，也不占空，但确实有个字符在那里占着地方，或许是输入法在切换的时候遗留到那里的吧。。。可恶！</p>
-
-<p>明天还有新工作，测试完ERP后继续做CMS，王总提出了不少新的东西要改进。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/12">&larr; Older</a>
@@ -555,6 +527,10 @@ cornerstone:    奠基石
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/11/30/region/">Region</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/10/30/push-notification/">Push Notification</a>
       </li>
     
@@ -568,10 +544,6 @@ cornerstone:    奠基石
     
       <li class="post">
         <a href="/blog/2015/08/29/msa-thoughts/">MSA Thoughts</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="昨天在一个table的第一行放了一个checkbox, 想做一个效果：一开始这个table的每一行都是冻结状态，点击这一行就激活了，顺便会把checkbox选中，当然直接点checkbox也会激活这一行。可惜在bind event的时候，分别给tr和checkbox加了click事件， &hellip;">
+  <meta name="description" content="Good design should be open for extension and closed for modification. You can extend the module instead of modifying some working code. Abstraction &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,45 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/26/ocp-talks/">OCP-talks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-07-26T22:27:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>10:27 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Good design should be open for extension and closed for modification. You can extend the module instead of modifying some working code.</p>
+
+<p>Abstraction is the Key: for example, a Client should use an Server object that implemented some interfaces instead of a concrete Server object.</p>
+
+<p>Interface&rsquo;s name should be named more closely associated to the dependent side instead of the implement side.</p>
+
+<p>A function that is closed for modification: if we add some changes for this function, it must be modified for working right, it may unconform OCP. For example, a function that draw all shapes in a shape list, it should be draw shapes one by one, and don&rsquo;t care this shape should draw in this way, another shape should draw in that way, etc.</p>
+
+<p>No matter how &ldquo;closed&rdquo; a module is, there will always be some kind of change against which it is not closed.</p>
+
+<p>Abstraction may gain &ldquo;closed&rdquo; software entity(func, module, class, etc), but it also need trade off.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -458,45 +497,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/18/dog-pile-effect/">Dog-pile-effect</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-05-18T22:48:00+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>10:48 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>如果你的网站该去解决dog pile effect了，那应该有不小的PV了。今天看暴走漫画的架构设计，那是应对1000W PV的一个设计，当然架构这东西每家都不一样，可能这个就他们自己用着适合。里面提到了dog pile effect，这个的意思是：在多request去cache中拿数据的时候，如果发现自己拿的数据是过期了的，那么就要去db中拿新的来。这么看好像没问题，但有前提的——request很多，真的很多，而且确实用cache了（反正我不相信request很多的时候某些数据你不用cache，那得是个多么bt的db才能支撑啊？！）本来用cache的作用就是降低对某些slow query的执行次数，缓解db压力。但过期了，再去db中取这就和没有cache一样了，db会死的。</p>
-
-<p>解决方法有这样的：</p>
-
-<ul>
-<li>有专门的job（比如crontab）来更新cache，这样request总是去cache取，不用管过不过期。好处就是简单；坏处是可能做一些没必要的重复计算，没有request你也更新了cache，而且你得确保这个job的执行时间要小于job的间隔，否则会积压很多job。</li>
-<li>request取到数据发现过期，再请求一个update lock，成功拿到锁就可以更新cache，此时其他request也会请求这把锁，但就是请求不到，那就继续返回过期的数据。这是不容忍延迟的情况，如果对数据准确性要求高，那在updating的时候其他request会等，等数据更新了再返回。怎么用取决于environment。</li>
-</ul>
-
-
-<p>引用自：<a href="http://hype-free.blogspot.jp/2008/05/avoiding-dogpile-effect.html">http://hype-free.blogspot.jp/2008/05/avoiding-dogpile-effect.html</a>，注意blogspot。。。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/7">&larr; Older</a>
@@ -514,6 +514,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/11/30/region/">Region</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/10/30/push-notification/">Push Notification</a>
       </li>
     
@@ -527,10 +531,6 @@
     
       <li class="post">
         <a href="/blog/2015/08/29/msa-thoughts/">MSA Thoughts</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
       </li>
     
   </ul>

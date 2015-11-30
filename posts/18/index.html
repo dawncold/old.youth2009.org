@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="修改最后一次提交：git commit &ndash;amend 如果只是提交信息写错了，运行后会让你重新写提交信息，但如果你忘记了加文件进入，可以这样做，先commit，再add忘记的文件，最后来一句git commit &ndash;amend，这看似两次提交，实际只是一次， &hellip;">
+  <meta name="description" content="查看当前远程仓库：git remote  -v，加上-v属性能看得内容详细一些。 添加远程仓库：git remote add [shortname] [url] 有了shortname，就相对于给仓库了一个别名，以后可以用别名操作，git fetch xx即可 get fetch &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,47 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/26/git-study-remote-repo/">Git使用重新学习（远程仓库）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-01-26T16:08:00+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>4:08 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>查看当前远程仓库：git remote  -v，加上-v属性能看得内容详细一些。</p>
+
+<p>添加远程仓库：git remote add [shortname] [url]</p>
+
+<p>有了shortname，就相对于给仓库了一个别名，以后可以用别名操作，git fetch xx即可</p>
+
+<p>get fetch xx是获取远程仓库中有而本地没有的数据</p>
+
+<p>提送数据到远程仓库用：git push remote-name branch-name，推送的时候要注意必须没有他人在推送，且没有其他更新才行，如果他人推送了不少更新，你需要先得到更新，合并后再推送。（这里并不是说和svn一样了，只是你可以自己先在本地提交，但推送到远程服务器上时，需要按照先来后到的原则，保证每个人的提交是不冲突的，是最新的。这是我个人的理解）</p>
+
+<p>远程仓库重命名、删除：git remote rename short-name new-name，git remote rm xx</p>
+
+<p>另外git remote show repo-name能够得到不少信息，有哪些要合并啦，哪些已经删除啦，哪些新仓库出现啦等等，这个是需要连接服务器获取的。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -473,35 +514,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/01/struts-xml-assistant/">Struts2的eclipse提示</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-12-01T14:32:00+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2011</span></span> <span class='time'>2:32 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>写struts2的配置文件时如果有提示那最好了，添加方法比较简单，从框架的jar包中找到sruts-2.1.7.dtd文件，在preference搜索xml找到xml catalog，然后add一个，文件就是刚刚找到的dtd文件，Key type选URI，我用过publicID但没有提示效果，相应的，key中写：<a href="http://struts.apache.org/dtds/struts-2.0.dtd%E5%8D%B3%E5%8F%AF%E3%80%82">http://struts.apache.org/dtds/struts-2.0.dtd%E5%8D%B3%E5%8F%AF%E3%80%82</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/19">&larr; Older</a>
@@ -519,6 +531,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/11/30/region/">Region</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/10/30/push-notification/">Push Notification</a>
       </li>
     
@@ -532,10 +548,6 @@
     
       <li class="post">
         <a href="/blog/2015/08/29/msa-thoughts/">MSA Thoughts</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
       </li>
     
   </ul>

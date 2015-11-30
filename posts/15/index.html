@@ -9,16 +9,10 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="有这么一个小游戏，按照顺序输入字母表的26个英文字母，看看你输入的总时间是多少。有个变态的人竟然在2s内就输入了26个字母，而且不允许有任何错误，真心佩服！！！ 我试了试，快的话我只能在6s左右完成，根本上不了排行榜，于是我考虑作弊…… 1
+  <meta name="description" content="刚刚用yum升级了系统，发现日志中有很多这样的提示： 1
 2
-3
-4
-5
-6
-7
-8
-9
-tell &hellip;">
+ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link
+ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +80,53 @@ tell &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/23/two-mysql-lib-issue-after-yum-update/">Ldconfig: /usr/lib/libmysqlclient.so.16 Is Not a Symbolic Link的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-05-23T19:50:00+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2012</span></span> <span class='time'>7:50 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>刚刚用yum升级了系统，发现日志中有很多这样的提示：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ldconfig: /usr/lib/libmysqlclient.so.16 is not a symbolic link
+</span><span class='line'>ldconfig: /usr/lib/libmysqlclient_r.so.16 is not a symbolic link
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>于是Google了一下，找到一个解决方法，在<a href="http://tiger.im/286.html">这里</a>.</p>
+
+<p>就是重建了两条连接过去即可：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -sf /usr/local/mysql/lib/mysql/libmysqlclient.so.16 /usr/lib/mysqlclient.so.16
+</span><span class='line'>ln -sf /usr/local/mysql/lib/mysql/libmysqlclient_r.so.16 /usr/lib/libmysqlclient_r.so.16
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -924,39 +965,6 @@ tell &hellip;">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/04/16/google-code-jam-2012/">Code Jam 2012</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2012-04-16T13:20:00+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>1:20 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>资格赛已经结束了，还好做出来几个题，现在来看这些题目都不算是特别有难度，最主要的还是在理解题目的要求，这当然对于我们非英语系国家的人来说是有些困难的，可能我们需要多读几遍题目才能开始编码，这确实有些不利，但最主要的还是理解错了题目，这样才可怕。</p>
-
-<p>第二个题我就理解有些问题，考虑得太多了，看优秀选手的代码，才十几行结束，真是羡慕死我了！！！</p>
-
-<p>下一轮比赛可能就要在家做了吧？毕竟到了我跑回家的日子：）</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/16">&larr; Older</a>
@@ -974,6 +982,10 @@ tell &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/11/30/region/">Region</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/10/30/push-notification/">Push Notification</a>
       </li>
     
@@ -987,10 +999,6 @@ tell &hellip;">
     
       <li class="post">
         <a href="/blog/2015/08/29/msa-thoughts/">MSA Thoughts</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="感觉中间隔了好久，最终还是把study ruby给放弃了，顺便找了个充足的理由——在没学好当下这门语言之前，不要再尝试其他的。 虽然一个coder要保持技术的敏感性与前瞻性，但频繁换编程语言实在不是一件好事，我现在仍然对于自己涉猎太多编程语言而感到烦躁，主要就是会的太多而不精， &hellip;">
+  <meta name="description" content="看到python捕获SIGINT event的文档，上面说signal这个包里的东西的功能是set handler for asynchronous event，于是背了下这两个词——asynchronous和synchronous，简称分别是async和sync，由于这两个词比较长， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,73 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/29/two-words/">Two Words</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-01-29T08:15:00+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:15 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>看到python捕获SIGINT event的文档，上面说signal这个包里的东西的功能是set handler for asynchronous event，于是背了下这两个词——asynchronous和synchronous，简称分别是async和sync，由于这两个词比较长，我们通常都用简称，而且发音也都正好不会破坏。</p>
+
+<pre><code>asynchronous： 美 [eɪ'sɪŋkrənəs]
+synchronous：  美 ['sɪŋkrənəs]
+
+以上音标来自dict.cn
+</code></pre>
+
+<p>Here is a minimal example program. It uses the alarm() function to limit the time spent waiting to open a file; this is useful if the file is for a serial device that may not be turned on, which would normally cause the os.open() to hang indefinitely. The solution is to set a 5-second alarm before opening the file; if the operation takes too long, the alarm signal will be sent, and the handler raises an exception.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import signal, os
+</span><span class='line'>
+</span><span class='line'>def handler(signum, frame):
+</span><span class='line'>    print 'Signal handler called with signal', signum
+</span><span class='line'>    raise IOError("Couldn't open device!")
+</span><span class='line'>
+</span><span class='line'># Set the signal handler and a 5-second alarm
+</span><span class='line'>signal.signal(signal.SIGALRM, handler)
+</span><span class='line'>signal.alarm(5)
+</span><span class='line'>
+</span><span class='line'># This open() may hang indefinitely
+</span><span class='line'>fd = os.open('/dev/ttyS0', os.O_RDWR)
+</span><span class='line'>
+</span><span class='line'>signal.alarm(0)          # Disable the alarm</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -403,49 +470,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/16/active-cron-log-in-ubuntu/">Active Cron Log in Ubuntu</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2012-12-16T15:41:00+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>3:41 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>bnly.org使用crontab来不断fetch和send，这看起来很傻，不过挺容易搭建。目前send过程每分钟一次，fetch过程10分钟一次。</p>
-
-<p>在ubuntu下默认没有cron的日志，需要这样开启：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>vi /etc/rsyslog.d/50-default.conf
-</span><span class='line'>解除cron的注释
-</span><span class='line'>service rsyslog restart
-</span><span class='line'>service cron restart</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样就可以在/var/log/下找到cron.log查看了。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/10">&larr; Older</a>
@@ -463,6 +487,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/11/30/region/">Region</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/10/30/push-notification/">Push Notification</a>
       </li>
     
@@ -476,10 +504,6 @@
     
       <li class="post">
         <a href="/blog/2015/08/29/msa-thoughts/">MSA Thoughts</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
       </li>
     
   </ul>

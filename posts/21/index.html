@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="说来也可笑，Box2d中有各种各样的Shape，有多边形，矩形，圆形。我就是在用圆形的时候遇到的这样的问题：需要设置圆形的半径，我就用了这样的表达式：26 / PTM_RADIO，后面的是一个宏定义，表示拿多少像素和box2d中的米作为兑换。我这样设置后总看着圆形很不正常，半径不对， &hellip;">
+  <meta name="description" content="最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。 今天update进去信息，总是没发现数据库更新， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,51 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/26/iphone-simulator-and-sqlite/">Iphone模拟器和sqlite的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-07-26T09:19:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>9:19 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近和sqlite打交道比较频繁，感觉很别扭，可能是因为数据库的操作都在模拟器上测试的缘故吧，有几次查看数据库的内容总是没有结果，过一段时间就好了，我现在只能怀疑是模拟器搞的鬼。以后再弄数据库之前应该把模拟器中的程序删掉，重新传入数据。</p>
+
+<p>今天update进去信息，总是没发现数据库更新，怀疑是忘记commit，查看一下FMDB的使用方法，确实有commit一说，而我在看国内某博客写的使用教程时发现他就是随意的update和insert，殊不知这些都需要commit呀！在update和insert代码前后需要加入</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[db beginTransaction];
+</span><span class='line'>和
+</span><span class='line'>[db commit];</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我用的Objective-C。</p>
+
+<p>然而即便是这样，更新了数据库后再查询，确实数据被更改了，但我重新在模拟器中运行程序时候又恢复成了以前的值。偶然在模拟器中打开了程序而不是用xcode运行程序，数据竟然被永久更新了。</p>
+
+<p>所以，以后测试update的时候，前后对比应该只在模拟器中看，如果再用xcode启动，会把原来的数据传入模拟器，这样你就看不到效果了。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -487,64 +532,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/06/cut-flac-file-on-macos/">Mac下分割flac文件</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-07-06T13:59:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>1:59 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>原来我有很多ape和flac音乐的，在windows时代用foobar软件播放音乐很快乐，但在mac下，就有点儿别扭了，cog可以打开cue文件，并且播放也没问题，就是不能分割，这让人很头疼啊！ 从<a href="http://broadeno.wordpress.com/2009/06/16/%E5%A6%82%E4%BD%95%E5%9C%A8mac%E7%B3%BB%E7%BB%9F%E9%87%8C%E5%88%86%E5%89%B2flac%E9%9F%B3%E4%B9%90%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E8%BD%AC%E6%8D%A2%E4%B8%BAwav">这里</a>找了些办法，应该可以！ 安装macports这个软件，希望用源代码的方式安装，否则如果用官方的dmg文件安装，到最后一步运行安装脚本的时候你会发现进度条总是停留在最后不动，打开install的日志一看，有很多记录，听其他人说最后在下载一些包的信息文件，就像是一个索引镜像吧，断了网还好。1423s过后，安装完了。</p>
-
-<p><code>sudo port install cuetools</code></p>
-
-<p>这样就安装好了cuetools和shntool这两个软件，其中缺失的依赖软件也被macports自动安装上了，只是在下载的时候没有进度，很可恶，如果又兴趣可以看这里学着改改macports的fetch部分，至少能看看下载了多少，心里也有个数！ 下面进行分割：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>dawncold@tianzhenmatoMacBook-Pro Music<span class="nv">$ </span>cuebreakpoints 手嶌葵<span class="se">\(</span>Teshima.Aoi<span class="se">\)</span>.-.<span class="se">\[</span>The.Rose～I.Love.Cinemas～<span class="se">\]</span>.专辑.<span class="se">\(</span>FLAC<span class="se">\)</span>.cue <span class="p">|</span> shnsplit -o flac 手嶌葵<span class="se">\(</span>Teshima.Aoi<span class="se">\)</span>.-.<span class="se">\[</span>The.Rose～I.Love.Cinemas～<span class="se">\]</span>.专辑.<span class="se">\(</span>FLAC<span class="se">\)</span>.flac
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track01.flac<span class="o">]</span> <span class="o">(</span>3:56.27<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track02.flac<span class="o">]</span> <span class="o">(</span>3:21.71<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track03.flac<span class="o">]</span> <span class="o">(</span>5:36.65<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track04.flac<span class="o">]</span> <span class="o">(</span>2:56.00<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track05.flac<span class="o">]</span> <span class="o">(</span>2:57.12<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track06.flac<span class="o">]</span> <span class="o">(</span>4:31.59<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track07.flac<span class="o">]</span> <span class="o">(</span>4:03.01<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track08.flac<span class="o">]</span> <span class="o">(</span>3:14.16<span class="o">)</span> : 100% OK
-</span><span class='line'>Splitting <span class="o">[</span>手嶌葵<span class="o">(</span>Teshima.Aoi<span class="o">)</span>.-.<span class="o">[</span>The.Rose～I.Love.Cinemas～<span class="o">]</span>.专辑.<span class="o">(</span>FLAC<span class="o">)</span>.flac<span class="o">]</span> <span class="o">(</span>34:12.18<span class="o">)</span> --&gt; <span class="o">[</span>split-track09.flac<span class="o">]</span> <span class="o">(</span>3:34.67<span class="o">)</span> : 100% OK
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>文件名有点差劲，也许可以配合cueprint和shnsplit的o参数可以实现完美的转换。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/22">&larr; Older</a>
@@ -562,6 +549,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/11/30/region/">Region</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/10/30/push-notification/">Push Notification</a>
       </li>
     
@@ -575,10 +566,6 @@
     
       <li class="post">
         <a href="/blog/2015/08/29/msa-thoughts/">MSA Thoughts</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
       </li>
     
   </ul>

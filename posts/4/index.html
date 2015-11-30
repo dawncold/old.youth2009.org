@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="对于一个字符串做md5，例如："123456"做完md5后，比较常见的结果是：2e08539049ac0f6b5b4377ec20145c06，即十六进制的表示形式，长度一般是32位，有人也用16位的表示，就是把32位的字符串前后各去掉8位后的结果，但不多见。还有就是用md5的digest值， &hellip;">
+  <meta name="description" content="merge sort的时间复杂度，log2n，曾经在算法书上看到过，相应的，merge sort也可以三分，复杂度变成log3n，好像还不错，但差多少呢？ log3n=log2n/log2(3)，也就是只差了1/log2(3)对于看起来还更大。一般算法复杂度是log2n表示就是这个原因，loga( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,37 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/30/log2n-log3n/">Log2n和log3n</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-05-30T20:45:44+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:45 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>merge sort的时间复杂度，log2n，曾经在算法书上看到过，相应的，merge sort也可以三分，复杂度变成log3n，好像还不错，但差多少呢？</p>
+
+<p>log3n=log2n/log2(3)，也就是只差了1/log2(3)对于看起来还更大。一般算法复杂度是log2n表示就是这个原因，loga(n)和log2n差不了太多，都是常数级别的差距，而且在复杂度分析的时候都会忽略常数，所以就简记为log2n复杂度了：）</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -437,41 +468,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/25/rarp/">Rarp</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-08-25T12:01:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:01 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Packet Format</h2>
-
-<p>RARP packet is identical to ARP packet, differences: RARP &lsquo;type&rsquo; field is 0x8035 for request and reply and &lsquo;op&rsquo; field is 3 for RARP request and 4 for RARP reply.</p>
-
-<p>RARP&rsquo;s reply is unicast.</p>
-
-<p>The implementation of RARP server is complex&hellip;</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -489,6 +485,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/11/30/region/">Region</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/10/30/push-notification/">Push Notification</a>
       </li>
     
@@ -502,10 +502,6 @@
     
       <li class="post">
         <a href="/blog/2015/08/29/msa-thoughts/">MSA Thoughts</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
       </li>
     
   </ul>

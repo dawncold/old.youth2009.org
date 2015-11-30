@@ -9,7 +9,7 @@
   <meta name="author" content="dawncold">
 
   
-  <meta name="description" content="上次笔记本替换下来的硬盘闲在那里很久了，反正闲着没用，不如装点东西，比如监控的图片什么的，每分钟两张的速度拍，一个工作日，大约能有5G的数据，要是都传到七牛那么也就两天，免费的磁盘空间就满了，但绝大多数图片是没意义的，手动删的话，勤快些也行。 不过要是存到磁盘上的话，就无所谓了，500G的空间， &hellip;">
+  <meta name="description" content="Create BlackBerry ID token here: https://www.blackberry.com/SignedKeys/ If you will develop an app on BlackBerry OS 10 or some new plateform, choose &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,135 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/05/developing-on-blackberry/">Developing-on-blackberry</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-09-05T21:58:07+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:58 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>Create BlackBerry ID token</h1>
+
+<p>here:
+<strong> <a href="https://www.blackberry.com/SignedKeys/">https://www.blackberry.com/SignedKeys/</a> </strong></p>
+
+<p>If you will develop an app on BlackBerry OS 10 or some new plateform, choose the first checkbox, and you will be requested your BlackBerry ID username and password, other choices I haven&rsquo;t tried. Then fill a storepass for the key, you can download a file like <code>bbidtoken.csk</code>, save this file to <code>~/Library/Research In Motion</code>, if you are on Windows or Linux, save this file to where website mentioned.</p>
+
+<h1>Create developer certificate file</h1>
+
+<p>developer certificate file is a file named author.p12</p>
+
+<p>I have installed a WebWorks SDK, so I can access blackberry tools on <code>/Applications/BB10 WebWorks SDK 2.1.0.13/cordova-blackberry/bin/dependencies/bb-tools/bin</code>, you should change this path as your SDK type, the target file is <code>blackberry-keytool</code>.</p>
+
+<p><code>blackberry-keytool -genkeypair -storepass &lt;keystore_pw&gt; -author &lt;YOUR_NAME&gt;</code></p>
+
+<p>This will create the author.p12 file on the same directory described below:<code>~/Library/Research In Mothion</code></p>
+
+<h1>Create debug token</h1>
+
+<p><code>blackberry-debugtokenrequest -storepass &lt;KeystorePassword&gt; -devicepin &lt;YOUR_DEVICE_PIN&gt; ~/Library/Research In Motion/debug_token.bar</code></p>
+
+<p>This will create debug token bar file on <code>~/Library/Research In Motion</code>, caution: debug token file must be a *.bar file.</p>
+
+<h1>Install debug token on your device</h1>
+
+<p>Enable your development mode on your device first (Settings > Security and Privacy > Development Mode)</p>
+
+<p><code>blackberry-deploy -installDebugToken &lt;path to debug token&gt; -device &lt;DEVICE_IP_ADDRESS&gt; -password &lt;DEVICE_PIN&gt;</code></p>
+
+<p>Your should get output like these:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Info: Sending request: INSTALL_DEBUG_TOKEN
+</span><span class='line'>Info: Action: Install Debug Token
+</span><span class='line'>Info: File size: 2607
+</span><span class='line'>result::success</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then your device development info has changed, &ldquo;Debug Token Installed&rdquo;</p>
+
+<h1>deploy an hello world to your device</h1>
+
+<p>I use WebWorks SDK, so I launched this app on Mac, and fill some info about project on <code>localhost:3123</code>, a web management for development. After created the app, choose &ldquo;Build&rdquo; on left hand, fill your device password and keystore password, choose BUILD &amp; INSTALL, you may get output like these:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[INFO]    Target Q10-2b1e42dc selected
+</span><span class='line'>[INFO]    Generating debug token
+</span><span class='line'>[INFO]    Debug token created.
+</span><span class='line'>[INFO]    Deploying debug token to target "Q10-2b1e42dc"
+</span><span class='line'>[INFO]    Sending request: INSTALL_DEBUG_TOKEN
+</span><span class='line'>[INFO]    Action: Install Debug Token
+</span><span class='line'>[INFO]    File size: 2605
+</span><span class='line'>[INFO]    result::success
+</span><span class='line'>[INFO]    Populating application source
+</span><span class='line'>[INFO]    Parsing config.xml
+</span><span class='line'>[INFO]    Generating output files
+</span><span class='line'>[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/simulator/bb10app.bar
+</span><span class='line'>[INFO]    Package created: /Users/dawncold/WebWorks Projects/Project1/platforms/blackberry10/build/device/bb10app.bar
+</span><span class='line'>[INFO]    BAR packaging complete
+</span><span class='line'>[INFO]    Sending request: INSTALL_AND_LAUNCH
+</span><span class='line'>[INFO]    Action: Install and Launch
+</span><span class='line'>[INFO]    File size: 69497
+</span><span class='line'>[INFO]    Installing Project1.testDev_Project1___c8537c58...
+</span><span class='line'>[INFO]    Processing 69497 bytes
+</span><span class='line'>[INFO]    Progress 100%...
+</span><span class='line'>[INFO]    Progress 100%...
+</span><span class='line'>[INFO]    actual_dname::Project1.testDev_Project1___c8537c58actual_id::testDev_Project1___c8537c58
+</span><span class='line'>[INFO]    actual_version::0.0.1.1result::successLaunching Project1.testDev_Project1___c8537c58...
+</span><span class='line'>[INFO]    result::19132657
+</span><span class='line'>[INFO]    done</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Meanwhile, your app will be opened on your device!
+<img src="http://pic.yupoo.com/dawncold0/E2fQtBuX/small.jpg" alt="webworks launch screen" /></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -518,37 +647,6 @@ GRANT wheel TO admin;</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/30/log2n-log3n/">Log2n和log3n</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-05-30T20:45:44+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:45 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>merge sort的时间复杂度，log2n，曾经在算法书上看到过，相应的，merge sort也可以三分，复杂度变成log3n，好像还不错，但差多少呢？</p>
-
-<p>log3n=log2n/log2(3)，也就是只差了1/log2(3)对于看起来还更大。一般算法复杂度是log2n表示就是这个原因，loga(n)和log2n差不了太多，都是常数级别的差距，而且在复杂度分析的时候都会忽略常数，所以就简记为log2n复杂度了：）</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -566,6 +664,10 @@ GRANT wheel TO admin;</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/11/30/region/">Region</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/10/30/push-notification/">Push Notification</a>
       </li>
     
@@ -579,10 +681,6 @@ GRANT wheel TO admin;</p>
     
       <li class="post">
         <a href="/blog/2015/08/29/msa-thoughts/">MSA Thoughts</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/08/27/sort-and-uniq-count/">Sort and Uniq Count</a>
       </li>
     
   </ul>
